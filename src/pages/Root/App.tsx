@@ -1,16 +1,28 @@
-function App() {
+import { Suspense, lazy } from 'react';
+import { Route, Router, Switch } from 'react-router-dom';
+import { history } from 'utils/routes';
+import ROUTES from 'constants/routes';
+import Loader from 'components/Loader';
+import ThemeProvider from 'layouts/Theme';
+
+const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
+
+const App: React.FC = () => {
     return (
         <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
+            <ThemeProvider>
+                <Router history={history}>
+                    <Switch>
+                        <Route exact path={ROUTES.Home}>
+                            <Suspense fallback={<Loader />}>
+                                <Home />
+                            </Suspense>
+                        </Route>
+                    </Switch>
+                </Router>
+            </ThemeProvider>
         </div>
     );
-}
+};
 
 export default App;
