@@ -7,13 +7,6 @@ export const resources = {
 
 export const LanguageNameMap = {
     [SupportedLanguages.ENGLISH]: 'English',
-    // [SupportedLanguages.CHINESE]: '中国语文',
-    // [SupportedLanguages.FRENCH]: 'Français',
-    // [SupportedLanguages.GERMAN]: 'Deutsch',
-    // [SupportedLanguages.ITALIAN]: 'Italiano',
-    // [SupportedLanguages.RUSSIAN]: 'русский',
-    // [SupportedLanguages.SPANISH]: 'Español',
-    // [SupportedLanguages.THAI]: 'ภาษาไทย',
 };
 
 export const DEFAULT_LANGUAGE = SupportedLanguages.ENGLISH;

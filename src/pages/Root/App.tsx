@@ -5,6 +5,7 @@ import ROUTES from 'constants/routes';
 import Loader from 'components/Loader';
 import ThemeProvider from 'layouts/Theme';
 import DappLayout from 'layouts/DappLayout';
+import 'i18n';
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
 const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Dashboard'));
