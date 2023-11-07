@@ -19,6 +19,10 @@ let windowHalfY = window.innerHeight / 2;
 export const startAnimation = () => {
     const container = document.getElementById('waves-background');
 
+    if (container?.childElementCount) {
+        return;
+    }
+
     camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 1000;
 
