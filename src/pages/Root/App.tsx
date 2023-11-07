@@ -4,8 +4,10 @@ import { history } from 'utils/routes';
 import ROUTES from 'constants/routes';
 import Loader from 'components/Loader';
 import ThemeProvider from 'layouts/Theme';
+import DappLayout from 'layouts/DappLayout';
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
+const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Dashboard'));
 
 const App: React.FC = () => {
     return (
@@ -17,6 +19,11 @@ const App: React.FC = () => {
                             <Suspense fallback={<Loader />}>
                                 <Home />
                             </Suspense>
+                        </Route>
+                        <Route exact path={ROUTES.Dashboard}>
+                            <DappLayout>
+                                <Dashboard />
+                            </DappLayout>
                         </Route>
                     </Switch>
                 </Router>
