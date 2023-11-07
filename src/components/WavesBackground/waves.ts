@@ -59,6 +59,8 @@ export const startAnimation = () => {
     scene.add(particles);
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.domElement.style.position = 'fixed';
+    renderer.domElement.style.top = '0';
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
 
