@@ -21,9 +21,11 @@ const App: React.FC = () => {
                             </Suspense>
                         </Route>
                         <Route exact path={ROUTES.Dashboard}>
-                            <DappLayout>
-                                <Dashboard />
-                            </DappLayout>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <Dashboard />
+                                </DappLayout>
+                            </Suspense>
                         </Route>
                     </Switch>
                 </Router>

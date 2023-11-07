@@ -1,0 +1,11 @@
+{
+    "header": {
+        "links": {
+            "dashboard": "Dashboard",
+            "staking": "Staking",
+            "governance": "Governance",
+            "docs": "Docs",
+            "whitepaper": "Whitepaper"
+        }
+    }
+}
