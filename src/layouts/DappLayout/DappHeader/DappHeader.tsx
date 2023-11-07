@@ -13,7 +13,11 @@ const DappHeader: React.FC = () => {
                 className="icon-home icon-home--thales"
             /> */}
             <Links>
-                <Link target="_blank" rel="noreferrer" onClick={() => navigateTo(ROUTES.Home, false, false, 'show')}>
+                <Link
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => navigateTo(ROUTES.Dashboard, false, false, 'show')}
+                >
                     {t('header.links.dashboard')}
                 </Link>
                 <Link target="_blank" rel="noreferrer" onClick={() => navigateTo(ROUTES.Staking, false, false, 'show')}>
@@ -26,10 +30,14 @@ const DappHeader: React.FC = () => {
                 >
                     {t('header.links.governance')}
                 </Link>
-                <Link rel="noreferrer" href="https://docs.thalesmarket.io/">
+                <Link rel="noreferrer" target="_blank" href="https://docs.thalesmarket.io/">
                     {t('header.links.docs')}
                 </Link>
-                <Link rel="noreferrer" onClick={() => navigateTo(ROUTES.Whitepaper, false, false, 'show')}>
+                <Link
+                    rel="noreferrer"
+                    target="_blank"
+                    onClick={() => navigateTo(ROUTES.Whitepaper, false, false, 'show')}
+                >
                     {t('header.links.whitepaper')}
                 </Link>
             </Links>

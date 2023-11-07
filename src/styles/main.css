@@ -173,3 +173,5 @@ input[type='number'] {
 a {
     text-decoration: none;
 }
+
+@import './fonts.css';

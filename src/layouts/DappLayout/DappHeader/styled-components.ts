@@ -23,10 +23,6 @@ const CenteredDiv = styled.div`
 `;
 
 export const Links = styled(CenteredDiv)`
-    grid-column-start: 14;
-    grid-column-end: 39;
-    grid-row-start: 3;
-    grid-row-end: 4;
     justify-content: space-between;
     z-index: 10;
     @media (max-width: 1024px) {
@@ -51,8 +47,8 @@ export const Link = styled.a`
     font-family: Nunito !important;
     font-style: normal;
     font-weight: 300;
-    font-size: 1em;
-    line-height: 91.91%;
+    font-size: 18px;
+    line-height: 25.5px;
     z-index: 2;
     text-align: center;
     text-transform: uppercase;
@@ -60,23 +56,5 @@ export const Link = styled.a`
     color: ${(props) => props.theme.landingPage.textColor.primary};
     @media (max-width: 1024px) {
         margin-bottom: 60px;
-    }
-    &.dropdown-icon {
-        :after {
-            content: '';
-            display: block;
-            position: absolute;
-            top: -4px;
-            right: -32px;
-            width: 10px;
-            height: 10px;
-            border-top: 2px solid ${(props) => props.theme.landingPage.textColor.primary};
-            border-right: 2px solid ${(props) => props.theme.landingPage.textColor.primary};
-            transform: rotate(135deg);
-        }
-        &.open:after {
-            top: 2px;
-            transform: rotate(-45deg);
-        }
     }
 `;
