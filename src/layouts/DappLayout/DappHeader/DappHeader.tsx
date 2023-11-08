@@ -1,10 +1,13 @@
-import { navigateTo } from 'utils/routes';
+import SPAAnchor from 'components/SPAAnchor';
 import ROUTES from 'constants/routes';
-import { Links, Link } from './styled-components';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
+import { buildHref } from 'utils/routes';
+import { Item, Links } from './styled-components';
 
 const DappHeader: React.FC = () => {
     const { t } = useTranslation();
+    const location = useLocation();
     return (
         <>
             {/* <Logo
@@ -12,33 +15,21 @@ const DappHeader: React.FC = () => {
                 className="icon-home icon-home--thales"
             /> */}
             <Links>
-                <Link
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() => navigateTo(ROUTES.Dashboard, false, false, 'show')}
-                >
-                    {t('header.links.dashboard')}
-                </Link>
-                <Link target="_blank" rel="noreferrer" onClick={() => navigateTo(ROUTES.Staking, false, false, 'show')}>
-                    {t('header.links.staking')}
-                </Link>
-                <Link
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() => navigateTo(ROUTES.Governance, false, false, 'show')}
-                >
-                    {t('header.links.governance')}
-                </Link>
-                <Link rel="noreferrer" target="_blank" href="https://docs.thalesmarket.io/">
-                    {t('header.links.docs')}
-                </Link>
-                <Link
-                    rel="noreferrer"
-                    target="_blank"
-                    onClick={() => navigateTo(ROUTES.Whitepaper, false, false, 'show')}
-                >
-                    {t('header.links.whitepaper')}
-                </Link>
+                <SPAAnchor href={buildHref(ROUTES.Dashboard)}>
+                    <Item active={location.pathname === ROUTES.Dashboard}>{t('header.links.dashboard')}</Item>
+                </SPAAnchor>
+                <SPAAnchor href={buildHref(ROUTES.Staking)}>
+                    <Item active={location.pathname === ROUTES.Staking}> {t('header.links.staking')}</Item>
+                </SPAAnchor>
+                <SPAAnchor href={buildHref(ROUTES.Governance)}>
+                    <Item active={location.pathname === ROUTES.Governance}> {t('header.links.governance')}</Item>
+                </SPAAnchor>
+                <SPAAnchor href="https://docs.thalesmarket.io/">
+                    <Item> {t('header.links.docs')}</Item>
+                </SPAAnchor>
+                <SPAAnchor href={buildHref(ROUTES.Whitepaper)}>
+                    <Item active={location.pathname === ROUTES.Whitepaper}> {t('header.links.whitepaper')}</Item>
+                </SPAAnchor>
             </Links>
         </>
     );

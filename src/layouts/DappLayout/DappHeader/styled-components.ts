@@ -1,25 +1,11 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-    display: contents;
-    @media (max-width: 1024px) {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: absolute;
-        top: 20px;
-        width: 100vw;
-        padding: 0 40px;
-        z-index: 10;
-        margin-top: 50px;
-    }
-`;
-
 const CenteredDiv = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     z-index: 2;
+    width: 100%;
 `;
 
 export const Links = styled(CenteredDiv)`
@@ -42,7 +28,7 @@ export const PositionedContainer = styled.div`
     }
 `;
 
-export const Link = styled.a`
+export const Item = styled.label<{ active?: boolean }>`
     position: relative;
     font-family: Nunito !important;
     font-style: normal;
@@ -53,7 +39,7 @@ export const Link = styled.a`
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
-    color: ${(props) => props.theme.landingPage.textColor.primary};
+    color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.textColor.primary)};
     @media (max-width: 1024px) {
         margin-bottom: 60px;
     }
