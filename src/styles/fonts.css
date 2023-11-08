@@ -10,5 +10,20 @@
 
 @font-face {
     font-family: 'NunitoBold';
-    src: local('NunitoBold'), url(../assets/fonts/Nunito/Nunito-ExtraBold.ttf) format('truetype');
+    src: local('NunitoBold'), url(../assets/fonts/Nunito/Nunito-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NunitoExtraBold';
+    src: local('NunitoExtraBold'), url(../assets/fonts/Nunito/Nunito-ExtraBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'MontserratLight';
+    src: local('MontserratLight'), url(../assets/fonts/Montserrat/Montserrat-Light.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'MontserratBold';
+    src: local('MontserratBold'), url(../assets/fonts/Montserrat/Montserrat-Bold.ttf) format('truetype');
 }

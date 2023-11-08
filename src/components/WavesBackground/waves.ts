@@ -71,7 +71,7 @@ export const startAnimation = () => {
     if (container) {
         container.appendChild(renderer.domElement);
         container.style.touchAction = 'none';
-        container.addEventListener('pointermove', onPointerMove);
+        document.addEventListener('pointermove', onPointerMove);
     }
 
     window.addEventListener('resize', onWindowResize);
