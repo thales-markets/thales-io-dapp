@@ -84,5 +84,5 @@ export const Colors = {
 export const Background = styled.div`
     width: 100%;
     font-size: 16px;
-    background: linear-gradient(236.02deg, #484e88 17.37%, #0d111e 57.85%);
+    background: radial-gradient(at center, #484e88, #0d111e);
 `;

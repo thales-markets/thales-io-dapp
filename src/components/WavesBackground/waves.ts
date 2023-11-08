@@ -18,7 +18,7 @@ let windowHalfY = window.innerHeight / 2;
 
 export const startAnimation = () => {
     const container = document.getElementById('waves-background');
-
+    const radialBackgroundElement = document.getElementById('radial-background');
     if (container?.childElementCount) {
         return;
     }
@@ -74,6 +74,10 @@ export const startAnimation = () => {
         document.addEventListener('pointermove', onPointerMove);
     }
 
+    if (radialBackgroundElement) {
+        document.addEventListener('pointermove', onRadialBackgroundPointerMove);
+    }
+
     window.addEventListener('resize', onWindowResize);
 
     animate();
@@ -94,6 +98,22 @@ const onPointerMove = (event: PointerEvent) => {
 
     mouseX = event.clientX - windowHalfX;
     mouseY = event.clientY - windowHalfY;
+};
+
+const onRadialBackgroundPointerMove = (event: PointerEvent) => {
+    const backgroundElement = document.getElementById('radial-background');
+
+    if (backgroundElement) {
+        const elementRect = backgroundElement.getBoundingClientRect();
+        const windowWidth = elementRect.width;
+        const windowHeight = elementRect.height;
+        console.log(event);
+        const mouseXpercentage = Math.round((event.pageX / windowWidth) * 100);
+        const mouseYpercentage = Math.round((event.pageY / windowHeight) * 100);
+
+        backgroundElement.style.background =
+            'radial-gradient(at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #2c2f54, #0d111e)';
+    }
 };
 
 const animate = () => {

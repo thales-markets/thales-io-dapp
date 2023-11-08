@@ -6,7 +6,7 @@ import WavesBackground from 'components/WavesBackground';
 
 const DappLayout: React.FC = ({ children }) => {
     return (
-        <Background>
+        <Background id="radial-background">
             <WavesBackground />
             <Wrapper>
                 <DappHeader />
