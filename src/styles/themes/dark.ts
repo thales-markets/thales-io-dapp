@@ -12,7 +12,7 @@ const darkTheme = {
     },
     textColor: {
         primary: Colors.WHITE,
-        secondary: Colors.GRAY_LIGHT,
+        secondary: Colors.CYAN,
         tertiary: Colors.RED,
         quaternary: Colors.GREEN,
     },
