@@ -13,6 +13,8 @@ const Home: React.FC = () => {
                 <Subtitle>powered by AMM-driven liquidity. Pioneering the Future of On-Chain Markets</Subtitle>
                 <StatTitle>Total protocol volume</StatTitle>
                 <Stat>$ 944,459,682</Stat>
+                <StatTitle>Total value locked</StatTitle>
+                <Stat>$ 145,548,562</Stat>
             </Wrapper>
         </Suspense>
     );
