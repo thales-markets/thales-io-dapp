@@ -28,7 +28,7 @@ export const PositionedContainer = styled.div`
     }
 `;
 
-export const Link = styled.a<{ active?: boolean }>`
+export const Item = styled.label<{ active?: boolean }>`
     position: relative;
     font-family: Nunito !important;
     font-style: normal;
