@@ -1,5 +1,4 @@
 import { navigateTo } from 'utils/routes';
-import { Wrapper } from '../styled-components';
 import ROUTES from 'constants/routes';
 import { Links, Link } from './styled-components';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 const DappHeader: React.FC = () => {
     const { t } = useTranslation();
     return (
-        <Wrapper>
+        <>
             {/* <Logo
                 onClick={() => navigateTo(ROUTES.Home, false, false, 'show')}
                 className="icon-home icon-home--thales"
@@ -41,7 +40,7 @@ const DappHeader: React.FC = () => {
                     {t('header.links.whitepaper')}
                 </Link>
             </Links>
-        </Wrapper>
+        </>
     );
 };
 

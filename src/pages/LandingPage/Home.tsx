@@ -1,35 +1,73 @@
 import Loader from 'components/Loader';
 import React, { Suspense } from 'react';
 import styled from 'styled-components';
-import Header from './components/Header';
-import WavesBackground from 'components/WavesBackground';
 
 const Home: React.FC = () => {
     return (
-        <Background>
-            <WavesBackground>
-                <Suspense fallback={<Loader />}>
-                    <Wrapper>
-                        <Header />
-                    </Wrapper>
-                </Suspense>
-            </WavesBackground>
-        </Background>
+        <Suspense fallback={<Loader />}>
+            <Wrapper>
+                <Title>
+                    Thales<span>Protocol</span>
+                </Title>
+                <Subtitle>A permissionless ecosystem where every market is a unique smart contract,</Subtitle>
+                <Subtitle>powered by AMM-driven liquidity. Pioneering the Future of On-Chain Markets</Subtitle>
+                <StatTitle>Total protocol volume</StatTitle>
+                <Stat>$ 944,459,682</Stat>
+            </Wrapper>
+        </Suspense>
     );
 };
 
 export default Home;
 
-export const Background = styled.div`
+const Wrapper = styled.div`
+    display: flex;
+    position: relative;
+    flex-direction: column;
     width: 100%;
-    height: 100vh;
-    font-size: 16px;
-    background: linear-gradient(236.02deg, #484e88 17.37%, #0d111e 57.85%);
+    max-width: 1400px;
 `;
 
-const Wrapper = styled.div`
-    display: grid;
-    width: 100%;
-    margin: auto;
-    max-width: 1400px;
+const Title = styled.div`
+    color: white;
+    font-family: 'NunitoBold';
+    font-weight: bold;
+    font-size: 50px;
+    font-style: normal;
+    line-height: 91.4%;
+    letter-spacing: 3.25px;
+    text-transform: uppercase;
+    & > span {
+        font-family: 'NunitoExtraLight';
+        font-weight: normal;
+    }
+`;
+
+const Subtitle = styled.div`
+    color: #a9abbb;
+    font-family: 'NunitoExtraLight';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 103%;
+    text-transform: capitalize;
+`;
+
+const StatTitle = styled.div`
+    color: #a9abbb;
+    font-family: 'NunitoExtraLight;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+`;
+
+const Stat = styled.div`
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
 `;
