@@ -102,6 +102,19 @@ export const WidgetTitleLabel = styled.span<{ isLink?: boolean }>`
     letter-spacing: 1px;
 `;
 
+export const UpperInfoSection = styled.div`
+    grid-area: top;
+    height: 100%;
+    width: 100%;
+    margin-top: 19%;
+    padding: 20px 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1px;
+`;
+
 export const InfoSection = styled.div<{ side: string }>`
     grid-area: ${(props) => (props.side == 'left' ? 'bottom-left' : 'bottom-right')};
     height: 100%;

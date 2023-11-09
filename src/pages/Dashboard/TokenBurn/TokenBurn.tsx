@@ -13,6 +13,7 @@ const TokenBurn: React.FC = () => {
         <WidgetWrapper>
             <WidgetHeader>
                 <WidgetTitleLabel>Thales Token burn</WidgetTitleLabel>
+                <WidgetTitleLabel>Total Stakers</WidgetTitleLabel>
             </WidgetHeader>
             <InfoSection side="left">
                 <OneSideFlexDiv>
