@@ -16,6 +16,9 @@ let mouseY = -5;
 let windowHalfX = window.innerWidth / 2;
 let windowHalfY = window.innerHeight / 2;
 
+let lastMouseXPosition = 0;
+let lastMouseYPosition = 0;
+
 export const startAnimation = () => {
     const container = document.getElementById('waves-background');
     const radialBackgroundElement = document.getElementById('radial-background');
@@ -76,6 +79,7 @@ export const startAnimation = () => {
 
     if (radialBackgroundElement) {
         document.addEventListener('pointermove', onRadialBackgroundPointerMove);
+        document.addEventListener('scroll', onRadialBackgroundScroll);
     }
 
     window.addEventListener('resize', onWindowResize);
@@ -100,6 +104,23 @@ const onPointerMove = (event: PointerEvent) => {
     mouseY = event.clientY - windowHalfY;
 };
 
+const onRadialBackgroundScroll = () => {
+    const backgroundElement = document.getElementById('radial-background');
+    const scrollTop = document.documentElement.scrollTop;
+
+    if (backgroundElement) {
+        const elementRect = backgroundElement.getBoundingClientRect();
+        const windowWidth = elementRect.width;
+        const windowHeight = elementRect.height;
+
+        const mouseXpercentage = Math.round((lastMouseXPosition / windowWidth) * 100);
+        const mouseYpercentage = Math.round(((lastMouseYPosition + scrollTop) / windowHeight) * 100);
+
+        backgroundElement.style.background =
+            'radial-gradient(at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #2c2f54, #0d111e)';
+    }
+};
+
 const onRadialBackgroundPointerMove = (event: PointerEvent) => {
     const backgroundElement = document.getElementById('radial-background');
 
@@ -107,7 +128,9 @@ const onRadialBackgroundPointerMove = (event: PointerEvent) => {
         const elementRect = backgroundElement.getBoundingClientRect();
         const windowWidth = elementRect.width;
         const windowHeight = elementRect.height;
-
+        console.log(event);
+        lastMouseXPosition = event.clientX;
+        lastMouseYPosition = event.clientY;
         const mouseXpercentage = Math.round((event.pageX / windowWidth) * 100);
         const mouseYpercentage = Math.round((event.pageY / windowHeight) * 100);
 
