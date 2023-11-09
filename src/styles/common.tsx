@@ -52,6 +52,7 @@ export const Colors = {
 
     WHITE: '#FFFFFF',
     CYAN: '#19F8EF',
+    BLUE_DARK: '#313652',
 
     GREEN: '#03DAC5',
     GREEN_LIGHT: '#B0FFE7',
@@ -62,7 +63,6 @@ export const Colors = {
 
     BLUE: '#5B86E5',
     BLUE_LIGHT: '#36D1DC',
-    BLUE_DARK: '#1043B4',
     BLUE_MIDNIGHT: '#052040',
     BLUE_MIDNIGHT_LIGHT: '#1b314f',
     BLUE_SKY: '#91bced',

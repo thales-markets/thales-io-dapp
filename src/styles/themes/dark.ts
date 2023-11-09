@@ -5,7 +5,7 @@ const darkTheme = {
         primary: "'Fira Sans' !important",
     },
     background: {
-        primary: Colors.GRAY_DARK,
+        primary: Colors.BLUE_DARK,
         secondary: Colors.GRAY,
         tertiary: Colors.GRAY_LIGHT,
         quaternary: Colors.GREEN,

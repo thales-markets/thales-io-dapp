@@ -1,3 +1,4 @@
+import ProtocolVolume from './ProtocolVolume';
 import {
     Container,
     ItemBottom,
@@ -13,7 +14,9 @@ import {
 const Dashboard: React.FC = () => {
     return (
         <Container>
-            <ItemUpperLeft></ItemUpperLeft>
+            <ItemUpperLeft>
+                <ProtocolVolume />
+            </ItemUpperLeft>
             <ItemTop></ItemTop>
             <ItemUpperRight></ItemUpperRight>
             <ItemMiddleLeft></ItemMiddleLeft>
