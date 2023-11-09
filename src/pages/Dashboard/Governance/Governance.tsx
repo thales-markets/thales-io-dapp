@@ -1,4 +1,13 @@
-import { InfoSection, InfoStats, InfoText, WidgetHeader, WidgetTitleLabel, WidgetWrapper } from '../styled-components';
+import SPAAnchor from 'components/SPAAnchor';
+import {
+    DoubleSideSection,
+    InfoSection,
+    InfoStats,
+    InfoText,
+    WidgetHeader,
+    WidgetTitleLabel,
+    WidgetWrapper,
+} from '../styled-components';
 
 const Governance: React.FC = () => {
     return (
@@ -8,6 +17,9 @@ const Governance: React.FC = () => {
             </WidgetHeader>
 
             <InfoSection side="left">
+                <DoubleSideSection>
+                    <SPAAnchor href={''}>TIP-XXX: Placeholder for current TIP link</SPAAnchor>
+                </DoubleSideSection>
                 <InfoText>Start date</InfoText>
                 <InfoText>End date</InfoText>
             </InfoSection>

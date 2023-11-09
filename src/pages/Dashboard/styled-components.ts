@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FlexDivSpaceBetween } from 'styles/common';
 
 export const Container = styled.div`
     display: grid;
@@ -43,7 +44,7 @@ export const ItemMiddleRight = styled.div`
     grid-area: middle-right;
 `;
 
-export const ItemBottom = styled.div`
+export const ItemBottomCenter = styled.div`
     grid-area: bottom;
 `;
 
@@ -64,6 +65,14 @@ export const WidgetHeader = styled.div<{ isTwoSided?: boolean }>`
     padding: 20px;
     display: ${(props) => (props.isTwoSided ? 'flex' : '')};
     justify-content: ${(props) => (props.isTwoSided ? 'space-between' : '')};
+`;
+
+export const NumericStats = styled.span`
+    font-family: Nunito !important;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 55px;
+    color: ${(props) => props.theme.textColor.secondary};
 `;
 
 export const InfoText = styled.label`
@@ -103,4 +112,17 @@ export const InfoSection = styled.div<{ side: string }>`
     justify-content: end;
     align-items: ${(props) => (props.side == 'left' ? 'start' : 'end')};
     gap: 1px;
+`;
+
+export const DoubleSideSection = styled.span`
+    font-family: Nunito !important;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: ${(props) => props.theme.textColor.tertiary};
+    text-wrap: nowrap;
+`;
+
+export const OneSideFlexDiv = styled(FlexDivSpaceBetween)`
+    width: 100%;
 `;

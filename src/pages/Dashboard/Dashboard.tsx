@@ -3,9 +3,10 @@ import IntegratorsVolume from './IntegratorsVolume';
 import ProtocolVolume from './ProtocolVolume';
 import TVLInfo from './TVLInfo';
 import TokenAddresses from './TokenAddresses';
+import TokenBurn from './TokenBurn';
 import {
     Container,
-    ItemBottom,
+    ItemBottomCenter,
     ItemBottomLeft,
     ItemBottomRight,
     ItemMiddleLeft,
@@ -32,7 +33,9 @@ const Dashboard: React.FC = () => {
             <ItemBottomLeft>
                 <TVLInfo />
             </ItemBottomLeft>
-            <ItemBottom></ItemBottom>
+            <ItemBottomCenter>
+                <TokenBurn />
+            </ItemBottomCenter>
             <ItemBottomRight>
                 <IntegratorsVolume />
             </ItemBottomRight>

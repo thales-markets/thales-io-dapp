@@ -1,5 +1,12 @@
-import { InfoSection, InfoStats, InfoText, WidgetHeader, WidgetTitleLabel, WidgetWrapper } from '../styled-components';
-import { NumericStats } from './styled-components';
+import {
+    InfoSection,
+    InfoStats,
+    InfoText,
+    NumericStats,
+    WidgetHeader,
+    WidgetTitleLabel,
+    WidgetWrapper,
+} from '../styled-components';
 
 const ProtocolVolume: React.FC = () => {
     return (

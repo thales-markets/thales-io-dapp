@@ -1,12 +1,11 @@
-import { InfoSection, InfoStats, InfoText, WidgetTitleLabel } from '../styled-components';
-import { Header, Wrapper } from './styled-components';
+import { InfoSection, InfoStats, InfoText, WidgetHeader, WidgetTitleLabel, WidgetWrapper } from '../styled-components';
 
 const IntegratorsVolume: React.FC = () => {
     return (
-        <Wrapper>
-            <Header>
+        <WidgetWrapper>
+            <WidgetHeader>
                 <WidgetTitleLabel>Integrators volume</WidgetTitleLabel>
-            </Header>
+            </WidgetHeader>
             <InfoSection side="left">
                 <InfoText>Purebet</InfoText>
                 <InfoText>BookieBot</InfoText>
@@ -19,7 +18,7 @@ const IntegratorsVolume: React.FC = () => {
                 <InfoStats>$ 564,652.43</InfoStats>
                 <InfoStats>$ 100,929</InfoStats>
             </InfoSection>
-        </Wrapper>
+        </WidgetWrapper>
     );
 };
 
