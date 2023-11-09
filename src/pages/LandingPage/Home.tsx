@@ -6,6 +6,7 @@ import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperl
 import { FlexDiv, FlexDivCentered } from 'styles/common';
 import buyingAnimation from 'assets/lotties/homepage-buying.json';
 import sellingAnimation from 'assets/lotties/homepage-selling.json';
+import MILESTONES from './milestones';
 
 const Home: React.FC = () => {
     return (
@@ -123,6 +124,17 @@ const Home: React.FC = () => {
                         remains of the community, by the community, and for the community.
                     </AppDescription>
                     <HomeButton>Explore Thales DAO</HomeButton>
+                </Section>
+                <Section>
+                    <SectionSlogan>Timeline</SectionSlogan>
+                    <MilestonesContainer>
+                        {MILESTONES.map((milestone, index) => (
+                            <Milestone isLast={MILESTONES.length - 1 === index} index={index + 1}>
+                                <MilestoneDate>{milestone.date}</MilestoneDate>
+                                <MilestoneDescription>{milestone.description}</MilestoneDescription>
+                            </Milestone>
+                        ))}
+                    </MilestonesContainer>
                 </Section>
             </Wrapper>
         </Suspense>
@@ -268,6 +280,72 @@ const StepsSection = styled(FlexDivCentered)`
     & > div > div {
         color: white;
     }
+`;
+
+const MilestonesContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 60px;
+    column-gap: 20px;
+`;
+
+const Milestone = styled.div<{ index: number; isLast: boolean }>`
+    height: 80px;
+    border-radius: 8px;
+    background: #313652;
+    box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
+    padding: 15px 20px;
+    transform-style: preserve-3d;
+    &:before {
+        content: '';
+        height: 60px;
+        position: absolute;
+        border-radius: 10px 0 0 0;
+        border-top: ${(props) =>
+            props.index > 4 && props.index % 4 === 1 ? '#424451 solid 6px' : 'transparent solid 6px'};
+        border-left: ${(props) => (props.index > 4 && props.index % 4 === 1 ? '#424451 solid 6px' : '0')};
+        z-index: -1;
+        width: calc(100% + 20px);
+        transform: translateZ(-1px);
+        top: calc(-50% + 6px);
+        left: 50%;
+    }
+    &:after {
+        content: '';
+        height: 60px;
+        position: absolute;
+        border-radius: ${(props) => ((props.index + 1) % 4 === 0 ? '0 0 10px 0' : '0')};
+        border-top: ${(props) =>
+            props.isLast || props.index % 4 === 0 ? 'transparent solid 6px' : '#424451 solid 6px'};
+        border-right: ${(props) => ((props.index + 1) % 4 === 0 ? '#424451 solid 6px' : '0')};
+        border-bottom: ${(props) =>
+            props.isLast || (props.index + 3) % 4 == 0 || props.index % 4 === 0
+                ? 'transparent solid 6px'
+                : '#424451 solid 6px'};
+        z-index: -1;
+        width: calc(100% + 20px);
+        transform: translateZ(-1px);
+        top: 50%;
+        left: 50%;
+    }
+`;
+
+const MilestoneDate = styled.div`
+    color: white;
+    font-family: MontserratBold;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+    text-transform: uppercase;
+`;
+
+const MilestoneDescription = styled.div`
+    color: #a9abbb;
+    font-family: MontserratLight;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 155%;
 `;
 
 const buyingAnimationStyle: CSSProperties = {

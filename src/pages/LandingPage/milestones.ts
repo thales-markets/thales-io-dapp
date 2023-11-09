@@ -1,0 +1,26 @@
+const MILESTONES = [
+    { date: 'July 2021', description: 'Thales Protocol launches on Ethereum Mainnet' },
+    { date: 'September 2021', description: 'The launch of THALES token' },
+    { date: 'December 2021', description: 'Thales Protocol deploys on Optimism and the new ThalesAMM goes live' },
+    { date: 'January 2022', description: 'Tale of Thales minigame launched' },
+    { date: 'February 2022', description: 'The THALES token staking migration to Optimism' },
+    { date: 'April  2022', description: 'Thales Protocol expands to Polygon' },
+    { date: 'May 2022', description: 'Launch of Thales Ranged Markets' },
+    { date: 'June 2022', description: 'Launch of Referral Program architecture' },
+    { date: 'July 2022', description: 'Thales Protocol launches Sports Markets and the SportsAMM on Optimism' },
+    { date: 'September 2022', description: 'Thales Protocol expands to Arbitrum' },
+    { date: 'October 2022', description: 'THALES tokenomics 2.0' },
+    { date: 'November 2022', description: 'Thales Vaults launch' },
+    { date: 'November 2022', description: 'Sports Markets ParlayAMM launch' },
+    { date: 'February 2023', description: 'SportsAMM expands to Arbitrum' },
+    { date: 'March 2023', description: 'THALES token staking expands to Arbitrum' },
+    { date: 'March 2023', description: 'Launch of SportsAMM Liquidity Pools for THALES stakers' },
+    { date: 'May 2023', description: 'Launch of ThalesAMM Liquidity Pools for THALES stakers' },
+    { date: 'May 2023', description: 'Thales Markets 2.0' },
+    { date: 'June 2023', description: 'Launch of ParlayAMM Liquidity Pools for THALES stakers' },
+    { date: 'July 2023', description: 'THALES gamified staking 2.0' },
+    { date: 'August 2023', description: 'Thales Protocol launches on Base network' },
+    { date: 'August 2023', description: 'The launch of Thales Speed Markets' },
+];
+
+export default MILESTONES;
