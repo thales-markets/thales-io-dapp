@@ -1,15 +1,15 @@
-import { InfoSection, InfoStats, InfoText, WidgetTitleLabel } from '../styled-components';
-import { Header, NumericStats, Wrapper } from './styled-components';
+import { InfoSection, InfoStats, InfoText, WidgetHeader, WidgetTitleLabel, WidgetWrapper } from '../styled-components';
+import { NumericStats } from './styled-components';
 
 const ProtocolVolume: React.FC = () => {
     return (
-        <Wrapper>
-            <Header>
+        <WidgetWrapper isDoubleHeight={true}>
+            <WidgetHeader>
                 <WidgetTitleLabel>TOTAL PROTOCOL VOLUME</WidgetTitleLabel>
                 <NumericStats>$ 999,999,999</NumericStats>
                 <WidgetTitleLabel>SAFEBOX FEES</WidgetTitleLabel>
                 <NumericStats>$ 9,999,999</NumericStats>
-            </Header>
+            </WidgetHeader>
             <InfoSection side="left">
                 <InfoText>Thales AMM</InfoText>
                 <InfoText>Overtime AMM</InfoText>
@@ -24,7 +24,7 @@ const ProtocolVolume: React.FC = () => {
                 <InfoStats>100,929</InfoStats>
                 <InfoStats>3493</InfoStats>
             </InfoSection>
-        </Wrapper>
+        </WidgetWrapper>
     );
 };
 

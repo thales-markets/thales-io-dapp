@@ -1,12 +1,11 @@
-import { InfoSection, InfoStats, InfoText, WidgetTitleLabel } from '../styled-components';
-import { Header, Wrapper } from './styled-components';
+import { InfoSection, InfoStats, InfoText, WidgetHeader, WidgetTitleLabel, WidgetWrapper } from '../styled-components';
 
 const TVLInfo: React.FC = () => {
     return (
-        <Wrapper>
-            <Header>
+        <WidgetWrapper>
+            <WidgetHeader>
                 <WidgetTitleLabel>TVL</WidgetTitleLabel>
-            </Header>
+            </WidgetHeader>
             <InfoSection side="left">
                 <InfoText>Overtime AMM TVL</InfoText>
                 <InfoText>Thales AMM TVL</InfoText>
@@ -19,7 +18,7 @@ const TVLInfo: React.FC = () => {
                 <InfoStats>$ 564,652.43</InfoStats>
                 <InfoStats>$ 100,929</InfoStats>
             </InfoSection>
-        </Wrapper>
+        </WidgetWrapper>
     );
 };
 

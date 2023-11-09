@@ -1,17 +1,16 @@
 import SPAAnchor from 'components/SPAAnchor';
-import { InfoSection, InfoStats, InfoText, WidgetTitleLabel } from '../styled-components';
-import { Header, Wrapper } from './styled-components';
 import { truncateAddress } from 'thales-utils';
+import { InfoSection, InfoStats, InfoText, WidgetHeader, WidgetTitleLabel, WidgetWrapper } from '../styled-components';
 
 const TokenAddresses: React.FC = () => {
     return (
-        <Wrapper>
-            <Header>
+        <WidgetWrapper>
+            <WidgetHeader isTwoSided={true}>
                 <WidgetTitleLabel>Thales Token</WidgetTitleLabel>
                 <SPAAnchor href={''}>
                     <WidgetTitleLabel isLink={true}>Bridge</WidgetTitleLabel>
                 </SPAAnchor>
-            </Header>
+            </WidgetHeader>
             <InfoSection side="left">
                 <InfoText>Optimism</InfoText>
                 <InfoText>Arbitrum</InfoText>
@@ -32,7 +31,7 @@ const TokenAddresses: React.FC = () => {
                     <InfoStats>{truncateAddress('0x49Ae63864988Ee94791a8aeb0AA05A465699A5dB')}</InfoStats>
                 </SPAAnchor>
             </InfoSection>
-        </Wrapper>
+        </WidgetWrapper>
     );
 };
 

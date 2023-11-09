@@ -47,6 +47,25 @@ export const ItemBottom = styled.div`
     grid-area: bottom;
 `;
 
+export const WidgetWrapper = styled.div<{ isDoubleHeight?: boolean }>`
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: ${(props) => (props.isDoubleHeight ? '50% 50%' : '40% 60%;')};
+    grid-template-areas: 'top top' 'bottom-left bottom-right';
+`;
+
+export const WidgetHeader = styled.div<{ isTwoSided?: boolean }>`
+    grid-area: top;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    padding: 20px;
+    display: ${(props) => (props.isTwoSided ? 'flex' : '')};
+    justify-content: ${(props) => (props.isTwoSided ? 'space-between' : '')};
+`;
+
 export const InfoText = styled.label`
     font-family: Nunito !important;
     font-weight: 400;

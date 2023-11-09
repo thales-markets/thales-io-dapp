@@ -1,3 +1,4 @@
+import Governance from './Governance';
 import IntegratorsVolume from './IntegratorsVolume';
 import ProtocolVolume from './ProtocolVolume';
 import TVLInfo from './TVLInfo';
@@ -22,7 +23,9 @@ const Dashboard: React.FC = () => {
             </ItemUpperLeft>
             <ItemTop></ItemTop>
             <ItemUpperRight></ItemUpperRight>
-            <ItemMiddleLeft></ItemMiddleLeft>
+            <ItemMiddleLeft>
+                <Governance />
+            </ItemMiddleLeft>
             <ItemMiddleRight>
                 <TokenAddresses />
             </ItemMiddleRight>
