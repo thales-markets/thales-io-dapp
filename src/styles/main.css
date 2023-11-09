@@ -141,9 +141,10 @@ table {
 
 *::-webkit-scrollbar {
     border-radius: 8px;
-    width: 10px;
+    width: 0;
 }
 *::-webkit-scrollbar-track {
+    background: #5f6180;
     border-radius: 8px;
 }
 *::-webkit-scrollbar-thumb {
@@ -175,5 +176,3 @@ input[type='number'] {
 a {
     text-decoration: none;
 }
-
-@import './fonts.css';

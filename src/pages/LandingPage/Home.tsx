@@ -33,28 +33,28 @@ const Home: React.FC = () => {
                 <EcosystemSection>
                     <SectionTitle>Ecosystem Apps</SectionTitle>
                     <EcosystemApps>
-                        <AppDescription>
+                        <Description>
                             Thales Markets Purchase positions on Crypto Prices with a specific strike price at a
                             predetermined expiry date. Use Thales markets Vaults with automated trading strategies or
                             provide liquidity to the Thales AMM
-                        </AppDescription>
-                        <AppDescription>
+                        </Description>
+                        <Description>
                             Overtime is a Premier onchain Sports Positioning Markets platform built on Thales AMM
                             Architecture. Be the house by providing the liquidity to the AMM or use Vaults with
                             automated trading strategies
-                        </AppDescription>
-                        <AppDescription>
+                        </Description>
+                        <Description>
                             Tale of Thales is a web 3 Metaverse game that takes you through retro pixel experience of an
                             ancient Greek town of Miletus while teaching you how Thales Markets trading works.
-                        </AppDescription>
-                        <AppDescription>
+                        </Description>
+                        <Description>
                             Spongly is Sports Markets dapp with a social twist built on top of Thales' SportsAMM. Take
                             an opportunity to copy trade best sport traders. Use trading wisdom of the best
-                        </AppDescription>
-                        <AppDescription>
+                        </Description>
+                        <Description>
                             FlipEth is fast paced simplified crypto markets, users can trade shorter time frames of 1
                             hour to 24 hours. Every win rewards you with 100% of initial bet size.
-                        </AppDescription>
+                        </Description>
                     </EcosystemApps>
                 </EcosystemSection>
                 <Section>
@@ -62,53 +62,53 @@ const Home: React.FC = () => {
                         Tailored for Developers <SectionTitleLinkArrow />
                     </SectionTitleLink>
                     <SectionSlogan>Seamless Integration and Boundless Possibilities</SectionSlogan>
-                    <AppDescription marginBottom={20}>
+                    <Description marginBottom={20}>
                         To the developers poised to shape the future: Thales is your canvas. Our protocol is
                         meticulously designed to ensure that you have a frictionless experience in developing and
                         deploying your applications. With comprehensive resources, including in-depth developer
                         documentation and a vibrant Discord community, Thales empowers you to realize your vision with
                         precision and ease.
-                    </AppDescription>
+                    </Description>
                     <HomeButton>Integrate with Thales</HomeButton>
                 </Section>
                 <Section>
                     <SectionSlogan>Every Possible Outcome As An Erc20</SectionSlogan>
-                    <AppDescription marginBottom={20}>
+                    <Description marginBottom={20}>
                         With Thales' advanced smart contracts, you can effortlessly tokenize any outcome backed by an
                         available oracle. What truly distinguishes the Thales protocol is its ironclad guarantee of
                         claim liquidity once you enter a market. This assurance stems from the elimination of
                         counterparty risks, fortified by our decentralized contracts, ensuring unparalleled safety and
                         reliability for every user.
-                    </AppDescription>
+                    </Description>
                 </Section>
                 <div>
                     <LottieContaienr>
                         <Lottie animationData={buyingAnimation} style={buyingAnimationStyle} />
                     </LottieContaienr>
                     <StepsSection>
-                        <AppDescription>
+                        <Description>
                             <div>Step 1:</div>
                             User sends 50$ to ThalesAMM to buy 100 BTC UP tokens
-                        </AppDescription>
-                        <AppDescription>
+                        </Description>
+                        <Description>
                             <div>Step 2:</div> AMM sends 100$ from LP pool to BTC Market Contract to mint 100 UP and 100
                             DOWN tokens
-                        </AppDescription>
-                        <AppDescription>
+                        </Description>
+                        <Description>
                             <div>Step 3:</div> AMM sends newly minted 100 UP tokens to User
-                        </AppDescription>
+                        </Description>
                     </StepsSection>
                     <LottieContaienr>
                         <Lottie animationData={sellingAnimation} style={sellingAnimationStyle} />
                     </LottieContaienr>
                     <StepsSection>
-                        <AppDescription>
+                        <Description>
                             <div>Step 1:</div>
                             User sends positional tokens to ThalesAMM
-                        </AppDescription>
-                        <AppDescription>
+                        </Description>
+                        <Description>
                             <div>Step 2:</div> AMM buys tokens from user and sends him the money
-                        </AppDescription>
+                        </Description>
                     </StepsSection>
                 </div>
                 <Section>
@@ -116,13 +116,13 @@ const Home: React.FC = () => {
                         Community-Centric Governance <SectionTitleLinkArrow />
                     </SectionTitleLink>
                     <SectionSlogan>Steering the Future, Together</SectionSlogan>
-                    <AppDescription marginBottom={20}>
+                    <Description marginBottom={20}>
                         At Thales, we believe in the collective wisdom of our community. Our governance structure,
                         underpinned by ThalesDAO and the Thales Council, is a testament to our commitment to
                         decentralized decision-making. Every strategic move, every initiative, is guided by the voice of
                         our community. Through a transparent and robust DAO voting mechanism, we ensure that Thales
                         remains of the community, by the community, and for the community.
-                    </AppDescription>
+                    </Description>
                     <HomeButton>Explore Thales DAO</HomeButton>
                 </Section>
                 <Section>
@@ -226,7 +226,7 @@ const EcosystemSection = styled.div`
     margin-top: 150px;
 `;
 
-const AppDescription = styled.div<{ marginBottom?: number }>`
+const Description = styled.div<{ marginBottom?: number }>`
     color: #a9abbb;
     text-align: justify;
     font-family: MontserratLight;
@@ -287,6 +287,7 @@ const MilestonesContainer = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 60px;
     column-gap: 20px;
+    padding: 20px 0;
 `;
 
 const Milestone = styled.div<{ index: number; isLast: boolean }>`
