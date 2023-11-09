@@ -1,8 +1,11 @@
-import React, { Suspense } from 'react';
+import React, { CSSProperties, Suspense } from 'react';
+import Lottie from 'lottie-react';
 import styled from 'styled-components';
 import Loader from 'components/Loader';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
-import { FlexDiv } from 'styles/common';
+import { FlexDiv, FlexDivCentered } from 'styles/common';
+import buyingAnimation from 'assets/lotties/homepage-buying.json';
+import sellingAnimation from 'assets/lotties/homepage-selling.json';
 
 const Home: React.FC = () => {
     return (
@@ -53,6 +56,74 @@ const Home: React.FC = () => {
                         </AppDescription>
                     </EcosystemApps>
                 </EcosystemSection>
+                <Section>
+                    <SectionTitleLink>
+                        Tailored for Developers <SectionTitleLinkArrow />
+                    </SectionTitleLink>
+                    <SectionSlogan>Seamless Integration and Boundless Possibilities</SectionSlogan>
+                    <AppDescription marginBottom={20}>
+                        To the developers poised to shape the future: Thales is your canvas. Our protocol is
+                        meticulously designed to ensure that you have a frictionless experience in developing and
+                        deploying your applications. With comprehensive resources, including in-depth developer
+                        documentation and a vibrant Discord community, Thales empowers you to realize your vision with
+                        precision and ease.
+                    </AppDescription>
+                    <HomeButton>Integrate with Thales</HomeButton>
+                </Section>
+                <Section>
+                    <SectionSlogan>Every Possible Outcome As An Erc20</SectionSlogan>
+                    <AppDescription marginBottom={20}>
+                        With Thales' advanced smart contracts, you can effortlessly tokenize any outcome backed by an
+                        available oracle. What truly distinguishes the Thales protocol is its ironclad guarantee of
+                        claim liquidity once you enter a market. This assurance stems from the elimination of
+                        counterparty risks, fortified by our decentralized contracts, ensuring unparalleled safety and
+                        reliability for every user.
+                    </AppDescription>
+                </Section>
+                <div>
+                    <LottieContaienr>
+                        <Lottie animationData={buyingAnimation} style={buyingAnimationStyle} />
+                    </LottieContaienr>
+                    <StepsSection>
+                        <AppDescription>
+                            <div>Step 1:</div>
+                            User sends 50$ to ThalesAMM to buy 100 BTC UP tokens
+                        </AppDescription>
+                        <AppDescription>
+                            <div>Step 2:</div> AMM sends 100$ from LP pool to BTC Market Contract to mint 100 UP and 100
+                            DOWN tokens
+                        </AppDescription>
+                        <AppDescription>
+                            <div>Step 3:</div> AMM sends newly minted 100 UP tokens to User
+                        </AppDescription>
+                    </StepsSection>
+                    <LottieContaienr>
+                        <Lottie animationData={sellingAnimation} style={sellingAnimationStyle} />
+                    </LottieContaienr>
+                    <StepsSection>
+                        <AppDescription>
+                            <div>Step 1:</div>
+                            User sends positional tokens to ThalesAMM
+                        </AppDescription>
+                        <AppDescription>
+                            <div>Step 2:</div> AMM buys tokens from user and sends him the money
+                        </AppDescription>
+                    </StepsSection>
+                </div>
+                <Section>
+                    <SectionTitleLink>
+                        Community-Centric Governance <SectionTitleLinkArrow />
+                    </SectionTitleLink>
+                    <SectionSlogan>Steering the Future, Together</SectionSlogan>
+                    <AppDescription marginBottom={20}>
+                        At Thales, we believe in the collective wisdom of our community. Our governance structure,
+                        underpinned by ThalesDAO and the Thales Council, is a testament to our commitment to
+                        decentralized decision-making. Every strategic move, every initiative, is guided by the voice of
+                        our community. Through a transparent and robust DAO voting mechanism, we ensure that Thales
+                        remains of the community, by the community, and for the community.
+                    </AppDescription>
+                    <HomeButton>Explore Thales DAO</HomeButton>
+                </Section>
             </Wrapper>
         </Suspense>
     );
@@ -140,10 +211,10 @@ const EcosystemApps = styled(FlexDiv)`
 `;
 
 const EcosystemSection = styled.div`
-    margin-top: 300px;
+    margin-top: 150px;
 `;
 
-const AppDescription = styled.div`
+const AppDescription = styled.div<{ marginBottom?: number }>`
     color: #a9abbb;
     text-align: justify;
     font-family: MontserratLight;
@@ -151,4 +222,58 @@ const AppDescription = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: 120%;
+    margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
 `;
+
+const Section = styled.div`
+    margin-top: 100px;
+`;
+
+const SectionSlogan = styled.div`
+    color: white;
+    text-align: justify;
+    font-family: MontserratBold;
+    font-size: 40px;
+    font-style: normal;
+    line-height: 120%;
+    margin: 15px 0;
+`;
+
+const SectionTitleLink = styled.div`
+    color: #a9abbb;
+    font-family: NunitoExtraLight;
+    font-size: 13px;
+    font-style: normal;
+    line-height: 120%;
+    text-transform: uppercase;
+`;
+
+const SectionTitleLinkArrow = styled(ArrowHyperlinkIcon)`
+    color: #a9abbb;
+    width: 9px;
+    height: 9px;
+`;
+
+const LottieContaienr = styled(FlexDivCentered)`
+    margin-top: -50px;
+`;
+
+const StepsSection = styled(FlexDivCentered)`
+    align-items: flex-start;
+    margin-top: -50px;
+    gap: 50px;
+    & > div {
+        width: 15%;
+    }
+    & > div > div {
+        color: white;
+    }
+`;
+
+const buyingAnimationStyle: CSSProperties = {
+    width: '50%',
+};
+
+const sellingAnimationStyle: CSSProperties = {
+    width: '29.7%',
+};
