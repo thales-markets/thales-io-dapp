@@ -8,6 +8,11 @@ export const Container = styled.div`
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'upper-left top top upper-right' 'upper-left middle-left middle-right upper-right' 'bottom-left bottom bottom bottom-right';
+    z-index: 1;
+    > div {
+        background-color: ${(props) => props.theme.background.primary};
+        border-radius: 8px;
+    }
 `;
 
 export const ItemUpperLeft = styled.div`
@@ -41,3 +46,6 @@ export const ItemMiddleRight = styled.div`
 export const ItemBottom = styled.div`
     grid-area: bottom;
 `;
+
+export const InfoText = styled.label``;
+export const InfoStats = styled.span``;
