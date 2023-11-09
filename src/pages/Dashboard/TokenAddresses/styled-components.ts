@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
     width: 100%;
     height: 100%;
     grid-template-columns: repeat(2, 50%);
-    grid-template-rows: repeat(2, 50%);
+    grid-template-rows: 40% 60%;
     grid-template-areas: 'top top' 'bottom-left bottom-right';
 `;
 
@@ -15,12 +15,6 @@ export const Header = styled.div`
     width: 100%;
     text-align: left;
     padding: 20px;
-`;
-
-export const NumericStats = styled.span`
-    font-family: Nunito !important;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 55px;
-    color: ${(props) => props.theme.textColor.secondary};
+    display: flex;
+    justify-content: space-between;
 `;

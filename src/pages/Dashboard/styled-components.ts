@@ -47,5 +47,41 @@ export const ItemBottom = styled.div`
     grid-area: bottom;
 `;
 
-export const InfoText = styled.label``;
-export const InfoStats = styled.span``;
+export const InfoText = styled.label`
+    font-family: Nunito !important;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: ${(props) => props.theme.textColor.tertiary};
+`;
+
+export const InfoStats = styled.span`
+    font-family: Nunito !important;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 20px;
+    color: ${(props) => props.theme.textColor.primary};
+`;
+
+export const WidgetTitleLabel = styled.span<{ isLink?: boolean }>`
+    font-family: Nunito !important;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    color: ${(props) => (props.isLink ? props.theme.textColor.secondary : props.theme.textColor.primary)};
+    display: flex;
+    text-transform: ${(props) => (props.isLink ? '' : 'uppercase')};
+    letter-spacing: 1px;
+`;
+
+export const InfoSection = styled.div<{ side: string }>`
+    grid-area: ${(props) => (props.side == 'left' ? 'bottom-left' : 'bottom-right')};
+    height: 100%;
+    width: 100%;
+    padding: 20px 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: ${(props) => (props.side == 'left' ? 'start' : 'end')};
+    gap: 1px;
+`;

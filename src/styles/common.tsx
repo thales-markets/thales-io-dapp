@@ -44,41 +44,10 @@ export const FlexDivColumnCentered = styled(FlexDivColumn)`
 `;
 
 export const Colors = {
-    GRAY: '#2B3139',
-    GRAY_LIGHT: '#848E9C',
-    GRAY_DARK: '#181A20',
-    GRAY_PURPLE: '#303656',
-    GRAY_BLUE: '#808997',
-
+    GRAY: '#BCBCBC',
     WHITE: '#FFFFFF',
     CYAN: '#19F8EF',
     BLUE_DARK: '#313652',
-
-    GREEN: '#03DAC5',
-    GREEN_LIGHT: '#B0FFE7',
-    GREEN_DARK: '#1D976C',
-
-    BLACK: '#000000',
-    BLACK_LIGHT: '#121212',
-
-    BLUE: '#5B86E5',
-    BLUE_LIGHT: '#36D1DC',
-    BLUE_MIDNIGHT: '#052040',
-    BLUE_MIDNIGHT_LIGHT: '#1b314f',
-    BLUE_SKY: '#91bced',
-
-    RED: '#DE496D',
-    RED_LIGHT: '#E29587',
-    RED_DARK: '#D66D75',
-
-    ORANGE: '#F7B91A',
-    ORANGE_LIGHT: '#FFB866',
-    ORANGE_DARK: '#FF8800',
-
-    YELLOW: '#FFCC00',
-    YELLOW_DARK: '#9b8327',
-
-    PURPLE: '#BF7EFF',
 };
 
 export const Background = styled.div`

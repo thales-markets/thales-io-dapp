@@ -1,4 +1,7 @@
+import IntegratorsVolume from './IntegratorsVolume';
 import ProtocolVolume from './ProtocolVolume';
+import TVLInfo from './TVLInfo';
+import TokenAddresses from './TokenAddresses';
 import {
     Container,
     ItemBottom,
@@ -20,10 +23,16 @@ const Dashboard: React.FC = () => {
             <ItemTop></ItemTop>
             <ItemUpperRight></ItemUpperRight>
             <ItemMiddleLeft></ItemMiddleLeft>
-            <ItemMiddleRight></ItemMiddleRight>
-            <ItemBottomLeft></ItemBottomLeft>
+            <ItemMiddleRight>
+                <TokenAddresses />
+            </ItemMiddleRight>
+            <ItemBottomLeft>
+                <TVLInfo />
+            </ItemBottomLeft>
             <ItemBottom></ItemBottom>
-            <ItemBottomRight></ItemBottomRight>
+            <ItemBottomRight>
+                <IntegratorsVolume />
+            </ItemBottomRight>
         </Container>
     );
 };
