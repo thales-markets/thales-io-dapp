@@ -1,0 +1,4 @@
+@font-face {
+    font-family: 'Icons';
+    src: local('Icons'), url(/fonts/Icons.ttf) format('truetype');
+}
