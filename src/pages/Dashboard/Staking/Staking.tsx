@@ -1,12 +1,12 @@
-import { FlexDiv } from 'styles/common';
+import { Colors, FlexDiv, FlexDivColumnNative, FlexDivSpaceBetween } from 'styles/common';
 import {
     InfoSection,
     InfoStats,
     InfoText,
-    OneSideFlexDiv,
+    FlexDivFullWidthSpaceBetween,
     WidgetHeader,
     WidgetIcon,
-    WidgetTitleLabel,
+    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
 
@@ -16,40 +16,43 @@ const Staking: React.FC = () => {
             <WidgetHeader isTwoSided={true}>
                 <FlexDiv>
                     <WidgetIcon className="icon icon--staking" />
-                    <WidgetTitleLabel>Staking</WidgetTitleLabel>
+                    <TitleLabel>Staking</TitleLabel>
                 </FlexDiv>
-                <WidgetTitleLabel>Total Stakers: 21,432</WidgetTitleLabel>
+                <FlexDivSpaceBetween>
+                    <TitleLabel>Total Stakers</TitleLabel>
+                    <TitleLabel isHighlighted={true}>21,432</TitleLabel>
+                </FlexDivSpaceBetween>
             </WidgetHeader>
             <InfoSection side="left">
-                <OneSideFlexDiv>
+                <FlexDivFullWidthSpaceBetween>
                     <InfoText>Total Thales Staked</InfoText>
                     <InfoStats>24,523,564</InfoStats>
-                </OneSideFlexDiv>
-                <OneSideFlexDiv>
+                </FlexDivFullWidthSpaceBetween>
+                <FlexDivFullWidthSpaceBetween>
                     <InfoText>Of circulating supply</InfoText>
                     <InfoStats>10%</InfoStats>
-                </OneSideFlexDiv>
-                <OneSideFlexDiv>
+                </FlexDivFullWidthSpaceBetween>
+                <FlexDivFullWidthSpaceBetween>
                     <InfoText>Of total supply</InfoText>
                     <InfoStats>5%</InfoStats>
-                </OneSideFlexDiv>
+                </FlexDivFullWidthSpaceBetween>
             </InfoSection>
-            <InfoSection side="right">
-                <OneSideFlexDiv>
+            <InfoSection side="right" direction="row" justifyContent="space-between">
+                <FlexDivColumnNative>
                     <InfoText>Staked on Optimism</InfoText>
-                    <InfoStats>51,243,592</InfoStats>
-                    <InfoStats>APY 100%</InfoStats>
-                </OneSideFlexDiv>
-                <OneSideFlexDiv>
                     <InfoText>Staked on Arbitrum</InfoText>
-                    <InfoStats>51,243,592</InfoStats>
-                    <InfoStats>APY 100%</InfoStats>
-                </OneSideFlexDiv>
-                <OneSideFlexDiv>
                     <InfoText>Staked on Base</InfoText>
+                </FlexDivColumnNative>
+                <FlexDivColumnNative>
                     <InfoStats>51,243,592</InfoStats>
-                    <InfoStats>APY 100%</InfoStats>
-                </OneSideFlexDiv>
+                    <InfoStats>51,243,592</InfoStats>
+                    <InfoStats>51,243,592</InfoStats>
+                </FlexDivColumnNative>
+                <FlexDivColumnNative>
+                    <InfoStats color={Colors.CYAN}>APY 100%</InfoStats>
+                    <InfoStats color={Colors.CYAN}>APY 100%</InfoStats>
+                    <InfoStats color={Colors.CYAN}>APY 100%</InfoStats>
+                </FlexDivColumnNative>
             </InfoSection>
         </WidgetWrapper>
     );

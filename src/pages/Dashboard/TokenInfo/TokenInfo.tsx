@@ -1,11 +1,11 @@
 import {
     InfoStats,
     InfoText,
-    OneSideFlexDiv,
+    FlexDivFullWidthSpaceBetween,
     UpperInfoSection,
     WidgetHeader,
     WidgetIcon,
-    WidgetTitleLabel,
+    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
 
@@ -14,21 +14,21 @@ const TokenInfo: React.FC = () => {
         <WidgetWrapper isDoubleHeight={true}>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--thales-round-logo" />
-                <WidgetTitleLabel>Thales token info</WidgetTitleLabel>
+                <TitleLabel>Thales token info</TitleLabel>
             </WidgetHeader>
             <UpperInfoSection>
-                <OneSideFlexDiv>
+                <FlexDivFullWidthSpaceBetween>
                     <InfoText>Total Thales Staked</InfoText>
                     <InfoStats>24,523,564</InfoStats>
-                </OneSideFlexDiv>
-                <OneSideFlexDiv>
+                </FlexDivFullWidthSpaceBetween>
+                <FlexDivFullWidthSpaceBetween>
                     <InfoText>Of circulating supply</InfoText>
                     <InfoStats>10%</InfoStats>
-                </OneSideFlexDiv>
-                <OneSideFlexDiv>
+                </FlexDivFullWidthSpaceBetween>
+                <FlexDivFullWidthSpaceBetween>
                     <InfoText>Of total supply</InfoText>
                     <InfoStats>5%</InfoStats>
-                </OneSideFlexDiv>
+                </FlexDivFullWidthSpaceBetween>
             </UpperInfoSection>
         </WidgetWrapper>
     );

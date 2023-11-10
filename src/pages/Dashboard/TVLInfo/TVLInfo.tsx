@@ -1,10 +1,19 @@
-import { InfoSection, InfoStats, InfoText, WidgetHeader, WidgetTitleLabel, WidgetWrapper } from '../styled-components';
+import {
+    InfoSection,
+    InfoStats,
+    InfoText,
+    WidgetHeader,
+    WidgetIcon,
+    TitleLabel,
+    WidgetWrapper,
+} from '../styled-components';
 
 const TVLInfo: React.FC = () => {
     return (
         <WidgetWrapper>
             <WidgetHeader>
-                <WidgetTitleLabel>TVL</WidgetTitleLabel>
+                <WidgetIcon className="icon icon--lock" />
+                <TitleLabel>TVL</TitleLabel>
             </WidgetHeader>
             <InfoSection side="left">
                 <InfoText>Overtime AMM TVL</InfoText>

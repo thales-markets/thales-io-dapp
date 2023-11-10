@@ -9,7 +9,7 @@ export const Wrapper = styled(FlexDivColumn)`
     padding: 20px 0px;
     max-width: 1350px;
     min-height: 100vh;
-    justify-content: space-between;
+    justify-content: flex-start;
     @media (max-width: 1260px) {
         padding: 0px 20px;
     }

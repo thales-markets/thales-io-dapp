@@ -6,7 +6,7 @@ import {
     NumericStats,
     WidgetHeader,
     WidgetIcon,
-    WidgetTitleLabel,
+    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
 
@@ -16,12 +16,12 @@ const ProtocolVolume: React.FC = () => {
             <WidgetHeader notFlex={true}>
                 <FlexDiv>
                     <WidgetIcon className="icon icon--protocol-volume" />
-                    <WidgetTitleLabel>TOTAL PROTOCOL VOLUME</WidgetTitleLabel>
+                    <TitleLabel>TOTAL PROTOCOL VOLUME</TitleLabel>
                 </FlexDiv>
                 <NumericStats>$ 999,999,999</NumericStats>
                 <FlexDiv>
                     <WidgetIcon className="icon icon--safebox" />
-                    <WidgetTitleLabel>SAFEBOX FEES</WidgetTitleLabel>
+                    <TitleLabel>SAFEBOX FEES</TitleLabel>
                 </FlexDiv>
                 <NumericStats>$ 9,999,999</NumericStats>
             </WidgetHeader>

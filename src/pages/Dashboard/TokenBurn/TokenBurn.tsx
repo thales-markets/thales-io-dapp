@@ -2,10 +2,10 @@ import {
     InfoSection,
     InfoStats,
     InfoText,
-    OneSideFlexDiv,
+    FlexDivFullWidthSpaceBetween,
     WidgetHeader,
     WidgetIcon,
-    WidgetTitleLabel,
+    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
 
@@ -14,21 +14,21 @@ const TokenBurn: React.FC = () => {
         <WidgetWrapper>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--burn" />
-                <WidgetTitleLabel>Thales Token burn</WidgetTitleLabel>
+                <TitleLabel>Thales Token burn</TitleLabel>
             </WidgetHeader>
             <InfoSection side="left">
-                <OneSideFlexDiv>
+                <FlexDivFullWidthSpaceBetween>
                     <InfoText>Total Thales burned</InfoText>
                     <InfoStats>24,523,564.76 Thales</InfoStats>
-                </OneSideFlexDiv>
-                <OneSideFlexDiv>
+                </FlexDivFullWidthSpaceBetween>
+                <FlexDivFullWidthSpaceBetween>
                     <InfoText>% of circulating supply</InfoText>
                     <InfoStats>10%</InfoStats>
-                </OneSideFlexDiv>
-                <OneSideFlexDiv>
+                </FlexDivFullWidthSpaceBetween>
+                <FlexDivFullWidthSpaceBetween>
                     <InfoText>% of total supply</InfoText>
                     <InfoStats>5%</InfoStats>
-                </OneSideFlexDiv>
+                </FlexDivFullWidthSpaceBetween>
             </InfoSection>
         </WidgetWrapper>
     );

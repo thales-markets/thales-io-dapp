@@ -44,6 +44,11 @@ export const FlexDivColumnCentered = styled(FlexDivColumn)`
     justify-content: center;
 `;
 
+export const FlexDivSpaceAround = styled(FlexDiv)`
+    align-items: center;
+    justify-content: space-around;
+`;
+
 export const Colors = {
     GRAY: '#BCBCBC',
     WHITE: '#FFFFFF',

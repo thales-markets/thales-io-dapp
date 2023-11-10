@@ -4,7 +4,7 @@ import {
     InfoText,
     WidgetHeader,
     WidgetIcon,
-    WidgetTitleLabel,
+    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
 
@@ -13,7 +13,7 @@ const IntegratorsVolume: React.FC = () => {
         <WidgetWrapper>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--integrators" />
-                <WidgetTitleLabel>Integrators volume</WidgetTitleLabel>
+                <TitleLabel>Integrators volume</TitleLabel>
             </WidgetHeader>
             <InfoSection side="left">
                 <InfoText>Purebet</InfoText>

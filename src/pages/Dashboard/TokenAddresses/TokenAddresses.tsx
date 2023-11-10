@@ -1,15 +1,18 @@
 import SPAAnchor from 'components/SPAAnchor';
-import { truncateAddress } from 'thales-utils';
+import { NetworkId, getEtherscanTokenLink, truncateAddress } from 'thales-utils';
 import {
     InfoSection,
     InfoStats,
     InfoText,
+    LinkArrow,
     WidgetHeader,
     WidgetIcon,
-    WidgetTitleLabel,
+    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
-import { FlexDiv } from 'styles/common';
+import { Colors, FlexDiv } from 'styles/common';
+import { ThalesContractAddress } from 'enums/thales-token-addresses';
+import { getCelerBridgeUrl } from 'utils/temp-bridge';
 
 const TokenAddresses: React.FC = () => {
     return (
@@ -17,10 +20,13 @@ const TokenAddresses: React.FC = () => {
             <WidgetHeader isTwoSided={true}>
                 <FlexDiv>
                     <WidgetIcon className="icon icon--token-widget" />
-                    <WidgetTitleLabel>Thales Token</WidgetTitleLabel>
+                    <TitleLabel>Thales Token</TitleLabel>
                 </FlexDiv>
-                <SPAAnchor href={''}>
-                    <WidgetTitleLabel isLink={true}>Bridge</WidgetTitleLabel>
+                <SPAAnchor href={getCelerBridgeUrl(NetworkId.OptimismMainnet)}>
+                    <TitleLabel isLink={true}>
+                        Bridge
+                        <LinkArrow color={Colors.CYAN} />
+                    </TitleLabel>
                 </SPAAnchor>
             </WidgetHeader>
             <InfoSection side="left">
@@ -30,17 +36,31 @@ const TokenAddresses: React.FC = () => {
                 <InfoText>Mainnet</InfoText>
             </InfoSection>
             <InfoSection side="right">
-                <SPAAnchor href={''}>
-                    <InfoStats>{truncateAddress('0x49Ae63864988Ee94791a8aeb0AA05A465699A5dB')}</InfoStats>
+                <SPAAnchor
+                    href={getEtherscanTokenLink(NetworkId.OptimismMainnet, ThalesContractAddress.OptimismMainnet)}
+                >
+                    <InfoStats>
+                        {truncateAddress(ThalesContractAddress.OptimismMainnet)}
+                        <LinkArrow />
+                    </InfoStats>
                 </SPAAnchor>
-                <SPAAnchor href={''}>
-                    <InfoStats>{truncateAddress('0x49Ae63864988Ee94791a8aeb0AA05A465699A5dB')}</InfoStats>
+                <SPAAnchor href={getEtherscanTokenLink(NetworkId.Arbitrum, ThalesContractAddress.Arbitrum)}>
+                    <InfoStats>
+                        {truncateAddress(ThalesContractAddress.Arbitrum)}
+                        <LinkArrow />
+                    </InfoStats>
                 </SPAAnchor>
-                <SPAAnchor href={''}>
-                    <InfoStats>{truncateAddress('0x49Ae63864988Ee94791a8aeb0AA05A465699A5dB')}</InfoStats>
+                <SPAAnchor href={getEtherscanTokenLink(NetworkId.Base, ThalesContractAddress.Base)}>
+                    <InfoStats>
+                        {truncateAddress(ThalesContractAddress.Base)}
+                        <LinkArrow />
+                    </InfoStats>
                 </SPAAnchor>
-                <SPAAnchor href={''}>
-                    <InfoStats>{truncateAddress('0x49Ae63864988Ee94791a8aeb0AA05A465699A5dB')}</InfoStats>
+                <SPAAnchor href={getEtherscanTokenLink(NetworkId.Mainnet, ThalesContractAddress.Mainnet)}>
+                    <InfoStats>
+                        {truncateAddress(ThalesContractAddress.Mainnet)}
+                        <LinkArrow />
+                    </InfoStats>
                 </SPAAnchor>
             </InfoSection>
         </WidgetWrapper>

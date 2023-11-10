@@ -129,8 +129,16 @@
     content: '\006F';
 }
 
-.icon--koji:before {
-    content: '\0070';
+.icon--token-widget:before {
+    content: '\004C';
+}
+
+.icon--framework:before {
+    content: '\0071';
+}
+
+.icon--docs:before {
+    content: '\0026';
 }
 
 .icon--framework:before {

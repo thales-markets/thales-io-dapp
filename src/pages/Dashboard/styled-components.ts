@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { FlexDivSpaceBetween } from 'styles/common';
+import { FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 
 export const Container = styled.div`
     display: grid;
@@ -83,23 +84,26 @@ export const InfoText = styled.label`
     color: ${(props) => props.theme.textColor.tertiary};
 `;
 
-export const InfoStats = styled.span`
+export const InfoStats = styled.span<{ color?: string }>`
     font-family: Nunito !important;
     font-weight: 800;
     font-size: 13px;
     line-height: 20px;
-    color: ${(props) => props.theme.textColor.primary};
+    color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.primary)};
 `;
 
-export const WidgetTitleLabel = styled.span<{ isLink?: boolean }>`
+export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolean }>`
     font-family: Nunito !important;
     font-weight: 700;
     font-size: 18px;
     line-height: 25px;
-    color: ${(props) => (props.isLink ? props.theme.textColor.secondary : props.theme.textColor.primary)};
+    color: ${(props) =>
+        props.isLink || props.isHighlighted ? props.theme.textColor.secondary : props.theme.textColor.primary};
     display: flex;
+    margin-left: ${(props) => (props.isHighlighted ? '10px' : '')};
     text-transform: ${(props) => (props.isLink ? '' : 'uppercase')};
     letter-spacing: 1px;
+    align-items: baseline;
 `;
 
 export const UpperInfoSection = styled.div`
@@ -115,14 +119,18 @@ export const UpperInfoSection = styled.div`
     gap: 1px;
 `;
 
-export const InfoSection = styled.div<{ side: string }>`
+export const InfoSection = styled.div<{
+    side: string;
+    direction?: string;
+    justifyContent?: string;
+}>`
     grid-area: ${(props) => (props.side === 'left' ? 'bottom-left' : 'bottom-right')};
     height: 100%;
     width: 100%;
     padding: 20px 20px 15px;
     display: flex;
-    flex-direction: column;
-    justify-content: end;
+    flex-direction: ${(props) => (props.direction ? props.direction : 'column')};
+    justify-content: ${(props) => (props.justifyContent ? props.justifyContent : 'end')};
     align-items: ${(props) => (props.side === 'left' ? 'start' : 'end')};
     gap: 1px;
 `;
@@ -136,12 +144,34 @@ export const DoubleSideSection = styled.span`
     text-wrap: nowrap;
 `;
 
-export const OneSideFlexDiv = styled(FlexDivSpaceBetween)`
+export const FlexDivFullWidthSpaceBetween = styled(FlexDivSpaceBetween)`
     width: 100%;
 `;
 
 export const WidgetIcon = styled.i`
     font-size: 25px;
     margin-right: 5px;
+    color: ${(props) => props.theme.textColor.primary};
+`;
+
+export const LinkArrow = styled(ArrowHyperlinkIcon)<{ color?: string }>`
+    color: ${(props) => (props.color ? props.color : props.theme.textColor.primary)};
+    width: 12px;
+    height: 12px;
+    margin-left: 3px;
+`;
+
+export const FlexDivColumnNativeFullWidth = styled(FlexDivColumnNative)`
+    width: 100%;
+    margin-top: 70px;
+`;
+
+export const FlexDivSpaceAroundFullWidth = styled(FlexDivSpaceAround)`
+    width: 100%;
+    margin-top: -50px;
+`;
+
+export const EcosystemIcon = styled.i`
+    font-size: 200px;
     color: ${(props) => props.theme.textColor.primary};
 `;
