@@ -108,3 +108,7 @@
 .icon--thales-cog:before {
     content: '\004C';
 }
+
+.icon--token-widget:before {
+    content: '\004C';
+}
