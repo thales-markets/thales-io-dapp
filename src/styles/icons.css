@@ -128,3 +128,6 @@
 .icon--spongly:before {
     content: '\006F';
 }
+.icon--token-widget:before {
+    content: '\004C';
+}
