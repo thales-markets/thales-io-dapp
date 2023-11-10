@@ -145,6 +145,10 @@
     content: '\0071';
 }
 
+.icon--koji:before {
+    content: '\0070';
+}
+
 .icon--lao:before {
     content: '\0072';
 }
