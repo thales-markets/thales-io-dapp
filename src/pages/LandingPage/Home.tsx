@@ -21,7 +21,7 @@ import {
     SectionTitleLink,
     SectionTitleLinkArrow,
     SectionSlogan,
-    LottieContaienr,
+    LottieContainer,
     StepsSection,
     MilestonesContainer,
     Milestone,
@@ -30,7 +30,7 @@ import {
     HomeIcon,
     Highlight,
 } from './styled-components';
-import { FlexDiv, FlexDivColumn, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDivCentered, FlexDivColumn, FlexDivSpaceBetween } from 'styles/common';
 import Footer from './Footer';
 
 const Home: React.FC = () => {
@@ -87,31 +87,44 @@ const Home: React.FC = () => {
                             </Description>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <HomeIcon fontSize="10em" className="icon icon--tale-of-thales" />
-                            <Description>
-                                Tale of Thales is a web 3 Metaverse game that takes you through retro pixel experience
-                                of an ancient Greek town of Miletus while teaching you how Thales Markets trading works.
-                            </Description>
-                        </FlexDivColumn>
-                        <FlexDivColumn>
                             <HomeIcon fontSize="10em" className="icon icon--spongly" />
                             <Description>
-                                Spongly is Sports Markets dapp with a social twist built on top of Thales' SportsAMM.
-                                Take an opportunity to copy trade best sport traders. Use trading wisdom of the best
+                                Spongly is Sports Markets dapp built on top of Thales' SportsAMM and ParlayAMM with a
+                                social twist. Take an opportunity to copy trade best sports traders, view individual
+                                wallets success rates and have a more detailed overview of all global parlay tickets.
+                                Use trading wisdom of the best to your own advantage!
                             </Description>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <HomeIcon style={{ height: '80px' }} fontSize="5em" className="icon icon--telegram" />
+                            <HomeIcon style={{ height: '80px' }} fontSize="6em" className="icon icon--telegram" />
                             <Description>
-                                <Highlight>Telegram Bots Integration</Highlight>
                                 By connecting Thales smart contracts to Telegram Bot trading interfaces, several new
                                 projects were born. These projects utilize simple trading experience within the easily
                                 accessible Telegram app to grow their userbase while leveraging the Thales collateral
                                 and onchain market making architecture to provide the backend.
                             </Description>
                         </FlexDivColumn>
+                        <FlexDivColumn>
+                            <HomeIcon fontSize="10em" className="icon icon--tale-of-thales" />
+                            <Description>
+                                Tale of Thales is a Metaverse minigame that takes you through retro pixel experience of
+                                an ancient Greek town of Miletus while teaching you how Thales Markets trading works.
+                                You can play the single-player or you can join the multiplayer metaverse, explore the
+                                infinity hotel, chat with other players or mint NFTs.
+                            </Description>
+                        </FlexDivColumn>
                     </EcosystemApps>
                 </EcosystemSection>
+                <Section>
+                    <SectionSlogan>Investors</SectionSlogan>
+                    <FlexDivSpaceBetween>
+                        <HomeIcon className="icon icon--framework" />
+                        <HomeIcon fontSize="6em" className="icon icon--lao" />
+                        <HomeIcon className="icon icon--zee-prime" />
+                        <HomeIcon fontSize="12em" className="icon icon--daedalus" />
+                        <HomeIcon fontSize="9em" className="icon icon--koji" />
+                    </FlexDivSpaceBetween>
+                </Section>
                 <Section>
                     <SectionTitleLink>
                         Tailored for Developers <SectionTitleLinkArrow />
@@ -125,7 +138,15 @@ const Home: React.FC = () => {
                         developer documentation, responsive tech support and a vibrant Discord community, Thales
                         empowers you to realize your vision with precision and ease.
                     </Description>
-                    <Highlight>Thales Market contracts</Highlight>
+                    <Highlight>Thales Sport Markets API</Highlight>
+                    <Description marginBottom={20} marginTop={20}>
+                        Leverage the decentralization of the Ethereum network and it’s Smart Contracts for full
+                        collateralization and decentralization of a wide offering of global Sports Games Markets. By
+                        using Thales’ Sports API for SportsAMM and ParlayAMM integration, any developer can
+                        permissionlessly have access to a worlds most transparent and fair Sports Markets data with
+                        included cutting edge liquidity and trading infrastructure.
+                    </Description>
+                    <Highlight>Thales Digital Options API</Highlight>
                     <Description marginBottom={20} marginTop={20}>
                         Thales Digital Options contracts provide integrators access to Automated Market Maker, on-demand
                         liquidity and collateralization architecture for onchain Digital Options. With various supported
@@ -135,15 +156,7 @@ const Home: React.FC = () => {
                         DOWN from selected Strike Price on selected Strike Date. Similarly, users can place IN or OUT
                         positions on Price Ranges of the same Assets.
                     </Description>
-                    <Highlight>Thales Sports Markets contracts</Highlight>
-                    <Description marginBottom={20} marginTop={20}>
-                        Leverage the decentralization of the Ethereum network and it’s Smart Contracts for full
-                        collateralization and decentralization of a wide offering of global Sports Games Markets. By
-                        using Thales’ Sports API for SportsAMM and ParlayAMM integration, any developer can
-                        permissionlessly have access to a worlds most transparent and fair Sports Markets data with
-                        included cutting edge liquidity and trading infrastructure.
-                    </Description>
-                    <Highlight>Thales Speed Markets contracts</Highlight>
+                    <Highlight>Thales Speed Markets API</Highlight>
                     <Description marginBottom={20} marginTop={20}>
                         Thales Speed Markets contracts is the newest Thales Protocol product that leverages Pyth
                         Benchmark oracles to facilitate a front-running-free backend for fast intra-day digital options.
@@ -155,16 +168,8 @@ const Home: React.FC = () => {
                     <HomeButton>Integrate with Thales</HomeButton>
                 </Section>
                 <Section>
-                    <SectionSlogan>Investors</SectionSlogan>
-                    <FlexDiv gap="40px">
-                        <HomeIcon className="icon icon--synthetix" />
-                        <HomeIcon className="icon icon--zee-prime" />
-                        <HomeIcon fontSize="12em" className="icon icon--daedalus" />
-                    </FlexDiv>
-                </Section>
-                <Section>
                     <SectionSlogan>Every Possible Outcome As An Erc20</SectionSlogan>
-                    <Description marginBottom={20}>
+                    <Description>
                         Thales Protocol architecture tokenizes all unique positions as ERC20 tokens. Every market has a
                         set of unique ERC20 token types that cover all potential exclusive outcomes of that market.
                         These tokenized positions are minted by locking USD collateral in the designated Market Smart
@@ -172,44 +177,67 @@ const Home: React.FC = () => {
                         these ERC20 positions can win on market expiry and only that type can claim the locked USD,
                         while the losing ERC20 positions expire worthless. With this permissionless and automated
                         architecture, Thales Protocol guarantees transparent and non-custodial full collateralization
-                        for all positions at all times. With liquidity and collateralization solved, the next necessary
-                        step is pricing the minted positional ERC20 tokens and allowing for a good trading experience to
-                        the public. This is where the unique design of Thales Automated Market Maker comes into play.
-                        The Thales AMM contract is whitelisted to mint the ERC20 positions by locking the Liquidity Pool
-                        collateral funds in the designated market contracts. After minting, the AMM offers the ERC20
-                        positional tokens on-demand to traders based on Algorithmic Probability Pricing that determines
-                        the fixed potential payout on market expiry.
+                        for all positions at all times.
+                    </Description>
+                    <Description>
+                        With liquidity and collateralization solved, the next necessary step is pricing the minted
+                        positional ERC20 tokens and allowing for a good trading experience to the public. This is where
+                        the unique design of Thales Automated Market Maker comes into play. The Thales AMM contract is
+                        whitelisted to mint the ERC20 positions by locking the Liquidity Pool collateral funds in the
+                        designated market contracts. After minting, the AMM offers the ERC20 positional tokens on-demand
+                        to traders based on Algorithmic Probability Pricing that determines the fixed potential payout
+                        on market expiry.
                     </Description>
                 </Section>
                 <div>
-                    <LottieContaienr>
-                        <Lottie animationData={buyingAnimation} style={buyingAnimationStyle} />
-                    </LottieContaienr>
-                    <StepsSection>
-                        <Description>
-                            <div>Step 1:</div>
-                            User sends 50$ to ThalesAMM to buy 100 BTC UP tokens
-                        </Description>
-                        <Description>
-                            <div>Step 2:</div> AMM sends 100$ from LP pool to BTC Market Contract to mint 100 UP and 100
-                            DOWN tokens
-                        </Description>
-                        <Description>
-                            <div>Step 3:</div> AMM sends newly minted 100 UP tokens to User
-                        </Description>
-                    </StepsSection>
-                    <LottieContaienr>
-                        <Lottie animationData={sellingAnimation} style={sellingAnimationStyle} />
-                    </LottieContaienr>
-                    <StepsSection>
-                        <Description>
-                            <div>Step 1:</div>
-                            User sends positional tokens to ThalesAMM
-                        </Description>
-                        <Description>
-                            <div>Step 2:</div> AMM buys tokens from user and sends him the money
-                        </Description>
-                    </StepsSection>
+                    <Section>
+                        <FlexDivCentered>
+                            <Highlight>Buying a position example</Highlight>
+                        </FlexDivCentered>
+                        <LottieContainer>
+                            <Lottie animationData={buyingAnimation} style={buyingAnimationStyle} />
+                        </LottieContainer>
+                        <FlexDivCentered>
+                            <StepsSection>
+                                <Description>
+                                    1. ThalesAMM algorithmic probability pricing quotes BTC UP Options at $0.5 per
+                                    Option
+                                </Description>
+                                <Description>
+                                    2. User wants to buy 1000 BTC UP tokens from the ThalesAMM for $500
+                                </Description>
+                                <Description>3. ThalesAMM takes $1000 from the LP pool</Description>
+                                <Description>
+                                    4. ThalesAMM deposits $1000 to the Market Contract and mints 1000 BTC UP and 1000
+                                    BTC DOWN tokens from the Market Contract
+                                </Description>
+                                <Description>
+                                    5. ThalesAMM receives $500 from the User and sends 1000 BTC UP tokens to the User
+                                </Description>
+                            </StepsSection>
+                        </FlexDivCentered>
+                    </Section>
+                    <Section>
+                        <FlexDivCentered>
+                            <Highlight>Exercising a winning position example</Highlight>
+                        </FlexDivCentered>
+                        <LottieContainer>
+                            <Lottie animationData={sellingAnimation} style={sellingAnimationStyle} />
+                        </LottieContainer>
+                        <FlexDivCentered>
+                            <StepsSection>
+                                <Description>
+                                    1. Bitcoin price was above the Strike Price on the Maturity Date which means that
+                                    User’s 1000 BTC UP positions are resolved as winning and every 1 BTC UP token is
+                                    redeemable for $1 while BTC DOWN tokens are deemed worthless
+                                </Description>
+                                <Description>
+                                    2. User sends his 1000 BTC UP tokens to the Market Contract and claims the $1000
+                                    from the contract
+                                </Description>
+                            </StepsSection>
+                        </FlexDivCentered>
+                    </Section>
                 </div>
                 <Section>
                     <SectionTitleLink>
@@ -229,7 +257,12 @@ const Home: React.FC = () => {
                     <SectionSlogan>Timeline</SectionSlogan>
                     <MilestonesContainer>
                         {MILESTONES.map((milestone, index) => (
-                            <Milestone key={index} isLast={MILESTONES.length - 1 === index} index={index + 1}>
+                            <Milestone
+                                key={index}
+                                isLastRow={index + 1 > Math.floor((MILESTONES.length - 1) / 4) * 4}
+                                isLast={MILESTONES.length - 1 === index}
+                                index={index + 1}
+                            >
                                 <MilestoneDate>{milestone.date}</MilestoneDate>
                                 <MilestoneDescription>{milestone.description}</MilestoneDescription>
                             </Milestone>
@@ -242,9 +275,12 @@ const Home: React.FC = () => {
                     </SectionTitleLink>
                     <FlexDivSpaceBetween>
                         <HomeIcon fontSize="10em" className="icon icon--chainlink" />
-                        <HomeIcon fontSize="12em" className="icon icon--optimism" />
-                        <HomeIcon fontSize="8em" className="icon icon--base" />
+                        <HomeIcon fontSize="12em" className="icon icon--synthetix" />
+                        <HomeIcon fontSize="8em" className="icon icon--optimism" />
                         <HomeIcon fontSize="10em" className="icon icon--arbitrum" />
+                    </FlexDivSpaceBetween>
+                    <FlexDivSpaceBetween>
+                        <HomeIcon fontSize="10em" className="icon icon--base" />
                         <HomeIcon fontSize="8em" className="icon icon--pyth" />
                         <HomeIcon fontSize="9em" className="icon icon--iosiro" />
                     </FlexDivSpaceBetween>

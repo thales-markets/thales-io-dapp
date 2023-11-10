@@ -129,6 +129,18 @@
     content: '\006F';
 }
 
+.icon--koji:before {
+    content: '\0070';
+}
+
+.icon--framework:before {
+    content: '\0071';
+}
+
+.icon--lao:before {
+    content: '\0072';
+}
+
 .icon--token-widget:before {
     content: '\004C';
 }

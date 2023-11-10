@@ -1,6 +1,6 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
 
 export const About = styled.div`
     margin-top: 150px;
@@ -133,17 +133,13 @@ export const SectionTitleLinkArrow = styled(ArrowHyperlinkIcon)`
     height: 9px;
 `;
 
-export const LottieContaienr = styled(FlexDivCentered)`
+export const LottieContainer = styled(FlexDivCentered)`
     margin-top: -50px;
 `;
 
-export const StepsSection = styled(FlexDivCentered)`
-    align-items: flex-start;
+export const StepsSection = styled(FlexDivColumn)`
+    flex: 0.55;
     margin-top: -50px;
-    gap: 50px;
-    & > div {
-        width: 15%;
-    }
     & > div > div {
         color: white;
     }
@@ -157,7 +153,7 @@ export const MilestonesContainer = styled.div`
     padding: 20px 0;
 `;
 
-export const Milestone = styled.div<{ index: number; isLast: boolean }>`
+export const Milestone = styled.div<{ index: number; isLast: boolean; isLastRow: boolean }>`
     height: 80px;
     border-radius: 8px;
     background: #313652;
@@ -166,30 +162,31 @@ export const Milestone = styled.div<{ index: number; isLast: boolean }>`
     transform-style: preserve-3d;
     &:before {
         content: '';
-        height: 60px;
+        height: 70px;
         position: absolute;
         border-radius: 10px 0 0 0;
         border-top: ${(props) =>
-            props.index > 4 && props.index % 4 === 1 ? '#424451 solid 6px' : 'transparent solid 6px'};
-        border-left: ${(props) => (props.index > 4 && props.index % 4 === 1 ? '#424451 solid 6px' : '0')};
+            props.index > 4 && props.index % 4 === 1 ? '#03DAC6 solid 1px' : 'transparent solid 1px'};
+        border-left: ${(props) => (props.index > 4 && props.index % 4 === 1 ? '#03DAC6 solid 1px' : '0')};
         z-index: -1;
         width: calc(100% + 20px);
         transform: translateZ(-1px);
-        top: calc(-50% + 6px);
+        top: calc(-50% + 11px);
         left: 50%;
     }
     &:after {
         content: '';
-        height: 60px;
+        height: 70px;
         position: absolute;
         border-radius: ${(props) => ((props.index + 1) % 4 === 0 ? '0 0 10px 0' : '0')};
         border-top: ${(props) =>
-            props.isLast || props.index % 4 === 0 ? 'transparent solid 6px' : '#424451 solid 6px'};
-        border-right: ${(props) => ((props.index + 1) % 4 === 0 ? '#424451 solid 6px' : '0')};
+            props.isLast || props.index % 4 === 0 ? 'transparent solid 1px' : '#03DAC6 solid 1px'};
+        border-right: ${(props) =>
+            !props.isLast && !props.isLastRow && (props.index + 1) % 4 === 0 ? '#03DAC6 solid 1px' : '0'};
         border-bottom: ${(props) =>
-            props.isLast || (props.index + 3) % 4 === 0 || props.index % 4 === 0
-                ? 'transparent solid 6px'
-                : '#424451 solid 6px'};
+            props.isLastRow || props.isLast || (props.index + 3) % 4 === 0 || props.index % 4 === 0
+                ? 'transparent solid 1px'
+                : '#03DAC6 solid 1px'};
         z-index: -1;
         width: calc(100% + 20px);
         transform: translateZ(-1px);
