@@ -1,4 +1,5 @@
 @import './fonts.css';
+@import './icons.css';
 
 html {
     scroll-behavior: smooth;

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-export const FlexDiv = styled.div`
+export const FlexDiv = styled.div<{ gap?: string }>`
     display: flex;
+    gap: ${(props) => (props.gap ? props.gap : '')};
 `;
 
 export const FlexDivCentered = styled(FlexDiv)`

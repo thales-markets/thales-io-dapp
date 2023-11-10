@@ -1,12 +1,35 @@
 import React, { CSSProperties, Suspense } from 'react';
 import Lottie from 'lottie-react';
-import styled from 'styled-components';
 import Loader from 'components/Loader';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
-import { FlexDiv, FlexDivCentered } from 'styles/common';
 import buyingAnimation from 'assets/lotties/homepage-buying.json';
 import sellingAnimation from 'assets/lotties/homepage-selling.json';
 import MILESTONES from './milestones';
+import {
+    Wrapper,
+    About,
+    Title,
+    Subtitle,
+    StatsSection,
+    SectionTitle,
+    Stat,
+    HomeButton,
+    EcosystemSection,
+    EcosystemApps,
+    Description,
+    Section,
+    SectionTitleLink,
+    SectionTitleLinkArrow,
+    SectionSlogan,
+    LottieContaienr,
+    StepsSection,
+    MilestonesContainer,
+    Milestone,
+    MilestoneDate,
+    MilestoneDescription,
+    HomeIcon,
+} from './styled-components';
+import { FlexDiv, FlexDivSpaceBetween } from 'styles/common';
 
 const Home: React.FC = () => {
     return (
@@ -72,6 +95,14 @@ const Home: React.FC = () => {
                     <HomeButton>Integrate with Thales</HomeButton>
                 </Section>
                 <Section>
+                    <SectionSlogan>Investors</SectionSlogan>
+                    <FlexDiv gap="40px">
+                        <HomeIcon className="icon icon--synthetix" />
+                        <HomeIcon className="icon icon--zee-prime" />
+                        <HomeIcon fontSize="12em" className="icon icon--daedalus" />
+                    </FlexDiv>
+                </Section>
+                <Section>
                     <SectionSlogan>Every Possible Outcome As An Erc20</SectionSlogan>
                     <Description marginBottom={20}>
                         With Thales' advanced smart contracts, you can effortlessly tokenize any outcome backed by an
@@ -129,12 +160,25 @@ const Home: React.FC = () => {
                     <SectionSlogan>Timeline</SectionSlogan>
                     <MilestonesContainer>
                         {MILESTONES.map((milestone, index) => (
-                            <Milestone isLast={MILESTONES.length - 1 === index} index={index + 1}>
+                            <Milestone key={index} isLast={MILESTONES.length - 1 === index} index={index + 1}>
                                 <MilestoneDate>{milestone.date}</MilestoneDate>
                                 <MilestoneDescription>{milestone.description}</MilestoneDescription>
                             </Milestone>
                         ))}
                     </MilestonesContainer>
+                </Section>
+                <Section>
+                    <SectionTitleLink>
+                        Infrastructure Partners <SectionTitleLinkArrow />
+                    </SectionTitleLink>
+                    <FlexDivSpaceBetween>
+                        <HomeIcon fontSize="10em" className="icon icon--chainlink" />
+                        <HomeIcon fontSize="12em" className="icon icon--optimism" />
+                        <HomeIcon fontSize="8em" className="icon icon--base" />
+                        <HomeIcon fontSize="10em" className="icon icon--arbitrum" />
+                        <HomeIcon fontSize="8em" className="icon icon--pyth" />
+                        <HomeIcon fontSize="9em" className="icon icon--iosiro" />
+                    </FlexDivSpaceBetween>
                 </Section>
             </Wrapper>
         </Suspense>
@@ -142,212 +186,6 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-
-const About = styled.div`
-    margin-top: 150px;
-    margin-bottom: 50px;
-`;
-
-const Wrapper = styled.div`
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1400px;
-`;
-
-const Title = styled.div`
-    color: white;
-    font-family: 'NunitoBold';
-    font-weight: bold;
-    font-size: 50px;
-    font-style: normal;
-    line-height: 91.4%;
-    letter-spacing: 3.25px;
-    text-transform: uppercase;
-    & > span {
-        font-family: 'NunitoExtraLight';
-        font-weight: normal;
-    }
-`;
-
-const Subtitle = styled.div`
-    color: #a9abbb;
-    font-family: 'NunitoExtraLight';
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 103%;
-    text-transform: capitalize;
-`;
-
-const StatsSection = styled.div`
-    margin-bottom: 10px;
-`;
-
-const SectionTitle = styled.div`
-    color: #a9abbb;
-    font-family: 'NunitoExtraLight';
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    text-transform: uppercase;
-`;
-
-const Stat = styled.div`
-    color: #fff;
-    font-family: MontserratBold;
-    font-size: 50px;
-    font-style: normal;
-    line-height: normal;
-`;
-
-const HomeButton = styled.button`
-    color: white;
-    border-radius: 8px;
-    border: 1px solid #19f8ef;
-    text-transform: capitalize;
-    background: transparent;
-    width: fit-content;
-    text-align: center;
-    font-family: NunitoBold;
-    font-size: 13px;
-    line-height: 80%;
-    text-transform: capitalize;
-    padding: 7px 12px;
-`;
-
-const EcosystemApps = styled(FlexDiv)`
-    gap: 30px;
-`;
-
-const EcosystemSection = styled.div`
-    margin-top: 150px;
-`;
-
-const Description = styled.div<{ marginBottom?: number }>`
-    color: #a9abbb;
-    text-align: justify;
-    font-family: MontserratLight;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 120%;
-    margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
-`;
-
-const Section = styled.div`
-    margin-top: 100px;
-`;
-
-const SectionSlogan = styled.div`
-    color: white;
-    text-align: justify;
-    font-family: MontserratBold;
-    font-size: 40px;
-    font-style: normal;
-    line-height: 120%;
-    margin: 15px 0;
-`;
-
-const SectionTitleLink = styled.div`
-    color: #a9abbb;
-    font-family: NunitoExtraLight;
-    font-size: 13px;
-    font-style: normal;
-    line-height: 120%;
-    text-transform: uppercase;
-`;
-
-const SectionTitleLinkArrow = styled(ArrowHyperlinkIcon)`
-    color: #a9abbb;
-    width: 9px;
-    height: 9px;
-`;
-
-const LottieContaienr = styled(FlexDivCentered)`
-    margin-top: -50px;
-`;
-
-const StepsSection = styled(FlexDivCentered)`
-    align-items: flex-start;
-    margin-top: -50px;
-    gap: 50px;
-    & > div {
-        width: 15%;
-    }
-    & > div > div {
-        color: white;
-    }
-`;
-
-const MilestonesContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 60px;
-    column-gap: 20px;
-    padding: 20px 0;
-`;
-
-const Milestone = styled.div<{ index: number; isLast: boolean }>`
-    height: 80px;
-    border-radius: 8px;
-    background: #313652;
-    box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
-    padding: 15px 20px;
-    transform-style: preserve-3d;
-    &:before {
-        content: '';
-        height: 60px;
-        position: absolute;
-        border-radius: 10px 0 0 0;
-        border-top: ${(props) =>
-            props.index > 4 && props.index % 4 === 1 ? '#424451 solid 6px' : 'transparent solid 6px'};
-        border-left: ${(props) => (props.index > 4 && props.index % 4 === 1 ? '#424451 solid 6px' : '0')};
-        z-index: -1;
-        width: calc(100% + 20px);
-        transform: translateZ(-1px);
-        top: calc(-50% + 6px);
-        left: 50%;
-    }
-    &:after {
-        content: '';
-        height: 60px;
-        position: absolute;
-        border-radius: ${(props) => ((props.index + 1) % 4 === 0 ? '0 0 10px 0' : '0')};
-        border-top: ${(props) =>
-            props.isLast || props.index % 4 === 0 ? 'transparent solid 6px' : '#424451 solid 6px'};
-        border-right: ${(props) => ((props.index + 1) % 4 === 0 ? '#424451 solid 6px' : '0')};
-        border-bottom: ${(props) =>
-            props.isLast || (props.index + 3) % 4 == 0 || props.index % 4 === 0
-                ? 'transparent solid 6px'
-                : '#424451 solid 6px'};
-        z-index: -1;
-        width: calc(100% + 20px);
-        transform: translateZ(-1px);
-        top: 50%;
-        left: 50%;
-    }
-`;
-
-const MilestoneDate = styled.div`
-    color: white;
-    font-family: MontserratBold;
-    font-size: 13px;
-    font-style: normal;
-    line-height: normal;
-    text-transform: uppercase;
-`;
-
-const MilestoneDescription = styled.div`
-    color: #a9abbb;
-    font-family: MontserratLight;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 155%;
-`;
 
 const buyingAnimationStyle: CSSProperties = {
     width: '50%',

@@ -128,7 +128,7 @@ const onRadialBackgroundPointerMove = (event: PointerEvent) => {
         const elementRect = backgroundElement.getBoundingClientRect();
         const windowWidth = elementRect.width;
         const windowHeight = elementRect.height;
-        console.log(event);
+
         lastMouseXPosition = event.clientX;
         lastMouseYPosition = event.clientY;
         const mouseXpercentage = Math.round((event.pageX / windowWidth) * 100);

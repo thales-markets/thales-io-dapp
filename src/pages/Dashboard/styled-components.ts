@@ -116,14 +116,14 @@ export const UpperInfoSection = styled.div`
 `;
 
 export const InfoSection = styled.div<{ side: string }>`
-    grid-area: ${(props) => (props.side == 'left' ? 'bottom-left' : 'bottom-right')};
+    grid-area: ${(props) => (props.side === 'left' ? 'bottom-left' : 'bottom-right')};
     height: 100%;
     width: 100%;
     padding: 20px 20px 15px;
     display: flex;
     flex-direction: column;
     justify-content: end;
-    align-items: ${(props) => (props.side == 'left' ? 'start' : 'end')};
+    align-items: ${(props) => (props.side === 'left' ? 'start' : 'end')};
     gap: 1px;
 `;
 
