@@ -6,6 +6,7 @@ export const About = styled.div`
     margin-top: 150px;
     margin-bottom: 50px;
 `;
+
 export const Wrapper = styled.div`
     display: flex;
     position: relative;
@@ -13,6 +14,7 @@ export const Wrapper = styled.div`
     width: 100%;
     max-width: 1400px;
 `;
+
 export const Title = styled.div`
     color: white;
     font-family: 'NunitoBold';
@@ -27,27 +29,38 @@ export const Title = styled.div`
         font-weight: normal;
     }
 `;
+
 export const Subtitle = styled.div`
     color: #a9abbb;
     font-family: 'NunitoExtraLight';
-    font-size: 25px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 400;
     line-height: 103%;
     text-transform: capitalize;
 `;
+
+export const Highlight = styled.div`
+    color: white;
+    font-family: MontserratBold;
+    font-size: 17px;
+    font-style: normal;
+`;
+
 export const StatsSection = styled.div`
     margin-bottom: 10px;
 `;
+
 export const SectionTitle = styled.div`
     color: #a9abbb;
     font-family: 'NunitoExtraLight';
-    font-size: 18px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
 `;
+
 export const Stat = styled.div`
     color: #fff;
     font-family: MontserratBold;
@@ -55,6 +68,7 @@ export const Stat = styled.div`
     font-style: normal;
     line-height: normal;
 `;
+
 export const HomeButton = styled.button`
     color: white;
     border-radius: 8px;
@@ -69,26 +83,31 @@ export const HomeButton = styled.button`
     text-transform: capitalize;
     padding: 7px 12px;
 `;
+
 export const EcosystemApps = styled(FlexDiv)`
     gap: 30px;
 `;
 export const EcosystemSection = styled.div`
     margin-top: 150px;
 `;
-export const Description = styled.div<{ marginBottom?: number }>`
+
+export const Description = styled.div<{ marginBottom?: number; marginTop?: number }>`
     color: #a9abbb;
     text-align: justify;
     font-family: MontserratLight;
-    font-size: 18px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 600;
     line-height: 120%;
+    margin-top: ${(props) => (props.marginTop ? props.marginTop : '0')}px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
 `;
+
 export const Section = styled.div<{ marginBottom?: number }>`
     margin-top: 100px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
 `;
+
 export const SectionSlogan = styled.div`
     color: white;
     text-align: justify;
@@ -98,6 +117,7 @@ export const SectionSlogan = styled.div`
     line-height: 120%;
     margin: 15px 0;
 `;
+
 export const SectionTitleLink = styled.div`
     color: #a9abbb;
     font-family: NunitoExtraLight;
@@ -106,14 +126,17 @@ export const SectionTitleLink = styled.div`
     line-height: 120%;
     text-transform: uppercase;
 `;
+
 export const SectionTitleLinkArrow = styled(ArrowHyperlinkIcon)`
     color: #a9abbb;
     width: 9px;
     height: 9px;
 `;
+
 export const LottieContaienr = styled(FlexDivCentered)`
     margin-top: -50px;
 `;
+
 export const StepsSection = styled(FlexDivCentered)`
     align-items: flex-start;
     margin-top: -50px;
@@ -125,6 +148,7 @@ export const StepsSection = styled(FlexDivCentered)`
         color: white;
     }
 `;
+
 export const MilestonesContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -132,6 +156,7 @@ export const MilestonesContainer = styled.div`
     column-gap: 20px;
     padding: 20px 0;
 `;
+
 export const Milestone = styled.div<{ index: number; isLast: boolean }>`
     height: 80px;
     border-radius: 8px;
@@ -172,6 +197,7 @@ export const Milestone = styled.div<{ index: number; isLast: boolean }>`
         left: 50%;
     }
 `;
+
 export const MilestoneDate = styled.div`
     color: white;
     font-family: MontserratBold;
@@ -180,6 +206,7 @@ export const MilestoneDate = styled.div`
     line-height: normal;
     text-transform: uppercase;
 `;
+
 export const MilestoneDescription = styled.div`
     color: #a9abbb;
     font-family: MontserratLight;
@@ -192,6 +219,7 @@ export const MilestoneDescription = styled.div`
 export const HomeIcon = styled.i<{ fontSize?: string }>`
     display: flex;
     align-items: center;
+    justify-content: center;
     color: white;
     font-size: ${(props) => props.fontSize ?? '20em'};
     line-height: 0.5em;

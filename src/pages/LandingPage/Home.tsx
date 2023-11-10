@@ -28,8 +28,9 @@ import {
     MilestoneDate,
     MilestoneDescription,
     HomeIcon,
+    Highlight,
 } from './styled-components';
-import { FlexDiv, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDiv, FlexDivColumn, FlexDivSpaceBetween } from 'styles/common';
 import Footer from './Footer';
 
 const Home: React.FC = () => {
@@ -40,8 +41,14 @@ const Home: React.FC = () => {
                     <Title>
                         Thales<span>Protocol</span>
                     </Title>
-                    <Subtitle>A permissionless ecosystem where every market is a unique smart contract,</Subtitle>
-                    <Subtitle>powered by AMM-driven liquidity. Pioneering the Future of On-Chain Markets</Subtitle>
+                    <Subtitle>
+                        A permissionless ecosystem where every derivative market is a unique smart contract,
+                    </Subtitle>
+                    <Subtitle>
+                        Powered by pioneering AMM architecture and permissionless liquidity pools, any oracle provided
+                        pre-event probability data and post-event results data can be made into a tokenized derivative
+                        market by using the Thales Protocol architecture.
+                    </Subtitle>
                 </About>
                 <StatsSection>
                     <SectionTitle>Total protocol volume</SectionTitle>
@@ -49,7 +56,11 @@ const Home: React.FC = () => {
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>Total value locked</SectionTitle>
-                    <Stat>$ 145,548,562</Stat>{' '}
+                    <Stat>$ 145,548,562</Stat>
+                </StatsSection>
+                <StatsSection>
+                    <SectionTitle>Total unique users</SectionTitle>
+                    <Stat>548,562</Stat>
                 </StatsSection>
                 <HomeButton>
                     See All Stats <ArrowHyperlinkIcon />
@@ -57,28 +68,48 @@ const Home: React.FC = () => {
                 <EcosystemSection>
                     <SectionTitle>Ecosystem Apps</SectionTitle>
                     <EcosystemApps>
-                        <Description>
-                            Thales Markets Purchase positions on Crypto Prices with a specific strike price at a
-                            predetermined expiry date. Use Thales markets Vaults with automated trading strategies or
-                            provide liquidity to the Thales AMM
-                        </Description>
-                        <Description>
-                            Overtime is a Premier onchain Sports Positioning Markets platform built on Thales AMM
-                            Architecture. Be the house by providing the liquidity to the AMM or use Vaults with
-                            automated trading strategies
-                        </Description>
-                        <Description>
-                            Tale of Thales is a web 3 Metaverse game that takes you through retro pixel experience of an
-                            ancient Greek town of Miletus while teaching you how Thales Markets trading works.
-                        </Description>
-                        <Description>
-                            Spongly is Sports Markets dapp with a social twist built on top of Thales' SportsAMM. Take
-                            an opportunity to copy trade best sport traders. Use trading wisdom of the best
-                        </Description>
-                        <Description>
-                            FlipEth is fast paced simplified crypto markets, users can trade shorter time frames of 1
-                            hour to 24 hours. Every win rewards you with 100% of initial bet size.
-                        </Description>
+                        <FlexDivColumn>
+                            <HomeIcon fontSize="10em" className="icon icon--thales-markets" />
+                            <Description>
+                                Digital Options marketplace built using Thales architecture. Thales Markets allows
+                                anyone to buy positions on crypto strike prices on specific dates. Any user can receive
+                                a fixed payout if a specific price condition is met at a specific expiry date. Choice of
+                                conditions vary from UP, DOWN, IN or OUT compared to chosen strike price(s).
+                            </Description>
+                        </FlexDivColumn>
+                        <FlexDivColumn>
+                            <HomeIcon fontSize="10em" className="icon icon--overtime" />
+                            <Description>
+                                Onchain Sports Markets Automated Market Maker (AMM) interface with integrated Parlay AMM
+                                architecture. Built on top of Thales Protocol technology, Overtime offers seamless user
+                                experience for all sports enthusiasts while bolstering transparent full
+                                collateralization at all times and permissionless security of the Ethereum network.
+                            </Description>
+                        </FlexDivColumn>
+                        <FlexDivColumn>
+                            <HomeIcon fontSize="10em" className="icon icon--tale-of-thales" />
+                            <Description>
+                                Tale of Thales is a web 3 Metaverse game that takes you through retro pixel experience
+                                of an ancient Greek town of Miletus while teaching you how Thales Markets trading works.
+                            </Description>
+                        </FlexDivColumn>
+                        <FlexDivColumn>
+                            <HomeIcon fontSize="10em" className="icon icon--spongly" />
+                            <Description>
+                                Spongly is Sports Markets dapp with a social twist built on top of Thales' SportsAMM.
+                                Take an opportunity to copy trade best sport traders. Use trading wisdom of the best
+                            </Description>
+                        </FlexDivColumn>
+                        <FlexDivColumn>
+                            <HomeIcon style={{ height: '80px' }} fontSize="5em" className="icon icon--telegram" />
+                            <Description>
+                                <Highlight>Telegram Bots Integration</Highlight>
+                                By connecting Thales smart contracts to Telegram Bot trading interfaces, several new
+                                projects were born. These projects utilize simple trading experience within the easily
+                                accessible Telegram app to grow their userbase while leveraging the Thales collateral
+                                and onchain market making architecture to provide the backend.
+                            </Description>
+                        </FlexDivColumn>
                     </EcosystemApps>
                 </EcosystemSection>
                 <Section>
@@ -86,12 +117,40 @@ const Home: React.FC = () => {
                         Tailored for Developers <SectionTitleLinkArrow />
                     </SectionTitleLink>
                     <SectionSlogan>Seamless Integration and Boundless Possibilities</SectionSlogan>
-                    <Description marginBottom={20}>
-                        To the developers poised to shape the future: Thales is your canvas. Our protocol is
-                        meticulously designed to ensure that you have a frictionless experience in developing and
-                        deploying your applications. With comprehensive resources, including in-depth developer
-                        documentation and a vibrant Discord community, Thales empowers you to realize your vision with
-                        precision and ease.
+                    <Description marginBottom={20} marginTop={20}>
+                        To the developers poised to shape the future of simple derivatives trading: Thales is your
+                        canvas. Our protocol is meticulously designed to ensure that you have a frictionless experience
+                        in developing your applications with Thales infrastructure guaranteeing collateral liquidity,
+                        market making and security in the background. With comprehensive resources, including in-depth
+                        developer documentation, responsive tech support and a vibrant Discord community, Thales
+                        empowers you to realize your vision with precision and ease.
+                    </Description>
+                    <Highlight>Thales Market contracts</Highlight>
+                    <Description marginBottom={20} marginTop={20}>
+                        Thales Digital Options contracts provide integrators access to Automated Market Maker, on-demand
+                        liquidity and collateralization architecture for onchain Digital Options. With various supported
+                        assets ranging from crypto assets to commodities, anyone can integrate with ThalesAMM and
+                        RangedAMM contracts and provide it’s users simple-to-use and permissionless derivatives trading
+                        platform. Users can instantly place a position on whether the selected Asset Pricewill be UP or
+                        DOWN from selected Strike Price on selected Strike Date. Similarly, users can place IN or OUT
+                        positions on Price Ranges of the same Assets.
+                    </Description>
+                    <Highlight>Thales Sports Markets contracts</Highlight>
+                    <Description marginBottom={20} marginTop={20}>
+                        Leverage the decentralization of the Ethereum network and it’s Smart Contracts for full
+                        collateralization and decentralization of a wide offering of global Sports Games Markets. By
+                        using Thales’ Sports API for SportsAMM and ParlayAMM integration, any developer can
+                        permissionlessly have access to a worlds most transparent and fair Sports Markets data with
+                        included cutting edge liquidity and trading infrastructure.
+                    </Description>
+                    <Highlight>Thales Speed Markets contracts</Highlight>
+                    <Description marginBottom={20} marginTop={20}>
+                        Thales Speed Markets contracts is the newest Thales Protocol product that leverages Pyth
+                        Benchmark oracles to facilitate a front-running-free backend for fast intra-day digital options.
+                        Users of Thales Speed Markets contracts are able to speculate on the direction of a Crypto Asset
+                        price with custom market expiry that can go as short as 15 minutes. With a fixed potential
+                        return of +100% (minus the fees) for any type of open market and thus not needing a pricing
+                        algorithm, Thales SpeedMarketsAMM contract is super-lightweight and easy to integrate.
                     </Description>
                     <HomeButton>Integrate with Thales</HomeButton>
                 </Section>
@@ -106,11 +165,20 @@ const Home: React.FC = () => {
                 <Section>
                     <SectionSlogan>Every Possible Outcome As An Erc20</SectionSlogan>
                     <Description marginBottom={20}>
-                        With Thales' advanced smart contracts, you can effortlessly tokenize any outcome backed by an
-                        available oracle. What truly distinguishes the Thales protocol is its ironclad guarantee of
-                        claim liquidity once you enter a market. This assurance stems from the elimination of
-                        counterparty risks, fortified by our decentralized contracts, ensuring unparalleled safety and
-                        reliability for every user.
+                        Thales Protocol architecture tokenizes all unique positions as ERC20 tokens. Every market has a
+                        set of unique ERC20 token types that cover all potential exclusive outcomes of that market.
+                        These tokenized positions are minted by locking USD collateral in the designated Market Smart
+                        Contract. Each locked 1 USD mints 1 of each type of ERC20 tokenized positions. Only one type of
+                        these ERC20 positions can win on market expiry and only that type can claim the locked USD,
+                        while the losing ERC20 positions expire worthless. With this permissionless and automated
+                        architecture, Thales Protocol guarantees transparent and non-custodial full collateralization
+                        for all positions at all times. With liquidity and collateralization solved, the next necessary
+                        step is pricing the minted positional ERC20 tokens and allowing for a good trading experience to
+                        the public. This is where the unique design of Thales Automated Market Maker comes into play.
+                        The Thales AMM contract is whitelisted to mint the ERC20 positions by locking the Liquidity Pool
+                        collateral funds in the designated market contracts. After minting, the AMM offers the ERC20
+                        positional tokens on-demand to traders based on Algorithmic Probability Pricing that determines
+                        the fixed potential payout on market expiry.
                     </Description>
                 </Section>
                 <div>
