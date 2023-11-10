@@ -57,13 +57,13 @@ export const WidgetWrapper = styled.div<{ isDoubleHeight?: boolean }>`
     grid-template-areas: 'top top' 'bottom-left bottom-right';
 `;
 
-export const WidgetHeader = styled.div<{ isTwoSided?: boolean }>`
+export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean }>`
     grid-area: top;
     height: 100%;
     width: 100%;
     text-align: left;
     padding: 20px;
-    display: ${(props) => (props.isTwoSided ? 'flex' : '')};
+    display: ${(props) => (props.notFlex ? '' : 'flex')};
     justify-content: ${(props) => (props.isTwoSided ? 'space-between' : '')};
 `;
 
@@ -138,4 +138,10 @@ export const DoubleSideSection = styled.span`
 
 export const OneSideFlexDiv = styled(FlexDivSpaceBetween)`
     width: 100%;
+`;
+
+export const WidgetIcon = styled.i`
+    font-size: 25px;
+    margin-right: 5px;
+    color: ${(props) => props.theme.textColor.primary};
 `;

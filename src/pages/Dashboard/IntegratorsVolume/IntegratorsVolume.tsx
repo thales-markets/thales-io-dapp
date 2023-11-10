@@ -1,9 +1,18 @@
-import { InfoSection, InfoStats, InfoText, WidgetHeader, WidgetTitleLabel, WidgetWrapper } from '../styled-components';
+import {
+    InfoSection,
+    InfoStats,
+    InfoText,
+    WidgetHeader,
+    WidgetIcon,
+    WidgetTitleLabel,
+    WidgetWrapper,
+} from '../styled-components';
 
 const IntegratorsVolume: React.FC = () => {
     return (
         <WidgetWrapper>
             <WidgetHeader>
+                <WidgetIcon className="icon icon--integrators" />
                 <WidgetTitleLabel>Integrators volume</WidgetTitleLabel>
             </WidgetHeader>
             <InfoSection side="left">

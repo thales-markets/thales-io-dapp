@@ -4,6 +4,7 @@ import {
     InfoText,
     OneSideFlexDiv,
     WidgetHeader,
+    WidgetIcon,
     WidgetTitleLabel,
     WidgetWrapper,
 } from '../styled-components';
@@ -12,8 +13,8 @@ const TokenBurn: React.FC = () => {
     return (
         <WidgetWrapper>
             <WidgetHeader>
+                <WidgetIcon className="icon icon--burn" />
                 <WidgetTitleLabel>Thales Token burn</WidgetTitleLabel>
-                <WidgetTitleLabel>Total Stakers</WidgetTitleLabel>
             </WidgetHeader>
             <InfoSection side="left">
                 <OneSideFlexDiv>

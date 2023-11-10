@@ -4,6 +4,7 @@ import {
     OneSideFlexDiv,
     UpperInfoSection,
     WidgetHeader,
+    WidgetIcon,
     WidgetTitleLabel,
     WidgetWrapper,
 } from '../styled-components';
@@ -12,6 +13,7 @@ const TokenInfo: React.FC = () => {
     return (
         <WidgetWrapper isDoubleHeight={true}>
             <WidgetHeader>
+                <WidgetIcon className="icon icon--thales-round-logo" />
                 <WidgetTitleLabel>Thales token info</WidgetTitleLabel>
             </WidgetHeader>
             <UpperInfoSection>

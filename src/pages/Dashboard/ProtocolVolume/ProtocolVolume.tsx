@@ -1,9 +1,11 @@
+import { FlexDiv } from 'styles/common';
 import {
     InfoSection,
     InfoStats,
     InfoText,
     NumericStats,
     WidgetHeader,
+    WidgetIcon,
     WidgetTitleLabel,
     WidgetWrapper,
 } from '../styled-components';
@@ -11,10 +13,16 @@ import {
 const ProtocolVolume: React.FC = () => {
     return (
         <WidgetWrapper isDoubleHeight={true}>
-            <WidgetHeader>
-                <WidgetTitleLabel>TOTAL PROTOCOL VOLUME</WidgetTitleLabel>
+            <WidgetHeader notFlex={true}>
+                <FlexDiv>
+                    <WidgetIcon className="icon icon--protocol-volume" />
+                    <WidgetTitleLabel>TOTAL PROTOCOL VOLUME</WidgetTitleLabel>
+                </FlexDiv>
                 <NumericStats>$ 999,999,999</NumericStats>
-                <WidgetTitleLabel>SAFEBOX FEES</WidgetTitleLabel>
+                <FlexDiv>
+                    <WidgetIcon className="icon icon--safebox" />
+                    <WidgetTitleLabel>SAFEBOX FEES</WidgetTitleLabel>
+                </FlexDiv>
                 <NumericStats>$ 9,999,999</NumericStats>
             </WidgetHeader>
             <InfoSection side="left">

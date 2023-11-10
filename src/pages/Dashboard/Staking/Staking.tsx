@@ -1,9 +1,11 @@
+import { FlexDiv } from 'styles/common';
 import {
     InfoSection,
     InfoStats,
     InfoText,
     OneSideFlexDiv,
     WidgetHeader,
+    WidgetIcon,
     WidgetTitleLabel,
     WidgetWrapper,
 } from '../styled-components';
@@ -12,7 +14,10 @@ const Staking: React.FC = () => {
     return (
         <WidgetWrapper>
             <WidgetHeader isTwoSided={true}>
-                <WidgetTitleLabel>Staking</WidgetTitleLabel>
+                <FlexDiv>
+                    <WidgetIcon className="icon icon--staking" />
+                    <WidgetTitleLabel>Staking</WidgetTitleLabel>
+                </FlexDiv>
                 <WidgetTitleLabel>Total Stakers: 21,432</WidgetTitleLabel>
             </WidgetHeader>
             <InfoSection side="left">

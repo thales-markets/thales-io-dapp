@@ -5,6 +5,7 @@ import {
     InfoStats,
     InfoText,
     WidgetHeader,
+    WidgetIcon,
     WidgetTitleLabel,
     WidgetWrapper,
 } from '../styled-components';
@@ -13,6 +14,7 @@ const Governance: React.FC = () => {
     return (
         <WidgetWrapper>
             <WidgetHeader>
+                <WidgetIcon className="icon icon--governance" />
                 <WidgetTitleLabel>Governance</WidgetTitleLabel>
             </WidgetHeader>
 

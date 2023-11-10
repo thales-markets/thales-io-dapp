@@ -1,12 +1,24 @@
 import SPAAnchor from 'components/SPAAnchor';
 import { truncateAddress } from 'thales-utils';
-import { InfoSection, InfoStats, InfoText, WidgetHeader, WidgetTitleLabel, WidgetWrapper } from '../styled-components';
+import {
+    InfoSection,
+    InfoStats,
+    InfoText,
+    WidgetHeader,
+    WidgetIcon,
+    WidgetTitleLabel,
+    WidgetWrapper,
+} from '../styled-components';
+import { FlexDiv } from 'styles/common';
 
 const TokenAddresses: React.FC = () => {
     return (
         <WidgetWrapper>
             <WidgetHeader isTwoSided={true}>
-                <WidgetTitleLabel>Thales Token</WidgetTitleLabel>
+                <FlexDiv>
+                    <WidgetIcon className="icon icon--token-widget" />
+                    <WidgetTitleLabel>Thales Token</WidgetTitleLabel>
+                </FlexDiv>
                 <SPAAnchor href={''}>
                     <WidgetTitleLabel isLink={true}>Bridge</WidgetTitleLabel>
                 </SPAAnchor>
