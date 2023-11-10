@@ -1,9 +1,14 @@
+import FooterLinks from 'components/FooterLinks';
 import styled from 'styled-components';
+import { FlexDivSpaceBetween } from 'styles/common';
 
 const Footer: React.FC = () => {
     return (
         <FooterContainer>
             <FooterLine />
+            <FlexDivSpaceBetween>
+                <FooterLinks />
+            </FlexDivSpaceBetween>
         </FooterContainer>
     );
 };
