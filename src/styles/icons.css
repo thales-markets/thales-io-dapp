@@ -1,0 +1,110 @@
+.icon {
+    display: inline-block;
+    font-family: Icons !important;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.icon--thales-logo:before {
+    content: '\0000';
+}
+
+.icon--thales:before {
+    content: '\0021';
+}
+
+.icon--github:before {
+    content: '\0022';
+}
+
+.icon--medium:before {
+    content: '\0023';
+}
+
+.icon--twitter:before {
+    content: '\0024';
+}
+
+.icon--discord:before {
+    content: '\0025';
+}
+
+.icon--cross:before {
+    content: '\002F';
+}
+
+.icon--checkmark:before {
+    content: '\0030';
+}
+
+.icon--lightbulb:before {
+    content: '\0033';
+}
+
+.icon--wallet:before {
+    content: '\003A';
+}
+
+.icon--thales-round-logo:before {
+    content: '\003B';
+}
+
+.icon--daedalus:before {
+    content: '\0061';
+}
+
+.icon--zee-prime:before {
+    content: '\0062';
+}
+
+.icon--iosiro:before {
+    content: '\0063';
+}
+
+.icon--arbitrum:before {
+    content: '\0064';
+}
+
+.icon--synthetix:before {
+    content: '\0065';
+}
+
+.icon--base:before {
+    content: '\0066';
+}
+
+.icon--chainlink:before {
+    content: '\0067';
+}
+
+.icon--optimism:before {
+    content: '\0068';
+}
+
+.icon--pyth:before {
+    content: '\0069';
+}
+
+.icon--protocol-volume:before {
+    content: '\0040';
+}
+
+.icon--staking:before {
+    content: '\0037';
+}
+
+.icon--burn:before {
+    content: '\003D';
+}
+
+.icon--governance:before {
+    content: '\003C';
+}
+
+.icon--integrators:before {
+    content: '\004A';
+}
+
+.icon--thales-cog:before {
+    content: '\004C';
+}
