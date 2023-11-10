@@ -85,8 +85,9 @@ export const Description = styled.div<{ marginBottom?: number }>`
     line-height: 120%;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
 `;
-export const Section = styled.div`
+export const Section = styled.div<{ marginBottom?: number }>`
     margin-top: 100px;
+    margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
 `;
 export const SectionSlogan = styled.div`
     color: white;

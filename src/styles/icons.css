@@ -6,7 +6,7 @@
 }
 
 .icon--thales-logo:before {
-    content: '\0000';
+    content: '\006A';
 }
 
 .icon--thales:before {
@@ -107,4 +107,24 @@
 
 .icon--thales-cog:before {
     content: '\004C';
+}
+
+.icon--tale-of-thales:before {
+    content: '\006B';
+}
+
+.icon--telegram:before {
+    content: '\006C';
+}
+
+.icon--thales-markets:before {
+    content: '\006D';
+}
+
+.icon--overtime:before {
+    content: '\006E';
+}
+
+.icon--spongly:before {
+    content: '\006F';
 }

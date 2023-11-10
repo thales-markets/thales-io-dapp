@@ -30,6 +30,7 @@ import {
     HomeIcon,
 } from './styled-components';
 import { FlexDiv, FlexDivSpaceBetween } from 'styles/common';
+import Footer from './Footer';
 
 const Home: React.FC = () => {
     return (
@@ -167,7 +168,7 @@ const Home: React.FC = () => {
                         ))}
                     </MilestonesContainer>
                 </Section>
-                <Section>
+                <Section marginBottom={80}>
                     <SectionTitleLink>
                         Infrastructure Partners <SectionTitleLinkArrow />
                     </SectionTitleLink>
@@ -181,6 +182,7 @@ const Home: React.FC = () => {
                     </FlexDivSpaceBetween>
                 </Section>
             </Wrapper>
+            <Footer />
         </Suspense>
     );
 };
