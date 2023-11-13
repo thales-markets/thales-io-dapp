@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
     InfoSection,
     InfoStats,
@@ -9,17 +10,18 @@ import {
 } from '../styled-components';
 
 const IntegratorsVolume: React.FC = () => {
+    const { t } = useTranslation();
     return (
         <WidgetWrapper>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--integrators" />
-                <TitleLabel>Integrators volume</TitleLabel>
+                <TitleLabel>{t('dashboard.integrators.title')}</TitleLabel>
             </WidgetHeader>
             <InfoSection side="left">
                 <InfoText>Purebet</InfoText>
                 <InfoText>BookieBot</InfoText>
                 <InfoText>VegasBot</InfoText>
-                <InfoText>TotalVolume</InfoText>
+                <InfoText>{t('dashboard.integrators.total-volume')}</InfoText>
             </InfoSection>
             <InfoSection side="right">
                 <InfoStats>$ 24,523,564.76</InfoStats>

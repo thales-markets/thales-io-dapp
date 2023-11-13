@@ -129,10 +129,6 @@
     content: '\006F';
 }
 
-.icon--token-widget:before {
-    content: '\004C';
-}
-
 .icon--framework:before {
     content: '\0071';
 }
@@ -154,9 +150,13 @@
 }
 
 .icon--token-widget:before {
-    content: '\004C';
+    content: '\0048';
 }
 
 .icon--docs:before {
     content: '\0026';
+}
+
+.icon--lock:before {
+    content: '\004D';
 }

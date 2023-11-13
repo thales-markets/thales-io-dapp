@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Governance from './Governance';
 import IntegratorsVolume from './IntegratorsVolume';
 import ProtocolVolume from './ProtocolVolume';
@@ -23,10 +24,11 @@ import {
 } from './styled-components';
 
 const Dashboard: React.FC = () => {
+    const { t } = useTranslation();
     return (
         <>
             <FlexDivColumnNativeFullWidth>
-                <TitleLabel>Ecosystem</TitleLabel>
+                <TitleLabel>{t('dashboard.ecosystem')}</TitleLabel>
                 <FlexDivSpaceAroundFullWidth>
                     <EcosystemIcon className="icon icon--thales-markets" />
                     <EcosystemIcon className="icon icon--tale-of-thales" />
@@ -61,7 +63,7 @@ const Dashboard: React.FC = () => {
                 </ItemBottomRight>
             </Container>
             <FlexDivColumnNativeFullWidth>
-                <TitleLabel>Networks</TitleLabel>
+                <TitleLabel>{t('dashboard.networks')}</TitleLabel>
                 <FlexDivSpaceAroundFullWidth>
                     <EcosystemIcon className="icon icon--optimism" />
                     <EcosystemIcon className="icon icon--arbitrum" />

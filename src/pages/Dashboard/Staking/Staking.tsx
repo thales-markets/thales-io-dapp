@@ -9,39 +9,41 @@ import {
     TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
+import { useTranslation } from 'react-i18next';
 
 const Staking: React.FC = () => {
+    const { t } = useTranslation();
     return (
         <WidgetWrapper>
             <WidgetHeader isTwoSided={true}>
                 <FlexDiv>
                     <WidgetIcon className="icon icon--staking" />
-                    <TitleLabel>Staking</TitleLabel>
+                    <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
                 </FlexDiv>
                 <FlexDivSpaceBetween>
-                    <TitleLabel>Total Stakers</TitleLabel>
+                    <TitleLabel>{t('dashboard.staking.total-stakers')}</TitleLabel>
                     <TitleLabel isHighlighted={true}>21,432</TitleLabel>
                 </FlexDivSpaceBetween>
             </WidgetHeader>
             <InfoSection side="left">
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>Total Thales Staked</InfoText>
+                    <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
                     <InfoStats>24,523,564</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>Of circulating supply</InfoText>
+                    <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
                     <InfoStats>10%</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>Of total supply</InfoText>
+                    <InfoText>{t('dashboard.staking.of-total-supply')}</InfoText>
                     <InfoStats>5%</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
             </InfoSection>
             <InfoSection side="right" direction="row" justifyContent="space-between">
                 <FlexDivColumnNative>
-                    <InfoText>Staked on Optimism</InfoText>
-                    <InfoText>Staked on Arbitrum</InfoText>
-                    <InfoText>Staked on Base</InfoText>
+                    <InfoText>{t('dashboard.staking.staked-on-optimism')}</InfoText>
+                    <InfoText>{t('dashboard.staking.staked-on-arbitrum')}</InfoText>
+                    <InfoText>{t('dashboard.staking.staked-on-base')}</InfoText>
                 </FlexDivColumnNative>
                 <FlexDivColumnNative>
                     <InfoStats>51,243,592</InfoStats>
