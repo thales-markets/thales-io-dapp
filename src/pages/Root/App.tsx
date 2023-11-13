@@ -6,6 +6,7 @@ import Loader from 'components/Loader';
 import ThemeProvider from 'layouts/Theme';
 import DappLayout from 'layouts/DappLayout';
 import 'i18n';
+import Staking from 'pages/Staking';
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
 const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Dashboard'));
@@ -27,6 +28,13 @@ const App: React.FC = () => {
                             <Suspense fallback={<Loader />}>
                                 <DappLayout>
                                     <Dashboard />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                        <Route exact path={ROUTES.Staking}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <Staking />
                                 </DappLayout>
                             </Suspense>
                         </Route>

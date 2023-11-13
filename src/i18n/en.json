@@ -67,6 +67,15 @@
             "title": "Infrastructure Partners"
         }
     },
+    "staking": {
+        "nav": {
+            "rewards": "Rewards",
+            "staking": "Staking",
+            "vesting": "Vesting",
+            "leaderboard": "Leaderboard",
+            "acc-preferences": "Acc Preferences"
+        }
+    },
     "header": {
         "links": {
             "dashboard": "Dashboard",

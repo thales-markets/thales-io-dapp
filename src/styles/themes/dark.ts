@@ -4,6 +4,7 @@ const darkTheme = {
     background: {
         primary: Colors.BLUE_DARK,
         secondary: Colors.GRAY,
+        tertiary: Colors.PURPLE_NAVY,
     },
     textColor: {
         primary: Colors.WHITE,

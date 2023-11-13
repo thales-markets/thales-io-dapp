@@ -60,6 +60,7 @@ export const Colors = {
     WHITE: '#FFFFFF',
     CYAN: '#19F8EF',
     BLUE_DARK: '#313652',
+    PURPLE_NAVY: '#405682',
 };
 
 export const Background = styled.div`
