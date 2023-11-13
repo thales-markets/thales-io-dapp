@@ -1,31 +1,50 @@
 import FooterLinks from 'components/FooterLinks';
-import styled from 'styled-components';
-import { FlexDivSpaceBetween } from 'styles/common';
+import { FlexDivColumn } from 'styles/common';
+import {
+    FooterLine,
+    FooterContainer,
+    LinksContainer,
+    ThalesLinks,
+    FooterLogo,
+    ThalesLinksTitle,
+    ThalesLinksItem,
+} from './styled-components';
 
 const Footer: React.FC = () => {
     return (
-        <FooterContainer>
+        <>
             <FooterLine />
-            <FlexDivSpaceBetween>
-                <FooterLinks />
-            </FlexDivSpaceBetween>
-        </FooterContainer>
+            <FooterContainer>
+                <LinksContainer>
+                    <ThalesLinks>
+                        <FooterLogo className="icon icon--thales-logo" />
+                        <FlexDivColumn>
+                            <ThalesLinksTitle>THALES</ThalesLinksTitle>
+                            <ThalesLinksItem>Home</ThalesLinksItem>
+                            <ThalesLinksItem>Docs</ThalesLinksItem>
+                            <ThalesLinksItem>Blog</ThalesLinksItem>
+                            <ThalesLinksItem>Stats</ThalesLinksItem>
+                        </FlexDivColumn>
+                        <FlexDivColumn>
+                            <ThalesLinksTitle>DAO DAPP</ThalesLinksTitle>
+                            <ThalesLinksItem>Staking</ThalesLinksItem>
+                            <ThalesLinksItem>Governance</ThalesLinksItem>
+                            <ThalesLinksItem>Stats</ThalesLinksItem>
+                            <ThalesLinksItem>ETHScan</ThalesLinksItem>
+                        </FlexDivColumn>
+                        <FlexDivColumn>
+                            <ThalesLinksTitle>ABOUT</ThalesLinksTitle>
+                            <ThalesLinksItem>Brand Assets</ThalesLinksItem>
+                            <ThalesLinksItem>Terms and Conditions</ThalesLinksItem>
+                            <ThalesLinksItem>Community Support</ThalesLinksItem>
+                            <ThalesLinksItem>Privacy policy</ThalesLinksItem>
+                        </FlexDivColumn>
+                    </ThalesLinks>
+                    <FooterLinks />
+                </LinksContainer>
+            </FooterContainer>
+        </>
     );
 };
-
-const FooterLine = styled.div`
-    position: absolute;
-    left: 0;
-    right: 0;
-    background-image: linear-gradient(to right, white 17%, rgba(255, 255, 255, 0) 0%);
-    background-position: bottom;
-    background-size: 13px 1px;
-    background-repeat: repeat-x;
-    height: 1px;
-`;
-
-const FooterContainer = styled.div`
-    height: 500px;
-`;
 
 export default Footer;

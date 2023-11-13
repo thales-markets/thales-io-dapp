@@ -30,7 +30,7 @@ import {
     HomeIcon,
     Highlight,
 } from './styled-components';
-import { FlexDivCentered, FlexDivColumn, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 import Footer from './Footer';
 
 const Home: React.FC = () => {
@@ -275,15 +275,15 @@ const Home: React.FC = () => {
                     </SectionTitleLink>
                     <FlexDivSpaceBetween>
                         <HomeIcon fontSize="10em" className="icon icon--chainlink" />
-                        <HomeIcon fontSize="12em" className="icon icon--synthetix" />
-                        <HomeIcon fontSize="8em" className="icon icon--optimism" />
-                        <HomeIcon fontSize="10em" className="icon icon--arbitrum" />
+                        <HomeIcon fontSize="16em" className="icon icon--synthetix" />
+                        <HomeIcon fontSize="11em" className="icon icon--optimism" />
+                        <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
                     </FlexDivSpaceBetween>
-                    <FlexDivSpaceBetween>
-                        <HomeIcon fontSize="10em" className="icon icon--base" />
-                        <HomeIcon fontSize="8em" className="icon icon--pyth" />
+                    <FlexDivSpaceAround>
+                        <HomeIcon fontSize="9em" className="icon icon--base" />
+                        <HomeIcon fontSize="9em" className="icon icon--pyth" />
                         <HomeIcon fontSize="9em" className="icon icon--iosiro" />
-                    </FlexDivSpaceBetween>
+                    </FlexDivSpaceAround>
                 </Section>
             </Wrapper>
             <Footer />

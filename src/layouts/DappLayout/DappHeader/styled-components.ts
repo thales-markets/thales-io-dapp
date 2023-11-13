@@ -1,19 +1,15 @@
 import styled from 'styled-components';
 import { FlexDivSpaceBetween } from 'styles/common';
 
-const CenteredDiv = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    z-index: 2;
-    width: 60%;
-`;
-
 export const HeaderContainer = styled(FlexDivSpaceBetween)`
     width: 100%;
 `;
 
-export const Links = styled(CenteredDiv)`
+export const Links = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
     justify-content: space-between;
     z-index: 10;
     @media (max-width: 1024px) {

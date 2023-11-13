@@ -1,6 +1,6 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
+import { FlexDiv, FlexDivSpaceBetween, FlexDivCentered, FlexDivColumn } from 'styles/common';
 
 export const About = styled.div`
     margin-top: 150px;
@@ -220,4 +220,58 @@ export const HomeIcon = styled.i<{ fontSize?: string }>`
     color: white;
     font-size: ${(props) => props.fontSize ?? '20em'};
     line-height: 0.5em;
+`;
+export const FooterLogo = styled.i`
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-120%);
+    color: ${(props) => props.theme.textColor.primary};
+    font-size: 120px;
+    cursor: pointer;
+    line-height: 50px;
+    margin-top: 5px;
+`;
+export const LinksContainer = styled(FlexDivSpaceBetween)`
+    height: 100%;
+    & > div:nth-child(1) {
+        width: 40%;
+    }
+    & > div:nth-child(2) {
+        width: 30%;
+    }
+`;
+export const ThalesLinks = styled(FlexDiv)`
+    position: relative;
+    gap: 50px;
+`;
+export const ThalesLinksTitle = styled.div`
+    color: #fff;
+    font-family: MontserratBold;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 186.5%;
+    text-transform: capitalize;
+`;
+export const ThalesLinksItem = styled.div`
+    color: #a9abbb;
+    font-family: MontserratLight;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 186.5%;
+    text-transform: capitalize;
+`;
+export const FooterLine = styled.div`
+    background-image: linear-gradient(to right, white 17%, rgba(255, 255, 255, 0) 0%);
+    background-position: bottom;
+    background-size: 13px 1px;
+    background-repeat: repeat-x;
+    height: 1px;
+    width: 200%;
+`;
+export const FooterContainer = styled.div`
+    width: 100%;
+    padding: 150px 0 75px 0;
 `;
