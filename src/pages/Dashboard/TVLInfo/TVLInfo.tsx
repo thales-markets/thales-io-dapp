@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
     InfoSection,
     InfoStats,
@@ -9,17 +10,18 @@ import {
 } from '../styled-components';
 
 const TVLInfo: React.FC = () => {
+    const { t } = useTranslation();
     return (
         <WidgetWrapper>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--lock" />
-                <TitleLabel>TVL</TitleLabel>
+                <TitleLabel>{t('dashboard.tvl.title')}</TitleLabel>
             </WidgetHeader>
             <InfoSection side="left">
-                <InfoText>Overtime AMM TVL</InfoText>
-                <InfoText>Thales AMM TVL</InfoText>
-                <InfoText>Parlay AMM TVL</InfoText>
-                <InfoText>Vaults</InfoText>
+                <InfoText>{t('dashboard.tvl.overtime-amm-tvl')}</InfoText>
+                <InfoText>{t('dashboard.tvl.thales-amm-tvl')}</InfoText>
+                <InfoText>{t('dashboard.tvl.parlay-amm-tvl')}</InfoText>
+                <InfoText>{t('dashboard.tvl.vaults-tvl')}</InfoText>
             </InfoSection>
             <InfoSection side="right">
                 <InfoStats>$ 24,523,564.76</InfoStats>

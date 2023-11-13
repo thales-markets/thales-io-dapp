@@ -82,5 +82,64 @@
         "twitter": "X",
         "docs": "Docs",
         "medium": "Medium"
-    } 
+    },
+    "dashboard": {
+        "ecosystem": "Ecosystem",
+        "networks": "Networks",
+        "governance": {
+            "title": "Governance",
+            "start-date": "Start date",
+            "end-date": "End date"
+        },
+        "integrators": {
+            "title": "Integrators volume",
+            "total-volume": "Total volume"
+        },
+        "protocol-volume": {
+            "total-protocol-volume": "Total protocol volume",
+            "safebox-fees": "Safebox fees",
+            "thales-amm": "Thales AMM",
+            "overtime-amm": "Overtime AMM",
+            "parlay-amm": "Parlay AMM",
+            "average-unique-users": "AVG unique users",
+            "average-monthly-users": "AVG monthly users"
+        },
+        "staking": {
+            "title": "Staking",
+            "total-stakers": "Total Stakers",
+            "total-thales-staked": "Total Thales staked",
+            "of-circulating-supply": "Of circulating supply",
+            "of-total-supply": "Of total supply",
+            "staked-on-arbitrum": "Staked on Arbitrum",
+            "staked-on-optimism": "Staked on Optimism",
+            "staked-on-base": "Staked on Base"
+        },
+        "token-addresses": {
+            "title": "Token addresses",
+            "bridge": "Bridge",
+            "optimism": "Optimism",
+            "arbitrum": "Arbitrum",
+            "base": "Base",
+            "mainnet": "Mainnet"
+        },
+        "token-burn": {
+            "title": "Thales token burn",
+            "total-thales-burned": "Total Thales burned",
+            "of-circulating-supply": "Of circulating supply",
+            "of-total-supply": "Of total supply"
+        },
+        "token-info": {
+            "title": "Thales token info",
+            "total-supply": "Total supply",
+            "circulating-supply": "Circulating supply",
+            "burned-supply": "Burned supply"
+        },
+        "tvl": {
+            "title": "TVL",
+            "overtime-amm-tvl": "Overtime AMM TVL",
+            "thales-amm-tvl": "Thales AMM TVL",
+            "parlay-amm-tvl": "Parlay AMM TVL",
+            "vaults-tvl": "Vaults TVL"
+        }
+    }
 }

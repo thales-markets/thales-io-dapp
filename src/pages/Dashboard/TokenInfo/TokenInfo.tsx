@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
     InfoStats,
     InfoText,
@@ -10,23 +11,24 @@ import {
 } from '../styled-components';
 
 const TokenInfo: React.FC = () => {
+    const { t } = useTranslation();
     return (
         <WidgetWrapper isDoubleHeight={true}>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--thales-round-logo" />
-                <TitleLabel>Thales token info</TitleLabel>
+                <TitleLabel>{t('dashboard.token-info.title')}</TitleLabel>
             </WidgetHeader>
             <UpperInfoSection>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>Total Thales Staked</InfoText>
+                    <InfoText>{t('dashboard.token-info.total-supply')}</InfoText>
                     <InfoStats>24,523,564</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>Of circulating supply</InfoText>
+                    <InfoText>{t('dashboard.token-info.circulating-supply')}</InfoText>
                     <InfoStats>10%</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>Of total supply</InfoText>
+                    <InfoText>{t('dashboard.token-info.burned-supply')}</InfoText>
                     <InfoStats>5%</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
             </UpperInfoSection>
