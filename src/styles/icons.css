@@ -156,3 +156,7 @@
 .icon--docs:before {
     content: '\0026';
 }
+
+.icon--lock:before {
+    content: '\004D';
+}

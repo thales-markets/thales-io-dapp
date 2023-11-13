@@ -115,7 +115,7 @@
             "staked-on-base": "Staked on Base"
         },
         "token-addresses": {
-            "title": "Token addresses",
+            "title": "Thales token",
             "bridge": "Bridge",
             "optimism": "Optimism",
             "arbitrum": "Arbitrum",
