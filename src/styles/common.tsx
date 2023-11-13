@@ -49,6 +49,11 @@ export const FlexDivSpaceAround = styled(FlexDiv)`
     justify-content: space-around;
 `;
 
+export const Icon = styled.i<{ color?: string; iconSize?: number }>`
+    font-size: ${(props) => (props.iconSize ? props.iconSize : '35')}px;
+    color: ${(props) => (props.color ? props.color : props.theme.textColor.primary)};
+`;
+
 export const Colors = {
     GRAY: '#BCBCBC',
     WHITE: '#FFFFFF',

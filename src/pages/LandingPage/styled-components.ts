@@ -1,6 +1,6 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivSpaceBetween, FlexDivCentered, FlexDivColumn } from 'styles/common';
+import { FlexDiv, FlexDivSpaceBetween, FlexDivCentered, FlexDivColumn, Icon } from 'styles/common';
 
 export const About = styled.div`
     margin-top: 150px;
@@ -274,4 +274,9 @@ export const FooterLine = styled.div`
 export const FooterContainer = styled.div`
     width: 100%;
     padding: 150px 0 75px 0;
+`;
+
+export const SocialIcon = styled(Icon)`
+    padding-top: 10px;
+    padding-right: 20px;
 `;

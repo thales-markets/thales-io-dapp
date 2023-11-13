@@ -29,9 +29,12 @@ import {
     MilestoneDescription,
     HomeIcon,
     Highlight,
+    SocialIcon,
 } from './styled-components';
 import { FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 import Footer from './Footer';
+import SPAAnchor from 'components/SPAAnchor';
+import LINKS from 'constants/links';
 
 const Home: React.FC = () => {
     return (
@@ -49,6 +52,15 @@ const Home: React.FC = () => {
                         pre-event probability data and post-event results data can be made into a tokenized derivative
                         market by using the Thales Protocol architecture.
                     </Subtitle>
+                    <SPAAnchor href={LINKS.Github}>
+                        <SocialIcon className="icon icon--github" />
+                    </SPAAnchor>
+                    <SPAAnchor href={LINKS.Discord}>
+                        <SocialIcon className="icon icon--discord" />
+                    </SPAAnchor>
+                    <SPAAnchor href={LINKS.Twitter}>
+                        <SocialIcon className="icon icon--twitter" />
+                    </SPAAnchor>
                 </About>
                 <StatsSection>
                     <SectionTitle>Total protocol volume</SectionTitle>
