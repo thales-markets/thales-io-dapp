@@ -1,15 +1,34 @@
+import useTokenInfoQuery from 'queries/useTokenInfoQuery';
+import { useEffect, useState } from 'react';
+import { TokenInfo } from 'types/token';
 import {
+    FlexDivFullWidthSpaceBetween,
     InfoSection,
     InfoStats,
     InfoText,
-    FlexDivFullWidthSpaceBetween,
+    TitleLabel,
     WidgetHeader,
     WidgetIcon,
-    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
 
 const TokenBurn: React.FC = () => {
+    const isAppReady = true;
+    const networkId = 10;
+    const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
+
+    const tokenInfoQuery = useTokenInfoQuery(networkId, {
+        enabled: isAppReady,
+    });
+
+    useEffect(() => {
+        if (tokenInfoQuery.isSuccess && tokenInfoQuery.data) {
+            setTokenInfo(tokenInfoQuery.data);
+        }
+    }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
+
+    console.log(tokenInfo);
+
     return (
         <WidgetWrapper>
             <WidgetHeader>

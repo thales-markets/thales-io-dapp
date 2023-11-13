@@ -163,7 +163,7 @@ export const LinkArrow = styled(ArrowHyperlinkIcon)<{ color?: string }>`
 
 export const FlexDivColumnNativeFullWidth = styled(FlexDivColumnNative)`
     width: 100%;
-    margin-top: 70px;
+    margin-top: 50px;
 `;
 
 export const FlexDivSpaceAroundFullWidth = styled(FlexDivSpaceAround)`
