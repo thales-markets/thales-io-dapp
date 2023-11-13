@@ -1,4 +1,7 @@
 {
+    "wallet": {
+        "connect-your-wallet": "Connect wallet"
+    },
     "header": {
         "links": {
             "dashboard": "Dashboard",

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { FlexDivColumn } from 'styles/common';
 
 export const Wrapper = styled(FlexDivColumn)`
+    position: relative;
+    z-index: 1;
     align-items: center;
     width: 99%;
     margin-left: auto;

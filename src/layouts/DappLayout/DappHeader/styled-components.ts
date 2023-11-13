@@ -1,10 +1,15 @@
 import styled from 'styled-components';
+import { FlexDivSpaceBetween } from 'styles/common';
 
 const CenteredDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     z-index: 2;
+    width: 60%;
+`;
+
+export const HeaderContainer = styled(FlexDivSpaceBetween)`
     width: 100%;
 `;
 
@@ -43,4 +48,25 @@ export const Item = styled.label<{ active?: boolean }>`
     @media (max-width: 1024px) {
         margin-bottom: 60px;
     }
+`;
+
+export const Logo = styled.i`
+    color: ${(props) => props.theme.textColor.primary};
+    font-size: 120px;
+    cursor: pointer;
+    line-height: 50px;
+    margin-top: 5px;
+`;
+
+export const WalletButton = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: ${(props) => props.theme.textColor.secondary};
+    width: 140px;
+    border-radius: 8px;
+    border: 1px solid ${(props) => props.theme.textColor.secondary};
+    background: transparent;
+    margin-top: -4px;
 `;
