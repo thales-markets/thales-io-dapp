@@ -70,6 +70,7 @@ export const Stat = styled.div`
 `;
 
 export const HomeButton = styled.button`
+    cursor: pointer;
     color: white;
     border-radius: 8px;
     border: 1px solid #19f8ef;

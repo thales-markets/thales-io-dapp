@@ -34,7 +34,7 @@ const DappHeader: React.FC = () => {
                 </Links>
                 <WalletButton>
                     <i className="icon icon--wallet" />
-                    {t('wallet.connect-your-wallet')}
+                    {t('common.wallet.connect-your-wallet')}
                 </WalletButton>
             </HeaderContainer>
         </>

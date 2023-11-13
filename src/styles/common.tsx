@@ -56,6 +56,7 @@ export const Icon = styled.i<{ color?: string; iconSize?: number }>`
 
 export const Colors = {
     GRAY: '#BCBCBC',
+    LIGHT_GRAY: '#A9ABBB',
     WHITE: '#FFFFFF',
     CYAN: '#19F8EF',
     BLUE_DARK: '#313652',
