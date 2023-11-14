@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { PieChart } from 'recharts';
+import styled from 'styled-components';
+import { FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 
 export const Container = styled.div`
     display: grid;
@@ -177,9 +177,10 @@ export const EcosystemIcon = styled.i`
     color: ${(props) => props.theme.textColor.primary};
 `;
 
-export const DoubleSideInfoSection = styled(FlexDivColumnNative)`
+export const DoubleSideInfoSection = styled.div`
     width: 100%;
     grid-area: 2 / 1 / 3 /3;
+    position: relative;
 `;
 
 export const StyledPieChart = styled(PieChart)`
@@ -188,3 +189,15 @@ export const StyledPieChart = styled(PieChart)`
     align-self: flex-end;
 `;
 
+export const ChartInnerText = styled.span`
+    position: absolute;
+    top: 63px;
+    left: 220px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: rgb(255, 255, 255);
+    font-family: Nunito !important;
+    width: min-content;
+    text-align: center;
+`;

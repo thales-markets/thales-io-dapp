@@ -6,6 +6,7 @@ import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { TokenInfo } from 'types/token';
 import {
+    ChartInnerText,
     DoubleSideInfoSection,
     FlexDivFullWidthSpaceBetween,
     InfoStats,
@@ -127,6 +128,7 @@ const ThalesTokenInfo: React.FC = () => {
                 </FlexDivFullWidthSpaceBetween>
             </UpperInfoSection>
             <DoubleSideInfoSection>
+                <ChartInnerText>Total 100M</ChartInnerText>
                 <StyledPieChart width={330} height={165}>
                     <Legend
                         // content={renderChartLegend}
@@ -144,7 +146,7 @@ const ThalesTokenInfo: React.FC = () => {
                         blendStroke={true}
                         data={pieData}
                         dataKey={'value'}
-                        innerRadius={25}
+                        innerRadius={35}
                         outerRadius={55}
                         cx="50%"
                         cy="50%"
