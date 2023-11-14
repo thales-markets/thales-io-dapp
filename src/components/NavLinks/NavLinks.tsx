@@ -14,9 +14,11 @@ type NavLinksProps = {
 const NavLinks: React.FC<NavLinksProps> = ({ items }) => {
     return (
         <Links>
-            {items.map((item) => (
+            {items.map((item, index) => (
                 <SPAAnchor href={item.href}>
-                    <Item active={item.active}>{item.title}</Item>
+                    <Item key={index} active={item.active}>
+                        {item.title}
+                    </Item>
                 </SPAAnchor>
             ))}
         </Links>

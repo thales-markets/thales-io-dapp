@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-export const FlexDiv = styled.div<{ gap?: string }>`
+export const FlexDiv = styled.div<{ gap?: string; grow?: number }>`
     display: flex;
     gap: ${(props) => (props.gap ? props.gap : '')};
+    flex-grow: ${(props) => (props.grow ? props.grow : '')};
 `;
 
 export const FlexDivCentered = styled(FlexDiv)`

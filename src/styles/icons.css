@@ -89,6 +89,22 @@
     content: '\0040';
 }
 
+.icon--house:before {
+    content: '\0035';
+}
+
+.icon--pig:before {
+    content: '\0036';
+}
+
+.icon--gift:before {
+    content: '\0047';
+}
+
+.icon--download:before {
+    content: '\004B';
+}
+
 .icon--staking:before {
     content: '\0037';
 }
