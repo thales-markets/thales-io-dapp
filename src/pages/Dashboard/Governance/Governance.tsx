@@ -1,6 +1,6 @@
 import SPAAnchor from 'components/SPAAnchor';
 import {
-    DoubleSideSection,
+    DoubleSideSectionSpan,
     InfoSection,
     InfoStats,
     InfoText,
@@ -21,9 +21,9 @@ const Governance: React.FC = () => {
             </WidgetHeader>
 
             <InfoSection side="left">
-                <DoubleSideSection>
+                <DoubleSideSectionSpan>
                     <SPAAnchor href={''}>TIP-XXX: Placeholder for current TIP link</SPAAnchor>
-                </DoubleSideSection>
+                </DoubleSideSectionSpan>
                 <InfoText>{t('dashboard.governance.start-date')}</InfoText>
                 <InfoText>{t('dashboard.governance.end-date')}</InfoText>
             </InfoSection>

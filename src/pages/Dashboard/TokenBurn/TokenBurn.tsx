@@ -40,7 +40,7 @@ const TokenBurn: React.FC = () => {
             <InfoSection side="left">
                 <FlexDivFullWidthSpaceBetween>
                     <InfoText>{t('dashboard.token-burn.total-thales-burned')}</InfoText>
-                    <InfoStats>{tokenInfo ? formatCurrency(tokenInfo.thalesBurned) : 'N/A'}</InfoStats>
+                    <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.thalesBurned)} THALES` : 'N/A'}</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
                     <InfoText>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>

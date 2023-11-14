@@ -6,7 +6,7 @@ import Staking from './Staking';
 import TVLInfo from './TVLInfo';
 import TokenAddresses from './TokenAddresses';
 import TokenBurn from './TokenBurn';
-import TokenInfo from './TokenInfo';
+import TokenInfo from './ThalesTokenInfo';
 import {
     Container,
     EcosystemIcon,
