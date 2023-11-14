@@ -61,6 +61,9 @@ export const Colors = {
     CYAN: '#19F8EF',
     BLUE_DARK: '#313652',
     PURPLE_NAVY: '#405682',
+    CHINA_PINK: '#E06AA2',
+    VIOLET: '#7E19FE',
+    BLUEBERRY: '#4B79EE',
 };
 
 export const Background = styled.div`

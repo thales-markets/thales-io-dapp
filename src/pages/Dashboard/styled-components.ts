@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
+import { PieChart } from 'recharts';
 
 export const Container = styled.div`
     display: grid;
@@ -135,7 +136,7 @@ export const InfoSection = styled.div<{
     gap: 1px;
 `;
 
-export const DoubleSideSection = styled.span`
+export const DoubleSideSectionSpan = styled.span`
     font-family: Nunito !important;
     font-weight: 400;
     font-size: 13px;
@@ -175,3 +176,15 @@ export const EcosystemIcon = styled.i`
     font-size: 200px;
     color: ${(props) => props.theme.textColor.primary};
 `;
+
+export const DoubleSideInfoSection = styled(FlexDivColumnNative)`
+    width: 100%;
+    grid-area: 2 / 1 / 3 /3;
+`;
+
+export const StyledPieChart = styled(PieChart)`
+    display: flex;
+    justify-self: center;
+    align-self: flex-end;
+`;
+
