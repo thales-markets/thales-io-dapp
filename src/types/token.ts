@@ -5,3 +5,13 @@ export type TokenInfo = {
     price?: number;
     marketCap?: number;
 };
+
+export type StakingData = {
+    totalStakedAmount: number;
+    totalStakedAmountOptimism: number;
+    totalStakedAmountArbitrum: number;
+    totalStakedAmountBase: number;
+    apyOptimism: number;
+    apyArbitrum: number;
+    apyBase: number;
+};

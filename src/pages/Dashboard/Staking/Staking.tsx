@@ -10,9 +10,33 @@ import {
     WidgetWrapper,
 } from '../styled-components';
 import { useTranslation } from 'react-i18next';
+import useStakingDataQuery from 'queries/useStakingDataQuery';
+import { useState, useEffect } from 'react';
+import { StakingData } from 'types/token';
+import { formatCurrency } from 'thales-utils';
 
 const Staking: React.FC = () => {
     const { t } = useTranslation();
+    // TODO: ADDING NETWORK CONFIG
+    const isAppReady = true;
+    const networkId = 10;
+    const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
+
+    const stakingDataQuery = useStakingDataQuery(networkId, {
+        enabled: isAppReady,
+    });
+
+    useEffect(() => {
+        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
+            setStakingData(stakingDataQuery.data);
+        }
+    }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
+
+    const totalStakedAmount = stakingData ? stakingData.totalStakedAmount : 0;
+    const totalStakedAmountOptimism = stakingData ? stakingData.totalStakedAmountOptimism : 0;
+    const totalStakedAmountArbitrum = stakingData ? stakingData.totalStakedAmountArbitrum : 0;
+    const totalStakedAmountBase = stakingData ? stakingData.totalStakedAmountBase : 0;
+
     return (
         <WidgetWrapper>
             <WidgetHeader isTwoSided={true}>
@@ -28,7 +52,7 @@ const Staking: React.FC = () => {
             <InfoSection side="left">
                 <FlexDivFullWidthSpaceBetween>
                     <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
-                    <InfoStats>24,523,564</InfoStats>
+                    <InfoStats>{formatCurrency(totalStakedAmount)}</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
                     <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
@@ -46,14 +70,14 @@ const Staking: React.FC = () => {
                     <InfoText>{t('dashboard.staking.staked-on-base')}</InfoText>
                 </FlexDivColumnNative>
                 <FlexDivColumnNative>
-                    <InfoStats>51,243,592</InfoStats>
-                    <InfoStats>51,243,592</InfoStats>
-                    <InfoStats>51,243,592</InfoStats>
+                    <InfoStats>{formatCurrency(totalStakedAmountOptimism)}</InfoStats>
+                    <InfoStats>{formatCurrency(totalStakedAmountArbitrum)}</InfoStats>
+                    <InfoStats>{formatCurrency(totalStakedAmountBase)}</InfoStats>
                 </FlexDivColumnNative>
                 <FlexDivColumnNative>
-                    <InfoStats color={Colors.CYAN}>APY 100%</InfoStats>
-                    <InfoStats color={Colors.CYAN}>APY 100%</InfoStats>
-                    <InfoStats color={Colors.CYAN}>APY 100%</InfoStats>
+                    <InfoStats color={Colors.CYAN}>APY {stakingData?.apyOptimism.toFixed(2)} %</InfoStats>
+                    <InfoStats color={Colors.CYAN}>APY {stakingData?.apyArbitrum.toFixed(2)} %</InfoStats>
+                    <InfoStats color={Colors.CYAN}>APY {stakingData?.apyBase.toFixed(2)} %</InfoStats>
                 </FlexDivColumnNative>
             </InfoSection>
         </WidgetWrapper>
