@@ -1,13 +1,18 @@
 import FooterLinks from 'components/FooterLinks';
+import ROUTES from 'constants/routes';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 
 const DappFooter: React.FC = () => {
+    const location = useLocation();
     return (
         <>
-            <Container>
-                <FooterLinks />
-            </Container>
+            {location.pathname !== ROUTES.Home && (
+                <Container>
+                    <FooterLinks />
+                </Container>
+            )}
         </>
     );
 };
