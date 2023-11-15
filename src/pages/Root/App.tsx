@@ -6,7 +6,7 @@ import Loader from 'components/Loader';
 import ThemeProvider from 'layouts/Theme';
 import DappLayout from 'layouts/DappLayout';
 import 'i18n';
-import Staking from 'pages/Staking';
+import Staking from 'pages/Staking/Rewards';
 import queryConnector from 'utils/queryConnector';
 import { QueryClientProvider } from 'react-query';
 

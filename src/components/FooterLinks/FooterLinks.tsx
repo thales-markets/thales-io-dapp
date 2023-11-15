@@ -11,7 +11,7 @@ type FooterLinksProps = {
 const FooterLinks: React.FC<FooterLinksProps> = () => {
     const { t } = useTranslation();
     return (
-        <FlexDivSpaceBetween>
+        <Container>
             <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                 <SPAAnchor href={LINKS.Discord}>
                     <Icon className="icon icon--discord" />
@@ -46,11 +46,15 @@ const FooterLinks: React.FC<FooterLinksProps> = () => {
 
                 <Name>{t('footer.medium')}</Name>
             </FlexDivColumnCentered>
-        </FlexDivSpaceBetween>
+        </Container>
     );
 };
 
 export default FooterLinks;
+
+const Container = styled(FlexDivSpaceBetween)`
+    width: 100%;
+`;
 
 const Name = styled.div`
     color: #a9abbb;
