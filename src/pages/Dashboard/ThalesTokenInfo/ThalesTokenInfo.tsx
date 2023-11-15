@@ -92,7 +92,6 @@ const ThalesTokenInfo: React.FC = () => {
     }, [tokenInfo]);
 
     const formatChartLegend = (value: string, entry: any) => {
-        console.log(entry);
         const percentage = entry.percentage;
 
         return (
@@ -105,8 +104,6 @@ const ThalesTokenInfo: React.FC = () => {
         );
     };
 
-    console.log(tokenInfo);
-    console.log(pieData);
     return (
         <WidgetWrapper isDoubleHeight={true}>
             <WidgetHeader>
