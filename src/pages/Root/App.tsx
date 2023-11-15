@@ -6,12 +6,12 @@ import Loader from 'components/Loader';
 import ThemeProvider from 'layouts/Theme';
 import DappLayout from 'layouts/DappLayout';
 import 'i18n';
-import Staking from 'pages/Staking/Rewards';
 import queryConnector from 'utils/queryConnector';
 import { QueryClientProvider } from 'react-query';
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
 const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Dashboard'));
+const Staking = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Staking'));
 
 const App: React.FC = () => {
     queryConnector.setQueryClient();
