@@ -5,6 +5,7 @@ const darkTheme = {
         primary: Colors.BLUE_DARK,
         secondary: Colors.GRAY,
         tertiary: Colors.PURPLE_NAVY,
+        quaternary: Colors.YANKESS_BLUE,
     },
     textColor: {
         primary: Colors.WHITE,
@@ -13,6 +14,7 @@ const darkTheme = {
     },
     borderColor: {
         primary: Colors.GRAY,
+        secondary: Colors.PURPLE_NAVY,
     },
     link: {
         textColor: {

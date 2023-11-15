@@ -7,7 +7,7 @@ export const Container = styled.div`
     display: grid;
     width: 60%;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 160px);
+    grid-template-rows: repeat(2, 170px);
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'upper-left upper-right' 'bottom bottom';
@@ -40,4 +40,24 @@ export const Bottom = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+`;
+
+export const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+export const InputContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    > div {
+        width: 390px;
+    }
+    > div > span {
+        font-size: 13px;
+        text-transform: none;
+    }
+    > div > span:nth-child(2) {
+        font-family: Nunito;
+    }
 `;

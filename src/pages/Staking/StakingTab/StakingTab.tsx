@@ -1,7 +1,11 @@
-import { InfoDiv, SectionTitle } from '../styled-components';
-import { Bottom, Container, UpperLeft, UpperRight } from './styled-components';
+import SwitchInput from 'components/SwitchInput';
+import { InfoDiv, SectionTitle, StakingButton, StakingInput } from '../styled-components';
+import { Bottom, ButtonContainer, InputContainer, Container, UpperLeft, UpperRight } from './styled-components';
+import { useTheme } from 'styled-components';
+import { FlexDivCentered } from 'styles/common';
 
 const StakingTab: React.FC = () => {
+    const theme = useTheme();
     return (
         <Container>
             <UpperLeft>
@@ -49,7 +53,30 @@ const StakingTab: React.FC = () => {
                     </InfoDiv>
                 </div>
             </UpperRight>
-            <Bottom></Bottom>
+            <Bottom>
+                <SwitchInput
+                    label={{ firstLabel: 'Stake', secondLabel: 'Unstake', fontSize: '18px' }}
+                    borderColor={theme.borderColor.secondary}
+                    dotBackground={theme.textColor.secondary}
+                    dotSize="20px"
+                    active={true}
+                />
+                <InputContainer>
+                    <SectionTitle>
+                        <span>Amount to stake</span>
+                        <span>
+                            <i className="icon icon--wallet" />
+                            Balance: 841729.98 Thales
+                        </span>
+                    </SectionTitle>
+                </InputContainer>
+                <FlexDivCentered>
+                    <StakingInput width="400px" />
+                </FlexDivCentered>
+                <ButtonContainer>
+                    <StakingButton padding="5px 20px">Stake</StakingButton>
+                </ButtonContainer>
+            </Bottom>
         </Container>
     );
 };

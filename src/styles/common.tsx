@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const FlexDiv = styled.div<{ gap?: string; grow?: number }>`
     display: flex;
-    gap: ${(props) => (props.gap ? props.gap : '')};
-    flex-grow: ${(props) => (props.grow ? props.grow : '')};
+    gap: ${(props) => props.gap || ''};
+    flex-grow: ${(props) => props.grow || ''};
 `;
 
 export const FlexDivCentered = styled(FlexDiv)`
@@ -65,6 +65,7 @@ export const Colors = {
     CHINA_PINK: '#E06AA2',
     VIOLET: '#7E19FE',
     BLUEBERRY: '#4B79EE',
+    YANKESS_BLUE: '#1F2438',
 };
 
 export const Background = styled.div`

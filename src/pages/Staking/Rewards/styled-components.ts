@@ -96,18 +96,6 @@ export const ButtonContainer = styled.div`
     justify-content: flex-end;
 `;
 
-export const ClaimButton = styled.button`
-    color: ${(props) => props.theme.background.primary};
-    border-radius: 8px;
-    border: 0;
-    background: ${(props) => props.theme.textColor.secondary};
-    text-align: center;
-    font-family: NunitoBold;
-    font-size: 13px;
-    text-transform: uppercase;
-    padding: 5px 7px;
-`;
-
 export const ClaimButtonDisclaimer = styled.span`
     color: ${(props) => props.theme.textColor.tertiary};
     position: absolute;

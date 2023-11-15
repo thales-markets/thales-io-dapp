@@ -42,3 +42,22 @@ export const InfoDiv = styled.div`
         line-height: 155%;
     }
 `;
+export const StakingButton = styled.button<{ padding?: string }>`
+    color: ${(props) => props.theme.background.primary};
+    padding: ${(props) => props.padding || '5px 7px'};
+    border-radius: 8px;
+    border: 0;
+    background: ${(props) => props.theme.textColor.secondary};
+    text-align: center;
+    font-family: NunitoBold;
+    font-size: 13px;
+    text-transform: uppercase;
+`;
+
+export const StakingInput = styled.input<{ width?: string }>`
+    width: ${(props) => props.width || ''};
+    height: 30px;
+    border-radius: 8px;
+    border: 1.5px solid ${(props) => props.theme.borderColor.secondary};
+    background: ${(props) => props.theme.background.quaternary};
+`;

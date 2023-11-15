@@ -2,7 +2,6 @@ import { SectionTitle, InfoDiv } from '../styled-components';
 import {
     BottomRight,
     ButtonContainer,
-    ClaimButton,
     ClaimButtonDisclaimer,
     Container,
     FinalPoints,
@@ -13,6 +12,7 @@ import {
     SectionText,
     UpperRight,
 } from './styled-components';
+import { StakingButton } from '../styled-components';
 import { FlexDiv, FlexDivColumn } from 'styles/common';
 
 const Rewards: React.FC = () => {
@@ -85,7 +85,7 @@ const Rewards: React.FC = () => {
                     <ButtonContainer>
                         <ClaimButtonDisclaimer>Unclaimed weekly rewards are forfeited!</ClaimButtonDisclaimer>
                         <div>
-                            <ClaimButton>Claim Rewards</ClaimButton>
+                            <StakingButton>Claim Rewards</StakingButton>
                         </div>
                     </ButtonContainer>
                 </FlexDiv>
