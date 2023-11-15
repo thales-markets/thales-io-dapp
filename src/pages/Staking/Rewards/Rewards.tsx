@@ -1,3 +1,4 @@
+import { SectionTitle, InfoDiv } from '../styled-components';
 import {
     BottomRight,
     ButtonContainer,
@@ -6,12 +7,10 @@ import {
     Container,
     FinalPoints,
     FinalPointsTitle,
-    InfoDiv,
     Left,
     MiddleRight,
     SectionSubtitle,
     SectionText,
-    SectionTitle,
     UpperRight,
 } from './styled-components';
 import { FlexDiv, FlexDivColumn } from 'styles/common';

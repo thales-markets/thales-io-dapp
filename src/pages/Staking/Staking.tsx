@@ -32,26 +32,30 @@ const Staking: React.FC = () => {
             {
                 href: `${buildHref(ROUTES.Staking)}?tab=${Tab.REWARDS}`,
                 title: t('staking.nav.rewards'),
-                active: true,
+                active: paramTab === Tab.REWARDS,
             },
             {
                 href: `${buildHref(ROUTES.Staking)}?tab=${Tab.STAKING}`,
                 title: t('staking.nav.staking'),
+                active: paramTab === Tab.STAKING,
             },
             {
                 href: `${buildHref(ROUTES.Staking)}?tab=${Tab.VESTING}`,
                 title: t('staking.nav.vesting'),
+                active: paramTab === Tab.VESTING,
             },
             {
                 href: `${buildHref(ROUTES.Staking)}?tab=${Tab.LEADERBOARD}`,
                 title: t('staking.nav.leaderboard'),
+                active: paramTab === Tab.LEADERBOARD,
             },
             {
                 href: `${buildHref(ROUTES.Staking)}?tab=${Tab.ACCPREFERENCES}`,
                 title: t('staking.nav.acc-preferences'),
+                active: paramTab === Tab.ACCPREFERENCES,
             },
         ];
-    }, [t]);
+    }, [paramTab, t]);
 
     return (
         <Suspense fallback={<Loader />}>

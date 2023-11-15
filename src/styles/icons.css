@@ -105,6 +105,10 @@
     content: '\004B';
 }
 
+.icon--person:before {
+    content: '\0032';
+}
+
 .icon--staking:before {
     content: '\0037';
 }

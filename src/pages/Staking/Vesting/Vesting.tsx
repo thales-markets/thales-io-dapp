@@ -1,5 +1,7 @@
+import { Container } from './styled-components';
+
 const Vesting: React.FC = () => {
-    return <div />;
+    return <Container></Container>;
 };
 
 export default Vesting;
