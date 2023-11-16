@@ -66,6 +66,7 @@ export const Colors = {
     VIOLET: '#7E19FE',
     BLUEBERRY: '#4B79EE',
     YANKESS_BLUE: '#1F2438',
+    INDEPENDENCE: '#43496D',
 };
 
 export const Background = styled.div`

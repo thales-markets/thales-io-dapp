@@ -1,34 +1,55 @@
+import useIntegratorsQuery from 'queries/useIntegratorsQuery';
 import { useTranslation } from 'react-i18next';
+import { formatCurrency } from 'thales-utils';
+import { Integrator } from 'types/referral';
 import {
-    InfoSection,
+    FullWidthInfoSection,
     InfoStats,
     InfoText,
+    TitleLabel,
     WidgetHeader,
     WidgetIcon,
-    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
+import { useEffect, useState } from 'react';
 
 const IntegratorsVolume: React.FC = () => {
     const { t } = useTranslation();
+
+    const [integratorsData, setIntegratorsData] = useState<Integrator[]>([]);
+    const integratorsQuery = useIntegratorsQuery({
+        enabled: true,
+    });
+
+    useEffect(() => {
+        if (integratorsQuery.isSuccess && integratorsQuery.data) {
+            setIntegratorsData(integratorsQuery.data);
+        }
+    }, [integratorsQuery.isSuccess, integratorsQuery.data]);
+
+    const allIntegratorsTotalVolume =
+        integratorsData.length > 0
+            ? integratorsData
+                  .map((integrator: Integrator) => integrator.totalVolume)
+                  .reduce((prevVolume, currVolume) => prevVolume + currVolume)
+            : 0;
+
     return (
         <WidgetWrapper>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--integrators" />
                 <TitleLabel>{t('dashboard.integrators.title')}</TitleLabel>
             </WidgetHeader>
-            <InfoSection side="left">
-                <InfoText>Purebet</InfoText>
-                <InfoText>BookieBot</InfoText>
-                <InfoText>VegasBot</InfoText>
+            <FullWidthInfoSection>
                 <InfoText>{t('dashboard.integrators.total-volume')}</InfoText>
-            </InfoSection>
-            <InfoSection side="right">
-                <InfoStats>$ 24,523,564.76</InfoStats>
-                <InfoStats>$ 4,536,745.54</InfoStats>
-                <InfoStats>$ 564,652.43</InfoStats>
-                <InfoStats>$ 100,929</InfoStats>
-            </InfoSection>
+                <InfoStats>$ {formatCurrency(allIntegratorsTotalVolume)}</InfoStats>
+                {integratorsData.map((integrator) => (
+                    <>
+                        <InfoText>{integrator.id}</InfoText>
+                        <InfoStats>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
+                    </>
+                ))}
+            </FullWidthInfoSection>
         </WidgetWrapper>
     );
 };
