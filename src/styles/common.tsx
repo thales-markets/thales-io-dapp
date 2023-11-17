@@ -65,7 +65,8 @@ export const Colors = {
     CHINA_PINK: '#E06AA2',
     VIOLET: '#7E19FE',
     BLUEBERRY: '#4B79EE',
-    YANKESS_BLUE: '#1F2438',
+    YANKEES_BLUE: '#1F2438',
+    METALLIC_BLUE: '#3F5580',
 };
 
 export const Background = styled.div`

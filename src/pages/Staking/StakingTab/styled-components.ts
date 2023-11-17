@@ -11,7 +11,7 @@ export const Container = styled.div`
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'upper-left upper-right' 'bottom bottom';
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     z-index: 1;
     > div {
         position: relative;

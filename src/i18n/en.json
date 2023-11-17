@@ -1,7 +1,97 @@
 {
     "common": {
+        "read-more": "Read more",
+        "show-less": "Show less",
+        "max": "max",
+        "save": "Save",
+        "close": "Close",
+        "no-data": "Do not have any data to show",
+        "eg-val": "e.g. {{val}}",
+        "select-date": "select date",
+        "or": "or",
+        "here": "here",
+        "no-data-available": "No data available",
+        "enter-amount": "Enter amount",
+        "enter-percentage": "Enter percentage",
+        "enter-address": "Enter address",
+        "enter-minutes": "Enter minutes",
+        "enter-hours": "Enter hours",
+        "search-placeholder": "Search...",
+        "progress": "Please wait...",
+        "sort-menu": "Sorting menu",
+        "on": "on",
+        "in": "in",
+        "and": "and",
+        "asset": "Asset",
+        "balance": "Balance",
+        "result": "Result",
+        "won": "Won",
+        "loss": "Loss",
+        "admin": "Admin",
+        "liquidity": "Liquidity",
+        "time-remaining": {
+            "ended": "ended",
+            "years": "years",
+            "year": "year",
+            "months": "months",
+            "month": "month",
+            "weeks": "weeks",
+            "week": "week",
+            "days": "days",
+            "day": "day",
+            "hours": "hours",
+            "hour": "hour",
+            "minutes": "minutes",
+            "minute": "minute",
+            "seconds": "seconds",
+            "second": "second",
+            "days-short": "d",
+            "hours-short": "h",
+            "minutes-short": "m",
+            "seconds-short": "s",
+            "months-short": "mo"
+        },
+        "transaction": {
+            "view": "View",
+            "successful": "Transaction successful"
+        },
+        "tx-status": {
+            "pending": "Pending"
+        },
         "wallet": {
-            "connect-your-wallet": "Connect wallet"
+            "connect-your-wallet": "Connect wallet",
+            "wallet-options": "Wallet options",
+            "disclaimer-info": "By connecting a wallet you agree to Thales DAO <terms>Terms of Use</terms> and Privacy Policy and acknowledge that you have read and understand the Thales DAO protocol <disclaimer>disclaimer</disclaimer>",
+            "balance": "Wallet balance"
+        },
+        "enable-wallet-access": {
+            "approve": "Approve",
+            "approve-progress": "Approving",
+            "approve-label": "Approve {{currencyKey}}",
+            "approve-progress-label": "Approving {{currencyKey}}...",
+            "approve-all-label": "Approve all",
+            "custom-amount-label": "Approve amount of",
+            "approve-swap": "Approve swap to {{currencyKey}}"
+        },
+        "pagination": {
+            "rows-per-page": "Rows per page:"
+        },
+        "unsupported-network": {
+            "title": "Oops! You are on the wrong network!",
+            "description": "You have selected the wrong network in your wallet. To continue, please switch to one of the supported networks.",
+            "button": {
+                "mainnet": "Switch to Mainnet",
+                "optimism": "Switch to Optimism",
+                "polygon": "Switch to Polygon",
+                "arbitrum": "Switch to Arbitrum",
+                "base": "Switch to Base"
+            }
+        },
+        "status": {
+            "success": "Success",
+            "info": "Info",
+            "warning": "Warning",
+            "error": "Error"
         }
     },
     "home": {
@@ -74,6 +164,73 @@
             "vesting": "Vesting",
             "leaderboard": "Leaderboard",
             "acc-preferences": "Acc Preferences"
+        },
+        "table": {
+            "title": "Your activity",
+            "date-time-col": "Date | Time",
+            "type-col": "Type",
+            "amount-col": "Amount",
+            "tx-status-col": "TX Status",
+            "no-results": {
+                "all": "No transactions associated with this wallet.",
+                "claimRetroAirdrop": "No retro airdrop transactions associated with this wallet.",
+                "claimRetroUnlocked": "No retro unlocked transactions associated with this wallet.",
+                "claimStakingRewards": "No staking rewards transactions associated with this wallet.",
+                "claimMigratedRewards": "No migrated rewards transactions associated with this wallet.",
+                "claimMigratedRetroRewards": "No migrated retro rewards transactions associated with this wallet.",
+                "stake": "No stake transactions associated with this wallet.",
+                "startUnstake": "No start unstaking transactions associated with this wallet.",
+                "cancelUnstake": "No cancel unstaking transactions associated with this wallet.",
+                "unstake": "No unstake transactions associated with this wallet.",
+                "addToEscrow": "No add to escrow transactions associated with this wallet.",
+                "vest": "No vest transactions associated with this wallet.",
+                "lpStake": "No LP stake transactions associated with this wallet.",
+                "lpUnstake": "No LP unstake transactions associated with this wallet.",
+                "lpClaimStakingRewards": "No LP staking rewards transactions associated with this wallet.",
+                "mergeAccount": "No merge account transactions associated with this wallet.",
+                "delegateVolume": "No delegate volume transactions associated with this wallet.",
+                "removeDelegation": "No remove delegation transactions associated with this wallet."
+            },
+            "types": {
+                "claimRetroAirdrop": "Claim retro airdrop",
+                "claimRetroUnlocked": "Claim retro unlock",
+                "claimStakingRewards": "Claim staking rewards",
+                "claimMigratedRewards": "Claim migrated rewards",
+                "claimMigratedRetroRewards": "Claim migrated retro rewards",
+                "stake": "Stake",
+                "startUnstake": "Start unstaking",
+                "cancelUnstake": "Cancel unstaking",
+                "unstake": "Unstake",
+                "addToEscrow": "Add to escrow",
+                "vest": "Vest",
+                "lpStake": "LP stake",
+                "lpUnstake": "LP unstake",
+                "lpClaimStakingRewards": "Claim LP staking rewards",
+                "mergeAccount": "Merge account",
+                "delegateVolume": "Delegate Volume",
+                "removeDelegation": "Remove Delegation"
+            },
+            "filter": {
+                "button": "Filter",
+                "all": "All",
+                "claimRetroAirdrop": "Retro airdrop",
+                "claimRetroUnlocked": "Retro unlock",
+                "claimStakingRewards": "Reward claims",
+                "claimMigratedRewards": "Migrated rewards",
+                "claimMigratedRetroRewards": "Migrated retro rewards",
+                "stake": "Stake",
+                "startUnstake": "Start unstaking",
+                "cancelUnstake": "Cancel unstaking",
+                "unstake": "Unstake",
+                "addToEscrow": "Add to escrow",
+                "vest": "Vest",
+                "lpStake": "LP stake",
+                "lpUnstake": "LP unstake",
+                "lpClaimStakingRewards": "LP staking rewards",
+                "mergeAccount": "Merge account",
+                "delegateVolume": "Delegate Volume",
+                "removeDelegation": "Remove Delegation"
+            }
         }
     },
     "header": {

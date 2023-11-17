@@ -5,7 +5,7 @@ const darkTheme = {
         primary: Colors.BLUE_DARK,
         secondary: Colors.GRAY,
         tertiary: Colors.PURPLE_NAVY,
-        quaternary: Colors.YANKESS_BLUE,
+        quaternary: Colors.YANKEES_BLUE,
     },
     textColor: {
         primary: Colors.WHITE,
@@ -20,6 +20,19 @@ const darkTheme = {
         textColor: {
             primary: Colors.CYAN,
             secondary: Colors.WHITE,
+        },
+    },
+    button: {
+        background: {
+            primary: Colors.PURPLE_NAVY,
+            secondary: Colors.METALLIC_BLUE,
+        },
+        textColor: {
+            primary: Colors.WHITE,
+            secondary: Colors.GRAY,
+        },
+        borderColor: {
+            primary: Colors.METALLIC_BLUE,
         },
     },
 };
