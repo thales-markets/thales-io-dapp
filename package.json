@@ -9,6 +9,7 @@
         "history": "^4.10.1",
         "i18next": "^23.6.0",
         "i18next-browser-languagedetector": "^7.1.0",
+        "lodash": "^4.17.21",
         "lottie-react": "^2.3.1",
         "query-string": "^7.0.1",
         "react": "^17.0.1",

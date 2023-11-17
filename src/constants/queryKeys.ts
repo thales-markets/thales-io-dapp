@@ -81,6 +81,7 @@ const QUERY_KEYS = {
             period,
         ],
     },
+    Integrators: () => ['integrators'],
 };
 
 export default QUERY_KEYS;

@@ -1,7 +1,7 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { PieChart } from 'recharts';
 import styled from 'styled-components';
-import { FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { Colors, FlexDiv, FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 
 export const Container = styled.div`
     display: grid;
@@ -200,4 +200,42 @@ export const ChartInnerText = styled.span`
     font-family: Nunito !important;
     width: min-content;
     text-align: center;
+`;
+
+export const FullWidthInfoSection = styled(FlexDiv)`
+    flex-direction: row;
+    flex-wrap: wrap;
+    grid-area: 2 / 1 / 3 /3;
+    gap: 1px;
+    width: 301px;
+    justify-content: space-between;
+    height: 82px;
+    margin-top: -2px;
+    margin-left: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: 5px; /* Firefox */
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar {
+        /* WebKit */
+        width: 5px;
+        height: 5px;
+        background: #43496d;
+    }
+    ::-webkit-scrollbar-track {
+        background: ${Colors.INDEPENDENCE};
+    }
+    ::-webkit-scrollbar-thumb {
+        background: ${Colors.CYAN};
+    }
+    > label {
+        display: flex;
+        flex: 49%;
+    }
+    > span {
+        display: flex;
+        flex: 48%;
+        justify-content: flex-end;
+        margin-right: 5px;
+    }
 `;

@@ -67,6 +67,7 @@ export const Colors = {
     BLUEBERRY: '#4B79EE',
     YANKEES_BLUE: '#1F2438',
     METALLIC_BLUE: '#3F5580',
+    INDEPENDENCE: '#43496D',
 };
 
 export const Background = styled.div`
