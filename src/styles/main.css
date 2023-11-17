@@ -142,13 +142,14 @@ table {
 
 *::-webkit-scrollbar {
     border-radius: 8px;
-    width: 0;
+    width: 10px;
 }
 *::-webkit-scrollbar-track {
-    background: #5f6180;
+    background: #313652;
     border-radius: 8px;
 }
 *::-webkit-scrollbar-thumb {
+    background: #A9ABBB ;
     border-radius: 8px;
 }
 
