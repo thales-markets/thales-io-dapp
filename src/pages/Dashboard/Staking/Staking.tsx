@@ -19,10 +19,10 @@ const Staking: React.FC = () => {
     const { t } = useTranslation();
     // TODO: ADDING NETWORK CONFIG
     const isAppReady = true;
-    const networkId = 10;
+    // const networkId = 10;
     const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
 
-    const stakingDataQuery = useStakingDataQuery(networkId, {
+    const stakingDataQuery = useStakingDataQuery({
         enabled: isAppReady,
     });
 

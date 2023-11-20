@@ -6,9 +6,9 @@ import { bigNumberFormatter } from 'thales-utils';
 import { StakingData } from 'types/token';
 import stakingDataContract from 'utils/contracts/stakingDataContract';
 
-const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<StakingData | undefined>) => {
+const useStakingDataQuery = (options?: UseQueryOptions<StakingData | undefined>) => {
     return useQuery<StakingData | undefined>(
-        QUERY_KEYS.Token.StakingData(networkId),
+        QUERY_KEYS.Token.StakingData(),
         async () => {
             const stakingData: StakingData = {
                 totalStakedAmount: 0,

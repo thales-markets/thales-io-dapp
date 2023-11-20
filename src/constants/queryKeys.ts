@@ -23,7 +23,7 @@ const QUERY_KEYS = {
             walletAddress,
             networkId,
         ],
-        StakingData: (networkId: Network) => ['token', 'staking', 'data', networkId],
+        StakingData: () => ['token', 'staking', 'data'],
         UserStakingData: (walletAddress: string, networkId: Network) => [
             'token',
             'staking',

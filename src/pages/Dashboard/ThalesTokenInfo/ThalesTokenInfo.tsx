@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Cell, Legend, Pie } from 'recharts';
 import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
-import { TokenInfo } from 'types/token';
+import { StakingData, TokenInfo } from 'types/token';
 import {
     ChartInnerText,
     DoubleSideInfoSection,
@@ -18,6 +18,7 @@ import {
     WidgetIcon,
     WidgetWrapper,
 } from '../styled-components';
+import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 
 const ThalesTokenInfo: React.FC = () => {
     const { t } = useTranslation();
@@ -25,10 +26,13 @@ const ThalesTokenInfo: React.FC = () => {
     const isAppReady = true;
     const networkId = 10;
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
+    const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
 
     const tokenInfoQuery = useTokenInfoQuery(networkId, {
         enabled: isAppReady,
     });
+
+    const stakingDataQuery = useStakingDataQuery({ enabled: isAppReady });
 
     useEffect(() => {
         if (tokenInfoQuery.isSuccess && tokenInfoQuery.data) {
@@ -36,9 +40,14 @@ const ThalesTokenInfo: React.FC = () => {
         }
     }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
 
+    useEffect(() => {
+        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
+            setStakingData(stakingDataQuery.data);
+        }
+    }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
+
     const pieData = useMemo(() => {
         const data1 = [];
-        // const data2 = []
         if (tokenInfo) {
             const burnedPiece = { name: 'Burned', value: tokenInfo?.thalesBurned, color: Colors.CHINA_PINK };
             const circulatingPiece = { name: 'Circulating', value: tokenInfo?.circulatingSupply, color: Colors.VIOLET };
@@ -47,19 +56,30 @@ const ThalesTokenInfo: React.FC = () => {
                 value: tokenInfo.totalSupply - tokenInfo?.thalesBurned - tokenInfo?.circulatingSupply,
                 color: Colors.CYAN,
             };
-            // const staking = {name: 'staking', value: tokenInfo?, color: Colors.VIOLET}
-            // const leftOverPiece = {name: '', value: 100000000 - tokenInfo?.thalesBurned - tokenInfo?.circulatingSupply, color: Colors.CHINA_PINK}
-
             data1.push(burnedPiece, circulatingPiece, leftOverPiece);
-            // data2.push()
         }
 
         return data1;
     }, [tokenInfo]);
 
+    const pie2Data = useMemo(() => {
+        const data1 = [];
+        if (stakingData && tokenInfo) {
+            const stakingPiece = { name: 'Staked', value: stakingData?.totalStakedAmount, color: Colors.BLUEBERRY };
+            const leftOverPiece = {
+                name: 'Rest',
+                value: tokenInfo.totalSupply - stakingData.totalStakedAmount,
+                color: 'transparent',
+            };
+            data1.push(stakingPiece, leftOverPiece);
+        }
+
+        return data1;
+    }, [stakingData, tokenInfo]);
+
     const pieLegendData = useMemo(() => {
         const data1 = [];
-        if (tokenInfo) {
+        if (tokenInfo && stakingData) {
             const burnedPiece = {
                 id: '1',
                 value: 'Burned',
@@ -74,22 +94,18 @@ const ThalesTokenInfo: React.FC = () => {
                 percentage: (tokenInfo?.circulatingSupply / tokenInfo.totalSupply) * 100,
                 color: Colors.VIOLET,
             };
-            // TODO: STAKING DATA PERCENTAGE
             const leftOverPiece = {
                 id: '3',
                 value: 'Staking',
-                stat: tokenInfo.totalSupply - tokenInfo?.thalesBurned - tokenInfo?.circulatingSupply,
-                percentage:
-                    ((tokenInfo.totalSupply - tokenInfo?.thalesBurned - tokenInfo?.circulatingSupply) /
-                        tokenInfo.totalSupply) *
-                    100,
+                stat: stakingData?.totalStakedAmount,
+                percentage: (stakingData?.totalStakedAmount / tokenInfo.totalSupply) * 100,
                 color: Colors.BLUEBERRY,
             };
             data1.push(burnedPiece, circulatingPiece, leftOverPiece);
         }
 
         return data1;
-    }, [tokenInfo]);
+    }, [tokenInfo, stakingData]);
 
     const formatChartLegend = (value: string, entry: any) => {
         const percentage = entry.percentage;
@@ -154,20 +170,14 @@ const ThalesTokenInfo: React.FC = () => {
                     <Pie
                         isAnimationActive={false}
                         blendStroke={true}
-                        data={[
-                            { name: 'Staking', value: 70, color: Colors.BLUEBERRY },
-                            { name: 'Rest', value: 25, color: Colors.WHITE },
-                        ]}
+                        data={pie2Data}
                         dataKey={'value'}
                         innerRadius={65}
                         outerRadius={75}
                         cx="50%"
                         cy="50%"
                     >
-                        {[
-                            { name: 'Staking', value: 25, color: Colors.BLUEBERRY },
-                            { name: 'Rest', value: 25, color: 'transparent' },
-                        ].map((slice, index) => (
+                        {pie2Data.map((slice, index) => (
                             <Cell key={index} fill={slice.color} />
                         ))}
                     </Pie>

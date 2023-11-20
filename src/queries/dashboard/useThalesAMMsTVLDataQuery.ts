@@ -47,6 +47,7 @@ const useThalesAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | undefi
                     `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
                     Network.Base
                 );
+
                 const baseThalesLPDataContract = new ethers.Contract(
                     thalesLiquidityPoolDataContract.addresses[Network.Base],
                     thalesLiquidityPoolDataContract.abi,

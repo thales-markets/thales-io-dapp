@@ -17,7 +17,7 @@ const queryConnector: QueryConnector = {
 };
 
 export const refetchTokenQueries = (walletAddress: string, networkId: Network) => {
-    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.StakingData(networkId));
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.StakingData());
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.UserStakingData(walletAddress, networkId));
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.UserVestingData(walletAddress, networkId));
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.Transactions(walletAddress, networkId, undefined));
