@@ -43,32 +43,33 @@ const useOvertimeAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | unde
                 );
 
                 // // Overtime LP Data - Base
-                // const baseProviderUrl = snxJSConnector.provider?.chains?.filter((chain) => chain.id === Network.Base)[0]
-                //     .rpcUrls.default.http[0];
-                // const baseInfuraProvider = new ethers.providers.JsonRpcProvider(baseProviderUrl, Network.Base);
-                // const baseOvertimeLPDataContract = new ethers.Contract(
-                //     overtimeLiquidityPoolDataContract.addresses[Network.Base],
-                //     overtimeLiquidityPoolDataContract.abi,
-                //     baseInfuraProvider
-                // );
+                const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
+                    `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
+                    Network.Base
+                );
+                const baseOvertimeLPDataContract = new ethers.Contract(
+                    overtimeLiquidityPoolDataContract.addresses[Network.Base],
+                    overtimeLiquidityPoolDataContract.abi,
+                    baseAnkrProvider
+                );
 
-                const [opLiquidityPoolData, arbLiquidityPoolData /*baseLiquidityPoolData*/] = await Promise.all([
+                const [opLiquidityPoolData, arbLiquidityPoolData, baseLiquidityPoolData] = await Promise.all([
                     opOvertimeLPDataContract.getLiquidityPoolData(
                         overtimeLiquidityPoolContract.addresses[Network.OptimismMainnet]
                     ),
                     arbOvertimeLPDataContract.getLiquidityPoolData(
                         overtimeLiquidityPoolContract.addresses[Network.Arbitrum]
                     ),
-                    // baseOvertimeLPDataContract.getLiquidityPoolData(
-                    //     overtimeLiquidityPoolContract.addresses[Network.Base]
-                    // ),
+                    baseOvertimeLPDataContract.getLiquidityPoolData(
+                        overtimeLiquidityPoolContract.addresses[Network.Base]
+                    ),
                 ]);
 
                 liquidityPoolData.opTVL = bigNumberFormatter(opLiquidityPoolData.totalDeposited, 18);
 
                 liquidityPoolData.arbTVL = bigNumberFormatter(arbLiquidityPoolData.totalDeposited, 6);
 
-                // liquidityPoolData.baseTVL = bigNumberFormatter(baseLiquidityPoolData.totalDeposited, 6);
+                liquidityPoolData.baseTVL = bigNumberFormatter(baseLiquidityPoolData.totalDeposited, 6);
 
                 return liquidityPoolData;
             } catch (e) {

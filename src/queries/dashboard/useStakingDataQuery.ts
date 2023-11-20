@@ -5,7 +5,6 @@ import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter } from 'thales-utils';
 import { StakingData } from 'types/token';
 import stakingDataContract from 'utils/contracts/stakingDataContract';
-// import snxJSConnector from 'utils/snxJSConnector';
 
 const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<StakingData | undefined>) => {
     return useQuery<StakingData | undefined>(
@@ -44,20 +43,22 @@ const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<Staki
                     arbInfuraProvider
                 );
 
-                // Thales burned - Base
-                // const baseProviderUrl = snxJSConnector.provider?.chains?.filter((chain) => chain.id === Network.Base)[0]
-                //     .rpcUrls.default.http[0];
-                // const baseInfuraProvider = new ethers.providers.JsonRpcProvider(baseProviderUrl, Network.Base);
-                // const baseThalesStakeContract = new ethers.Contract(
-                //     stakingDataContract.addresses[Network.Base],
-                //     stakingDataContract.abi,
-                //     baseInfuraProvider
-                // );
+                // Thales staked - Base
+                const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
+                    `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
+                    Network.Base
+                );
 
-                const [contractStakingDataOp, contractStakingDataArb] = await Promise.all([
+                const baseThalesStakeContract = new ethers.Contract(
+                    stakingDataContract.addresses[Network.Base],
+                    stakingDataContract.abi,
+                    baseAnkrProvider
+                );
+
+                const [contractStakingDataOp, contractStakingDataArb, contractStakingDataBase] = await Promise.all([
                     opThalesStakeContract.getStakingData(),
                     arbThalesStakeContract.getStakingData(),
-                    // baseThalesStakeContract.getStakingData())
+                    baseThalesStakeContract.getStakingData(),
                 ]);
 
                 const [
@@ -84,24 +85,24 @@ const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<Staki
                     bigNumberFormatter(contractStakingDataArb.baseRewardsPool),
                 ];
 
-                // const [
-                //     baseThalesStakeBalance,
-                //     baseThalesTotalEscrowNotInStakingBalance,
-                //     baseThalesTotalEscrowedBalance,
-                //     baseRewardsPoolBase,
-                // ] = [
-                //     bigNumberFormatter(contractStakingDataBase.totalStakedAmount),
-                //     bigNumberFormatter(contractStakingDataBase.totalEscrowBalanceNotIncludedInStaking),
-                //     bigNumberFormatter(contractStakingDataBase.totalEscrowedRewards),
-                //     bigNumberFormatter(contractStakingDataBase.baseRewardsPool),
-                // ];
+                const [
+                    baseThalesStakeBalance,
+                    baseThalesTotalEscrowNotInStakingBalance,
+                    baseThalesTotalEscrowedBalance,
+                    baseRewardsPoolBase,
+                ] = [
+                    bigNumberFormatter(contractStakingDataBase.totalStakedAmount),
+                    bigNumberFormatter(contractStakingDataBase.totalEscrowBalanceNotIncludedInStaking),
+                    bigNumberFormatter(contractStakingDataBase.totalEscrowedRewards),
+                    bigNumberFormatter(contractStakingDataBase.baseRewardsPool),
+                ];
 
                 stakingData.totalStakedAmountOptimism =
                     opThalesStakeBalance + opThalesTotalEscrowedBalance - opThalesTotalEscrowNotInStakingBalance;
                 stakingData.totalStakedAmountArbitrum =
                     arbThalesStakeBalance + arbThalesTotalEscrowNotInStakingBalance - arbThalesTotalEscrowedBalance;
-                // stakingData.totalStakedAmountBase =
-                //     baseThalesStakeBalance + baseThalesTotalEscrowNotInStakingBalance - baseThalesTotalEscrowedBalance;
+                stakingData.totalStakedAmountBase =
+                    baseThalesStakeBalance + baseThalesTotalEscrowNotInStakingBalance - baseThalesTotalEscrowedBalance;
 
                 stakingData.totalStakedAmount =
                     stakingData.totalStakedAmountOptimism +
@@ -116,11 +117,11 @@ const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<Staki
                     (baseRewardsPoolArbitrum * 52 * 100) /
                     (arbThalesStakeBalance + arbThalesTotalEscrowNotInStakingBalance - arbThalesTotalEscrowedBalance);
 
-                // stakingData.apyBase =
-                //     (baseRewardsPoolBase * 52 * 100) /
-                //     (baseThalesStakeBalance +
-                //         baseThalesTotalEscrowNotInStakingBalance -
-                //         baseThalesTotalEscrowedBalance);
+                stakingData.apyBase =
+                    (baseRewardsPoolBase * 52 * 100) /
+                    (baseThalesStakeBalance +
+                        baseThalesTotalEscrowNotInStakingBalance -
+                        baseThalesTotalEscrowedBalance);
 
                 return stakingData;
             } catch (e) {

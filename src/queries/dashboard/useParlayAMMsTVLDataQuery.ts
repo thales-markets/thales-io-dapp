@@ -43,32 +43,33 @@ const useParlayAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | undefi
                 );
 
                 // // Parlay LP Data - Base
-                // const baseProviderUrl = snxJSConnector.provider?.chains?.filter((chain) => chain.id === Network.Base)[0]
-                //     .rpcUrls.default.http[0];
-                // const baseInfuraProvider = new ethers.providers.JsonRpcProvider(baseProviderUrl, Network.Base);
-                // const baseParlayLPDataContract = new ethers.Contract(
-                //     parlayAMMLiquidityPoolDataContract.addresses[Network.Base],
-                //     parlayAMMLiquidityPoolDataContract.abi,
-                //     baseInfuraProvider
-                // );
+                const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
+                    `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
+                    Network.Base
+                );
+                const baseParlayLPDataContract = new ethers.Contract(
+                    parlayAMMLiquidityPoolDataContract.addresses[Network.Base],
+                    parlayAMMLiquidityPoolDataContract.abi,
+                    baseAnkrProvider
+                );
 
-                const [opLiquidityPoolData, arbLiquidityPoolData /*baseLiquidityPoolData*/] = await Promise.all([
+                const [opLiquidityPoolData, arbLiquidityPoolData, baseLiquidityPoolData] = await Promise.all([
                     opParlayLPDataContract.getLiquidityPoolData(
                         parlayAMMLiquidityPoolContract.addresses[Network.OptimismMainnet]
                     ),
                     arbParlayLPDataContract.getLiquidityPoolData(
                         parlayAMMLiquidityPoolContract.addresses[Network.Arbitrum]
                     ),
-                    // baseOvertimeLPDataContract.getLiquidityPoolData(
-                    //     parlayAMMLiquidityPoolContract.addresses[Network.Base]
-                    // ),
+                    baseParlayLPDataContract.getLiquidityPoolData(
+                        parlayAMMLiquidityPoolContract.addresses[Network.Base]
+                    ),
                 ]);
 
                 liquidityPoolData.opTVL = bigNumberFormatter(opLiquidityPoolData.totalDeposited, 18);
 
                 liquidityPoolData.arbTVL = bigNumberFormatter(arbLiquidityPoolData.totalDeposited, 6);
 
-                // liquidityPoolData.baseTVL = bigNumberFormatter(baseLiquidityPoolData.totalDeposited, 6);
+                liquidityPoolData.baseTVL = bigNumberFormatter(baseLiquidityPoolData.totalDeposited, 6);
 
                 return liquidityPoolData;
             } catch (e) {
