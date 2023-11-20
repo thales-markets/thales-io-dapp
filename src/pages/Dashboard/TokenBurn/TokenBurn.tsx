@@ -1,4 +1,4 @@
-import useTokenInfoQuery from 'queries/useTokenInfoQuery';
+import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useState } from 'react';
 import { TokenInfo } from 'types/token';
 import {
@@ -16,7 +16,7 @@ import { formatCurrency } from 'thales-utils';
 
 const TokenBurn: React.FC = () => {
     const { t } = useTranslation();
-    // TODO: ADDING NETWORK CONFIG
+    // TODO: ADDING NETWORK CONFIG & ADD CHART ON THE RIGHT SIDE OF WIDGET
     const isAppReady = true;
     const networkId = 10;
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);

@@ -4,7 +4,7 @@ import { Network } from 'enums/network';
 import { orderBy } from 'lodash';
 import { useQuery, UseQueryOptions } from 'react-query';
 import thalesData from 'thales-data';
-import { Integrator } from 'types/referral';
+import { Integrator } from 'types/integrator';
 
 const useIntegratorsQuery = (options?: UseQueryOptions<Integrator[] | null>) => {
     return useQuery<Integrator[] | null>(

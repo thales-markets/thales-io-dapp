@@ -1,12 +1,24 @@
 import { Provider } from '@wagmi/core';
 import { Signer, ethers } from 'ethers';
 import stakingDataContract from './contracts/stakingDataContract';
+import overtimeLiquidityPoolContract from './contracts/overtimeLiquidityPoolContract';
+import overtimeLiquidityPoolDataContract from './contracts/overtimeLiquidityPoolDataContract';
+import parlayAMMLiquidityPoolContract from './contracts/parlayAMMLiquidityPoolContract';
+import parlayAMMLiquidityPoolDataContract from './contracts/parlayAMMLiquidityPoolDataContract';
+import thalesLiquidityPoolContract from './contracts/thalesLiquidityPoolContract';
+import thalesLiquidityPoolDataContract from './contracts/thalesLiquidityPoolDataContract';
 
 type SnxJSConnector = {
     initialized: boolean;
     provider: Provider | undefined;
     signer: Signer | undefined;
     stakingDataContract?: ethers.Contract;
+    overtimeLiquidityPoolContract?: ethers.Contract;
+    overtimeLiquidityPoolDataContract?: ethers.Contract;
+    parlayAMMLiquidityPoolContract?: ethers.Contract;
+    parlayAMMLiquidityPoolDataContract?: ethers.Contract;
+    thalesLiquidityPoolContract?: ethers.Contract;
+    thalesLiquidityPoolDataContract?: ethers.Contract;
     setContractSettings: (contractSettings: any) => void;
 };
 
@@ -20,6 +32,27 @@ const snxJSConnector: SnxJSConnector = {
         this.provider = contractSettings.provider;
 
         this.stakingDataContract = conditionalInitializeContract(stakingDataContract, contractSettings);
+        this.overtimeLiquidityPoolContract = conditionalInitializeContract(
+            overtimeLiquidityPoolContract,
+            contractSettings
+        );
+        this.overtimeLiquidityPoolDataContract = conditionalInitializeContract(
+            overtimeLiquidityPoolDataContract,
+            contractSettings
+        );
+        this.parlayAMMLiquidityPoolContract = conditionalInitializeContract(
+            parlayAMMLiquidityPoolContract,
+            contractSettings
+        );
+        this.parlayAMMLiquidityPoolDataContract = conditionalInitializeContract(
+            parlayAMMLiquidityPoolDataContract,
+            contractSettings
+        );
+        this.thalesLiquidityPoolContract = conditionalInitializeContract(thalesLiquidityPoolContract, contractSettings);
+        this.thalesLiquidityPoolDataContract = conditionalInitializeContract(
+            thalesLiquidityPoolDataContract,
+            contractSettings
+        );
     },
 };
 

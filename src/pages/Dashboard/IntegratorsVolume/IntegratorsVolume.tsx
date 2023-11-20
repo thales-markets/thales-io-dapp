@@ -1,7 +1,7 @@
-import useIntegratorsQuery from 'queries/useIntegratorsQuery';
+import useIntegratorsQuery from 'queries/dashboard/useIntegratorsQuery';
 import { useTranslation } from 'react-i18next';
 import { formatCurrency } from 'thales-utils';
-import { Integrator } from 'types/referral';
+import { Integrator } from 'types/integrator';
 import {
     FullWidthInfoSection,
     InfoStats,

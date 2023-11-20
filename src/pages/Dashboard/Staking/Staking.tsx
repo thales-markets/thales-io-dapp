@@ -10,7 +10,7 @@ import {
     WidgetWrapper,
 } from '../styled-components';
 import { useTranslation } from 'react-i18next';
-import useStakingDataQuery from 'queries/useStakingDataQuery';
+import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 import { useState, useEffect } from 'react';
 import { StakingData } from 'types/token';
 import { formatCurrency } from 'thales-utils';

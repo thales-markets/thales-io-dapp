@@ -82,6 +82,9 @@ const QUERY_KEYS = {
         ],
     },
     Integrators: () => ['integrators'],
+    OvertimeAMMsTVLData: () => ['overtime', 'amm', 'tvl'],
+    ParlayAMMsTVLData: () => ['parlay', 'amm', 'tvl'],
+    ThalesAMMsTVLData: () => ['thales', 'amm', 'tvl'],
 };
 
 export default QUERY_KEYS;

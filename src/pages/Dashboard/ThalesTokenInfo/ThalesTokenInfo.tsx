@@ -1,4 +1,4 @@
-import useTokenInfoQuery from 'queries/useTokenInfoQuery';
+import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Cell, Legend, Pie } from 'recharts';
@@ -59,7 +59,6 @@ const ThalesTokenInfo: React.FC = () => {
 
     const pieLegendData = useMemo(() => {
         const data1 = [];
-        // const data2 = []
         if (tokenInfo) {
             const burnedPiece = {
                 id: '1',
@@ -75,6 +74,7 @@ const ThalesTokenInfo: React.FC = () => {
                 percentage: (tokenInfo?.circulatingSupply / tokenInfo.totalSupply) * 100,
                 color: Colors.VIOLET,
             };
+            // TODO: STAKING DATA PERCENTAGE
             const leftOverPiece = {
                 id: '3',
                 value: 'Staking',
@@ -128,7 +128,6 @@ const ThalesTokenInfo: React.FC = () => {
                 <ChartInnerText>Total 100M</ChartInnerText>
                 <StyledPieChart width={330} height={165}>
                     <Legend
-                        // content={renderChartLegend}
                         formatter={formatChartLegend}
                         iconType="circle"
                         layout="vertical"
