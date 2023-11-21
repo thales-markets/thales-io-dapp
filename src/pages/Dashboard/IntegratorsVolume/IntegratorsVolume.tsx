@@ -12,6 +12,7 @@ import {
     WidgetWrapper,
 } from '../styled-components';
 import { useEffect, useState } from 'react';
+import { Colors } from 'styles/common';
 
 const IntegratorsVolume: React.FC = () => {
     const { t } = useTranslation();
@@ -41,8 +42,8 @@ const IntegratorsVolume: React.FC = () => {
                 <TitleLabel>{t('dashboard.integrators.title')}</TitleLabel>
             </WidgetHeader>
             <FullWidthInfoSection>
-                <InfoText>{t('dashboard.integrators.total-volume')}</InfoText>
-                <InfoStats>$ {formatCurrency(allIntegratorsTotalVolume)}</InfoStats>
+                <InfoText color={Colors.WHITE}>{t('dashboard.integrators.total-volume')}</InfoText>
+                <InfoStats color={Colors.CYAN}>$ {formatCurrency(allIntegratorsTotalVolume)}</InfoStats>
                 {integratorsData.map((integrator) => (
                     <>
                         <InfoText>{integrator.id}</InfoText>

@@ -77,12 +77,12 @@ export const NumericStats = styled.span`
     color: ${(props) => props.theme.textColor.secondary};
 `;
 
-export const InfoText = styled.label`
+export const InfoText = styled.label<{ color?: string }>`
     font-family: Nunito !important;
     font-weight: 400;
     font-size: 13px;
     line-height: 20px;
-    color: ${(props) => props.theme.textColor.tertiary};
+    color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.tertiary)};
 `;
 
 export const InfoStats = styled.span<{ color?: string }>`

@@ -82,9 +82,15 @@ const QUERY_KEYS = {
         ],
     },
     Integrators: () => ['integrators'],
-    OvertimeAMMsTVLData: () => ['overtime', 'amm', 'tvl'],
-    ParlayAMMsTVLData: () => ['parlay', 'amm', 'tvl'],
-    ThalesAMMsTVLData: () => ['thales', 'amm', 'tvl'],
+    AMM: {
+        SportAMMsTVLData: () => ['amm', 'sport', 'tvl'],
+        ParlayAMMsTVLData: () => ['amm', 'parlay', 'tvl'],
+        ThalesAMMsTVLData: () => ['amm', 'thales', 'tvl'],
+    },
+    Vaults: {
+        sportVaultsData: () => ['vaults', 'sport', 'data'],
+        thalesVaultsData: () => ['vaults', 'thales', 'data'],
+    },
 };
 
 export default QUERY_KEYS;

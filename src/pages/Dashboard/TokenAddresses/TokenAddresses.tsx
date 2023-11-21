@@ -11,13 +11,14 @@ import {
     WidgetWrapper,
 } from '../styled-components';
 import { Colors, FlexDiv } from 'styles/common';
-import { getCelerBridgeUrl } from 'utils/temp-bridge';
+import { getCelerBridgeUrl } from 'utils/bridge';
 import { useTranslation } from 'react-i18next';
 import { Network } from 'enums/network';
 import thalesContract from 'utils/contracts/thalesContract';
 
 const TokenAddresses: React.FC = () => {
     const { t } = useTranslation();
+    // ADD NETWORK READING
     return (
         <WidgetWrapper>
             <WidgetHeader isTwoSided={true}>
@@ -46,25 +47,25 @@ const TokenAddresses: React.FC = () => {
                     )}
                 >
                     <InfoStats>
-                        {truncateAddress(thalesContract.addresses[Network.OptimismMainnet])}
+                        {truncateAddress(thalesContract.addresses[Network.OptimismMainnet].toLowerCase())}
                         <LinkArrow />
                     </InfoStats>
                 </SPAAnchor>
                 <SPAAnchor href={getEtherscanTokenLink(Network.Arbitrum, thalesContract.addresses[Network.Arbitrum])}>
                     <InfoStats>
-                        {truncateAddress(thalesContract.addresses[Network.Arbitrum])}
+                        {truncateAddress(thalesContract.addresses[Network.Arbitrum].toLowerCase())}
                         <LinkArrow />
                     </InfoStats>
                 </SPAAnchor>
                 <SPAAnchor href={getEtherscanTokenLink(Network.Base, thalesContract.addresses[Network.Base])}>
                     <InfoStats>
-                        {truncateAddress(thalesContract.addresses[Network.Base])}
+                        {truncateAddress(thalesContract.addresses[Network.Base].toLowerCase())}
                         <LinkArrow />
                     </InfoStats>
                 </SPAAnchor>
                 <SPAAnchor href={getEtherscanTokenLink(Network.Mainnet, thalesContract.addresses[Network.Mainnet])}>
                     <InfoStats>
-                        {truncateAddress(thalesContract.addresses[Network.Mainnet])}
+                        {truncateAddress(thalesContract.addresses[Network.Mainnet].toLowerCase())}
                         <LinkArrow />
                     </InfoStats>
                 </SPAAnchor>

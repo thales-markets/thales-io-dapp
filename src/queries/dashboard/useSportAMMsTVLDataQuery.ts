@@ -1,15 +1,15 @@
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
 import { useQuery, UseQueryOptions } from 'react-query';
-import { bigNumberFormatter } from 'thales-utils';
+import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
 import { AMMsTVLData } from 'types/liquidity';
-import overtimeLiquidityPoolContract from 'utils/contracts/overtimeLiquidityPoolContract';
-import overtimeLiquidityPoolDataContract from 'utils/contracts/overtimeLiquidityPoolDataContract';
+import overtimeLiquidityPoolContract from 'utils/contracts/sportLiquidityPoolContract';
+import overtimeLiquidityPoolDataContract from 'utils/contracts/sportLiquidityPoolDataContract';
 import QUERY_KEYS from '../../constants/queryKeys';
 
-const useOvertimeAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | undefined>) => {
+const useSportAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | undefined>) => {
     return useQuery<AMMsTVLData | undefined>(
-        QUERY_KEYS.OvertimeAMMsTVLData(),
+        QUERY_KEYS.AMM.SportAMMsTVLData(),
         async () => {
             const liquidityPoolData: AMMsTVLData = {
                 opTVL: 0,
@@ -18,7 +18,7 @@ const useOvertimeAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | unde
             };
 
             try {
-                // Overtime LP Data - Optimism
+                // Sport LP Data - Optimism
                 const opInfuraProvider = new ethers.providers.InfuraProvider(
                     Network.OptimismMainnet,
                     process.env.REACT_APP_INFURA_PROJECT_ID
@@ -30,7 +30,7 @@ const useOvertimeAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | unde
                     opInfuraProvider
                 );
 
-                //  Overtime LP Data - Arbitrum
+                //  Sport LP Data - Arbitrum
                 const arbInfuraProvider = new ethers.providers.InfuraProvider(
                     Network.Arbitrum,
                     process.env.REACT_APP_INFURA_PROJECT_ID
@@ -42,7 +42,7 @@ const useOvertimeAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | unde
                     arbInfuraProvider
                 );
 
-                // // Overtime LP Data - Base
+                // // Sport LP Data - Base
                 const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
                     `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
                     Network.Base
@@ -65,11 +65,20 @@ const useOvertimeAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | unde
                     ),
                 ]);
 
-                liquidityPoolData.opTVL = bigNumberFormatter(opLiquidityPoolData.totalDeposited, 18);
+                liquidityPoolData.opTVL = bigNumberFormatter(
+                    opLiquidityPoolData.totalDeposited,
+                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+                );
 
-                liquidityPoolData.arbTVL = bigNumberFormatter(arbLiquidityPoolData.totalDeposited, 6);
+                liquidityPoolData.arbTVL = bigNumberFormatter(
+                    arbLiquidityPoolData.totalDeposited,
+                    getDefaultDecimalsForNetwork(Network.Arbitrum)
+                );
 
-                liquidityPoolData.baseTVL = bigNumberFormatter(baseLiquidityPoolData.totalDeposited, 6);
+                liquidityPoolData.baseTVL = bigNumberFormatter(
+                    baseLiquidityPoolData.totalDeposited,
+                    getDefaultDecimalsForNetwork(Network.Base)
+                );
 
                 return liquidityPoolData;
             } catch (e) {
@@ -83,4 +92,4 @@ const useOvertimeAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | unde
     );
 };
 
-export default useOvertimeAMMsTVLDataQuery;
+export default useSportAMMsTVLDataQuery;
