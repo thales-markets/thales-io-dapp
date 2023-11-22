@@ -1,7 +1,7 @@
 import { THALES_VAULT_MAP, VAULT_IDS } from 'constants/vaults';
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
-import { useQuery, UseQueryOptions } from 'react-query';
+import { UseQueryOptions, useQuery } from 'react-query';
 import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
 import { VaultsTVLData } from 'types/liquidity';
 import thalesVaultDataContract from 'utils/contracts/thalesVaultDataContract';
@@ -18,6 +18,10 @@ const useThalesVaultsDataQuery = (options?: UseQueryOptions<VaultsTVLData | unde
                 arbDiscountVaultTVL: 0,
                 arbDegenDiscountVaultTVL: 0,
                 arbSafuDiscountVaultTVL: 0,
+                opUpsettoorVaultTVL: 0,
+                opParlayDiscountVaultTVL: 0,
+                arbUpsettoorVaultTVL: 0,
+                arbParlayDiscountVaultTVL: 0,
             };
 
             try {
@@ -45,10 +49,10 @@ const useThalesVaultsDataQuery = (options?: UseQueryOptions<VaultsTVLData | unde
                     arbInfuraProvider
                 );
 
-                const opVaultsAddresses = VAULT_IDS.map(
+                const opVaultsAddresses = VAULT_IDS.slice(0, 3).map(
                     (id: string) => THALES_VAULT_MAP[id].addresses[Network.OptimismMainnet]
                 );
-                const arbVaultsAddresses = VAULT_IDS.map(
+                const arbVaultsAddresses = VAULT_IDS.slice(0, 3).map(
                     (id: string) => THALES_VAULT_MAP[id].addresses[Network.Arbitrum]
                 );
 

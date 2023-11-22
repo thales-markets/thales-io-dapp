@@ -1,11 +1,11 @@
-import { useQuery, UseQueryOptions } from 'react-query';
-import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
-import QUERY_KEYS from '../../constants/queryKeys';
-import { VaultsTVLData } from 'types/liquidity';
+import { SPORT_VAULT_MAP, VAULT_IDS } from 'constants/vaults';
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
+import { UseQueryOptions, useQuery } from 'react-query';
+import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
+import { VaultsTVLData } from 'types/liquidity';
 import sportVaultDataContract from 'utils/contracts/sportVaultDataContract';
-import { SPORT_VAULT_MAP, VAULT_IDS } from 'constants/vaults';
+import QUERY_KEYS from '../../constants/queryKeys';
 
 const useSportVaultsDataQuery = (options?: UseQueryOptions<VaultsTVLData | undefined>) => {
     return useQuery<VaultsTVLData | undefined>(
@@ -57,10 +57,10 @@ const useSportVaultsDataQuery = (options?: UseQueryOptions<VaultsTVLData | undef
                 );
 
                 const opVaultsData = opVaultsAddresses.map((vaultAddress: string) =>
-                    opSportVaultDataContract.getAmmVaultData(vaultAddress)
+                    opSportVaultDataContract.getSportVaultData(vaultAddress)
                 );
                 const arbVaultsData = arbVaultsAddresses.map((vaultAddress: string) =>
-                    arbSportVaultDataContract.getAmmVaultData(vaultAddress)
+                    arbSportVaultDataContract.getSportVaultData(vaultAddress)
                 );
 
                 const [
