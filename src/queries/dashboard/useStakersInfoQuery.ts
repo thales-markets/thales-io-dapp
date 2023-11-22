@@ -32,7 +32,6 @@ const useStakersInfoQuery = (options?: UseQueryOptions<StakersInfo | undefined>)
                 stakersInfo.baseStakers = stakersBase.length;
                 stakersInfo.totalStakers = stakers.length + stakersArb.length + stakersBase.length;
 
-                console.log(stakersInfo);
                 return stakersInfo;
             } catch (e) {
                 console.log(e);
