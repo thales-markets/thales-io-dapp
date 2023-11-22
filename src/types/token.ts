@@ -34,6 +34,13 @@ export type StakingData = {
     apyBase: number;
 };
 
+export type StakersInfo = {
+    opStakers: number;
+    arbStakers: number;
+    baseStakers: number;
+    totalStakers: number;
+};
+
 export type TokenTransaction = {
     hash: string;
     type: TokenTransactionType;

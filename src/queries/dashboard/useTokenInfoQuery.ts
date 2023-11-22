@@ -8,9 +8,9 @@ import { UseQueryOptions, useQuery } from 'react-query';
 import { TokenInfo } from 'types/token';
 import thalesContract from 'utils/contracts/thalesContract';
 
-const useTokenInfoQuery = (networkId: Network, options?: UseQueryOptions<TokenInfo | undefined>) => {
+const useTokenInfoQuery = (options?: UseQueryOptions<TokenInfo | undefined>) => {
     return useQuery<TokenInfo | undefined>(
-        QUERY_KEYS.Token.Info(networkId),
+        QUERY_KEYS.Token.Info(),
         async () => {
             try {
                 const [price, circulatingSupply, marketCap] = await Promise.all([

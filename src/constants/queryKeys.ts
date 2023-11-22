@@ -72,7 +72,8 @@ const QUERY_KEYS = {
             networkId,
         ],
         Gelato: () => ['token', 'gelato'],
-        Info: (networkId: Network) => ['token', 'info', networkId],
+        Info: () => ['token', 'info'],
+        StakersInfo: () => ['token', 'stakers'],
         StakersLeaderboardData: (walletAddress: string, networkId: Network, period: number) => [
             'token',
             'stakersLeaderboard',

@@ -1,5 +1,7 @@
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { formatCurrency } from 'thales-utils';
 import { TokenInfo } from 'types/token';
 import {
     FlexDivFullWidthSpaceBetween,
@@ -11,17 +13,14 @@ import {
     WidgetIcon,
     WidgetWrapper,
 } from '../styled-components';
-import { useTranslation } from 'react-i18next';
-import { formatCurrency } from 'thales-utils';
 
 const TokenBurn: React.FC = () => {
     const { t } = useTranslation();
-    // TODO: ADDING NETWORK CONFIG & ADD CHART ON THE RIGHT SIDE OF WIDGET
+    // TODO: ADD CHART ON THE RIGHT SIDE OF WIDGET
     const isAppReady = true;
-    const networkId = 10;
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
 
-    const tokenInfoQuery = useTokenInfoQuery(networkId, {
+    const tokenInfoQuery = useTokenInfoQuery({
         enabled: isAppReady,
     });
 

@@ -1,33 +1,50 @@
+import SPAAnchor from 'components/SPAAnchor';
+import ROUTES from 'constants/routes';
+import useStakersInfoQuery from 'queries/dashboard/useStakersInfoQuery';
+import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
+import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Colors, FlexDiv, FlexDivColumnNative, FlexDivSpaceBetween } from 'styles/common';
+import { formatCurrency } from 'thales-utils';
+import { StakersInfo, StakingData, TokenInfo } from 'types/token';
+import { buildHref } from 'utils/routes';
 import {
+    FlexDivFullWidthSpaceBetween,
     InfoSection,
     InfoStats,
     InfoText,
-    FlexDivFullWidthSpaceBetween,
+    TitleLabel,
     WidgetHeader,
     WidgetIcon,
-    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
-import { useTranslation } from 'react-i18next';
-import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
-import { useState, useEffect } from 'react';
-import { StakingData } from 'types/token';
-import { formatCurrency } from 'thales-utils';
-import SPAAnchor from 'components/SPAAnchor';
-import ROUTES from 'constants/routes';
-import { buildHref } from 'utils/routes';
 
 const Staking: React.FC = () => {
     const { t } = useTranslation();
-    // TODO: ADDING NETWORK CONFIG
+    // TODO: ADDING state
     const isAppReady = true;
-    // const networkId = 10;
     const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
+    const [stakersInfo, setStakersInfo] = useState<StakersInfo | undefined>(undefined);
+    const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
 
     const stakingDataQuery = useStakingDataQuery({
         enabled: isAppReady,
     });
+
+    const stakersInfoQuery = useStakersInfoQuery({
+        enabled: isAppReady,
+    });
+
+    const tokenInfoQuery = useTokenInfoQuery({
+        enabled: isAppReady,
+    });
+
+    useEffect(() => {
+        if (stakersInfoQuery.isSuccess && stakersInfoQuery.data) {
+            setStakersInfo(stakersInfoQuery.data);
+        }
+    }, [stakersInfoQuery.isSuccess, stakersInfoQuery.data]);
 
     useEffect(() => {
         if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
@@ -35,10 +52,24 @@ const Staking: React.FC = () => {
         }
     }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
 
+    useEffect(() => {
+        if (tokenInfoQuery.isSuccess && tokenInfoQuery.data) {
+            setTokenInfo(tokenInfoQuery.data);
+        }
+    }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
+
     const totalStakedAmount = stakingData ? stakingData.totalStakedAmount : 0;
     const totalStakedAmountOptimism = stakingData ? stakingData.totalStakedAmountOptimism : 0;
     const totalStakedAmountArbitrum = stakingData ? stakingData.totalStakedAmountArbitrum : 0;
     const totalStakedAmountBase = stakingData ? stakingData.totalStakedAmountBase : 0;
+
+    const stakedOfCirculatingSupplyPercentage =
+        stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.circulatingSupply) * 100 : 0;
+
+    const stakedOfTotalSupplyPercentage =
+        stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.totalSupply) * 100 : 0;
+
+    const totalStakers = stakersInfo ? stakersInfo.totalStakers : 0;
 
     return (
         <SPAAnchor href={buildHref(ROUTES.Staking)}>
@@ -50,7 +81,7 @@ const Staking: React.FC = () => {
                     </FlexDiv>
                     <FlexDivSpaceBetween>
                         <TitleLabel>{t('dashboard.staking.total-stakers')}</TitleLabel>
-                        <TitleLabel isHighlighted={true}>21,432</TitleLabel>
+                        <TitleLabel isHighlighted={true}>{totalStakers}</TitleLabel>
                     </FlexDivSpaceBetween>
                 </WidgetHeader>
                 <InfoSection side="left">
@@ -60,11 +91,11 @@ const Staking: React.FC = () => {
                     </FlexDivFullWidthSpaceBetween>
                     <FlexDivFullWidthSpaceBetween>
                         <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
-                        <InfoStats>10%</InfoStats>
+                        <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                     <FlexDivFullWidthSpaceBetween>
                         <InfoText>{t('dashboard.staking.of-total-supply')}</InfoText>
-                        <InfoStats>5%</InfoStats>
+                        <InfoStats>{stakedOfTotalSupplyPercentage.toFixed(2)}%</InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                 </InfoSection>
                 <InfoSection side="right" direction="row" justifyContent="space-between">

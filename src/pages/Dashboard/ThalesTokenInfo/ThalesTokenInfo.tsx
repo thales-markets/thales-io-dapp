@@ -1,3 +1,4 @@
+import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,17 +19,15 @@ import {
     WidgetIcon,
     WidgetWrapper,
 } from '../styled-components';
-import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 
 const ThalesTokenInfo: React.FC = () => {
     const { t } = useTranslation();
-    // TODO: ADDING NETWORK CONFIG
+    // TODO: add state appReady
     const isAppReady = true;
-    const networkId = 10;
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
     const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
 
-    const tokenInfoQuery = useTokenInfoQuery(networkId, {
+    const tokenInfoQuery = useTokenInfoQuery({
         enabled: isAppReady,
     });
 
