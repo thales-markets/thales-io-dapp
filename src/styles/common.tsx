@@ -37,6 +37,18 @@ export const FlexDivColumn = styled(FlexDiv)`
     flex-direction: column;
 `;
 
+export const FlexDivColumnBottom = styled(FlexDiv)`
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+`;
+
+export const FlexDivColumnSpaceBetween = styled(FlexDiv)`
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
 export const FlexDivColumnNative = styled(FlexDiv)`
     flex-direction: column;
 `;

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { FlexDivColumn } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
     font-family: Nunito;
     font-size: 13px;
     display: grid;
-    width: 100%;
+    width: 60%;
     grid-template-rows: repeat(2, 160px);
     column-gap: 10px;
     row-gap: 10px;
@@ -25,6 +26,9 @@ export const Top = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    > div {
+        height: 100%;
+    }
 `;
 
 export const Bottom = styled.div`
@@ -32,4 +36,18 @@ export const Bottom = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    > div {
+        height: 100%;
+    }
+`;
+
+export const LeaderboardBreakdownTitle = styled(FlexDivColumn)`
+    color: ${(props) => props.theme.textColor.primary};
+    align-items: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    > i {
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
 `;

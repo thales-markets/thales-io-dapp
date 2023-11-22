@@ -7,8 +7,25 @@ export const Container = styled.div`
     font-family: Nunito;
     font-size: 13px;
     display: grid;
-    width: 100%;
-    height: 320px;
+    width: 60%;
+    height: 160px;
     margin-bottom: 100px;
     z-index: 1;
+    > div {
+        position: relative;
+        padding: 20px;
+        background-color: ${(props) => props.theme.background.primary};
+        border-radius: 8px;
+    }
+`;
+
+export const VestingDescription = styled.div`
+    line-height: 120%;
+`;
+
+export const VestingValid = styled.div`
+    color: ${(props) => props.theme.textColor.primary};
+    text-align: justify;
+    font-family: NunitoBold;
+    font-size: 18px;
 `;

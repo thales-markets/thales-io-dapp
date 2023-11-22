@@ -180,3 +180,35 @@
 .icon--lock:before {
     content: '\004D';
 }
+
+.icon--hourglass:before {
+    content: '\0042';
+}
+
+.icon--magnifying-glass:before {
+    content: '\003E';
+}
+
+.icon--dollar-arrow-circle:before {
+    content: '\0049';
+}
+
+.icon--caret-up:before {
+    content: '\004E';
+}
+
+.icon--caret-down:before {
+    content: '\004F';
+}
+
+.icon--delegate:before {
+    content: '\0046';
+}
+
+.icon--merge:before {
+    content: '\0039';
+}
+
+.icon--claim:before {
+    content: '\0038';
+}

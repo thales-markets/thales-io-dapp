@@ -5,8 +5,8 @@ export const Container = styled.div`
     font-family: Nunito;
     font-size: 13px;
     display: grid;
-    width: 100%;
-    grid-template-rows: 320px 320px 160px;
+    width: 60%;
+    grid-template-rows: 320px 320px 200px;
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'top' 'middle' 'bottom';
@@ -25,6 +25,9 @@ export const Top = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    > div {
+        height: 100%;
+    }
 `;
 
 export const Middle = styled.div`
@@ -32,6 +35,9 @@ export const Middle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    > div {
+        height: 100%;
+    }
 `;
 
 export const Bottom = styled.div`
@@ -39,4 +45,14 @@ export const Bottom = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    > div {
+        height: 100%;
+    }
+`;
+
+export const Subtitle = styled.span`
+    color: ${(props) => props.theme.textColor.primary};
+    font-family: NunitoBold;
+    font-size: 13px;
+    margin-bottom: 10px;
 `;

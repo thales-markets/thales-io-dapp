@@ -82,3 +82,8 @@ export const SectionHeader = styled(FlexDiv)`
         align-items: start;
     }
 `;
+
+export const SectionDescription = styled.div`
+    line-height: 180%;
+    text-align: justify;
+`;
