@@ -1,24 +1,28 @@
 import { Provider } from '@wagmi/core';
 import { Signer, ethers } from 'ethers';
 import stakingDataContract from './contracts/stakingDataContract';
-import overtimeLiquidityPoolContract from './contracts/overtimeLiquidityPoolContract';
-import overtimeLiquidityPoolDataContract from './contracts/overtimeLiquidityPoolDataContract';
+import sportLiquidityPoolContract from './contracts/sportLiquidityPoolContract';
+import sportLiquidityPoolDataContract from './contracts/sportLiquidityPoolDataContract';
 import parlayAMMLiquidityPoolContract from './contracts/parlayAMMLiquidityPoolContract';
 import parlayAMMLiquidityPoolDataContract from './contracts/parlayAMMLiquidityPoolDataContract';
 import thalesLiquidityPoolContract from './contracts/thalesLiquidityPoolContract';
 import thalesLiquidityPoolDataContract from './contracts/thalesLiquidityPoolDataContract';
+import sportVaultDataContract from './contracts/sportVaultDataContract';
+import thalesVaultDataContract from './contracts/thalesVaultDataContract';
 
 type SnxJSConnector = {
     initialized: boolean;
     provider: Provider | undefined;
     signer: Signer | undefined;
     stakingDataContract?: ethers.Contract;
-    overtimeLiquidityPoolContract?: ethers.Contract;
-    overtimeLiquidityPoolDataContract?: ethers.Contract;
+    sportLiquidityPoolContract?: ethers.Contract;
+    sportLiquidityPoolDataContract?: ethers.Contract;
     parlayAMMLiquidityPoolContract?: ethers.Contract;
     parlayAMMLiquidityPoolDataContract?: ethers.Contract;
     thalesLiquidityPoolContract?: ethers.Contract;
     thalesLiquidityPoolDataContract?: ethers.Contract;
+    sportVaultDataContract?: ethers.Contract;
+    thalesVaultDataContract?: ethers.Contract;
     setContractSettings: (contractSettings: any) => void;
 };
 
@@ -30,14 +34,10 @@ const snxJSConnector: SnxJSConnector = {
         this.initialized = true;
         this.signer = contractSettings.signer;
         this.provider = contractSettings.provider;
-
         this.stakingDataContract = conditionalInitializeContract(stakingDataContract, contractSettings);
-        this.overtimeLiquidityPoolContract = conditionalInitializeContract(
-            overtimeLiquidityPoolContract,
-            contractSettings
-        );
-        this.overtimeLiquidityPoolDataContract = conditionalInitializeContract(
-            overtimeLiquidityPoolDataContract,
+        this.sportLiquidityPoolContract = conditionalInitializeContract(sportLiquidityPoolContract, contractSettings);
+        this.sportLiquidityPoolDataContract = conditionalInitializeContract(
+            sportLiquidityPoolDataContract,
             contractSettings
         );
         this.parlayAMMLiquidityPoolContract = conditionalInitializeContract(
@@ -53,6 +53,8 @@ const snxJSConnector: SnxJSConnector = {
             thalesLiquidityPoolDataContract,
             contractSettings
         );
+        this.sportVaultDataContract = conditionalInitializeContract(sportVaultDataContract, contractSettings);
+        this.thalesVaultDataContract = conditionalInitializeContract(thalesVaultDataContract, contractSettings);
     },
 };
 

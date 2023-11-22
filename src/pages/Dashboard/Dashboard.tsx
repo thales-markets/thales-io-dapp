@@ -22,6 +22,7 @@ import {
     ItemUpperRight,
     TitleLabel,
 } from './styled-components';
+import SPAAnchor from 'components/SPAAnchor';
 
 const Dashboard: React.FC = () => {
     const { t } = useTranslation();
@@ -30,10 +31,18 @@ const Dashboard: React.FC = () => {
             <FlexDivColumnNativeFullWidth>
                 <TitleLabel>{t('dashboard.ecosystem')}</TitleLabel>
                 <FlexDivSpaceAroundFullWidth>
-                    <EcosystemIcon className="icon icon--thales-markets" />
-                    <EcosystemIcon className="icon icon--tale-of-thales" />
-                    <EcosystemIcon className="icon icon--overtime" />
-                    <EcosystemIcon className="icon icon--spongly" />
+                    <SPAAnchor href={'https://thalesmarket.io/'}>
+                        <EcosystemIcon className="icon icon--thales-markets" />
+                    </SPAAnchor>
+                    <SPAAnchor href={'https://overtimemarkets.xyz/'}>
+                        <EcosystemIcon className="icon icon--tale-of-thales" />
+                    </SPAAnchor>
+                    <SPAAnchor href={'https://thalesmarket.io/tale-of-thales'}>
+                        <EcosystemIcon className="icon icon--overtime" />
+                    </SPAAnchor>
+                    <SPAAnchor href={'https://spongly.eth.limo/dashboard/'}>
+                        <EcosystemIcon className="icon icon--spongly" />
+                    </SPAAnchor>
                 </FlexDivSpaceAroundFullWidth>
             </FlexDivColumnNativeFullWidth>
             <Container>

@@ -1,7 +1,7 @@
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
 import { useQuery, UseQueryOptions } from 'react-query';
-import { bigNumberFormatter } from 'thales-utils';
+import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
 import { AMMsTVLData } from 'types/liquidity';
 import parlayAMMLiquidityPoolContract from 'utils/contracts/parlayAMMLiquidityPoolContract';
 import parlayAMMLiquidityPoolDataContract from 'utils/contracts/parlayAMMLiquidityPoolDataContract';
@@ -9,7 +9,7 @@ import QUERY_KEYS from '../../constants/queryKeys';
 
 const useParlayAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | undefined>) => {
     return useQuery<AMMsTVLData | undefined>(
-        QUERY_KEYS.ParlayAMMsTVLData(),
+        QUERY_KEYS.AMM.ParlayAMMsTVLData(),
         async () => {
             const liquidityPoolData: AMMsTVLData = {
                 opTVL: 0,
@@ -65,11 +65,20 @@ const useParlayAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | undefi
                     ),
                 ]);
 
-                liquidityPoolData.opTVL = bigNumberFormatter(opLiquidityPoolData.totalDeposited, 18);
+                liquidityPoolData.opTVL = bigNumberFormatter(
+                    opLiquidityPoolData.totalDeposited,
+                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+                );
 
-                liquidityPoolData.arbTVL = bigNumberFormatter(arbLiquidityPoolData.totalDeposited, 6);
+                liquidityPoolData.arbTVL = bigNumberFormatter(
+                    arbLiquidityPoolData.totalDeposited,
+                    getDefaultDecimalsForNetwork(Network.Arbitrum)
+                );
 
-                liquidityPoolData.baseTVL = bigNumberFormatter(baseLiquidityPoolData.totalDeposited, 6);
+                liquidityPoolData.baseTVL = bigNumberFormatter(
+                    baseLiquidityPoolData.totalDeposited,
+                    getDefaultDecimalsForNetwork(Network.Base)
+                );
 
                 return liquidityPoolData;
             } catch (e) {

@@ -9,7 +9,7 @@ import {
     WidgetWrapper,
 } from '../styled-components';
 import { AMMsTVLData } from 'types/liquidity';
-import useOvertimeAMMsTVLDataQuery from 'queries/dashboard/useOvertimeAMMsTVLDataQuery';
+import useSportAMMsTVLDataQuery from 'queries/dashboard/useSportAMMsTVLDataQuery';
 import useParlayAMMsTVLDataQuery from 'queries/dashboard/useParlayAMMsTVLDataQuery';
 import useThalesAMMsTVLDataQuery from 'queries/dashboard/useThalesAMMsTVLDataQuery';
 import { useState, useEffect } from 'react';
@@ -20,7 +20,7 @@ const TVLInfo: React.FC = () => {
 
     //TODO: ADD VAULTS TVL INFO
     const [overtimeAmmTvlData, setOvertimeAmmTvlData] = useState<AMMsTVLData>();
-    const overtimeAMMsTVLDataQuery = useOvertimeAMMsTVLDataQuery({
+    const overtimeAMMsTVLDataQuery = useSportAMMsTVLDataQuery({
         enabled: true,
     });
 
