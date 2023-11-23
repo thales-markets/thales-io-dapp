@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import { FlexDiv, FlexDivColumnSpaceBetween } from 'styles/common';
 import YourTransactions from '../StakingTab/Transactions';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
 import { Container, VestingValid } from './styled-components';
 
 const Vesting: React.FC = () => {
+    const { t } = useTranslation();
+
     return (
         <>
             <Container>
@@ -12,20 +15,17 @@ const Vesting: React.FC = () => {
                         <SectionTitle>
                             <span>
                                 <i className="icon icon--staking" />
-                                Available to vest
+                                {t('staking.vesting.title')}
                             </span>
                             <span>98,659.31 THALES</span>
                         </SectionTitle>
                         <div>
-                            <StakingButton padding="5px 30px">Vest</StakingButton>
+                            <StakingButton padding="5px 30px">{t('staking.vesting.vest')}</StakingButton>
                         </div>
                     </FlexDivColumnSpaceBetween>
                     <FlexDivColumnSpaceBetween>
-                        <SectionDescription>
-                            Vest your THALES staking rewards in escrow. THALES ongoing rewards are subject to 10 weeks
-                            vesting. Escrowed THALES is calculated in your staked THALES balance.
-                        </SectionDescription>
-                        <VestingValid>Vested until 30. November 2023.</VestingValid>
+                        <SectionDescription>{t('staking.vesting.description')}</SectionDescription>
+                        <VestingValid>{t('staking.vesting.vested-until')} 30. November 2023.</VestingValid>
                     </FlexDivColumnSpaceBetween>
                 </FlexDiv>
             </Container>

@@ -1,6 +1,6 @@
 import { Network } from 'enums/network';
 import React, { useState } from 'react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useSelector } from 'react-redux';
 import { getNetworkId } from 'redux/modules/wallet';
@@ -14,7 +14,7 @@ type PeriodDropdownProps = {
 };
 
 const PeriodDropdown: React.FC<PeriodDropdownProps> = ({ period, setPeriod, allPeriods }) => {
-    // const { t } = useTranslation();
+    const { t } = useTranslation();
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const [open, setOpen] = useState(false);
 
@@ -31,14 +31,20 @@ const PeriodDropdown: React.FC<PeriodDropdownProps> = ({ period, setPeriod, allP
                                         onClick={setPeriod.bind(this, periodLocal)}
                                         key={index}
                                     >
-                                        <Text>Round {networkId === Network.Base ? periodLocal + 1 : periodLocal}</Text>
+                                        <Text>
+                                            {t('staking.leaderboard.time-left.round')}{' '}
+                                            {networkId === Network.Base ? periodLocal + 1 : periodLocal}
+                                        </Text>
                                     </Container>
                                 );
                             }
                         })
                     ) : (
                         <Container>
-                            <Text>Round {networkId === Network.Base ? period + 1 : period}</Text>
+                            <Text>
+                                {t('staking.leaderboard.time-left.round')}{' '}
+                                {networkId === Network.Base ? period + 1 : period}
+                            </Text>
                             <Icon className={open ? `icon icon--caret-up` : `icon icon--caret-down`} />
                         </Container>
                     )}

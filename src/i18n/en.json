@@ -231,6 +231,109 @@
                 "delegateVolume": "Delegate Volume",
                 "removeDelegation": "Remove Delegation"
             }
+        },
+        "rewards": {
+            "how-it-works": {
+                "title": "How Gamified Staking Rewards Work?",
+                "every-week-description": "<span>Every week</span> THALES token holders earn staking rewards. The amount you earn depends on the percentage of THALES you've staked during the weekly snapshot. If you don't claim these rewards within a week, they expire.",
+                "each-week-description": "<span>Each week:</span> <br /> • 45,000 THALES are divided among all stakers. <br /> • An extra 15,000 THALES are given to active stakers who trade, deposit in pools, or use vaults on Thales and Overtime platforms.",
+                "how-points-are-earned": "<span>How points are earned:</span> <br />• <span>Trading:</span> For every <span>$1</span> traded on Thales or Overtime, you earn <span>1 point</span>. <br />• <span>Liquidity</span> Pools: Deposit <span>$1</span> into any Thales liquidity pool and earn <span>0.1 points</span>. <br />• <span>Vaults:</span> Deposit <span>$1</span> into any Thales vault and earn <span>0.2 points</span>.",
+                "multiplier-description": "The more THALES you stake, the more your points multiply, up to 2x. <br /> Your total points determine your share of the 15,000 THALES bonus.",
+                "final-points": "Final Points = (Trading + Pool + Vault points) x THALES Multiplier"
+            },
+            "claim": {
+                "title": "Your Current Claimable Rewards",
+                "time-left": "Time left to claim : <span>1d 10h 34m</span>",
+                "gamified-staking-rewards": "Gamified Staking Rewards",
+                "base-rewards": "Base Rewards",
+                "disclaimer": "Unclaimed weekly rewards are forfeited!",
+                "claim-rewards": "Claim Rewards"
+            },
+            "base-rewards": {
+                "title": "Base staking rewards & Multiplier",
+                "current-multiplier": "Your current multiplier : <span>x1.07</span>",
+                "your-staked": "Your THALES staked",
+                "staking-divider": "Staking Divider",
+                "total-staked": "Total THALES staked",
+                "staked-share": "Your Staked Share"
+            },
+            "your-rewards": {
+                "title": "Your Points Reward",
+                "current-points": "Your current points : <span>1,598.80</span>",
+                "trading-volume": "Trading Volume",
+                "amm-lp-balances": "AMM LP balances",
+                "vaults-balances": "Vaults balances",
+                "trading-multiplier": "Trading multiplier",
+                "lp-multiplier": "LP multiplier",
+                "vaults-multiplier": "Vaults multiplier",
+                "points": "Points"
+            }
+        },
+        "staking": {
+            "staking-data": {
+                "title": "Staking data",
+                "my-staking-share": "My Staking Share",
+                "estimated-rewards": "Estimated Rewards",
+                "for-date": "For date"
+            },
+            "my-balance": {
+                "title": "My staking balance",
+                "staked-directly": "Staked directly",
+                "escrowed-balance": "Escrowed balance"
+            },
+            "stake-unstake": {
+                "stake": "stake",
+                "unstake": "unstake",
+                "amount-to": "Amount to"
+            }
+        },
+        "vesting": {
+            "title": "Available to vest",
+            "vest": "Vest",
+            "description": "Vest your THALES staking rewards in escrow. THALES ongoing rewards are subject to 10 weeks vesting. Escrowed THALES is calculated in your staked THALES balance.",
+            "vested-until": "Vested until"
+        },
+        "leaderboard": {
+            "time-left": {
+                "title": "Time left in round",
+                "points-for": "Points for 1 THALES",
+                "multiplier": "Multiplier",
+                "total-points": "Total points",
+                "description": "Leaderboard for current round is based on estimations of current user balances across LP pools and vaults. Actual points are determined when rounds close.",
+                "round": "Round"
+            },
+            "breakdown": {
+                "trading": "Trading",
+                "amm-lp": "AMM LP",
+                "vaults": "Vaults",
+                "volume": "Volume",
+                "multiplier": "Multiplier",
+                "points": "Points"
+            }
+        },
+        "acc-preferences": {
+            "delegate": {
+                "title": "Delegate volume",
+                "subtitle": "HOW DELEGATE VOLUME WORKS",
+                "description-1": "The \"Delegate Volume\" functionality gives you the ability to direct the volume generated from one wallet that you own to another wallet. This simple step comes in handy for those who stake their THALES with a hardware wallet but do their trading on another hot wallet for convenience's sake (for example using Overtime on their mobile wallet), this way the volume generated can count towards the \"Protocol Volume bucket\" of gamified THALES staking rewards.",
+                "description-2": "This delegation of volume can be stopped at any time and it has checks in place to avoid a wallet directing it's volume to another while still boosting it's own."
+            },
+            "merge": {
+                "title": "Merge account",
+                "subtitle": "HOW MERGE ACCOUNT WORKS",
+                "description-1": "The \"Merge Account\" functionality gives a THALES staker the ability to transfer all its staked THALES and staking rewards from one wallet to another. This comes in handy for those who want to cycle wallets or for those whose wallet has been compromised.",
+                "description-2": "This account merging only works for the entire balance of staked and vested THALES, partial reassignments will not be possible. It's also worth noting that on the receiving wallet, the THALES tokens staked will still need a 7-day countdown to unstake and the vested rewards will also be subject to the standard 10-weeks cooldown when claiming."
+            },
+            "claim": {
+                "title": "Claim on Behalf",
+                "subtitle": "Enter account for which you want to enable / disable claim on your behalf",
+                "description": "Claim on behalf has been implemented per TIP-66. Please check this guid on how to automate your weekly claims.",
+                "enabled-accounts-subtitle": "Accounts that are enabled to claim on your behalf",
+                "button": "Enter address"
+            },
+            "source": "Source",
+            "destination": "Destination",
+            "delegate-button": "Delegate"
         }
     },
     "header": {

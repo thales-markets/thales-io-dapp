@@ -1,4 +1,5 @@
 import { SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FlexDiv, FlexDivColumnBottom, FlexDivColumnSpaceBetween } from 'styles/common';
 import YourTransactions from '../StakingTab/Transactions/YourTransactions';
 import PeriodDropdown from '../components/PeriodDropdown';
@@ -6,6 +7,8 @@ import { InfoDiv, SectionDescription, SectionTitle } from '../styled-components'
 import { Bottom, Container, LeaderboardBreakdownTitle, Top } from './styled-components';
 
 const Leaderboard: React.FC = () => {
+    const { t } = useTranslation();
+
     return (
         <>
             <Container>
@@ -15,30 +18,27 @@ const Leaderboard: React.FC = () => {
                             <SectionTitle>
                                 <span>
                                     <i className="icon icon--hourglass" />
-                                    Time left in round:
+                                    {t('staking.leaderboard.time-left.title')}
                                 </span>
                                 <span>1d 10h 34m</span>
                             </SectionTitle>
                             <FlexDivColumnBottom>
                                 <InfoDiv>
-                                    <span>Points for 1 Thales</span>
+                                    <span>{t('staking.leaderboard.time-left.points-for')}</span>
                                     <span>36.63</span>
                                 </InfoDiv>
                                 <InfoDiv>
-                                    <span>Multiplier</span>
+                                    <span>{t('staking.leaderboard.time-left.multiplier')}</span>
                                     <span>2X</span>
                                 </InfoDiv>
                                 <InfoDiv>
-                                    <span>Total Points</span>
+                                    <span>{t('staking.leaderboard.time-left.total-points')}</span>
                                     <span>549,506.26</span>
                                 </InfoDiv>
                             </FlexDivColumnBottom>
                         </FlexDivColumnSpaceBetween>
                         <FlexDivColumnSpaceBetween>
-                            <SectionDescription>
-                                Leaderboard for current round is based on estimations of current user balances across LP
-                                pools and vaults. Actual points are determined when rounds close.
-                            </SectionDescription>
+                            <SectionDescription>{t('staking.leaderboard.time-left.description')}</SectionDescription>
                             <FlexDivColumnBottom>
                                 <PeriodDropdown
                                     period={1}
@@ -56,19 +56,19 @@ const Leaderboard: React.FC = () => {
                         <FlexDivColumnSpaceBetween>
                             <LeaderboardBreakdownTitle>
                                 <i className="icon icon--magnifying-glass" />
-                                <span>Trading</span>
+                                <span>{t('staking.leaderboard.breakdown.trading')}</span>
                             </LeaderboardBreakdownTitle>
                             <div>
                                 <InfoDiv>
-                                    <span>Volume</span>
+                                    <span>{t('staking.leaderboard.breakdown.volume')}</span>
                                     <span>$ 121,351.22</span>
                                 </InfoDiv>
                                 <InfoDiv>
-                                    <span>Multiplier</span>
+                                    <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
                                     <span>2X</span>
                                 </InfoDiv>
                                 <InfoDiv>
-                                    <span>Points</span>
+                                    <span>{t('staking.leaderboard.breakdown.points')}</span>
                                     <span>549,506.26</span>
                                 </InfoDiv>
                             </div>
@@ -76,19 +76,19 @@ const Leaderboard: React.FC = () => {
                         <FlexDivColumnSpaceBetween>
                             <LeaderboardBreakdownTitle>
                                 <i className="icon icon--dollar-arrow-circle" />
-                                <span>AMM LP</span>
+                                <span>{t('staking.leaderboard.breakdown.amm-lp')}</span>
                             </LeaderboardBreakdownTitle>
                             <div>
                                 <InfoDiv>
-                                    <span>Volume</span>
+                                    <span>{t('staking.leaderboard.breakdown.volume')}</span>
                                     <span>$ 121,351.22</span>
                                 </InfoDiv>
                                 <InfoDiv>
-                                    <span>Multiplier</span>
+                                    <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
                                     <span>2X</span>
                                 </InfoDiv>
                                 <InfoDiv>
-                                    <span>Points</span>
+                                    <span>{t('staking.leaderboard.breakdown.points')}</span>
                                     <span>549,506.26</span>
                                 </InfoDiv>
                             </div>
@@ -96,19 +96,19 @@ const Leaderboard: React.FC = () => {
                         <FlexDivColumnSpaceBetween>
                             <LeaderboardBreakdownTitle>
                                 <i className="icon icon--thales-cog" />
-                                <span>Vaults</span>
+                                <span>{t('staking.leaderboard.breakdown.vaults')}</span>
                             </LeaderboardBreakdownTitle>
                             <div>
                                 <InfoDiv>
-                                    <span>Volume</span>
+                                    <span>{t('staking.leaderboard.breakdown.volume')}</span>
                                     <span>$ 121,351.22</span>
                                 </InfoDiv>
                                 <InfoDiv>
-                                    <span>Multiplier</span>
+                                    <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
                                     <span>2X</span>
                                 </InfoDiv>
                                 <InfoDiv>
-                                    <span>Points</span>
+                                    <span>{t('staking.leaderboard.breakdown.points')}</span>
                                     <span>549,506.26</span>
                                 </InfoDiv>
                             </div>

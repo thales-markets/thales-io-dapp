@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnSpaceBetween, FlexDivSpaceBetween } from 'styles/common';
 import YourTransactions from '../StakingTab/Transactions/YourTransactions';
 import { SectionDescription, SectionTitle, StakingButton, StakingInput } from '../styled-components';
 import { Bottom, Container, Middle, Subtitle, Top } from './styled-components';
 
 const AccPreferences: React.FC = () => {
+    const { t } = useTranslation();
+
     return (
         <>
             <Container>
@@ -13,34 +16,30 @@ const AccPreferences: React.FC = () => {
                             <SectionTitle>
                                 <span>
                                     <i className="icon icon--delegate" />
-                                    Delegate Volume
+                                    {t('staking.acc-preferences.delegate.title')}
                                 </span>
                             </SectionTitle>
                             <FlexDivColumn>
-                                <Subtitle>Source:</Subtitle>
+                                <Subtitle>{t('staking.acc-preferences.source')}:</Subtitle>
                                 <StakingInput />
                             </FlexDivColumn>
                             <FlexDivColumn>
-                                <Subtitle>Destination:</Subtitle>
+                                <Subtitle>{t('staking.acc-preferences.destination')}:</Subtitle>
                                 <StakingInput />
                             </FlexDivColumn>
                             <FlexDivCentered>
-                                <StakingButton padding="5px 30px">Delegate</StakingButton>
+                                <StakingButton padding="5px 30px">
+                                    {t('staking.acc-preferences.delegate-button')}
+                                </StakingButton>
                             </FlexDivCentered>
                         </FlexDivColumnSpaceBetween>
                         <FlexDivColumn>
-                            <Subtitle>HOW DELEGATE VOLUME WORKS</Subtitle>
+                            <Subtitle>{t('staking.acc-preferences.delegate.subtitle')}</Subtitle>
                             <SectionDescription>
-                                The "Delegate Volume" functionality gives you the ability to direct the volume generated
-                                from one wallet that you own to another wallet. This simple step comes in handy for
-                                those who stake their THALES with a hardware wallet but do their trading on another hot
-                                wallet for convenience's sake (for example using Overtime on their mobile wallet), this
-                                way the volume generated can count towards the "Protocol Volume bucket" of gamified
-                                THALES staking rewards.
+                                {t('staking.acc-preferences.delegate.description-1')}
                             </SectionDescription>
                             <SectionDescription>
-                                This delegation of volume can be stopped at any time and it has checks in place to avoid
-                                a wallet directing it's volume to another while still boosting it's own.
+                                {t('staking.acc-preferences.delegate.description-2')}
                             </SectionDescription>
                         </FlexDivColumn>
                     </FlexDiv>
@@ -51,34 +50,27 @@ const AccPreferences: React.FC = () => {
                             <SectionTitle>
                                 <span>
                                     <i className="icon icon--merge" />
-                                    Merge Account
+                                    {t('staking.acc-preferences.merge.title')}
                                 </span>
                             </SectionTitle>
                             <FlexDivColumn>
-                                <Subtitle>Source:</Subtitle>
+                                <Subtitle>{t('staking.acc-preferences.source')}:</Subtitle>
                                 <StakingInput />
                             </FlexDivColumn>
                             <FlexDivColumn>
-                                <Subtitle>Destination:</Subtitle>
+                                <Subtitle>{t('staking.acc-preferences.destination')}:</Subtitle>
                                 <StakingInput />
                             </FlexDivColumn>
                             <FlexDivCentered>
-                                <StakingButton padding="5px 30px">Delegate</StakingButton>
+                                <StakingButton padding="5px 30px">
+                                    {t('staking.acc-preferences.delegate-button')}
+                                </StakingButton>
                             </FlexDivCentered>
                         </FlexDivColumnSpaceBetween>
                         <FlexDivColumn>
-                            <Subtitle>HOW MERGE ACCOUNT WORKS</Subtitle>
-                            <SectionDescription>
-                                The "Merge Account" functionality gives a THALES staker the ability to transfer all its
-                                staked THALES and staking rewards from one wallet to another. This comes in handy for
-                                those who want to cycle wallets or for those whose wallet has been compromised.
-                            </SectionDescription>
-                            <SectionDescription>
-                                This account merging only works for the entire balance of staked and vested THALES,
-                                partial reassignments will not be possible. It's also worth noting that on the receiving
-                                wallet, the THALES tokens staked will still need a 7-day countdown to unstake and the
-                                vested rewards will also be subject to the standard 10-weeks cooldown when claiming.
-                            </SectionDescription>
+                            <Subtitle>{t('staking.acc-preferences.merge.subtitle')}</Subtitle>
+                            <SectionDescription>{t('staking.acc-preferences.merge.description-1')}</SectionDescription>
+                            <SectionDescription>{t('staking.acc-preferences.merge.description-2')}</SectionDescription>
                         </FlexDivColumn>
                     </FlexDiv>
                 </Middle>
@@ -88,23 +80,18 @@ const AccPreferences: React.FC = () => {
                             <SectionTitle>
                                 <span>
                                     <i className="icon icon--claim" />
-                                    Claim on Behalf
+                                    {t('staking.acc-preferences.claim.title')}
                                 </span>
                             </SectionTitle>
-                            <Subtitle>
-                                Enter account for which you want to enable / disable claim on your behalf:
-                            </Subtitle>
+                            <Subtitle>{t('staking.acc-preferences.claim.subtitle')}:</Subtitle>
                             <FlexDivSpaceBetween>
                                 <StakingInput width="60%"></StakingInput>
-                                <StakingButton>Enter Address</StakingButton>
+                                <StakingButton>{t('staking.acc-preferences.claim.button')}</StakingButton>
                             </FlexDivSpaceBetween>
                         </FlexDivColumnSpaceBetween>
                         <FlexDivColumn gap="20px">
-                            <SectionDescription>
-                                Claim on behalf has been implemented per TIP-66. Please check this guid on how to
-                                automate your weekly claims.
-                            </SectionDescription>
-                            <Subtitle>Accounts that are enabled to claim on your behalf:</Subtitle>
+                            <SectionDescription>{t('staking.acc-preferences.claim.description')}</SectionDescription>
+                            <Subtitle>{t('staking.acc-preferences.claim.enabled-accounts-subtitle')}:</Subtitle>
                         </FlexDivColumn>
                     </FlexDiv>
                 </Bottom>
