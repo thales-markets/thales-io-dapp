@@ -30,7 +30,14 @@ const useStakersInfoQuery = (options?: UseQueryOptions<StakersInfo | undefined>)
                 stakersInfo.opStakers = stakers.length;
                 stakersInfo.arbStakers = stakersArb.length;
                 stakersInfo.baseStakers = stakersBase.length;
-                stakersInfo.totalStakers = stakers.length + stakersArb.length + stakersBase.length;
+
+                const filteredStakers = [...stakers, ...stakersArb, ...stakersBase]
+                    .filter((staker: any) => staker.totalStakedAmount > 0)
+                    .map((staker: any) => staker.id.toLowerCase());
+
+                const totalStakers = new Set<any>(filteredStakers);
+
+                stakersInfo.totalStakers = totalStakers.size;
 
                 return stakersInfo;
             } catch (e) {

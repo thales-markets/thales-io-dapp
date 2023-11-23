@@ -69,7 +69,7 @@ const Staking: React.FC = () => {
     const stakedOfTotalSupplyPercentage =
         stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.totalSupply) * 100 : 0;
 
-    const totalStakers = stakersInfo ? stakersInfo.totalStakers : 0;
+    const totalStakers = stakersInfo ? stakersInfo.totalStakers : '-';
 
     return (
         <SPAAnchor href={buildHref(ROUTES.Staking)}>

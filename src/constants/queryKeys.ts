@@ -1,3 +1,4 @@
+import { SpaceKey } from 'enums/governance';
 import { Network } from 'enums/network';
 
 const QUERY_KEYS = {
@@ -82,7 +83,6 @@ const QUERY_KEYS = {
             period,
         ],
     },
-    Integrators: () => ['integrators'],
     AMM: {
         SportAMMsTVLData: () => ['amm', 'sport', 'tvl'],
         ParlayAMMsTVLData: () => ['amm', 'parlay', 'tvl'],
@@ -92,6 +92,27 @@ const QUERY_KEYS = {
         sportVaultsData: () => ['vaults', 'sport', 'data'],
         thalesVaultsData: () => ['vaults', 'thales', 'data'],
     },
+    Governance: {
+        Proposals: (spaceKey: SpaceKey) => ['governance', 'proposals', spaceKey],
+        Proposal: (spaceKey: SpaceKey, hash: string, walletAddress: string) => [
+            'governance',
+            'proposal',
+            spaceKey,
+            hash,
+            walletAddress,
+        ],
+        ThalesStakers: (filter: string) => ['governance', 'thalesStakers', filter],
+        VotingPower: (proposalId: string, snapshot: string, walletAddress: string) => [
+            'governance',
+            'votingPower',
+            proposalId,
+            snapshot,
+            walletAddress,
+        ],
+    },
+    Integrators: () => ['integrators'],
+    VolumeStats: () => ['volume', 'stats'],
+    UsersStats: () => ['users', 'stats'],
 };
 
 export default QUERY_KEYS;
