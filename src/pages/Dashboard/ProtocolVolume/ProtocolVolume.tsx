@@ -43,8 +43,6 @@ const ProtocolVolume: React.FC = () => {
         }
     }, [volumeStatsQuery.isSuccess, volumeStatsQuery.data]);
 
-    console.log(usersStats);
-    console.log(volumeStats);
     return (
         <WidgetWrapper isDoubleHeight={true}>
             <WidgetHeader notFlex={true}>

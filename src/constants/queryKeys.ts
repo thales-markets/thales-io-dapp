@@ -93,7 +93,7 @@ const QUERY_KEYS = {
         thalesVaultsData: () => ['vaults', 'thales', 'data'],
     },
     Governance: {
-        Proposals: (spaceKey: SpaceKey) => ['governance', 'proposals', spaceKey],
+        Proposals: (spaceKey: SpaceKey, limit: number) => ['governance', 'proposals', spaceKey, limit],
         Proposal: (spaceKey: SpaceKey, hash: string, walletAddress: string) => [
             'governance',
             'proposal',

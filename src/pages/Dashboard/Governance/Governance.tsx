@@ -2,8 +2,10 @@ import SPAAnchor from 'components/SPAAnchor';
 import ROUTES from 'constants/routes';
 import { SpaceKey } from 'enums/governance';
 import useProposalsQuery from 'queries/dashboard/useProposalsQuery';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { formatShortDateWithTime } from 'thales-utils';
+import { Proposal } from 'types/governance';
 import { buildHref } from 'utils/routes';
 import {
     DoubleSideSectionSpan,
@@ -19,15 +21,17 @@ import {
 const Governance: React.FC = () => {
     const { t } = useTranslation();
     // TODO: IS APP READY
-    const proposalsQuery = useProposalsQuery(SpaceKey.TIPS, { enabled: true });
-    const proposals = useMemo(
-        () => (proposalsQuery.isSuccess && proposalsQuery.data ? proposalsQuery.data : []),
-        [proposalsQuery.isSuccess, proposalsQuery.data]
-    );
 
-    const lastProposal = proposals[0];
+    const [latestProposal, setLatestProposal] = useState<Proposal>();
 
-    console.log(lastProposal);
+    const proposalsQuery = useProposalsQuery(SpaceKey.TIPS, 1, { enabled: true });
+
+    useEffect(() => {
+        if (proposalsQuery.isSuccess && proposalsQuery.data) {
+            setLatestProposal(proposalsQuery.data[0]);
+        }
+    }, [proposalsQuery.isSuccess, proposalsQuery.data]);
+
     return (
         <SPAAnchor href={buildHref(ROUTES.Governance)}>
             <WidgetWrapper>
@@ -38,14 +42,16 @@ const Governance: React.FC = () => {
 
                 <InfoSection side="left">
                     <DoubleSideSectionSpan>
-                        <SPAAnchor href={''}>TIP-XXX: Placeholder for current TIP link</SPAAnchor>
+                        <InfoStats>{latestProposal ? latestProposal.title.split(':')[0] + ':' : '-'}</InfoStats>
+                        <br />
+                        {latestProposal ? latestProposal.title.split(':')[1] : '-'}
                     </DoubleSideSectionSpan>
                     <InfoText>{t('dashboard.governance.start-date')}</InfoText>
                     <InfoText>{t('dashboard.governance.end-date')}</InfoText>
                 </InfoSection>
                 <InfoSection side="right">
-                    <InfoStats>some date</InfoStats>
-                    <InfoStats>some date</InfoStats>
+                    <InfoStats>{latestProposal ? formatShortDateWithTime(latestProposal.start * 1000) : '-'}</InfoStats>
+                    <InfoStats>{latestProposal ? formatShortDateWithTime(latestProposal.end * 1000) : '-'}</InfoStats>
                 </InfoSection>
             </WidgetWrapper>
         </SPAAnchor>

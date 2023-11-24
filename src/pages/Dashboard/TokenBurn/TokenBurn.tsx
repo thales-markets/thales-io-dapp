@@ -45,7 +45,7 @@ const TokenBurn: React.FC = () => {
                     <InfoText>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>
                     <InfoStats>
                         {tokenInfo
-                            ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.circulatingSupply) * 100)} %`
+                            ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.circulatingSupply) * 100)}%`
                             : 'N/A'}
                     </InfoStats>
                 </FlexDivFullWidthSpaceBetween>
@@ -53,7 +53,7 @@ const TokenBurn: React.FC = () => {
                     <InfoText>{t('dashboard.token-burn.of-total-supply')}</InfoText>
                     <InfoStats>
                         {tokenInfo
-                            ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.totalSupply) * 100)} %`
+                            ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.totalSupply) * 100)}%`
                             : 'N/A'}
                     </InfoStats>
                 </FlexDivFullWidthSpaceBetween>

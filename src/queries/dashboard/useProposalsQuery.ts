@@ -5,15 +5,20 @@ import request, { gql } from 'graphql-request';
 import { UseQueryOptions, useQuery } from 'react-query';
 import { Proposal } from 'types/governance';
 
-const useProposalsQuery = (spaceKey: SpaceKey, options?: UseQueryOptions<Proposal[]>) => {
+const useProposalsQuery = (spaceKey: SpaceKey, limit: number, options?: UseQueryOptions<Proposal[]>) => {
     return useQuery<Proposal[]>(
-        QUERY_KEYS.Governance.Proposals(spaceKey),
+        QUERY_KEYS.Governance.Proposals(spaceKey, limit),
         async () => {
             const { proposals }: { proposals: Proposal[] } = await request(
                 SNAPSHOT_GRAPHQL_URL,
                 gql`
-                    query ProposalsForSpace($spaceKey: String) {
-                        proposals(first: 100, where: { space: $spaceKey }, orderBy: "created", orderDirection: desc) {
+                    query ProposalsForSpace($spaceKey: String, $limit: Int) {
+                        proposals(
+                            first: $limit
+                            where: { space: $spaceKey }
+                            orderBy: "created"
+                            orderDirection: desc
+                        ) {
                             id
                             title
                             body
@@ -38,7 +43,7 @@ const useProposalsQuery = (spaceKey: SpaceKey, options?: UseQueryOptions<Proposa
                         }
                     }
                 `,
-                { spaceKey: spaceKey }
+                { spaceKey: spaceKey, limit: limit }
             );
 
             return proposals.filter((proposal: Proposal) => !EXCLUDED_PROPOSALS.includes(proposal.id));

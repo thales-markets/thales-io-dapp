@@ -1,5 +1,7 @@
 import useIntegratorsQuery from 'queries/dashboard/useIntegratorsQuery';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { Integrator } from 'types/integrator';
 import {
@@ -11,8 +13,6 @@ import {
     WidgetIcon,
     WidgetWrapper,
 } from '../styled-components';
-import { useEffect, useState } from 'react';
-import { Colors } from 'styles/common';
 
 const IntegratorsVolume: React.FC = () => {
     const { t } = useTranslation();
