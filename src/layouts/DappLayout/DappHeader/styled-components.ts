@@ -34,6 +34,7 @@ export const Logo = styled.i`
 `;
 
 export const WalletButton = styled.button`
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,20 +1,91 @@
-import { Suspense, lazy } from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
-import { history } from 'utils/routes';
-import ROUTES from 'constants/routes';
+import { IFrameEthereumProvider } from '@ledgerhq/iframe-provider';
 import Loader from 'components/Loader';
-import ThemeProvider from 'layouts/Theme';
-import DappLayout from 'layouts/DappLayout';
+import { SUPPORTED_NETWORKS_NAMES } from 'constants/network';
+import ROUTES from 'constants/routes';
 import 'i18n';
-import queryConnector from 'utils/queryConnector';
+import DappLayout from 'layouts/DappLayout';
+import ThemeProvider from 'layouts/Theme';
+import { Suspense, lazy, useEffect } from 'react';
 import { QueryClientProvider } from 'react-query';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Router, Switch } from 'react-router-dom';
+import { setAppReady } from 'redux/modules/app';
+import { getSwitchToNetworkId, updateNetworkSettings, updateWallet } from 'redux/modules/wallet';
+import { RootState } from 'redux/rootReducer';
+import { NetworkId } from 'thales-utils';
+import { isLedgerDappBrowserProvider } from 'utils/ledger';
+import queryConnector from 'utils/queryConnector';
+import { history } from 'utils/routes';
+import snxJSConnector from 'utils/snxJSConnector';
+import { useAccount, useProvider, useSigner } from 'wagmi';
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
 const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Dashboard'));
 const Staking = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Staking'));
 
 const App: React.FC = () => {
+    const dispatch = useDispatch();
+    const switchedToNetworkId = useSelector((state: RootState) => getSwitchToNetworkId(state));
+    const { address } = useAccount();
+    const provider = useProvider(!address ? { chainId: switchedToNetworkId } : undefined); // when wallet not connected force chain
+    const { data: signer } = useSigner();
+
+    const isLedgerLive = isLedgerDappBrowserProvider();
+
     queryConnector.setQueryClient();
+
+    useEffect(() => {
+        const init = async () => {
+            let ledgerProvider = null;
+            if (isLedgerLive) {
+                ledgerProvider = new IFrameEthereumProvider();
+                const accounts = await ledgerProvider.enable();
+                const account = accounts[0];
+                dispatch(updateWallet({ walletAddress: account }));
+                ledgerProvider.on('accountsChanged', (accounts) => {
+                    if (accounts.length > 0) {
+                        dispatch(updateWallet({ walletAddress: accounts[0] }));
+                    }
+                });
+            }
+
+            try {
+                const chainIdFromProvider: NetworkId = (await provider.getNetwork()).chainId;
+                const providerNetworkId = isLedgerLive
+                    ? ledgerProvider
+                    : !!address
+                    ? chainIdFromProvider
+                    : switchedToNetworkId;
+
+                snxJSConnector.setContractSettings({
+                    networkId: providerNetworkId,
+                    provider,
+                    // @ts-ignore
+                    signer: isLedgerLive ? ledgerProvider?.getSigner() : signer,
+                });
+
+                dispatch(
+                    updateNetworkSettings({
+                        // @ts-ignore
+                        networkId: providerNetworkId,
+                        // @ts-ignore
+                        networkName: SUPPORTED_NETWORKS_NAMES[providerNetworkId]?.toLowerCase(),
+                    })
+                );
+                dispatch(setAppReady());
+            } catch (e: any) {
+                if (!e.toString().includes('Error: underlying network changed')) {
+                    dispatch(setAppReady());
+                    console.log(e);
+                }
+            }
+        };
+        init();
+    }, [dispatch, provider, signer, switchedToNetworkId, address, isLedgerLive]);
+
+    useEffect(() => {
+        dispatch(updateWallet({ walletAddress: address }));
+    }, [address, dispatch]);
 
     return (
         <div className="App">

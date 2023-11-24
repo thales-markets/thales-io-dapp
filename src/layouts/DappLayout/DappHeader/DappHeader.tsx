@@ -1,10 +1,11 @@
+import NavLinks, { NavItem } from 'components/NavLinks/NavLinks';
+import UserWallet from 'components/UserWallet';
 import ROUTES from 'constants/routes';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { buildHref, navigateTo } from 'utils/routes';
-import { HeaderContainer, LinksContainer, Logo, WalletButton } from './styled-components';
-import { useMemo } from 'react';
-import NavLinks, { NavItem } from 'components/NavLinks/NavLinks';
+import { HeaderContainer, LinksContainer, Logo } from './styled-components';
 
 const DappHeader: React.FC = () => {
     const { t } = useTranslation();
@@ -49,10 +50,7 @@ const DappHeader: React.FC = () => {
                 <LinksContainer>
                     <NavLinks items={navItems} />
                 </LinksContainer>
-                <WalletButton>
-                    <i className="icon icon--wallet" />
-                    {t('common.wallet.connect-your-wallet')}
-                </WalletButton>
+                <UserWallet></UserWallet>
             </HeaderContainer>
         </>
     );
