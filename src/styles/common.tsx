@@ -70,6 +70,7 @@ export const Icon = styled.i<{ color?: string; iconSize?: number }>`
 export const Colors = {
     GRAY: '#BCBCBC',
     LIGHT_GRAY: '#A9ABBB',
+    DARK_GRAY: '#181A20',
     WHITE: '#FFFFFF',
     CYAN: '#19F8EF',
     BLUE_DARK: '#313652',
@@ -80,6 +81,18 @@ export const Colors = {
     YANKEES_BLUE: '#1F2438',
     METALLIC_BLUE: '#3F5580',
     INDEPENDENCE: '#43496D',
+    RED: '#DE496D',
+    ORANGE: '#F7B91A',
+    DARK_ORANGE: '#FF8800',
+    GREEN: '#03DAC5',
+    LIGHT_GREEN: '#B0FFE7',
+    DARK_GREEN: '#1D976C',
+    BLACK: '#000000',
+    BLUE: '#5B86E5',
+    LIGHT_BLUE: '#36D1DC',
+    LIGHT_RED: '#E29587',
+    DARK_RED: '#D66D75',
+    LIGHT_ORANGE: '#FFB866',
 };
 
 export const Background = styled.div`

@@ -1,13 +1,15 @@
 import { Provider } from '@wagmi/core';
 import { Signer, ethers } from 'ethers';
-import stakingDataContract from './contracts/stakingDataContract';
-import sportLiquidityPoolContract from './contracts/sportLiquidityPoolContract';
-import sportLiquidityPoolDataContract from './contracts/sportLiquidityPoolDataContract';
 import parlayAMMLiquidityPoolContract from './contracts/parlayAMMLiquidityPoolContract';
 import parlayAMMLiquidityPoolDataContract from './contracts/parlayAMMLiquidityPoolDataContract';
+import sportLiquidityPoolContract from './contracts/sportLiquidityPoolContract';
+import sportLiquidityPoolDataContract from './contracts/sportLiquidityPoolDataContract';
+import sportVaultDataContract from './contracts/sportVaultDataContract';
+import stakingDataContract from './contracts/stakingDataContract';
+import stakingThalesContract from './contracts/stakingThales';
+import stakingBonusRewardsManager from './contracts/thalesAMMStakingThalesBonusRewardsManager';
 import thalesLiquidityPoolContract from './contracts/thalesLiquidityPoolContract';
 import thalesLiquidityPoolDataContract from './contracts/thalesLiquidityPoolDataContract';
-import sportVaultDataContract from './contracts/sportVaultDataContract';
 import thalesVaultDataContract from './contracts/thalesVaultDataContract';
 
 type SnxJSConnector = {
@@ -23,6 +25,8 @@ type SnxJSConnector = {
     thalesLiquidityPoolDataContract?: ethers.Contract;
     sportVaultDataContract?: ethers.Contract;
     thalesVaultDataContract?: ethers.Contract;
+    stakingThalesContract?: ethers.Contract;
+    stakingBonusRewardsManager?: ethers.Contract;
     setContractSettings: (contractSettings: any) => void;
 };
 
@@ -55,6 +59,8 @@ const snxJSConnector: SnxJSConnector = {
         );
         this.sportVaultDataContract = conditionalInitializeContract(sportVaultDataContract, contractSettings);
         this.thalesVaultDataContract = conditionalInitializeContract(thalesVaultDataContract, contractSettings);
+        this.stakingThalesContract = conditionalInitializeContract(stakingThalesContract, contractSettings);
+        this.stakingBonusRewardsManager = conditionalInitializeContract(stakingBonusRewardsManager, contractSettings);
     },
 };
 

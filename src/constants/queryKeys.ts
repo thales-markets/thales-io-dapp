@@ -25,6 +25,7 @@ const QUERY_KEYS = {
             networkId,
         ],
         StakingData: () => ['token', 'staking', 'data'],
+        ThalesStakingData: (networkId: Network) => ['token', 'staking', 'data'],
         UserStakingData: (walletAddress: string, networkId: Network) => [
             'token',
             'staking',

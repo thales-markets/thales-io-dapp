@@ -34,6 +34,26 @@ export type StakingData = {
     apyBase: number;
 };
 
+export type ThalesStakingData = {
+    period: number;
+    unstakeDurationPeriod: number;
+    closingDate: number;
+    isPaused: boolean;
+    baseRewardsPool: number;
+    bonusRewardsPool: number;
+    totalStakedAmount: number;
+    maxSnxBonusPercentage: number;
+    maxAmmBonusPercentage: number;
+    maxThalesRoyaleBonusPercentage: number;
+    maxBonusRewardsPercentage: number;
+    snxVolumeRewardsMultiplier: number;
+    ammVolumeRewardsMultiplier: number;
+    canClosePeriod: boolean;
+    mergeAccountEnabled: boolean;
+    totalEscrowBalanceNotIncludedInStaking: number;
+    totalEscrowedRewards: number;
+};
+
 export type StakersInfo = {
     opStakers: number;
     arbStakers: number;
@@ -50,4 +70,42 @@ export type TokenTransaction = {
     blockNumber: number;
     destAccount?: string;
 };
+
 export type TokenTransactions = TokenTransaction[];
+
+export type UserStakingData = {
+    thalesStaked: number;
+    hasClaimRights: boolean;
+    claimed: boolean;
+    isUnstaking: boolean;
+    lastUnstakeTime: number;
+    unstakingAmount: number;
+    delegatedVolume: string;
+    rewards: number;
+    baseRewards: number;
+    totalBonus: number;
+    snxBonus: number;
+    ammBonus: number;
+    maxSnxBonus: number;
+    maxAmmBonus: number;
+    maxThalesRoyaleBonus: number;
+    snxStaked: number;
+    ammVolume: number;
+    thalesAmmVolume: number;
+    rangedAmmVolume: number;
+    sportsAmmVolume: number;
+    escrowedBalance: number;
+    claimable: number;
+    rawClaimable: string;
+    isUserLPing: boolean;
+    isPaused: boolean;
+    unstakeDurationPeriod: number;
+    mergeAccountEnabled: boolean;
+};
+
+export type BaseRewardsData = {
+    thalesStaked: string;
+    totalStaked: string;
+    share: string;
+    baseRewards: string;
+};

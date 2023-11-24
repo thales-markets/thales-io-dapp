@@ -243,15 +243,16 @@
             },
             "claim": {
                 "title": "Your Current Claimable Rewards",
-                "time-left": "Time left to claim : <span>1d 10h 34m</span>",
+                "time-left": "Time left to claim : ",
                 "gamified-staking-rewards": "Gamified Staking Rewards",
                 "base-rewards": "Base Rewards",
                 "disclaimer": "Unclaimed weekly rewards are forfeited!",
-                "claim-rewards": "Claim Rewards"
+                "claim-rewards": "Claim Rewards",
+                "claiming": "Claiming"
             },
             "base-rewards": {
                 "title": "Base staking rewards & Multiplier",
-                "current-multiplier": "Your current multiplier : <span>x1.07</span>",
+                "current-multiplier": "Your current multiplier : ",
                 "your-staked": "Your THALES staked",
                 "staking-divider": "Staking Divider",
                 "total-staked": "Total THALES staked",
@@ -259,7 +260,7 @@
             },
             "your-rewards": {
                 "title": "Your Points Reward",
-                "current-points": "Your current points : <span>1,598.80</span>",
+                "current-points": "Your current points : ",
                 "trading-volume": "Trading Volume",
                 "amm-lp-balances": "AMM LP balances",
                 "vaults-balances": "Vaults balances",

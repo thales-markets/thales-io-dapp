@@ -44,7 +44,8 @@ export const InfoDiv = styled.div`
         line-height: 155%;
     }
 `;
-export const StakingButton = styled.button<{ padding?: string }>`
+export const StakingButton = styled.button<{ padding?: string; disabled?: boolean }>`
+    cursor: pointer;
     color: ${(props) => props.theme.background.primary};
     padding: ${(props) => props.padding || '5px 7px'};
     border-radius: 8px;
@@ -54,6 +55,10 @@ export const StakingButton = styled.button<{ padding?: string }>`
     font-family: NunitoBold;
     font-size: 13px;
     text-transform: uppercase;
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
 `;
 
 export const StakingInput = styled.input<{ width?: string }>`

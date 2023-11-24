@@ -1,6 +1,7 @@
 import keyBy from 'lodash/keyBy';
 
 export const THALES_CURRENCY = 'THALES';
+export const USD_SIGN = '$';
 export const LP_TOKEN = 'LP Token';
 
 // Order is important, used for sorting
