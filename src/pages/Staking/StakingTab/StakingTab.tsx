@@ -70,12 +70,12 @@ const StakingTab: React.FC = () => {
     const baseRewardsPool = stakingData ? stakingData.baseRewardsPool : 0;
     const totalEscrowedRewards = stakingData ? stakingData.totalEscrowedRewards : 0;
     const totalEscrowBalanceNotIncludedInStaking = stakingData ? stakingData.totalEscrowBalanceNotIncludedInStaking : 0;
-    const maxBonusRewardsPercentage = stakingData ? stakingData.maxBonusRewardsPercentage : 0;
+    // const maxBonusRewardsPercentage = stakingData ? stakingData.maxBonusRewardsPercentage : 0;
 
     const thalesStaked = userStakingData ? userStakingData.thalesStaked : 0;
     const escrowedBalance = userStakingData ? userStakingData.escrowedBalance : 0;
-    const unstakingAmount = userStakingData ? userStakingData.unstakingAmount : 0;
-    console.log(maxBonusRewardsPercentage, unstakingAmount);
+    // const unstakingAmount = userStakingData ? userStakingData.unstakingAmount : 0;
+
     const APR = useMemo(
         () =>
             totalStakedAmount === 0
