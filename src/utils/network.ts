@@ -3,6 +3,7 @@ import { ReactComponent as BaseLogo } from 'assets/images/base-circle-logo.svg';
 import { ReactComponent as OpLogo } from 'assets/images/optimism-circle-logo.svg';
 import { L1_TO_L2_NETWORK_MAPPER, SUPPORTED_NETWORKS_PARAMS } from 'constants/network';
 import { Network } from 'enums/network';
+import { BigNumber } from 'ethers';
 import { FunctionComponent, SVGProps } from 'react';
 import { changeNetwork } from 'thales-utils';
 
@@ -45,4 +46,14 @@ export const SUPPORTED_NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
         },
         order: 3,
     },
+};
+
+export const checkAllowance = async (amount: BigNumber, token: any, walletAddress: string, spender: string) => {
+    try {
+        const approved = await token.allowance(walletAddress, spender);
+        return approved.gte(amount);
+    } catch (err: any) {
+        console.log(err);
+        return false;
+    }
 };

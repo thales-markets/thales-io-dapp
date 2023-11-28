@@ -2,6 +2,28 @@ import { SpaceKey } from 'enums/governance';
 import { Network } from 'enums/network';
 
 const QUERY_KEYS = {
+    WalletBalances: {
+        StableCoinBalance: (walletAddress: string, networkId: Network) => [
+            'walletBalances',
+            'stableCoin',
+            walletAddress,
+            networkId,
+        ],
+        Eth: (walletAddress: string) => ['walletBalances', 'eth', walletAddress],
+        Thales: (walletAddress: string, networkId: Network) => ['walletBalances', 'thales', walletAddress, networkId],
+        OpThales: (walletAddress: string, networkId: Network) => [
+            'walletBalances',
+            'opThales',
+            walletAddress,
+            networkId,
+        ],
+        MultipleCollateral: (walletAddress: string, networkId: Network) => [
+            'multipleCollateral',
+            'balance',
+            walletAddress,
+            networkId,
+        ],
+    },
     Token: {
         StakingOverview: (walletAddress: string, networkId: Network) => [
             'token',

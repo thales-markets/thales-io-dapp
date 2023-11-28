@@ -1,0 +1,54 @@
+import styled from 'styled-components';
+import { FlexDivColumn } from 'styles/common';
+
+export const FieldContainer = styled(FlexDivColumn)<{ margin?: string }>`
+    flex: initial;
+    position: relative;
+    margin: ${(props) => props.margin || '0 0 10px 0'};
+`;
+
+export const FieldLabel = styled.label`
+    font-size: 13px;
+    line-height: 15px;
+    color: ${(props) => props.theme.textColor.primary};
+    margin-bottom: 6px;
+    font-family: 'NunitoBold';
+`;
+
+// width: ${(props) => props.width || ''};
+// height: 30px;
+// border-radius: 8px;
+// border: 1.5px solid ${(props) => props.theme.borderColor.secondary};
+// background: ${(props) => props.theme.background.quaternary};
+
+export const Input = styled.input<{ fontSize?: string; width?: string; height?: string }>`
+    background: ${(props) => props.theme.background.quaternary};
+    border: 1px solid ${(props) => props.theme.borderColor.secondary};
+    box-sizing: border-box;
+    mix-blend-mode: normal;
+    border-radius: 8px;
+    height: ${(props) => props.height || '34px'};
+    width: ${(props) => props.width || '100%'};
+    padding: 5px 10px;
+    outline: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: ${(props) => props.fontSize || '15px'};
+    line-height: 18px;
+    color: ${(props) => props.theme.textColor.primary};
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &::placeholder {
+        color: ${(props) => props.theme.textColor.tertiary};
+    }
+    &:focus {
+        box-sizing: border-box;
+    }
+    &:disabled {
+        opacity: 0.4;
+        cursor: default;
+    }
+    &.error {
+        border: 1px solid ${(props) => props.theme.error.borderColor.primary};
+    }
+`;

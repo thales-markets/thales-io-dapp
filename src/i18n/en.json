@@ -64,6 +64,26 @@
             "disclaimer-info": "By connecting a wallet you agree to Thales DAO <terms>Terms of Use</terms> and Privacy Policy and acknowledge that you have read and understand the Thales DAO protocol <disclaimer>disclaimer</disclaimer>",
             "balance": "Wallet balance"
         },
+        "errors": {
+            "unknown-error-try-again": "An unknown error occurred after you submitted. Please try again.",
+            "insufficient-balance": "Insufficient balance",
+            "insufficient-staking-balance": "Insufficient staking balance",
+            "out-of-liquidity": "Out of liquidity",
+            "insufficient-liquidity": "Insufficient liquidity",
+            "enter-amount": "Enter amount",
+            "enter-address": "Enter address",
+            "enter-slippage": "Enter slippage",
+            "invalid-price": "Invalid price",
+            "invalid-address": "Invalid address",
+            "invalid-price-max": "The price cannot be higher than ${{max}}",
+            "invalid-amount-max": "The amount cannot be higher than {{max}}",
+            "insufficient-balance-wallet": "Please ensure your wallet has sufficient {{currencyKey}}",
+            "invalid-slippage": "Invalid slippage",
+            "max-limit-exceeded": "Amount exceeded the amount available on AMM",
+            "user-rejected-tx": "User rejected transaction",
+            "enter-percentage": "Enter percentage",
+            "invalid-percentage-range": "The percentage must be between {{min}} and {{max}}"
+        },
         "enable-wallet-access": {
             "approve": "Approve",
             "approve-progress": "Approving",
@@ -284,8 +304,24 @@
             },
             "stake-unstake": {
                 "stake": "stake",
+                "staking": "staking",
                 "unstake": "unstake",
-                "amount-to": "Amount to"
+                "unstaking": "unstaking",
+                "amount-to": "Amount to",
+                "stake-success": "Tokens successfully staked",
+                "paused-message": "Staking is paused.",
+                "cooldown-confirmation-message": "Unstaking successfully started",
+                "unstake-confirmation-message": "Tokens successfully unstaked",
+                "cancel": "Cancel unstaking",
+                "canceling": "Canceling unstaking",
+                "start-unstaking-tooltip": "During the unstaking cooldown you will not be able to stake or unstake more THALES.",
+                "unlock-cooldown-text": "Unlocking starts a cooldown period during which the amount of THALES unstaked isn't counted in your staked balance.",
+                "cooldown-started-text": "You can unstake {{amount}} in",
+                "cooldown-ended-text": "You can now unstake {{amount}}",
+                "cooldown-label": "Cooldown",
+                "start-unstaking": "Start unstaking",
+                "amount-to-unstake": "Amount to unstake",
+                "user-lping-message": "You cannot unstake while providing liquidity for Thales or Overtime."
             }
         },
         "vesting": {

@@ -8,6 +8,7 @@ import sportVaultDataContract from './contracts/sportVaultDataContract';
 import stakingDataContract from './contracts/stakingDataContract';
 import stakingThalesContract from './contracts/stakingThales';
 import stakingBonusRewardsManager from './contracts/thalesAMMStakingThalesBonusRewardsManager';
+import thalesContract from './contracts/thalesContract';
 import thalesLiquidityPoolContract from './contracts/thalesLiquidityPoolContract';
 import thalesLiquidityPoolDataContract from './contracts/thalesLiquidityPoolDataContract';
 import thalesVaultDataContract from './contracts/thalesVaultDataContract';
@@ -27,6 +28,7 @@ type SnxJSConnector = {
     thalesVaultDataContract?: ethers.Contract;
     stakingThalesContract?: ethers.Contract;
     stakingBonusRewardsManager?: ethers.Contract;
+    thalesTokenContract?: ethers.Contract;
     setContractSettings: (contractSettings: any) => void;
 };
 
@@ -61,6 +63,7 @@ const snxJSConnector: SnxJSConnector = {
         this.thalesVaultDataContract = conditionalInitializeContract(thalesVaultDataContract, contractSettings);
         this.stakingThalesContract = conditionalInitializeContract(stakingThalesContract, contractSettings);
         this.stakingBonusRewardsManager = conditionalInitializeContract(stakingBonusRewardsManager, contractSettings);
+        this.thalesTokenContract = conditionalInitializeContract(thalesContract, contractSettings);
     },
 };
 
