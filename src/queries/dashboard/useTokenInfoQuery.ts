@@ -19,46 +19,46 @@ const useTokenInfoQuery = (options?: UseQueryOptions<TokenInfo | undefined>) => 
                     await fetch(`${generalConfig.API_URL}/token/marketcap`),
                 ]);
 
-                // Thales burned - Mainnet
+                // Thales contract - Mainnet
                 const infuraProvider = new ethers.providers.InfuraProvider(
                     Network.Mainnet,
                     process.env.REACT_APP_INFURA_PROJECT_ID
                 );
-                const mainThalesBurned = new ethers.Contract(
+                const mainThalesContract = new ethers.Contract(
                     thalesContract.addresses[Network.Mainnet],
                     thalesContract.abi,
                     infuraProvider
                 );
 
-                // Thales burned - Optimism
+                // Thales contract - Optimism
                 const opInfuraProvider = new ethers.providers.InfuraProvider(
                     Network.OptimismMainnet,
                     process.env.REACT_APP_INFURA_PROJECT_ID
                 );
-                const opThalesBurned = new ethers.Contract(
+                const opThalesContract = new ethers.Contract(
                     thalesContract.addresses[Network.OptimismMainnet],
                     thalesContract.abi,
                     opInfuraProvider
                 );
 
-                // Thales burned - Arbitrum
+                // Thales contract - Arbitrum
                 const arbInfuraProvider = new ethers.providers.InfuraProvider(
                     Network.Arbitrum,
                     process.env.REACT_APP_INFURA_PROJECT_ID
                 );
-                const arbThalesBurned = new ethers.Contract(
+                const arbThalesContract = new ethers.Contract(
                     thalesContract.addresses[Network.Arbitrum],
                     thalesContract.abi,
                     arbInfuraProvider
                 );
 
-                // Thales burned - Base
+                // Thales contract - Base
                 const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
                     `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
                     Network.Base
                 );
 
-                const baseThalesBurned = new ethers.Contract(
+                const baseThalesContract = new ethers.Contract(
                     thalesContract.addresses[Network.Base],
                     thalesContract.abi,
                     baseAnkrProvider
@@ -70,10 +70,10 @@ const useTokenInfoQuery = (options?: UseQueryOptions<TokenInfo | undefined>) => 
                     arbThalesBurnedBalance,
                     baseThalesBurnedBalance,
                 ] = await Promise.all([
-                    mainThalesBurned.balanceOf(DEAD_ADDRESS),
-                    opThalesBurned.balanceOf(OP_SAFE_BOX_ADDRESS),
-                    arbThalesBurned.balanceOf(ARB_SAFE_BOX_ADDRESS),
-                    baseThalesBurned.balanceOf(BASE_SAFE_BOX_ADDRESS),
+                    mainThalesContract.balanceOf(DEAD_ADDRESS),
+                    opThalesContract.balanceOf(OP_SAFE_BOX_ADDRESS),
+                    arbThalesContract.balanceOf(ARB_SAFE_BOX_ADDRESS),
+                    baseThalesContract.balanceOf(BASE_SAFE_BOX_ADDRESS),
                 ]);
 
                 const totalThalesBurned =

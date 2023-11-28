@@ -1,13 +1,17 @@
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Area, Tooltip, XAxis } from 'recharts';
+import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { TokenInfo } from 'types/token';
 import {
+    ChartTooltipBox,
     FlexDivFullWidthSpaceBetween,
     InfoSection,
     InfoStats,
     InfoText,
+    StyledAreaChart,
     TitleLabel,
     WidgetHeader,
     WidgetIcon,
@@ -29,6 +33,25 @@ const TokenBurn: React.FC = () => {
             setTokenInfo(tokenInfoQuery.data);
         }
     }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
+
+    const data = [
+        { value: 4, date: 11 },
+        { value: 17, date: 17 },
+        { value: 22, date: 37 },
+    ];
+
+    const CustomTooltip = ({ active, payload, label }: any) => {
+        if (active && payload && payload.length && label) {
+            return (
+                <ChartTooltipBox>
+                    <InfoText color={Colors.WHITE}>{payload[0].payload.date}</InfoText>
+                    <InfoStats>{payload[0].payload.value}</InfoStats>
+                </ChartTooltipBox>
+            );
+        }
+
+        return null;
+    };
 
     return (
         <WidgetWrapper>
@@ -58,6 +81,17 @@ const TokenBurn: React.FC = () => {
                     </InfoStats>
                 </FlexDivFullWidthSpaceBetween>
             </InfoSection>
+            <StyledAreaChart width={320} height={160} data={data}>
+                <defs>
+                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor={Colors.CYAN} opacity={0.8} />
+                        <stop offset="95%" stopColor={Colors.CYAN} stopOpacity={0} />
+                    </linearGradient>
+                </defs>
+                <XAxis axisLine={false} tickLine={false} dataKey="date" />
+                <Tooltip content={<CustomTooltip />} />
+                <Area type="step" dataKey="value" stroke={Colors.CYAN} fillOpacity={0.8} fill="url(#colorUv)" />
+            </StyledAreaChart>
         </WidgetWrapper>
     );
 };

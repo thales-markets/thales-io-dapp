@@ -1,5 +1,5 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
-import { PieChart } from 'recharts';
+import { AreaChart, PieChart } from 'recharts';
 import styled from 'styled-components';
 import { Colors, FlexDiv, FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 
@@ -238,4 +238,21 @@ export const FullWidthInfoSection = styled(FlexDiv)`
         justify-content: flex-end;
         margin-right: 5px;
     }
+`;
+
+export const StyledAreaChart = styled(AreaChart)`
+    margin-top: -65px;
+    z-index: 1;
+`;
+
+export const ChartTooltipBox = styled.div`
+    background-color: ${Colors.METALLIC_BLUE};
+    border-radius: 8px;
+    z-index: 2;
+    width: 125px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `;
