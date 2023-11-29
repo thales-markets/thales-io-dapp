@@ -5,10 +5,9 @@ import { TransactionFilterEnum } from 'enums/token';
 
 const filters = [
     TransactionFilterEnum.ALL,
-    TransactionFilterEnum.STAKE,
-    TransactionFilterEnum.UNSTAKE,
-    TransactionFilterEnum.START_UNSTAKE,
-    TransactionFilterEnum.CANCEL_UNSTAKE,
+    TransactionFilterEnum.MERGE_ACCOUNT,
+    TransactionFilterEnum.DELEGATE_VOLUME,
+    TransactionFilterEnum.REMOVE_DELEGATION,
 ];
 
 const YourTransactions: React.FC<{ width?: string; height?: string }> = ({ width, height }) => {

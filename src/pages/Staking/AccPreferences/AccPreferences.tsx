@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnSpaceBetween, FlexDivSpaceBetween } from 'styles/common';
-import YourTransactions from '../StakingTab/Transactions/YourTransactions';
 import { SectionDescription, SectionTitle, StakingButton, StakingInput } from '../styled-components';
+import YourTransactions from './Transactions';
 import { Bottom, Container, Middle, Subtitle, Top } from './styled-components';
 
 const AccPreferences: React.FC = () => {

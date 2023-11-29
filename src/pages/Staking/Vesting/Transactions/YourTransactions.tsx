@@ -3,13 +3,7 @@ import React from 'react';
 
 import { TransactionFilterEnum } from 'enums/token';
 
-const filters = [
-    TransactionFilterEnum.ALL,
-    TransactionFilterEnum.STAKE,
-    TransactionFilterEnum.UNSTAKE,
-    TransactionFilterEnum.START_UNSTAKE,
-    TransactionFilterEnum.CANCEL_UNSTAKE,
-];
+const filters = [TransactionFilterEnum.ALL, TransactionFilterEnum.ADD_TO_ESCROW, TransactionFilterEnum.VEST];
 
 const YourTransactions: React.FC<{ width?: string; height?: string }> = ({ width, height }) => {
     return <TransactionsWithFilters width={width} height={height} filters={filters} />;

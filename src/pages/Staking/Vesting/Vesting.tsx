@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { FlexDiv, FlexDivColumnSpaceBetween } from 'styles/common';
-import YourTransactions from '../StakingTab/Transactions';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
+import YourTransactions from './Transactions';
 import { Container, VestingValid } from './styled-components';
 
 const Vesting: React.FC = () => {
