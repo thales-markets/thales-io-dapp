@@ -34,7 +34,6 @@
         "recharts": "^2.5.0",
         "redux": "^4.0.5",
         "remarkable": "^2.0.1",
-        "remarkable-external-link": "^2.0.0",
         "styled-components": "^5.2.3",
         "thales-data": "^1.2.68",
         "thales-utils": "^0.0.5",
