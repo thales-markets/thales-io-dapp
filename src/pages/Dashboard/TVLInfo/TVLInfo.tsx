@@ -5,6 +5,9 @@ import useThalesAMMsTVLDataQuery from 'queries/dashboard/useThalesAMMsTVLDataQue
 import useThalesVaultsDataQuery from 'queries/dashboard/useThalesVaultsDataQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
+import { RootState } from 'redux/rootReducer';
 import { formatCurrency } from 'thales-utils';
 import { AMMsTVLData, VaultsTVLData } from 'types/liquidity';
 import {
@@ -19,30 +22,31 @@ import {
 
 const TVLInfo: React.FC = () => {
     const { t } = useTranslation();
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
 
     const [sportAmmTvlData, setSportAmmTvlData] = useState<AMMsTVLData>();
     const overtimeAMMsTVLDataQuery = useSportAMMsTVLDataQuery({
-        enabled: true,
+        enabled: isAppReady,
     });
 
     const [parlayAmmTvlData, setParlayAmmTvlData] = useState<AMMsTVLData>();
     const parlayAMMsTVLDataQuery = useParlayAMMsTVLDataQuery({
-        enabled: true,
+        enabled: isAppReady,
     });
 
     const [thalesAmmTvlData, setThalesAmmTvlData] = useState<AMMsTVLData>();
     const thalesAMMsTVLDataQuery = useThalesAMMsTVLDataQuery({
-        enabled: true,
+        enabled: isAppReady,
     });
 
     const [sportVaultsTvlData, setSportVaultsTvlData] = useState<VaultsTVLData>();
     const sportVaultsDataQuery = useSportVaultsDataQuery({
-        enabled: true,
+        enabled: isAppReady,
     });
 
     const [thalesVaultsTvlData, setThalesVaultsTvlData] = useState<VaultsTVLData>();
     const thalesVaultsDataQuery = useThalesVaultsDataQuery({
-        enabled: true,
+        enabled: isAppReady,
     });
 
     useEffect(() => {

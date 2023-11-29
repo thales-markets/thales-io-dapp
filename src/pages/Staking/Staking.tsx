@@ -1,18 +1,18 @@
+import Loader from 'components/Loader';
+import NavLinks from 'components/NavLinks';
+import { NavItem } from 'components/NavLinks/NavLinks';
+import ROUTES from 'constants/routes';
+import queryString from 'query-string';
 import { Suspense, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router';
-import queryString from 'query-string';
-import NavLinks from 'components/NavLinks';
-import Loader from 'components/Loader';
-import { NavItem } from 'components/NavLinks/NavLinks';
-import { NavContainer, Line } from './styled-components';
-import Rewards from './Rewards';
+import { Line, NavContainer } from 'styles/common';
 import { buildHref } from 'utils/routes';
-import ROUTES from 'constants/routes';
 import AccPreferences from './AccPreferences';
 import Leaderboard from './Leaderboard';
-import Vesting from './Vesting';
+import Rewards from './Rewards';
 import StakingTab from './StakingTab';
+import Vesting from './Vesting';
 
 enum Tab {
     REWARDS = 'rewards',

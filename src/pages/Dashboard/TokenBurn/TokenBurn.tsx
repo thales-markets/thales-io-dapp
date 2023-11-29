@@ -1,7 +1,10 @@
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Area, Tooltip, XAxis } from 'recharts';
+import { getIsAppReady } from 'redux/modules/app';
+import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { TokenInfo } from 'types/token';
@@ -20,8 +23,8 @@ import {
 
 const TokenBurn: React.FC = () => {
     const { t } = useTranslation();
-    // TODO: ADD CHART ON THE RIGHT SIDE OF WIDGET
-    const isAppReady = true;
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
 
     const tokenInfoQuery = useTokenInfoQuery({

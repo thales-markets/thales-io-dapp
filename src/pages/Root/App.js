@@ -11,8 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import { setAppReady } from 'redux/modules/app';
 import { getSwitchToNetworkId, updateNetworkSettings, updateWallet } from 'redux/modules/wallet';
-import { RootState } from 'redux/rootReducer';
-import { NetworkId } from 'thales-utils';
 import { isLedgerDappBrowserProvider } from 'utils/ledger';
 import queryConnector from 'utils/queryConnector';
 import { history } from 'utils/routes';
@@ -22,10 +20,11 @@ import { useAccount, useProvider, useSigner } from 'wagmi';
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
 const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Dashboard'));
 const Staking = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Staking'));
+const Governance = lazy(() => import(/* webpackChunkName: "Governance" */ '../Governance'));
 
-const App: React.FC = () => {
+const App = () => {
     const dispatch = useDispatch();
-    const switchedToNetworkId = useSelector((state: RootState) => getSwitchToNetworkId(state));
+    const switchedToNetworkId = useSelector((state) => getSwitchToNetworkId(state));
     const { address } = useAccount();
     const provider = useProvider(!address ? { chainId: switchedToNetworkId } : undefined); // when wallet not connected force chain
     const { data: signer } = useSigner();
@@ -50,7 +49,7 @@ const App: React.FC = () => {
             }
 
             try {
-                const chainIdFromProvider: NetworkId = (await provider.getNetwork()).chainId;
+                const chainIdFromProvider = (await provider.getNetwork()).chainId;
                 const providerNetworkId = isLedgerLive
                     ? ledgerProvider
                     : !!address
@@ -73,7 +72,7 @@ const App: React.FC = () => {
                     })
                 );
                 dispatch(setAppReady());
-            } catch (e: any) {
+            } catch (e) {
                 if (!e.toString().includes('Error: underlying network changed')) {
                     dispatch(setAppReady());
                     console.log(e);
@@ -114,6 +113,17 @@ const App: React.FC = () => {
                                     </DappLayout>
                                 </Suspense>
                             </Route>
+                            <Route
+                                exact
+                                path={[ROUTES.Governance.Home, ROUTES.Governance.Space, ROUTES.Governance.Proposal]}
+                                render={(routeProps) => (
+                                    <Suspense fallback={<Loader />}>
+                                        <DappLayout>
+                                            <Governance {...routeProps} />
+                                        </DappLayout>
+                                    </Suspense>
+                                )}
+                            />
                         </Switch>
                     </Router>
                 </QueryClientProvider>

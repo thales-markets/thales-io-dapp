@@ -2,6 +2,9 @@ import useUsersStatsQuery from 'queries/dashboard/useUsersStatsQuery';
 import useVolumeStatsQuery from 'queries/dashboard/useVolumeStatsQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
+import { RootState } from 'redux/rootReducer';
 import { FlexDiv } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { UsersStats, VolumeStats } from 'types/statistics';
@@ -18,17 +21,17 @@ import {
 
 const ProtocolVolume: React.FC = () => {
     const { t } = useTranslation();
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
 
-    //ADD STATE IS READY
     const [usersStats, setUsersStats] = useState<UsersStats | undefined>();
     const [volumeStats, setVolumeStats] = useState<VolumeStats | undefined>();
 
     const usersStatsQuery = useUsersStatsQuery({
-        enabled: true,
+        enabled: isAppReady,
     });
 
     const volumeStatsQuery = useVolumeStatsQuery({
-        enabled: true,
+        enabled: isAppReady,
     });
 
     useEffect(() => {

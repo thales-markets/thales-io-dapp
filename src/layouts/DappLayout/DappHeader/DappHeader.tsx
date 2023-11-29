@@ -24,9 +24,9 @@ const DappHeader: React.FC = () => {
                 active: location.pathname === ROUTES.Staking,
             },
             {
-                href: buildHref(ROUTES.Governance),
+                href: buildHref(ROUTES.Governance.Home),
                 title: t('header.links.governance'),
-                active: location.pathname === ROUTES.Governance,
+                active: location.pathname === ROUTES.Governance.Home,
             },
             {
                 href: 'https://docs.thalesmarket.io/',
