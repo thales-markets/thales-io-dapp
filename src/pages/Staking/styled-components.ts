@@ -11,7 +11,7 @@ export const Line = styled.div`
 `;
 
 export const NavContainer = styled.div`
-    width: 55%;
+    width: 60%;
     margin-bottom: 45px;
 `;
 

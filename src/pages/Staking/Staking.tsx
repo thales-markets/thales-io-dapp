@@ -1,25 +1,27 @@
+import Loader from 'components/Loader';
+import NavLinks from 'components/NavLinks';
+import { NavItem } from 'components/NavLinks/NavLinks';
+import ROUTES from 'constants/routes';
+import queryString from 'query-string';
 import { Suspense, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router';
-import queryString from 'query-string';
-import NavLinks from 'components/NavLinks';
-import Loader from 'components/Loader';
-import { NavItem } from 'components/NavLinks/NavLinks';
-import { NavContainer, Line } from './styled-components';
-import Rewards from './Rewards';
 import { buildHref } from 'utils/routes';
-import ROUTES from 'constants/routes';
 import AccPreferences from './AccPreferences';
+import LPStaking from './LPStaking';
 import Leaderboard from './Leaderboard';
-import Vesting from './Vesting';
+import Rewards from './Rewards';
 import StakingTab from './StakingTab';
+import Vesting from './Vesting';
+import { Line, NavContainer } from './styled-components';
 
 enum Tab {
     REWARDS = 'rewards',
     STAKING = 'staking',
     VESTING = 'vesting',
     LEADERBOARD = 'leaderboard',
-    ACCPREFERENCES = 'acc-preferences',
+    ACC_PREFERENCES = 'acc-preferences',
+    LP_STAKING = 'lp-staking',
 }
 
 const Staking: React.FC = () => {
@@ -50,9 +52,14 @@ const Staking: React.FC = () => {
                 active: paramTab === Tab.LEADERBOARD,
             },
             {
-                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.ACCPREFERENCES}`,
+                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.ACC_PREFERENCES}`,
                 title: t('staking.nav.acc-preferences'),
-                active: paramTab === Tab.ACCPREFERENCES,
+                active: paramTab === Tab.ACC_PREFERENCES,
+            },
+            {
+                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.LP_STAKING}`,
+                title: t('staking.nav.lp-staking'),
+                active: paramTab === Tab.LP_STAKING,
             },
         ];
     }, [paramTab, t]);
@@ -63,11 +70,12 @@ const Staking: React.FC = () => {
             <NavContainer>
                 <NavLinks items={navItems} />
             </NavContainer>
-            {paramTab === 'rewards' && <Rewards />}
-            {paramTab === 'staking' && <StakingTab />}
-            {paramTab === 'vesting' && <Vesting />}
-            {paramTab === 'leaderboard' && <Leaderboard />}
-            {paramTab === 'acc-preferences' && <AccPreferences />}
+            {paramTab === Tab.REWARDS && <Rewards />}
+            {paramTab === Tab.STAKING && <StakingTab />}
+            {paramTab === Tab.VESTING && <Vesting />}
+            {paramTab === Tab.LEADERBOARD && <Leaderboard />}
+            {paramTab === Tab.ACC_PREFERENCES && <AccPreferences />}
+            {paramTab === Tab.LP_STAKING && <LPStaking />}
         </Suspense>
     );
 };

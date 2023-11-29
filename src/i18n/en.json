@@ -183,7 +183,8 @@
             "staking": "Staking",
             "vesting": "Vesting",
             "leaderboard": "Leaderboard",
-            "acc-preferences": "Acc Preferences"
+            "acc-preferences": "Acc Preferences",
+            "lp-staking": "AMM LP"
         },
         "table": {
             "title": "Your activity",
