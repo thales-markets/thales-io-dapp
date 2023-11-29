@@ -8,12 +8,12 @@ export const FieldContainer = styled(FlexDivColumn)<{ margin?: string }>`
 `;
 
 export const FieldLabel = styled.label`
+    font-family: NunitoBold;
     font-weight: normal;
     font-size: 13px;
     line-height: 15px;
     color: ${(props) => props.theme.textColor.primary};
     margin-bottom: 6px;
-    text-transform: uppercase;
 `;
 
 export const Input = styled.input<{ fontSize?: string; width?: string; height?: string }>`
@@ -34,11 +34,7 @@ export const Input = styled.input<{ fontSize?: string; width?: string; height?: 
     text-overflow: ellipsis;
     overflow: hidden;
     &::placeholder {
-        color: ${(props) => props.theme.textColor.secondary};
-    }
-    &::selection {
         color: ${(props) => props.theme.textColor.tertiary};
-        background: ${(props) => props.theme.background.primary};
     }
     &:focus {
         border: 1px solid ${(props) => props.theme.textColor.primary};

@@ -178,7 +178,7 @@ const MaxButton = styled.button`
     font-weight: 700;
     font-size: 13px;
     line-height: 20px;
-    color: ${(props) => props.theme.button.textColor.primary};
+    color: ${(props) => props.theme.button.textColor.secondary};
     text-transform: uppercase;
     cursor: pointer;
     padding-right: 8px;
@@ -210,14 +210,14 @@ const BalanceContainer = styled(FlexDivCentered)`
     font-size: 13px;
     line-height: 15px;
     text-transform: uppercase;
-    color: ${(props) => props.theme.textColor.secondary};
+    color: ${(props) => props.theme.textColor.tertiary};
 `;
 
 const StyledBalanceIcon = styled(BalanceIcon)`
     height: 13px;
     margin: 0 2px 1px 0;
     path {
-        fill: ${(props) => props.theme.textColor.secondary};
+        fill: ${(props) => props.theme.textColor.tertiary};
     }
 `;
 
