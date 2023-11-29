@@ -448,5 +448,12 @@
             "parlay-amm-tvl": "Parlay AMM TVL",
             "vaults-tvl": "Vaults TVL"
         }
+    },
+    "governance": {
+        "nav": {
+            "tips": "Tips",
+            "elections": "Elections",
+            "thales-stakers": "Thales stakers"
+        }
     }
 }

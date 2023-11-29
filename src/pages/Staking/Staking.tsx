@@ -6,6 +6,7 @@ import queryString from 'query-string';
 import { Suspense, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router';
+import { Line, NavContainer } from 'styles/common';
 import { buildHref } from 'utils/routes';
 import AccPreferences from './AccPreferences';
 import LPStaking from './LPStaking';
@@ -13,7 +14,6 @@ import Leaderboard from './Leaderboard';
 import Rewards from './Rewards';
 import StakingTab from './StakingTab';
 import Vesting from './Vesting';
-import { Line, NavContainer } from './styled-components';
 
 enum Tab {
     REWARDS = 'rewards',

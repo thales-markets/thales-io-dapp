@@ -34,7 +34,6 @@
         "recharts": "^2.5.0",
         "redux": "^4.0.5",
         "remarkable": "^2.0.1",
-        "remarkable-external-link": "^2.0.0",
         "styled-components": "^5.2.3",
         "thales-data": "^1.2.68",
         "thales-utils": "^0.0.5",
@@ -54,6 +53,7 @@
         "@types/react-router-dom": "^5.1.7",
         "@types/react-router-hash-link": "^2.4.5",
         "@types/react-table": "^7.7.3",
+        "@types/remarkable": "^2.0.8",
         "@types/styled-components": "^5.1.9",
         "@types/three": "^0.158.1",
         "react-error-overlay": "^6.0.11"

@@ -100,3 +100,16 @@ export const Background = styled.div`
     font-size: 16px;
     background: radial-gradient(at center, #484e88, #0d111e);
 `;
+
+export const Line = styled.div`
+    margin: 50px 0;
+    width: 50%;
+    height: 4px;
+    border-radius: 10px;
+    background: ${(props) => props.theme.background.tertiary};
+`;
+
+export const NavContainer = styled.div`
+    width: 55%;
+    margin-bottom: 45px;
+`;

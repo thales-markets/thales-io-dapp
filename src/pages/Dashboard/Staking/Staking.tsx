@@ -5,6 +5,9 @@ import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
+import { RootState } from 'redux/rootReducer';
 import { Colors, FlexDiv, FlexDivColumnNative, FlexDivSpaceBetween } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { StakersInfo, StakingData, TokenInfo } from 'types/token';
@@ -22,8 +25,8 @@ import {
 
 const Staking: React.FC = () => {
     const { t } = useTranslation();
-    // TODO: ADDING state
-    const isAppReady = true;
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+
     const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
     const [stakersInfo, setStakersInfo] = useState<StakersInfo | undefined>(undefined);
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);

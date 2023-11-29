@@ -2,7 +2,11 @@ const ROUTES = {
     Home: '/',
     Dashboard: '/dashboard',
     Staking: '/staking',
-    Governance: '/governance',
+    Governance: {
+        Home: '/governance/home',
+        Space: '/governance/:space',
+        Proposal: '/governance/:space/:id',
+    },
     Whitepaper: '/whitepaper',
 };
 export default ROUTES;

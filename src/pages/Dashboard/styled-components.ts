@@ -145,8 +145,11 @@ export const DoubleSideSectionSpan = styled.span`
     text-wrap: nowrap;
 `;
 
-export const FlexDivFullWidthSpaceBetween = styled(FlexDivSpaceBetween)`
+export const FlexDivFullWidthSpaceBetween = styled(FlexDivSpaceBetween)<{
+    marginRight?: number;
+}>`
     width: 100%;
+    margin-right: ${(props) => (props.marginRight ? props.marginRight + 'px' : '')};
 `;
 
 export const WidgetIcon = styled.i`

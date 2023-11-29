@@ -1,4 +1,5 @@
 import QUERY_KEYS from 'constants/queryKeys';
+import { SpaceKey } from 'enums/governance';
 import { Network } from 'enums/network';
 import { QueryClient } from 'react-query';
 
@@ -51,9 +52,9 @@ export const refetchTokenQueries = (walletAddress: string, networkId: Network) =
 //     );
 // };
 
-// export const refetchProposal = (spaceKey: SpaceKey, hash: string, walletAddress: string) => {
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Governance.Proposal(spaceKey, hash, walletAddress));
-// };
+export const refetchProposal = (spaceKey: SpaceKey, hash: string, walletAddress: string) => {
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Governance.Proposal(spaceKey, hash, walletAddress));
+};
 
 // export const refetchLiquidityPoolData = (walletAddress: string, networkId: Network) => {
 //     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.LiquidityPool.Data(networkId));

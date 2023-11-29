@@ -1,9 +1,12 @@
 import SPAAnchor from 'components/SPAAnchor';
 import ROUTES from 'constants/routes';
 import { SpaceKey } from 'enums/governance';
-import useProposalsQuery from 'queries/dashboard/useProposalsQuery';
+import useProposalsQuery from 'queries/useProposalsQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
+import { RootState } from 'redux/rootReducer';
 import { formatShortDateWithTime } from 'thales-utils';
 import { Proposal } from 'types/governance';
 import { buildHref } from 'utils/routes';
@@ -20,11 +23,10 @@ import {
 
 const Governance: React.FC = () => {
     const { t } = useTranslation();
-    // TODO: IS APP READY
-
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const [latestProposal, setLatestProposal] = useState<Proposal>();
 
-    const proposalsQuery = useProposalsQuery(SpaceKey.TIPS, 1, { enabled: true });
+    const proposalsQuery = useProposalsQuery(SpaceKey.TIPS, 1, { enabled: isAppReady });
 
     useEffect(() => {
         if (proposalsQuery.isSuccess && proposalsQuery.data) {
@@ -33,7 +35,7 @@ const Governance: React.FC = () => {
     }, [proposalsQuery.isSuccess, proposalsQuery.data]);
 
     return (
-        <SPAAnchor href={buildHref(ROUTES.Governance)}>
+        <SPAAnchor href={buildHref(ROUTES.Governance.Home)}>
             <WidgetWrapper>
                 <WidgetHeader>
                     <WidgetIcon className="icon icon--governance" />

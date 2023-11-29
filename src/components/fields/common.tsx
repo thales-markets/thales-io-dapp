@@ -8,22 +8,17 @@ export const FieldContainer = styled(FlexDivColumn)<{ margin?: string }>`
 `;
 
 export const FieldLabel = styled.label`
+    font-weight: normal;
     font-size: 13px;
     line-height: 15px;
     color: ${(props) => props.theme.textColor.primary};
     margin-bottom: 6px;
-    font-family: 'NunitoBold';
+    text-transform: uppercase;
 `;
 
-// width: ${(props) => props.width || ''};
-// height: 30px;
-// border-radius: 8px;
-// border: 1.5px solid ${(props) => props.theme.borderColor.secondary};
-// background: ${(props) => props.theme.background.quaternary};
-
 export const Input = styled.input<{ fontSize?: string; width?: string; height?: string }>`
-    background: ${(props) => props.theme.background.quaternary};
-    border: 1px solid ${(props) => props.theme.borderColor.secondary};
+    background: ${(props) => props.theme.background.primary};
+    border: 1px solid ${(props) => props.theme.borderColor.primary};
     box-sizing: border-box;
     mix-blend-mode: normal;
     border-radius: 8px;
@@ -39,9 +34,14 @@ export const Input = styled.input<{ fontSize?: string; width?: string; height?: 
     text-overflow: ellipsis;
     overflow: hidden;
     &::placeholder {
+        color: ${(props) => props.theme.textColor.secondary};
+    }
+    &::selection {
         color: ${(props) => props.theme.textColor.tertiary};
+        background: ${(props) => props.theme.background.primary};
     }
     &:focus {
+        border: 1px solid ${(props) => props.theme.textColor.primary};
         box-sizing: border-box;
     }
     &:disabled {
@@ -49,6 +49,6 @@ export const Input = styled.input<{ fontSize?: string; width?: string; height?: 
         cursor: default;
     }
     &.error {
-        border: 1px solid ${(props) => props.theme.error.borderColor.primary};
+        border: 1px solid ${(props) => props.theme.borderColor.primary};
     }
 `;

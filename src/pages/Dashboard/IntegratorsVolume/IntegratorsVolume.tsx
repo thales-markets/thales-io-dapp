@@ -1,10 +1,14 @@
 import useIntegratorsQuery from 'queries/dashboard/useIntegratorsQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
+import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { Integrator } from 'types/integrator';
 import {
+    FlexDivFullWidthSpaceBetween,
     FullWidthInfoSection,
     InfoStats,
     InfoText,
@@ -16,10 +20,11 @@ import {
 
 const IntegratorsVolume: React.FC = () => {
     const { t } = useTranslation();
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
 
     const [integratorsData, setIntegratorsData] = useState<Integrator[]>([]);
     const integratorsQuery = useIntegratorsQuery({
-        enabled: true,
+        enabled: isAppReady,
     });
 
     useEffect(() => {
@@ -44,11 +49,11 @@ const IntegratorsVolume: React.FC = () => {
             <FullWidthInfoSection>
                 <InfoText color={Colors.WHITE}>{t('dashboard.integrators.total-volume')}</InfoText>
                 <InfoStats color={Colors.CYAN}>$ {formatCurrency(allIntegratorsTotalVolume)}</InfoStats>
-                {integratorsData.map((integrator) => (
-                    <>
+                {integratorsData.map((integrator, index) => (
+                    <FlexDivFullWidthSpaceBetween marginRight={5} key={index}>
                         <InfoText>{integrator.id}</InfoText>
                         <InfoStats>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
-                    </>
+                    </FlexDivFullWidthSpaceBetween>
                 ))}
             </FullWidthInfoSection>
         </WidgetWrapper>

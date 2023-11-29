@@ -2,7 +2,10 @@ import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Cell, Legend, Pie } from 'recharts';
+import { getIsAppReady } from 'redux/modules/app';
+import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { StakingData, TokenInfo } from 'types/token';
@@ -22,8 +25,8 @@ import {
 
 const ThalesTokenInfo: React.FC = () => {
     const { t } = useTranslation();
-    // TODO: add state appReady
-    const isAppReady = true;
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
     const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
 
