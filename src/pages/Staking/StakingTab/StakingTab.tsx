@@ -9,7 +9,7 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { useTheme } from 'styled-components';
-import { formatCurrencyWithKey, formatCurrencyWithPrecision } from 'thales-utils';
+import { formatCurrencyWithKey, formatCurrencyWithPrecision, formatShortDate } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
 import { getNumberLabel } from 'utils/number';
 import { aprToApy } from 'utils/token';
@@ -126,7 +126,13 @@ const StakingTab: React.FC = () => {
                         </InfoDiv>
                         <InfoDiv>
                             <span>{t('staking.staking.staking-data.for-date')}:</span>
-                            <span>18.12-21.12</span>
+                            <span>
+                                {stakingData
+                                    ? `${formatShortDate(
+                                          new Date(stakingData?.closingDate - stakingData?.durationPeriod)
+                                      )} - ${formatShortDate(new Date(stakingData?.closingDate))}`
+                                    : '-'}
+                            </span>
                         </InfoDiv>
                     </div>
                 </UpperLeft>

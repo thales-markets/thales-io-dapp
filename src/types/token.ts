@@ -52,6 +52,7 @@ export type ThalesStakingData = {
     mergeAccountEnabled: boolean;
     totalEscrowBalanceNotIncludedInStaking: number;
     totalEscrowedRewards: number;
+    durationPeriod: number;
 };
 
 export type StakersInfo = {
@@ -108,4 +109,17 @@ export type BaseRewardsData = {
     totalStaked: string;
     share: string;
     baseRewards: string;
+};
+
+type VestingScheduleItem = {
+    date: number;
+    amount: number | string;
+};
+
+export type VestingSchedule = VestingScheduleItem[];
+
+export type UserVestingData = {
+    claimable: number;
+    rawClaimable: string;
+    vestingSchedule: VestingSchedule;
 };

@@ -1,5 +1,6 @@
 import { Provider } from '@wagmi/core';
 import { Signer, ethers } from 'ethers';
+import escrowThales from './contracts/escrowThales';
 import parlayAMMLiquidityPoolContract from './contracts/parlayAMMLiquidityPoolContract';
 import parlayAMMLiquidityPoolDataContract from './contracts/parlayAMMLiquidityPoolDataContract';
 import sportLiquidityPoolContract from './contracts/sportLiquidityPoolContract';
@@ -29,6 +30,7 @@ type SnxJSConnector = {
     stakingThalesContract?: ethers.Contract;
     stakingBonusRewardsManager?: ethers.Contract;
     thalesTokenContract?: ethers.Contract;
+    escrowThalesContract?: ethers.Contract;
     setContractSettings: (contractSettings: any) => void;
 };
 
@@ -64,6 +66,7 @@ const snxJSConnector: SnxJSConnector = {
         this.stakingThalesContract = conditionalInitializeContract(stakingThalesContract, contractSettings);
         this.stakingBonusRewardsManager = conditionalInitializeContract(stakingBonusRewardsManager, contractSettings);
         this.thalesTokenContract = conditionalInitializeContract(thalesContract, contractSettings);
+        this.escrowThalesContract = conditionalInitializeContract(escrowThales, contractSettings);
     },
 };
 

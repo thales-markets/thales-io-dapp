@@ -27,6 +27,7 @@ const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<Thale
                 mergeAccountEnabled: true,
                 totalEscrowBalanceNotIncludedInStaking: 0,
                 totalEscrowedRewards: 0,
+                durationPeriod: 0,
             };
             try {
                 const { stakingDataContract } = snxJSConnector;
@@ -35,6 +36,7 @@ const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<Thale
 
                     stakingData.period = contractStakingData.periodsOfStaking;
                     stakingData.unstakeDurationPeriod = Number(contractStakingData.unstakeDurationPeriod) * 1000;
+                    stakingData.durationPeriod = Number(contractStakingData.durationPeriod) * 1000;
                     stakingData.closingDate =
                         Number(contractStakingData.lastPeriodTimeStamp) * 1000 +
                         Number(contractStakingData.durationPeriod) * 1000;
