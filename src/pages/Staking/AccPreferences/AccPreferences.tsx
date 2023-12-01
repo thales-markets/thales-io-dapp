@@ -510,8 +510,8 @@ const AccPreferences: React.FC = () => {
                                 <Trans
                                     i18nKey={t('staking.acc-preferences.claim.description')}
                                     components={{
-                                        guide: <SPAAnchor href={LINKS.Token.TIP66} />,
-                                        tip: <SPAAnchor href={LINKS.Token.ClaimOnBehalfGuide} />,
+                                        tip: <SPAAnchor href={LINKS.Token.TIP66} />,
+                                        guide: <SPAAnchor href={LINKS.Token.ClaimOnBehalfGuide} />,
                                     }}
                                 />
                             </SectionDescription>

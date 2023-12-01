@@ -1,24 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
-import { getEtherscanTxLink } from 'thales-utils';
-import { RootState } from 'redux/rootReducer';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { getNetworkId } from 'redux/modules/wallet';
+import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
+import { getEtherscanTxLink, truncateAddress } from 'thales-utils';
 
 type ViewEtherscanLinkProps = {
     isDisabled?: boolean;
+    showAddress?: boolean;
     hash: string;
 };
 
-const ViewEtherscanLink: React.FC<ViewEtherscanLinkProps> = ({ hash }) => {
+const ViewEtherscanLink: React.FC<ViewEtherscanLinkProps> = ({ hash, showAddress }) => {
     const { t } = useTranslation();
     const networkId = useSelector((state: RootState) => getNetworkId(state));
 
     return (
         <StyledLink href={getEtherscanTxLink(networkId, hash)} target="_blank" rel="noreferrer">
-            {t('common.transaction.view')}
+            {showAddress ? truncateAddress(hash) : t('common.transaction.view')}
             <ArrowIcon width="8" height="8" />
         </StyledLink>
     );

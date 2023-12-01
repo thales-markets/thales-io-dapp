@@ -19,7 +19,7 @@ type StakerContractLeaderboardData = {
     estimatedRewards?: string;
 };
 
-type StakerWithLeaderboardData = Staker & StakerContractLeaderboardData;
+export type StakerWithLeaderboardData = Staker & StakerContractLeaderboardData;
 
 export type StakingData = {
     estimationForOneThales: number;

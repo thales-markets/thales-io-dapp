@@ -10,9 +10,9 @@ import { useTheme } from 'styled-components';
 import { FlexDiv, FlexDivColumnBottom, FlexDivColumnSpaceBetween } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import snxJSConnector from 'utils/snxJSConnector';
-import YourTransactions from '../StakingTab/Transactions/YourTransactions';
 import PeriodDropdown from '../components/PeriodDropdown';
 import { InfoDiv, SectionDescription, SectionTitle } from '../styled-components';
+import Table from './Table';
 import { Bottom, Container, LeaderboardBreakdownTitle, Top } from './styled-components';
 
 const Leaderboard: React.FC = () => {
@@ -50,7 +50,7 @@ const Leaderboard: React.FC = () => {
         }
         return [];
     }, [leaderboardQuery.isSuccess, leaderboardQuery.data]);
-    console.log(stakingData);
+
     const globalData = useMemo(() => {
         if (leaderboardQuery.isSuccess && leaderboardQuery.data) {
             return leaderboardQuery.data.data;
@@ -196,7 +196,7 @@ const Leaderboard: React.FC = () => {
                     </FlexDiv>
                 </Bottom>
             </Container>
-            <YourTransactions width="60%" />
+            <Table stakingData={stakingData} isLoading={leaderboardQuery.isLoading} />
         </>
     );
 };

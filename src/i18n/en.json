@@ -350,6 +350,13 @@
                 "volume": "Volume",
                 "multiplier": "Multiplier",
                 "points": "Points"
+            },
+            "table": {
+                "rank": "Rank",
+                "address": "Address",
+                "points": "Total Points",
+                "multiplier": "Thales Multiplier",
+                "rewards": "Total Rewards"
             }
         },
         "acc-preferences": {
