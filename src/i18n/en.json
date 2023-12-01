@@ -269,7 +269,8 @@
                 "base-rewards": "Base Rewards",
                 "disclaimer": "Unclaimed weekly rewards are forfeited!",
                 "claim-rewards": "Claim Rewards",
-                "claiming": "Claiming"
+                "claiming": "Claiming",
+                "claim-success": "Tokens successfully claimed"
             },
             "base-rewards": {
                 "title": "Base staking rewards & Multiplier",
@@ -356,24 +357,47 @@
                 "title": "Delegate volume",
                 "subtitle": "HOW DELEGATE VOLUME WORKS",
                 "description-1": "The \"Delegate Volume\" functionality gives you the ability to direct the volume generated from one wallet that you own to another wallet. This simple step comes in handy for those who stake their THALES with a hardware wallet but do their trading on another hot wallet for convenience's sake (for example using Overtime on their mobile wallet), this way the volume generated can count towards the \"Protocol Volume bucket\" of gamified THALES staking rewards.",
-                "description-2": "This delegation of volume can be stopped at any time and it has checks in place to avoid a wallet directing it's volume to another while still boosting it's own."
+                "description-2": "This delegation of volume can be stopped at any time and it has checks in place to avoid a wallet directing it's volume to another while still boosting it's own.",
+                "remove-delegation": "Remove delegation",
+                "delegate": "Delegate",
+                "delegating": "Delegating"
+
             },
             "merge": {
                 "title": "Merge account",
                 "subtitle": "HOW MERGE ACCOUNT WORKS",
                 "description-1": "The \"Merge Account\" functionality gives a THALES staker the ability to transfer all its staked THALES and staking rewards from one wallet to another. This comes in handy for those who want to cycle wallets or for those whose wallet has been compromised.",
-                "description-2": "This account merging only works for the entire balance of staked and vested THALES, partial reassignments will not be possible. It's also worth noting that on the receiving wallet, the THALES tokens staked will still need a 7-day countdown to unstake and the vested rewards will also be subject to the standard 10-weeks cooldown when claiming."
+                "description-2": "This account merging only works for the entire balance of staked and vested THALES, partial reassignments will not be possible. It's also worth noting that on the receiving wallet, the THALES tokens staked will still need a 7-day countdown to unstake and the vested rewards will also be subject to the standard 10-weeks cooldown when claiming.",
+                "merge": "Merge",
+                "merging": "Merging",
+                "merge-account-disabled": "Account merging is disabled.",
+                "merge-blocked-message": {
+                    "title": "In order to merge account, you need to",
+                    "src-claim": "Claim the staking rewards from the source account.",
+                    "user-lping": "You can't merge account while providing liquidity for Thales or Overtime.",
+                    "src-unstaking": "Cancel ustaking from the source account.",
+                    "dest-claim": "Claim the staking rewards from the destination account.",
+                    "dest-unstaking": "Cancel ustaking from the destination account."
+                }
             },
             "claim": {
                 "title": "Claim on Behalf",
                 "subtitle": "Enter account for which you want to enable / disable claim on your behalf",
-                "description": "Claim on behalf has been implemented per TIP-66. Please check this guid on how to automate your weekly claims.",
+                "description": "Claim on behalf has been implemented per <tip>TIP-66</tip>. Please check this <guide>guide</guide> on how to automate your weekly claims.",
                 "enabled-accounts-subtitle": "Accounts that are enabled to claim on your behalf",
-                "button": "Enter address"
+                "enable-button": {
+                    "label": "Enable",
+                    "progress-label": "Enabling...",
+                    "confirmation-message": "Claim on behalf successfully enabled for the account"
+                },
+                "disable-button": {
+                    "label": "Disable",
+                    "progress-label": "Disabling...",
+                    "confirmation-message": "Claim on behalf successfully disabled for the account"
+                }
             },
             "source": "Source",
-            "destination": "Destination",
-            "delegate-button": "Delegate"
+            "destination": "Destination"
         }
     },
     "header": {

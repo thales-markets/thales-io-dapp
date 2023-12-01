@@ -37,7 +37,7 @@ export const Input = styled.input<{ fontSize?: string; width?: string; height?: 
         color: ${(props) => props.theme.textColor.tertiary};
     }
     &:focus {
-        border: 1px solid ${(props) => props.theme.textColor.primary};
+        outline: none;
         box-sizing: border-box;
     }
     &:disabled {
@@ -45,6 +45,6 @@ export const Input = styled.input<{ fontSize?: string; width?: string; height?: 
         cursor: default;
     }
     &.error {
-        border: 1px solid ${(props) => props.theme.borderColor.primary};
+        border: 1px solid ${(props) => props.theme.error.borderColor.primary};
     }
 `;

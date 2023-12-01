@@ -179,13 +179,7 @@ const Rewards: React.FC = () => {
                 const txResult = await tx.wait();
 
                 if (txResult && txResult.transactionHash) {
-                    toast.update(
-                        id,
-                        getSuccessToastOptions(
-                            t('thales-token.gamified-staking.rewards.claim.confirmation-message'),
-                            id
-                        )
-                    );
+                    toast.update(id, getSuccessToastOptions(t('staking.rewards.claim.claim-success'), id));
                     refetchTokenQueries(walletAddress, networkId);
                     setIsClaiming(false);
                 }

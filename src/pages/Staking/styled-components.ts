@@ -48,14 +48,6 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
     }
 `;
 
-export const StakingInput = styled.input<{ width?: string }>`
-    width: ${(props) => props.width || ''};
-    height: 30px;
-    border-radius: 8px;
-    border: 1.5px solid ${(props) => props.theme.borderColor.secondary};
-    background: ${(props) => props.theme.background.quaternary};
-`;
-
 export const SectionHeader = styled(FlexDiv)`
     font-family: NunitoBold;
     font-size: 18px;
@@ -78,4 +70,10 @@ export const SectionHeader = styled(FlexDiv)`
 export const SectionDescription = styled.div`
     line-height: 180%;
     text-align: justify;
+    a {
+        color: ${(props) => props.theme.textColor.secondary};
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 `;

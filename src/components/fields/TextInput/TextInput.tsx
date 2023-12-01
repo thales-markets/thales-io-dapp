@@ -83,9 +83,24 @@ const TextInput: React.FC<TextInputProps> = ({
 };
 
 const StyledInput = styled(Input)<{ padding?: string; readOnly: boolean }>`
-    padding: ${(props) => props.padding || '5px 10px 5px 10px'};
+    color: ${(props) => props.theme.textColor.primary};
+    width: ${(props) => props.width || ''};
+    height: 30px;
+    border-radius: 8px;
+    border: 1.5px solid ${(props) => props.theme.borderColor.secondary};
+    background: ${(props) => props.theme.background.quaternary};
+    padding: 5px 10px 5px 10px;
+    text-overflow: ellipsis;
+    &::placeholder {
+        color: ${(props) => props.theme.textColor.tertiary};
+    }
     &:focus {
-        ${(props) => (props.readOnly ? `border: 1px solid ${props.theme.borderColor.primary};` : '')}
+        outline: none;
+        box-sizing: border-box;
+    }
+    &:disabled {
+        color: ${(props) => props.theme.textColor.tertiary};
+        opacity: 0.8;
     }
 `;
 
@@ -113,7 +128,7 @@ const ValidationTooltip = styled((props) => <MuiTooltip classes={{ popper: props
         font-weight: 600;
         font-size: 13px;
         line-height: 15px;
-        color: ${(props) => props.theme.input.textColor.quaternary};
+        color: ${(props) => props.theme.error.textColor.primary};
         background-color: ${(props) => props.theme.background.primary};
         text-align: center;
         max-width: 320px;
