@@ -3,12 +3,19 @@ import { SpaceKey, StatusEnum } from 'enums/governance';
 import { indexOf, max } from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from 'styled-components';
-import { FlexDivRowCentered } from 'styles/common';
+import { Colors, FlexDivRowCentered } from 'styles/common';
 import { truncateText } from 'thales-utils';
 import { Proposal } from 'types/governance';
-import { ThemeInterface } from 'types/ui';
-import { Body, Card, CardContainer, Result, ResultContainer, RightSection, Status, Title } from './styled-components';
+import {
+    Body,
+    Card,
+    CardContainer,
+    ResultContainer,
+    RightSection,
+    Status,
+    StatusIcon,
+    Title,
+} from './styled-components';
 
 type ProposalCardProps = {
     proposal: Proposal;
@@ -17,7 +24,6 @@ type ProposalCardProps = {
 
 const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
     const { t } = useTranslation();
-    const theme: ThemeInterface = useTheme();
     const closed = proposal.state === StatusEnum.Closed;
     const pending = proposal.state === StatusEnum.Pending;
 
@@ -30,22 +36,23 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                     <Status status={proposal.state}>{t(`governance.status.${proposal.state}`)}</Status>
                     {!closed && (
                         <RightSection>
+                            <StatusIcon color={Colors.WHITE} className="icon icon--hourglass" />
                             <span>{t(`governance.proposal.${pending ? 'starts-in-label' : 'ends-in-label'}`)}: </span>
-                            <TimeRemaining end={(pending ? proposal.start : proposal.end) * 1000} fontSize={16} />
+                            <TimeRemaining end={(pending ? proposal.start : proposal.end) * 1000} fontSize={18} />
                         </RightSection>
                     )}
                     {!!closed && proposal.space.id === SpaceKey.TIPS && (
                         <ResultContainer>
+                            <StatusIcon
+                                color={finalChoice.toUpperCase() == 'NO' ? Colors.RED : Colors.CYAN}
+                                className={`icon icon--${
+                                    finalChoice.toUpperCase() == 'NO' ? 'circle-cross' : 'circle-check'
+                                }`}
+                            />
                             <span>{t(`governance.proposal.final-result-label`)}: </span>
-                            <Result
-                                color={
-                                    finalChoice.toUpperCase() === 'NO'
-                                        ? theme.textColor.tertiary
-                                        : theme.textColor.secondary
-                                }
-                            >
-                                {finalChoice}
-                            </Result>
+                            <span>
+                                {t(`governance.proposal.final-result.${finalChoice.toLowerCase()}`).toUpperCase()}
+                            </span>
                         </ResultContainer>
                     )}
                 </FlexDivRowCentered>

@@ -3,7 +3,7 @@ const ROUTES = {
     Dashboard: '/dashboard',
     Staking: '/staking',
     Governance: {
-        Home: '/governance/home',
+        Home: '/governance',
         Space: '/governance/:space',
         Proposal: '/governance/:space/:id',
     },
