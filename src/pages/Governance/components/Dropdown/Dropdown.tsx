@@ -4,7 +4,14 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import OutsideClickHandler from 'react-outside-click-handler';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
+import {
+    Colors,
+    FlexDiv,
+    FlexDivCentered,
+    FlexDivColumn,
+    FlexDivColumnCentered,
+    FlexDivRowCentered,
+} from 'styles/common';
 
 type DropdownProps = {
     options: any;
@@ -74,12 +81,12 @@ const Container = styled(FlexDivColumnCentered)`
 
 const Button = styled.button<{ isActive: boolean }>`
     position: relative;
-    width: 140px;
-    height: 40px;
+    width: 105px;
+    height: 30px;
     border: none;
-    background: ${(props) => props.theme.background.secondary};
+    background: transparent;
     padding: 2px;
-    border-radius: 23px;
+    border-radius: 8px;
     &:hover {
         cursor: pointer;
     }
@@ -89,13 +96,13 @@ const Button = styled.button<{ isActive: boolean }>`
 `;
 
 const InnerButton = styled(FlexDivRowCentered)`
-    background: ${(props) => props.theme.background.secondary};
-    border-radius: 23px;
-    font-weight: 500;
-    font-size: 16px;
+    background: ${Colors.METALLIC_BLUE};
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 13px;
     line-height: 36px;
     letter-spacing: 0.35px;
-    color: ${(props) => props.theme.textColor.primary};
+    color: ${Colors.GRAY};
     text-transform: capitalize;
     padding-left: 20px;
     padding-right: 20px;
@@ -107,18 +114,18 @@ const DropdownContainer = styled.div`
 `;
 
 const DropDown = styled(FlexDivColumn)`
-    background: ${(props) => props.theme.background.secondary};
-    border: 1px solid ${(props) => props.theme.borderColor.primary};
-    border-radius: 20px;
+    background: ${Colors.METALLIC_BLUE};
+    border-radius: 8px;
     position: absolute;
-    margin-top: 2px;
+    margin-top: 9px;
     padding: 8px;
-    width: 100%;
+    width: 105px;
 `;
 
 const DropDownItem = styled(FlexDiv)`
     padding: 8px 12px;
     cursor: pointer;
+    color: ${Colors.GRAY};
     &:hover {
         background: ${(props) => props.theme.background.primary};
         border-radius: 12px;
@@ -126,11 +133,11 @@ const DropDownItem = styled(FlexDiv)`
 `;
 
 const Name = styled.div`
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 13px;
     line-height: 24px;
     letter-spacing: 0.35px;
-    color: ${(props) => props.theme.textColor.primary};
+    color: ${Colors.GRAY};
     display: block;
     text-transform: capitalize;
 `;

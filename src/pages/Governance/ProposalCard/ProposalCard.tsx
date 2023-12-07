@@ -31,7 +31,7 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
 
     return (
         <CardContainer onClick={onClick}>
-            <Card>
+            <Card closed={closed}>
                 <FlexDivRowCentered>
                     <Status status={proposal.state}>{t(`governance.status.${proposal.state}`)}</Status>
                     {!closed && (

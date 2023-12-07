@@ -64,7 +64,6 @@ export const Sidebar = styled.div`
 `;
 
 export const OptionsTabWrapper = styled(FlexDivRow)`
-    padding: 0 28px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         padding: 0;
