@@ -219,3 +219,15 @@
 .icon--claim:before {
     content: '\0038';
 }
+
+.icon--circle-check:before {
+    content: '\0043';
+}
+
+.icon--circle-cross:before {
+    content: '\0044';
+}
+
+.icon--people:before {
+    content: '\0034';
+}

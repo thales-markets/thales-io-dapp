@@ -10,6 +10,11 @@ export const Wrapper = styled.div`
     padding: 0 20px 0 0;
     max-height: 1000px;
     overflow: auto;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    ::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
         max-height: initial;
@@ -24,7 +29,7 @@ export const NoProposals = styled(FlexDivColumn)`
     justify-content: space-evenly;
     align-items: center;
     align-self: center;
-    border-radius: 5px;
+    border-radius: 8px;
 `;
 
 export const NoProposalsText = styled.p`

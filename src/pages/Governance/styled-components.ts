@@ -1,5 +1,6 @@
 import { ReactComponent as ArrowBackIcon } from 'assets/images/arrow-back.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
+import { PieChart } from 'recharts';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
@@ -8,27 +9,28 @@ export const Container = styled(FlexDivRow)`
     @media (max-width: 1200px) {
         flex-direction: column;
     }
+    font-family: Nunito !important;
 `;
 
-export const MainContentContainer = styled.div<{ isOverviewPage: boolean }>`
-    background: ${(props) => (props.isOverviewPage ? 'transparent' : props.theme.background.secondary)};
-    width: 66%;
+export const MainContentContainer = styled.div<{ isOverviewPage: boolean; isThalesStakersPage: boolean }>`
+    background: transparent;
+    width: ${(props) => (props.isThalesStakersPage ? '100%' : '66%')};
     padding: 2px;
-    border-radius: 15px;
+    border-radius: 8px;
     height: 100%;
     @media (max-width: 1200px) {
         width: 100%;
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         border: none;
-        background: ${(props) => (props.isOverviewPage ? 'transparent' : props.theme.background.secondary)};
+        background: transparent;
     }
 `;
 
 export const MainContentWrapper = styled.div<{ isOverviewPage: boolean }>`
-    border-radius: 15px;
+    border-radius: 8px;
     padding: ${(props) => (props.isOverviewPage ? '0px' : '25px 0px 30px 0px')};
-    background: ${(props) => props.theme.background.primary};
+    background: transparent;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         background: ${(props) => (props.isOverviewPage ? 'transparent' : props.theme.background.primary)};
         padding: ${(props) => (props.isOverviewPage ? '0px 0px 10px 0px' : '25px 0px 30px 0px')};
@@ -45,8 +47,7 @@ export const SidebarContainer = styled(FlexDivColumn)`
 `;
 
 export const SidebarWrapper = styled.div`
-    background: ${(props) => props.theme.background.secondary};
-    border-radius: 15px;
+    border-radius: 8px;
     padding: 2px;
     margin-bottom: 20px;
     &:first-child {
@@ -58,20 +59,15 @@ export const SidebarWrapper = styled.div`
 
 export const Sidebar = styled.div`
     background: ${(props) => props.theme.background.primary};
-    border-radius: 15px;
+    border-radius: 8px;
     padding: 15px 0px 0px 0px;
 `;
 
 export const OptionsTabWrapper = styled(FlexDivRow)`
-    padding: 0 28px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         padding: 0;
     }
-`;
-
-export const OptionsTabContainer = styled(FlexDiv)`
-    height: 40px;
 `;
 
 export const OptionsTab = styled(FlexDivCentered)<{ isActive: boolean; index: number }>`
@@ -96,6 +92,7 @@ export const OptionsTab = styled(FlexDivCentered)<{ isActive: boolean; index: nu
 `;
 
 export const BackLinkWrapper = styled(FlexDiv)<{ isOverviewPage: boolean }>`
+    font-family: Nunito !important;
     height: 20px;
     align-self: start;
     margin-bottom: 10px;
@@ -137,7 +134,7 @@ export const SidebarTitle = styled(FlexDivCentered)`
 export const SidebarContentWrapper = styled(FlexDivColumn)`
     background: ${(props) => props.theme.background.secondary};
     padding: 1px 0 0 0;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 8px 8px;
     height: 100%;
 `;
 
@@ -149,7 +146,7 @@ export const SidebarContent = styled(FlexDivColumn)<{ type?: string; isCouncilVo
             ? '0 0 10px 0'
             : '0'};
     background: ${(props) => props.theme.background.primary};
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 8px 8px;
 `;
 
 export const SidebarRowData = styled(FlexDivRow)<{ fontWeight?: number }>`
@@ -170,18 +167,19 @@ export const Votes = styled.div``;
 
 export const LoaderContainer = styled(FlexDivColumn)<{ height?: number }>`
     min-height: ${(props) => (props.height ? props.height : 400)}px;
-    background: ${(props) => props.theme.background.primary};
+    background: transparent;
     justify-content: space-evenly;
     position: relative;
-    border-radius: 15px;
+    border-radius: 8px;
     margin-top: 10px;
     margin-bottom: 10px;
+    color: ${(props) => props.theme.textColor.secondary};
 `;
 
 export const Blockie = styled.img`
     width: 20px;
     height: 20px;
-    border-radius: 12px;
+    border-radius: 8px;
     margin-right: 6px;
 `;
 
@@ -234,4 +232,10 @@ export const VotesCount = styled(FlexDivColumnCentered)`
     min-width: 30px;
     padding: 8px;
     margin-left: 8px;
+`;
+
+export const StyledPieChart = styled(PieChart)`
+    display: flex;
+    justify-self: center;
+    align-self: flex-end;
 `;

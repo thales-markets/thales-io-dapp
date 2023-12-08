@@ -17,4 +17,7 @@ export const buildHref = (route: string) => `${ifIpfsDeployment ? '#' : ''}${rou
 export const navigateToGovernance = (spaceKey?: SpaceKey, id?: string, replacePath = false) =>
     navigateTo(`${ROUTES.Governance.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`, replacePath);
 
+export const getGovernanceUrl = (spaceKey?: SpaceKey, id?: string) =>
+    `${ROUTES.Governance.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`;
+
 export { history };

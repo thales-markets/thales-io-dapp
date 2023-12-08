@@ -8,7 +8,7 @@ import {
 } from 'constants/governance';
 import { SpaceKey, StatusEnum } from 'enums/governance';
 import { ethers } from 'ethers';
-import { ThemeInterface } from 'types/ui';
+import { Colors } from 'styles/common';
 
 function getENSForAddresses(addresses: any[]) {
     return new Promise((resolve, reject) => {
@@ -78,13 +78,13 @@ export const getProposalApprovalData = (proposalStartDate: number) => {
     return { numberOfCouncilMembers, proposalApprovalVotes };
 };
 
-export const getStatusColor = (status: string, theme: ThemeInterface) => {
+export const getStatusColor = (status: string) => {
     switch (status) {
         case StatusEnum.Pending:
-            return theme.textColor.secondary;
+            return Colors.CYAN;
         case StatusEnum.Closed:
-            return theme.textColor.secondary;
+            return Colors.RED;
         default:
-            return theme.textColor.secondary;
+            return Colors.WHITE;
     }
 };

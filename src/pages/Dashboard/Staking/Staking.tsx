@@ -1,16 +1,18 @@
 import SPAAnchor from 'components/SPAAnchor';
 import ROUTES from 'constants/routes';
-import useStakersInfoQuery from 'queries/dashboard/useStakersInfoQuery';
+import { StakersFilterEnum } from 'enums/governance';
 import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
-import { useEffect, useState } from 'react';
+import useThalesStakersQuery from 'queries/useThalesStakersQuery';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
 import { Colors, FlexDiv, FlexDivColumnNative, FlexDivSpaceBetween } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
-import { StakersInfo, StakingData, TokenInfo } from 'types/token';
+import { Staker } from 'types/governance';
+import { StakingData, TokenInfo } from 'types/token';
 import { buildHref } from 'utils/routes';
 import {
     FlexDivFullWidthSpaceBetween,
@@ -28,26 +30,24 @@ const Staking: React.FC = () => {
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
 
     const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
-    const [stakersInfo, setStakersInfo] = useState<StakersInfo | undefined>(undefined);
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
 
     const stakingDataQuery = useStakingDataQuery({
         enabled: isAppReady,
     });
 
-    const stakersInfoQuery = useStakersInfoQuery({
+    const stakersQuery = useThalesStakersQuery(StakersFilterEnum.All, {
         enabled: isAppReady,
     });
+
+    const stakers: Staker[] = useMemo(
+        () => (stakersQuery.isSuccess && stakersQuery.data ? stakersQuery.data : []),
+        [stakersQuery.isSuccess, stakersQuery.data]
+    );
 
     const tokenInfoQuery = useTokenInfoQuery({
         enabled: isAppReady,
     });
-
-    useEffect(() => {
-        if (stakersInfoQuery.isSuccess && stakersInfoQuery.data) {
-            setStakersInfo(stakersInfoQuery.data);
-        }
-    }, [stakersInfoQuery.isSuccess, stakersInfoQuery.data]);
 
     useEffect(() => {
         if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
@@ -72,8 +72,6 @@ const Staking: React.FC = () => {
     const stakedOfTotalSupplyPercentage =
         stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.totalSupply) * 100 : 0;
 
-    const totalStakers = stakersInfo ? stakersInfo.totalStakers : '-';
-
     return (
         <SPAAnchor href={buildHref(ROUTES.Staking)}>
             <WidgetWrapper>
@@ -84,7 +82,7 @@ const Staking: React.FC = () => {
                     </FlexDiv>
                     <FlexDivSpaceBetween>
                         <TitleLabel>{t('dashboard.staking.total-stakers')}</TitleLabel>
-                        <TitleLabel isHighlighted={true}>{totalStakers}</TitleLabel>
+                        <TitleLabel isHighlighted={true}>{stakersQuery.isLoading ? '-' : stakers.length}</TitleLabel>
                     </FlexDivSpaceBetween>
                 </WidgetHeader>
                 <InfoSection side="left">

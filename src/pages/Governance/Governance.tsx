@@ -1,7 +1,5 @@
-import NavLinks from 'components/NavLinks';
-import { NavItem } from 'components/NavLinks/NavLinks';
+import { Item, Links } from 'components/NavLinks/styled-components';
 import { SNAPSHOT_GRAPHQL_URL } from 'constants/governance';
-import ROUTES from 'constants/routes';
 import { SpaceKey, StatusEnum } from 'enums/governance';
 import request, { gql } from 'graphql-request';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -9,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { RouteComponentProps } from 'react-router-dom';
 import { Line, NavContainer } from 'styles/common';
 import { Proposal } from 'types/governance';
-import { buildHref, navigateToGovernance } from 'utils/routes';
+import { navigateToGovernance } from 'utils/routes';
 import CouncilMembers from './CouncilMembers';
 import ProposalDetails from './ProposalDetails';
 import SidebarDetails from './ProposalDetails/SidebarDetails';
@@ -17,22 +15,17 @@ import ProposalList from './ProposalList';
 import ThalesStakers from './ThalesStakers';
 import Dropdown from './components/Dropdown';
 import {
+    ArrowIcon,
+    BackLink,
+    BackLinkWrapper,
     Container,
     MainContentContainer,
     MainContentWrapper,
-    OptionsTab,
-    OptionsTabContainer,
     OptionsTabWrapper,
     Sidebar,
     SidebarContainer,
     SidebarWrapper,
 } from './styled-components';
-
-enum Tab {
-    TIPS = 'tips',
-    ELECTIONS = 'elections',
-    THALESSTAKERS = 'thales-stakers',
-}
 
 type GovernanceProps = RouteComponentProps<{
     space: string;
@@ -46,27 +39,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
     const [selectedTab, setSelectedTab] = useState<SpaceKey>(SpaceKey.TIPS);
     const [statusFilter, setStatusFilter] = useState<StatusEnum>(StatusEnum.All);
 
-    const isMobile = false;
-
-    const navItems: NavItem[] = useMemo(() => {
-        return [
-            {
-                href: `${buildHref(ROUTES.Governance.Home)}`,
-                title: t('governance.nav.tips'),
-                active: selectedTab === SpaceKey.TIPS,
-            },
-            {
-                href: `${buildHref(ROUTES.Governance.Proposal)}?tab=${Tab.ELECTIONS}`,
-                title: t('governance.nav.elections'),
-                active: selectedTab === SpaceKey.COUNCIL,
-            },
-            {
-                href: `${buildHref(ROUTES.Governance.Space)}?tab=${Tab.THALESSTAKERS}`,
-                title: t('governance.nav.thales-stakers'),
-                active: selectedTab === SpaceKey.THALES_STAKERS,
-            },
-        ];
-    }, [selectedTab, t]);
+    // const isMobile = false;
 
     const fetchPreloadedProposal = useCallback(() => {
         const fetch = async () => {
@@ -159,9 +132,22 @@ const Governance: React.FC<GovernanceProps> = (props) => {
         <>
             <Line />
             <NavContainer>
-                <NavLinks items={navItems} />
+                <Links>
+                    {optionsTabContent.map((tab, index) => (
+                        <Item
+                            key={index}
+                            onClick={() => {
+                                navigateToGovernance(tab.id);
+                                setSelectedTab(tab.id);
+                            }}
+                            active={tab.id === selectedTab}
+                        >
+                            {tab.name}
+                        </Item>
+                    ))}
+                </Links>
             </NavContainer>
-            {/* <BackLinkWrapper isOverviewPage={isOverviewPage}>
+            <BackLinkWrapper isOverviewPage={isOverviewPage}>
                 {selectedProposal && (
                     <BackLink
                         onClick={() => {
@@ -173,38 +159,24 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                         {t(`governance.back-to-proposals`)}
                     </BackLink>
                 )}
-                </BackLinkWrapper> */}
+            </BackLinkWrapper>
             <Container id="proposal-details">
-                <MainContentContainer isOverviewPage={isOverviewPage}>
+                <MainContentContainer
+                    isOverviewPage={isOverviewPage}
+                    isThalesStakersPage={selectedTab == SpaceKey.THALES_STAKERS}
+                >
                     <MainContentWrapper isOverviewPage={isOverviewPage}>
                         {!selectedProposal && (
                             <>
                                 <OptionsTabWrapper>
-                                    {isMobile ? (
+                                    {/* {isMobile ? (
                                         <Dropdown
                                             options={Object.values(SpaceKey)}
                                             activeOption={selectedTab}
                                             onSelect={setSelectedTab}
                                             translationKey="tabs"
-                                        />
-                                    ) : (
-                                        <OptionsTabContainer>
-                                            {optionsTabContent.map((tab, index) => (
-                                                <OptionsTab
-                                                    isActive={tab.id === selectedTab}
-                                                    key={index}
-                                                    index={index}
-                                                    onClick={() => {
-                                                        navigateToGovernance(tab.id);
-                                                        setSelectedTab(tab.id);
-                                                    }}
-                                                    className={`${tab.id === selectedTab ? 'selected' : ''}`}
-                                                >
-                                                    {tab.name}
-                                                </OptionsTab>
-                                            ))}
-                                        </OptionsTabContainer>
-                                    )}
+                                        /> */}
+
                                     {selectedTab !== SpaceKey.THALES_STAKERS && (
                                         <Dropdown
                                             options={Object.values(StatusEnum)}
@@ -236,7 +208,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                         {selectedProposal && <ProposalDetails proposal={selectedProposal} />}
                     </MainContentWrapper>
                 </MainContentContainer>
-                {!selectedProposal && (
+                {!selectedProposal && selectedTab !== SpaceKey.THALES_STAKERS && (
                     <SidebarContainer>
                         <SidebarWrapper>
                             <Sidebar>

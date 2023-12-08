@@ -1,16 +1,15 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDivColumn, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
+import { Colors, FlexDivColumn, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
 
 export const Container = styled(FlexDivColumnCentered)`
-    padding-top: 30px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding-top: 10px;
     }
 `;
 
-export const HeaderContainer = styled(FlexDivRowCentered)`
+export const TableHeaderContainer = styled(FlexDivRowCentered)`
     margin: 0 30px 20px 30px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
@@ -29,9 +28,10 @@ export const TableContainer = styled(FlexDivColumn)`
 `;
 
 export const Info = styled.div`
-    font-weight: bold;
+    font-weight: 700;
     font-size: 18px;
     line-height: 24px;
+    text-align: center;
     color: ${(props) => props.theme.textColor.primary};
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-left: 0;
@@ -63,3 +63,15 @@ export const ArrowIcon = styled(ArrowHyperlinkIcon)`
     margin-left: 4px;
     margin-top: 5px;
 `;
+
+export const Icon = styled.i`
+    font-size: 25px;
+    margin-right: 5px;
+    color: ${Colors.WHITE};
+`;
+
+export const ColoredInfo = styled.span`
+    color: ${Colors.CYAN};
+`;
+
+export const ChartWrapper = styled.div``;
