@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-export const FlexDiv = styled.div<{ gap?: string; grow?: number }>`
+export const FlexDiv = styled.div<{ gap?: string }>`
     display: flex;
     gap: ${(props) => props.gap || ''};
-    flex-grow: ${(props) => props.grow || ''};
 `;
 
 export const FlexDivCentered = styled(FlexDiv)`
@@ -47,6 +46,12 @@ export const FlexDivColumnSpaceBetween = styled(FlexDiv)`
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
+`;
+
+export const FlexDivColumnSpaceAround = styled(FlexDiv)`
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
 `;
 
 export const FlexDivColumnNative = styled(FlexDiv)`
@@ -93,6 +98,8 @@ export const Colors = {
     LIGHT_RED: '#E29587',
     DARK_RED: '#D66D75',
     LIGHT_ORANGE: '#FFB866',
+    TURQUOISE: '#36E5D0',
+    INDIAN_RED: '#DD5667',
 };
 
 export const Background = styled.div`

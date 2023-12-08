@@ -56,12 +56,12 @@ export const refetchProposal = (spaceKey: SpaceKey, hash: string, walletAddress:
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Governance.Proposal(spaceKey, hash, walletAddress));
 };
 
-// export const refetchLiquidityPoolData = (walletAddress: string, networkId: Network) => {
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.LiquidityPool.Data(networkId));
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.LiquidityPool.UserData(walletAddress, networkId));
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.LiquidityPool.PnL(networkId));
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.LiquidityPool.UserTransactions(networkId));
-// };
+export const refetchThalesLiquidityPoolData = (walletAddress: string, networkId: Network) => {
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.Data(networkId));
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.UserData(walletAddress, networkId));
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.PnL(networkId));
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.UserTransactions(networkId));
+};
 
 // export const refetchStakingLeaderboardData = (walletAddress: string, networkId: Network, period: number) => {
 //     queryConnector.queryClient.invalidateQueries(

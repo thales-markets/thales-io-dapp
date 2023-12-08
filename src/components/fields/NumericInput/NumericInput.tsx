@@ -153,7 +153,7 @@ const StyledInput = styled(Input)<{ padding?: string }>`
 
 const RightContainer = styled(FlexDivCentered)`
     position: absolute;
-    right: 0;
+    right: 6px;
     bottom: 6px;
 `;
 
@@ -175,13 +175,15 @@ const CurrencyLabel = styled.label<{ hasSeparator?: boolean }>`
 const MaxButton = styled.button`
     background: transparent;
     border: none;
-    font-weight: 700;
+    border-radius: 3px;
+    font-family: NunitoBold;
     font-size: 13px;
     line-height: 20px;
-    color: ${(props) => props.theme.button.textColor.secondary};
+    background: ${(props) => props.theme.button.background.tertiary};
+    color: ${(props) => props.theme.button.textColor.tertiary};
     text-transform: uppercase;
     cursor: pointer;
-    padding-right: 8px;
+    padding: 0 10px;
     &:disabled {
         opacity: 0.4;
         cursor: default;

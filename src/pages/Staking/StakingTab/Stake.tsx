@@ -214,7 +214,6 @@ const Stake: React.FC = () => {
                             value={amountToStake}
                             onChange={(_, value) => setAmountToStake(value)}
                             disabled={isStaking || isUnstaking || isStakingPaused}
-                            currencyLabel={THALES_CURRENCY}
                             placeholder={t('common.enter-amount')}
                             label={`${t('staking.staking.stake-unstake.amount-to')} ${t(
                                 'staking.staking.stake-unstake.stake'

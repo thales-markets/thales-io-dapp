@@ -1,8 +1,60 @@
+import { Network } from 'enums/network';
 import keyBy from 'lodash/keyBy';
+import { Coins } from 'thales-utils/src/types/tokens';
 
 export const THALES_CURRENCY = 'THALES';
 export const USD_SIGN = '$';
 export const LP_TOKEN = 'LP Token';
+
+const SYNTHS = [
+    'sBTC',
+    'sBCH',
+    'sETH',
+    'sEUR',
+    'sDEFI',
+    'sAAPL',
+    'sFB',
+    'sGOOG',
+    'sNFLX',
+    'sLINK',
+    'sAAVE',
+    'sUNI',
+    'sAUD',
+    'sGBP',
+    'sCHF',
+    'sKRW',
+    'sXAU',
+    'sOIL',
+    'sBNB',
+    'sTRX',
+    'sXTZ',
+    'sXRP',
+    'sLTC',
+    'sEOS',
+    'sETC',
+    'sDASH',
+    'sXMR',
+    'sADA',
+    'sYFI',
+    'sDOT',
+    'sREN',
+    'sCOMP',
+    's1INCH',
+    'sRUNE',
+    'sFTSE',
+    'sNIKKEI',
+    'sTSLA',
+    'sCRV',
+    'sAMZN',
+    'sCEX',
+    'sXAG',
+    'sJPY',
+    'sUSD',
+    'sLONG',
+    'sSHORT',
+    'sSOL',
+];
+export const SYNTHS_MAP = keyBy(SYNTHS);
 
 // Order is important, used for sorting
 export const CRYPTO_CURRENCY = [
@@ -61,3 +113,22 @@ export const CRYPTO_CURRENCY = [
     'WETH',
 ];
 export const CRYPTO_CURRENCY_MAP = keyBy(CRYPTO_CURRENCY);
+
+export const COLLATERALS: Record<Network, Coins[]> = {
+    [Network.Mainnet]: [SYNTHS_MAP.sUSD as Coins],
+    [Network.OptimismMainnet]: [
+        SYNTHS_MAP.sUSD as Coins,
+        CRYPTO_CURRENCY_MAP.DAI as Coins,
+        CRYPTO_CURRENCY_MAP.USDC as Coins,
+        CRYPTO_CURRENCY_MAP.USDT as Coins,
+    ],
+    [Network.OptimismGoerli]: [
+        SYNTHS_MAP.sUSD as Coins,
+        CRYPTO_CURRENCY_MAP.DAI as Coins,
+        CRYPTO_CURRENCY_MAP.USDC as Coins,
+        CRYPTO_CURRENCY_MAP.USDT as Coins,
+    ],
+    [Network.PolygonMainnet]: [CRYPTO_CURRENCY_MAP.USDC as Coins],
+    [Network.Base]: [CRYPTO_CURRENCY_MAP.USDC as Coins],
+    [Network.Arbitrum]: [CRYPTO_CURRENCY_MAP.USDCe as Coins],
+};

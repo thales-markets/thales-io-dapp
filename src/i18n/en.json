@@ -1,5 +1,7 @@
 {
     "common": {
+        "transaction-pending": "Transaction pending",
+        "approve-success": "Successfully approved",
         "read-more": "Read more",
         "show-less": "Show less",
         "max": "max",
@@ -184,7 +186,7 @@
             "vesting": "Vesting",
             "leaderboard": "Leaderboard",
             "acc-preferences": "Acc Preferences",
-            "lp-staking": "AMM LP"
+            "amm-lp": "AMM LP"
         },
         "table": {
             "title": "Your activity",
@@ -405,6 +407,114 @@
             },
             "source": "Source",
             "destination": "Destination"
+        },
+        "amm-lp": {
+            "title": "Provide Liquidity",
+            "description": "<h1>Description</h1><p>Liquidity providing involves users depositing stablecoin collateral into a smart contract-based liquidity pool for Thales markets trading. The collateral deposited is used to facilitate trading on Thales' AMM.</p><p>To be able to provide liquidity you'll need to be staking THALES. There's no maximum cap per wallet and you may deposit a maximum of 1 {{currency}} per {{thalesStakedAmount}} THALES staked until the liquidity pool is filled.</p><p>At the end of each round, the proportional share of that round's PnL will be added to your deposited balance.</p><p>If you wish to withdraw, you can signal that at any time during the ongoing round, and at the end of the round the amount you signaled for withdrawal (inclusive of that round's PnL) is sent to you. The minimum amount to be withdrawn is set to 10%.</p><p>If you decide to unstake THALES while providing liquidity, please be aware that you'll need to signal a withdrawal from the liquidity pool first.</p><p>Providing liquidity exposes you to various risks including potential losses due to users winning in trading as well as smart contract security risks. Please make sure you understand these risks before depositing.</p><p><tipLink>TIP-139</tipLink> has more details on the technical implementation of Thales AMM liquidity providing.</p>",
+            "variables": "<h1>Variables</h1><ul><li>Max total deposit: {{maxAllowedDeposit}}</li><li>Max users in the pool: {{maxAllowedUsers}}</li><li>Minimum deposit: {{minDepositAmount}}</li><li>Round duration: {{roundLength}} days</li></ul>",
+            "liquidity-pool-not-started-message": "The liquidity pool has not started",
+            "liquidity-pool-paused-message": "The liquidity pool is paused",
+            "round-end-label": "The round ends in",
+            "round-ended-label": "Round ended",
+            "total-info-label": "Total LP info",
+            "users-in-liquidity-pool-label": "Users in the liquidity pool: {{number}} / {{max}}",
+            "your-share-label": "Your share: {{percentage}} of LP",
+            "your-info-label": "Your LP info",
+            "current-balance-label": "Current balance",
+            "next-round-balance-label": "Next round balance",
+            "max-allowance-label": "Max allowance",
+            "your-thales-staked-label": "Your THALES staked",
+            "allowance-multiplier-label": "Allowance multiplier",
+            "full-withdrawal-request-label": "Withdrawal request: {{amount}}<tooltip />",
+            "partial-withdrawal-request-label": "Withdrawal request: {{percentage}} of the balance ({{amount}}<tooltip />)",
+            "estimated-amount-tooltip": "This is an estimated amount. The actual amount will be calculated upon closing the current round based on the round PnL.",
+            "available-to-withdraw-label": "Available to withdraw: <bold>{{amount}}</bold>",
+            "nothing-to-withdraw-label": "Nothing to withdraw.",
+            "withdrawal-message": "You can request a full/partial withdrawal and your funds will be sent to you automatically at the end of the round when the round closes.",
+            "full-withdrawal-requested-message": "You requested to withdraw a full balance of <bold>{{amount}}</bold><tooltip />.",
+            "partial-withdrawal-requested-message": "You requested to withdraw {{percentage}} of the balance (<bold>{{amount}}</bold><tooltip />).",
+            "withdrawal-requested-message": "Your funds will be sent to you automatically at the end of the round when the round closes.",
+            "first-deposit-withdrawal-message": "You deposited for the next round and you can withdraw these funds at the end of the next round.",
+            "deposit-withdrawal-warning": "Withdrawal is requested, you cannot deposit.",
+            "deposit-max-amount-of-users-warning": "Maximum number of users in the liquidity pool is reached, you cannot deposit.",
+            "deposit-liquidity-pool-cap-reached-warning": "The liquidity pool cap is reached, you cannot deposit.",
+            "deposit-liquidity-pool-cap-error": "Deposit amount exceeds liquidity pool cap",
+            "deposit-staked-thales-error": "Deposit amount exceeds max allowance, stake more THALES to deposit",
+            "deposit-min-amount-error": "The minimum amount for the deposit is {{amount}}",
+            "withdrawal-deposit-warning": "You cannot withdraw as you already deposited for the next round.",
+            "full-withdrawal-label": "Full withdrawal",
+            "partial-withdrawal-label": "Partial withdrawal",
+            "withdrawal-amount-label": "Withdrawal amount: <bold>{{amount}}</bold>",
+            "closing-round": "Closing round...",
+            "round-successfully-closed": "Round successfully closed",
+            "tabs": {
+                "deposit": "Deposit",
+                "withdraw": "Withdraw"
+            },
+            "button": {
+                "deposit-label": "Deposit",
+                "deposit-progress-label": "Deposit in progress...",
+                "deposit-confirmation-message": "Deposit successfully placed",
+                "request-withdrawal-label": "Request withdrawal",
+                "request-withdrawal-confirmation-message": "Withdrawal request successfully sent",
+                "get-thales-label": "Get THALES",
+                "stake-thales-label": "Stake THALES",
+                "close-round": "Close round"
+            },
+            "pnl": {
+                "pnl-per-round": {
+                    "title": "PnL per round"
+                },
+                "cumulative-pnl": {
+                    "title": "PnL over time"
+                },
+                "no-data": "No PnL data for previous rounds.",
+                "lifetime-pnl": "Lifetime PnL"
+            },
+            "user-transactions": {
+                "title": "User TX",
+                "your-transactions-title": "Your TX",
+                "no-transactions": "No user transactions associated with this liquidity pool in the selected round.",
+                "round-label": "Round",
+                "type": {
+                    "deposit": "Deposit",
+                    "withdrawalRequest": "Withdrawal Request",
+                    "claim": "Withdrawal Claim"
+                }
+            },
+            "how-it-works": {
+                "title": "Provide AMM Liquidity",
+                "subtitle": "HOW AMM LP WORKS",
+                "description-1": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which enables trading on Thales' Automated Market Maker (AMM). To participate, you must stake THALES tokens. The maximum deposit is 1 sUSD per THALES staked, with no wallet cap, until the pool reaches its limit. Your share of the pool's profit and loss (PnL) is added to your balance at the end of each round. You can request to withdraw at any time, with the withdrawal (including that round's PnL) processed at round's end. The minimum withdrawal is 10% of your balance.",
+                "description-2": "Unstaking THALES requires signaling a withdrawal from the liquidity pool first. Be aware of risks like trading losses and smart contract vulnerabilities. <tip>TIP-139</tip> document provides detailed technical information on this process. Variables Max total deposit: $ 1,000,000 Max users in the pool: 200 Minimum deposit: $ 100 Round duration: 7 days Round Ends In 1d 10h 34m",
+                "variables": "Variables",
+                "max-total-deposit": "Max total deposit",
+                "max-users": "Max users in the pool",
+                "minimum-deposit": "Minimum deposit",
+                "round-duration": "Round duration",
+                "round-ends-in": "Round ends in",
+                "get-thales": "Get THALES",
+                "stake-thales": "Stake THALES"
+            },
+            "deposit-withdraw": {
+                "deposit": "Deposit",
+                "depositing": "Depositing...",
+                "withdraw": "Withdraw",
+                "withdrawing": "Withdrawing...",
+                "deposit-confirmation-message": "Deposit successfully placed"
+            },
+            "table": {
+                "date-time-col": "date | time",
+                "wallet-address": "wallet address",
+                "type-col": "type",
+                "amount-col": "amount",
+                "asset": "asset",
+                "maturity-date-col": "maturity",
+                "strike-price-col": "strike price",
+                "usd-value-col": "usd value",
+                "result-col": "result",
+                "tx-status-col": "tx status"
+            }
         }
     },
     "header": {

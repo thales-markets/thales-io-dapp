@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router';
 import { Line, NavContainer } from 'styles/common';
 import { buildHref } from 'utils/routes';
+import AMMLP from './AMMLP';
 import AccPreferences from './AccPreferences';
-import LPStaking from './LPStaking';
 import Leaderboard from './Leaderboard';
 import Rewards from './Rewards';
 import StakingTab from './StakingTab';
@@ -21,7 +21,7 @@ enum Tab {
     VESTING = 'vesting',
     LEADERBOARD = 'leaderboard',
     ACC_PREFERENCES = 'acc-preferences',
-    LP_STAKING = 'lp-staking',
+    AMM_LP = 'amm-lp',
 }
 
 const Staking: React.FC = () => {
@@ -57,9 +57,9 @@ const Staking: React.FC = () => {
                 active: paramTab === Tab.ACC_PREFERENCES,
             },
             {
-                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.LP_STAKING}`,
-                title: t('staking.nav.lp-staking'),
-                active: paramTab === Tab.LP_STAKING,
+                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.AMM_LP}`,
+                title: t('staking.nav.amm-lp'),
+                active: paramTab === Tab.AMM_LP,
             },
         ];
     }, [paramTab, t]);
@@ -75,7 +75,7 @@ const Staking: React.FC = () => {
             {paramTab === Tab.VESTING && <Vesting />}
             {paramTab === Tab.LEADERBOARD && <Leaderboard />}
             {paramTab === Tab.ACC_PREFERENCES && <AccPreferences />}
-            {paramTab === Tab.LP_STAKING && <LPStaking />}
+            {paramTab === Tab.AMM_LP && <AMMLP />}
         </Suspense>
     );
 };

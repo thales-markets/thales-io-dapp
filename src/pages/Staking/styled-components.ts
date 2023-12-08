@@ -15,6 +15,15 @@ export const SectionTitle = styled.div`
     > span > i {
         margin-right: 5px;
     }
+    > span > div {
+        color: #fff;
+        font-family: NunitoBold;
+        font-size: 14px;
+        font-style: normal;
+        margin-top: 5px;
+        margin-left: 3px;
+        text-transform: none;
+    }
     > span:nth-child(2) {
         color: ${(props) => props.theme.textColor.secondary};
     }
@@ -31,7 +40,7 @@ export const InfoDiv = styled.div`
         line-height: 155%;
     }
 `;
-export const StakingButton = styled.button<{ padding?: string; disabled?: boolean }>`
+export const StakingButton = styled.button<{ padding?: string; disabled?: boolean; width?: string }>`
     cursor: pointer;
     color: ${(props) => props.theme.background.primary};
     padding: ${(props) => props.padding || '5px 7px'};
@@ -42,6 +51,7 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
     font-family: NunitoBold;
     font-size: 13px;
     text-transform: uppercase;
+    width: ${(props) => props.width || 'auto'};
     &:disabled {
         opacity: 0.5;
         cursor: default;

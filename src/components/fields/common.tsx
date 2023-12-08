@@ -17,8 +17,8 @@ export const FieldLabel = styled.label`
 `;
 
 export const Input = styled.input<{ fontSize?: string; width?: string; height?: string }>`
-    background: ${(props) => props.theme.background.primary};
-    border: 1px solid ${(props) => props.theme.borderColor.primary};
+    background: ${(props) => props.theme.background.quaternary};
+    border: 1px solid ${(props) => props.theme.borderColor.tertiary};
     box-sizing: border-box;
     mix-blend-mode: normal;
     border-radius: 8px;

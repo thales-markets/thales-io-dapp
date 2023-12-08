@@ -136,6 +136,17 @@ const QUERY_KEYS = {
     Integrators: () => ['integrators'],
     VolumeStats: () => ['volume', 'stats'],
     UsersStats: () => ['users', 'stats'],
+    ThalesLiquidityPool: {
+        Data: (networkId: Network) => ['thalesLiquidityPool', 'data', networkId],
+        UserData: (walletAddress: string, networkId: Network) => [
+            'thalesLiquidityPool',
+            'data',
+            walletAddress,
+            networkId,
+        ],
+        PnL: (networkId: Network) => ['thalesLiquidityPool', 'pnl', networkId],
+        UserTransactions: (networkId: Network) => ['thalesLiquidityPool', 'userTransactions', networkId],
+    },
 };
 
 export default QUERY_KEYS;

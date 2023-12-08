@@ -5,6 +5,13 @@
     font-size: 20px;
 }
 
+.thales-icon {
+    display: inline-block;
+    font-family: ThalesIcons !important;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
 .icon--thales-logo:before {
     content: '\006A';
 }

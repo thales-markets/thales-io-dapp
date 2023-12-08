@@ -1,5 +1,6 @@
 import { Provider } from '@wagmi/core';
 import { Signer, ethers } from 'ethers';
+import collateralContract from './contracts/collateralContract';
 import escrowThales from './contracts/escrowThales';
 import parlayAMMLiquidityPoolContract from './contracts/parlayAMMLiquidityPoolContract';
 import parlayAMMLiquidityPoolDataContract from './contracts/parlayAMMLiquidityPoolDataContract';
@@ -18,6 +19,7 @@ type SnxJSConnector = {
     initialized: boolean;
     provider: Provider | undefined;
     signer: Signer | undefined;
+    collateral?: ethers.Contract;
     stakingDataContract?: ethers.Contract;
     sportLiquidityPoolContract?: ethers.Contract;
     sportLiquidityPoolDataContract?: ethers.Contract;
@@ -42,6 +44,8 @@ const snxJSConnector: SnxJSConnector = {
         this.initialized = true;
         this.signer = contractSettings.signer;
         this.provider = contractSettings.provider;
+        this.collateral = conditionalInitializeContract(collateralContract, contractSettings);
+
         this.stakingDataContract = conditionalInitializeContract(stakingDataContract, contractSettings);
         this.sportLiquidityPoolContract = conditionalInitializeContract(sportLiquidityPoolContract, contractSettings);
         this.sportLiquidityPoolDataContract = conditionalInitializeContract(

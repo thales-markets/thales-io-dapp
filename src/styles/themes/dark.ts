@@ -15,6 +15,7 @@ const darkTheme = {
     borderColor: {
         primary: Colors.GRAY,
         secondary: Colors.PURPLE_NAVY,
+        tertiary: Colors.METALLIC_BLUE,
     },
     link: {
         textColor: {
@@ -26,10 +27,12 @@ const darkTheme = {
         background: {
             primary: Colors.PURPLE_NAVY,
             secondary: Colors.METALLIC_BLUE,
+            tertiary: Colors.CYAN,
         },
         textColor: {
             primary: Colors.WHITE,
             secondary: Colors.GRAY,
+            tertiary: Colors.YANKEES_BLUE,
         },
         borderColor: {
             primary: Colors.METALLIC_BLUE,
@@ -58,6 +61,10 @@ const darkTheme = {
         borderColor: {
             primary: Colors.ORANGE,
         },
+    },
+    chart: {
+        positive: Colors.TURQUOISE,
+        negative: Colors.INDIAN_RED,
     },
     toastMessages: {
         success: {
