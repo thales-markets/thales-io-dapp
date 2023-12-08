@@ -57,7 +57,7 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                     )}
                 </FlexDivRowCentered>
                 <Title status={proposal.state}>{proposal.title}</Title>
-                <Body status={proposal.state}>{truncateText(proposal.body, 250)}</Body>
+                <Body status={proposal.state}>{truncateText(proposal.body, 200)}</Body>
             </Card>
         </CardContainer>
     );

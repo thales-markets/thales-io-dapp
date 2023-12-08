@@ -1,5 +1,6 @@
 import { ReactComponent as ArrowBackIcon } from 'assets/images/arrow-back.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
+import { PieChart } from 'recharts';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
@@ -11,9 +12,9 @@ export const Container = styled(FlexDivRow)`
     font-family: Nunito !important;
 `;
 
-export const MainContentContainer = styled.div<{ isOverviewPage: boolean }>`
+export const MainContentContainer = styled.div<{ isOverviewPage: boolean; isThalesStakersPage: boolean }>`
     background: transparent;
-    width: 66%;
+    width: ${(props) => (props.isThalesStakersPage ? '100%' : '66%')};
     padding: 2px;
     border-radius: 8px;
     height: 100%;
@@ -46,7 +47,6 @@ export const SidebarContainer = styled(FlexDivColumn)`
 `;
 
 export const SidebarWrapper = styled.div`
-    background: ${(props) => props.theme.background.secondary};
     border-radius: 8px;
     padding: 2px;
     margin-bottom: 20px;
@@ -232,4 +232,10 @@ export const VotesCount = styled(FlexDivColumnCentered)`
     min-width: 30px;
     padding: 8px;
     margin-left: 8px;
+`;
+
+export const StyledPieChart = styled(PieChart)`
+    display: flex;
+    justify-self: center;
+    align-self: flex-end;
 `;

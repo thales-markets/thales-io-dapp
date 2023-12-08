@@ -6,11 +6,13 @@ import { StakersFilterEnum } from 'enums/governance';
 import { Network } from 'enums/network';
 import makeBlockie from 'ethereum-blockies-base64';
 import useDebouncedMemo from 'hooks/useDebouncedMemo';
-import useThalesStakersQuery from 'queries/governance/useThalesStakersQuery';
+import { StyledPieChart } from 'pages/Dashboard/styled-components';
+import useThalesStakersQuery from 'queries/useThalesStakersQuery';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { CellProps } from 'react-table';
+import { Cell, Pie } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
 import { getNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
@@ -21,7 +23,18 @@ import { EnsNames, Staker, Stakers } from 'types/governance';
 import snxJSConnector from 'utils/snxJSConnector';
 import Dropdown from '../components/Dropdown/Dropdown';
 import { Blockie, StyledLink } from '../styled-components';
-import { Address, Amount, ArrowIcon, Container, HeaderContainer, Info, TableContainer } from './styled-components';
+import {
+    Address,
+    Amount,
+    ArrowIcon,
+    ChartWrapper,
+    ColoredInfo,
+    Container,
+    Icon,
+    Info,
+    TableContainer,
+    TableHeaderContainer,
+} from './styled-components';
 
 const ThalesStakers: React.FC = () => {
     const { t } = useTranslation();
@@ -34,11 +47,29 @@ const ThalesStakers: React.FC = () => {
     const stakersQuery = useThalesStakersQuery(filter, {
         enabled: isAppReady,
     });
+
     const stakers: Staker[] = useMemo(
         () => (stakersQuery.isSuccess && stakersQuery.data ? stakersQuery.data : []),
         [stakersQuery.isSuccess, stakersQuery.data]
     );
 
+    const pieData = useMemo(() => {
+        const data: any[] = [];
+        if (stakers.length > 0) {
+            stakers.forEach((staker: Staker) => {
+                const stakerData = {
+                    name: staker.id,
+                    value: staker.totalStakedAmount,
+                    color: '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).slice(1, 7),
+                };
+                data.push(stakerData);
+            });
+        }
+
+        return data;
+    }, [stakers]);
+
+    console.log(pieData);
     useEffect(() => {
         const getEnsNames = async (stakers: Stakers) => {
             const records: EnsNames = {};
@@ -78,23 +109,46 @@ const ThalesStakers: React.FC = () => {
 
     return (
         <Container>
-            <HeaderContainer>
+            <Info>
+                <Icon className="icon icon--people" />
+                <span>{t('governance.stakers.number-of-stakers')}: </span>
+                <ColoredInfo>{stakersQuery.isLoading ? '-' : stakers.length}</ColoredInfo>
+            </Info>
+            <ChartWrapper>
+                <StyledPieChart width={350} height={350}>
+                    <Pie
+                        isAnimationActive={false}
+                        blendStroke={true}
+                        data={pieData}
+                        dataKey={'value'}
+                        innerRadius={65}
+                        outerRadius={95}
+                        cx="50%"
+                        cy="50%"
+                        fill="#82ca9d"
+                    >
+                        {pieData.map((slice, index) => (
+                            <Cell key={index} fill={slice.color} />
+                        ))}
+                    </Pie>
+                </StyledPieChart>
+            </ChartWrapper>
+
+            <TableHeaderContainer>
                 <Dropdown
                     options={Object.values(StakersFilterEnum)}
                     activeOption={filter}
                     onSelect={setFilter}
                     translationKey="stakers-filter"
                 />
-                <Info>
-                    {`${t('governance.stakers.number-of-stakers')}: ${stakersQuery.isLoading ? '-' : stakers.length}`}
-                </Info>
+
                 <SearchInput
                     text={addressSearch}
-                    placeholder={t('op-rewards.search-placeholder')}
+                    placeholder={t('governance.stakers.search-wallet')}
                     handleChange={setAddressSearch}
                     width="320px"
                 />
-            </HeaderContainer>
+            </TableHeaderContainer>
             <TableContainer>
                 <Table
                     columns={[

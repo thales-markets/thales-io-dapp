@@ -161,7 +161,10 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                 )}
             </BackLinkWrapper>
             <Container id="proposal-details">
-                <MainContentContainer isOverviewPage={isOverviewPage}>
+                <MainContentContainer
+                    isOverviewPage={isOverviewPage}
+                    isThalesStakersPage={selectedTab == SpaceKey.THALES_STAKERS}
+                >
                     <MainContentWrapper isOverviewPage={isOverviewPage}>
                         {!selectedProposal && (
                             <>
@@ -205,7 +208,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                         {selectedProposal && <ProposalDetails proposal={selectedProposal} />}
                     </MainContentWrapper>
                 </MainContentContainer>
-                {!selectedProposal && (
+                {!selectedProposal && selectedTab !== SpaceKey.THALES_STAKERS && (
                     <SidebarContainer>
                         <SidebarWrapper>
                             <Sidebar>

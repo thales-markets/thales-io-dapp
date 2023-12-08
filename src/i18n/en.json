@@ -561,7 +561,8 @@
             "tooltip-staked-directly": "staked directly",
             "tooltip-escrowed-amount": "escrowed amount",
             "no-stakers-found": "No stakers found",
-            "number-of-stakers": "Total number of stakers"
+            "number-of-stakers": "Total number of stakers",
+            "search-wallet": "Search wallet address"
         },
         "stakers-filter": {
             "all": "all",
