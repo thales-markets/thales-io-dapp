@@ -644,6 +644,7 @@
             "vote-confirmation-message": "Successfully voted",
             "vote-confirmation": "Are you sure you want to vote",
             "see-pitch": "See this pitch",
+            "details": "Proposal details",
             "pitch-by": "Pitch by",
             "final-result": {
                 "yes": "Passed",

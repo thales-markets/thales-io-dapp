@@ -12,7 +12,7 @@ import {
 import { getStatusColor } from 'utils/governance';
 
 export const Container = styled(FlexDivColumnCentered)<{ topMargin?: number }>`
-    padding: 10px 40px;
+    padding: 10px 20px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 10px 20px;
     }
@@ -159,7 +159,7 @@ export const DetailsTitle = styled(FlexDivRow)`
     text-align: center;
     color: ${(props) => props.theme.textColor.primary};
     margin-bottom: 5px;
-    margin-top: 40px;
+    margin-top: 10px;
 `;
 
 export const VotingPowerTitle = styled(DetailsTitle)`

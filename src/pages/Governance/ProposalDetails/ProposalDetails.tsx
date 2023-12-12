@@ -1,6 +1,5 @@
 import { ProposalTypeEnum, SpaceKey, StatusEnum } from 'enums/governance';
 import { Network } from 'enums/network';
-import makeBlockie from 'ethereum-blockies-base64';
 import useVotingPowerQuery from 'queries/governance/useVotingPowerQuery';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,39 +9,15 @@ import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modu
 import { RootState } from 'redux/rootReducer';
 import { Remarkable } from 'remarkable';
 import { linkify } from 'remarkable/linkify';
-import { FlexDivRow, FlexDivRowCentered } from 'styles/common';
-import {
-    formatCurrency,
-    formatCurrencyWithKey,
-    formatShortDateWithTime,
-    getEtherscanAddressLink,
-    getEtherscanBlockLink,
-    truncateAddress,
-} from 'thales-utils';
+import { FlexDivRow } from 'styles/common';
+import { formatCurrencyWithKey } from 'thales-utils';
 import { Proposal } from 'types/governance';
-import { getProposalApprovalData, getProposalUrl } from 'utils/governance';
+import { getProposalApprovalData } from 'utils/governance';
 import snxJSConnector from 'utils/snxJSConnector';
-import { Blockie, StyledLink } from '../styled-components';
+import ProposalHeader from './ProposalHeader';
 import SingleChoiceVoting from './Voting/SingleChoiceVoting';
 import WeightedVoting from './Voting/WeightedVoting';
-import {
-    ArrowIcon,
-    Body,
-    Container,
-    DetailsContainer,
-    DetailsTitle,
-    DetailsWrapper,
-    Divider,
-    Label,
-    Status,
-    StatusContainer,
-    StatusWrapper,
-    Text,
-    Title,
-    VoteHeader,
-    VoteNote,
-    VotingPowerTitle,
-} from './styled-components';
+import { Body, Container, DetailsTitle, Divider, VoteHeader, VoteNote, VotingPowerTitle } from './styled-components';
 
 type ProposalDetailsProps = {
     proposal: Proposal;
@@ -85,108 +60,44 @@ const ProposalDetails: React.FC<ProposalDetailsProps> = ({ proposal }) => {
     }, [proposal, networkId]);
 
     return (
-        <Container>
-            <Title>{proposal.title}</Title>
-            <StatusContainer>
-                <Label>{t(`governance.proposal.status-label`)}</Label>
-                <StatusWrapper status={proposal.state}>
-                    <Status status={proposal.state}>{t(`governance.status.${proposal.state}`)}</Status>
-                </StatusWrapper>
-            </StatusContainer>
-            <DetailsWrapper>
-                <DetailsContainer>
-                    <FlexDivRowCentered>
-                        <Text>{t(`governance.proposal.author-label`)}</Text>
-                        <StyledLink
-                            href={getEtherscanAddressLink(Network.Mainnet, proposal.author)}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <Blockie
-                                src={makeBlockie(proposal.author)}
-                                style={{ width: '16px', height: '16px', marginBottom: '-3px' }}
-                            />
-                            <Text>{authorEns != null ? authorEns : truncateAddress(proposal.author)}</Text>
-                            <ArrowIcon />
-                        </StyledLink>
-                    </FlexDivRowCentered>
-                    <Divider />
-                    <FlexDivRowCentered>
-                        <Text>{t(`governance.proposal.proposal-label`)}</Text>
-                        <StyledLink
-                            href={getProposalUrl(proposal.space.id, proposal.id)}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <Text>{truncateAddress(proposal.id)}</Text>
-                            <ArrowIcon />
-                        </StyledLink>
-                    </FlexDivRowCentered>
-                    <Divider />
-                    <FlexDivRowCentered>
-                        <Text>{t(`governance.proposal.voting-system-label`)}</Text>
-                        <Text style={{ textAlign: 'right' }}>{t(`governance.proposal.type.${proposal.type}`)}</Text>
-                    </FlexDivRowCentered>
-                </DetailsContainer>
-                <DetailsContainer>
-                    <FlexDivRowCentered>
-                        <Text>{t(`governance.proposal.start-date-label`)}</Text>
-                        <Text>{formatShortDateWithTime(proposal.start * 1000)}</Text>
-                    </FlexDivRowCentered>
-                    <Divider />
-                    <FlexDivRowCentered>
-                        <Text>{t(`governance.proposal.end-date-label`)}</Text>
-                        <Text>{formatShortDateWithTime(proposal.end * 1000)}</Text>
-                    </FlexDivRowCentered>
-                    <Divider />
-                    <FlexDivRowCentered>
-                        <Text>{t(`governance.proposal.snapshot-label`)}</Text>
-                        <StyledLink
-                            href={getEtherscanBlockLink(Network.Mainnet, proposal.snapshot)}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <Text>{formatCurrency(proposal.snapshot, 0)}</Text>
-                            <ArrowIcon />
-                        </StyledLink>
-                    </FlexDivRowCentered>
-                </DetailsContainer>
-            </DetailsWrapper>
-            <DetailsTitle>{t(`governance.proposal.details-label`)}</DetailsTitle>
-            <Divider />
-            <Body dangerouslySetInnerHTML={getRawMarkup(proposal.body)}></Body>
-            {proposal.state === StatusEnum.Active && (
-                <>
-                    <VoteHeader>
-                        <FlexDivRow>
-                            <DetailsTitle>{t(`governance.proposal.vote-label`)}</DetailsTitle>
-                            {proposal.space.id === SpaceKey.TIPS && (
-                                <VoteNote>
-                                    (
-                                    {t(`governance.proposal.vote-note`, {
-                                        approvalVotes: proposalApprovalVotes,
-                                        totalVotes: numberOfCouncilMembers,
-                                    })}
-                                    )
-                                </VoteNote>
-                            )}
-                        </FlexDivRow>
-                        <VotingPowerTitle>{`${t(`governance.proposal.voting-power-label`)}: ${
-                            isWalletConnected && !votingPowerQuery.isLoading
-                                ? formatCurrencyWithKey(proposal.space.symbol, votingPower)
-                                : '-'
-                        }`}</VotingPowerTitle>
-                    </VoteHeader>
-                    <Divider />
-                </>
-            )}
-            {proposal.state === StatusEnum.Active && proposal.type === ProposalTypeEnum.Single && (
-                <SingleChoiceVoting proposal={proposal} hasVotingRights={votingPower > 0} />
-            )}
-            {proposal.state === StatusEnum.Active && proposal.type === ProposalTypeEnum.Weighted && (
-                <WeightedVoting proposal={proposal} hasVotingRights={votingPower > 0} />
-            )}
-        </Container>
+        <>
+            <ProposalHeader proposal={proposal} authorEns={authorEns} />
+            <Container topMargin={10}>
+                <DetailsTitle>{proposal.title}</DetailsTitle>
+                <Body dangerouslySetInnerHTML={getRawMarkup(proposal.body)}></Body>
+                {proposal.state === StatusEnum.Active && (
+                    <>
+                        <VoteHeader>
+                            <FlexDivRow>
+                                <DetailsTitle>{t(`governance.proposal.vote-label`)}</DetailsTitle>
+                                {proposal.space.id === SpaceKey.TIPS && (
+                                    <VoteNote>
+                                        (
+                                        {t(`governance.proposal.vote-note`, {
+                                            approvalVotes: proposalApprovalVotes,
+                                            totalVotes: numberOfCouncilMembers,
+                                        })}
+                                        )
+                                    </VoteNote>
+                                )}
+                            </FlexDivRow>
+                            <VotingPowerTitle>{`${t(`governance.proposal.voting-power-label`)}: ${
+                                isWalletConnected && !votingPowerQuery.isLoading
+                                    ? formatCurrencyWithKey(proposal.space.symbol, votingPower)
+                                    : '-'
+                            }`}</VotingPowerTitle>
+                        </VoteHeader>
+                        <Divider />
+                    </>
+                )}
+                {proposal.state === StatusEnum.Active && proposal.type === ProposalTypeEnum.Single && (
+                    <SingleChoiceVoting proposal={proposal} hasVotingRights={votingPower > 0} />
+                )}
+                {proposal.state === StatusEnum.Active && proposal.type === ProposalTypeEnum.Weighted && (
+                    <WeightedVoting proposal={proposal} hasVotingRights={votingPower > 0} />
+                )}
+            </Container>
+        </>
     );
 };
 
