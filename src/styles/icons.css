@@ -231,3 +231,7 @@
 .icon--people:before {
     content: '\0034';
 }
+
+.icon--proposal:before {
+    content: '\0045';
+}
