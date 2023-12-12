@@ -1,4 +1,5 @@
 import TimeRemaining from 'components/TimeRemaining';
+import { StatusEnum } from 'enums/governance';
 import { Network } from 'enums/network';
 import makeBlockie from 'ethereum-blockies-base64';
 import { Blockie, StyledLink } from 'pages/Governance/styled-components';
@@ -36,6 +37,9 @@ type ProposalHeaderProps = {
 const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) => {
     const { t } = useTranslation();
 
+    const closed = proposal.state === StatusEnum.Closed;
+    const pending = proposal.state === StatusEnum.Pending;
+
     return (
         <Container>
             <WidgetWrapper>
@@ -44,15 +48,19 @@ const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) 
                         <WidgetIcon className="icon icon--proposal" />
                         <TitleLabel>{t(`governance.proposal.details`)}</TitleLabel>
                     </FlexDiv>
-                    <TimeLeftContainer>
-                        <TimeLeftLabel>{t(`governance.proposal.ends-in-label`)}: </TimeLeftLabel>
-                        <TimeRemaining
-                            end={proposal.end * 1000}
-                            fontSize={18}
-                            fontWeight={700}
-                            textColor={Colors.CYAN}
-                        />
-                    </TimeLeftContainer>
+                    {!closed && (
+                        <TimeLeftContainer>
+                            <TimeLeftLabel>
+                                {t(`governance.proposal.${pending ? 'starts-in-label' : 'ends-in-label'}`)}:{' '}
+                            </TimeLeftLabel>
+                            <TimeRemaining
+                                end={proposal.end * 1000}
+                                fontSize={18}
+                                fontWeight={700}
+                                textColor={Colors.CYAN}
+                            />
+                        </TimeLeftContainer>
+                    )}
                 </WidgetHeader>
                 <InfoSection side="left">
                     <FlexDivFullWidthSpaceBetween>
