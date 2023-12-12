@@ -115,8 +115,8 @@ const SingleChoice = styled(FlexDivColumnCentered)<{ isDisabled?: boolean }>`
     border-radius: 5px;
     margin-bottom: 20px;
     color: ${(props) => props.theme.textColor.primary};
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 700;
+    font-size: 18px;
     line-height: 48px;
     text-align: center;
     opacity: ${(props) => (props.isDisabled ? '0.5' : '1')};

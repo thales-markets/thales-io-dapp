@@ -10,7 +10,7 @@ import { Proposal } from 'types/governance';
 import { navigateToGovernance } from 'utils/routes';
 import CouncilMembers from './CouncilMembers';
 import ProposalDetails from './ProposalDetails';
-import ProposalVotes from './ProposalDetails/ProposalVotes';
+import ElectionVotes from './ProposalDetails/ElectionVotes';
 import SidebarDetails from './ProposalDetails/SidebarDetails';
 import ProposalList from './ProposalList';
 import ThalesStakers from './ThalesStakers';
@@ -208,7 +208,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                         )}
                         {selectedProposal && <ProposalDetails proposal={selectedProposal} />}
                         {selectedProposal && selectedTab == SpaceKey.COUNCIL && (
-                            <ProposalVotes proposal={selectedProposal} />
+                            <ElectionVotes proposal={selectedProposal} />
                         )}
                     </MainContentWrapper>
                 </MainContentContainer>

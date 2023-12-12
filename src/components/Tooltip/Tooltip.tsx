@@ -61,6 +61,7 @@ const InfoIcon = styled.i<{
     color?: string;
     mobileIconFontSize?: number;
 }>`
+    font-family: Nunito !important;
     font-size: ${(props) => props.iconFontSize || 15}px;
     font-weight: normal;
     cursor: pointer;
