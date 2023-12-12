@@ -12,11 +12,11 @@ import { Proposal } from 'types/governance';
 import History from '../History';
 import { Container } from '../styled-components';
 
-type ProposalVotesProps = {
+type ElectionVotes = {
     proposal: Proposal;
 };
 
-const ProposalVotes: React.FC<ProposalVotesProps> = ({ proposal }) => {
+const ElectionVotes: React.FC<ElectionVotes> = ({ proposal }) => {
     const { t } = useTranslation();
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
 
@@ -47,6 +47,7 @@ const ProposalVotes: React.FC<ProposalVotesProps> = ({ proposal }) => {
                             proposal={proposal}
                             proposalResults={proposalResults}
                             isLoading={proposalResultsQuery.isLoading}
+                            truncateSize={60}
                         />
                     </SidebarContent>
                 </SidebarContentWrapper>
@@ -55,4 +56,4 @@ const ProposalVotes: React.FC<ProposalVotesProps> = ({ proposal }) => {
     );
 };
 
-export default ProposalVotes;
+export default ElectionVotes;

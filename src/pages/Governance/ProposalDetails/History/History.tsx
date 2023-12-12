@@ -30,9 +30,10 @@ type HistoryProps = {
     proposal: Proposal;
     proposalResults?: ProposalResults;
     isLoading: boolean;
+    truncateSize?: number;
 };
 
-const History: React.FC<HistoryProps> = ({ proposal, proposalResults, isLoading }) => {
+const History: React.FC<HistoryProps> = ({ proposal, proposalResults, isLoading, truncateSize }) => {
     const { t } = useTranslation();
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const spaceSymbol =
@@ -50,7 +51,7 @@ const History: React.FC<HistoryProps> = ({ proposal, proposalResults, isLoading 
                             ? new voting[ProposalTypeEnum.Weighted](proposal, [], [], vote.choice).getChoiceString()
                             : proposal.choices[vote.choice - 1];
 
-                        const formattedVotes = truncateText(votes, 12);
+                        const formattedVotes = truncateText(votes, truncateSize ? truncateSize : 12);
 
                         return (
                             <VoteRow key={vote.voter}>
@@ -66,7 +67,10 @@ const History: React.FC<HistoryProps> = ({ proposal, proposalResults, isLoading 
                                                 <Voter address={vote.voter} walletAddress={walletAddress} />
                                             </FlexDivCentered>
                                         </StyledLink>
-                                        <Tooltip overlay={votes}>
+                                        <Tooltip
+                                            overlay={votes}
+                                            overlayInnerStyle={{ fontFamily: 'Nunito !important' }}
+                                        >
                                             <Votes>{formattedVotes}</Votes>
                                         </Tooltip>
                                     </FlexDivCentered>

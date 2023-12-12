@@ -243,13 +243,13 @@ const WeightedVoting: React.FC<WeightedVotingProps> = ({ proposal, hasVotingRigh
 const Weighted = styled(FlexDivSpaceBetween)<{ isDisabled?: boolean }>`
     flex: 1;
     box-sizing: content-box;
-    height: 50px;
+    height: 30px;
     border: 1px solid ${(props) => props.theme.borderColor.primary};
     border-radius: 5px;
     margin-bottom: 20px;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
     color: ${(props) => props.theme.textColor.primary};
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -325,8 +325,8 @@ const Input = styled.input`
     outline: none !important;
     max-width: 60px;
     min-width: 60px;
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 70;
+    font-size: 18px;
     color: ${(props) => props.theme.textColor.primary};
     text-align: center;
     overfloe: hidden;
@@ -347,9 +347,9 @@ const SeePitchWrapper = styled.div`
 `;
 
 const SeePitchButton = styled.button`
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 36px;
+    font-weight: 00;
+    font-size: 13px;
+    line-height: 15px;
     border-radius: 23px;
     border: 2px solid ${(props) => props.theme.borderColor.primary};
     cursor: pointer;
@@ -357,7 +357,6 @@ const SeePitchButton = styled.button`
     background: transparent;
     padding: 5px 30px;
     margin-left: 20px;
-    font-size: 15px;
     &:disabled {
         opacity: 0.4;
         cursor: default;
@@ -380,6 +379,10 @@ const PitchModal = styled((props) => <Dialog classes={{ paper: props.className }
         overflow: auto;
         border: 2px solid ${(props) => props.theme.borderColor.primary};
         color: ${(props) => props.theme.textColor.primary};
+        font-family: Nunito !important;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 15px;
     }
 `;
 
@@ -393,7 +396,7 @@ const PitchHeader = styled.div`
     margin-bottom: 30px;
     & span {
         margin-left: 15px;
-        font-weight: bold;
+        font-weight: 700;
     }
 `;
 

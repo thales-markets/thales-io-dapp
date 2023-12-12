@@ -74,8 +74,8 @@ export const OptionsTabWrapper = styled(FlexDivRow)`
 export const OptionsTab = styled(FlexDivCentered)<{ isActive: boolean; index: number }>`
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 48px;
+    font-size: 18px;
+    line-height: 22px;
     color: ${(props) => props.theme.textColor.primary};
     user-select: none;
     border-bottom: 5px solid ${(props) => props.theme.background.primary};
@@ -133,7 +133,7 @@ export const SidebarTitle = styled(FlexDivCentered)`
 `;
 
 export const SidebarContentWrapper = styled(FlexDivColumn)`
-    background: ${Colors.PURPLE_NAVY};
+    background: ${Colors.LIGHT_GRAY};
     padding: 1px 0 0 0;
     border-radius: 0 0 8px 8px;
     height: 100%;
@@ -222,8 +222,8 @@ export const ViewMore = styled(FlexDivCentered)<{ padding?: string }>`
 
 export const VotesCount = styled(FlexDivColumnCentered)`
     font-weight: 500;
-    font-size: 20px;
-    line-height: 48px;
+    font-size: 18px;
+    line-height: 22px;
     color: ${(props) => props.theme.button.textColor.primary};
     margin-bottom: 12px;
     text-align: center;
@@ -243,6 +243,6 @@ export const StyledPieChart = styled(PieChart)`
 
 export const Line = styled.div`
     height: 1px;
-    background: ${Colors.PURPLE_NAVY};
+    background: ${Colors.GRAY};
     width: 100%;
 `;
