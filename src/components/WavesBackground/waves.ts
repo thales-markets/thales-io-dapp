@@ -116,7 +116,7 @@ const onRadialBackgroundScroll = () => {
         const mouseYpercentage = Math.round((lastMouseYPosition / windowHeight) * 100);
 
         backgroundElement.style.background =
-            'radial-gradient(circle at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #2c2f54, #0d111e)';
+            'radial-gradient(circle at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #262847, #0d111e)';
     }
 };
 
@@ -130,11 +130,11 @@ const onRadialBackgroundPointerMove = (event: PointerEvent) => {
 
         lastMouseXPosition = event.clientX;
         lastMouseYPosition = event.clientY;
-        const mouseXpercentage = Math.round((event.pageX / windowWidth) * 100);
-        const mouseYpercentage = Math.round((event.clientY / windowHeight) * 100);
+        const mouseXpercentage = Math.round((lastMouseXPosition / windowWidth) * 100);
+        const mouseYpercentage = Math.round((lastMouseYPosition / windowHeight) * 100);
 
         backgroundElement.style.background =
-            'radial-gradient(circle at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #2c2f54, #0d111e)';
+            'radial-gradient(circle at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #262847, #0d111e)';
     }
 };
 

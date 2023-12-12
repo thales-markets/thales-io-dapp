@@ -107,7 +107,7 @@ export const Background = styled.div`
     width: 100%;
     height: 100vh;
     font-size: 16px;
-    background: radial-gradient(circle at center, #2c2f54, #0d111e);
+    background: radial-gradient(circle at center, #262847, #0d111e);
 `;
 
 export const Line = styled.div`
