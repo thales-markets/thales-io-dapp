@@ -1,41 +1,42 @@
-import React, { CSSProperties, Suspense } from 'react';
-import Lottie from 'lottie-react';
-import Loader from 'components/Loader';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import buyingAnimation from 'assets/lotties/homepage-buying.json';
 import sellingAnimation from 'assets/lotties/homepage-selling.json';
+import Loader from 'components/Loader';
+import NumberCountdown from 'components/NumberCountdown';
+import SPAAnchor from 'components/SPAAnchor';
+import LINKS from 'constants/links';
+import Lottie from 'lottie-react';
+import React, { CSSProperties, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import Footer from './Footer';
 import MILESTONES from './milestones';
 import {
-    Wrapper,
     About,
-    Title,
-    Subtitle,
-    StatsSection,
-    SectionTitle,
-    Stat,
-    HomeButton,
-    EcosystemSection,
-    EcosystemApps,
     Description,
-    Section,
-    SectionTitleLink,
-    SectionTitleLinkArrow,
-    SectionSlogan,
+    EcosystemApps,
+    EcosystemSection,
+    Highlight,
+    HomeButton,
+    HomeIcon,
     LottieContainer,
-    StepsSection,
-    MilestonesContainer,
     Milestone,
     MilestoneDate,
     MilestoneDescription,
-    HomeIcon,
-    Highlight,
+    MilestonesContainer,
+    Section,
+    SectionSlogan,
+    SectionTitle,
+    SectionTitleLink,
+    SectionTitleLinkArrow,
     SocialIcon,
+    Stat,
+    StatsSection,
+    StepsSection,
+    Subtitle,
+    Title,
+    Wrapper,
 } from './styled-components';
-import { FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
-import Footer from './Footer';
-import SPAAnchor from 'components/SPAAnchor';
-import LINKS from 'constants/links';
-import { useTranslation } from 'react-i18next';
 
 const Home: React.FC = () => {
     const { t } = useTranslation();
@@ -61,15 +62,21 @@ const Home: React.FC = () => {
                 </About>
                 <StatsSection>
                     <SectionTitle>{t('home.total-protocol-volume')}</SectionTitle>
-                    <Stat>$ 944,459,682</Stat>
+                    <Stat>
+                        $ <NumberCountdown number={944459682} />
+                    </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.total-value-locked')}</SectionTitle>
-                    <Stat>$ 145,548,562</Stat>
+                    <Stat>
+                        $ <NumberCountdown number={145548562} />
+                    </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.total-unique-users')}</SectionTitle>
-                    <Stat>548,562</Stat>
+                    <Stat>
+                        <NumberCountdown number={548562} />
+                    </Stat>
                 </StatsSection>
                 <HomeButton>
                     {t('home.see-all-stats-button')} <ArrowHyperlinkIcon />
