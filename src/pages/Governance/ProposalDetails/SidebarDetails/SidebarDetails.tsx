@@ -1,6 +1,6 @@
 import { VOTING_COUNCIL_PROPOSAL_ID, VOTING_ORACLE_COUNCIL_PROPOSAL_ID } from 'constants/governance';
 import { SpaceKey } from 'enums/governance';
-import { SidebarContent, SidebarContentWrapper, SidebarTitle, VotesCount } from 'pages/Governance/styled-components';
+import { Line, SidebarContent, SidebarTitle, VotesCount } from 'pages/Governance/styled-components';
 import useProposalQuery from 'queries/governance/useProposalQuery';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -55,25 +55,24 @@ const SidebarDetails: React.FC<SidebarDetailsProps> = ({ proposal, type }) => {
                             )}
                         </FlexDivCentered>
                     </FlexDivCentered>
-                    <SidebarContentWrapper>
-                        <SidebarContent type={type} isCouncilVoting={isCouncilVoting}>
-                            {type === 'results' && (
-                                <Results
-                                    isCouncilVoting={isCouncilVoting}
-                                    proposalResults={proposalResults}
-                                    isLoading={proposalResultsQuery.isLoading}
-                                    proposalId={proposal.id}
-                                />
-                            )}
-                            {type === 'history' && (
-                                <History
-                                    proposal={proposal}
-                                    proposalResults={proposalResults}
-                                    isLoading={proposalResultsQuery.isLoading}
-                                />
-                            )}
-                        </SidebarContent>
-                    </SidebarContentWrapper>
+                    <Line />
+                    <SidebarContent type={type} isCouncilVoting={isCouncilVoting}>
+                        {type === 'results' && (
+                            <Results
+                                isCouncilVoting={isCouncilVoting}
+                                proposalResults={proposalResults}
+                                isLoading={proposalResultsQuery.isLoading}
+                                proposalId={proposal.id}
+                            />
+                        )}
+                        {type === 'history' && !isCouncilVoting && (
+                            <History
+                                proposal={proposal}
+                                proposalResults={proposalResults}
+                                isLoading={proposalResultsQuery.isLoading}
+                            />
+                        )}
+                    </SidebarContent>
                 </FlexDivColumnCentered>
             )}
         </>

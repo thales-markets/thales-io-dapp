@@ -10,6 +10,7 @@ import { Proposal } from 'types/governance';
 import { navigateToGovernance } from 'utils/routes';
 import CouncilMembers from './CouncilMembers';
 import ProposalDetails from './ProposalDetails';
+import ProposalVotes from './ProposalDetails/ProposalVotes';
 import SidebarDetails from './ProposalDetails/SidebarDetails';
 import ProposalList from './ProposalList';
 import ThalesStakers from './ThalesStakers';
@@ -206,10 +207,13 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                             </>
                         )}
                         {selectedProposal && <ProposalDetails proposal={selectedProposal} />}
+                        {selectedProposal && selectedTab == SpaceKey.COUNCIL && (
+                            <ProposalVotes proposal={selectedProposal} />
+                        )}
                     </MainContentWrapper>
                 </MainContentContainer>
                 {!selectedProposal && selectedTab !== SpaceKey.THALES_STAKERS && (
-                    <SidebarContainer>
+                    <SidebarContainer tipsOverview={true}>
                         <SidebarWrapper>
                             <Sidebar>
                                 <CouncilMembers />
@@ -218,7 +222,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                     </SidebarContainer>
                 )}
                 {selectedProposal && (
-                    <SidebarContainer>
+                    <SidebarContainer tipsOverview={false}>
                         {selectedProposal.space.id === SpaceKey.TIPS && (
                             <SidebarWrapper>
                                 <Sidebar>
@@ -231,11 +235,13 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                                 <SidebarDetails proposal={selectedProposal} type="results" />
                             </Sidebar>
                         </SidebarWrapper>
-                        <SidebarWrapper>
-                            <Sidebar>
-                                <SidebarDetails proposal={selectedProposal} type="history" />
-                            </Sidebar>
-                        </SidebarWrapper>
+                        {selectedProposal.space.id === SpaceKey.TIPS && (
+                            <SidebarWrapper>
+                                <Sidebar>
+                                    <SidebarDetails proposal={selectedProposal} type="history" />
+                                </Sidebar>
+                            </SidebarWrapper>
+                        )}
                     </SidebarContainer>
                 )}
             </Container>

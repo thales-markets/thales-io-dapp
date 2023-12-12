@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import { FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow, FlexDivRowCentered } from 'styles/common';
 import { getStatusColor } from 'utils/governance';
 
-export const Container = styled(FlexDivColumnCentered)`
+export const Container = styled(FlexDivColumnCentered)<{ topMargin?: number }>`
     padding: 10px 40px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 10px 20px;
     }
     background: ${(props) => props.theme.background.primary};
+    margin-top: ${(props) => (props.topMargin ? `${props.topMargin}px` : '')};
     border-radius: 8px;
 `;
 

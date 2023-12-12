@@ -1,26 +1,26 @@
-import React, { useMemo, useState } from 'react';
-import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
-import { formatPercentage, truncateText } from 'thales-utils';
-import { formatNumberShort } from 'utils/formatters/number';
-import { Percentage, SidebarRowData, Votes, LoaderContainer, ViewMore } from 'pages/Governance/styled-components';
-import { useTheme } from 'styled-components';
+import SimpleLoader from 'components/SimpleLoader';
+import Tooltip from 'components/Tooltip';
 import {
     FIRST_COUNCIL_ELECTIONS_ID,
     NUMBER_OF_COUNCIL_MEMBERS,
-    VOTING_ORACLE_COUNCIL_PROPOSAL_ID,
     NUMBER_OF_ORACLE_COUNCIL_MEMBERS,
+    VOTING_ORACLE_COUNCIL_PROPOSAL_ID,
 } from 'constants/governance';
-import SimpleLoader from 'components/SimpleLoader';
-import { ProposalResults } from 'types/governance';
+import { LoaderContainer, Percentage, SidebarRowData, ViewMore, Votes } from 'pages/Governance/styled-components';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Tooltip from 'components/Tooltip';
+import { useTheme } from 'styled-components';
+import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
+import { formatPercentage, truncateText } from 'thales-utils';
+import { ProposalResults } from 'types/governance';
 import { ThemeInterface } from 'types/ui';
+import { formatNumberShort } from 'utils/formatters/number';
 import {
+    ResultLabel,
     ResultRow,
     RowPercentage,
-    RowPercentageIndicator,
-    ResultLabel,
     RowPercentageContainer,
+    RowPercentageIndicator,
 } from './styled-components';
 
 type ResultsProps = {
@@ -30,6 +30,7 @@ type ResultsProps = {
     isLoading: boolean;
     showAll?: boolean;
     proposalId: string;
+    hideViewMore?: boolean;
 };
 
 const Results: React.FC<ResultsProps> = ({
@@ -39,10 +40,11 @@ const Results: React.FC<ResultsProps> = ({
     isCouncilResults,
     isLoading,
     showAll,
+    hideViewMore,
 }) => {
     const { t } = useTranslation();
     const theme: ThemeInterface = useTheme();
-    const [viewCount, setViewCount] = useState<number>(showAll ? 1000 : 10);
+    const [viewCount, setViewCount] = useState<number>(showAll ? 1000 : 7);
     const spaceSymbol =
         proposalId.toLowerCase() === FIRST_COUNCIL_ELECTIONS_ID.toLowerCase() || !proposalResults
             ? 'WD'
@@ -91,7 +93,9 @@ const Results: React.FC<ResultsProps> = ({
                                 key={label}
                                 opacity={isCouncilResults && index >= numberOfCouncilMemebers ? 0.5 : 1}
                                 borderColor={
-                                    (isCouncilVoting || isCouncilResults) && index === numberOfCouncilMemebers - 1
+                                    (isCouncilVoting || isCouncilResults) &&
+                                    index === numberOfCouncilMemebers - 1 &&
+                                    !hideViewMore
                                         ? theme.borderColor.primary
                                         : undefined
                                 }
@@ -121,7 +125,7 @@ const Results: React.FC<ResultsProps> = ({
                             </ResultRow>
                         );
                     })}
-                    {choices.length > viewCount && (
+                    {choices.length > viewCount && !hideViewMore && (
                         <FlexDivCentered>
                             <ViewMore
                                 onClick={() => setViewCount(viewCount + 10)}

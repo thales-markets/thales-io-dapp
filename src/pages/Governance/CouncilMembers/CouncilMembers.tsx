@@ -1,6 +1,6 @@
 import { COUNCIL_PROPOSAL_ID } from 'constants/governance';
 import { SpaceKey } from 'enums/governance';
-import { SidebarContent, SidebarContentWrapper, SidebarTitle } from 'pages/Governance/styled-components';
+import { Line, SidebarContent, SidebarTitle } from 'pages/Governance/styled-components';
 import useProposalQuery from 'queries/governance/useProposalQuery';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,17 +21,17 @@ const CouncilMembers: React.FC = () => {
     return (
         <FlexDivColumnCentered>
             <SidebarTitle>{t(`governance.sidebar.title.council-members`)}</SidebarTitle>
-            <SidebarContentWrapper>
-                <SidebarContent>
-                    <Results
-                        proposalResults={proposalResults}
-                        isCouncilResults={true}
-                        isLoading={proposalResultsQuery.isLoading}
-                        showAll={true}
-                        proposalId={COUNCIL_PROPOSAL_ID}
-                    />
-                </SidebarContent>
-            </SidebarContentWrapper>
+            <Line />
+            <SidebarContent>
+                <Results
+                    proposalResults={proposalResults}
+                    isCouncilResults={true}
+                    isLoading={proposalResultsQuery.isLoading}
+                    showAll={false}
+                    proposalId={COUNCIL_PROPOSAL_ID}
+                    hideViewMore={true}
+                />
+            </SidebarContent>
         </FlexDivColumnCentered>
     );
 };

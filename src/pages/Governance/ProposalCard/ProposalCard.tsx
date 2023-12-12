@@ -38,7 +38,11 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                         <RightSection>
                             <StatusIcon color={Colors.WHITE} className="icon icon--hourglass" />
                             <span>{t(`governance.proposal.${pending ? 'starts-in-label' : 'ends-in-label'}`)}: </span>
-                            <TimeRemaining end={(pending ? proposal.start : proposal.end) * 1000} fontSize={18} />
+                            <TimeRemaining
+                                end={(pending ? proposal.start : proposal.end) * 1000}
+                                fontSize={18}
+                                textColor={Colors.CYAN}
+                            />
                         </RightSection>
                     )}
                     {!!closed && proposal.space.id === SpaceKey.TIPS && (

@@ -57,7 +57,6 @@ const ProposalDetails: React.FC<ProposalDetailsProps> = ({ proposal }) => {
     const [authorEns, setAuthorEns] = useState<string | null>(null);
     const { numberOfCouncilMembers, proposalApprovalVotes } = getProposalApprovalData(proposal.start);
 
-    console.log(proposal);
     const votingPowerQuery = useVotingPowerQuery(proposal, walletAddress, {
         enabled: isAppReady && isWalletConnected,
     });

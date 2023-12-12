@@ -2,7 +2,7 @@ import { ReactComponent as ArrowBackIcon } from 'assets/images/arrow-back.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { PieChart } from 'recharts';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
+import { Colors, FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Container = styled(FlexDivRow)`
     width: 100%;
@@ -37,9 +37,10 @@ export const MainContentWrapper = styled.div<{ isOverviewPage: boolean }>`
     }
 `;
 
-export const SidebarContainer = styled(FlexDivColumn)`
+export const SidebarContainer = styled(FlexDivColumn)<{ tipsOverview: boolean }>`
     width: 33%;
     margin-left: 10px;
+    margin-top: ${(props) => (props.tipsOverview ? '52px' : '25px')};
     @media (max-width: 1200px) {
         width: 100%;
         margin-left: 0;
@@ -132,7 +133,7 @@ export const SidebarTitle = styled(FlexDivCentered)`
 `;
 
 export const SidebarContentWrapper = styled(FlexDivColumn)`
-    background: ${(props) => props.theme.background.secondary};
+    background: ${Colors.PURPLE_NAVY};
     padding: 1px 0 0 0;
     border-radius: 0 0 8px 8px;
     height: 100%;
@@ -238,4 +239,10 @@ export const StyledPieChart = styled(PieChart)`
     display: flex;
     justify-self: center;
     align-self: flex-end;
+`;
+
+export const Line = styled.div`
+    height: 1px;
+    background: ${Colors.PURPLE_NAVY};
+    width: 100%;
 `;
