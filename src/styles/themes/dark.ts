@@ -11,6 +11,7 @@ const darkTheme = {
         primary: Colors.WHITE,
         secondary: Colors.CYAN,
         tertiary: Colors.GRAY,
+        quaternary: Colors.PURPLE_NAVY,
     },
     borderColor: {
         primary: Colors.GRAY,

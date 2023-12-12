@@ -15,13 +15,21 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { FlexDiv, FlexDivColumnSpaceBetween } from 'styles/common';
-import { formatCurrencyWithKey } from 'thales-utils';
+import { formatCurrency, formatCurrencyWithKey, formatShortDate } from 'thales-utils';
 import { UserVestingData } from 'types/token';
 import { refetchTokenQueries } from 'utils/queryConnector';
 import snxJSConnector from 'utils/snxJSConnector';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
 import YourTransactions from './Transactions';
-import { Container } from './styled-components';
+import {
+    Container,
+    ScheduleAmount,
+    ScheduleContainer,
+    ScheduleDate,
+    ScheduleDot,
+    ScheduleLine,
+    ScheduleWrapper,
+} from './styled-components';
 
 const Vesting: React.FC = () => {
     const { t } = useTranslation();
@@ -53,6 +61,7 @@ const Vesting: React.FC = () => {
         return lastValidUserVestingData;
     }, [userVestingDataQuery.isSuccess, userVestingDataQuery.data, lastValidUserVestingData]);
 
+    const scheduleData = userVestingData ? userVestingData.vestingSchedule : [];
     const claimable = userVestingData ? userVestingData.claimable : 0;
     const rawClaimable = userVestingData ? userVestingData.rawClaimable : '0';
 
@@ -108,6 +117,21 @@ const Vesting: React.FC = () => {
                     </FlexDivColumnSpaceBetween>
                 </FlexDiv>
             </Container>
+            <ScheduleWrapper>
+                {scheduleData.map((data, index) => {
+                    return (
+                        <ScheduleContainer>
+                            <ScheduleAmount>
+                                <div>{formatCurrency(data.amount)}</div>
+                                <div>{THALES_CURRENCY}</div>
+                            </ScheduleAmount>
+                            <ScheduleDot />
+                            <ScheduleLine invisible={scheduleData.length - 1 === index} />
+                            <ScheduleDate>{formatShortDate(data.date)}</ScheduleDate>
+                        </ScheduleContainer>
+                    );
+                })}
+            </ScheduleWrapper>
             <YourTransactions width="60%" />
         </>
     );
