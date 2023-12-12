@@ -34,8 +34,7 @@ export const ScheduleWrapper = styled(FlexDiv)`
     overflow: auto;
     width: 60%;
     align-items: center;
-    padding: 90px 20px;
-    margin-bottom: 20px;
+    padding: 90px 20px 90px 20px;
     ::-webkit-scrollbar {
         height: 5px;
     }

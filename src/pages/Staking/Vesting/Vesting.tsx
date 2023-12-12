@@ -117,21 +117,25 @@ const Vesting: React.FC = () => {
                     </FlexDivColumnSpaceBetween>
                 </FlexDiv>
             </Container>
-            <ScheduleWrapper>
-                {scheduleData.map((data, index) => {
-                    return (
-                        <ScheduleContainer>
-                            <ScheduleAmount>
-                                <div>{formatCurrency(data.amount)}</div>
-                                <div>{THALES_CURRENCY}</div>
-                            </ScheduleAmount>
-                            <ScheduleDot />
-                            <ScheduleLine invisible={scheduleData.length - 1 === index} />
-                            <ScheduleDate>{formatShortDate(data.date)}</ScheduleDate>
-                        </ScheduleContainer>
-                    );
-                })}
-            </ScheduleWrapper>
+            {isWalletConnected && (
+                <ScheduleWrapper>
+                    {scheduleData.map((data, index) => {
+                        return (
+                            <ScheduleContainer>
+                                <ScheduleAmount>
+                                    <div>{formatCurrency(data.amount)}</div>
+                                    <div>{THALES_CURRENCY}</div>
+                                </ScheduleAmount>
+                                <ScheduleDot />
+                                <ScheduleLine invisible={scheduleData.length - 1 === index} />
+                                <ScheduleDate>{formatShortDate(data.date)}</ScheduleDate>
+                            </ScheduleContainer>
+                        );
+                    })}
+                </ScheduleWrapper>
+            )}
+            <br />
+            <br />
             <YourTransactions width="60%" />
         </>
     );

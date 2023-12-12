@@ -254,10 +254,12 @@ const Rewards: React.FC = () => {
                 </div>
                 <div>
                     <FinalPointsTitle>{t('staking.rewards.how-it-works.final-points')}</FinalPointsTitle>
-                    <FinalPoints>
-                        {pointsData?.totalPoints} = ({pointsData?.tradingPoints} + {pointsData?.lpPoints} +{' '}
-                        {pointsData?.vaultsPoints}) x {pointsData?.stakingMultiplier}
-                    </FinalPoints>
+                    {isWalletConnected && (
+                        <FinalPoints>
+                            {pointsData?.totalPoints} = ({pointsData?.tradingPoints} + {pointsData?.lpPoints} +{' '}
+                            {pointsData?.vaultsPoints}) x {pointsData?.stakingMultiplier}
+                        </FinalPoints>
+                    )}
                 </div>
             </Left>
             <UpperRight>
