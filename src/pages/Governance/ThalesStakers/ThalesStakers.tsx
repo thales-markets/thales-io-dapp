@@ -16,7 +16,7 @@ import { Cell, Pie } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
 import { getNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import { FlexDiv } from 'styles/common';
+import { Colors, FlexDiv } from 'styles/common';
 import { formatCurrencyWithKey, getEtherscanAddressLink, truncateAddress } from 'thales-utils';
 import { DEFAULT_SEARCH_DEBOUNCE_MS } from 'thales-utils/src/constants/defaults';
 import { EnsNames, Staker, Stakers } from 'types/governance';
@@ -35,6 +35,8 @@ import {
     TableContainer,
     TableHeaderContainer,
 } from './styled-components';
+
+const ChartColors = [Colors.CHINA_PINK, Colors.VIOLET, Colors.BLUEBERRY, Colors.CYAN, Colors.BLUE_DARK, Colors.BLUE];
 
 const ThalesStakers: React.FC = () => {
     const { t } = useTranslation();
@@ -56,20 +58,33 @@ const ThalesStakers: React.FC = () => {
     const pieData = useMemo(() => {
         const data: any[] = [];
         if (stakers.length > 0) {
-            stakers.forEach((staker: Staker) => {
-                const stakerData = {
-                    name: staker.id,
-                    value: staker.totalStakedAmount,
-                    color: '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).slice(1, 7),
-                };
-                data.push(stakerData);
-            });
+            stakers
+                .filter((staker: Staker) => staker.totalStakedAmount > 100000)
+                .forEach((staker: Staker, index: number) => {
+                    console.log('alooooo');
+                    let chartColorIndex = 0;
+                    for (let i = ChartColors.length - 1; i == 1; i--) {
+                        console.log('desava li se sto');
+                        console.log(index);
+                        console.log(index % (i + 1) == 0);
+                        if (index % (i + 1) == 0) {
+                            console.log('upada');
+                            chartColorIndex = i;
+                            break;
+                        }
+                    }
+                    const stakerData = {
+                        name: staker.id,
+                        value: staker.totalStakedAmount,
+                        color: ChartColors[chartColorIndex],
+                    };
+                    data.push(stakerData);
+                });
         }
 
         return data;
     }, [stakers]);
 
-    console.log(pieData);
     useEffect(() => {
         const getEnsNames = async (stakers: Stakers) => {
             const records: EnsNames = {};
@@ -121,8 +136,8 @@ const ThalesStakers: React.FC = () => {
                         blendStroke={true}
                         data={pieData}
                         dataKey={'value'}
-                        innerRadius={65}
-                        outerRadius={95}
+                        innerRadius={105}
+                        outerRadius={145}
                         cx="50%"
                         cy="50%"
                         fill="#82ca9d"
