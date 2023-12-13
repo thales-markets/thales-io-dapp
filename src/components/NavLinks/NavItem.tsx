@@ -4,7 +4,7 @@ import { FlexDivCentered } from 'styles/common';
 import { DropdownContainer, DropdownItem, Icon, Item } from './styled-components';
 
 export type NavItemType = {
-    href: string;
+    href?: string;
     title: string;
     active?: boolean;
     children?: NavItemType[];
@@ -35,7 +35,11 @@ const NavItem: React.FC<NavItemProps> = ({ item }) => {
                     {item.children && dropdownVisible && (
                         <DropdownContainer>
                             {item.children.map((child) => {
-                                return <DropdownItem active={child.active}>{child.title}</DropdownItem>;
+                                return (
+                                    <SPAAnchor href={child.href}>
+                                        <DropdownItem active={child.active}>{child.title}</DropdownItem>
+                                    </SPAAnchor>
+                                );
                             })}
                         </DropdownContainer>
                     )}

@@ -20,7 +20,6 @@ const DappHeader: React.FC = () => {
                 active: location.pathname === ROUTES.Dashboard,
             },
             {
-                href: buildHref(ROUTES.Staking),
                 title: t('header.links.token'),
                 active: location.pathname === ROUTES.Staking,
                 children: [

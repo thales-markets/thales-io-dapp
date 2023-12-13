@@ -6,7 +6,7 @@ type FieldValidationMessageProps = {
     className?: string;
     onClick?: MouseEventHandler<HTMLAnchorElement> | undefined;
     style?: CSSProperties;
-    href: string;
+    href?: string;
     simpleOnClick?: boolean;
 };
 
@@ -20,6 +20,9 @@ const SPAAnchor: React.FC<FieldValidationMessageProps> = ({
     className,
     simpleOnClick,
 }) => {
+    if (!href) {
+        return <>{children}</>;
+    }
     return (
         <>
             {ifIpfsDeployment ? (
