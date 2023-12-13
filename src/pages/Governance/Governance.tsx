@@ -132,7 +132,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
     return (
         <>
             <Line />
-            <NavContainer>
+            <NavContainer width="40%">
                 <Links>
                     {optionsTabContent.map((tab, index) => (
                         <Item

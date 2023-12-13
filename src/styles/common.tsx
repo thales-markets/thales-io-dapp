@@ -118,7 +118,7 @@ export const Line = styled.div`
     background: ${(props) => props.theme.background.tertiary};
 `;
 
-export const NavContainer = styled.div`
-    width: 60%;
+export const NavContainer = styled.div<{ width?: string }>`
+    width: ${(props) => (props.width ? props.width : '60%')};
     margin-bottom: 45px;
 `;

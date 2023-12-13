@@ -40,6 +40,7 @@ export const InfoDiv = styled.div`
         line-height: 155%;
     }
 `;
+
 export const StakingButton = styled.button<{ padding?: string; disabled?: boolean; width?: string }>`
     cursor: pointer;
     color: ${(props) => props.theme.background.primary};

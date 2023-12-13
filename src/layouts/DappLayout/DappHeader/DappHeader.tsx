@@ -19,9 +19,14 @@ const DappHeader: React.FC = () => {
                 active: location.pathname === ROUTES.Dashboard,
             },
             {
-                href: buildHref(ROUTES.Staking),
-                title: t('header.links.staking'),
-                active: location.pathname === ROUTES.Staking,
+                href: buildHref(ROUTES.Token),
+                title: t('header.links.token'),
+                active: location.pathname === ROUTES.Token,
+            },
+            {
+                href: buildHref(ROUTES.AMMLP),
+                title: t('header.links.amm-lp'),
+                active: location.pathname === ROUTES.AMMLP,
             },
             {
                 href: buildHref(ROUTES.Governance.Home),

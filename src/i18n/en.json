@@ -185,8 +185,7 @@
             "staking": "Staking",
             "vesting": "Vesting",
             "leaderboard": "Leaderboard",
-            "acc-preferences": "Acc Preferences",
-            "amm-lp": "AMM LP"
+            "acc-preferences": "Acc Preferences"
         },
         "table": {
             "title": "Your activity",
@@ -516,10 +515,18 @@
             }
         }
     },
+    "amm-lp": {
+        "nav": {
+            "thales": "Thales",
+            "overtime-single": "Overtime Single",
+            "overtime-parlay": "Overtime Parlay"
+        }
+    },
     "header": {
         "links": {
             "dashboard": "Dashboard",
-            "staking": "Staking",
+            "token": "Token",
+            "amm-lp": "AMM LP",
             "governance": "Governance",
             "docs": "Docs",
             "whitepaper": "Whitepaper"

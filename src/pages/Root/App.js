@@ -20,6 +20,7 @@ import { useAccount, useProvider, useSigner } from 'wagmi';
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
 const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Dashboard'));
 const Staking = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Staking'));
+const AMMLP = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../AMMLP'));
 const Governance = lazy(() => import(/* webpackChunkName: "Governance" */ '../Governance'));
 
 const App = () => {
@@ -106,10 +107,17 @@ const App = () => {
                                     </DappLayout>
                                 </Suspense>
                             </Route>
-                            <Route exact path={ROUTES.Staking}>
+                            <Route exact path={ROUTES.Token}>
                                 <Suspense fallback={<Loader />}>
                                     <DappLayout>
                                         <Staking />
+                                    </DappLayout>
+                                </Suspense>
+                            </Route>
+                            <Route exact path={ROUTES.AMMLP}>
+                                <Suspense fallback={<Loader />}>
+                                    <DappLayout>
+                                        <AMMLP />
                                     </DappLayout>
                                 </Suspense>
                             </Route>

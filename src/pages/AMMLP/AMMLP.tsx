@@ -1,6 +1,8 @@
 import { Slider } from '@material-ui/core';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import ApprovalModal from 'components/ApprovalModal';
+import Loader from 'components/Loader';
+import NavLinks, { NavItem } from 'components/NavLinks/NavLinks';
 import SwitchInput from 'components/SwitchInput';
 import TimeRemaining from 'components/TimeRemaining';
 import {
@@ -14,6 +16,7 @@ import NumericInput from 'components/fields/NumericInput';
 import RadioButton from 'components/fields/RadioButton';
 import { USD_SIGN } from 'constants/currency';
 import LINKS from 'constants/links';
+import ROUTES from 'constants/routes';
 import { LiquidityPoolPnlType } from 'enums/liquidityPool';
 import { Network } from 'enums/network';
 import { ScreenSizeBreakpoint } from 'enums/ui';
@@ -21,9 +24,11 @@ import { BigNumber, ethers } from 'ethers';
 import useLiquidityPoolUserDataQuery from 'queries/liquidityPool/useLiquidityPoolUserDataQuery';
 import useLiquidityPoolDataQuery from 'queries/liquidityPool/useThalesLiquidityPoolDataQuery';
 import useStableBalanceQuery from 'queries/walletBalances.ts/useStableBalanceQuery';
-import { useEffect, useMemo, useState } from 'react';
+import queryString from 'query-string';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
@@ -38,6 +43,8 @@ import {
     FlexDivColumnSpaceBetween,
     FlexDivRow,
     FlexDivStart,
+    Line,
+    NavContainer,
 } from 'styles/common';
 import { formatCurrencyWithSign, formatPercentage, getDefaultDecimalsForNetwork } from 'thales-utils';
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
@@ -46,16 +53,55 @@ import liquidityPoolContract from 'utils/contracts/sportLiquidityPoolContract';
 import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance } from 'utils/network';
 import { refetchThalesLiquidityPoolData } from 'utils/queryConnector';
+import { buildHref } from 'utils/routes';
 import snxJSConnector from 'utils/snxJSConnector';
-import { InfoDiv, SectionDescription, SectionTitle, StakingButton } from '../styled-components';
-import { ChartsContainer, InputContainer, SectionContentContainer } from './/styled-components';
 import MaxAllowanceTooltip from './MaxAllowanceTooltip';
 import PnL from './PnL';
 import YourTransactions from './Transactions';
-import { Bottom, Container, Top } from './styled-components';
+import {
+    Bottom,
+    ChartsContainer,
+    Container,
+    InfoDiv,
+    InputContainer,
+    SectionContentContainer,
+    SectionDescription,
+    SectionTitle,
+    StakingButton,
+    Top,
+} from './styled-components';
+
+enum Tab {
+    THALES = 'thales',
+    OVERTIME_SINGLE = 'overtime-single',
+    OVERTIME_PARLAY = 'overtime-parlay',
+}
 
 const AMMLP: React.FC = () => {
     const { t } = useTranslation();
+    const location = useLocation();
+    const paramTab = queryString.parse(location.search).tab || Tab.THALES;
+
+    const navItems: NavItem[] = useMemo(() => {
+        return [
+            {
+                href: `${buildHref(ROUTES.AMMLP)}?tab=${Tab.THALES}`,
+                title: t('amm-lp.nav.thales'),
+                active: paramTab === Tab.THALES,
+            },
+            {
+                href: `${buildHref(ROUTES.AMMLP)}?tab=${Tab.OVERTIME_SINGLE}`,
+                title: t('amm-lp.nav.overtime-single'),
+                active: paramTab === Tab.OVERTIME_SINGLE,
+            },
+            {
+                href: `${buildHref(ROUTES.AMMLP)}?tab=${Tab.OVERTIME_PARLAY}`,
+                title: t('amm-lp.nav.overtime-parlay'),
+                active: paramTab === Tab.OVERTIME_PARLAY,
+            },
+        ];
+    }, [paramTab, t]);
+
     const theme = useTheme();
     const { openConnectModal } = useConnectModal();
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -380,7 +426,11 @@ const AMMLP: React.FC = () => {
     }, [withdrawalPercentage, withdrawAll, userLiquidityPoolData]);
 
     return (
-        <>
+        <Suspense fallback={<Loader />}>
+            <Line />
+            <NavContainer width="40%">
+                <NavLinks items={navItems} />
+            </NavContainer>
             <Container>
                 <Top>
                     <FlexDivColumnSpaceBetween>
@@ -874,7 +924,7 @@ const AMMLP: React.FC = () => {
                     onClose={() => setOpenApprovalModal(false)}
                 />
             )}
-        </>
+        </Suspense>
     );
 };
 

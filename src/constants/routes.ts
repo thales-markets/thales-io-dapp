@@ -1,7 +1,8 @@
 const ROUTES = {
     Home: '/',
     Dashboard: '/dashboard',
-    Staking: '/staking',
+    Token: '/token',
+    AMMLP: '/amm-lp',
     Governance: {
         Home: '/governance',
         Space: '/governance/:space',
