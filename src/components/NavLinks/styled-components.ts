@@ -25,3 +25,30 @@ export const Item = styled.label<{ active?: boolean }>`
         margin-bottom: 60px;
     }
 `;
+
+export const Icon = styled.i<{ active?: boolean }>`
+    padding-left: 3px;
+    padding-bottom: 3px;
+    color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.textColor.primary)};
+    font-size: 13px;
+`;
+
+export const DropdownContainer = styled.div`
+    width: 200px;
+    border-radius: 8px;
+    position: absolute;
+    padding: 7px;
+    background: ${(props) => props.theme.background.primary};
+    box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
+    transform: translateX(-25%);
+`;
+
+export const DropdownItem = styled.div<{ active?: boolean }>`
+    text-align: left;
+    color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.textColor.primary)};
+    padding: 8px;
+    border-radius: 8px;
+    &:hover {
+        background: ${(props) => props.theme.background.quaternary};
+    }
+`;

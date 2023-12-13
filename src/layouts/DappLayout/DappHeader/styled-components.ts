@@ -6,7 +6,8 @@ export const HeaderContainer = styled(FlexDivSpaceBetween)`
 `;
 
 export const LinksContainer = styled.div`
-    width: 50%;
+    width: 55%;
+    z-index: 100;
     @media (max-width: 1024px) {
         display: none;
     }

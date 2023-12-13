@@ -73,7 +73,7 @@ const Staking: React.FC = () => {
         stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.totalSupply) * 100 : 0;
 
     return (
-        <SPAAnchor href={buildHref(ROUTES.Token)}>
+        <SPAAnchor href={buildHref(ROUTES.Staking)}>
             <WidgetWrapper>
                 <WidgetHeader isTwoSided={true}>
                     <FlexDiv>

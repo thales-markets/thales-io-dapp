@@ -1,23 +1,15 @@
-import SPAAnchor from 'components/SPAAnchor';
-import { Links, Item } from './styled-components';
-
-export type NavItem = {
-    href: string;
-    title: string;
-    active?: boolean;
-};
+import NavItem, { NavItemType } from './NavItem';
+import { Links } from './styled-components';
 
 type NavLinksProps = {
-    items: NavItem[];
+    items: NavItemType[];
 };
 
 const NavLinks: React.FC<NavLinksProps> = ({ items }) => {
     return (
         <Links>
             {items.map((item, index) => (
-                <SPAAnchor key={index} href={item.href}>
-                    <Item active={item.active}>{item.title}</Item>
-                </SPAAnchor>
+                <NavItem key={index} item={item} />
             ))}
         </Links>
     );

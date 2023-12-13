@@ -1,6 +1,6 @@
 import Loader from 'components/Loader';
 import NavLinks from 'components/NavLinks';
-import { NavItem } from 'components/NavLinks/NavLinks';
+import { NavItemType } from 'components/NavLinks/NavItem';
 import ROUTES from 'constants/routes';
 import queryString from 'query-string';
 import { Suspense, useMemo } from 'react';
@@ -27,30 +27,30 @@ const Staking: React.FC = () => {
     const location = useLocation();
     const paramTab = queryString.parse(location.search).tab || Tab.STAKING;
 
-    const navItems: NavItem[] = useMemo(() => {
+    const navItems: NavItemType[] = useMemo(() => {
         return [
             {
-                href: `${buildHref(ROUTES.Token)}?tab=${Tab.STAKING}`,
+                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.STAKING}`,
                 title: t('staking.nav.staking'),
                 active: paramTab === Tab.STAKING,
             },
             {
-                href: `${buildHref(ROUTES.Token)}?tab=${Tab.REWARDS}`,
+                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.REWARDS}`,
                 title: t('staking.nav.rewards'),
                 active: paramTab === Tab.REWARDS,
             },
             {
-                href: `${buildHref(ROUTES.Token)}?tab=${Tab.VESTING}`,
+                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.VESTING}`,
                 title: t('staking.nav.vesting'),
                 active: paramTab === Tab.VESTING,
             },
             {
-                href: `${buildHref(ROUTES.Token)}?tab=${Tab.LEADERBOARD}`,
+                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.LEADERBOARD}`,
                 title: t('staking.nav.leaderboard'),
                 active: paramTab === Tab.LEADERBOARD,
             },
             {
-                href: `${buildHref(ROUTES.Token)}?tab=${Tab.ACC_PREFERENCES}`,
+                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.ACC_PREFERENCES}`,
                 title: t('staking.nav.acc-preferences'),
                 active: paramTab === Tab.ACC_PREFERENCES,
             },

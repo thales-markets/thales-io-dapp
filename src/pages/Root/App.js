@@ -107,7 +107,7 @@ const App = () => {
                                     </DappLayout>
                                 </Suspense>
                             </Route>
-                            <Route exact path={ROUTES.Token}>
+                            <Route exact path={ROUTES.Staking}>
                                 <Suspense fallback={<Loader />}>
                                     <DappLayout>
                                         <Staking />

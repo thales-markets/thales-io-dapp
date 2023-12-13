@@ -2,7 +2,8 @@ import { Slider } from '@material-ui/core';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import ApprovalModal from 'components/ApprovalModal';
 import Loader from 'components/Loader';
-import NavLinks, { NavItem } from 'components/NavLinks/NavLinks';
+import { NavItemType } from 'components/NavLinks/NavItem';
+import NavLinks from 'components/NavLinks/NavLinks';
 import SwitchInput from 'components/SwitchInput';
 import TimeRemaining from 'components/TimeRemaining';
 import {
@@ -82,7 +83,7 @@ const AMMLP: React.FC = () => {
     const location = useLocation();
     const paramTab = queryString.parse(location.search).tab || Tab.THALES;
 
-    const navItems: NavItem[] = useMemo(() => {
+    const navItems: NavItemType[] = useMemo(() => {
         return [
             {
                 href: `${buildHref(ROUTES.AMMLP)}?tab=${Tab.THALES}`,

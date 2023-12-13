@@ -1,4 +1,5 @@
-import NavLinks, { NavItem } from 'components/NavLinks/NavLinks';
+import { NavItemType } from 'components/NavLinks/NavItem';
+import NavLinks from 'components/NavLinks/NavLinks';
 import UserWallet from 'components/UserWallet';
 import ROUTES from 'constants/routes';
 import { useMemo } from 'react';
@@ -11,7 +12,7 @@ const DappHeader: React.FC = () => {
     const { t } = useTranslation();
     const location = useLocation();
 
-    const navItems: NavItem[] = useMemo(() => {
+    const navItems: NavItemType[] = useMemo(() => {
         return [
             {
                 href: buildHref(ROUTES.Dashboard),
@@ -19,9 +20,26 @@ const DappHeader: React.FC = () => {
                 active: location.pathname === ROUTES.Dashboard,
             },
             {
-                href: buildHref(ROUTES.Token),
+                href: buildHref(ROUTES.Staking),
                 title: t('header.links.token'),
-                active: location.pathname === ROUTES.Token,
+                active: location.pathname === ROUTES.Staking,
+                children: [
+                    {
+                        href: buildHref(ROUTES.Staking),
+                        title: t('header.links.staking'),
+                        active: location.pathname === ROUTES.Staking,
+                    },
+                    {
+                        href: buildHref(ROUTES.Bridge),
+                        title: t('header.links.bridge'),
+                        active: location.pathname === ROUTES.Bridge,
+                    },
+                    {
+                        href: buildHref(ROUTES.LPStaking),
+                        title: t('header.links.lp-staking'),
+                        active: location.pathname === ROUTES.LPStaking,
+                    },
+                ],
             },
             {
                 href: buildHref(ROUTES.AMMLP),

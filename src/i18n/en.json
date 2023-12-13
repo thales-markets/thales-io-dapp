@@ -529,7 +529,10 @@
             "amm-lp": "AMM LP",
             "governance": "Governance",
             "docs": "Docs",
-            "whitepaper": "Whitepaper"
+            "whitepaper": "Whitepaper",
+            "staking": "Staking",
+            "bridge": "Bridge",
+            "lp-staking": "LP Staking"
         }
     },
     "footer": {
