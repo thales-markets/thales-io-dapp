@@ -3,6 +3,7 @@ import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import {
     Colors,
+    FlexDiv,
     FlexDivCentered,
     FlexDivColumn,
     FlexDivColumnCentered,
@@ -178,4 +179,22 @@ export const ArrowIcon = styled(ArrowHyperlinkIcon)`
     width: 10px;
     height: 10px;
     margin-left: 4px;
+`;
+
+export const Icon = styled.i<{ color?: string }>`
+    font-size: 25px;
+    margin-right: 5px;
+    color: ${(props) => (props.color ? props.color : props.theme.textColor.primary)};
+`;
+
+export const CouncilVotesLabel = styled.span`
+    font-weight: 400;
+    font-size: 13px;
+    color: ${Colors.GRAY};
+    margin-top: 5px;
+`;
+
+export const SidebarHeaderContainer = styled(FlexDiv)`
+    padding: 10px 20px 20px;
+    align-items: center;
 `;

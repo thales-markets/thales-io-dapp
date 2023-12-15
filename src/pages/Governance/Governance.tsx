@@ -223,18 +223,13 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                 )}
                 {selectedProposal && (
                     <SidebarContainer tipsOverview={false}>
-                        {selectedProposal.space.id === SpaceKey.TIPS && (
+                        {selectedProposal.space.id === SpaceKey.COUNCIL && (
                             <SidebarWrapper>
                                 <Sidebar>
-                                    <SidebarDetails proposal={selectedProposal} type="approval-box" />
+                                    <SidebarDetails proposal={selectedProposal} type="results" />
                                 </Sidebar>
                             </SidebarWrapper>
                         )}
-                        <SidebarWrapper>
-                            <Sidebar>
-                                <SidebarDetails proposal={selectedProposal} type="results" />
-                            </Sidebar>
-                        </SidebarWrapper>
                         {selectedProposal.space.id === SpaceKey.TIPS && (
                             <SidebarWrapper>
                                 <Sidebar>

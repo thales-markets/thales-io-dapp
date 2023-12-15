@@ -1,4 +1,5 @@
-import { formatCurrency, formatCurrencyWithPrecision } from 'thales-utils';
+import { ethers } from 'ethers';
+import { floorNumberToDecimals, formatCurrency, formatCurrencyWithPrecision } from 'thales-utils';
 
 export const formatNumberShort = (value: number, trim = true, negativeFactors = false) => {
     // Nine Zeroes for Billions
@@ -32,3 +33,9 @@ export const calculateAndFormatPercentage = (first: number, second: number) => {
     const smaller = first > second ? second : first;
     return (greater - smaller) / smaller;
 };
+
+export const bigNumberParser = (value: number, decimals?: number) =>
+    ethers.utils.parseUnits(
+        floorNumberToDecimals(Number(value), decimals ? decimals : 18).toString(),
+        decimals ? decimals : 18
+    );

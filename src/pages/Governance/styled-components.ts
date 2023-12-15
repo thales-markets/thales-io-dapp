@@ -123,13 +123,15 @@ export const ArrowIcon = styled(ArrowBackIcon)`
     margin-left: 4px;
 `;
 
-export const SidebarTitle = styled(FlexDivCentered)`
-    font-weight: 500;
-    font-size: 25px;
-    line-height: 48px;
+export const SidebarTitle = styled(FlexDivCentered)<{ bottomMargin?: number }>`
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
     color: ${(props) => props.theme.textColor.primary};
-    margin-bottom: 15px;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: ${(props) => (props.bottomMargin ? `${props.bottomMargin}px` : '')};
 `;
 
 export const SidebarContentWrapper = styled(FlexDivColumn)`
@@ -164,7 +166,9 @@ export const Percentage = styled(FlexDiv)`
     text-align: right;
 `;
 
-export const Votes = styled.div``;
+export const Votes = styled.div`
+    color: ${Colors.WHITE};
+`;
 
 export const LoaderContainer = styled(FlexDivColumn)<{ height?: number }>`
     min-height: ${(props) => (props.height ? props.height : 400)}px;

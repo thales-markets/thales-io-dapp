@@ -14,7 +14,7 @@ import {
 } from 'thales-utils';
 import { Proposal } from 'types/governance';
 import { getProposalUrl } from 'utils/governance';
-import { ArrowIcon } from '../styled-components';
+import { ArrowIcon, Icon } from '../styled-components';
 import {
     Container,
     FlexDivFullWidthSpaceBetween,
@@ -25,7 +25,6 @@ import {
     TimeLeftLabel,
     TitleLabel,
     WidgetHeader,
-    WidgetIcon,
     WidgetWrapper,
 } from './styled-components';
 
@@ -45,7 +44,7 @@ const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) 
             <WidgetWrapper>
                 <WidgetHeader isTwoSided={true}>
                     <FlexDiv>
-                        <WidgetIcon className="icon icon--proposal" />
+                        <Icon className="icon icon--proposal" />
                         <TitleLabel>{t(`governance.proposal.details`)}</TitleLabel>
                     </FlexDiv>
                     {!closed && (

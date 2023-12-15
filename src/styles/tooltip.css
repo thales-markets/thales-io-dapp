@@ -205,3 +205,11 @@
 .lp-max-allowance .rc-tooltip-inner {
     max-width: 500px;
 }
+
+.left-margin-tooltip .rc-tooltip-content {
+    margin-left: 320px;
+}
+
+.left-margin-tooltip .rc-tooltip-arrow {
+    margin-left: 160px;
+}

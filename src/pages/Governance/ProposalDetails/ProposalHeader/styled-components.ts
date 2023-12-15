@@ -92,12 +92,6 @@ export const FlexDivFullWidthSpaceBetween = styled(FlexDivSpaceBetween)<{
     margin-right: ${(props) => (props.marginRight ? props.marginRight + 'px' : '')};
 `;
 
-export const WidgetIcon = styled.i`
-    font-size: 25px;
-    margin-right: 5px;
-    color: ${(props) => props.theme.textColor.primary};
-`;
-
 export const TimeLeftContainer = styled(FlexDivSpaceBetween)`
     margin-bottom: 2px;
 `;

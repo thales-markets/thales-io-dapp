@@ -235,3 +235,7 @@
 .icon--proposal:before {
     content: '\0045';
 }
+
+.icon--sleep:before {
+    content: '\0031';
+}

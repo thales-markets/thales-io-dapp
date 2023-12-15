@@ -20,7 +20,7 @@ const CouncilMembers: React.FC = () => {
 
     return (
         <FlexDivColumnCentered>
-            <SidebarTitle>{t(`governance.sidebar.title.council-members`)}</SidebarTitle>
+            <SidebarTitle bottomMargin={15}>{t(`governance.sidebar.title.council-members`)}</SidebarTitle>
             <Line />
             <SidebarContent>
                 <Results

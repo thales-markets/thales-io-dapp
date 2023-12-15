@@ -1,19 +1,19 @@
 import { VOTING_COUNCIL_PROPOSAL_ID, VOTING_ORACLE_COUNCIL_PROPOSAL_ID } from 'constants/governance';
 import { SpaceKey } from 'enums/governance';
-import { Line, SidebarContent, SidebarTitle, VotesCount } from 'pages/Governance/styled-components';
+import CouncilTipVotes from 'pages/Governance/CouncilTipVotes';
+import { Line, SidebarContent, SidebarTitle } from 'pages/Governance/styled-components';
 import useProposalQuery from 'queries/governance/useProposalQuery';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import { FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
+import { FlexDivCentered, FlexDivColumnCentered, FlexDivStart } from 'styles/common';
 import { Proposal } from 'types/governance';
-import History from '../History';
 import Results from '../Results';
-import TipsApprovalBox from '../TipsApprovalBox';
+import { CouncilVotesLabel, Icon, SidebarHeaderContainer } from '../styled-components';
 
-type SidebarType = 'results' | 'history' | 'approval-box';
+type SidebarType = 'results' | 'history';
 
 type SidebarDetailsProps = {
     proposal: Proposal;
@@ -35,47 +35,48 @@ const SidebarDetails: React.FC<SidebarDetailsProps> = ({ proposal, type }) => {
     );
 
     return (
-        <>
-            {type === 'approval-box' && (
-                <SidebarContent>
-                    <TipsApprovalBox
+        <FlexDivColumnCentered>
+            <SidebarHeaderContainer>
+                <FlexDivColumnCentered>
+                    {type === 'history' && (
+                        <>
+                            <FlexDivStart>
+                                <Icon className="icon icon--people" />
+                                <SidebarTitle>{t(`governance.sidebar.title.${type}`)}</SidebarTitle>
+                            </FlexDivStart>
+                            <FlexDivStart>
+                                <CouncilVotesLabel>{t(`governance.sidebar.tip-condition`)}</CouncilVotesLabel>
+                            </FlexDivStart>
+                        </>
+                    )}
+                    {type !== 'history' && (
+                        <>
+                            <FlexDivCentered>
+                                <SidebarTitle>{t(`governance.sidebar.title.${type}`)}</SidebarTitle>
+                            </FlexDivCentered>
+                        </>
+                    )}
+                </FlexDivColumnCentered>
+            </SidebarHeaderContainer>
+            {type !== 'history' && <Line />}
+            <SidebarContent type={type} isCouncilVoting={isCouncilVoting}>
+                {type === 'results' && (
+                    <Results
+                        isCouncilVoting={isCouncilVoting}
+                        proposalResults={proposalResults}
+                        isLoading={proposalResultsQuery.isLoading}
+                        proposalId={proposal.id}
+                    />
+                )}
+                {type === 'history' && !isCouncilVoting && (
+                    <CouncilTipVotes
                         proposal={proposal}
                         proposalResults={proposalResults}
                         isLoading={proposalResultsQuery.isLoading}
                     />
-                </SidebarContent>
-            )}
-            {type !== 'approval-box' && (
-                <FlexDivColumnCentered>
-                    <FlexDivCentered>
-                        <FlexDivCentered>
-                            <SidebarTitle>{t(`governance.sidebar.title.${type}`)}</SidebarTitle>
-                            {type === 'history' && proposalResults && proposalResults.votes.length > 0 && (
-                                <VotesCount>{proposalResults.votes.length}</VotesCount>
-                            )}
-                        </FlexDivCentered>
-                    </FlexDivCentered>
-                    <Line />
-                    <SidebarContent type={type} isCouncilVoting={isCouncilVoting}>
-                        {type === 'results' && (
-                            <Results
-                                isCouncilVoting={isCouncilVoting}
-                                proposalResults={proposalResults}
-                                isLoading={proposalResultsQuery.isLoading}
-                                proposalId={proposal.id}
-                            />
-                        )}
-                        {type === 'history' && !isCouncilVoting && (
-                            <History
-                                proposal={proposal}
-                                proposalResults={proposalResults}
-                                isLoading={proposalResultsQuery.isLoading}
-                            />
-                        )}
-                    </SidebarContent>
-                </FlexDivColumnCentered>
-            )}
-        </>
+                )}
+            </SidebarContent>
+        </FlexDivColumnCentered>
     );
 };
 

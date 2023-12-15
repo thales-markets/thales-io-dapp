@@ -18,7 +18,7 @@ import { toast } from 'react-toastify';
 import { getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
-import { FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
+import { Colors, FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
 import { Proposal } from 'types/governance';
 import { refetchProposal } from 'utils/queryConnector';
 import voting from 'utils/voting';
@@ -98,6 +98,7 @@ const SingleChoiceVoting: React.FC<SingleChoiceVotingProps> = ({ proposal, hasVo
                     disabled={!selectedChoices || isVoting || !hasVotingRights}
                     onClick={handleVote}
                     margin="20px 0"
+                    textColor={Colors.WHITE}
                 >
                     {!isVoting
                         ? t(`governance.proposal.submit-vote-label`)

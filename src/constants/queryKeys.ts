@@ -133,6 +133,7 @@ const QUERY_KEYS = {
             snapshot,
             walletAddress,
         ],
+        CouncilNftOwners: () => ['governance', 'council'],
     },
     Integrators: () => ['integrators'],
     VolumeStats: () => ['volume', 'stats'],

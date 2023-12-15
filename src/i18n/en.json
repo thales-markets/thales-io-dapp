@@ -609,6 +609,8 @@
         },
         "title": "Governance",
         "you": "You",
+        "voted": "Voted",
+        "not-voted": "Not voted",
         "tabs": {
             "thalesgov": {
                 "eth": "TIPS"
@@ -628,9 +630,10 @@
         "sidebar": {
             "title": {
                 "results": "Results",
-                "history": "Votes",
+                "history": "Council member votes",
                 "council-members": "Current council members"
-            }
+            },
+            "tip-condition": "(5 of 7 votes needed for approval)"
         },
         "proposal": {
             "status-label": "Status",
@@ -668,6 +671,9 @@
             "not-voted-in-label": "Not voted in",
             "voting-label": "Voting",
             "votes": "{{votes}} Votes",
+            "yes-votes": "{{votes}} YES votes",
+            "no-votes": "{{votes}} NO votes",
+            "not-voted": "{{votes}} not voted",
             "voting-approval-status": {
                 "passed": "Passed",
                 "not-passed": "Not passed",
