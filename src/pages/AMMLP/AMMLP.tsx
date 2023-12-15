@@ -409,7 +409,7 @@ const AMMLP: React.FC = () => {
                     );
                     setAmount('');
                     setIsSubmitting(false);
-                    refetchLiquidityPoolData(walletAddress, networkId);
+                    refetchLiquidityPoolData(walletAddress, networkId, paramTab);
                 }
             } catch (e) {
                 console.log(e);
