@@ -1,4 +1,5 @@
 import { SpaceKey } from 'enums/governance';
+import { LiquidityPool } from 'enums/liquidityPool';
 import { Network } from 'enums/network';
 
 const QUERY_KEYS = {
@@ -136,6 +137,16 @@ const QUERY_KEYS = {
     Integrators: () => ['integrators'],
     VolumeStats: () => ['volume', 'stats'],
     UsersStats: () => ['users', 'stats'],
+    LiquidityPoolPnL: (networkId: Network, liquidityPool: LiquidityPool) => [
+        'liquidityPoolPnL',
+        networkId,
+        liquidityPool,
+    ],
+    LiquidityPoolUserTransactions: (networkId: Network, liquidityPool: LiquidityPool) => [
+        'liquidityPoolUserTransactions',
+        networkId,
+        liquidityPool,
+    ],
     ThalesLiquidityPool: {
         Data: (networkId: Network) => ['thalesLiquidityPool', 'data', networkId],
         UserData: (walletAddress: string, networkId: Network) => [
@@ -144,8 +155,24 @@ const QUERY_KEYS = {
             walletAddress,
             networkId,
         ],
-        PnL: (networkId: Network) => ['thalesLiquidityPool', 'pnl', networkId],
-        UserTransactions: (networkId: Network) => ['thalesLiquidityPool', 'userTransactions', networkId],
+    },
+    ParlayLiquidityPool: {
+        Data: (networkId: Network) => ['parlayLiquidityPool', 'data', networkId],
+        UserData: (walletAddress: string, networkId: Network) => [
+            'parlayLiquidityPool',
+            'data',
+            walletAddress,
+            networkId,
+        ],
+    },
+    SportsLiquidityPool: {
+        Data: (networkId: Network) => ['sportsLiquidityPool', 'data', networkId],
+        UserData: (walletAddress: string, networkId: Network) => [
+            'sportsLiquidityPool',
+            'data',
+            walletAddress,
+            networkId,
+        ],
     },
 };
 

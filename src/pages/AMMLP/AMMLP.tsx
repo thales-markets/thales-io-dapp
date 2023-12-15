@@ -18,12 +18,16 @@ import RadioButton from 'components/fields/RadioButton';
 import { USD_SIGN } from 'constants/currency';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
-import { LiquidityPoolPnlType } from 'enums/liquidityPool';
+import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
 import { Network } from 'enums/network';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { BigNumber, ethers } from 'ethers';
-import useLiquidityPoolUserDataQuery from 'queries/liquidityPool/useLiquidityPoolUserDataQuery';
-import useLiquidityPoolDataQuery from 'queries/liquidityPool/useThalesLiquidityPoolDataQuery';
+import useParlayLiquidityPoolDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolDataQuery';
+import useParlayLiquidityPoolUserDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolUserDataQuery';
+import useSportsAmmLiquidityPoolDataQuery from 'queries/liquidityPool/useSportsAmmLiquidityPoolDataQuery';
+import useSportsAmmLiquidityPoolUserDataQuery from 'queries/liquidityPool/useSportsAmmLiquidityPoolUserDataQuery';
+import useThalesLiquidityPoolDataQuery from 'queries/liquidityPool/useThalesLiquidityPoolDataQuery';
+import useThalesLiquidityPoolUserDataQuery from 'queries/liquidityPool/useThalesLiquidityPoolUserDataQuery';
 import useStableBalanceQuery from 'queries/walletBalances.ts/useStableBalanceQuery';
 import queryString from 'query-string';
 import { Suspense, useEffect, useMemo, useState } from 'react';
@@ -50,7 +54,6 @@ import {
 import { formatCurrencyWithSign, formatPercentage, getDefaultDecimalsForNetwork } from 'thales-utils';
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
 import { getCurrencyKeyStableBalance } from 'utils/balances';
-import liquidityPoolContract from 'utils/contracts/sportLiquidityPoolContract';
 import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance } from 'utils/network';
 import { refetchThalesLiquidityPoolData } from 'utils/queryConnector';
@@ -72,33 +75,27 @@ import {
     Top,
 } from './styled-components';
 
-enum Tab {
-    THALES = 'thales',
-    OVERTIME_SINGLE = 'overtime-single',
-    OVERTIME_PARLAY = 'overtime-parlay',
-}
-
 const AMMLP: React.FC = () => {
     const { t } = useTranslation();
     const location = useLocation();
-    const paramTab = queryString.parse(location.search).tab || Tab.THALES;
+    const paramTab: LiquidityPool = (queryString.parse(location.search).tab as LiquidityPool) || LiquidityPool.THALES;
 
     const navItems: NavItemType[] = useMemo(() => {
         return [
             {
-                href: `${buildHref(ROUTES.AMMLP)}?tab=${Tab.THALES}`,
+                href: `${buildHref(ROUTES.AMMLP)}?tab=${LiquidityPool.THALES}`,
                 title: t('amm-lp.nav.thales'),
-                active: paramTab === Tab.THALES,
+                active: paramTab === LiquidityPool.THALES,
             },
             {
-                href: `${buildHref(ROUTES.AMMLP)}?tab=${Tab.OVERTIME_SINGLE}`,
+                href: `${buildHref(ROUTES.AMMLP)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
                 title: t('amm-lp.nav.overtime-single'),
-                active: paramTab === Tab.OVERTIME_SINGLE,
+                active: paramTab === LiquidityPool.OVERTIME_SINGLE,
             },
             {
-                href: `${buildHref(ROUTES.AMMLP)}?tab=${Tab.OVERTIME_PARLAY}`,
+                href: `${buildHref(ROUTES.AMMLP)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
                 title: t('amm-lp.nav.overtime-parlay'),
-                active: paramTab === Tab.OVERTIME_PARLAY,
+                active: paramTab === LiquidityPool.OVERTIME_PARLAY,
             },
         ];
     }, [paramTab, t]);
@@ -115,12 +112,8 @@ const AMMLP: React.FC = () => {
     const [isAllowing, setIsAllowing] = useState<boolean>(false);
     const [openApprovalModal, setOpenApprovalModal] = useState<boolean>(false);
     const [paymentTokenBalance, setPaymentTokenBalance] = useState<number | string>('');
-    const [lastValidLiquidityPoolData, setLastValidLiquidityPoolData] = useState<LiquidityPoolData | undefined>(
-        undefined
-    );
-    const [lastValidUserLiquidityPoolData, setLastValidUserLiquidityPoolData] = useState<
-        UserLiquidityPoolData | undefined
-    >(undefined);
+    const [liquidityPoolData, setLiquidityPoolData] = useState<LiquidityPoolData | undefined>(undefined);
+    const [userLiquidityPoolData, setUserLiquidityPoolData] = useState<UserLiquidityPoolData | undefined>(undefined);
     const [withdrawAll, setWithdrawAll] = useState<boolean>(true);
     const [withdrawalPercentage, setWithdrawalPercentage] = useState<number | string>(10);
     const [isWithdrawalPercentageValid, setIsWithdrawalPercentageValid] = useState<boolean>(true);
@@ -141,39 +134,93 @@ const AMMLP: React.FC = () => {
         }
     }, [paymentTokenBalanceQuery.isSuccess, paymentTokenBalanceQuery.data, networkId]);
 
-    const liquidityPoolDataQuery = useLiquidityPoolDataQuery(networkId, {
-        enabled: isAppReady,
+    const thalesLiquidityPoolDataQuery = useThalesLiquidityPoolDataQuery(networkId, {
+        enabled: isAppReady && paramTab === LiquidityPool.THALES,
+    });
+
+    const thalesUserLiquidityPoolDataQuery = useThalesLiquidityPoolUserDataQuery(walletAddress, networkId, {
+        enabled: isAppReady && isWalletConnected && paramTab === LiquidityPool.THALES,
+    });
+
+    const sportsAmmLiquidityPoolDataQuery = useSportsAmmLiquidityPoolDataQuery(networkId, {
+        enabled: isAppReady && paramTab === LiquidityPool.OVERTIME_SINGLE,
+    });
+
+    const sportsAmmUserLiquidityPoolDataQuery = useSportsAmmLiquidityPoolUserDataQuery(walletAddress, networkId, {
+        enabled: isAppReady && isWalletConnected && paramTab === LiquidityPool.OVERTIME_SINGLE,
+    });
+
+    const parlayLiquidityPoolDataQuery = useParlayLiquidityPoolDataQuery(networkId, {
+        enabled: isAppReady && paramTab === LiquidityPool.OVERTIME_PARLAY,
+    });
+
+    const parlayUserLiquidityPoolDataQuery = useParlayLiquidityPoolUserDataQuery(walletAddress, networkId, {
+        enabled: isAppReady && isWalletConnected && paramTab === LiquidityPool.OVERTIME_PARLAY,
     });
 
     useEffect(() => {
-        if (liquidityPoolDataQuery.isSuccess && liquidityPoolDataQuery.data) {
-            setLastValidLiquidityPoolData(liquidityPoolDataQuery.data);
+        if (
+            thalesLiquidityPoolDataQuery.isSuccess &&
+            thalesLiquidityPoolDataQuery.data &&
+            paramTab === LiquidityPool.THALES
+        ) {
+            setLiquidityPoolData(thalesLiquidityPoolDataQuery.data);
         }
-    }, [liquidityPoolDataQuery.isSuccess, liquidityPoolDataQuery.data]);
-
-    const liquidityPoolData: LiquidityPoolData | undefined = useMemo(() => {
-        if (liquidityPoolDataQuery.isSuccess && liquidityPoolDataQuery.data) {
-            return liquidityPoolDataQuery.data;
+        if (
+            sportsAmmLiquidityPoolDataQuery.isSuccess &&
+            sportsAmmLiquidityPoolDataQuery.data &&
+            paramTab === LiquidityPool.OVERTIME_SINGLE
+        ) {
+            setLiquidityPoolData(sportsAmmLiquidityPoolDataQuery.data);
         }
-        return lastValidLiquidityPoolData;
-    }, [liquidityPoolDataQuery.isSuccess, liquidityPoolDataQuery.data, lastValidLiquidityPoolData]);
-
-    const userLiquidityPoolDataQuery = useLiquidityPoolUserDataQuery(walletAddress, networkId, {
-        enabled: isAppReady && isWalletConnected,
-    });
+        if (
+            parlayLiquidityPoolDataQuery.isSuccess &&
+            parlayLiquidityPoolDataQuery.data &&
+            paramTab === LiquidityPool.OVERTIME_PARLAY
+        ) {
+            setLiquidityPoolData(parlayLiquidityPoolDataQuery.data);
+        }
+    }, [
+        thalesLiquidityPoolDataQuery.isSuccess,
+        thalesLiquidityPoolDataQuery.data,
+        sportsAmmLiquidityPoolDataQuery.isSuccess,
+        sportsAmmLiquidityPoolDataQuery.data,
+        parlayLiquidityPoolDataQuery.isSuccess,
+        parlayLiquidityPoolDataQuery.data,
+        paramTab,
+    ]);
 
     useEffect(() => {
-        if (userLiquidityPoolDataQuery.isSuccess && userLiquidityPoolDataQuery.data) {
-            setLastValidUserLiquidityPoolData(userLiquidityPoolDataQuery.data);
+        if (
+            thalesUserLiquidityPoolDataQuery.isSuccess &&
+            thalesUserLiquidityPoolDataQuery.data &&
+            paramTab === LiquidityPool.THALES
+        ) {
+            setUserLiquidityPoolData(thalesUserLiquidityPoolDataQuery.data);
         }
-    }, [userLiquidityPoolDataQuery.isSuccess, userLiquidityPoolDataQuery.data]);
-
-    const userLiquidityPoolData: UserLiquidityPoolData | undefined = useMemo(() => {
-        if (userLiquidityPoolDataQuery.isSuccess && userLiquidityPoolDataQuery.data) {
-            return userLiquidityPoolDataQuery.data;
+        if (
+            sportsAmmUserLiquidityPoolDataQuery.isSuccess &&
+            sportsAmmUserLiquidityPoolDataQuery.data &&
+            paramTab === LiquidityPool.OVERTIME_SINGLE
+        ) {
+            setUserLiquidityPoolData(sportsAmmUserLiquidityPoolDataQuery.data);
         }
-        return lastValidUserLiquidityPoolData;
-    }, [userLiquidityPoolDataQuery.isSuccess, userLiquidityPoolDataQuery.data, lastValidUserLiquidityPoolData]);
+        if (
+            parlayUserLiquidityPoolDataQuery.isSuccess &&
+            parlayUserLiquidityPoolDataQuery.data &&
+            paramTab === LiquidityPool.OVERTIME_PARLAY
+        ) {
+            setUserLiquidityPoolData(parlayUserLiquidityPoolDataQuery.data);
+        }
+    }, [
+        thalesUserLiquidityPoolDataQuery.isSuccess,
+        thalesUserLiquidityPoolDataQuery.data,
+        paramTab,
+        sportsAmmUserLiquidityPoolDataQuery.isSuccess,
+        sportsAmmUserLiquidityPoolDataQuery.data,
+        parlayUserLiquidityPoolDataQuery.isSuccess,
+        parlayUserLiquidityPoolDataQuery.data,
+    ]);
 
     const isAmountEntered = Number(amount) > 0;
     const invalidAmount =
@@ -239,9 +286,21 @@ const AMMLP: React.FC = () => {
 
     const isPartialWithdrawalDisabled = isRequestWithdrawalButtonDisabled || withdrawAll;
 
+    const activeLiquidityPoolContract = useMemo(() => {
+        if (paramTab === LiquidityPool.THALES) {
+            return snxJSConnector.thalesLiquidityPoolContract;
+        }
+        if (paramTab === LiquidityPool.OVERTIME_SINGLE) {
+            return snxJSConnector.sportLiquidityPoolContract;
+        }
+        if (paramTab === LiquidityPool.OVERTIME_PARLAY) {
+            return snxJSConnector.parlayAMMLiquidityPoolContract;
+        }
+    }, [paramTab]);
+
     useEffect(() => {
-        const { signer, collateral, thalesLiquidityPoolContract } = snxJSConnector;
-        if (signer && collateral && liquidityPoolContract) {
+        const { signer, collateral } = snxJSConnector;
+        if (signer && collateral && activeLiquidityPoolContract) {
             const collateralWithSigner = collateral.connect(signer);
             const getAllowance = async () => {
                 try {
@@ -253,7 +312,7 @@ const AMMLP: React.FC = () => {
                         parsedAmount,
                         collateralWithSigner,
                         walletAddress,
-                        thalesLiquidityPoolContract?.address || ''
+                        activeLiquidityPoolContract?.address || ''
                     );
                     setAllowance(allowance);
                 } catch (e) {
@@ -264,11 +323,11 @@ const AMMLP: React.FC = () => {
                 getAllowance();
             }
         }
-    }, [walletAddress, isWalletConnected, hasAllowance, amount, isAllowing, networkId]);
+    }, [walletAddress, isWalletConnected, hasAllowance, amount, isAllowing, networkId, activeLiquidityPoolContract]);
 
     const handleAllowance = async (approveAmount: BigNumber) => {
-        const { signer, collateral, thalesLiquidityPoolContract } = snxJSConnector;
-        if (signer && collateral && thalesLiquidityPoolContract) {
+        const { signer, collateral } = snxJSConnector;
+        if (signer && collateral && activeLiquidityPoolContract) {
             const id = toast.loading(getDefaultToastContent(t('common.transaction-pending')), getLoadingToastOptions());
             setIsAllowing(true);
 
@@ -276,7 +335,7 @@ const AMMLP: React.FC = () => {
                 const collateralWithSigner = collateral.connect(signer);
 
                 const tx = (await collateralWithSigner.approve(
-                    thalesLiquidityPoolContract.address,
+                    activeLiquidityPoolContract.address,
                     approveAmount
                 )) as ethers.ContractTransaction;
                 setOpenApprovalModal(false);
@@ -654,7 +713,7 @@ const AMMLP: React.FC = () => {
                                                                     placeholder={t('common.enter-percentage')}
                                                                     showValidation={!isWithdrawalPercentageValid}
                                                                     validationMessage={t(
-                                                                        Number(withdrawalPercentage) == 0
+                                                                        Number(withdrawalPercentage) === 0
                                                                             ? 'common.errors.enter-percentage'
                                                                             : 'common.errors.invalid-percentage-range',
                                                                         { min: 10, max: 90 }
@@ -768,11 +827,19 @@ const AMMLP: React.FC = () => {
             </Container>
             <ChartsContainer>
                 {liquidityPoolData && (
-                    <PnL lifetimePnl={liquidityPoolData.lifetimePnl} type={LiquidityPoolPnlType.PNL_PER_ROUND} />
+                    <PnL
+                        liquidityPool={paramTab}
+                        lifetimePnl={liquidityPoolData.lifetimePnl}
+                        type={LiquidityPoolPnlType.PNL_PER_ROUND}
+                    />
                 )}
                 <FlexDiv>
                     {liquidityPoolData && (
-                        <PnL lifetimePnl={liquidityPoolData.lifetimePnl} type={LiquidityPoolPnlType.CUMULATIVE_PNL} />
+                        <PnL
+                            liquidityPool={paramTab}
+                            lifetimePnl={liquidityPoolData.lifetimePnl}
+                            type={LiquidityPoolPnlType.CUMULATIVE_PNL}
+                        />
                     )}
                     <LPInfo>
                         {liquidityPoolData && (
@@ -915,7 +982,7 @@ const AMMLP: React.FC = () => {
                     </LPInfo>
                 </FlexDiv>
             </ChartsContainer>
-            <YourTransactions currentRound={liquidityPoolData?.round || 0} />
+            <YourTransactions liquidityPool={paramTab} currentRound={liquidityPoolData?.round || 0} />
             {openApprovalModal && (
                 <ApprovalModal
                     defaultAmount={amount}

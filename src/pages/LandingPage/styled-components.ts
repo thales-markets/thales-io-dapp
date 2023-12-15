@@ -1,6 +1,6 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivSpaceBetween, FlexDivCentered, FlexDivColumn, Icon } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceBetween, Icon } from 'styles/common';
 
 export const About = styled.div`
     margin-top: 150px;
@@ -37,7 +37,6 @@ export const Subtitle = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 103%;
-    text-transform: capitalize;
 `;
 
 export const Highlight = styled.div`

@@ -12,3 +12,9 @@ export enum LiquidityPoolPnlType {
     PNL_PER_ROUND = 'pnl-per-round',
     CUMULATIVE_PNL = 'cumulative-pnl',
 }
+
+export enum LiquidityPool {
+    THALES = 'thales',
+    OVERTIME_SINGLE = 'overtime-single',
+    OVERTIME_PARLAY = 'overtime-parlay',
+}

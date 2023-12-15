@@ -1,5 +1,5 @@
 import SelectInput from 'components/SelectInput';
-import { LiquidityPoolTransaction } from 'enums/liquidityPool';
+import { LiquidityPool, LiquidityPoolTransaction } from 'enums/liquidityPool';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { orderBy } from 'lodash';
 import useLiquidityPoolUserTransactionsQuery from 'queries/liquidityPool/useThalesLiquidityPoolUserTransactionsQuery';
@@ -16,9 +16,10 @@ import UserTransactionsTable from '../UserTransactionsTable';
 
 type TransactionsProps = {
     currentRound: number;
+    liquidityPool: LiquidityPool;
 };
 
-const Transactions: React.FC<TransactionsProps> = ({ currentRound }) => {
+const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool }) => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -57,7 +58,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound }) => {
         });
     }
 
-    const liquidityPoolUserTransactionsQuery = useLiquidityPoolUserTransactionsQuery(networkId, {
+    const liquidityPoolUserTransactionsQuery = useLiquidityPoolUserTransactionsQuery(networkId, liquidityPool, {
         enabled: isAppReady,
     });
 

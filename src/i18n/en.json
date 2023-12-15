@@ -153,7 +153,7 @@
             "description-1": "Thales Protocol architecture tokenizes all unique positions as ERC20 tokens. Every market has a set of unique ERC20 token types that cover all potential exclusive outcomes of that market. These tokenized positions are minted by locking USD collateral in the designated Market Smart Contract. Each locked 1 USD mints 1 of each type of ERC20 tokenized positions. Only one type of these ERC20 positions can win on market expiry and only that type can claim the locked USD, while the losing ERC20 positions expire worthless. With this permissionless and automated architecture, Thales Protocol guarantees transparent and non-custodial full collateralization for all positions at all times.",
             "description-2": "With liquidity and collateralization solved, the next necessary step is pricing the minted positional ERC20 tokens and allowing for a good trading experience to the public. This is where the unique design of Thales Automated Market Maker comes into play. The Thales AMM contract is whitelisted to mint the ERC20 positions by locking the Liquidity Pool collateral funds in the designated market contracts. After minting, the AMM offers the ERC20 positional tokens on-demand to traders based on Algorithmic Probability Pricing that determines the fixed potential payout on market expiry.",
             "buying": {
-                "title": "Buying a position example",
+                "title": "Buying a position",
                 "step-1": "ThalesAMM algorithmic probability pricing quotes BTC UP Options at $0.5 per Option",
                 "step-2": "User wants to buy 1000 BTC UP tokens from the ThalesAMM for $500",
                 "step-3": "ThalesAMM takes $1000 from the LP pool",
@@ -161,7 +161,7 @@
                 "step-5": "ThalesAMM receives $500 from the User and sends 1000 BTC UP tokens to the User"
             },
             "selling": {
-                "title": "Exercising a winning position example",
+                "title": "Exercising a winning position",
                 "step-1": "Bitcoin price was above the Strike Price on the Maturity Date which means that User’s 1000 BTC UP positions are resolved as winning and every 1 BTC UP token is redeemable for $1 while BTC DOWN tokens are deemed worthless",
                 "step-2": "User sends his 1000 BTC UP tokens to the Market Contract and claims the $1000 from the contract"
             }
@@ -517,9 +517,9 @@
     },
     "amm-lp": {
         "nav": {
-            "thales": "Thales",
-            "overtime-single": "Overtime Single",
-            "overtime-parlay": "Overtime Parlay"
+            "thales": "Thales AMM",
+            "overtime-single": "Sports AMM",
+            "overtime-parlay": "Parlay AMM"
         }
     },
     "header": {

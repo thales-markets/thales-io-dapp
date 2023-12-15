@@ -1,4 +1,4 @@
-import { LiquidityPoolPnlType } from 'enums/liquidityPool';
+import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import useLiquidityPoolPnlsQuery from 'queries/liquidityPool/useLiquidityPoolPnlsQuery';
 import React, { useEffect, useState } from 'react';
@@ -28,16 +28,17 @@ import { ThemeInterface } from 'types/ui';
 type PnlProps = {
     lifetimePnl: number;
     type: LiquidityPoolPnlType;
+    liquidityPool: LiquidityPool;
 };
 
-const PnL: React.FC<PnlProps> = ({ lifetimePnl, type }) => {
+const PnL: React.FC<PnlProps> = ({ lifetimePnl, type, liquidityPool }) => {
     const { t } = useTranslation();
     const theme: ThemeInterface = useTheme();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const [liquidityPoolPnls, setLiquidityPoolPnls] = useState<LiquidityPoolPnls>([]);
 
-    const liquidityPoolPnlsQuery = useLiquidityPoolPnlsQuery(networkId, {
+    const liquidityPoolPnlsQuery = useLiquidityPoolPnlsQuery(networkId, liquidityPool, {
         enabled: isAppReady,
     });
 
