@@ -56,7 +56,7 @@ import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
 import { getCurrencyKeyStableBalance } from 'utils/balances';
 import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance } from 'utils/network';
-import { refetchThalesLiquidityPoolData } from 'utils/queryConnector';
+import { refetchLiquidityPoolData } from 'utils/queryConnector';
 import { buildHref } from 'utils/routes';
 import snxJSConnector from 'utils/snxJSConnector';
 import MaxAllowanceTooltip from './MaxAllowanceTooltip';
@@ -377,7 +377,7 @@ const AMMLP: React.FC = () => {
                     );
                     setAmount('');
                     setIsSubmitting(false);
-                    refetchThalesLiquidityPoolData(walletAddress, networkId);
+                    refetchLiquidityPoolData(walletAddress, networkId, paramTab);
                 }
             } catch (e) {
                 console.log(e);
@@ -409,7 +409,7 @@ const AMMLP: React.FC = () => {
                     );
                     setAmount('');
                     setIsSubmitting(false);
-                    refetchThalesLiquidityPoolData(walletAddress, networkId);
+                    refetchLiquidityPoolData(walletAddress, networkId);
                 }
             } catch (e) {
                 console.log(e);

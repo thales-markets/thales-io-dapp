@@ -1,5 +1,6 @@
 import QUERY_KEYS from 'constants/queryKeys';
 import { SpaceKey } from 'enums/governance';
+import { LiquidityPool } from 'enums/liquidityPool';
 import { Network } from 'enums/network';
 import { QueryClient } from 'react-query';
 
@@ -56,11 +57,11 @@ export const refetchProposal = (spaceKey: SpaceKey, hash: string, walletAddress:
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Governance.Proposal(spaceKey, hash, walletAddress));
 };
 
-export const refetchThalesLiquidityPoolData = (walletAddress: string, networkId: Network) => {
+export const refetchLiquidityPoolData = (walletAddress: string, networkId: Network, pool: LiquidityPool) => {
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.Data(networkId));
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.UserData(walletAddress, networkId));
-    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.PnL(networkId));
-    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.UserTransactions(networkId));
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.LiquidityPoolPnL(networkId, pool));
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.LiquidityPoolUserTransactions(networkId, pool));
 };
 
 // export const refetchStakingLeaderboardData = (walletAddress: string, networkId: Network, period: number) => {
