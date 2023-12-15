@@ -779,7 +779,7 @@ const AMMLP: React.FC = () => {
                                                 )}
                                             </>
                                         )}
-                                        {getWithdrawSubmitButton()}
+                                        <ButtonContainer>{getWithdrawSubmitButton()}</ButtonContainer>
                                     </>
                                 )}
                                 {liquidityPoolData &&

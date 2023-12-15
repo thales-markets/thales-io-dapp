@@ -1,35 +1,36 @@
-import React, { useEffect, useMemo, useState, DependencyList } from 'react';
+import SPAAnchor from 'components/SPAAnchor';
+import React, { DependencyList, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-    useTable,
-    useSortBy,
+    Cell,
+    Column,
+    DefaultSortTypes,
+    Row,
+    SortByFn,
+    useFlexLayout,
     useGlobalFilter,
     usePagination,
-    useFlexLayout,
-    SortByFn,
-    DefaultSortTypes,
-    Column,
-    Row,
-    Cell,
+    useSortBy,
+    useTable,
 } from 'react-table';
 import {
-    TableView,
+    LoaderContainer,
+    NoDataContainer,
+    Pagination,
+    PaginationContainer,
+    TableArrow,
     TableBody,
     TableCell,
     TableHeader,
     TableRow,
     TableRowMobile,
-    TableArrow,
-    LoaderContainer,
-    NoDataContainer,
-    PaginationContainer,
-    Pagination,
+    TableView,
 } from './styled-components';
-import SPAAnchor from 'components/SPAAnchor';
-import { useTranslation } from 'react-i18next';
 // import MobileDropdownMenu from 'components/MobileDropdownMenu';
 import SimpleLoader from 'components/SimpleLoader/SimpleLoader';
 
 const DEFAULT_PAGE_SIZE = 20;
+const DEFAULT_PAGE_SIZE_NO_PAGINATION = 1000;
 
 type ColumnWithSorting<D extends Record<string, unknown>> = Column<D> & {
     sortType?: string | SortByFn<D> | DefaultSortTypes;
@@ -120,8 +121,8 @@ const Table: React.FC<TableProps> = ({
     };
 
     useEffect(() => {
-        setPageSize(defaultPageSize || DEFAULT_PAGE_SIZE);
-    }, [defaultPageSize, setPageSize]);
+        setPageSize(hidePagination ? DEFAULT_PAGE_SIZE_NO_PAGINATION : defaultPageSize || DEFAULT_PAGE_SIZE);
+    }, [defaultPageSize, hidePagination, setPageSize]);
 
     useEffect(() => {
         gotoPage(0);
