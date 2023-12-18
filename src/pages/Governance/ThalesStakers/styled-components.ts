@@ -1,7 +1,7 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { Colors, FlexDivColumn, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
+import { Colors, FlexDiv, FlexDivColumn, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
 
 export const Container = styled(FlexDivColumnCentered)`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -74,4 +74,27 @@ export const ColoredInfo = styled.span`
     color: ${Colors.CYAN};
 `;
 
-export const ChartWrapper = styled.div``;
+export const ChartTooltipBox = styled.div`
+    background-color: ${Colors.BLUE_DARK};
+    border-radius: 8px;
+    border: 1px solid ${Colors.METALLIC_BLUE}
+    z-index: 2;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const ChartWrapper = styled(FlexDiv)`
+    width: 100%;
+    justify-content: center;
+    position: relative;
+`;
+
+export const ChartInnerText = styled(FlexDivColumnCentered)`
+    position: absolute;
+    top: 195px;
+    width: 230px;
+`;

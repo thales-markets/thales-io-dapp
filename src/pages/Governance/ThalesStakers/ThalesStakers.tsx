@@ -1,32 +1,39 @@
 import SearchInput from 'components/SearchInput';
+import SimpleLoader from 'components/SimpleLoader';
 import Table from 'components/Table';
-import Tooltip from 'components/Tooltip/Tooltip';
+import Tooltip from 'components/Tooltip';
 import { THALES_CURRENCY } from 'constants/currency';
 import { StakersFilterEnum } from 'enums/governance';
 import { Network } from 'enums/network';
 import makeBlockie from 'ethereum-blockies-base64';
+import { ethers } from 'ethers';
 import useDebouncedMemo from 'hooks/useDebouncedMemo';
-import { StyledPieChart } from 'pages/Dashboard/styled-components';
+import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
+import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import useThalesStakersQuery from 'queries/useThalesStakersQuery';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { CellProps } from 'react-table';
-import { Cell, Pie } from 'recharts';
+import { Cell, Tooltip as ChartTooltip, Pie } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
 import { getNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { Colors, FlexDiv } from 'styles/common';
-import { formatCurrencyWithKey, getEtherscanAddressLink, truncateAddress } from 'thales-utils';
+import { formatCurrency, formatCurrencyWithKey, getEtherscanAddressLink, truncateAddress } from 'thales-utils';
 import { DEFAULT_SEARCH_DEBOUNCE_MS } from 'thales-utils/src/constants/defaults';
 import { EnsNames, Staker, Stakers } from 'types/governance';
+import { StakingData, TokenInfo } from 'types/token';
 import snxJSConnector from 'utils/snxJSConnector';
+import { FlexDivFullWidthSpaceBetween } from '../ProposalDetails/ProposalHeader/styled-components';
 import Dropdown from '../components/Dropdown/Dropdown';
-import { Blockie, StyledLink } from '../styled-components';
+import { Blockie, InfoStats, InfoText, LoaderContainer, StyledLink, StyledPieChart } from '../styled-components';
 import {
     Address,
     Amount,
     ArrowIcon,
+    ChartInnerText,
+    ChartTooltipBox,
     ChartWrapper,
     ColoredInfo,
     Container,
@@ -36,7 +43,17 @@ import {
     TableHeaderContainer,
 } from './styled-components';
 
-const ChartColors = [Colors.CHINA_PINK, Colors.VIOLET, Colors.BLUEBERRY, Colors.CYAN, Colors.BLUE_DARK, Colors.BLUE];
+const ChartColors = [
+    Colors.CHINA_PINK,
+    Colors.VIOLET,
+    Colors.ORANGE,
+    Colors.CYAN,
+    Colors.BLUE_DARK,
+    Colors.BLUE,
+    Colors.RED,
+    Colors.BLUEBERRY,
+    Colors.DARK_GREEN,
+];
 
 const ThalesStakers: React.FC = () => {
     const { t } = useTranslation();
@@ -45,10 +62,32 @@ const ThalesStakers: React.FC = () => {
     const [addressSearch, setAddressSearch] = useState<string>('');
     const [ensNames, setEnsNames] = useState<EnsNames | undefined>(undefined);
     const [filter, setFilter] = useState<StakersFilterEnum>(StakersFilterEnum.All);
+    const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
+    const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
 
     const stakersQuery = useThalesStakersQuery(filter, {
         enabled: isAppReady,
     });
+
+    const stakingDataQuery = useStakingDataQuery({
+        enabled: isAppReady,
+    });
+
+    const tokenInfoQuery = useTokenInfoQuery({
+        enabled: isAppReady,
+    });
+
+    useEffect(() => {
+        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
+            setStakingData(stakingDataQuery.data);
+        }
+    }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
+
+    useEffect(() => {
+        if (tokenInfoQuery.isSuccess && tokenInfoQuery.data) {
+            setTokenInfo(tokenInfoQuery.data);
+        }
+    }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
 
     const stakers: Staker[] = useMemo(
         () => (stakersQuery.isSuccess && stakersQuery.data ? stakersQuery.data : []),
@@ -59,24 +98,12 @@ const ThalesStakers: React.FC = () => {
         const data: any[] = [];
         if (stakers.length > 0) {
             stakers
-                .filter((staker: Staker) => staker.totalStakedAmount > 100000)
+                .filter((staker: Staker) => staker.totalStakedAmount >= 10000)
                 .forEach((staker: Staker, index: number) => {
-                    console.log('alooooo');
-                    let chartColorIndex = 0;
-                    for (let i = ChartColors.length - 1; i == 1; i--) {
-                        console.log('desava li se sto');
-                        console.log(index);
-                        console.log(index % (i + 1) == 0);
-                        if (index % (i + 1) == 0) {
-                            console.log('upada');
-                            chartColorIndex = i;
-                            break;
-                        }
-                    }
                     const stakerData = {
                         name: staker.id,
                         value: staker.totalStakedAmount,
-                        color: ChartColors[chartColorIndex],
+                        color: ChartColors[Math.round(index % ChartColors.length)],
                     };
                     data.push(stakerData);
                 });
@@ -84,6 +111,26 @@ const ThalesStakers: React.FC = () => {
 
         return data;
     }, [stakers]);
+
+    const outerPieData = useMemo(() => {
+        const data = [];
+        if (stakers.length > 0 && stakingData) {
+            const smallStakersTotal = stakers
+                .filter((staker: Staker) => staker.totalStakedAmount < 10000)
+                .map((staker: Staker) => staker.totalStakedAmount)
+                .reduce((sum, current) => sum + current, 0);
+
+            const smallStakersPiece = { name: 'Small stakers', value: smallStakersTotal, color: Colors.BLUEBERRY };
+            const restOfStakers = {
+                name: 'Rest of stakers',
+                value: stakingData.totalStakedAmount - smallStakersTotal,
+                color: 'transparent',
+            };
+            data.push(smallStakersPiece, restOfStakers);
+        }
+
+        return data;
+    }, [stakers, stakingData]);
 
     useEffect(() => {
         const getEnsNames = async (stakers: Stakers) => {
@@ -122,6 +169,30 @@ const ThalesStakers: React.FC = () => {
         DEFAULT_SEARCH_DEBOUNCE_MS
     );
 
+    const CustomTooltip = ({ active, payload }: any) => {
+        if (active && payload && payload.length) {
+            if (payload[0].payload.name.toLowerCase() == 'rest of stakers') return <></>;
+            return (
+                <ChartTooltipBox>
+                    <InfoText color={Colors.WHITE}>
+                        {payload[0].payload.name.toLowerCase() == 'small stakers'
+                            ? payload[0].payload.name
+                            : truncateAddress(payload[0].payload.name)}
+                    </InfoText>
+                    <InfoStats>{formatCurrency(payload[0].payload.value, 2)}</InfoStats>
+                </ChartTooltipBox>
+            );
+        }
+
+        return null;
+    };
+
+    const totalStakedAmount = stakingData ? stakingData.totalStakedAmount : 0;
+    const stakedOfCirculatingSupplyPercentage =
+        stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.circulatingSupply) * 100 : 0;
+    const stakedOfTotalSupplyPercentage =
+        stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.totalSupply) * 100 : 0;
+
     return (
         <Container>
             <Info>
@@ -130,23 +201,60 @@ const ThalesStakers: React.FC = () => {
                 <ColoredInfo>{stakersQuery.isLoading ? '-' : stakers.length}</ColoredInfo>
             </Info>
             <ChartWrapper>
-                <StyledPieChart width={350} height={350}>
-                    <Pie
-                        isAnimationActive={false}
-                        blendStroke={true}
-                        data={pieData}
-                        dataKey={'value'}
-                        innerRadius={105}
-                        outerRadius={145}
-                        cx="50%"
-                        cy="50%"
-                        fill="#82ca9d"
-                    >
-                        {pieData.map((slice, index) => (
-                            <Cell key={index} fill={slice.color} />
-                        ))}
-                    </Pie>
-                </StyledPieChart>
+                {stakersQuery.isLoading ? (
+                    <LoaderContainer height={350}>
+                        <SimpleLoader />
+                    </LoaderContainer>
+                ) : (
+                    <>
+                        <ChartInnerText>
+                            <FlexDivFullWidthSpaceBetween>
+                                <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
+                                <InfoStats>{formatCurrency(totalStakedAmount)}</InfoStats>
+                            </FlexDivFullWidthSpaceBetween>
+                            <FlexDivFullWidthSpaceBetween>
+                                <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
+                                <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
+                            </FlexDivFullWidthSpaceBetween>
+                            <FlexDivFullWidthSpaceBetween>
+                                <InfoText>{t('dashboard.staking.of-total-supply')}</InfoText>
+                                <InfoStats>{stakedOfTotalSupplyPercentage.toFixed(2)}%</InfoStats>
+                            </FlexDivFullWidthSpaceBetween>
+                        </ChartInnerText>
+                        <StyledPieChart width={450} height={450}>
+                            <Pie
+                                isAnimationActive={false}
+                                blendStroke={true}
+                                data={pieData}
+                                dataKey={'value'}
+                                innerRadius={130}
+                                outerRadius={170}
+                                cx="50%"
+                                cy="50%"
+                                fill="#82ca9d"
+                            >
+                                {pieData.map((slice, index) => (
+                                    <Cell key={index} fill={slice.color} />
+                                ))}
+                            </Pie>
+                            <ChartTooltip content={<CustomTooltip />} />
+                            <Pie
+                                isAnimationActive={false}
+                                blendStroke={true}
+                                data={outerPieData}
+                                dataKey={'value'}
+                                innerRadius={180}
+                                outerRadius={200}
+                                cx="50%"
+                                cy="50%"
+                            >
+                                {outerPieData.map((slice, index) => (
+                                    <Cell key={index} fill={slice.color} />
+                                ))}
+                            </Pie>
+                        </StyledPieChart>
+                    </>
+                )}
             </ChartWrapper>
 
             <TableHeaderContainer>
@@ -231,17 +339,18 @@ type StakerCellProps = {
 
 const StakerCell: React.FC<StakerCellProps> = ({ staker }) => {
     const [stakerEns, setStakerEns] = useState<string | null>(null);
-    const networkId = useSelector((state: RootState) => getNetworkId(state));
 
     useEffect(() => {
-        const fetchStakerEns = async () => {
-            const stakerEns = await (snxJSConnector as any).provider.lookupAddress(staker.id);
+        const fetchVoterEns = async () => {
+            const mainnetInfuraProvider = new ethers.providers.InfuraProvider(
+                Network.Mainnet,
+                process.env.REACT_APP_INFURA_PROJECT_ID
+            );
+            const stakerEns = await mainnetInfuraProvider.lookupAddress(staker.id);
             setStakerEns(stakerEns);
         };
-        if (networkId === Network.Mainnet) {
-            fetchStakerEns();
-        }
-    }, [staker, networkId]);
+        fetchVoterEns();
+    }, [staker]);
 
     return <Address>{stakerEns != null ? stakerEns : truncateAddress(staker.id)}</Address>;
 };
