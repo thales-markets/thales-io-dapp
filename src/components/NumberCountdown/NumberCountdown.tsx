@@ -6,7 +6,7 @@ type NumberCountdownProps = {
     incrementCount?: number;
 };
 
-const NumberCountdown: React.FC<NumberCountdownProps> = ({ number, incrementCount = 200 }) => {
+const NumberCountdown: React.FC<NumberCountdownProps> = ({ number, incrementCount = 30 }) => {
     const [numberCounter, setNumberCounter] = useState<number>(0);
 
     useEffect(() => {

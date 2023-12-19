@@ -4,6 +4,7 @@ import ApprovalModal from 'components/ApprovalModal';
 import Loader from 'components/Loader';
 import { NavItemType } from 'components/NavLinks/NavItem';
 import NavLinks from 'components/NavLinks/NavLinks';
+import SPAAnchor from 'components/SPAAnchor';
 import SwitchInput from 'components/SwitchInput';
 import TimeRemaining from 'components/TimeRemaining';
 import {
@@ -502,7 +503,15 @@ const AMMLP: React.FC = () => {
                             </span>
                         </SectionTitle>
                         <SectionDescription>{t('staking.amm-lp.how-it-works.description-1')}</SectionDescription>
-                        <SectionDescription>{t('staking.amm-lp.how-it-works.description-2')}</SectionDescription>
+                        <SectionDescription>
+                            <Trans
+                                i18nKey={t('staking.amm-lp.how-it-works.description-2')}
+                                components={{
+                                    tip: <SPAAnchor href={LINKS.Token.TIP139} />,
+                                }}
+                            />
+                        </SectionDescription>
+
                         <SectionTitle>
                             <span>
                                 <div>{t('staking.amm-lp.how-it-works.variables')}</div>

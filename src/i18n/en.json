@@ -265,16 +265,19 @@
             },
             "claim": {
                 "title": "Your Current Claimable Rewards",
+                "description": "By staking THALES tokens you are eligible for weekly THALES Staking Rewards. <br /> • Your Total Staking Rewards are determined by your total share of the Staking Pool (Base Rewards) and by your trading and LP-ing activity (Gamified Rewards), at the time of the weekly snapshot (Wednesday 14:00 UTC)<br />• THALES staking rewards have to be actively claimed once a week or they are forfeited. <br />• After the weekly THALES Staking Rewards are Claimed to Escrow, they are locked in a 10 weeks Vesting Period.<br />• After the Vesting Period has elapsed, the rewards become Vested (unlocked) and can be Claimed to Wallet on the Vesting page.",
                 "time-left": "Time left to claim : ",
                 "gamified-staking-rewards": "Gamified Staking Rewards",
                 "base-rewards": "Base Rewards",
+                "protocol-rewards": "Protocol Rewards",
+                "total-thales-points": "Total Thales Rewards + Protocol Rewards",
                 "disclaimer": "Unclaimed weekly rewards are forfeited!",
                 "claim-rewards": "Claim Rewards",
                 "claiming": "Claiming",
                 "claim-success": "Tokens successfully claimed"
             },
             "base-rewards": {
-                "title": "Base staking rewards & Multiplier",
+                "title": "Base staking rewards",
                 "current-multiplier": "Your current multiplier : ",
                 "your-staked": "Your THALES staked",
                 "staking-divider": "Staking Divider",
@@ -282,7 +285,7 @@
                 "staked-share": "Your Staked Share"
             },
             "your-rewards": {
-                "title": "Your Points Reward",
+                "title": "Current Weekly Points",
                 "current-points": "Your current points : ",
                 "trading-volume": "Trading Volume",
                 "amm-lp-balances": "AMM LP balances",
@@ -291,6 +294,10 @@
                 "lp-multiplier": "LP multiplier",
                 "vaults-multiplier": "Vaults multiplier",
                 "points": "Points"
+            },
+            "current-estimated": {
+                "title": "Current estimated rewards",
+                "description": "These rewards are based on your staked percentage of THALES tokens and your participation in trading, liquidity pools, and vaults on Thales and Overtime platforms. The more you stake and actively participate, the higher your potential rewards. Remember, unclaimed rewards expire after a week."
             }
         },
         "staking": {
@@ -484,7 +491,7 @@
                 "title": "Provide AMM Liquidity",
                 "subtitle": "HOW AMM LP WORKS",
                 "description-1": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which enables trading on Thales' Automated Market Maker (AMM). To participate, you must stake THALES tokens. The maximum deposit is 1 sUSD per THALES staked, with no wallet cap, until the pool reaches its limit. Your share of the pool's profit and loss (PnL) is added to your balance at the end of each round. You can request to withdraw at any time, with the withdrawal (including that round's PnL) processed at round's end. The minimum withdrawal is 10% of your balance.",
-                "description-2": "Unstaking THALES requires signaling a withdrawal from the liquidity pool first. Be aware of risks like trading losses and smart contract vulnerabilities. <tip>TIP-139</tip> document provides detailed technical information on this process. Variables Max total deposit: $ 1,000,000 Max users in the pool: 200 Minimum deposit: $ 100 Round duration: 7 days Round Ends In 1d 10h 34m",
+                "description-2": "Unstaking THALES requires signaling a withdrawal from the liquidity pool first. Be aware of risks like trading losses and smart contract vulnerabilities. <tip>TIP-139</tip> document provides detailed technical information on this process.",
                 "variables": "Variables",
                 "max-total-deposit": "Max total deposit",
                 "max-users": "Max users in the pool",

@@ -5,6 +5,10 @@ export const FlexDiv = styled.div<{ gap?: string }>`
     gap: ${(props) => props.gap || ''};
 `;
 
+export const FlexOne = styled.div`
+    flex: 1;
+`;
+
 export const FlexDivCentered = styled(FlexDiv)`
     align-items: center;
     justify-content: center;

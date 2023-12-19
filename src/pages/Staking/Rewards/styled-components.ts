@@ -7,12 +7,13 @@ export const Container = styled.div`
     display: grid;
     width: 100%;
     grid-template-columns: repeat(2, 670px);
-    grid-template-rows: repeat(3, 160px);
+    grid-template-rows: 500px 200px;
     column-gap: 10px;
     row-gap: 10px;
-    grid-template-areas: 'upper-left upper-right' 'upper-left middle-right' 'upper-left bottom-right';
+    grid-template-areas: 'upper-left right' 'bottom-left right';
     margin-bottom: 100px;
     z-index: 1;
+    line-height: normal;
     > div {
         position: relative;
         padding: 20px;
@@ -21,14 +22,25 @@ export const Container = styled.div`
     }
 `;
 
-export const Left = styled.div`
+export const UpperLeft = styled.div`
     grid-area: upper-left;
-    > div:nth-child(2) {
-        position: absolute;
-        bottom: 30px;
-        left: 0;
-        right: 0;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
+export const BottomLeft = styled.div`
+    grid-area: bottom-left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
+export const Right = styled.div`
+    grid-area: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 export const UpperRight = styled.div`
@@ -74,7 +86,7 @@ export const FinalPointsTitle = styled.div`
     color: ${(props) => props.theme.textColor.primary};
     text-align: center;
     font-family: NunitoBold;
-    font-size: 18px;
+    font-size: 13px;
     font-style: normal;
     line-height: normal;
 `;
@@ -91,16 +103,12 @@ export const FinalPoints = styled.div`
 export const ButtonContainer = styled.div`
     position: relative;
     display: flex;
-    flex: 1;
-    align-items: flex-end;
-    justify-content: flex-end;
+    justify-content: center;
 `;
 
-export const ClaimButtonDisclaimer = styled.span`
+export const ClaimButtonDisclaimer = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
-    position: absolute;
     font-family: Nunito;
-    top: -60%;
     text-align: center;
-    width: 125px;
+    margin-top: 5px;
 `;

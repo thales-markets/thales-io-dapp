@@ -44,12 +44,12 @@ export const InfoDiv = styled.div`
 export const StakingButton = styled.button<{ padding?: string; disabled?: boolean; width?: string }>`
     cursor: pointer;
     color: ${(props) => props.theme.background.primary};
-    padding: ${(props) => props.padding || '5px 7px'};
+    padding: ${(props) => props.padding || '5px 15px'};
     border-radius: 8px;
     border: 0;
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
-    font-family: NunitoBold;
+    font-family: NunitoExtraBold;
     font-size: 13px;
     text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};

@@ -21,24 +21,23 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { useTheme } from 'styled-components';
-import { FlexDiv, FlexDivColumn } from 'styles/common';
+import { FlexDiv, FlexDivColumn, FlexOne } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token';
 import { refetchTokenQueries } from 'utils/queryConnector';
 import snxJSConnector from 'utils/snxJSConnector';
 import { InfoDiv, SectionTitle, StakingButton } from '../styled-components';
 import {
-    BottomRight,
+    BottomLeft,
     ButtonContainer,
     ClaimButtonDisclaimer,
     Container,
     FinalPoints,
     FinalPointsTitle,
-    Left,
-    MiddleRight,
+    Right,
     SectionSubtitle,
     SectionText,
-    UpperRight,
+    UpperLeft,
 } from './styled-components';
 
 const Rewards: React.FC = () => {
@@ -209,7 +208,132 @@ const Rewards: React.FC = () => {
 
     return (
         <Container>
-            <Left>
+            <UpperLeft>
+                <div>
+                    <SectionTitle>
+                        <span>
+                            <i className="icon icon--download" />
+                            {t('staking.rewards.claim.title')}
+                        </span>
+                    </SectionTitle>
+                    <SectionSubtitle>
+                        <Trans
+                            i18nKey="staking.rewards.claim.time-left"
+                            components={{
+                                span: <span />,
+                            }}
+                        />
+                        <span>
+                            {stakingData ? (
+                                <TimeRemaining
+                                    end={stakingData?.closingDate}
+                                    textColor={theme.textColor.secondary}
+                                    fontSize={13}
+                                    showFullCounter
+                                />
+                            ) : (
+                                '--:--'
+                            )}
+                        </span>
+                    </SectionSubtitle>
+                </div>
+                <SectionText>
+                    <FlexDiv gap="30px">
+                        <FlexOne>
+                            <InfoDiv>
+                                <span>{t('staking.rewards.claim.gamified-staking-rewards')}</span>
+                                <span>
+                                    {formatCurrencyWithKey(
+                                        THALES_CURRENCY,
+                                        userStakingData ? userStakingData.totalBonus : 0,
+                                        2
+                                    )}
+                                </span>
+                            </InfoDiv>
+                            <InfoDiv>
+                                <span>{t('staking.rewards.claim.base-rewards')}</span>
+                                <span>
+                                    {formatCurrencyWithKey(
+                                        THALES_CURRENCY,
+                                        userStakingData ? userStakingData.baseRewards : 0,
+                                        2
+                                    )}
+                                </span>
+                            </InfoDiv>
+                            <InfoDiv>
+                                <span>{t('staking.rewards.claim.protocol-rewards')}</span>
+                                <span>{formatCurrencyWithKey(THALES_CURRENCY, 33333, 2)}</span>
+                            </InfoDiv>
+                        </FlexOne>
+                        <FlexOne></FlexOne>
+                    </FlexDiv>
+                </SectionText>
+                <SectionText>
+                    <Trans
+                        i18nKey="staking.rewards.claim.description"
+                        components={{
+                            br: <br />,
+                        }}
+                    />
+                </SectionText>
+                <div>
+                    <FinalPointsTitle>{t('staking.rewards.claim.total-thales-points')}</FinalPointsTitle>
+                    {isWalletConnected && (
+                        <FinalPoints>
+                            {formatCurrencyWithKey(THALES_CURRENCY, userStakingData ? userStakingData.rewards : 0, 2)}
+                            {' + '}
+                            {'3333 USDC'}
+                        </FinalPoints>
+                    )}
+                </div>
+                <div>
+                    <ButtonContainer>
+                        <div>{getClaimButton()}</div>
+                    </ButtonContainer>
+                    <ClaimButtonDisclaimer>{t('staking.rewards.claim.disclaimer')}</ClaimButtonDisclaimer>
+                </div>
+            </UpperLeft>
+            <BottomLeft>
+                <div>
+                    <SectionTitle>
+                        <span>
+                            <i className="icon icon--pig" />
+                            {t('staking.rewards.base-rewards.title')}
+                        </span>
+                        <span>{baseRewardsData?.baseRewards}</span>
+                    </SectionTitle>
+                </div>
+                <FlexDiv gap="30px">
+                    <FlexDivColumn>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.base-rewards.your-staked')}</span>
+                            <span>{baseRewardsData?.thalesStaked}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>
+                                <Trans
+                                    i18nKey="staking.rewards.base-rewards.current-multiplier"
+                                    components={{
+                                        span: <span />,
+                                    }}
+                                />
+                            </span>
+                            <span>x{pointsData?.stakingMultiplier}</span>
+                        </InfoDiv>
+                    </FlexDivColumn>
+                    <FlexDivColumn>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.base-rewards.total-staked')}</span>
+                            <span>{baseRewardsData?.totalStaked}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.base-rewards.staked-share')}</span>
+                            <span>{baseRewardsData?.share}</span>
+                        </InfoDiv>
+                    </FlexDivColumn>
+                </FlexDiv>
+            </BottomLeft>
+            <Right>
                 <div>
                     <SectionTitle>
                         <span>
@@ -252,120 +376,6 @@ const Rewards: React.FC = () => {
                         />
                     </SectionText>
                 </div>
-                <div>
-                    <FinalPointsTitle>{t('staking.rewards.how-it-works.final-points')}</FinalPointsTitle>
-                    {isWalletConnected && (
-                        <FinalPoints>
-                            {pointsData?.totalPoints} = ({pointsData?.tradingPoints} + {pointsData?.lpPoints} +{' '}
-                            {pointsData?.vaultsPoints}) x {pointsData?.stakingMultiplier}
-                        </FinalPoints>
-                    )}
-                </div>
-            </Left>
-            <UpperRight>
-                <div>
-                    <SectionTitle>
-                        <span>
-                            <i className="icon icon--download" />
-                            {t('staking.rewards.claim.title')}
-                        </span>
-                        <span>
-                            {formatCurrencyWithKey(THALES_CURRENCY, userStakingData ? userStakingData.rewards : 0, 2)}
-                        </span>
-                    </SectionTitle>
-                    <SectionSubtitle>
-                        <Trans
-                            i18nKey="staking.rewards.claim.time-left"
-                            components={{
-                                span: <span />,
-                            }}
-                        />
-                        <span>
-                            {stakingData ? (
-                                <TimeRemaining
-                                    end={stakingData?.closingDate}
-                                    textColor={theme.textColor.secondary}
-                                    fontSize={13}
-                                    showFullCounter
-                                />
-                            ) : (
-                                '--:--'
-                            )}
-                        </span>
-                    </SectionSubtitle>
-                </div>
-                <FlexDiv gap="30px">
-                    <FlexDivColumn>
-                        <InfoDiv>
-                            <span>{t('staking.rewards.claim.gamified-staking-rewards')}</span>
-                            <span>
-                                {formatCurrencyWithKey(
-                                    THALES_CURRENCY,
-                                    userStakingData ? userStakingData.totalBonus : 0,
-                                    2
-                                )}
-                            </span>
-                        </InfoDiv>
-                        <InfoDiv>
-                            <span>{t('staking.rewards.claim.base-rewards')}</span>
-                            <span>
-                                {formatCurrencyWithKey(
-                                    THALES_CURRENCY,
-                                    userStakingData ? userStakingData.baseRewards : 0,
-                                    2
-                                )}
-                            </span>
-                        </InfoDiv>
-                    </FlexDivColumn>
-                    <ButtonContainer>
-                        <ClaimButtonDisclaimer>{t('staking.rewards.claim.disclaimer')}</ClaimButtonDisclaimer>
-                        <div>{getClaimButton()}</div>
-                    </ButtonContainer>
-                </FlexDiv>
-            </UpperRight>
-            <MiddleRight>
-                <div>
-                    <SectionTitle>
-                        <span>
-                            <i className="icon icon--pig" />
-                            {t('staking.rewards.base-rewards.title')}
-                        </span>
-                        <span>{baseRewardsData?.baseRewards}</span>
-                    </SectionTitle>
-                    <SectionSubtitle>
-                        <Trans
-                            i18nKey="staking.rewards.base-rewards.current-multiplier"
-                            components={{
-                                span: <span />,
-                            }}
-                        />
-                        <span>x{pointsData?.stakingMultiplier}</span>
-                    </SectionSubtitle>
-                </div>
-                <FlexDiv gap="30px">
-                    <FlexDivColumn>
-                        <InfoDiv>
-                            <span>{t('staking.rewards.base-rewards.your-staked')}</span>
-                            <span>{baseRewardsData?.thalesStaked}</span>
-                        </InfoDiv>
-                        <InfoDiv>
-                            <span>{t('staking.rewards.base-rewards.staking-divider')}</span>
-                            <span>{pointsData?.thalesDivider}</span>
-                        </InfoDiv>
-                    </FlexDivColumn>
-                    <FlexDivColumn>
-                        <InfoDiv>
-                            <span>{t('staking.rewards.base-rewards.total-staked')}</span>
-                            <span>{baseRewardsData?.totalStaked}</span>
-                        </InfoDiv>
-                        <InfoDiv>
-                            <span>{t('staking.rewards.base-rewards.staked-share')}</span>
-                            <span>{baseRewardsData?.share}</span>
-                        </InfoDiv>
-                    </FlexDivColumn>
-                </FlexDiv>
-            </MiddleRight>
-            <BottomRight>
                 <div>
                     <SectionTitle>
                         <span>
@@ -435,7 +445,26 @@ const Rewards: React.FC = () => {
                         </InfoDiv>
                     </FlexDivColumn>
                 </FlexDiv>
-            </BottomRight>
+                <div>
+                    <FinalPointsTitle>{t('staking.rewards.how-it-works.final-points')}</FinalPointsTitle>
+                    {isWalletConnected && (
+                        <FinalPoints>
+                            {pointsData?.totalPoints} = ({pointsData?.tradingPoints} + {pointsData?.lpPoints} +{' '}
+                            {pointsData?.vaultsPoints}) x {pointsData?.stakingMultiplier}
+                        </FinalPoints>
+                    )}
+                </div>
+                <div>
+                    <SectionTitle>
+                        <span>
+                            <i className="icon icon--pig" />
+                            {t('staking.rewards.current-estimated.title')}
+                        </span>
+                        <span>{baseRewardsData?.baseRewards}</span>
+                    </SectionTitle>
+                </div>
+                <div>{t('staking.rewards.current-estimated.description')}</div>
+            </Right>
         </Container>
     );
 };

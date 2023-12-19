@@ -176,7 +176,7 @@ const MaxButton = styled.button`
     background: transparent;
     border: none;
     border-radius: 3px;
-    font-family: NunitoBold;
+    font-family: NunitoExtraBold;
     font-size: 13px;
     line-height: 20px;
     background: ${(props) => props.theme.button.background.tertiary};
@@ -211,15 +211,14 @@ const BalanceContainer = styled(FlexDivCentered)`
     font-weight: normal;
     font-size: 13px;
     line-height: 15px;
-    text-transform: uppercase;
-    color: ${(props) => props.theme.textColor.tertiary};
+    color: ${(props) => props.theme.textColor.secondary};
 `;
 
 const StyledBalanceIcon = styled(BalanceIcon)`
     height: 13px;
-    margin: 0 2px 1px 0;
+    margin: 0 5px 1px 0;
     path {
-        fill: ${(props) => props.theme.textColor.tertiary};
+        fill: ${(props) => props.theme.textColor.secondary};
     }
 `;
 
