@@ -28,14 +28,6 @@ export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean
     align-items: center;
 `;
 
-export const InfoText = styled.label<{ color?: string }>`
-    font-family: Nunito !important;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 20px;
-    color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.tertiary)};
-`;
-
 export const TimeLeftLabel = styled.label`
     font-family: Nunito !important;
     font-weight: 500;
@@ -44,15 +36,6 @@ export const TimeLeftLabel = styled.label`
     margin-right: 7px;
     color: ${(props) => props.theme.textColor.tertiary};
     margin-top: 6px;
-`;
-
-export const InfoStats = styled.span<{ color?: string }>`
-    font-family: Nunito !important;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 20px;
-    color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.primary)};
-    letter-spacing: 1px;
 `;
 
 export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolean }>`

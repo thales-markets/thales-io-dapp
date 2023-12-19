@@ -143,7 +143,7 @@ const ThalesTokenInfo: React.FC = () => {
                 </FlexDivFullWidthSpaceBetween>
             </UpperInfoSection>
             <DoubleSideInfoSection>
-                <ChartInnerText>Total 100M</ChartInnerText>
+                <ChartInnerText>{t('dashboard.token-info.total-100m')}</ChartInnerText>
                 <StyledPieChart width={330} height={165}>
                     <Legend
                         formatter={formatChartLegend}

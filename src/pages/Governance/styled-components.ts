@@ -250,3 +250,20 @@ export const Line = styled.div`
     background: ${Colors.GRAY};
     width: 100%;
 `;
+
+export const InfoText = styled.label<{ color?: string }>`
+    font-family: Nunito !important;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.tertiary)};
+`;
+
+export const InfoStats = styled.span<{ color?: string }>`
+    font-family: Nunito !important;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 20px;
+    color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.primary)};
+    letter-spacing: 1px;
+`;

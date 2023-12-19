@@ -195,6 +195,6 @@ export const CouncilVotesLabel = styled.span`
 `;
 
 export const SidebarHeaderContainer = styled(FlexDiv)`
-    padding: 10px 20px 20px;
+    padding: 0px 20px 15px;
     align-items: center;
 `;

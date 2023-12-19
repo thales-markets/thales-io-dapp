@@ -598,7 +598,8 @@
             "title": "Thales token info",
             "total-supply": "Total supply",
             "circulating-supply": "Circulating supply",
-            "burned-supply": "Burned supply"
+            "burned-supply": "Burned supply",
+            "total-100m": "Total 100M"
         },
         "tvl": {
             "title": "TVL",

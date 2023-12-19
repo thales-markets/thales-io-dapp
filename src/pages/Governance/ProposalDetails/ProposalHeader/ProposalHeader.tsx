@@ -2,7 +2,7 @@ import TimeRemaining from 'components/TimeRemaining';
 import { StatusEnum } from 'enums/governance';
 import { Network } from 'enums/network';
 import makeBlockie from 'ethereum-blockies-base64';
-import { Blockie, StyledLink } from 'pages/Governance/styled-components';
+import { Blockie, InfoStats, InfoText, StyledLink } from 'pages/Governance/styled-components';
 import { useTranslation } from 'react-i18next';
 import { Colors, FlexDiv, FlexDivColumnNative } from 'styles/common';
 import {
@@ -19,8 +19,6 @@ import {
     Container,
     FlexDivFullWidthSpaceBetween,
     InfoSection,
-    InfoStats,
-    InfoText,
     TimeLeftContainer,
     TimeLeftLabel,
     TitleLabel,
