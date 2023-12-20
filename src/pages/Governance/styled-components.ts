@@ -61,7 +61,7 @@ export const SidebarWrapper = styled.div`
 export const Sidebar = styled.div`
     background: ${(props) => props.theme.background.primary};
     border-radius: 8px;
-    padding: 15px 0px 0px 0px;
+    padding: 20px 0px 0px 0px;
 `;
 
 export const OptionsTabWrapper = styled(FlexDivRow)`

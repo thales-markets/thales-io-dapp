@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexDivColumnCentered, FlexDiv } from 'styles/common';
+import { Colors, FlexDiv, FlexDivColumnCentered } from 'styles/common';
 
 export const ResultRow = styled(FlexDivColumnCentered)<{
     backgroundColor?: string;
@@ -8,12 +8,17 @@ export const ResultRow = styled(FlexDivColumnCentered)<{
     paddingBottom?: number;
     paddingTop?: number;
 }>`
-    padding: 10px 20px;
+    padding: 20px;
     background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : props.theme.background.primary)};
     opacity: ${(props) => (props.opacity ? props.opacity : 1)};
     border-bottom: ${(props) => (props.borderColor ? `1px solid ${props.borderColor}` : 'none')};
     padding-bottom: ${(props) => (props.paddingBottom ? props.paddingBottom : '10')}px;
     border-radius: ${(props) => (props.borderColor ? 0 : 15)}px;
+    &:last-child {
+        & .divider {
+            display: none;
+        }
+    }
 `;
 
 export const RowPercentageContainer = styled.div`
@@ -25,6 +30,14 @@ export const RowPercentage = styled.div`
     border: 1px solid ${(props) => props.theme.borderColor.primary};
     border-radius: 10px;
     background-color: ${(props) => props.theme.background.secondary};
+`;
+
+export const Divider = styled.div`
+    height: 2px;
+    background: ${Colors.PURPLE_NAVY};
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
 `;
 
 export const RowPercentageIndicator = styled(FlexDiv)<{ width: number }>`

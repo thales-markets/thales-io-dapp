@@ -708,7 +708,9 @@
             "tooltip-escrowed-amount": "escrowed amount",
             "no-stakers-found": "No stakers found",
             "number-of-stakers": "Total number of stakers",
-            "search-wallet": "Search wallet address"
+            "search-wallet": "Search wallet address",
+            "percentage-of-total-supply-col": "% of total supply",
+            "percentage-of-circulating-supply-col": "% of circulating supply"
         },
         "stakers-filter": {
             "all": "all",

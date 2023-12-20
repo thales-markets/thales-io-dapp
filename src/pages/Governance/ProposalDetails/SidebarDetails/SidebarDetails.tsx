@@ -1,7 +1,7 @@
 import { VOTING_COUNCIL_PROPOSAL_ID, VOTING_ORACLE_COUNCIL_PROPOSAL_ID } from 'constants/governance';
 import { SpaceKey } from 'enums/governance';
 import CouncilTipVotes from 'pages/Governance/CouncilTipVotes';
-import { Line, SidebarContent, SidebarTitle } from 'pages/Governance/styled-components';
+import { SidebarContent, SidebarTitle } from 'pages/Governance/styled-components';
 import useProposalQuery from 'queries/governance/useProposalQuery';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -58,7 +58,6 @@ const SidebarDetails: React.FC<SidebarDetailsProps> = ({ proposal, type }) => {
                     )}
                 </FlexDivColumnCentered>
             </SidebarHeaderContainer>
-            {type !== 'history' && <Line />}
             <SidebarContent type={type} isCouncilVoting={isCouncilVoting}>
                 {type === 'results' && (
                     <Results
