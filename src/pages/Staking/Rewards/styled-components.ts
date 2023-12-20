@@ -7,13 +7,14 @@ export const Container = styled.div`
     display: grid;
     width: 100%;
     grid-template-columns: repeat(2, 670px);
-    grid-template-rows: 500px 200px;
+    grid-template-rows: 550px 150px;
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'upper-left right' 'bottom-left right';
     margin-bottom: 100px;
     z-index: 1;
     line-height: normal;
+    margin-top: 50px;
     > div {
         position: relative;
         padding: 20px;

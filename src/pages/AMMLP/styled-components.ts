@@ -119,6 +119,9 @@ export const SectionDescription = styled.div`
             text-decoration: underline;
         }
     }
+    span {
+        font-weight: bold;
+    }
 `;
 
 export const SectionTitle = styled.div`

@@ -24,6 +24,7 @@ export const Title = styled.div`
     line-height: 91.4%;
     letter-spacing: 3.25px;
     text-transform: uppercase;
+    margin-bottom: 10px;
     & > span {
         font-family: 'NunitoExtraLight';
         font-weight: normal;
@@ -33,10 +34,11 @@ export const Title = styled.div`
 export const Subtitle = styled.div`
     color: #a9abbb;
     font-family: 'NunitoExtraLight';
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 103%;
+    margin-bottom: 5px;
 `;
 
 export const Highlight = styled.div`
@@ -95,10 +97,10 @@ export const Description = styled.div<{ marginBottom?: number; marginTop?: numbe
     color: #a9abbb;
     text-align: justify;
     font-family: MontserratLight;
-    font-size: 17px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 600;
-    line-height: 120%;
+    line-height: 140%;
     margin-top: ${(props) => (props.marginTop ? props.marginTop : '0')}px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
 `;
@@ -114,7 +116,7 @@ export const SectionSlogan = styled.div`
     font-family: MontserratBold;
     font-size: 40px;
     font-style: normal;
-    line-height: 120%;
+    line-height: 140%;
     margin: 15px 0;
 `;
 
@@ -123,7 +125,7 @@ export const SectionTitleLink = styled.div`
     font-family: NunitoExtraLight;
     font-size: 13px;
     font-style: normal;
-    line-height: 120%;
+    line-height: 140%;
     text-transform: uppercase;
 `;
 
@@ -213,12 +215,13 @@ export const MilestoneDescription = styled.div`
     line-height: 155%;
 `;
 
-export const HomeIcon = styled.i<{ fontSize?: string }>`
+export const HomeIcon = styled.i<{ fontSize?: string; paddingBottom?: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: ${(props) => props.fontSize ?? '20em'};
+    padding-bottom: ${(props) => props.paddingBottom ?? '0'};
     line-height: 0.5em;
 `;
 export const FooterLogo = styled.i`

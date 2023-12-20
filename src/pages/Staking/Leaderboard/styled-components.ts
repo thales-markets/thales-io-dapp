@@ -13,6 +13,7 @@ export const Container = styled.div`
     grid-template-areas: 'top' 'bottom';
     margin-bottom: 100px;
     z-index: 1;
+    margin-top: 50px;
     > div {
         position: relative;
         padding: 20px;

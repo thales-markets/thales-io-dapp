@@ -488,10 +488,21 @@
                 }
             },
             "how-it-works": {
-                "title": "Provide AMM Liquidity",
-                "subtitle": "HOW AMM LP WORKS",
-                "description-1": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which enables trading on Thales' Automated Market Maker (AMM). To participate, you must stake THALES tokens. The maximum deposit is 1 sUSD per THALES staked, with no wallet cap, until the pool reaches its limit. Your share of the pool's profit and loss (PnL) is added to your balance at the end of each round. You can request to withdraw at any time, with the withdrawal (including that round's PnL) processed at round's end. The minimum withdrawal is 10% of your balance.",
-                "description-2": "Unstaking THALES requires signaling a withdrawal from the liquidity pool first. Be aware of risks like trading losses and smart contract vulnerabilities. <tip>TIP-139</tip> document provides detailed technical information on this process.",
+                "thales": {
+                    "title": "PROVIDE LIQUIDITY FOR DIGITAL OPTIONS AMM",
+                    "subtitle": "HOW THALES AMM LP WORKS",
+                    "description": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Digital Options Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Thales AMM Liquidity Pool. <tip>TIP-139</tip> document provides detailed technical information on this process."
+                },
+                "overtime-single": {
+                    "title": "PROVIDE LIQUIDITY FOR SPORTS SINGLES AMM",
+                    "subtitle": "HOW SPORTS AMM LP WORKS",
+                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Sports Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Sports AMM Liquidity Pool. <tip>TIP-99</tip> document provides detailed technical information on this process."
+                },
+                "overtime-parlay": {
+                    "title": "PROVIDE LIQUIDITY FOR SPORTS PARLAY AMM",
+                    "subtitle": "HOW PARLAY AMM LP WORKS",
+                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Parlay Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Parlay AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
+                },
                 "variables": "Variables",
                 "max-total-deposit": "Max total deposit",
                 "max-users": "Max users in the pool",

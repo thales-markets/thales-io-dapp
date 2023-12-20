@@ -193,10 +193,9 @@ const FilterText = styled.p`
     cursor: pointer;
     font-weight: 700;
     font-size: 15px;
-    text-transform: uppercase;
     padding: 8px 10px;
     border-radius: 8px;
-    color: ${(props) => props.theme.textColor.primary};
+    color: ${(props) => props.theme.textColor.tertiary};
     &:hover {
         background: ${(props) => props.theme.background.primary};
     }

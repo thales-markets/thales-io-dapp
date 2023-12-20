@@ -7,6 +7,8 @@ const LINKS = {
     Token: {
         TIP66: 'https://thalesmarket.io/governance/thalesgov.eth/0xa925cddfe73b58911c3a9308a0e9d70dff21e31e4d428247ac084e8cffa4eb4f',
         TIP139: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-139.md',
+        TIP142: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-142.md',
+        TIP99: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-99.md',
         ClaimOnBehalfGuide:
             'https://docs.thalesmarket.io/thales-token/automate-staking-rewards-claiming-with-chainlink-automation-guide',
         UniswapBuyThalesArbitrum:

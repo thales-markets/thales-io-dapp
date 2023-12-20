@@ -498,16 +498,16 @@ const AMMLP: React.FC = () => {
                         <SectionTitle>
                             <span>
                                 <i className="icon icon--staking" />
-                                {t('staking.amm-lp.how-it-works.title')}
-                                <div>{t('staking.amm-lp.how-it-works.subtitle')}</div>
+                                {t(`staking.amm-lp.how-it-works.${paramTab}.title`)}
+                                <div>{t(`staking.amm-lp.how-it-works.${paramTab}.subtitle`)}</div>
                             </span>
                         </SectionTitle>
-                        <SectionDescription>{t('staking.amm-lp.how-it-works.description-1')}</SectionDescription>
                         <SectionDescription>
                             <Trans
-                                i18nKey={t('staking.amm-lp.how-it-works.description-2')}
+                                i18nKey={t(`staking.amm-lp.how-it-works.${paramTab}.description`)}
                                 components={{
-                                    tip: <SPAAnchor href={LINKS.Token.TIP139} />,
+                                    tip: <SPAAnchor href={TIPLinks[paramTab]} />,
+                                    bold: <span />,
                                 }}
                             />
                         </SectionDescription>
@@ -1148,6 +1148,12 @@ const getUniswapLink = (networkId: Network) => {
     if (networkId === Network.Arbitrum) return LINKS.Token.UniswapBuyThalesArbitrum;
     if (networkId === Network.Base) return LINKS.Token.UniswapBuyThalesBase;
     return LINKS.Token.UniswapBuyThalesOp;
+};
+
+const TIPLinks = {
+    [LiquidityPool.THALES]: LINKS.Token.TIP139,
+    [LiquidityPool.OVERTIME_SINGLE]: LINKS.Token.TIP99,
+    [LiquidityPool.OVERTIME_PARLAY]: LINKS.Token.TIP142,
 };
 
 const BoldContent = styled.span`

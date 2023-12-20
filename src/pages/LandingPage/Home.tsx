@@ -93,11 +93,12 @@ const Home: React.FC = () => {
                             <Description>{t('home.ecosystem-apps.overtime')}</Description>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <HomeIcon fontSize="10em" className="icon icon--spongly" />
-                            <Description>{t('home.ecosystem-apps.spongly')}</Description>
-                        </FlexDivColumn>
-                        <FlexDivColumn>
-                            <HomeIcon style={{ height: '80px' }} fontSize="6em" className="icon icon--telegram" />
+                            <HomeIcon
+                                style={{ height: '80px' }}
+                                paddingBottom="10px"
+                                fontSize="6em"
+                                className="icon icon--telegram"
+                            />
                             <Description>{t('home.ecosystem-apps.telegram')}</Description>
                         </FlexDivColumn>
                         <FlexDivColumn>
@@ -109,11 +110,9 @@ const Home: React.FC = () => {
                 <Section>
                     <SectionSlogan>{t('home.investors.title')}</SectionSlogan>
                     <FlexDivSpaceBetween>
-                        <HomeIcon className="icon icon--framework" />
-                        <HomeIcon fontSize="6em" className="icon icon--lao" />
+                        <HomeIcon fontSize="19em" className="icon icon--framework" />
                         <HomeIcon className="icon icon--zee-prime" />
                         <HomeIcon fontSize="12em" className="icon icon--daedalus" />
-                        <HomeIcon fontSize="9em" className="icon icon--koji" />
                     </FlexDivSpaceBetween>
                 </Section>
                 <Section>

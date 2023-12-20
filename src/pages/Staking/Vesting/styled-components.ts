@@ -11,6 +11,7 @@ export const Container = styled.div`
     width: 60%;
     height: 160px;
     z-index: 1;
+    margin-top: 50px;
     > div {
         position: relative;
         padding: 20px;

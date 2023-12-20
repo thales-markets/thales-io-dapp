@@ -115,7 +115,7 @@ export const Background = styled.div`
 `;
 
 export const Line = styled.div`
-    margin: 50px 0;
+    margin: 30px 0 50px 0;
     width: 50%;
     height: 4px;
     border-radius: 10px;
