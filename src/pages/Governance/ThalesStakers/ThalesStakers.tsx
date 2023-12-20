@@ -55,6 +55,18 @@ const ChartColors = [
     Colors.DARK_GREEN,
 ];
 
+type TableData = {
+    id: string;
+    timestamp: number;
+    stakedAmount: number;
+    escrowedAmount: number;
+    totalStakedAmount: number;
+    unstakingAmount: number;
+    ensName: string | null;
+    percentageOfCirculatingSupply: number;
+    percentageOfTotalSupply: number;
+};
+
 const ThalesStakers: React.FC = () => {
     const { t } = useTranslation();
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -98,7 +110,7 @@ const ThalesStakers: React.FC = () => {
         const data: any[] = [];
         if (stakers.length > 0) {
             stakers
-                .filter((staker: Staker) => staker.totalStakedAmount >= 10000)
+                .filter((staker: Staker) => staker.totalStakedAmount >= 50000)
                 .forEach((staker: Staker, index: number) => {
                     const stakerData = {
                         name: staker.id,
@@ -116,17 +128,31 @@ const ThalesStakers: React.FC = () => {
         const data = [];
         if (stakers.length > 0 && stakingData) {
             const smallStakersTotal = stakers
-                .filter((staker: Staker) => staker.totalStakedAmount < 10000)
+                .filter((staker: Staker) => staker.totalStakedAmount <= 10000)
                 .map((staker: Staker) => staker.totalStakedAmount)
                 .reduce((sum, current) => sum + current, 0);
 
-            const smallStakersPiece = { name: 'Small stakers', value: smallStakersTotal, color: Colors.BLUEBERRY };
+            const middleStakersTotal = stakers
+                .filter((staker: Staker) => staker.totalStakedAmount > 10000 && staker.totalStakedAmount < 50000)
+                .map((staker: Staker) => staker.totalStakedAmount)
+                .reduce((sum, current) => sum + current, 0);
+
+            const smallStakersPiece = {
+                name: 'Stakers below 10k',
+                value: smallStakersTotal,
+                color: Colors.BLUEBERRY,
+            };
+            const middleStakersPiece = {
+                name: 'Stakers between 10k and 50k',
+                value: middleStakersTotal,
+                color: Colors.INDIAN_RED,
+            };
             const restOfStakers = {
                 name: 'Rest of stakers',
-                value: stakingData.totalStakedAmount - smallStakersTotal,
+                value: stakingData.totalStakedAmount - smallStakersTotal - middleStakersTotal,
                 color: 'transparent',
             };
-            data.push(smallStakersPiece, restOfStakers);
+            data.push(smallStakersPiece, middleStakersPiece, restOfStakers);
         }
 
         return data;
@@ -157,15 +183,44 @@ const ThalesStakers: React.FC = () => {
         return false;
     };
 
-    const searchFilteredStakers = useDebouncedMemo(
+    const tableData: TableData[] = useMemo(() => {
+        if (stakersQuery.isSuccess && stakersQuery.data && tokenInfoQuery.isSuccess && tokenInfoQuery.data) {
+            return stakersQuery.data.map((staker: Staker) => {
+                const percentageOfCirculatingSupply = tokenInfoQuery.data
+                    ? (staker.totalStakedAmount / tokenInfoQuery.data.circulatingSupply) * 100
+                    : 0;
+
+                const percentageOfTotalSupply = tokenInfoQuery.data
+                    ? (staker.totalStakedAmount / tokenInfoQuery.data.totalSupply) * 100
+                    : 0;
+                return {
+                    id: staker.id,
+                    timestamp: staker.timestamp,
+                    stakedAmount: staker.stakedAmount,
+                    escrowedAmount: staker.escrowedAmount,
+                    totalStakedAmount: staker.totalStakedAmount,
+                    unstakingAmount: staker.unstakingAmount,
+                    ensName: staker.ensName,
+                    percentageOfCirculatingSupply: percentageOfCirculatingSupply,
+                    percentageOfTotalSupply: percentageOfTotalSupply,
+                };
+            });
+        }
+        return [];
+    }, [stakersQuery.isSuccess, stakersQuery.data, tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
+
+    const searchFilteredTableData = useDebouncedMemo(
         () => {
             return addressSearch
-                ? stakers.filter((staker: Staker) => {
-                      return staker.id.toLowerCase().includes(addressSearch.toLowerCase()) || findByEnsName(staker.id);
+                ? tableData.filter((tableObject: TableData) => {
+                      return (
+                          tableObject.id.toLowerCase().includes(addressSearch.toLowerCase()) ||
+                          findByEnsName(tableObject.id)
+                      );
                   })
-                : stakers;
+                : tableData;
         },
-        [stakers, addressSearch],
+        [tableData, addressSearch],
         DEFAULT_SEARCH_DEBOUNCE_MS
     );
 
@@ -175,7 +230,8 @@ const ThalesStakers: React.FC = () => {
             return (
                 <ChartTooltipBox>
                     <InfoText color={Colors.WHITE}>
-                        {payload[0].payload.name.toLowerCase() == 'small stakers'
+                        {payload[0].payload.name.toLowerCase() == 'stakers below 10k' ||
+                        payload[0].payload.name.toLowerCase() == 'stakers between 10k and 50k'
                             ? payload[0].payload.name
                             : truncateAddress(payload[0].payload.name)}
                     </InfoText>
@@ -276,9 +332,15 @@ const ThalesStakers: React.FC = () => {
                 <Table
                     columns={[
                         {
+                            Header: <></>,
+                            accessor: 'index',
+                            Cell: (cellProps: any) => <p>{cellProps?.row?.id ? Number(cellProps?.row?.id) + 1 : ''}</p>,
+                            sortable: true,
+                        },
+                        {
                             Header: <>{t('governance.stakers.staker-col')}</>,
                             accessor: 'id',
-                            Cell: (cellProps: CellProps<Staker, Staker['id']>) => (
+                            Cell: (cellProps: CellProps<TableData, TableData['id']>) => (
                                 <StyledLink
                                     href={getEtherscanAddressLink(Network.Mainnet, cellProps.cell.value)}
                                     target="_blank"
@@ -296,7 +358,7 @@ const ThalesStakers: React.FC = () => {
                         {
                             Header: <>{t('governance.stakers.total-staked-col')}</>,
                             accessor: 'totalStakedAmount',
-                            Cell: (cellProps: CellProps<Staker, Staker['totalStakedAmount']>) => {
+                            Cell: (cellProps: CellProps<TableData, TableData['totalStakedAmount']>) => {
                                 const amountTooltip = `${formatCurrencyWithKey(
                                     THALES_CURRENCY,
                                     cellProps.cell.row.original.stakedAmount
@@ -313,8 +375,24 @@ const ThalesStakers: React.FC = () => {
                             },
                             sortable: true,
                         },
+                        {
+                            Header: <>{t('governance.stakers.percentage-of-circulating-supply-col')}</>,
+                            accessor: 'percentageOfCirculatingSupply',
+                            Cell: (cellProps: CellProps<TableData, TableData['percentageOfCirculatingSupply']>) => {
+                                return <Amount>{cellProps.cell.value.toFixed(2)}</Amount>;
+                            },
+                            sortable: true,
+                        },
+                        {
+                            Header: <>{t('governance.stakers.percentage-of-total-supply-col')}</>,
+                            accessor: 'percentageOfTotalSupply',
+                            Cell: (cellProps: CellProps<TableData, TableData['percentageOfTotalSupply']>) => {
+                                return <Amount>{cellProps.cell.value.toFixed(2)}</Amount>;
+                            },
+                            sortable: true,
+                        },
                     ]}
-                    data={addressSearch ? searchFilteredStakers : stakers}
+                    data={addressSearch ? searchFilteredTableData : tableData}
                     isLoading={stakersQuery.isLoading}
                     noResultsMessage={t('governance.stakers.no-stakers-found')}
                     searchQuery={addressSearch}

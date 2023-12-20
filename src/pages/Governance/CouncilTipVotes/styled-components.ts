@@ -5,8 +5,6 @@ export const VoteRow = styled(FlexDivColumnCentered)`
     margin-left: 20px;
     margin-right: 20px;
     padding: 20px 0px;
-    :not(:last-child) {
-    }
 `;
 
 export const VoteLabel = styled.div<{ color?: string; fontWeight?: number }>`

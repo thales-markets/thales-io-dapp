@@ -1,6 +1,7 @@
 import SimpleLoader from 'components/SimpleLoader';
 import Tooltip from 'components/Tooltip';
 import {
+    COUNCIL_PROPOSAL_ID,
     FIRST_COUNCIL_ELECTIONS_ID,
     NUMBER_OF_COUNCIL_MEMBERS,
     NUMBER_OF_ORACLE_COUNCIL_MEMBERS,
@@ -16,6 +17,7 @@ import { ProposalResults } from 'types/governance';
 import { ThemeInterface } from 'types/ui';
 import { formatNumberShort } from 'utils/formatters/number';
 import {
+    Divider,
     ResultLabel,
     ResultRow,
     RowPercentage,
@@ -118,10 +120,14 @@ const Results: React.FC<ResultsProps> = ({
                                     </FlexDiv>
                                     <Percentage>{formatPercentage(percentage)}</Percentage>
                                 </SidebarRowData>
-                                <RowPercentageContainer>
-                                    <RowPercentage />
-                                    <RowPercentageIndicator width={percentage * 100}></RowPercentageIndicator>
-                                </RowPercentageContainer>
+                                {!(proposalId == COUNCIL_PROPOSAL_ID && ViewMore) ? (
+                                    <RowPercentageContainer>
+                                        <RowPercentage />
+                                        <RowPercentageIndicator width={percentage * 100}></RowPercentageIndicator>
+                                    </RowPercentageContainer>
+                                ) : (
+                                    <Divider />
+                                )}
                             </ResultRow>
                         );
                     })}

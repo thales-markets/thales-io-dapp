@@ -1,6 +1,6 @@
 import { COUNCIL_PROPOSAL_ID } from 'constants/governance';
 import { SpaceKey } from 'enums/governance';
-import { Line, SidebarContent, SidebarTitle } from 'pages/Governance/styled-components';
+import { SidebarContent, SidebarTitle } from 'pages/Governance/styled-components';
 import useProposalQuery from 'queries/governance/useProposalQuery';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +21,6 @@ const CouncilMembers: React.FC = () => {
     return (
         <FlexDivColumnCentered>
             <SidebarTitle bottomMargin={15}>{t(`governance.sidebar.title.council-members`)}</SidebarTitle>
-            <Line />
             <SidebarContent>
                 <Results
                     proposalResults={proposalResults}

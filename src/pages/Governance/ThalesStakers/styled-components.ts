@@ -79,7 +79,7 @@ export const ChartTooltipBox = styled.div`
     border-radius: 8px;
     border: 1px solid ${Colors.METALLIC_BLUE}
     z-index: 2;
-    width: 150px;
+    width: 180px;
     height: 50px;
     display: flex;
     flex-direction: column;
