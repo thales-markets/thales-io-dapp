@@ -126,7 +126,7 @@ const Results: React.FC<ResultsProps> = ({
                                         <RowPercentageIndicator width={percentage * 100}></RowPercentageIndicator>
                                     </RowPercentageContainer>
                                 ) : (
-                                    <Divider />
+                                    <Divider className="divider" />
                                 )}
                             </ResultRow>
                         );

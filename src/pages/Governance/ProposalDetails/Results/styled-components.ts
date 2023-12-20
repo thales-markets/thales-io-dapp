@@ -14,6 +14,11 @@ export const ResultRow = styled(FlexDivColumnCentered)<{
     border-bottom: ${(props) => (props.borderColor ? `1px solid ${props.borderColor}` : 'none')};
     padding-bottom: ${(props) => (props.paddingBottom ? props.paddingBottom : '10')}px;
     border-radius: ${(props) => (props.borderColor ? 0 : 15)}px;
+    &:last-child {
+        & .divider {
+            display: none;
+        }
+    }
 `;
 
 export const RowPercentageContainer = styled.div`
