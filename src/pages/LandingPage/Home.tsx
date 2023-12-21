@@ -7,7 +7,7 @@ import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
 import Lottie from 'lottie-react';
 import React, { CSSProperties, Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 import Footer from './Footer';
 import MILESTONES from './milestones';
@@ -193,8 +193,15 @@ const Home: React.FC = () => {
                                 isLast={MILESTONES.length - 1 === index}
                                 index={index + 1}
                             >
-                                <MilestoneDate>{milestone.date}</MilestoneDate>
-                                <MilestoneDescription>{milestone.description}</MilestoneDescription>
+                                <MilestoneDate>{`${t(`common.${milestone.month.toLowerCase()}`)} ${
+                                    milestone.year
+                                }`}</MilestoneDate>
+                                <MilestoneDescription>
+                                    <Trans
+                                        i18nKey={`milestones.${milestone.descriptionKey}`}
+                                        components={{ bold: <span /> }}
+                                    />
+                                </MilestoneDescription>
                             </Milestone>
                         ))}
                     </MilestonesContainer>

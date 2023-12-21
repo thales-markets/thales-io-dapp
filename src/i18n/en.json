@@ -1,5 +1,17 @@
 {
     "common": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December",
         "transaction-pending": "Transaction pending",
         "approve-success": "Successfully approved",
         "read-more": "Read more",
@@ -718,5 +730,29 @@
             "arbitrum": "arbitrum",
             "base": "base"
         }
+    },
+    "milestones": {
+        "launch-protocol": "<bold>Thales Protocol</bold> launches on Ethereum Mainnet",
+        "launch-token": "The launch of <bold>THALES token</bold>",
+        "op-deploy": "Thales Protocol deploys on <bold>Optimism</bold> and the new <bold>ThalesAMM<bold/> goes live",
+        "tale-of-thales-launch": "<bold>Tale of Thales</bold> minigame launched",
+        "staking-migration": "The THALES token <bold>staking migration</bold> to Optimism",
+        "thales-polygon-launch": "Thales Protocol expands to <bold>Polygon</bold>",
+        "ranged-markets-launch": "Launch of Thales <bold>Ranged Markets</bold>",
+        "referral-program-launch": "Launch of <bold>Referral Program</bold> architecture",
+        "overtime-launch": "Thales Protocol launches <bold>Sports Markets</bold> and the SportsAMM on Optimism",
+        "thales-arbitrum-launch": "Thales Protocol expands to <bold>Arbitrum</bold>",
+        "tokenomics-2": "THALES <bold>tokenomics 2.0</bold>",
+        "thales-vaults": "Thales <bold>Vaults</bold> launch",
+        "parlay-amm-launch": "Sports Markets <bold>ParlayAMM</bold> launch",
+        "overtime-arbitrum": "SportsAMM expands to <bold>Arbitrum</bold>",
+        "token-arbitrum": "THALES token staking expands to <bold>Arbitrum</bold>",
+        "overtime-lp": "Launch of <bold>SportsAMM Liquidity Pools</bold> for THALES stakers",
+        "thales-lp": "Launch of <bold>ThalesAMM Liquidity Pools</bold> for THALES stakers",
+        "thales-markets-2": "Thales <bold>Markets 2.0</bold>",
+        "parlay-lp": "Launch of <bold>ParlayAMM Liquidity Pools</bold> for THALES stakers",
+        "gamified-2": "THALES <bold>gamified staking 2.0</bold>",
+        "thales-base-launch": "Thales Protocol launches on <bold>Base network</bold>",
+        "speed-markets-launch": "The launch of Thales <bold>Speed Markets</bold>"
     }
 }

@@ -156,7 +156,7 @@ export const MilestonesContainer = styled.div`
 `;
 
 export const Milestone = styled.div<{ index: number; isLast: boolean; isLastRow: boolean }>`
-    height: 80px;
+    height: 100px;
     border-radius: 8px;
     background: #313652;
     box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
@@ -207,12 +207,16 @@ export const MilestoneDate = styled.div`
 `;
 
 export const MilestoneDescription = styled.div`
+    padding-top: 8px;
     color: #a9abbb;
     font-family: MontserratLight;
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
     line-height: 155%;
+    span {
+        font-family: MontserratBold;
+    }
 `;
 
 export const HomeIcon = styled.i<{ fontSize?: string; paddingBottom?: string }>`
