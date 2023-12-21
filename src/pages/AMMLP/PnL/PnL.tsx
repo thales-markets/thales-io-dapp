@@ -162,7 +162,7 @@ const PnL: React.FC<PnlProps> = ({ lifetimePnl, type, liquidityPool }) => {
                                 <Line
                                     type="monotone"
                                     dataKey="cumulativePnl"
-                                    stroke={theme.textColor.tertiary}
+                                    stroke={theme.button.borderColor.primary}
                                     strokeWidth={2}
                                     dot={<CustomizedDot />}
                                 />

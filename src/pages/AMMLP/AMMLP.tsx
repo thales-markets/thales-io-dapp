@@ -869,14 +869,14 @@ const AMMLP: React.FC = () => {
                                     ></LiquidityPoolFilledGraphicPercentage>
                                 </LiquidityPoolFilledGraphicContainer>
                                 <LiquidityPoolFilledText>
-                                    <span>{`${formatCurrencyWithSign(
+                                    <div>{`${formatCurrencyWithSign(
                                         USD_SIGN,
                                         liquidityPoolData.allocationNextRound
                                     )} / ${formatCurrencyWithSign(
                                         USD_SIGN,
                                         liquidityPoolData.maxAllowedDeposit
-                                    )}`}</span>
-                                    <span>
+                                    )}`}</div>
+                                    <div>
                                         <Trans
                                             i18nKey="staking.amm-lp.your-share-label"
                                             values={{
@@ -886,7 +886,7 @@ const AMMLP: React.FC = () => {
                                                 ),
                                             }}
                                         />
-                                    </span>
+                                    </div>
                                 </LiquidityPoolFilledText>
                             </>
                         )}
@@ -1046,6 +1046,7 @@ const LiquidityPoolInfoLabel = styled.span`
     white-space: nowrap;
     margin-right: 6px;
     width: 140px;
+    font-size: 14px;
 `;
 
 const LiquidityPoolInfoGraphic = styled(FlexDivStart)<{ background: string; widthPercentage: number }>`
@@ -1085,17 +1086,20 @@ const WarningContentInfo = styled(ContentInfo)`
     }
 `;
 
-const LiquidityPoolFilledText = styled(FlexDivRow)`
+const LiquidityPoolFilledText = styled(FlexDivColumn)`
     margin-top: 10px;
-    margin-bottom: 20px;
     width: 100%;
+    font-size: 14px;
+    > div {
+        height: 20px;
+    }
 `;
 
 const LiquidityPoolFilledGraphicContainer = styled(FlexDivStart)`
     position: relative;
     width: 100%;
     height: 14px;
-    background: ${(props) => props.theme.background.secondary};
+    background: ${(props) => props.theme.background.tertiary};
     border-radius: 9px;
     margin-top: 10px;
 `;
@@ -1105,9 +1109,7 @@ const LiquidityPoolFilledGraphicPercentage = styled(FlexDivStart)<{ width: numbe
     width: ${(props) => props.width}%;
     transition: width 1s linear;
     max-width: 100%;
-    height: 10px;
-    left: 2px;
-    top: 2px;
+    height: 14px;
     background: linear-gradient(269.97deg, #ff774c 16.18%, #b50a5e 77.77%);
     border-radius: 9px;
 `;
@@ -1142,6 +1144,7 @@ const getInfoGraphicPercentages = (currentBalance: number, nextRoundBalance: num
 const LPInfo = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
     padding: 10px;
+    font-size: 14px;
 `;
 
 const getUniswapLink = (networkId: Network) => {
