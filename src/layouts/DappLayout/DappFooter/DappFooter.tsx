@@ -10,7 +10,7 @@ const DappFooter: React.FC = () => {
         <>
             {location.pathname !== ROUTES.Home && (
                 <Container>
-                    <FooterLinks />
+                    <FooterLinks iconSize={25} />
                 </Container>
             )}
         </>
@@ -20,5 +20,5 @@ const DappFooter: React.FC = () => {
 export default DappFooter;
 
 const Container = styled(FlexDiv)`
-    width: 50%;
+    width: 40%;
 `;

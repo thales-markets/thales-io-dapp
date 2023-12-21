@@ -59,7 +59,7 @@ export const ScheduleDot = styled.div`
 
 export const ScheduleLine = styled.div<{ invisible?: boolean }>`
     background: ${(props) => props.theme.textColor.secondary};
-    height: 5px;
+    height: 2px;
     width: ${(props) => (props.invisible ? '30px' : '70px')};
     visibility: ${(props) => (props.invisible ? 'hidden' : 'visible')};
 `;

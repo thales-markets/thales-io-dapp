@@ -59,7 +59,7 @@ export const Subtitle = styled.span`
     margin-bottom: 10px;
 `;
 
-export const ValidationMessage = styled.li`
+export const ValidationMessage = styled.span`
     color: ${(props) => props.theme.warning.textColor.primary};
 `;
 
@@ -71,10 +71,6 @@ export const Message = styled.div`
     text-align: center;
     div {
         margin-bottom: 5px;
-    }
-    ul {
-        list-style: initial;
-        margin-left: 15px;
     }
 `;
 

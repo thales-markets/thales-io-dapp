@@ -311,7 +311,7 @@ const AccPreferences: React.FC = () => {
         return (
             <>
                 <div>{t('staking.acc-preferences.merge.merge-blocked-message.title')}:</div>
-                <ul>
+                <span>
                     {isUserLPing && (
                         <ValidationMessage>
                             {t('staking.acc-preferences.merge.merge-blocked-message.user-lping')}
@@ -337,7 +337,7 @@ const AccPreferences: React.FC = () => {
                             {t('staking.acc-preferences.merge.merge-blocked-message.dest-unstaking')}
                         </ValidationMessage>
                     )}
-                </ul>
+                </span>
             </>
         );
     };

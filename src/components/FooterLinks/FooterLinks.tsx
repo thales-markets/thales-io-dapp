@@ -8,40 +8,40 @@ type FooterLinksProps = {
     iconSize?: number;
 };
 
-const FooterLinks: React.FC<FooterLinksProps> = () => {
+const FooterLinks: React.FC<FooterLinksProps> = ({ iconSize }) => {
     const { t } = useTranslation();
     return (
         <Container>
             <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                 <SPAAnchor href={LINKS.Discord}>
-                    <Icon className="icon icon--discord" />
+                    <Icon iconSize={iconSize} className="icon icon--discord" />
                 </SPAAnchor>
                 <Name>{t('footer.discord')}</Name>
             </FlexDivColumnCentered>
             <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                 <SPAAnchor href={LINKS.Twitter}>
-                    <Icon className="icon icon--twitter" />
+                    <Icon iconSize={iconSize} className="icon icon--twitter" />
                 </SPAAnchor>
 
                 <Name>{t('footer.twitter')}</Name>
             </FlexDivColumnCentered>
             <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                 <SPAAnchor href={LINKS.Docs}>
-                    <Icon className="icon icon--docs" />
+                    <Icon iconSize={iconSize} className="icon icon--docs" />
                 </SPAAnchor>
 
                 <Name>{t('footer.docs')}</Name>
             </FlexDivColumnCentered>
             <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                 <SPAAnchor href={LINKS.Github}>
-                    <Icon className="icon icon--github" />
+                    <Icon iconSize={iconSize} className="icon icon--github" />
                 </SPAAnchor>
 
                 <Name>{t('footer.github')}</Name>
             </FlexDivColumnCentered>
             <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                 <SPAAnchor href={LINKS.Medium}>
-                    <Icon className="icon icon--medium" />
+                    <Icon iconSize={iconSize} className="icon icon--medium" />
                 </SPAAnchor>
 
                 <Name>{t('footer.medium')}</Name>
@@ -59,7 +59,7 @@ const Container = styled(FlexDivSpaceBetween)`
 const Name = styled.div`
     color: #a9abbb;
     font-family: MontserratLight;
-    font-size: 13px;
+    font-size: 10px;
     font-style: normal;
     text-transform: capitalize;
     margin-top: 3px;
