@@ -5,10 +5,12 @@ import Loader from 'components/Loader';
 import NumberCountdown from 'components/NumberCountdown';
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
+import ROUTES from 'constants/routes';
 import Lottie from 'lottie-react';
 import React, { CSSProperties, Suspense } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { navigateTo } from 'utils/routes';
 import Footer from './Footer';
 import MILESTONES from './milestones';
 import {
@@ -44,7 +46,7 @@ const Home: React.FC = () => {
         <Suspense fallback={<Loader />}>
             <Wrapper>
                 <About>
-                    <Title>
+                    <Title gap="10px">
                         {t('home.thales')}
                         <span>{t('home.protocol')}</span>
                     </Title>
@@ -78,18 +80,28 @@ const Home: React.FC = () => {
                         <NumberCountdown number={548562} />
                     </Stat>
                 </StatsSection>
-                <HomeButton>
+                <StatsSection>
+                    <SectionTitle>{t('home.markets-created')}</SectionTitle>
+                    <Stat>
+                        <NumberCountdown number={956847} />
+                    </Stat>
+                </StatsSection>
+                <HomeButton onClick={() => navigateTo(ROUTES.Dashboard)}>
                     {t('home.see-all-stats-button')} <ArrowHyperlinkIcon />
                 </HomeButton>
                 <EcosystemSection>
                     <SectionTitle>{t('home.ecosystem-apps.title')}</SectionTitle>
                     <EcosystemApps>
                         <FlexDivColumn>
-                            <HomeIcon fontSize="10em" className="icon icon--thales-markets" />
+                            <SPAAnchor href={LINKS.ThalesMarkets}>
+                                <HomeIcon fontSize="10em" className="icon icon--thales-markets" />
+                            </SPAAnchor>
                             <Description>{t('home.ecosystem-apps.thales-markets')}</Description>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <HomeIcon fontSize="10em" className="icon icon--overtime" />
+                            <SPAAnchor href={LINKS.Overtime}>
+                                <HomeIcon fontSize="10em" className="icon icon--overtime" />
+                            </SPAAnchor>
                             <Description>{t('home.ecosystem-apps.overtime')}</Description>
                         </FlexDivColumn>
                         <FlexDivColumn>
@@ -102,19 +114,13 @@ const Home: React.FC = () => {
                             <Description>{t('home.ecosystem-apps.telegram')}</Description>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <HomeIcon fontSize="10em" className="icon icon--tale-of-thales" />
+                            <SPAAnchor href={LINKS.TaleOfThales}>
+                                <HomeIcon fontSize="10em" className="icon icon--tale-of-thales" />
+                            </SPAAnchor>
                             <Description>{t('home.ecosystem-apps.tale-of-thales')}</Description>
                         </FlexDivColumn>
                     </EcosystemApps>
                 </EcosystemSection>
-                <Section>
-                    <SectionSlogan>{t('home.investors.title')}</SectionSlogan>
-                    <FlexDivSpaceBetween>
-                        <HomeIcon fontSize="19em" className="icon icon--framework" />
-                        <HomeIcon className="icon icon--zee-prime" />
-                        <HomeIcon fontSize="12em" className="icon icon--daedalus" />
-                    </FlexDivSpaceBetween>
-                </Section>
                 <Section>
                     <SectionTitleLink>
                         {t('home.integrations.title-link')} <SectionTitleLinkArrow />
@@ -207,12 +213,10 @@ const Home: React.FC = () => {
                     </MilestonesContainer>
                 </Section>
                 <Section marginBottom={80}>
-                    <SectionTitleLink>
-                        {t('home.infrastructure.title')} <SectionTitleLinkArrow />
-                    </SectionTitleLink>
+                    <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
                     <FlexDivSpaceBetween>
+                        <HomeIcon fontSize="17em" className="icon icon--synthetix" />
                         <HomeIcon fontSize="10em" className="icon icon--chainlink" />
-                        <HomeIcon fontSize="16em" className="icon icon--synthetix" />
                         <HomeIcon fontSize="11em" className="icon icon--optimism" />
                         <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
                     </FlexDivSpaceBetween>
@@ -220,6 +224,7 @@ const Home: React.FC = () => {
                         <HomeIcon fontSize="9em" className="icon icon--base" />
                         <HomeIcon fontSize="9em" className="icon icon--pyth" />
                         <HomeIcon fontSize="9em" className="icon icon--iosiro" />
+                        <HomeIcon fontSize="11em" className="icon icon--framework" />
                     </FlexDivSpaceAround>
                 </Section>
             </Wrapper>

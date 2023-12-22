@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceBetween, Icon } from 'styles/common';
 
 export const About = styled.div`
-    margin-top: 150px;
+    margin-top: 120px;
     margin-bottom: 50px;
 `;
 
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
     max-width: 1400px;
 `;
 
-export const Title = styled.div`
+export const Title = styled(FlexDiv)`
     color: white;
     font-family: 'NunitoBold';
     font-weight: bold;
@@ -37,8 +37,7 @@ export const Subtitle = styled.div`
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 103%;
-    margin-bottom: 5px;
+    line-height: 125%;
 `;
 
 export const Highlight = styled.div`
