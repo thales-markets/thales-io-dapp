@@ -40,11 +40,13 @@ export const Subtitle = styled.div`
     line-height: 125%;
 `;
 
-export const Highlight = styled.div`
+export const Highlight = styled.div<{ marginBottom?: number; cursor?: string }>`
+    cursor: ${(props) => (props.cursor ? props.cursor : 'default')};
     color: white;
     font-family: MontserratBold;
     font-size: 17px;
     font-style: normal;
+    margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
 `;
 
 export const StatsSection = styled.div`
@@ -285,4 +287,9 @@ export const FooterContainer = styled.div`
 export const SocialIcon = styled(Icon)`
     padding-top: 10px;
     padding-right: 20px;
+`;
+
+export const CollapseIcon = styled.i`
+    padding-left: 3px;
+    font-size: 13px;
 `;

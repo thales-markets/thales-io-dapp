@@ -12,6 +12,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 import { navigateTo } from 'utils/routes';
 import Footer from './Footer';
+import Collapse from './components/Collapse';
 import MILESTONES from './milestones';
 import {
     About,
@@ -129,18 +130,21 @@ const Home: React.FC = () => {
                     <Description marginBottom={20} marginTop={20}>
                         {t('home.integrations.description')}
                     </Description>
-                    <Highlight>{t('home.integrations.thales-sports-markets-api-title')}</Highlight>
-                    <Description marginBottom={20} marginTop={20}>
-                        {t('home.integrations.thales-sports-markets-api-description')}
-                    </Description>
-                    <Highlight>{t('home.integrations.thales-digital-options-api-title')}</Highlight>
-                    <Description marginBottom={20} marginTop={20}>
-                        {t('home.integrations.thales-digital-options-api-description')}
-                    </Description>
-                    <Highlight>{t('home.integrations.thales-speed-markets-api-title')}</Highlight>
-                    <Description marginBottom={20} marginTop={20}>
-                        {t('home.integrations.thales-speed-markets-api-description')}
-                    </Description>
+                    <Collapse title={t('home.integrations.thales-sports-markets-api-title')}>
+                        <Description marginBottom={20}>
+                            {t('home.integrations.thales-sports-markets-api-description')}
+                        </Description>
+                    </Collapse>
+                    <Collapse title={t('home.integrations.thales-digital-options-api-title')}>
+                        <Description marginBottom={20}>
+                            {t('home.integrations.thales-digital-options-api-description')}
+                        </Description>
+                    </Collapse>
+                    <Collapse title={t('home.integrations.thales-speed-markets-api-title')}>
+                        <Description marginBottom={20}>
+                            {t('home.integrations.thales-speed-markets-api-description')}
+                        </Description>
+                    </Collapse>
                     <HomeButton>{t('home.integrations.integrate-with-thales-button')}</HomeButton>
                 </Section>
                 <Section>
