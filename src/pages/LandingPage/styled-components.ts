@@ -288,8 +288,3 @@ export const SocialIcon = styled(Icon)`
     padding-top: 10px;
     padding-right: 20px;
 `;
-
-export const CollapseIcon = styled.i`
-    padding-left: 3px;
-    font-size: 13px;
-`;
