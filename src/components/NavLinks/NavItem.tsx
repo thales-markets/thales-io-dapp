@@ -26,12 +26,7 @@ const NavItem: React.FC<NavItemProps> = ({ item }) => {
                     active={item.active}
                 >
                     <span>{item.title}</span>
-                    {item.children && (
-                        <Icon
-                            active={item.active}
-                            className={`icon ${dropdownVisible ? 'icon--caret-up' : 'icon--caret-down'}`}
-                        />
-                    )}
+                    {item.children && <Icon active={item.active} className={`icon icon--caret-down`} />}
                     {item.children && dropdownVisible && (
                         <DropdownContainer>
                             {item.children.map((child) => {

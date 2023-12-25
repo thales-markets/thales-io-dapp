@@ -12,11 +12,13 @@ const darkTheme = {
         secondary: Colors.CYAN,
         tertiary: Colors.GRAY,
         quaternary: Colors.PURPLE_NAVY,
+        quinary: Colors.YANKEES_BLUE,
     },
     borderColor: {
         primary: Colors.GRAY,
         secondary: Colors.PURPLE_NAVY,
         tertiary: Colors.METALLIC_BLUE,
+        quaternary: Colors.LIGHT_GRAY,
     },
     link: {
         textColor: {

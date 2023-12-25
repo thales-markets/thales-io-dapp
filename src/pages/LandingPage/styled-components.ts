@@ -95,7 +95,7 @@ export const EcosystemSection = styled.div`
 `;
 
 export const Description = styled.div<{ marginBottom?: number; marginTop?: number }>`
-    color: #a9abbb;
+    color: ${(props) => props.theme.borderColor.quaternary};
     text-align: justify;
     font-family: MontserratLight;
     font-size: 15px;

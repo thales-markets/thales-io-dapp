@@ -127,7 +127,7 @@ const Home: React.FC = () => {
                         {t('home.integrations.title-link')} <SectionTitleLinkArrow />
                     </SectionTitleLink>
                     <SectionSlogan>{t('home.integrations.title')}</SectionSlogan>
-                    <Description marginBottom={20} marginTop={20}>
+                    <Description marginBottom={50} marginTop={20}>
                         {t('home.integrations.description')}
                     </Description>
                     <Collapse title={t('home.integrations.thales-sports-markets-api-title')}>

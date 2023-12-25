@@ -33,17 +33,3 @@ export const Logo = styled.i`
     line-height: 50px;
     margin-top: 5px;
 `;
-
-export const WalletButton = styled.button`
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    color: ${(props) => props.theme.textColor.secondary};
-    width: 140px;
-    border-radius: 8px;
-    border: 1px solid ${(props) => props.theme.textColor.secondary};
-    background: transparent;
-    margin-top: -4px;
-`;
