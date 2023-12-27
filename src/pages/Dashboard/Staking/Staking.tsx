@@ -40,10 +40,10 @@ const Staking: React.FC = () => {
         enabled: isAppReady,
     });
 
-    const stakers: Staker[] = useMemo(
-        () => (stakersQuery.isSuccess && stakersQuery.data ? stakersQuery.data : []),
-        [stakersQuery.isSuccess, stakersQuery.data]
-    );
+    const stakers: Staker[] = useMemo(() => (stakersQuery.isSuccess && stakersQuery.data ? stakersQuery.data : []), [
+        stakersQuery.isSuccess,
+        stakersQuery.data,
+    ]);
 
     const tokenInfoQuery = useTokenInfoQuery({
         enabled: isAppReady,

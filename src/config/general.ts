@@ -11,4 +11,5 @@ export const generalConfig = {
         [Network.Base]: 'https://api.basescan.org/',
         [Network.Mainnet]: 'https://api.etherscan.io/',
     },
+    CELER_BRIDGE_URL: 'https://cbridge-prod2.celer.app',
 };

@@ -1,8 +1,8 @@
-import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
-import { getAddress } from 'thales-utils';
-import { RootState } from 'redux/rootReducer';
-import { Network } from 'enums/network';
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { DEFAULT_NETWORK } from 'constants/network';
+import { Network } from 'enums/network';
+import { RootState } from 'redux/rootReducer';
+import { getAddress } from 'thales-utils';
 
 const sliceName = 'wallet';
 
@@ -75,7 +75,11 @@ export const getIsWalletConnected = createSelector(getWalletAddress, (walletAddr
 
 export const getSelectedCollateralIndex = (state: RootState) => getWalletState(state).selectedCollateralIndex;
 
-export const { updateNetworkSettings, switchToNetworkId, updateWallet, setSelectedCollateralIndex } =
-    walletDetailsSlice.actions;
+export const {
+    updateNetworkSettings,
+    switchToNetworkId,
+    updateWallet,
+    setSelectedCollateralIndex,
+} = walletDetailsSlice.actions;
 
 export default walletDetailsSlice.reducer;

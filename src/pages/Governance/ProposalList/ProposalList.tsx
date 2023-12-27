@@ -25,10 +25,10 @@ const ProposalList: React.FC<ProposalListProps> = ({ spaceKey, onItemClick, stat
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
 
     const proposalsQuery = useProposalsQuery(spaceKey, 100, { enabled: isAppReady });
-    const proposals = useMemo(
-        () => (proposalsQuery.isSuccess && proposalsQuery.data ? proposalsQuery.data : []),
-        [proposalsQuery.isSuccess, proposalsQuery.data]
-    );
+    const proposals = useMemo(() => (proposalsQuery.isSuccess && proposalsQuery.data ? proposalsQuery.data : []), [
+        proposalsQuery.isSuccess,
+        proposalsQuery.data,
+    ]);
 
     const filteredProposals = useMemo(() => {
         return statusFilter === StatusEnum.All

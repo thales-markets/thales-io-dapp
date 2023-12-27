@@ -19,9 +19,10 @@ import { useAccount, useProvider, useSigner } from 'wagmi';
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
 const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Dashboard'));
-const Staking = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Staking'));
-const AMMLP = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../AMMLP'));
+const Staking = lazy(() => import(/* webpackChunkName: "Staking" */ '../Staking'));
+const AMMLP = lazy(() => import(/* webpackChunkName: "AMMLP" */ '../AMMLP'));
 const Governance = lazy(() => import(/* webpackChunkName: "Governance" */ '../Governance'));
+const Bridge = lazy(() => import(/* webpackChunkName: "Bridge" */ '../Bridge'));
 
 const App = () => {
     const dispatch = useDispatch();
@@ -118,6 +119,13 @@ const App = () => {
                                 <Suspense fallback={<Loader />}>
                                     <DappLayout>
                                         <AMMLP />
+                                    </DappLayout>
+                                </Suspense>
+                            </Route>
+                            <Route exact path={ROUTES.Bridge}>
+                                <Suspense fallback={<Loader />}>
+                                    <DappLayout>
+                                        <Bridge />
                                     </DappLayout>
                                 </Suspense>
                             </Route>

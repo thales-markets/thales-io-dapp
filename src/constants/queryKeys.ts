@@ -106,6 +106,14 @@ const QUERY_KEYS = {
             networkId,
             period,
         ],
+        CelerBridgeHistory: (walletAddress: string) => ['token', 'celerBridge', 'history', walletAddress],
+        CelerBridgeData: (srcNetwork: Network, destNetwork: Network) => [
+            'token',
+            'celerBridge',
+            'data',
+            srcNetwork,
+            destNetwork,
+        ],
     },
     AMM: {
         SportAMMsTVLData: () => ['amm', 'sport', 'tvl'],

@@ -651,12 +651,11 @@ const AMMLP: React.FC = () => {
                                                 <ContentInfo>
                                                     <Trans i18nKey="staking.amm-lp.nothing-to-withdraw-label" />
                                                 </ContentInfo>
-                                                {userLiquidityPoolData &&
-                                                    userLiquidityPoolData.hasDepositForNextRound && (
-                                                        <ContentInfo>
-                                                            <Trans i18nKey="staking.amm-lp.first-deposit-withdrawal-message" />
-                                                        </ContentInfo>
-                                                    )}
+                                                {userLiquidityPoolData && userLiquidityPoolData.hasDepositForNextRound && (
+                                                    <ContentInfo>
+                                                        <Trans i18nKey="staking.amm-lp.first-deposit-withdrawal-message" />
+                                                    </ContentInfo>
+                                                )}
                                             </>
                                         ) : (
                                             <>

@@ -32,11 +32,10 @@ const useParlayLiquidityPoolUserDataQuery = (
             try {
                 const { parlayAMMLiquidityPoolContract, parlayAMMLiquidityPoolDataContract } = snxJSConnector;
                 if (parlayAMMLiquidityPoolContract && parlayAMMLiquidityPoolDataContract) {
-                    const contractUserLiquidityPoolData =
-                        await parlayAMMLiquidityPoolDataContract.getUserLiquidityPoolData(
-                            parlayAMMLiquidityPoolContract.address,
-                            walletAddress
-                        );
+                    const contractUserLiquidityPoolData = await parlayAMMLiquidityPoolDataContract.getUserLiquidityPoolData(
+                        parlayAMMLiquidityPoolContract.address,
+                        walletAddress
+                    );
 
                     userLiquidityPoolData.isWithdrawalRequested = contractUserLiquidityPoolData.withdrawalRequested;
                     userLiquidityPoolData.withdrawalShare = bigNumberFormatter(

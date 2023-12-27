@@ -16,6 +16,7 @@ type NetworkSwitchProps = {
     setSelectedNetworkId?: any;
     supportedNetworks?: number[];
     forceNetworkSwitch?: boolean;
+    xl?: boolean;
 };
 
 const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
@@ -23,6 +24,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
     setSelectedNetworkId,
     supportedNetworks,
     forceNetworkSwitch,
+    xl,
 }) => {
     const { switchNetwork } = useSwitchNetwork();
     const dispatch = useDispatch();
@@ -64,10 +66,11 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
         !forceNetworkSwitch;
 
     return (
-        <NetworkInfoContainer>
-            <OutsideClickHandler onOutsideClick={() => isDropdownOpen && setIsDropdownOpen(false)}>
+        <OutsideClickHandler display="contents" onOutsideClick={() => isDropdownOpen && setIsDropdownOpen(false)}>
+            <NetworkInfoContainer>
                 <SelectedNetworkContainer cursor={isLedgerLive ? 'initial' : 'pointer'}>
                     <NetworkItem
+                        xl={xl}
                         selectedItem={true}
                         onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
                         noHover
@@ -89,6 +92,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                 .sort((a, b) => a.order - b.order)
                                 .map((network, index) => (
                                     <NetworkItem
+                                        xl={xl}
                                         key={index}
                                         onClick={async () => {
                                             setIsDropdownOpen(!isDropdownOpen);
@@ -122,8 +126,8 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                         </NetworkDropDown>
                     )}
                 </SelectedNetworkContainer>
-            </OutsideClickHandler>
-        </NetworkInfoContainer>
+            </NetworkInfoContainer>
+        </OutsideClickHandler>
     );
 };
 
@@ -132,9 +136,11 @@ const NetworkInfoContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 `;
 
 const NetworkDropDown = styled.div`
+    box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
     z-index: 9999;
     position: absolute;
     top: 30px;
@@ -143,8 +149,7 @@ const NetworkDropDown = styled.div`
     flex-direction: column;
     border-radius: 8px;
     background: ${(props) => props.theme.background.primary};
-    width: 130px;
-    max-width: 130px;
+    width: 100%;
     padding: 5px;
     justify-content: center;
     align-items: center;
@@ -158,8 +163,7 @@ const SelectedNetworkContainer = styled.div<{ cursor: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 130px;
-    width: 130px;
+    width: 100%;
     color: ${(props) => props.theme.textColor.primary};
     cursor: ${(props) => props.cursor};
     flex-direction: column;
@@ -169,13 +173,14 @@ const SelectedNetworkContainer = styled.div<{ cursor: string }>`
     }
 `;
 
-const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean }>`
+const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?: boolean }>`
     display: flex;
     align-items: center;
     width: 100%;
-    padding: ${(props) => (props.selectedItem ? '4px 13px' : '6px')};
+    padding: ${(props) => (props.xl ? '8px 13px' : '4px 13px')};
     font-size: 13px;
     border-radius: 8px;
+    text-transform: ${(props) => (props.xl ? 'uppercase' : 'none')};
     &:hover {
         background: ${(props) => (props.noHover ? '' : props.theme.background.quaternary)};
     }

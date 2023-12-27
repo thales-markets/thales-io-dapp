@@ -195,15 +195,12 @@ const AccPreferences: React.FC = () => {
             const txResult = await tx.wait();
 
             if (txResult && txResult.transactionHash) {
-                toast.update(
-                    id,
-                    getSuccessToastOptions(t('thales-token.gamified-staking.merge-account.confirmation-message'), id)
-                );
+                toast.update(id, getSuccessToastOptions(t('acc-preferences.delegate.confirmation-message'), id));
                 setDestAddress('');
                 setIsMerging(false);
             }
         } catch (e) {
-            toast.update(id, getErrorToastOptions(t('common.errors.unknown-error-try-again'), id));
+            toast.update(id, getErrorToastOptions(t('acc-preferences.delegate.confirmation-message'), id));
             setIsMerging(false);
         }
     };
@@ -518,8 +515,9 @@ const AccPreferences: React.FC = () => {
                             {!!enabledAddresses.length && (
                                 <Subtitle>{t('staking.acc-preferences.claim.enabled-accounts-subtitle')}:</Subtitle>
                             )}
-                            {enabledAddresses.map((enabledAddress) => (
+                            {enabledAddresses.map((enabledAddress, index) => (
                                 <StyledLink
+                                    key={index}
                                     href={getEtherscanAddressLink(networkId, enabledAddress)}
                                     target="_blank"
                                     rel="noreferrer"

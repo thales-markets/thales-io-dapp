@@ -29,9 +29,9 @@ const NavItem: React.FC<NavItemProps> = ({ item }) => {
                     {item.children && <Icon active={item.active} className={`icon icon--caret-down`} />}
                     {item.children && dropdownVisible && (
                         <DropdownContainer>
-                            {item.children.map((child) => {
+                            {item.children.map((child, index) => {
                                 return (
-                                    <SPAAnchor href={child.href}>
+                                    <SPAAnchor key={index} href={child.href}>
                                         <DropdownItem active={child.active}>{child.title}</DropdownItem>
                                     </SPAAnchor>
                                 );

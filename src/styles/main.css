@@ -114,6 +114,7 @@ body {
         env(safe-area-inset-left, 0);
     overflow-x: hidden !important;
     padding-right: 0 !important;
+    font-family: Nunito;
 }
 ol,
 ul {

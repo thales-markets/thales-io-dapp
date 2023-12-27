@@ -72,7 +72,7 @@ const DappHeader: React.FC = () => {
                 <LinksContainer>
                     <NavLinks items={navItems} />
                 </LinksContainer>
-                <UserWallet></UserWallet>
+                <UserWallet />
             </HeaderContainer>
         </>
     );

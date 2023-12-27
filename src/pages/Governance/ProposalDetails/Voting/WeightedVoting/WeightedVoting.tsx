@@ -51,10 +51,10 @@ const WeightedVoting: React.FC<WeightedVotingProps> = ({ proposal, hasVotingRigh
     const proposalResults =
         proposalResultsQuery.isSuccess && proposalResultsQuery.data ? proposalResultsQuery.data : undefined;
 
-    const myVote = useMemo(
-        () => proposalResults?.votes.find((vote: any) => vote.voter === walletAddress),
-        [proposalResults, walletAddress]
-    );
+    const myVote = useMemo(() => proposalResults?.votes.find((vote: any) => vote.voter === walletAddress), [
+        proposalResults,
+        walletAddress,
+    ]);
 
     useEffect(() => {
         if (myVote) {

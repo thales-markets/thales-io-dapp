@@ -121,7 +121,7 @@ const Vesting: React.FC = () => {
                 <ScheduleWrapper>
                     {scheduleData.map((data, index) => {
                         return (
-                            <ScheduleContainer>
+                            <ScheduleContainer key={index}>
                                 <ScheduleAmount>
                                     <div>{formatCurrency(data.amount)}</div>
                                     <div>{THALES_CURRENCY}</div>

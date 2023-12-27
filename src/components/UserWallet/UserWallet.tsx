@@ -60,12 +60,15 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${(props) => props.theme.background.primary};
+    background: transparent;
     color: ${(props) => props.theme.textColor.secondary};
     border: 1px solid ${(props) => props.theme.borderColor.quaternary};
     border-radius: 8px;
     @media (max-width: 500px) {
         height: 26px;
+    }
+    > div > div {
+        width: 130px;
     }
 `;
 

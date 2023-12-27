@@ -1,3 +1,5 @@
+import { TransferHistoryStatus } from 'ts-proto/sgn/cbridge/v1/query_pb';
+
 type TokenTransactionType =
     | 'claimRetroAirdrop'
     | 'claimRetroUnlocked'
@@ -123,3 +125,21 @@ export type UserVestingData = {
     rawClaimable: string;
     vestingSchedule: VestingSchedule;
 };
+
+export type CelerBridgeData = {
+    transferLatencyInMinutes: number;
+};
+
+export type CelerBridgeTransaction = {
+    transferId: string;
+    timestamp: number;
+    srcChainId?: number;
+    srcAmount?: number;
+    srcTx?: string;
+    dstChainId?: number;
+    dstAmount?: number;
+    dstTx?: string;
+    status: TransferHistoryStatus;
+};
+
+export type CelerBridgeHistory = CelerBridgeTransaction[];

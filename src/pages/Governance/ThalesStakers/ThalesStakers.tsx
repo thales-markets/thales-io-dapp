@@ -101,10 +101,10 @@ const ThalesStakers: React.FC = () => {
         }
     }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
 
-    const stakers: Staker[] = useMemo(
-        () => (stakersQuery.isSuccess && stakersQuery.data ? stakersQuery.data : []),
-        [stakersQuery.isSuccess, stakersQuery.data]
-    );
+    const stakers: Staker[] = useMemo(() => (stakersQuery.isSuccess && stakersQuery.data ? stakersQuery.data : []), [
+        stakersQuery.isSuccess,
+        stakersQuery.data,
+    ]);
 
     const pieData = useMemo(() => {
         const data: any[] = [];

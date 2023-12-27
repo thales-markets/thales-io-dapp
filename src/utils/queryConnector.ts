@@ -64,6 +64,10 @@ export const refetchLiquidityPoolData = (walletAddress: string, networkId: Netwo
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.LiquidityPoolUserTransactions(networkId, pool));
 };
 
+export const refetchCelerBridgeHistory = (walletAddress: string) => {
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.CelerBridgeHistory(walletAddress));
+};
+
 // export const refetchStakingLeaderboardData = (walletAddress: string, networkId: Network, period: number) => {
 //     queryConnector.queryClient.invalidateQueries(
 //         QUERY_KEYS.Token.StakersLeaderboardData(walletAddress, networkId, period)

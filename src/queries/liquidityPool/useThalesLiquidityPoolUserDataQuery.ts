@@ -32,11 +32,10 @@ const useThalesLiquidityPoolUserDataQuery = (
             try {
                 const { thalesLiquidityPoolContract, thalesLiquidityPoolDataContract } = snxJSConnector;
                 if (thalesLiquidityPoolContract && thalesLiquidityPoolDataContract) {
-                    const contractUserLiquidityPoolData =
-                        await thalesLiquidityPoolDataContract.getUserLiquidityPoolData(
-                            thalesLiquidityPoolContract.address,
-                            walletAddress
-                        );
+                    const contractUserLiquidityPoolData = await thalesLiquidityPoolDataContract.getUserLiquidityPoolData(
+                        thalesLiquidityPoolContract.address,
+                        walletAddress
+                    );
 
                     userLiquidityPoolData.isWithdrawalRequested = contractUserLiquidityPoolData.withdrawalRequested;
                     userLiquidityPoolData.withdrawalShare = bigNumberFormatter(
