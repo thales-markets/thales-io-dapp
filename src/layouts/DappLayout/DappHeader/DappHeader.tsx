@@ -50,14 +50,31 @@ const DappHeader: React.FC = () => {
                 title: t('header.links.governance'),
                 active: location.pathname === ROUTES.Governance.Home,
             },
+
             {
-                href: 'https://docs.thalesmarket.io/',
-                title: t('header.links.docs'),
-            },
-            {
-                href: buildHref(ROUTES.Whitepaper),
-                title: t('header.links.whitepaper'),
-                active: location.pathname === ROUTES.Whitepaper,
+                title: t('header.links.learn'),
+                active: location.pathname === ROUTES.Learn.Token,
+                children: [
+                    {
+                        href: buildHref(ROUTES.Learn.Token),
+                        title: t('header.links.about-token'),
+                        active: location.pathname === ROUTES.Learn.Token,
+                    },
+                    {
+                        href: buildHref(ROUTES.Learn.Governance),
+                        title: t('header.links.about-governance'),
+                        active: location.pathname === ROUTES.Learn.Governance,
+                    },
+                    {
+                        href: buildHref(ROUTES.Learn.Whitepaper),
+                        title: t('header.links.whitepaper'),
+                        active: location.pathname === ROUTES.Learn.Whitepaper,
+                    },
+                    {
+                        href: 'https://docs.thalesmarket.io/',
+                        title: t('header.links.docs'),
+                    },
+                ],
             },
         ];
     }, [location.pathname, t]);
