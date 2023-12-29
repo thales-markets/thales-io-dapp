@@ -143,7 +143,7 @@ const App = () => {
                                     </Suspense>
                                 )}
                             />
-                             <Route exact path={ROUTES.Learn.Whitepaper}>
+                            <Route exact path={ROUTES.Learn.Whitepaper}>
                                 <Suspense fallback={<Loader />}>
                                     <DappLayout>
                                         <WhitepaperArticle />

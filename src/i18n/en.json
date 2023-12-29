@@ -565,7 +565,10 @@
             "whitepaper": "Whitepaper",
             "staking": "Staking",
             "bridge": "Bridge",
-            "lp-staking": "LP Staking"
+            "lp-staking": "LP Staking",
+            "learn": "Learn",
+            "about-governance": "About governance",
+            "about-token": "About Thales token"
         }
     },
     "footer": {

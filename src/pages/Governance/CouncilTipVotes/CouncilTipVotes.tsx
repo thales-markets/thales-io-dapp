@@ -50,7 +50,7 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
             );
             return membersNotVoted;
         }
-    }, [councilNftsOwnersQuery.data, proposalResults]);
+    }, [councilNftsOwners, proposalResults]);
 
     const calculatedVotesSectionsWidth = useMemo(() => {
         if (proposalResults && proposal && numberOfCouncilMembers) {
