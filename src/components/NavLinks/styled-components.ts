@@ -34,7 +34,8 @@ export const Icon = styled.i<{ active?: boolean }>`
 `;
 
 export const DropdownContainer = styled.div`
-    width: 200px;
+    min-width: 200px;
+    width: max-content;
     border-radius: 8px;
     position: absolute;
     padding: 7px;

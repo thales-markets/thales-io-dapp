@@ -23,6 +23,9 @@ const Staking = lazy(() => import(/* webpackChunkName: "Staking" */ '../Staking'
 const AMMLP = lazy(() => import(/* webpackChunkName: "AMMLP" */ '../AMMLP'));
 const Governance = lazy(() => import(/* webpackChunkName: "Governance" */ '../Governance'));
 const Bridge = lazy(() => import(/* webpackChunkName: "Bridge" */ '../Bridge'));
+const WhitepaperArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/WhitepaperArticle'));
+const GovernanceArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/GovernanceArticle'));
+const TokenArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/TokenArticle'));
 
 const App = () => {
     const dispatch = useDispatch();
@@ -140,6 +143,27 @@ const App = () => {
                                     </Suspense>
                                 )}
                             />
+                            <Route exact path={ROUTES.Learn.Whitepaper}>
+                                <Suspense fallback={<Loader />}>
+                                    <DappLayout>
+                                        <WhitepaperArticle />
+                                    </DappLayout>
+                                </Suspense>
+                            </Route>
+                            <Route exact path={ROUTES.Learn.Governance}>
+                                <Suspense fallback={<Loader />}>
+                                    <DappLayout>
+                                        <GovernanceArticle />
+                                    </DappLayout>
+                                </Suspense>
+                            </Route>
+                            <Route exact path={ROUTES.Learn.Token}>
+                                <Suspense fallback={<Loader />}>
+                                    <DappLayout>
+                                        <TokenArticle />
+                                    </DappLayout>
+                                </Suspense>
+                            </Route>
                         </Switch>
                     </Router>
                 </QueryClientProvider>

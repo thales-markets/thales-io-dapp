@@ -10,6 +10,10 @@ const ROUTES = {
         Space: '/governance/:space',
         Proposal: '/governance/:space/:id',
     },
-    Whitepaper: '/whitepaper',
+    Learn: {
+        Whitepaper: '/whitepaper',
+        Token: '/about-thales-token',
+        Governance: '/about-governance',
+    },
 };
 export default ROUTES;
