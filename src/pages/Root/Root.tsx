@@ -87,7 +87,7 @@ const connectors = connectorsForWallets([
             ledgerWallet({ projectId, chains }),
             trustWallet({ projectId, chains }),
             injectedWallet({ chains }), //  ensure all injected wallets are supported
-            coinbaseWallet({ appName: 'Thales io', chains }),
+            coinbaseWallet({ appName: 'Thales Protocol', chains }),
             rainbowWallet({ projectId, chains }),
             imTokenWallet({ projectId, chains }),
         ],
@@ -114,7 +114,7 @@ const Root: React.FC<RootProps> = ({ store }) => {
                     chains={chains}
                     theme={customTheme}
                     appInfo={{
-                        appName: 'Thales io',
+                        appName: 'Thales Protocol',
                         // disclaimer: WalletDisclaimer,
                     }}
                 >
