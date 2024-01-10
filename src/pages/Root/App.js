@@ -26,6 +26,7 @@ const Bridge = lazy(() => import(/* webpackChunkName: "Bridge" */ '../Bridge'));
 const WhitepaperArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/WhitepaperArticle'));
 const GovernanceArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/GovernanceArticle'));
 const TokenArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/TokenArticle'));
+const LPStaking = lazy(() => import(/* webpackChunkName: "LPStaking" */ '../Staking/LPStaking'));
 
 const App = () => {
     const dispatch = useDispatch();
@@ -122,6 +123,13 @@ const App = () => {
                                 <Suspense fallback={<Loader />}>
                                     <DappLayout>
                                         <AMMLP />
+                                    </DappLayout>
+                                </Suspense>
+                            </Route>
+                            <Route exact path={ROUTES.LPStaking}>
+                                <Suspense fallback={<Loader />}>
+                                    <DappLayout>
+                                        <LPStaking />
                                     </DappLayout>
                                 </Suspense>
                             </Route>

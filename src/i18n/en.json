@@ -546,6 +546,31 @@
                 "result-col": "result",
                 "tx-status-col": "tx status"
             }
+        },
+        "lp-staking": {
+            "header": "How LP Staking works?",
+            "steps": {
+                "step-1": {
+                    "header": "Step 1. - Connect wallet",
+                    "description": "Connect your wallet to Optimism network and the Thales dApp in the top right corner of this page."
+                },
+                "step-2": {
+                    "header": "Step 2. - Wrap ETH in WETH",
+                    "description": "To be able to provide liquidity and be eligible for LP rewards, you need to have Wrapped Ethereum. You can wrap your ETH to WETH on Optimism using this Uniswap page."
+                },
+                "step-3": {
+                    "header": "Step 3. - Provide Liquidity",
+                    "description": "Provide THALES+WETH liquidity to the G-UNI pool on Arrakis Finance UI (here). Once the transaction is confirmed, you will receive THALES/WETH G-UNI LP tokens in your wallet that represent your share of the liquidity pool."
+                },
+                "step-4": {
+                    "header": "Step 4. - Stake",
+                    "description": "Now that you have your G-UNI LP tokens, you need to stake them on this page to start receiving THALES+OP rewards."
+                },
+                "step-5": {
+                    "header": "Step 5. - Claim",
+                    "description": "Now that you've staked your LP tokens you'll see your rewards accruing in the Rewards card of the LP staking page."
+                }
+            }
         }
     },
     "amm-lp": {
