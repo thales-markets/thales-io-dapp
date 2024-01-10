@@ -12,6 +12,7 @@ export const Container = styled.div`
     row-gap: 10px;
     grid-template-areas: 'upper-left top top upper-right' 'upper-left middle-left middle-right upper-right' 'bottom-left bottom bottom bottom-right';
     z-index: 1;
+    margin-bottom: 100px;
     > div {
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
