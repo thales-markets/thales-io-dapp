@@ -3,6 +3,8 @@ import { Signer, ethers } from 'ethers';
 import thalesCouncilNFT from './contracts/ThalesCouncilNFT';
 import collateralContract from './contracts/collateralContract';
 import escrowThales from './contracts/escrowThales';
+import { gelatoContract } from './contracts/gelatoContract';
+import lpStakingRewardsContract from './contracts/lpStakingRewardsContract';
 import parlayAMMLiquidityPoolContract from './contracts/parlayAMMLiquidityPoolContract';
 import parlayAMMLiquidityPoolDataContract from './contracts/parlayAMMLiquidityPoolDataContract';
 import sportLiquidityPoolContract from './contracts/sportLiquidityPoolContract';
@@ -35,6 +37,8 @@ type SnxJSConnector = {
     thalesTokenContract?: ethers.Contract;
     escrowThalesContract?: ethers.Contract;
     thalesCouncilNftContract?: ethers.Contract;
+    lpStakingRewardsContract?: ethers.Contract;
+    gelatoContract?: ethers.Contract;
     setContractSettings: (contractSettings: any) => void;
 };
 
@@ -74,6 +78,8 @@ const snxJSConnector: SnxJSConnector = {
         this.thalesTokenContract = conditionalInitializeContract(thalesContract, contractSettings);
         this.escrowThalesContract = conditionalInitializeContract(escrowThales, contractSettings);
         this.thalesCouncilNftContract = conditionalInitializeContract(thalesCouncilNFT, contractSettings);
+        this.lpStakingRewardsContract = conditionalInitializeContract(lpStakingRewardsContract, contractSettings);
+        this.gelatoContract = conditionalInitializeContract(gelatoContract, contractSettings);
     },
 };
 
