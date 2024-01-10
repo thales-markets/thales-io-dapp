@@ -9,10 +9,8 @@ export type VaultsTVLData = {
     opDegenDiscountVaultTVL: number;
     opSafuDiscountVaultTVL: number;
     opUpsettoorVaultTVL: number;
-    opParlayDiscountVaultTVL: number;
     arbDiscountVaultTVL: number;
     arbDegenDiscountVaultTVL: number;
     arbSafuDiscountVaultTVL: number;
     arbUpsettoorVaultTVL: number;
-    arbParlayDiscountVaultTVL: number;
 };

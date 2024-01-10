@@ -96,12 +96,10 @@ const TVLInfo: React.FC = () => {
           sportVaultsTvlData?.opDegenDiscountVaultTVL +
           sportVaultsTvlData?.opSafuDiscountVaultTVL +
           sportVaultsTvlData?.opUpsettoorVaultTVL +
-          sportVaultsTvlData?.opParlayDiscountVaultTVL +
           sportVaultsTvlData?.arbDiscountVaultTVL +
           sportVaultsTvlData?.arbDegenDiscountVaultTVL +
           sportVaultsTvlData?.arbSafuDiscountVaultTVL +
-          sportVaultsTvlData?.arbUpsettoorVaultTVL +
-          sportVaultsTvlData?.arbParlayDiscountVaultTVL
+          sportVaultsTvlData?.arbUpsettoorVaultTVL
         : 0;
 
     const thalesVaultsAggregatedTvl = thalesVaultsTvlData
@@ -109,12 +107,10 @@ const TVLInfo: React.FC = () => {
           thalesVaultsTvlData?.opDegenDiscountVaultTVL +
           thalesVaultsTvlData?.opSafuDiscountVaultTVL +
           thalesVaultsTvlData?.opUpsettoorVaultTVL +
-          thalesVaultsTvlData?.opParlayDiscountVaultTVL +
           thalesVaultsTvlData?.arbDiscountVaultTVL +
           thalesVaultsTvlData?.arbDegenDiscountVaultTVL +
           thalesVaultsTvlData?.arbSafuDiscountVaultTVL +
-          thalesVaultsTvlData?.arbUpsettoorVaultTVL +
-          thalesVaultsTvlData?.arbParlayDiscountVaultTVL
+          thalesVaultsTvlData?.arbUpsettoorVaultTVL
         : 0;
 
     const vaultsAggregatedTvl = sportVaultsAggregatedTvl + thalesVaultsAggregatedTvl;
