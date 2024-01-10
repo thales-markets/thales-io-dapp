@@ -88,3 +88,22 @@ export const SectionDescription = styled.div`
         }
     }
 `;
+
+export const Container = styled.div`
+    color: ${(props) => props.theme.textColor.tertiary};
+    font-family: Nunito;
+    font-size: 13px;
+    display: grid;
+    width: 60%;
+    grid-template-rows: fr 160px;
+    column-gap: 10px;
+    row-gap: 10px;
+    grid-template-areas: 'top' 'bottom';
+    z-index: 1;
+    > div {
+        position: relative;
+        padding: 20px;
+        background-color: ${(props) => props.theme.background.primary};
+        border-radius: 8px;
+    }
+`;
