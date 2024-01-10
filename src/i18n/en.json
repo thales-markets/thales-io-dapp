@@ -592,8 +592,8 @@
             "bridge": "Bridge",
             "lp-staking": "LP Staking",
             "learn": "Learn",
-            "about-governance": "About governance",
-            "about-token": "About Thales token"
+            "about-governance": "Governance",
+            "about-token": "Thales token"
         }
     },
     "footer": {

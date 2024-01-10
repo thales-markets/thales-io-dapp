@@ -1,3 +1,4 @@
+import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
 import { Colors, FlexDivCentered } from 'styles/common';
 
@@ -8,6 +9,7 @@ export const Content = styled.div`
     grid-row-start: 8;
     grid-row-end: 80;
     width: 60%;
+    margin-bottom: 50px;
     @media (max-width: 1024px) {
         position: absolute;
         display: block;
@@ -89,10 +91,11 @@ export const Date = styled.h1`
     font-size: 16px;
 `;
 
-export const List = styled.ul`
+export const List = styled.ul<{ margin?: boolean }>`
     list-style: disc;
     color: ${Colors.WHITE};
     list-style-position: inside;
+    margin: 20px 0px;
 `;
 
 export const ListItem = styled.li<{ bold?: boolean }>`
@@ -115,4 +118,8 @@ export const ChartLabel = styled.span`
     right: 0;
     color: ${Colors.WHITE};
     text-align: center;
+`;
+
+export const CustomHashLink = styled(HashLink)`
+    color: ${Colors.WHITE};
 `;

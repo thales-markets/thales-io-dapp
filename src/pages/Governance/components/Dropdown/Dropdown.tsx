@@ -117,9 +117,10 @@ const DropDown = styled(FlexDivColumn)`
     background: ${Colors.METALLIC_BLUE};
     border-radius: 8px;
     position: absolute;
-    margin-top: 9px;
+    margin-top: 12px;
+    margin-left: 2px;
     padding: 8px;
-    width: 105px;
+    width: 101px;
 `;
 
 const DropDownItem = styled(FlexDiv)`
