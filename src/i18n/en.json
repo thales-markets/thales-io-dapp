@@ -558,6 +558,10 @@
                 "my-staking-share": "My staking share",
                 "tvl": "Total Value Locked (TVL)"
             },
+            "claim": {
+                "claim-rewards": "Claim rewards",
+                "claiming-rewards": "Claiming rewards"
+            },
             "steps": {
                 "step-1": {
                     "header": "Step 1. - Connect wallet",
