@@ -83,7 +83,7 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                 {proposal.space.id === SpaceKey.TIPS ? (
                     <TipTable dangerouslySetInnerHTML={getRawMarkup(proposal.body)} />
                 ) : (
-                    <Body>{truncateText(proposal.body, 200)}</Body>
+                    <Body>{truncateText(proposal.body, 400)}</Body>
                 )}
             </Card>
         </CardContainer>
