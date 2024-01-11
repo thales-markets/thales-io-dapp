@@ -16,12 +16,10 @@ const useSportVaultsDataQuery = (options?: UseQueryOptions<VaultsTVLData | undef
                 opDegenDiscountVaultTVL: 0,
                 opSafuDiscountVaultTVL: 0,
                 opUpsettoorVaultTVL: 0,
-                opParlayDiscountVaultTVL: 0,
                 arbDiscountVaultTVL: 0,
                 arbDegenDiscountVaultTVL: 0,
                 arbSafuDiscountVaultTVL: 0,
                 arbUpsettoorVaultTVL: 0,
-                arbParlayDiscountVaultTVL: 0,
             };
 
             try {
@@ -68,12 +66,10 @@ const useSportVaultsDataQuery = (options?: UseQueryOptions<VaultsTVLData | undef
                     opDegenDiscountVaultData,
                     opSafuDiscountVaultData,
                     opUpsettoorVaultData,
-                    opParlayDiscountVaultData,
                     arbDiscountVaultData,
                     arbDegenDiscountVaultData,
                     arbSafuDiscountVaultData,
                     arbUpsettoorVaultData,
-                    arbParlayDiscountVaultData,
                 ] = await Promise.all(opVaultsData.concat(arbVaultsData));
 
                 vaultData.opDiscountVaultTVL = bigNumberFormatter(
@@ -92,30 +88,22 @@ const useSportVaultsDataQuery = (options?: UseQueryOptions<VaultsTVLData | undef
                     opUpsettoorVaultData.allocationNextRound,
                     getDefaultDecimalsForNetwork(Network.OptimismMainnet)
                 );
-                vaultData.opParlayDiscountVaultTVL = bigNumberFormatter(
-                    opParlayDiscountVaultData.allocationNextRound,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
-                );
 
                 vaultData.arbDiscountVaultTVL = bigNumberFormatter(
                     arbDiscountVaultData.allocationNextRound,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+                    getDefaultDecimalsForNetwork(Network.Arbitrum)
                 );
                 vaultData.arbDegenDiscountVaultTVL = bigNumberFormatter(
                     arbDegenDiscountVaultData.allocationNextRound,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+                    getDefaultDecimalsForNetwork(Network.Arbitrum)
                 );
                 vaultData.arbSafuDiscountVaultTVL = bigNumberFormatter(
                     arbSafuDiscountVaultData.allocationNextRound,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+                    getDefaultDecimalsForNetwork(Network.Arbitrum)
                 );
                 vaultData.arbUpsettoorVaultTVL = bigNumberFormatter(
                     arbUpsettoorVaultData.allocationNextRound,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
-                );
-                vaultData.arbParlayDiscountVaultTVL = bigNumberFormatter(
-                    arbParlayDiscountVaultData.allocationNextRound,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+                    getDefaultDecimalsForNetwork(Network.Arbitrum)
                 );
 
                 return vaultData;

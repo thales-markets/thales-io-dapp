@@ -601,8 +601,8 @@
             "bridge": "Bridge",
             "lp-staking": "LP Staking",
             "learn": "Learn",
-            "about-governance": "About governance",
-            "about-token": "About Thales token"
+            "about-governance": "Governance",
+            "about-token": "Thales token"
         }
     },
     "footer": {
@@ -628,8 +628,9 @@
             "total-protocol-volume": "Total protocol volume",
             "safebox-fees": "Safebox fees",
             "thales-amm": "Thales AMM",
-            "overtime-amm": "Overtime AMM",
+            "overtime-amm": "Sports AMM",
             "parlay-amm": "Parlay AMM",
+            "total-unique-users": "Total unique users",
             "average-unique-users": "AVG unique users",
             "average-monthly-users": "AVG monthly users"
         },
@@ -666,7 +667,7 @@
         },
         "tvl": {
             "title": "TVL",
-            "overtime-amm-tvl": "Overtime AMM TVL",
+            "overtime-amm-tvl": "Sports AMM TVL",
             "thales-amm-tvl": "Thales AMM TVL",
             "parlay-amm-tvl": "Parlay AMM TVL",
             "vaults-tvl": "Vaults TVL"

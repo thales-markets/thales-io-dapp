@@ -19,9 +19,7 @@ const useThalesVaultsDataQuery = (options?: UseQueryOptions<VaultsTVLData | unde
                 arbDegenDiscountVaultTVL: 0,
                 arbSafuDiscountVaultTVL: 0,
                 opUpsettoorVaultTVL: 0,
-                opParlayDiscountVaultTVL: 0,
                 arbUpsettoorVaultTVL: 0,
-                arbParlayDiscountVaultTVL: 0,
             };
 
             try {
@@ -87,15 +85,15 @@ const useThalesVaultsDataQuery = (options?: UseQueryOptions<VaultsTVLData | unde
 
                 vaultData.arbDiscountVaultTVL = bigNumberFormatter(
                     arbDiscountVaultData.allocationNextRound,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+                    getDefaultDecimalsForNetwork(Network.Arbitrum)
                 );
                 vaultData.arbDegenDiscountVaultTVL = bigNumberFormatter(
                     arbDegenDiscountVaultData.allocationNextRound,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+                    getDefaultDecimalsForNetwork(Network.Arbitrum)
                 );
                 vaultData.arbSafuDiscountVaultTVL = bigNumberFormatter(
                     arbSafuDiscountVaultData.allocationNextRound,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+                    getDefaultDecimalsForNetwork(Network.Arbitrum)
                 );
 
                 return vaultData;

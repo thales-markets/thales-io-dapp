@@ -5,8 +5,20 @@ import { ReactComponent as Chart4White } from 'assets/images/whitepaper/chart4b.
 import { ReactComponent as Chart5White } from 'assets/images/whitepaper/chart5b.svg';
 import { ReactComponent as ThalesLogoWhitepaperWhite } from 'assets/images/whitepaper/thales-logo-whitepaper-white.svg';
 import { Trans, useTranslation } from 'react-i18next';
-import { FlexDivCentered } from 'styles/common';
-import { ChartContainer, ChartLabel, Content, Date, H1, H2, H3, List, ListItem, Paragraph } from '../styled-components';
+import { FlexDivCentered, FlexDivColumnCentered, FlexDivStart } from 'styles/common';
+import {
+    ChartContainer,
+    ChartLabel,
+    Content,
+    CustomHashLink,
+    Date,
+    H1,
+    H2,
+    H3,
+    List,
+    ListItem,
+    Paragraph,
+} from '../styled-components';
 
 const WhitepaperArticle: React.FC = () => {
     const { t } = useTranslation();
@@ -19,12 +31,33 @@ const WhitepaperArticle: React.FC = () => {
             <FlexDivCentered>
                 <H1>{t('whitepaper.title')}</H1>
             </FlexDivCentered>
-            <FlexDivCentered>
-                <Date>{t('whitepaper.date')}</Date>
-            </FlexDivCentered>
-            <H2>{t('whitepaper.paragraphs.abstract.title')}</H2>
+            <FlexDivColumnCentered>
+                <FlexDivCentered>
+                    <Date>{t('whitepaper.date')}</Date>
+                </FlexDivCentered>
+                <FlexDivStart>
+                    <List>
+                        <ListItem>
+                            <CustomHashLink to="#section1">{t('whitepaper.paragraphs.abstract.title')}</CustomHashLink>
+                        </ListItem>
+                        <ListItem>
+                            <CustomHashLink to="#section2">{t('whitepaper.paragraphs.1.title')}</CustomHashLink>
+                        </ListItem>
+                        <ListItem>
+                            <CustomHashLink to="#section2">{t('whitepaper.paragraphs.2.title')}</CustomHashLink>
+                        </ListItem>
+                        <ListItem>
+                            <CustomHashLink to="#section4">{t('whitepaper.paragraphs.3.title')}</CustomHashLink>
+                        </ListItem>
+                        <ListItem>
+                            <CustomHashLink to="#section5">{t('whitepaper.paragraphs.4.title')}</CustomHashLink>
+                        </ListItem>
+                    </List>
+                </FlexDivStart>
+            </FlexDivColumnCentered>
+            <H2 id="section1">{t('whitepaper.paragraphs.abstract.title')}</H2>
             <Paragraph>{t('whitepaper.paragraphs.abstract.section1')}</Paragraph>
-            <H2>{t('whitepaper.paragraphs.1.title')}</H2>
+            <H2 id="section2">{t('whitepaper.paragraphs.1.title')}</H2>
             <Paragraph>{t('whitepaper.paragraphs.1.section1')}</Paragraph>
             <Paragraph>{t('whitepaper.paragraphs.1.section2')}</Paragraph>
             <Paragraph>{t('whitepaper.paragraphs.1.section3')}</Paragraph>
@@ -38,7 +71,7 @@ const WhitepaperArticle: React.FC = () => {
             <Paragraph>{t('whitepaper.paragraphs.1-2.section1')}</Paragraph>
             <H3>{t('whitepaper.paragraphs.1-3.title')}</H3>
             <Paragraph>{t('whitepaper.paragraphs.1-3.section1')}</Paragraph>
-            <H2>{t('whitepaper.paragraphs.2.title')}</H2>
+            <H2 id="section3">{t('whitepaper.paragraphs.2.title')}</H2>
             <Paragraph>{t('whitepaper.paragraphs.2.section1')}</Paragraph>
             <ListItem bold={true}>ParimutuelMarketManager.sol</ListItem>
             <Paragraph>{t('whitepaper.paragraphs.2.section2')}</Paragraph>
@@ -91,7 +124,7 @@ const WhitepaperArticle: React.FC = () => {
             </ChartContainer>
             <Paragraph>{t('whitepaper.paragraphs.2-3.section1')}</Paragraph>
             <Paragraph>{t('whitepaper.paragraphs.2-3.section2')}</Paragraph>
-            <H2>{t('whitepaper.paragraphs.3.title')}</H2>
+            <H2 id="section4">{t('whitepaper.paragraphs.3.title')}</H2>
             <Paragraph>{t('whitepaper.paragraphs.3.section1')}</Paragraph>
             <ChartContainer>
                 <Chart4White />
@@ -137,7 +170,7 @@ const WhitepaperArticle: React.FC = () => {
             <Paragraph>{t('whitepaper.paragraphs.3-2.section1')}</Paragraph>
             <H3>{t('whitepaper.paragraphs.3-3.title')}</H3>
             <Paragraph>{t('whitepaper.paragraphs.3-3.section1')}</Paragraph>
-            <H2>{t('whitepaper.paragraphs.4.title')}</H2>
+            <H2 id="section5">{t('whitepaper.paragraphs.4.title')}</H2>
             <ChartContainer>
                 <Chart5White />
             </ChartContainer>

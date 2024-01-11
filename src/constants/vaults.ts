@@ -72,10 +72,4 @@ export const THALES_VAULT_MAP: Record<string, any> = {
     },
 };
 
-export const VAULT_IDS: string[] = [
-    'discount-vault',
-    'degen-discount-vault',
-    'safu-discount-vault',
-    'upsettoor-vault',
-    'parlay-discount-vault',
-];
+export const VAULT_IDS: string[] = ['discount-vault', 'degen-discount-vault', 'safu-discount-vault', 'upsettoor-vault'];
