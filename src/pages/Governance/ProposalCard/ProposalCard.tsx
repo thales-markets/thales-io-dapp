@@ -3,6 +3,8 @@ import { SpaceKey, StatusEnum } from 'enums/governance';
 import { indexOf, max } from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Remarkable } from 'remarkable';
+import { linkify } from 'remarkable/linkify';
 import { Colors, FlexDivRowCentered } from 'styles/common';
 import { truncateText } from 'thales-utils';
 import { Proposal } from 'types/governance';
@@ -14,6 +16,7 @@ import {
     RightSection,
     Status,
     StatusIcon,
+    TipTable,
     Title,
 } from './styled-components';
 
@@ -28,6 +31,22 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
     const pending = proposal.state === StatusEnum.Pending;
 
     const finalChoice = proposal.choices[indexOf(proposal.scores, max(proposal.scores))];
+
+    const getRawMarkup = (value?: string | null) => {
+        const remarkable = new Remarkable({
+            html: false,
+            breaks: true,
+            typographer: false,
+        }).use(linkify);
+
+        if (!value) return { __html: '' };
+
+        const splitValue = value?.split('Simple Summary')[0];
+        const matchTipDateArray = splitValue.match(`(\\d{4}-\\d{2}-\\d{2})`);
+        const matchTipDate = matchTipDateArray && matchTipDateArray[0] ? matchTipDateArray[0] : '';
+        const textWithoutTrailingSpaces = splitValue.split(matchTipDate)[0].concat(`${matchTipDate} |`);
+        return { __html: remarkable.render(textWithoutTrailingSpaces) };
+    };
 
     return (
         <CardContainer onClick={onClick}>
@@ -61,7 +80,11 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                     )}
                 </FlexDivRowCentered>
                 <Title status={proposal.state}>{proposal.title}</Title>
-                <Body status={proposal.state}>{truncateText(proposal.body, 200)}</Body>
+                {proposal.space.id === SpaceKey.TIPS ? (
+                    <TipTable dangerouslySetInnerHTML={getRawMarkup(proposal.body)} />
+                ) : (
+                    <Body>{truncateText(proposal.body, 200)}</Body>
+                )}
             </Card>
         </CardContainer>
     );
