@@ -26,11 +26,11 @@ export const refetchTokenQueries = (walletAddress: string, networkId: Network) =
     // queryConnector.queryClient.invalidateQueries(QUERY_KEYS.WalletBalances.Thales(walletAddress, networkId));
 };
 
-// export const refetchLPStakingQueries = (walletAddress: string, networkId: Network) => {
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.LPStaking(walletAddress, networkId));
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.GelatoBalance(walletAddress, networkId));
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.Gelato());
-// };
+export const refetchLPStakingQueries = (walletAddress: string, networkId: Network) => {
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.LPStaking(walletAddress, networkId));
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.GelatoBalance(walletAddress, networkId));
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.Gelato());
+};
 
 // export const refetchUserTokenTransactions = (walletAddress: string, networkId: Network) => {
 //     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.Transactions(walletAddress, networkId, undefined));
