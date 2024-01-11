@@ -549,6 +549,15 @@
         },
         "lp-staking": {
             "header": "How LP Staking works?",
+            "staking-data": "Staking data",
+            "my-lp-staking": "My LP Staking Balance",
+            "your-unclaimed": "Your unclaimed Rewards",
+            "staking-data-section": {
+                "apr-in-total": "APR in total",
+                "thales-op": "Thales APR + OP APR",
+                "my-staking-share": "My staking share",
+                "tvl": "Total Value Locked (TVL)"
+            },
             "steps": {
                 "step-1": {
                     "header": "Step 1. - Connect wallet",
