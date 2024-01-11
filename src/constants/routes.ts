@@ -5,15 +5,16 @@ const ROUTES = {
     Bridge: '/bridge',
     LPStaking: '/lp-staking',
     AMMLP: '/amm-lp',
-    Governance: {
-        Home: '/governance',
-        Space: '/governance/:space',
-        Proposal: '/governance/:space/:id',
+    DAO: {
+        Home: '/dao',
+        Space: '/dao/:space',
+        Proposal: '/dao/:space/:id',
     },
-    Learn: {
-        Whitepaper: '/whitepaper',
-        Token: '/about-thales-token',
-        Governance: '/about-governance',
+    About: {
+        Root: '/about',
+        Whitepaper: '/about/whitepaper',
+        Token: '/about/thales-token',
+        Governance: '/about/governance',
     },
 };
 export default ROUTES;

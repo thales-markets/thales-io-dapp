@@ -66,7 +66,7 @@ const TokenArticle: React.FC = () => {
                     i18nKey="about-thales-token.paragraphs.2"
                     components={{
                         bold: <strong />,
-                        url: <a target="_blank" rel="noreferrer" href={buildHref(ROUTES.Learn.Governance)} />,
+                        url: <a target="_blank" rel="noreferrer" href={buildHref(ROUTES.About.Governance)} />,
                     }}
                 />
             </Paragraph>

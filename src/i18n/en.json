@@ -600,13 +600,13 @@
             "dashboard": "Dashboard",
             "token": "Token",
             "amm-lp": "AMM LP",
-            "governance": "Governance",
+            "dao": "DAO",
             "docs": "Docs",
             "whitepaper": "Whitepaper",
             "staking": "Staking",
             "bridge": "Bridge",
             "lp-staking": "LP Staking",
-            "learn": "Learn",
+            "about": "About",
             "about-governance": "Governance",
             "about-token": "Thales token"
         }

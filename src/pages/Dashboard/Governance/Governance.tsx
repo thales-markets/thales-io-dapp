@@ -35,7 +35,7 @@ const Governance: React.FC = () => {
     }, [proposalsQuery.isSuccess, proposalsQuery.data]);
 
     return (
-        <SPAAnchor href={buildHref(ROUTES.Governance.Home)}>
+        <SPAAnchor href={buildHref(ROUTES.DAO.Home)}>
             <WidgetWrapper>
                 <WidgetHeader>
                     <WidgetIcon className="icon icon--governance" />

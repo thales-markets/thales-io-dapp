@@ -15,9 +15,9 @@ export const navigateTo = (path: string, replacePath = false, scrollToTop = fals
 export const buildHref = (route: string) => `${ifIpfsDeployment ? '#' : ''}${route}`;
 
 export const navigateToGovernance = (spaceKey?: SpaceKey, id?: string, replacePath = false) =>
-    navigateTo(`${ROUTES.Governance.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`, replacePath);
+    navigateTo(`${ROUTES.DAO.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`, replacePath);
 
 export const getGovernanceUrl = (spaceKey?: SpaceKey, id?: string) =>
-    `${ROUTES.Governance.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`;
+    `${ROUTES.DAO.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`;
 
 export { history };

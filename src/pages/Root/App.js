@@ -142,7 +142,7 @@ const App = () => {
                             </Route>
                             <Route
                                 exact
-                                path={[ROUTES.Governance.Home, ROUTES.Governance.Space, ROUTES.Governance.Proposal]}
+                                path={[ROUTES.DAO.Home, ROUTES.DAO.Space, ROUTES.DAO.Proposal]}
                                 render={(routeProps) => (
                                     <Suspense fallback={<Loader />}>
                                         <DappLayout>
@@ -151,21 +151,21 @@ const App = () => {
                                     </Suspense>
                                 )}
                             />
-                            <Route exact path={ROUTES.Learn.Whitepaper}>
+                            <Route exact path={ROUTES.About.Whitepaper}>
                                 <Suspense fallback={<Loader />}>
                                     <DappLayout>
                                         <WhitepaperArticle />
                                     </DappLayout>
                                 </Suspense>
                             </Route>
-                            <Route exact path={ROUTES.Learn.Governance}>
+                            <Route exact path={ROUTES.About.Governance}>
                                 <Suspense fallback={<Loader />}>
                                     <DappLayout>
                                         <GovernanceArticle />
                                     </DappLayout>
                                 </Suspense>
                             </Route>
-                            <Route exact path={ROUTES.Learn.Token}>
+                            <Route exact path={ROUTES.About.Token}>
                                 <Suspense fallback={<Loader />}>
                                     <DappLayout>
                                         <TokenArticle />
