@@ -25,7 +25,6 @@ const StakingData: React.FC = () => {
     const gelatoQuery = useGelatoQuery({ enabled: isAppReady });
 
     const gelatoData = gelatoQuery.isSuccess ? gelatoQuery.data : undefined;
-
     const staked = lpStakingQuery.isSuccess && lpStakingQuery.data ? Number(lpStakingQuery.data.staked) : 0;
 
     const stakedInUSD = staked * (gelatoData?.priceInUSD ?? 0);
@@ -35,6 +34,15 @@ const StakingData: React.FC = () => {
         stakedInUSD,
         totalInUSD,
     ]);
+
+    const isLoading = gelatoQuery.isLoading || lpStakingQuery.isLoading;
+
+    // Values
+    const totalAPR = isLoading ? '-' : gelatoData?.totalApr;
+    const thalesOPAPR = isLoading ? '-' : `${gelatoData?.apr} + ${gelatoData?.secondApr}`;
+    const myStakedShareValue = isLoading ? '-' : `${formatCurrencyWithPrecision(myStakedShare)}%`;
+    const tvl = isLoading ? '-' : formatCurrencyWithSign(USD_SIGN, totalInUSD);
+
     return (
         <StakingDataContainer>
             <Header>
@@ -43,21 +51,19 @@ const StakingData: React.FC = () => {
             </Header>
             <StakingDetails>
                 <ItemName>{t('staking.lp-staking.staking-data-section.apr-in-total')}</ItemName>
-                <ItemValue>{gelatoQuery.isLoading ? '0%' : gelatoData?.totalApr}</ItemValue>
+                <ItemValue>{totalAPR}</ItemValue>
             </StakingDetails>
             <StakingDetails>
                 <ItemName>{t('staking.lp-staking.staking-data-section.thales-op')}</ItemName>
-                <ItemValue>{`${gelatoQuery.isLoading ? '0%' : gelatoData?.apr} ${!gelatoQuery.isLoading && '+'} ${
-                    gelatoQuery.isLoading ? '0%' : gelatoData?.secondApr
-                }`}</ItemValue>
+                <ItemValue>{thalesOPAPR}</ItemValue>
             </StakingDetails>
             <StakingDetails>
                 <ItemName>{t('staking.lp-staking.staking-data-section.my-staking-share')}</ItemName>
-                <ItemValue>{`${formatCurrencyWithPrecision(myStakedShare)}%`}</ItemValue>
+                <ItemValue>{myStakedShareValue}</ItemValue>
             </StakingDetails>
             <StakingDetails>
                 <ItemName>{t('staking.lp-staking.staking-data-section.tvl')}</ItemName>
-                <ItemValue>{formatCurrencyWithSign(USD_SIGN, totalInUSD)}</ItemValue>
+                <ItemValue>{tvl}</ItemValue>
             </StakingDetails>
         </StakingDataContainer>
     );
