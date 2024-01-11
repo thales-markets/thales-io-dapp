@@ -132,7 +132,6 @@ const LeaderboardTable: FC<TransactionsTableProps> = memo(({ stakingData, isLoad
                     // }}
                     isLoading={isLoading}
                     // stickyRow={stickyRowInfo.length > 0 ? <StickyRowComponent stickyRowInfo={stickyRowInfo} /> : <></>}
-                    hidePagination
                 />
             </SectionContainer>
         </>

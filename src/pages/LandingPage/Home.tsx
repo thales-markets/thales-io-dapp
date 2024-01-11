@@ -53,6 +53,8 @@ const Home: React.FC = () => {
                     </Title>
                     <Subtitle>{t('home.protocol-description-1')},</Subtitle>
                     <Subtitle>{t('home.protocol-description-2')}</Subtitle>
+                    <Subtitle>{t('home.protocol-description-3')}</Subtitle>
+                    <Subtitle>{t('home.protocol-description-4')}</Subtitle>
                     <SPAAnchor href={LINKS.Github}>
                         <SocialIcon className="icon icon--github" />
                     </SPAAnchor>

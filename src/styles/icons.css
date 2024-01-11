@@ -239,3 +239,7 @@
 .icon--sleep:before {
     content: '\0031';
 }
+
+.icon--circle-arrow-down:before {
+    content: '\0050';
+}

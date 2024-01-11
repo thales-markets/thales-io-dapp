@@ -1,5 +1,4 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
-import { ReactComponent as ArrowDown } from 'assets/images/arrow-down-blue.svg';
 import ApprovalModal from 'components/ApprovalModal';
 import Button from 'components/Button';
 import InlineLoader from 'components/InlineLoader';
@@ -373,7 +372,7 @@ const Bridge: React.FC = () => {
                         />
                     </InputContainer>
                     <ArrowContainer>
-                        <ArrowDown />
+                        <i className="icon icon--circle-arrow-down" />
                     </ArrowContainer>
                     <NetworkSwitchContainer>
                         <NetworkSwitchLabel>{t('bridge.to-label')}:</NetworkSwitchLabel>
@@ -536,8 +535,12 @@ const NetworkSwitchWrapper = styled(FlexDivCentered)`
 `;
 
 const ArrowContainer = styled(FlexDivCentered)`
-    margin-bottom: 15px;
-    margin-top: -5px;
+    color: ${(props) => props.theme.textColor.tertiary};
+    margin-top: 10px;
+    margin-bottom: 10px;
+    > i {
+        font-size: 30px;
+    }
     @media (max-width: 1192px) {
         margin-bottom: 5px;
     }

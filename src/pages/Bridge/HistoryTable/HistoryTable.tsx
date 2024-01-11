@@ -155,7 +155,6 @@ const HistoryTable: FC<HistoryTableProps> = memo(({ transactions, noResultsMessa
             data={transactions}
             isLoading={isLoading}
             noResultsMessage={noResultsMessage}
-            hidePagination
             initialState={{
                 sortBy: [
                     {

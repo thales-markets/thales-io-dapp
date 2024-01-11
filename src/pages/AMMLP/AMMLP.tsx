@@ -954,7 +954,7 @@ const AMMLP: React.FC = () => {
                                     }
                                     overlayClassName="lp-max-allowance"
                                     iconFontSize={14}
-                                    marginLeft={2}
+                                    marginLeft={5}
                                     top={-1}
                                 />
                             </LiquidityPoolInfo>

@@ -33,18 +33,21 @@ const SelectInput: React.FC<SelectInputProps> = ({
             width: '100%',
             color: state.selectProps.menuColor,
             backgroundColor: theme.background.primary,
-            border: `1px solid ${theme.borderColor.secondary}`,
+            boxShadow: '-15px 5px 20px -3px rgba(0, 0, 0, 0.46)',
             marginTop: 5,
             borderRadius: 15,
             overflow: 'auto',
             fontSize: fontSize || 16,
         }),
-        option: (provided: any, state: any) => ({
+        option: (provided: any) => ({
             ...provided,
             color: theme.textColor.primary,
-            backgroundColor: state?.isFocused || state.isSelected ? theme.button.background.secondary : 'transparent',
-            opacity: state.isSelected && !state?.isFocused ? 0.7 : 1,
+            backgroundColor: theme.background.primary,
             cursor: 'pointer',
+            borderRadius: '8px',
+            '&:hover': {
+                backgroundColor: theme.background.quaternary,
+            },
         }),
         control: (provided: any, state: any) => ({
             ...provided,
