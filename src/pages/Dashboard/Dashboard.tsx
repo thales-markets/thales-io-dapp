@@ -4,9 +4,9 @@ import IntegratorsVolume from './IntegratorsVolume';
 import ProtocolVolume from './ProtocolVolume';
 import Staking from './Staking';
 import TVLInfo from './TVLInfo';
+import TokenInfo from './ThalesTokenInfo';
 import TokenAddresses from './TokenAddresses';
 import TokenBurn from './TokenBurn';
-import TokenInfo from './ThalesTokenInfo';
 import {
     Container,
     EcosystemIcon,
@@ -22,27 +22,17 @@ import {
     ItemUpperRight,
     TitleLabel,
 } from './styled-components';
-import SPAAnchor from 'components/SPAAnchor';
 
 const Dashboard: React.FC = () => {
     const { t } = useTranslation();
     return (
         <>
             <FlexDivColumnNativeFullWidth>
-                <TitleLabel>{t('dashboard.ecosystem')}</TitleLabel>
+                <TitleLabel>{t('dashboard.networks')}</TitleLabel>
                 <FlexDivSpaceAroundFullWidth>
-                    <SPAAnchor href={'https://thalesmarket.io/'}>
-                        <EcosystemIcon className="icon icon--thales-markets" />
-                    </SPAAnchor>
-                    <SPAAnchor href={'https://overtimemarkets.xyz/'}>
-                        <EcosystemIcon className="icon icon--tale-of-thales" />
-                    </SPAAnchor>
-                    <SPAAnchor href={'https://thalesmarket.io/tale-of-thales'}>
-                        <EcosystemIcon className="icon icon--overtime" />
-                    </SPAAnchor>
-                    <SPAAnchor href={'https://spongly.eth.limo/dashboard/'}>
-                        <EcosystemIcon className="icon icon--spongly" />
-                    </SPAAnchor>
+                    <EcosystemIcon className="icon icon--optimism" />
+                    <EcosystemIcon className="icon icon--arbitrum" />
+                    <EcosystemIcon className="icon icon--base" />
                 </FlexDivSpaceAroundFullWidth>
             </FlexDivColumnNativeFullWidth>
             <Container>
@@ -71,14 +61,6 @@ const Dashboard: React.FC = () => {
                     <IntegratorsVolume />
                 </ItemBottomRight>
             </Container>
-            <FlexDivColumnNativeFullWidth>
-                <TitleLabel>{t('dashboard.networks')}</TitleLabel>
-                <FlexDivSpaceAroundFullWidth>
-                    <EcosystemIcon className="icon icon--optimism" />
-                    <EcosystemIcon className="icon icon--arbitrum" />
-                    <EcosystemIcon className="icon icon--base" />
-                </FlexDivSpaceAroundFullWidth>
-            </FlexDivColumnNativeFullWidth>
         </>
     );
 };

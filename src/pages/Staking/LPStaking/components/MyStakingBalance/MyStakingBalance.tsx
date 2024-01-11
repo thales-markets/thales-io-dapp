@@ -1,22 +1,19 @@
 import { Icon } from '@material-ui/core';
 import { LP_TOKEN, USD_SIGN } from 'constants/currency';
+import { t } from 'i18next';
+import { SectionHeader } from 'pages/Staking/styled-components';
 import useGelatoQuery from 'queries/token/useGelatoQuery';
 import useLPStakingQuery from 'queries/token/useLPStakingQuery';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
-import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
+import { getWalletAddress, getNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { formatCurrencyWithKey, formatCurrencyWithSign } from 'thales-utils';
-import { Container, SectionHeader } from '../styled-components';
-import StakingData from './components/StakingData';
-import Steps from './components/Steps';
 
-const LPStaking: React.FC = () => {
-    const { t } = useTranslation();
+const MyStakingBalance: React.FC = () => {
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -24,6 +21,7 @@ const LPStaking: React.FC = () => {
     const lpStakingQuery = useLPStakingQuery(walletAddress, networkId, {
         enabled: isAppReady,
     });
+
     const gelatoQuery = useGelatoQuery({ enabled: isAppReady });
 
     const gelatoData = gelatoQuery.isSuccess ? gelatoQuery.data : undefined;
@@ -32,38 +30,22 @@ const LPStaking: React.FC = () => {
     const stakedInUSD = staked * (gelatoData?.priceInUSD ?? 0);
 
     return (
-        <Container>
-            <Steps />
-            <RowsContainer>
-                <StakingData />
-                <MyStakingBalanceContainer>
-                    <Header>
-                        <Icon className={'icon icon--person'} />
-                        {t('staking.lp-staking.my-lp-staking')}
-                    </Header>
-                    <Balance>
-                        {formatCurrencyWithKey(LP_TOKEN, staked) +
-                            ` (${formatCurrencyWithSign(USD_SIGN, stakedInUSD)})`}
-                    </Balance>
-                </MyStakingBalanceContainer>
-            </RowsContainer>
-        </Container>
+        <MyStakingBalanceContainer>
+            <Header>
+                <Icon className={'icon icon--person'} />
+                {t('staking.lp-staking.my-lp-staking')}
+            </Header>
+            <Balance>
+                {formatCurrencyWithKey(LP_TOKEN, staked) + ` (${formatCurrencyWithSign(USD_SIGN, stakedInUSD)})`}
+            </Balance>
+        </MyStakingBalanceContainer>
     );
 };
 
-const RowsContainer = styled(FlexDiv)`
+const Header = styled(SectionHeader)`
+    margin-bottom: 15px;
     flex-direction: row;
-    background-color: transparent !important;
-    padding: 0 !important;
-    justify-content: space-between;
-    flex: 1;
-    > div {
-        flex: 1;
-        position: relative;
-        padding: 20px;
-        background-color: ${(props) => props.theme.background.primary};
-        border-radius: 8px;
-    }
+    padding: 0;
 `;
 
 const MyStakingBalanceContainer = styled(FlexDiv)`
@@ -78,10 +60,4 @@ const Balance = styled.span`
     color: ${(props) => props.theme.textColor.secondary};
 `;
 
-const Header = styled(SectionHeader)`
-    margin-bottom: 15px;
-    flex-direction: row;
-    padding: 0;
-`;
-
-export default LPStaking;
+export default MyStakingBalance;
