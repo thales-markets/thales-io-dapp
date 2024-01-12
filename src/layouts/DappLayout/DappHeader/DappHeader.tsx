@@ -1,6 +1,7 @@
 import { NavItemType } from 'components/NavLinks/NavItem';
 import NavLinks from 'components/NavLinks/NavLinks';
 import UserWallet from 'components/UserWallet';
+import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -46,29 +47,32 @@ const DappHeader: React.FC = () => {
                 active: location.pathname === ROUTES.AMMLP,
             },
             {
-                href: buildHref(ROUTES.Governance.Home),
-                title: t('header.links.governance'),
-                active: location.pathname === ROUTES.Governance.Home,
+                href: buildHref(ROUTES.DAO.Home),
+                title: t('header.links.dao'),
+                active: location.pathname.includes(ROUTES.DAO.Home),
             },
-
             {
-                title: t('header.links.learn'),
-                active: location.pathname === ROUTES.Learn.Token,
+                href: LINKS.Medium,
+                title: t('header.links.blog'),
+            },
+            {
+                title: t('header.links.about'),
+                active: location.pathname.includes(ROUTES.About.Root),
                 children: [
                     {
-                        href: buildHref(ROUTES.Learn.Token),
+                        href: buildHref(ROUTES.About.Token),
                         title: t('header.links.about-token'),
-                        active: location.pathname === ROUTES.Learn.Token,
+                        active: location.pathname === ROUTES.About.Token,
                     },
                     {
-                        href: buildHref(ROUTES.Learn.Governance),
+                        href: buildHref(ROUTES.About.Governance),
                         title: t('header.links.about-governance'),
-                        active: location.pathname === ROUTES.Learn.Governance,
+                        active: location.pathname === ROUTES.About.Governance,
                     },
                     {
-                        href: buildHref(ROUTES.Learn.Whitepaper),
+                        href: buildHref(ROUTES.About.Whitepaper),
                         title: t('header.links.whitepaper'),
-                        active: location.pathname === ROUTES.Learn.Whitepaper,
+                        active: location.pathname === ROUTES.About.Whitepaper,
                     },
                     {
                         href: 'https://docs.thalesmarket.io/',

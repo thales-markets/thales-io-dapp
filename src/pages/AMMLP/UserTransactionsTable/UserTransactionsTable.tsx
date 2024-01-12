@@ -74,7 +74,6 @@ const UserTransactionsTable: FC<UserTransactionsTableProps> = memo(({ transactio
             data={transactions}
             isLoading={isLoading}
             noResultsMessage={noResultsMessage}
-            hidePagination
         />
     );
 });

@@ -173,13 +173,13 @@ const DropDownWrapper = styled.div`
     }
 `;
 const DropDown = styled.div`
-    background: ${(props) => props.theme.button.background.secondary};
+    color: ${(props) => props.theme.textColor.primary};
+    background: ${(props) => props.theme.background.primary};
     width: 100%;
     height: 100%;
     border-radius: 8px;
     padding: 5px;
     .selected {
-        color: ${(props) => props.theme.button.textColor.primary} !important;
         &:before {
             content: url(${checkmark});
             position: absolute;
@@ -190,14 +190,13 @@ const DropDown = styled.div`
 `;
 
 const FilterText = styled.p`
+    color: ${(props) => props.theme.textColor.primary};
     cursor: pointer;
-    font-weight: 700;
     font-size: 15px;
     padding: 8px 10px;
     border-radius: 8px;
-    color: ${(props) => props.theme.textColor.tertiary};
     &:hover {
-        background: ${(props) => props.theme.background.primary};
+        background: ${(props) => props.theme.background.quaternary};
     }
 `;
 

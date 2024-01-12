@@ -94,7 +94,7 @@ export const EcosystemSection = styled.div`
     margin-top: 150px;
 `;
 
-export const Description = styled.div<{ marginBottom?: number; marginTop?: number }>`
+export const Description = styled(FlexDivColumn)<{ marginBottom?: number; marginTop?: number }>`
     color: ${(props) => props.theme.borderColor.quaternary};
     text-align: justify;
     font-family: MontserratLight;
@@ -104,6 +104,15 @@ export const Description = styled.div<{ marginBottom?: number; marginTop?: numbe
     line-height: 140%;
     margin-top: ${(props) => (props.marginTop ? props.marginTop : '0')}px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
+    > span {
+        margin-bottom: 15px;
+    }
+`;
+
+export const BulletNumber = styled.span`
+    font-family: monospace;
+    font-size: 22px;
+    margin-right: 5px;
 `;
 
 export const Section = styled.div<{ marginBottom?: number }>`
@@ -142,10 +151,7 @@ export const LottieContainer = styled(FlexDivCentered)`
 
 export const StepsSection = styled(FlexDivColumn)`
     flex: 0.55;
-    margin-top: -50px;
-    & > div > div {
-        color: white;
-    }
+    margin-top: -60px;
 `;
 
 export const MilestonesContainer = styled.div`
@@ -239,6 +245,7 @@ export const FooterLogo = styled.i`
     cursor: pointer;
     line-height: 50px;
     margin-top: 5px;
+    z-index: -1;
 `;
 export const LinksContainer = styled(FlexDivSpaceBetween)`
     height: 100%;
@@ -287,4 +294,8 @@ export const FooterContainer = styled.div`
 export const SocialIcon = styled(Icon)`
     padding-top: 10px;
     padding-right: 20px;
+`;
+
+export const BuySellSection = styled.div`
+    margin-top: 50px;
 `;

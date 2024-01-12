@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Colors, FlexDiv, FlexDivColumn, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
 
 export const Container = styled(FlexDivColumnCentered)`
+    align-items: center;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding-top: 10px;
     }
@@ -11,6 +12,7 @@ export const Container = styled(FlexDivColumnCentered)`
 
 export const TableHeaderContainer = styled(FlexDivRowCentered)`
     margin: 0 30px 20px 30px;
+    width: 55%;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         margin: 0 0 20px 0;
@@ -21,7 +23,7 @@ export const TableContainer = styled(FlexDivColumn)`
     position: relative;
     align-items: center;
     padding: 0 30px;
-    width: 100%;
+    width: 60%;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
     }

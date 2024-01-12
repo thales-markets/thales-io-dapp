@@ -83,6 +83,7 @@ const WalletButton = styled.button`
     border: none;
     background: transparent;
     border-right: 1px solid ${(props) => props.theme.borderColor.quaternary};
+    font-size: 13px;
 `;
 
 export default UserWallet;

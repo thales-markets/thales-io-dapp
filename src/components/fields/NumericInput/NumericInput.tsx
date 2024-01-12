@@ -83,7 +83,7 @@ const NumericInput: React.FC<NumericInputProps> = ({
                 {label && (
                     <FieldLabel>
                         {label}
-                        {tooltip && <Tooltip overlay={tooltip} />}:
+                        {tooltip && <Tooltip iconFontSize={12} overlay={tooltip} />} :
                     </FieldLabel>
                 )}
                 {balance && (

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { Colors, FlexDivCentered, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
+import { Colors, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 import { getStatusColor } from 'utils/governance';
 
 export const CardContainer = styled(FlexDivColumnCentered)`
     width: 100%;
     position: relative;
-    max-height: 160px;
+    max-height: 222px;
     padding: 2px;
     border-radius: 8px;
     font-weight: 500;
@@ -52,7 +52,47 @@ export const Title = styled(FlexDivRow)<{ status: string }>`
     margin-bottom: 15px;
 `;
 
-export const Body = styled(FlexDivRow)<{ status: string }>`
+export const TipTable = styled(FlexDivColumn)`
+    margin-top: 15px;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: ${(props) => props.theme.textColor.primary};
+    p {
+        margin-bottom: 15px;
+        color: ${Colors.LIGHT_GRAY};
+    }
+    a {
+        color: ${Colors.WHITE};
+        word-wrap: break-word;
+        pointer-events: none;
+        cursor: default;
+    }
+    table {
+        overflow-y: auto;
+        display: block;
+        width: 841px;
+        th {
+            border: 1px solid ${(props) => props.theme.borderColor.primary};
+            padding: 6px 13px;
+            color: ${Colors.LIGHT_GRAY};
+        }
+        td {
+            border: 1px solid ${(props) => props.theme.borderColor.primary};
+            padding: 6px 13px;
+        }
+    }
+    h2 {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        color: ${(props) => props.theme.textColor.primary};
+        margin-top: 24px;
+        margin-bottom: 16px;
+    }
+`;
+
+export const Body = styled(FlexDivRow)`
     font-weight: 400;
     font-size: 15px;
     line-height: 24px;

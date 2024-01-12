@@ -1,13 +1,13 @@
+import Table from 'components/Table';
+import ViewEtherscanLink from 'components/ViewEtherscanLink';
+import { CRYPTO_CURRENCY_MAP, LP_TOKEN, THALES_CURRENCY } from 'constants/currency';
+import { EMPTY_VALUE } from 'constants/placeholder';
+import { TransactionFilterEnum } from 'enums/token';
 import React, { FC, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CellProps } from 'react-table';
-import { CRYPTO_CURRENCY_MAP, LP_TOKEN, THALES_CURRENCY } from 'constants/currency';
 import { formatCurrencyWithKey, formatShortDateWithTime } from 'thales-utils';
-import Table from 'components/Table';
 import { TokenTransaction, TokenTransactions } from 'types/token';
-import { TransactionFilterEnum } from 'enums/token';
-import ViewEtherscanLink from 'components/ViewEtherscanLink';
-import { EMPTY_VALUE } from 'constants/placeholder';
 
 type TransactionsTableProps = {
     transactions: TokenTransactions;
@@ -100,7 +100,6 @@ const TransactionsTable: FC<TransactionsTableProps> = memo(({ transactions, noRe
                 isLoading={isLoading}
                 noResultsMessage={noResultsMessage}
                 preventMobileView
-                hidePagination
             />
         </>
     );

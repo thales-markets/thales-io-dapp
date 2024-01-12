@@ -22,7 +22,15 @@ import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnSpaceBetween, FlexDivSpaceBetween } from 'styles/common';
+import { useTheme } from 'styled-components';
+import {
+    FlexDiv,
+    FlexDivCentered,
+    FlexDivColumn,
+    FlexDivColumnSpaceBetween,
+    FlexDivSpaceBetween,
+    Icon,
+} from 'styles/common';
 import { getAddress, getEtherscanAddressLink, truncateAddress } from 'thales-utils';
 import snxJSConnector from 'utils/snxJSConnector';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
@@ -42,6 +50,7 @@ import {
 
 const AccPreferences: React.FC = () => {
     const { t } = useTranslation();
+    const theme = useTheme();
 
     const { openConnectModal } = useConnectModal();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
@@ -410,6 +419,13 @@ const AccPreferences: React.FC = () => {
                                 <Subtitle>{t('staking.acc-preferences.source')}:</Subtitle>
                                 <TextInput value={walletAddress} disabled={true} />
                             </FlexDivColumn>
+                            <FlexDivCentered>
+                                <Icon
+                                    color={theme.textColor.tertiary}
+                                    iconSize={24}
+                                    className="icon icon--circle-arrow-down"
+                                />
+                            </FlexDivCentered>
                             <FlexDivColumn>
                                 <Subtitle>{t('staking.acc-preferences.destination')}:</Subtitle>
                                 <TextInput
@@ -453,6 +469,13 @@ const AccPreferences: React.FC = () => {
                                 <Subtitle>{t('staking.acc-preferences.source')}:</Subtitle>
                                 <TextInput value={walletAddress} disabled={true} />
                             </FlexDivColumn>
+                            <FlexDivCentered>
+                                <Icon
+                                    color={theme.textColor.tertiary}
+                                    iconSize={24}
+                                    className="icon icon--circle-arrow-down"
+                                />
+                            </FlexDivCentered>
                             <FlexDivColumn>
                                 <Subtitle>{t('staking.acc-preferences.destination')}:</Subtitle>
                                 <TextInput

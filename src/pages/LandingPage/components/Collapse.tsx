@@ -5,12 +5,13 @@ import { CollapseContainer, CollapseIcon } from './styled-components';
 
 type CollapseProps = {
     title: string;
+    hideLine?: boolean;
 };
 
-const Collapse: React.FC<CollapseProps> = ({ title, children }) => {
+const Collapse: React.FC<CollapseProps> = ({ title, hideLine, children }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     return (
-        <CollapseContainer>
+        <CollapseContainer hideLine={hideLine}>
             <Highlight
                 cursor="pointer"
                 marginBottom={20}
