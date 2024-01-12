@@ -1,16 +1,23 @@
 import FooterLinks from 'components/FooterLinks';
+import SPAAnchor from 'components/SPAAnchor';
+import LINKS from 'constants/links';
+import ROUTES from 'constants/routes';
+import { useTranslation } from 'react-i18next';
 import { FlexDivColumn } from 'styles/common';
+import { buildHref } from 'utils/routes';
 import {
-    FooterLine,
     FooterContainer,
+    FooterLine,
+    FooterLogo,
     LinksContainer,
     ThalesLinks,
-    FooterLogo,
-    ThalesLinksTitle,
     ThalesLinksItem,
+    ThalesLinksTitle,
 } from './styled-components';
 
 const Footer: React.FC = () => {
+    const { t } = useTranslation();
+
     return (
         <>
             <FooterLine />
@@ -20,24 +27,39 @@ const Footer: React.FC = () => {
                         <FooterLogo className="icon icon--thales-logo" />
                         <FlexDivColumn>
                             <ThalesLinksTitle>THALES</ThalesLinksTitle>
-                            <ThalesLinksItem>Home</ThalesLinksItem>
-                            <ThalesLinksItem>Docs</ThalesLinksItem>
-                            <ThalesLinksItem>Blog</ThalesLinksItem>
-                            <ThalesLinksItem>Stats</ThalesLinksItem>
+                            <SPAAnchor href={buildHref(ROUTES.Home)}>
+                                <ThalesLinksItem>{t('home.footer.thales.home')}</ThalesLinksItem>
+                            </SPAAnchor>
+                            <SPAAnchor href={LINKS.ThalesMarketDocs}>
+                                <ThalesLinksItem>{t('home.footer.thales.docs')}</ThalesLinksItem>
+                            </SPAAnchor>
+                            <SPAAnchor href={LINKS.Medium}>
+                                <ThalesLinksItem>{t('home.footer.thales.blog')}</ThalesLinksItem>
+                            </SPAAnchor>
                         </FlexDivColumn>
                         <FlexDivColumn>
                             <ThalesLinksTitle>DAO DAPP</ThalesLinksTitle>
-                            <ThalesLinksItem>Staking</ThalesLinksItem>
-                            <ThalesLinksItem>Governance</ThalesLinksItem>
-                            <ThalesLinksItem>Stats</ThalesLinksItem>
-                            <ThalesLinksItem>ETHScan</ThalesLinksItem>
+                            <SPAAnchor href={buildHref(ROUTES.Staking)}>
+                                <ThalesLinksItem>{t('home.footer.dao-dapp.staking')}</ThalesLinksItem>
+                            </SPAAnchor>
+                            <SPAAnchor href={buildHref(ROUTES.DAO.Home)}>
+                                <ThalesLinksItem>{t('home.footer.dao-dapp.governance')}</ThalesLinksItem>
+                            </SPAAnchor>
+                            <SPAAnchor href={buildHref(ROUTES.Dashboard)}>
+                                <ThalesLinksItem>{t('home.footer.dao-dapp.stats')}</ThalesLinksItem>
+                            </SPAAnchor>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <ThalesLinksTitle>ABOUT</ThalesLinksTitle>
-                            <ThalesLinksItem>Brand Assets</ThalesLinksItem>
-                            <ThalesLinksItem>Terms and Conditions</ThalesLinksItem>
-                            <ThalesLinksItem>Community Support</ThalesLinksItem>
-                            <ThalesLinksItem>Privacy policy</ThalesLinksItem>
+                            <ThalesLinksTitle>{t('home.footer.about.about')}</ThalesLinksTitle>
+                            <SPAAnchor href={LINKS.MarketingAssets}>
+                                <ThalesLinksItem>{t('home.footer.about.brand-assets')}</ThalesLinksItem>
+                            </SPAAnchor>
+                            <SPAAnchor>
+                                <ThalesLinksItem>{t('home.footer.about.terms-and-conditions')}</ThalesLinksItem>
+                            </SPAAnchor>
+                            <SPAAnchor>
+                                <ThalesLinksItem>{t('home.footer.about.privacy-policy')}</ThalesLinksItem>
+                            </SPAAnchor>
                         </FlexDivColumn>
                     </ThalesLinks>
                     <FooterLinks />

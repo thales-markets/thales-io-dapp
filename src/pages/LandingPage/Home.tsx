@@ -9,13 +9,15 @@ import ROUTES from 'constants/routes';
 import Lottie from 'lottie-react';
 import React, { CSSProperties, Suspense } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
-import { navigateTo } from 'utils/routes';
+import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { buildHref, navigateTo } from 'utils/routes';
 import Footer from './Footer';
 import Collapse from './components/Collapse';
 import MILESTONES from './milestones';
 import {
     About,
+    BulletNumber,
+    BuySellSection,
     Description,
     EcosystemApps,
     EcosystemSection,
@@ -134,20 +136,22 @@ const Home: React.FC = () => {
                     </Description>
                     <Collapse title={t('home.integrations.thales-sports-markets-api-title')}>
                         <Description marginBottom={20}>
-                            {t('home.integrations.thales-sports-markets-api-description')}
+                            <span>{t('home.integrations.thales-sports-markets-api-description')}</span>
+                            <HomeButton>{t('home.integrations.integrate-with-thales-sports-button')}</HomeButton>
                         </Description>
                     </Collapse>
                     <Collapse title={t('home.integrations.thales-digital-options-api-title')}>
                         <Description marginBottom={20}>
-                            {t('home.integrations.thales-digital-options-api-description')}
+                            <span>{t('home.integrations.thales-digital-options-api-description')}</span>
+                            <HomeButton>{t('home.integrations.integrate-with-thales-markets-button')}</HomeButton>
                         </Description>
                     </Collapse>
                     <Collapse title={t('home.integrations.thales-speed-markets-api-title')}>
                         <Description marginBottom={20}>
-                            {t('home.integrations.thales-speed-markets-api-description')}
+                            <span>{t('home.integrations.thales-speed-markets-api-description')}</span>
+                            <HomeButton>{t('home.integrations.integrate-with-thales-speed-button')}</HomeButton>
                         </Description>
                     </Collapse>
-                    <HomeButton>{t('home.integrations.integrate-with-thales-button')}</HomeButton>
                 </Section>
                 <Section>
                     <SectionSlogan>{t('home.buying-selling.title')}</SectionSlogan>
@@ -155,7 +159,7 @@ const Home: React.FC = () => {
                     <Description>{t('home.buying-selling.description-2')}</Description>
                 </Section>
                 <div>
-                    <Section>
+                    <BuySellSection>
                         <FlexDivCentered>
                             <Highlight>{t('home.buying-selling.buying.title')}</Highlight>
                         </FlexDivCentered>
@@ -164,15 +168,42 @@ const Home: React.FC = () => {
                         </LottieContainer>
                         <FlexDivCentered>
                             <StepsSection>
-                                <Description>1. {t('home.buying-selling.buying.step-1')}</Description>
-                                <Description>2. {t('home.buying-selling.buying.step-2')}</Description>
-                                <Description>3. {t('home.buying-selling.buying.step-3')}</Description>
-                                <Description>4. {t('home.buying-selling.buying.step-4')}</Description>
-                                <Description>5. {t('home.buying-selling.buying.step-5')}</Description>
+                                <Collapse hideLine title={t('home.buying-selling.buying.steps-title')}>
+                                    <Description>
+                                        <FlexDiv>
+                                            <BulletNumber>{'\u2776'}</BulletNumber>
+                                            {t('home.buying-selling.buying.step-1')}
+                                        </FlexDiv>
+                                    </Description>
+                                    <Description>
+                                        <FlexDiv>
+                                            <BulletNumber>{'\u2777'}</BulletNumber>
+                                            {t('home.buying-selling.buying.step-2')}
+                                        </FlexDiv>
+                                    </Description>
+                                    <Description>
+                                        <FlexDiv>
+                                            <BulletNumber>{'\u2778'}</BulletNumber>
+                                            {t('home.buying-selling.buying.step-3')}
+                                        </FlexDiv>
+                                    </Description>
+                                    <Description>
+                                        <FlexDiv>
+                                            <BulletNumber>{'\u2779'}</BulletNumber>
+                                            {t('home.buying-selling.buying.step-4')}
+                                        </FlexDiv>
+                                    </Description>
+                                    <Description>
+                                        <FlexDiv>
+                                            <BulletNumber>{'\u277A'}</BulletNumber>
+                                            {t('home.buying-selling.buying.step-5')}
+                                        </FlexDiv>
+                                    </Description>
+                                </Collapse>
                             </StepsSection>
                         </FlexDivCentered>
-                    </Section>
-                    <Section>
+                    </BuySellSection>
+                    <BuySellSection>
                         <FlexDivCentered>
                             <Highlight>{t('home.buying-selling.selling.title')}</Highlight>
                         </FlexDivCentered>
@@ -181,19 +212,35 @@ const Home: React.FC = () => {
                         </LottieContainer>
                         <FlexDivCentered>
                             <StepsSection>
-                                <Description>1. {t('home.buying-selling.selling.step-1')}</Description>
-                                <Description>2. {t('home.buying-selling.selling.step-2')}</Description>
+                                <Collapse hideLine title={t('home.buying-selling.selling.steps-title')}>
+                                    <Description>
+                                        <FlexDiv>
+                                            <BulletNumber>{'\u2776'}</BulletNumber>
+                                            {t('home.buying-selling.selling.step-1')}
+                                        </FlexDiv>
+                                    </Description>
+                                    <Description>
+                                        <FlexDiv>
+                                            <BulletNumber>{'\u2777'}</BulletNumber>
+                                            {t('home.buying-selling.selling.step-2')}
+                                        </FlexDiv>
+                                    </Description>
+                                </Collapse>
                             </StepsSection>
                         </FlexDivCentered>
-                    </Section>
+                    </BuySellSection>
                 </div>
                 <Section>
                     <SectionTitleLink>
-                        {t('home.governance.title-link')} <SectionTitleLinkArrow />
+                        <SPAAnchor href={buildHref(ROUTES.About.Governance)}>
+                            {t('home.governance.title-link')} <SectionTitleLinkArrow />
+                        </SPAAnchor>
                     </SectionTitleLink>
                     <SectionSlogan>{t('home.governance.title')}</SectionSlogan>
                     <Description marginBottom={20}>{t('home.governance.description')}</Description>
-                    <HomeButton>{t('home.governance.explore-thales-dao-button')}</HomeButton>
+                    <SPAAnchor href={buildHref(ROUTES.About.Governance)}>
+                        <HomeButton>{t('home.governance.explore-thales-dao-button')}</HomeButton>
+                    </SPAAnchor>
                 </Section>
                 <Section>
                     <SectionSlogan>{t('home.timeline.title')}</SectionSlogan>
@@ -221,16 +268,30 @@ const Home: React.FC = () => {
                 <Section marginBottom={80}>
                     <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
                     <FlexDivSpaceBetween>
-                        <HomeIcon fontSize="17em" className="icon icon--synthetix" />
-                        <HomeIcon fontSize="10em" className="icon icon--chainlink" />
-                        <HomeIcon fontSize="11em" className="icon icon--optimism" />
-                        <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
+                        <SPAAnchor href="https://synthetix.io/">
+                            <HomeIcon fontSize="17em" className="icon icon--synthetix" />
+                        </SPAAnchor>
+
+                        <SPAAnchor href="https://chain.link/">
+                            <HomeIcon fontSize="10em" className="icon icon--chainlink" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://www.optimism.io/">
+                            <HomeIcon fontSize="11em" className="icon icon--optimism" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://arbitrum.io/">
+                            <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
+                        </SPAAnchor>
                     </FlexDivSpaceBetween>
                     <FlexDivSpaceAround>
-                        <HomeIcon fontSize="9em" className="icon icon--base" />
-                        <HomeIcon fontSize="9em" className="icon icon--pyth" />
-                        <HomeIcon fontSize="9em" className="icon icon--iosiro" />
-                        <HomeIcon fontSize="11em" className="icon icon--framework" />
+                        <SPAAnchor href="https://base.org/">
+                            <HomeIcon fontSize="9em" className="icon icon--base" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://pyth.network/">
+                            <HomeIcon fontSize="9em" className="icon icon--pyth" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://framework.ventures/">
+                            <HomeIcon fontSize="11em" className="icon icon--framework" />
+                        </SPAAnchor>
                     </FlexDivSpaceAround>
                 </Section>
             </Wrapper>
@@ -243,8 +304,10 @@ export default Home;
 
 const buyingAnimationStyle: CSSProperties = {
     width: '50%',
+    zIndex: '-1',
 };
 
 const sellingAnimationStyle: CSSProperties = {
     width: '29.7%',
+    zIndex: '-1',
 };

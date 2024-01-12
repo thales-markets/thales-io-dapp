@@ -1,6 +1,7 @@
 import { NavItemType } from 'components/NavLinks/NavItem';
 import NavLinks from 'components/NavLinks/NavLinks';
 import UserWallet from 'components/UserWallet';
+import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -50,7 +51,10 @@ const DappHeader: React.FC = () => {
                 title: t('header.links.dao'),
                 active: location.pathname.includes(ROUTES.DAO.Home),
             },
-
+            {
+                href: LINKS.Medium,
+                title: t('header.links.blog'),
+            },
             {
                 title: t('header.links.about'),
                 active: location.pathname.includes(ROUTES.About.Root),

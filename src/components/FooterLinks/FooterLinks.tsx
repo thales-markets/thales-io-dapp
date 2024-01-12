@@ -26,7 +26,7 @@ const FooterLinks: React.FC<FooterLinksProps> = ({ iconSize }) => {
                 <Name>{t('footer.twitter')}</Name>
             </FlexDivColumnCentered>
             <FlexDivColumnCentered style={{ alignItems: 'center' }}>
-                <SPAAnchor href={LINKS.Docs}>
+                <SPAAnchor href={LINKS.ThalesMarketDocs}>
                     <Icon iconSize={iconSize} className="icon icon--docs" />
                 </SPAAnchor>
 
