@@ -587,6 +587,17 @@
                 "claim-rewards": "Claim rewards",
                 "claiming-rewards": "Claiming rewards"
             },
+            "stake": {
+                "name": "Stake",
+                "staking": "Staking",
+                "paused-message": "Staking is paused.",
+                "amount-to-stake": "Amount to stake"
+            },
+            "unstake": {
+                "name": "Unstake",
+                "unstaking": "Unstaking",
+                "amount-to-unstake": "Amount to unstake"
+            },
             "steps": {
                 "step-1": {
                     "header": "Step 1. - Connect wallet",
