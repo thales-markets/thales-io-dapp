@@ -7,9 +7,14 @@ import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import Lottie from 'lottie-react';
-import React, { CSSProperties, Suspense } from 'react';
+import useStatsQuery from 'queries/dashboard/useStatsQuery';
+import React, { CSSProperties, Suspense, useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
+import { RootState } from 'redux/rootReducer';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
 import Footer from './Footer';
 import Collapse from './components/Collapse';
@@ -45,6 +50,19 @@ import {
 
 const Home: React.FC = () => {
     const { t } = useTranslation();
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+    const [stats, setStats] = useState<AllStats | undefined>();
+
+    const statsQuery = useStatsQuery({
+        enabled: isAppReady,
+    });
+
+    useEffect(() => {
+        if (statsQuery.isSuccess && statsQuery.data) {
+            setStats(statsQuery.data);
+        }
+    }, [statsQuery.isSuccess, statsQuery.data]);
+
     return (
         <Suspense fallback={<Loader />}>
             <Wrapper>
@@ -70,7 +88,7 @@ const Home: React.FC = () => {
                 <StatsSection>
                     <SectionTitle>{t('home.total-protocol-volume')}</SectionTitle>
                     <Stat>
-                        $ <NumberCountdown number={944459682} />
+                        $ <NumberCountdown number={stats?.volumeStats.totalProtocolVolume || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
@@ -82,13 +100,13 @@ const Home: React.FC = () => {
                 <StatsSection>
                     <SectionTitle>{t('home.total-unique-users')}</SectionTitle>
                     <Stat>
-                        <NumberCountdown number={548562} />
+                        <NumberCountdown number={stats?.usersStats.totalUniqueUsers || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.markets-created')}</SectionTitle>
                     <Stat>
-                        <NumberCountdown number={956847} />
+                        <NumberCountdown number={stats?.marketsStats.totalUniqueMarkets || 0} />
                     </Stat>
                 </StatsSection>
                 <HomeButton onClick={() => navigateTo(ROUTES.Dashboard)}>
