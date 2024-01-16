@@ -1,3 +1,4 @@
+import { CircularProgress } from '@material-ui/core';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceBetween, Icon } from 'styles/common';
@@ -298,4 +299,10 @@ export const SocialIcon = styled(Icon)`
 
 export const BuySellSection = styled.div`
     margin-top: 50px;
+`;
+
+export const ThemedCircularProgress = styled(CircularProgress)`
+    &.MuiCircularProgress-colorPrimary {
+        color: ${(props) => props.theme.background.secondary};
+    }
 `;
