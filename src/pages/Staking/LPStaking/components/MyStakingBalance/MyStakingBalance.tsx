@@ -7,7 +7,7 @@ import useLPStakingQuery from 'queries/token/useLPStakingQuery';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
-import { getWalletAddress, getNetworkId } from 'redux/modules/wallet';
+import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
@@ -50,7 +50,6 @@ const Header = styled(SectionHeader)`
 
 const MyStakingBalanceContainer = styled(FlexDiv)`
     flex-direction: column;
-    margin-left: 5px;
 `;
 
 const Balance = styled.span`
