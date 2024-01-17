@@ -6,6 +6,8 @@ const darkTheme = {
         secondary: Colors.GRAY,
         tertiary: Colors.PURPLE_NAVY,
         quaternary: Colors.YANKEES_BLUE,
+        quinary: Colors.METALLIC_BLUE,
+        senary: Colors.LIGHT_GRAY,
     },
     textColor: {
         primary: Colors.WHITE,
@@ -33,6 +35,7 @@ const darkTheme = {
             primary: Colors.PURPLE_NAVY,
             secondary: Colors.METALLIC_BLUE,
             tertiary: Colors.CYAN,
+            quaternary: Colors.INDEPENDENCE,
         },
         textColor: {
             primary: Colors.WHITE,
