@@ -1,4 +1,3 @@
-import { ReactComponent as DownIcon } from 'assets/images/down.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -42,7 +41,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, activeOption, onSelect, tr
                     >
                         <InnerButton>
                             <FlexDiv>{t(`governance.${translationKey}.${activeOption}`)}</FlexDiv>
-                            <StyledDownIcon />
+                            <StyledDownIcon className={`icon icon--caret-down`} />
                         </InnerButton>
                     </Button>
                     {dropdownIsOpen && (
@@ -102,7 +101,7 @@ const InnerButton = styled(FlexDivRowCentered)`
     font-size: 13px;
     line-height: 36px;
     letter-spacing: 0.35px;
-    color: ${Colors.GRAY};
+    color: ${(props) => props.theme.textColor.secondary};
     text-transform: capitalize;
     padding-left: 20px;
     padding-right: 20px;
@@ -114,7 +113,7 @@ const DropdownContainer = styled.div`
 `;
 
 const DropDown = styled(FlexDivColumn)`
-    background: ${Colors.METALLIC_BLUE};
+    background: ${(props) => props.theme.background.primary};
     border-radius: 8px;
     position: absolute;
     margin-top: 12px;
@@ -126,9 +125,9 @@ const DropDown = styled(FlexDivColumn)`
 const DropDownItem = styled(FlexDiv)`
     padding: 8px 12px;
     cursor: pointer;
-    color: ${Colors.GRAY};
+    color: ${(props) => props.theme.textColor.secondary};
     &:hover {
-        background: ${(props) => props.theme.background.primary};
+        background: ${Colors.YANKEES_BLUE};
         border-radius: 12px;
     }
 `;
@@ -138,17 +137,14 @@ const Name = styled.div`
     font-size: 13px;
     line-height: 24px;
     letter-spacing: 0.35px;
-    color: ${Colors.GRAY};
+    color: ${(props) => props.theme.textColor.secondary};
     display: block;
     text-transform: capitalize;
 `;
 
-const StyledDownIcon = styled(DownIcon)`
-    height: 15px;
-    width: 15px;
-    path {
-        fill: ${(props) => props.theme.textColor.primary};
-    }
+const StyledDownIcon = styled.i`
+    color: ${(props) => props.theme.textColor.primary};
+    font-size: 13px;
 `;
 
 export default Dropdown;

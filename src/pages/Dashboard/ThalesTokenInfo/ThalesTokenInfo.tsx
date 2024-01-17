@@ -141,6 +141,14 @@ const ThalesTokenInfo: React.FC = () => {
                     <InfoText>{t('dashboard.token-info.burned-supply')}</InfoText>
                     <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.thalesBurned)} THALES` : 'N/A'}</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
+                <FlexDivFullWidthSpaceBetween>
+                    <InfoText>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>
+                    <InfoStats>
+                        {tokenInfo
+                            ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.circulatingSupply) * 100)} %`
+                            : 'N/A'}
+                    </InfoStats>
+                </FlexDivFullWidthSpaceBetween>
             </UpperInfoSection>
             <DoubleSideInfoSection>
                 <ChartInnerText>{t('dashboard.token-info.total-100m')}</ChartInnerText>

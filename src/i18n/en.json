@@ -666,6 +666,8 @@
         },
         "integrators": {
             "title": "Integrators volume",
+            "thales-volume": "Thales volume",
+            "overtime-volume": "Overtime volume",
             "total-volume": "Total volume"
         },
         "protocol-volume": {

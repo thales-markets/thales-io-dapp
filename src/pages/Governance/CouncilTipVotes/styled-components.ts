@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colors, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
+import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const VoteRow = styled(FlexDivColumnCentered)`
     margin-left: 20px;
@@ -38,7 +38,7 @@ export const CouncilVoteRowData = styled(FlexDivRow)`
 
 export const Divider = styled.div`
     height: 2px;
-    background: ${Colors.PURPLE_NAVY};
+    background: ${(props) => props.theme.background.tertiary};
     width: 100%;
     border-radius: 10px;
     margin-top: 20px;

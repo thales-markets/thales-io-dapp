@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { Colors, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
+import { FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 import { getStatusColor } from 'utils/governance';
 
 export const CardContainer = styled(FlexDivColumnCentered)`
     width: 100%;
     position: relative;
-    max-height: 222px;
+    height: 222px;
     padding: 2px;
     border-radius: 8px;
     font-weight: 500;
@@ -19,7 +19,10 @@ export const CardContainer = styled(FlexDivColumnCentered)`
 export const Card = styled.div<{ closed: boolean }>`
     border-radius: 8px;
     background: ${(props) => (props.closed ? 'rgba(49, 54, 82, 0.4)' : 'rgba(49, 54, 82, 1)')};
-    border: ${(props) => (props.closed ? `1.5px solid ${Colors.PURPLE_NAVY}` : `1.5px solid ${Colors.BLUE_DARK}`)};
+    border: ${(props) =>
+        props.closed
+            ? `1.5px solid ${props.theme.borderColor.secondary}`
+            : `1.5px solid ${props.theme.borderColor.quinary}`};
     width: 100%;
     height: 100%;
     padding: 20px;
@@ -60,10 +63,10 @@ export const TipTable = styled(FlexDivColumn)`
     color: ${(props) => props.theme.textColor.primary};
     p {
         margin-bottom: 15px;
-        color: ${Colors.LIGHT_GRAY};
+        color: ${(props) => props.theme.textColor.senary};
     }
     a {
-        color: ${Colors.WHITE};
+        color: ${(props) => props.theme.textColor.primary};
         word-wrap: break-word;
         pointer-events: none;
         cursor: default;
@@ -75,7 +78,7 @@ export const TipTable = styled(FlexDivColumn)`
         th {
             border: 1px solid ${(props) => props.theme.borderColor.primary};
             padding: 6px 13px;
-            color: ${Colors.LIGHT_GRAY};
+            color: ${(props) => props.theme.textColor.senary};
         }
         td {
             border: 1px solid ${(props) => props.theme.borderColor.primary};

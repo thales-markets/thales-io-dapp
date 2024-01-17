@@ -1,7 +1,7 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { AreaChart, PieChart } from 'recharts';
 import styled from 'styled-components';
-import { Colors, FlexDiv, FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDiv, FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 
 export const Container = styled.div`
     display: grid;
@@ -10,7 +10,7 @@ export const Container = styled.div`
     grid-template-rows: repeat(3, 160px);
     column-gap: 10px;
     row-gap: 10px;
-    grid-template-areas: 'upper-left top top upper-right' 'upper-left middle-left middle-right upper-right' 'bottom-left bottom bottom bottom-right';
+    grid-template-areas: 'upper-left center center upper-right' 'upper-left center center upper-right' 'bottom-left bottom-center-left bottom-center-right bottom-right';
     z-index: 1;
     margin-bottom: 100px;
     > div {
@@ -27,8 +27,8 @@ export const ItemBottomLeft = styled.div`
     grid-area: bottom-left;
 `;
 
-export const ItemTop = styled.div`
-    grid-area: top;
+export const ItemCenter = styled.div`
+    grid-area: center;
 `;
 
 export const ItemUpperRight = styled.div`
@@ -39,12 +39,12 @@ export const ItemBottomRight = styled.div`
     grid-area: bottom-right;
 `;
 
-export const ItemMiddleLeft = styled.div`
-    grid-area: middle-left;
+export const ItemBottomCenterLeft = styled.div`
+    grid-area: bottom-center-left;
 `;
 
-export const ItemMiddleRight = styled.div`
-    grid-area: middle-right;
+export const ItemBottomCenterRight = styled.div`
+    grid-area: bottom-center-right;
 `;
 
 export const ItemBottomCenter = styled.div`
@@ -73,7 +73,7 @@ export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean
 export const NumericStats = styled.span`
     font-family: Nunito !important;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 38px;
     line-height: 55px;
     color: ${(props) => props.theme.textColor.secondary};
 `;
@@ -227,10 +227,10 @@ export const FullWidthInfoSection = styled(FlexDiv)`
         background: #43496d;
     }
     ::-webkit-scrollbar-track {
-        background: ${Colors.INDEPENDENCE};
+        background: ${(props) => props.theme.button.background.quaternary};
     }
     ::-webkit-scrollbar-thumb {
-        background: ${Colors.CYAN};
+        background: ${(props) => props.theme.button.background.tertiary};
     }
     > label {
         display: flex;
@@ -250,7 +250,7 @@ export const StyledAreaChart = styled(AreaChart)`
 `;
 
 export const ChartTooltipBox = styled.div`
-    background-color: ${Colors.METALLIC_BLUE};
+    background: ${(props) => props.theme.background.quinary};
     border-radius: 8px;
     z-index: 2;
     width: 125px;
