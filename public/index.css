@@ -7,3 +7,8 @@
     font-family: 'ThalesIcons';
     src: local('ThalesIcons'), url(/fonts/ThalesIcons/thales-icons.ttf) format('truetype');
 }
+
+@font-face {
+    font-family: 'Logos';
+    src: local('Logos'), url(/fonts/Logos/logos.ttf) format('truetype');
+}

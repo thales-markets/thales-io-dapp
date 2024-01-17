@@ -1,0 +1,18 @@
+.logo {
+    display: inline-block;
+    font-family: Logos !important;
+    vertical-align: middle;
+    font-size: 50px;
+}
+
+.logo--velodrome:before {
+    content: '\004E';
+}
+
+.logo--camelot:before {
+    content: '\004F';
+}
+
+.logo--aerodrome:before {
+    content: '\0050';
+}
