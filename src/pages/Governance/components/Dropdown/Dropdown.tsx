@@ -95,7 +95,7 @@ const Button = styled.button<{ isActive: boolean }>`
 `;
 
 const InnerButton = styled(FlexDivRowCentered)`
-    background: ${Colors.METALLIC_BLUE};
+    background: ${(props) => props.theme.background.quinary};
     border-radius: 8px;
     font-weight: 400;
     font-size: 13px;
