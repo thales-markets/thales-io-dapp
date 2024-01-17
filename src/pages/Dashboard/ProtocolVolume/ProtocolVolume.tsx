@@ -1,5 +1,4 @@
-import useUsersStatsQuery from 'queries/dashboard/useUsersStatsQuery';
-import useVolumeStatsQuery from 'queries/dashboard/useVolumeStatsQuery';
+import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -26,25 +25,16 @@ const ProtocolVolume: React.FC = () => {
     const [usersStats, setUsersStats] = useState<UsersStats | undefined>();
     const [volumeStats, setVolumeStats] = useState<VolumeStats | undefined>();
 
-    const usersStatsQuery = useUsersStatsQuery({
-        enabled: isAppReady,
-    });
-
-    const volumeStatsQuery = useVolumeStatsQuery({
+    const statsQuery = useStatsQuery({
         enabled: isAppReady,
     });
 
     useEffect(() => {
-        if (usersStatsQuery.isSuccess && usersStatsQuery.data) {
-            setUsersStats(usersStatsQuery.data);
+        if (statsQuery.isSuccess && statsQuery.data) {
+            setUsersStats(statsQuery.data.usersStats);
+            setVolumeStats(statsQuery.data.volumeStats);
         }
-    }, [usersStatsQuery.isSuccess, usersStatsQuery.data]);
-
-    useEffect(() => {
-        if (volumeStatsQuery.isSuccess && volumeStatsQuery.data) {
-            setVolumeStats(volumeStatsQuery.data);
-        }
-    }, [volumeStatsQuery.isSuccess, volumeStatsQuery.data]);
+    }, [statsQuery.isSuccess, statsQuery.data]);
 
     return (
         <WidgetWrapper isDoubleHeight={true}>
@@ -72,7 +62,7 @@ const ProtocolVolume: React.FC = () => {
                 <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.thalesAmmVolume) : '-'}</InfoStats>
                 <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.overtimeAmmVolume) : '-'}</InfoStats>
                 <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.parlayAmmVolume) : '-'}</InfoStats>
-                <InfoStats>{usersStats ? formatCurrency(usersStats.averageUniqueUsers, 2, true) : '-'}</InfoStats>
+                <InfoStats>{usersStats ? formatCurrency(usersStats.totalUniqueUsers, 2, true) : '-'}</InfoStats>
             </InfoSection>
         </WidgetWrapper>
     );

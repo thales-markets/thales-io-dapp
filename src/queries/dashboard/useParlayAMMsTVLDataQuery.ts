@@ -8,88 +8,82 @@ import parlayAMMLiquidityPoolDataContract from 'utils/contracts/parlayAMMLiquidi
 import QUERY_KEYS from '../../constants/queryKeys';
 
 const useParlayAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | undefined>) => {
-    return useQuery<AMMsTVLData | undefined>(
-        QUERY_KEYS.AMM.ParlayAMMsTVLData(),
-        async () => {
-            const liquidityPoolData: AMMsTVLData = {
-                opTVL: 0,
-                arbTVL: 0,
-                baseTVL: 0,
-            };
+    return useQuery<AMMsTVLData | undefined>(QUERY_KEYS.AMM.ParlayAMMsTVLData(), parlayAMMsTVLDataQueryFn, {
+        ...options,
+    });
+};
 
-            try {
-                // Parlay LP Data - Optimism
-                const opInfuraProvider = new ethers.providers.InfuraProvider(
-                    Network.OptimismMainnet,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
-                );
+export const parlayAMMsTVLDataQueryFn = async () => {
+    const liquidityPoolData: AMMsTVLData = {
+        opTVL: 0,
+        arbTVL: 0,
+        baseTVL: 0,
+    };
 
-                const opParlayLPDataContract = new ethers.Contract(
-                    parlayAMMLiquidityPoolDataContract.addresses[Network.OptimismMainnet],
-                    parlayAMMLiquidityPoolDataContract.abi,
-                    opInfuraProvider
-                );
+    try {
+        // Parlay LP Data - Optimism
+        const opInfuraProvider = new ethers.providers.InfuraProvider(
+            Network.OptimismMainnet,
+            process.env.REACT_APP_INFURA_PROJECT_ID
+        );
 
-                //  Parlay LP Data - Arbitrum
-                const arbInfuraProvider = new ethers.providers.InfuraProvider(
-                    Network.Arbitrum,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
-                );
+        const opParlayLPDataContract = new ethers.Contract(
+            parlayAMMLiquidityPoolDataContract.addresses[Network.OptimismMainnet],
+            parlayAMMLiquidityPoolDataContract.abi,
+            opInfuraProvider
+        );
 
-                const arbParlayLPDataContract = new ethers.Contract(
-                    parlayAMMLiquidityPoolDataContract.addresses[Network.Arbitrum],
-                    parlayAMMLiquidityPoolDataContract.abi,
-                    arbInfuraProvider
-                );
+        //  Parlay LP Data - Arbitrum
+        const arbInfuraProvider = new ethers.providers.InfuraProvider(
+            Network.Arbitrum,
+            process.env.REACT_APP_INFURA_PROJECT_ID
+        );
 
-                // // Parlay LP Data - Base
-                const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
-                    `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
-                    Network.Base
-                );
-                const baseParlayLPDataContract = new ethers.Contract(
-                    parlayAMMLiquidityPoolDataContract.addresses[Network.Base],
-                    parlayAMMLiquidityPoolDataContract.abi,
-                    baseAnkrProvider
-                );
+        const arbParlayLPDataContract = new ethers.Contract(
+            parlayAMMLiquidityPoolDataContract.addresses[Network.Arbitrum],
+            parlayAMMLiquidityPoolDataContract.abi,
+            arbInfuraProvider
+        );
 
-                const [opLiquidityPoolData, arbLiquidityPoolData, baseLiquidityPoolData] = await Promise.all([
-                    opParlayLPDataContract.getLiquidityPoolData(
-                        parlayAMMLiquidityPoolContract.addresses[Network.OptimismMainnet]
-                    ),
-                    arbParlayLPDataContract.getLiquidityPoolData(
-                        parlayAMMLiquidityPoolContract.addresses[Network.Arbitrum]
-                    ),
-                    baseParlayLPDataContract.getLiquidityPoolData(
-                        parlayAMMLiquidityPoolContract.addresses[Network.Base]
-                    ),
-                ]);
+        // // Parlay LP Data - Base
+        const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
+            `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
+            Network.Base
+        );
+        const baseParlayLPDataContract = new ethers.Contract(
+            parlayAMMLiquidityPoolDataContract.addresses[Network.Base],
+            parlayAMMLiquidityPoolDataContract.abi,
+            baseAnkrProvider
+        );
 
-                liquidityPoolData.opTVL = bigNumberFormatter(
-                    opLiquidityPoolData.totalDeposited,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
-                );
+        const [opLiquidityPoolData, arbLiquidityPoolData, baseLiquidityPoolData] = await Promise.all([
+            opParlayLPDataContract.getLiquidityPoolData(
+                parlayAMMLiquidityPoolContract.addresses[Network.OptimismMainnet]
+            ),
+            arbParlayLPDataContract.getLiquidityPoolData(parlayAMMLiquidityPoolContract.addresses[Network.Arbitrum]),
+            baseParlayLPDataContract.getLiquidityPoolData(parlayAMMLiquidityPoolContract.addresses[Network.Base]),
+        ]);
 
-                liquidityPoolData.arbTVL = bigNumberFormatter(
-                    arbLiquidityPoolData.totalDeposited,
-                    getDefaultDecimalsForNetwork(Network.Arbitrum)
-                );
+        liquidityPoolData.opTVL = bigNumberFormatter(
+            opLiquidityPoolData.totalDeposited,
+            getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+        );
 
-                liquidityPoolData.baseTVL = bigNumberFormatter(
-                    baseLiquidityPoolData.totalDeposited,
-                    getDefaultDecimalsForNetwork(Network.Base)
-                );
+        liquidityPoolData.arbTVL = bigNumberFormatter(
+            arbLiquidityPoolData.totalDeposited,
+            getDefaultDecimalsForNetwork(Network.Arbitrum)
+        );
 
-                return liquidityPoolData;
-            } catch (e) {
-                console.log(e);
-            }
-            return undefined;
-        },
-        {
-            ...options,
-        }
-    );
+        liquidityPoolData.baseTVL = bigNumberFormatter(
+            baseLiquidityPoolData.totalDeposited,
+            getDefaultDecimalsForNetwork(Network.Base)
+        );
+
+        return liquidityPoolData;
+    } catch (e) {
+        console.log(e);
+    }
+    return undefined;
 };
 
 export default useParlayAMMsTVLDataQuery;

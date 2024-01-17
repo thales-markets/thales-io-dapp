@@ -7,9 +7,13 @@ import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import Lottie from 'lottie-react';
-import React, { CSSProperties, Suspense } from 'react';
+import useStatsQuery from 'queries/dashboard/useStatsQuery';
+import useAllTVLsQuery from 'queries/useAllTVLsQueries';
+import React, { CSSProperties, Suspense, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { AMMsTVLData, VaultsTVLData } from 'types/liquidity';
+import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
 import Footer from './Footer';
 import Collapse from './components/Collapse';
@@ -45,6 +49,73 @@ import {
 
 const Home: React.FC = () => {
     const { t } = useTranslation();
+    const [duneStats, setDuneStats] = useState<AllStats | undefined>();
+
+    const statsQuery = useStatsQuery();
+
+    const TVLQueries = useAllTVLsQuery();
+
+    useEffect(() => {
+        if (statsQuery.isSuccess && statsQuery.data) {
+            setDuneStats(statsQuery.data);
+        }
+    }, [statsQuery.isSuccess, statsQuery.data]);
+
+    const TVL = useMemo(() => {
+        if (!TVLQueries.some((query) => query.isLoading)) {
+            const sportAmmTVLData = TVLQueries[0].data as AMMsTVLData;
+            const parlayAmmTVLData = TVLQueries[1].data as AMMsTVLData;
+            const sportVaultsTVLData = TVLQueries[2].data as VaultsTVLData;
+            const thalesAmmTVLData = TVLQueries[3].data as AMMsTVLData;
+            const thalesVaultsTVLData = TVLQueries[4].data as VaultsTVLData;
+
+            const sportAmmAggregatedTVL = sportAmmTVLData
+                ? sportAmmTVLData?.opTVL + sportAmmTVLData?.arbTVL + sportAmmTVLData?.baseTVL
+                : 0;
+
+            const parlayAmmAggregatedTVL = parlayAmmTVLData
+                ? parlayAmmTVLData?.opTVL + parlayAmmTVLData?.arbTVL + parlayAmmTVLData?.baseTVL
+                : 0;
+
+            const thalesAmmAggregatedTVL = thalesAmmTVLData
+                ? thalesAmmTVLData?.opTVL + thalesAmmTVLData?.arbTVL + thalesAmmTVLData?.baseTVL
+                : 0;
+
+            const sportVaultsAggregatedTVL = sportVaultsTVLData
+                ? sportVaultsTVLData?.opDiscountVaultTVL +
+                  sportVaultsTVLData?.opDegenDiscountVaultTVL +
+                  sportVaultsTVLData?.opSafuDiscountVaultTVL +
+                  sportVaultsTVLData?.opUpsettoorVaultTVL +
+                  sportVaultsTVLData?.arbDiscountVaultTVL +
+                  sportVaultsTVLData?.arbDegenDiscountVaultTVL +
+                  sportVaultsTVLData?.arbSafuDiscountVaultTVL +
+                  sportVaultsTVLData?.arbUpsettoorVaultTVL
+                : 0;
+
+            const thalesVaultsAggregatedTVL = thalesVaultsTVLData
+                ? thalesVaultsTVLData?.opDiscountVaultTVL +
+                  thalesVaultsTVLData?.opDegenDiscountVaultTVL +
+                  thalesVaultsTVLData?.opSafuDiscountVaultTVL +
+                  thalesVaultsTVLData?.opUpsettoorVaultTVL +
+                  thalesVaultsTVLData?.arbDiscountVaultTVL +
+                  thalesVaultsTVLData?.arbDegenDiscountVaultTVL +
+                  thalesVaultsTVLData?.arbSafuDiscountVaultTVL +
+                  thalesVaultsTVLData?.arbUpsettoorVaultTVL
+                : 0;
+
+            const vaultsAggregatedTVL = sportVaultsAggregatedTVL + thalesVaultsAggregatedTVL;
+
+            return sportAmmAggregatedTVL + parlayAmmAggregatedTVL + thalesAmmAggregatedTVL + vaultsAggregatedTVL;
+        }
+    }, [TVLQueries]);
+
+    // memo added to sync all stats counter animations
+    const stats = useMemo(() => {
+        if (duneStats && TVL) {
+            return { ...duneStats, tvl: TVL };
+        }
+    }, [TVL, duneStats]);
+
     return (
         <Suspense fallback={<Loader />}>
             <Wrapper>
@@ -70,25 +141,25 @@ const Home: React.FC = () => {
                 <StatsSection>
                     <SectionTitle>{t('home.total-protocol-volume')}</SectionTitle>
                     <Stat>
-                        $ <NumberCountdown number={944459682} />
+                        $ <NumberCountdown number={stats?.volumeStats?.totalProtocolVolume || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.total-value-locked')}</SectionTitle>
                     <Stat>
-                        $ <NumberCountdown number={145548562} />
+                        $ <NumberCountdown number={stats?.tvl || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.total-unique-users')}</SectionTitle>
                     <Stat>
-                        <NumberCountdown number={548562} />
+                        <NumberCountdown number={stats?.usersStats?.totalUniqueUsers || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.markets-created')}</SectionTitle>
                     <Stat>
-                        <NumberCountdown number={956847} />
+                        <NumberCountdown number={stats?.marketsStats?.totalUniqueMarkets || 0} />
                     </Stat>
                 </StatsSection>
                 <HomeButton onClick={() => navigateTo(ROUTES.Dashboard)}>
@@ -126,6 +197,35 @@ const Home: React.FC = () => {
                         </FlexDivColumn>
                     </EcosystemApps>
                 </EcosystemSection>
+                <Section>
+                    <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
+                    <FlexDivSpaceBetween>
+                        <SPAAnchor href="https://synthetix.io/">
+                            <HomeIcon fontSize="17em" className="icon icon--synthetix" />
+                        </SPAAnchor>
+
+                        <SPAAnchor href="https://chain.link/">
+                            <HomeIcon fontSize="10em" className="icon icon--chainlink" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://www.optimism.io/">
+                            <HomeIcon fontSize="11em" className="icon icon--optimism" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://arbitrum.io/">
+                            <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
+                        </SPAAnchor>
+                    </FlexDivSpaceBetween>
+                    <FlexDivSpaceAround>
+                        <SPAAnchor href="https://base.org/">
+                            <HomeIcon fontSize="9em" className="icon icon--base" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://pyth.network/">
+                            <HomeIcon fontSize="9em" className="icon icon--pyth" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://framework.ventures/">
+                            <HomeIcon fontSize="11em" className="icon icon--framework" />
+                        </SPAAnchor>
+                    </FlexDivSpaceAround>
+                </Section>
                 <Section>
                     <SectionTitleLink>
                         {t('home.integrations.title-link')} <SectionTitleLinkArrow />
@@ -242,7 +342,7 @@ const Home: React.FC = () => {
                         <HomeButton>{t('home.governance.explore-thales-dao-button')}</HomeButton>
                     </SPAAnchor>
                 </Section>
-                <Section>
+                <Section marginBottom={80}>
                     <SectionSlogan>{t('home.timeline.title')}</SectionSlogan>
                     <MilestonesContainer>
                         {MILESTONES.map((milestone, index) => (
@@ -264,35 +364,6 @@ const Home: React.FC = () => {
                             </Milestone>
                         ))}
                     </MilestonesContainer>
-                </Section>
-                <Section marginBottom={80}>
-                    <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
-                    <FlexDivSpaceBetween>
-                        <SPAAnchor href="https://synthetix.io/">
-                            <HomeIcon fontSize="17em" className="icon icon--synthetix" />
-                        </SPAAnchor>
-
-                        <SPAAnchor href="https://chain.link/">
-                            <HomeIcon fontSize="10em" className="icon icon--chainlink" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://www.optimism.io/">
-                            <HomeIcon fontSize="11em" className="icon icon--optimism" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://arbitrum.io/">
-                            <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
-                        </SPAAnchor>
-                    </FlexDivSpaceBetween>
-                    <FlexDivSpaceAround>
-                        <SPAAnchor href="https://base.org/">
-                            <HomeIcon fontSize="9em" className="icon icon--base" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://pyth.network/">
-                            <HomeIcon fontSize="9em" className="icon icon--pyth" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://framework.ventures/">
-                            <HomeIcon fontSize="11em" className="icon icon--framework" />
-                        </SPAAnchor>
-                    </FlexDivSpaceAround>
                 </Section>
             </Wrapper>
             <Footer />

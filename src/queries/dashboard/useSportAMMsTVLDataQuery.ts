@@ -8,88 +8,82 @@ import overtimeLiquidityPoolDataContract from 'utils/contracts/sportLiquidityPoo
 import QUERY_KEYS from '../../constants/queryKeys';
 
 const useSportAMMsTVLDataQuery = (options: UseQueryOptions<AMMsTVLData | undefined>) => {
-    return useQuery<AMMsTVLData | undefined>(
-        QUERY_KEYS.AMM.SportAMMsTVLData(),
-        async () => {
-            const liquidityPoolData: AMMsTVLData = {
-                opTVL: 0,
-                arbTVL: 0,
-                baseTVL: 0,
-            };
+    return useQuery<AMMsTVLData | undefined>(QUERY_KEYS.AMM.SportAMMsTVLData(), sportAMMsTVLDataQueryFn, {
+        ...options,
+    });
+};
 
-            try {
-                // Sport LP Data - Optimism
-                const opInfuraProvider = new ethers.providers.InfuraProvider(
-                    Network.OptimismMainnet,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
-                );
+export const sportAMMsTVLDataQueryFn = async () => {
+    const liquidityPoolData: AMMsTVLData = {
+        opTVL: 0,
+        arbTVL: 0,
+        baseTVL: 0,
+    };
 
-                const opOvertimeLPDataContract = new ethers.Contract(
-                    overtimeLiquidityPoolDataContract.addresses[Network.OptimismMainnet],
-                    overtimeLiquidityPoolDataContract.abi,
-                    opInfuraProvider
-                );
+    try {
+        // Sport LP Data - Optimism
+        const opInfuraProvider = new ethers.providers.InfuraProvider(
+            Network.OptimismMainnet,
+            process.env.REACT_APP_INFURA_PROJECT_ID
+        );
 
-                //  Sport LP Data - Arbitrum
-                const arbInfuraProvider = new ethers.providers.InfuraProvider(
-                    Network.Arbitrum,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
-                );
+        const opOvertimeLPDataContract = new ethers.Contract(
+            overtimeLiquidityPoolDataContract.addresses[Network.OptimismMainnet],
+            overtimeLiquidityPoolDataContract.abi,
+            opInfuraProvider
+        );
 
-                const arbOvertimeLPDataContract = new ethers.Contract(
-                    overtimeLiquidityPoolDataContract.addresses[Network.Arbitrum],
-                    overtimeLiquidityPoolDataContract.abi,
-                    arbInfuraProvider
-                );
+        //  Sport LP Data - Arbitrum
+        const arbInfuraProvider = new ethers.providers.InfuraProvider(
+            Network.Arbitrum,
+            process.env.REACT_APP_INFURA_PROJECT_ID
+        );
 
-                // // Sport LP Data - Base
-                const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
-                    `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
-                    Network.Base
-                );
-                const baseOvertimeLPDataContract = new ethers.Contract(
-                    overtimeLiquidityPoolDataContract.addresses[Network.Base],
-                    overtimeLiquidityPoolDataContract.abi,
-                    baseAnkrProvider
-                );
+        const arbOvertimeLPDataContract = new ethers.Contract(
+            overtimeLiquidityPoolDataContract.addresses[Network.Arbitrum],
+            overtimeLiquidityPoolDataContract.abi,
+            arbInfuraProvider
+        );
 
-                const [opLiquidityPoolData, arbLiquidityPoolData, baseLiquidityPoolData] = await Promise.all([
-                    opOvertimeLPDataContract.getLiquidityPoolData(
-                        overtimeLiquidityPoolContract.addresses[Network.OptimismMainnet]
-                    ),
-                    arbOvertimeLPDataContract.getLiquidityPoolData(
-                        overtimeLiquidityPoolContract.addresses[Network.Arbitrum]
-                    ),
-                    baseOvertimeLPDataContract.getLiquidityPoolData(
-                        overtimeLiquidityPoolContract.addresses[Network.Base]
-                    ),
-                ]);
+        // // Sport LP Data - Base
+        const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
+            `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
+            Network.Base
+        );
+        const baseOvertimeLPDataContract = new ethers.Contract(
+            overtimeLiquidityPoolDataContract.addresses[Network.Base],
+            overtimeLiquidityPoolDataContract.abi,
+            baseAnkrProvider
+        );
 
-                liquidityPoolData.opTVL = bigNumberFormatter(
-                    opLiquidityPoolData.totalDeposited,
-                    getDefaultDecimalsForNetwork(Network.OptimismMainnet)
-                );
+        const [opLiquidityPoolData, arbLiquidityPoolData, baseLiquidityPoolData] = await Promise.all([
+            opOvertimeLPDataContract.getLiquidityPoolData(
+                overtimeLiquidityPoolContract.addresses[Network.OptimismMainnet]
+            ),
+            arbOvertimeLPDataContract.getLiquidityPoolData(overtimeLiquidityPoolContract.addresses[Network.Arbitrum]),
+            baseOvertimeLPDataContract.getLiquidityPoolData(overtimeLiquidityPoolContract.addresses[Network.Base]),
+        ]);
 
-                liquidityPoolData.arbTVL = bigNumberFormatter(
-                    arbLiquidityPoolData.totalDeposited,
-                    getDefaultDecimalsForNetwork(Network.Arbitrum)
-                );
+        liquidityPoolData.opTVL = bigNumberFormatter(
+            opLiquidityPoolData.totalDeposited,
+            getDefaultDecimalsForNetwork(Network.OptimismMainnet)
+        );
 
-                liquidityPoolData.baseTVL = bigNumberFormatter(
-                    baseLiquidityPoolData.totalDeposited,
-                    getDefaultDecimalsForNetwork(Network.Base)
-                );
+        liquidityPoolData.arbTVL = bigNumberFormatter(
+            arbLiquidityPoolData.totalDeposited,
+            getDefaultDecimalsForNetwork(Network.Arbitrum)
+        );
 
-                return liquidityPoolData;
-            } catch (e) {
-                console.log(e);
-            }
-            return undefined;
-        },
-        {
-            ...options,
-        }
-    );
+        liquidityPoolData.baseTVL = bigNumberFormatter(
+            baseLiquidityPoolData.totalDeposited,
+            getDefaultDecimalsForNetwork(Network.Base)
+        );
+
+        return liquidityPoolData;
+    } catch (e) {
+        console.log(e);
+    }
+    return undefined;
 };
 
 export default useSportAMMsTVLDataQuery;
