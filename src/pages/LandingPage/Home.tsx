@@ -49,7 +49,7 @@ import {
 
 const Home: React.FC = () => {
     const { t } = useTranslation();
-    const [stats, setStats] = useState<AllStats | undefined>();
+    const [duneStats, setDuneStats] = useState<AllStats | undefined>();
 
     const statsQuery = useStatsQuery();
 
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         if (statsQuery.isSuccess && statsQuery.data) {
-            setStats(statsQuery.data);
+            setDuneStats(statsQuery.data);
         }
     }, [statsQuery.isSuccess, statsQuery.data]);
 
@@ -109,6 +109,13 @@ const Home: React.FC = () => {
         }
     }, [TVLQueries]);
 
+    // memo added to sync all stats counter animations
+    const stats = useMemo(() => {
+        if (duneStats && TVL) {
+            return { ...duneStats, tvl: TVL };
+        }
+    }, [TVL, duneStats]);
+
     return (
         <Suspense fallback={<Loader />}>
             <Wrapper>
@@ -134,25 +141,25 @@ const Home: React.FC = () => {
                 <StatsSection>
                     <SectionTitle>{t('home.total-protocol-volume')}</SectionTitle>
                     <Stat>
-                        $ <NumberCountdown number={stats?.volumeStats.totalProtocolVolume || 0} />
+                        $ <NumberCountdown number={stats?.volumeStats?.totalProtocolVolume || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.total-value-locked')}</SectionTitle>
                     <Stat>
-                        $ <NumberCountdown number={TVL || 0} />
+                        $ <NumberCountdown number={stats?.tvl || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.total-unique-users')}</SectionTitle>
                     <Stat>
-                        <NumberCountdown number={stats?.usersStats.totalUniqueUsers || 0} />
+                        <NumberCountdown number={stats?.usersStats?.totalUniqueUsers || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.markets-created')}</SectionTitle>
                     <Stat>
-                        <NumberCountdown number={stats?.marketsStats.totalUniqueMarkets || 0} />
+                        <NumberCountdown number={stats?.marketsStats?.totalUniqueMarkets || 0} />
                     </Stat>
                 </StatsSection>
                 <HomeButton onClick={() => navigateTo(ROUTES.Dashboard)}>
