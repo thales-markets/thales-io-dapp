@@ -255,3 +255,7 @@
 .icon--camelot:before {
     content: '\0076';
 }
+
+.icon--external-arrow:before {
+    content: '\0051';
+}
