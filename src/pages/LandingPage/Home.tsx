@@ -198,6 +198,35 @@ const Home: React.FC = () => {
                     </EcosystemApps>
                 </EcosystemSection>
                 <Section>
+                    <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
+                    <FlexDivSpaceBetween>
+                        <SPAAnchor href="https://synthetix.io/">
+                            <HomeIcon fontSize="17em" className="icon icon--synthetix" />
+                        </SPAAnchor>
+
+                        <SPAAnchor href="https://chain.link/">
+                            <HomeIcon fontSize="10em" className="icon icon--chainlink" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://www.optimism.io/">
+                            <HomeIcon fontSize="11em" className="icon icon--optimism" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://arbitrum.io/">
+                            <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
+                        </SPAAnchor>
+                    </FlexDivSpaceBetween>
+                    <FlexDivSpaceAround>
+                        <SPAAnchor href="https://base.org/">
+                            <HomeIcon fontSize="9em" className="icon icon--base" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://pyth.network/">
+                            <HomeIcon fontSize="9em" className="icon icon--pyth" />
+                        </SPAAnchor>
+                        <SPAAnchor href="https://framework.ventures/">
+                            <HomeIcon fontSize="11em" className="icon icon--framework" />
+                        </SPAAnchor>
+                    </FlexDivSpaceAround>
+                </Section>
+                <Section>
                     <SectionTitleLink>
                         {t('home.integrations.title-link')} <SectionTitleLinkArrow />
                     </SectionTitleLink>
@@ -313,7 +342,7 @@ const Home: React.FC = () => {
                         <HomeButton>{t('home.governance.explore-thales-dao-button')}</HomeButton>
                     </SPAAnchor>
                 </Section>
-                <Section>
+                <Section marginBottom={80}>
                     <SectionSlogan>{t('home.timeline.title')}</SectionSlogan>
                     <MilestonesContainer>
                         {MILESTONES.map((milestone, index) => (
@@ -335,35 +364,6 @@ const Home: React.FC = () => {
                             </Milestone>
                         ))}
                     </MilestonesContainer>
-                </Section>
-                <Section marginBottom={80}>
-                    <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
-                    <FlexDivSpaceBetween>
-                        <SPAAnchor href="https://synthetix.io/">
-                            <HomeIcon fontSize="17em" className="icon icon--synthetix" />
-                        </SPAAnchor>
-
-                        <SPAAnchor href="https://chain.link/">
-                            <HomeIcon fontSize="10em" className="icon icon--chainlink" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://www.optimism.io/">
-                            <HomeIcon fontSize="11em" className="icon icon--optimism" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://arbitrum.io/">
-                            <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
-                        </SPAAnchor>
-                    </FlexDivSpaceBetween>
-                    <FlexDivSpaceAround>
-                        <SPAAnchor href="https://base.org/">
-                            <HomeIcon fontSize="9em" className="icon icon--base" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://pyth.network/">
-                            <HomeIcon fontSize="9em" className="icon icon--pyth" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://framework.ventures/">
-                            <HomeIcon fontSize="11em" className="icon icon--framework" />
-                        </SPAAnchor>
-                    </FlexDivSpaceAround>
                 </Section>
             </Wrapper>
             <Footer />
