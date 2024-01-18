@@ -28,8 +28,8 @@ const DappLayout: React.FC = ({ children }) => {
 
     return (
         <div>
-            <Background id="radial-background" />
-            <WavesBackground />
+            {!isMobile && <Background id="radial-background" />}
+            {!isMobile && <WavesBackground />}
             <Wrapper>
                 <DappHeader />
                 {children}

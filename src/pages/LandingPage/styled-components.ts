@@ -1,5 +1,6 @@
 import { CircularProgress } from '@material-ui/core';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceBetween, Icon } from 'styles/common';
 
@@ -13,7 +14,9 @@ export const Wrapper = styled.div`
     position: relative;
     flex-direction: column;
     width: 100%;
-    max-width: 1400px;
+    @media screen and (min-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        max-width: 1400px;
+    }
 `;
 
 export const Title = styled(FlexDiv)`
@@ -29,6 +32,9 @@ export const Title = styled(FlexDiv)`
     & > span {
         font-family: 'NunitoExtraLight';
         font-weight: normal;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 30px;
     }
 `;
 
