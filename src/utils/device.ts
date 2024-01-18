@@ -1,3 +1,5 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 
-export const isMobile = () => window.innerWidth <= ScreenSizeBreakpoint.SMALL;
+export const isMobile = () => {
+    return document.documentElement.clientWidth <= ScreenSizeBreakpoint.SMALL;
+};
