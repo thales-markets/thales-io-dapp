@@ -10,7 +10,9 @@ import { QueryClientProvider } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import { setAppReady } from 'redux/modules/app';
+import { setIsMobile } from 'redux/modules/ui';
 import { getSwitchToNetworkId, updateNetworkSettings, updateWallet } from 'redux/modules/wallet';
+import { isMobile } from 'utils/device';
 import { isLedgerDappBrowserProvider } from 'utils/ledger';
 import queryConnector from 'utils/queryConnector';
 import { history } from 'utils/routes';
@@ -91,6 +93,28 @@ const App = () => {
     useEffect(() => {
         dispatch(updateWallet({ walletAddress: address }));
     }, [address, dispatch]);
+
+    useEffect(() => {
+        const handlePageResized = () => {
+            dispatch(setIsMobile(isMobile()));
+        };
+
+        if (typeof window !== 'undefined') {
+            window.addEventListener('resize', handlePageResized);
+            window.addEventListener('orientationchange', handlePageResized);
+            window.addEventListener('load', handlePageResized);
+            window.addEventListener('reload', handlePageResized);
+        }
+
+        return () => {
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('resize', handlePageResized);
+                window.removeEventListener('orientationchange', handlePageResized);
+                window.removeEventListener('load', handlePageResized);
+                window.removeEventListener('reload', handlePageResized);
+            }
+        };
+    }, [dispatch]);
 
     return (
         <div className="App">

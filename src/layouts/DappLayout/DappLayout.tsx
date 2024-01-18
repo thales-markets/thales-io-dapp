@@ -23,7 +23,7 @@ const DappLayout: React.FC = ({ children }) => {
             setPreventDiscordWidgetLoad(isMetamaskBrowser && isAndroid());
         };
         checkMetamaskBrowser();
-    }, []);
+    }, [isMobile]);
 
     useWidgetBotScript(preventDiscordWidgetLoad, theme);
 
