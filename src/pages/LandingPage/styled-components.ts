@@ -7,6 +7,9 @@ import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceBetween, Icon } fr
 export const About = styled.div`
     margin-top: 120px;
     margin-bottom: 50px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 50px;
+    }
 `;
 
 export const Wrapper = styled.div`
@@ -34,7 +37,7 @@ export const Title = styled(FlexDiv)`
         font-weight: normal;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 30px;
+        font-size: 25px;
     }
 `;
 
@@ -45,6 +48,9 @@ export const Subtitle = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 125%;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 15px;
+    }
 `;
 
 export const Highlight = styled.div<{ marginBottom?: number; cursor?: string }>`
