@@ -169,31 +169,35 @@ const Home: React.FC = () => {
                     <SectionTitle>{t('home.ecosystem-apps.title')}</SectionTitle>
                     <EcosystemApps>
                         <FlexDivColumn>
-                            <SPAAnchor href={LINKS.ThalesMarkets}>
-                                <HomeIcon fontSize="10em" className="icon icon--thales-markets" />
-                            </SPAAnchor>
-                            <Description>{t('home.ecosystem-apps.thales-markets')}</Description>
-                        </FlexDivColumn>
-                        <FlexDivColumn>
                             <SPAAnchor href={LINKS.Overtime}>
                                 <HomeIcon fontSize="10em" className="icon icon--overtime" />
                             </SPAAnchor>
                             <Description>{t('home.ecosystem-apps.overtime')}</Description>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <HomeIcon
-                                style={{ height: '80px' }}
-                                paddingBottom="10px"
-                                fontSize="6em"
-                                className="icon icon--telegram"
-                            />
-                            <Description>{t('home.ecosystem-apps.telegram')}</Description>
+                            <SPAAnchor href={LINKS.ThalesMarkets}>
+                                <HomeIcon fontSize="10em" className="icon icon--thales-markets" />
+                            </SPAAnchor>
+                            <Description>{t('home.ecosystem-apps.thales-markets')}</Description>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <SPAAnchor href={LINKS.TaleOfThales}>
-                                <HomeIcon fontSize="10em" className="icon icon--tale-of-thales" />
+                            <SPAAnchor href={LINKS.BookieBot}>
+                                <HomeIcon
+                                    style={{ height: '80px' }}
+                                    paddingBottom="10px"
+                                    fontSize="6em"
+                                    className="icon icon--telegram"
+                                />
                             </SPAAnchor>
-                            <Description>{t('home.ecosystem-apps.tale-of-thales')}</Description>
+
+                            <Description>{t('home.ecosystem-apps.bookie')}</Description>
+                        </FlexDivColumn>
+                        <FlexDivColumn>
+                            <SPAAnchor href={LINKS.Spongly}>
+                                <HomeIcon fontSize="10em" className="icon icon--spongly" />
+                            </SPAAnchor>
+
+                            <Description>{t('home.ecosystem-apps.spongly')}</Description>
                         </FlexDivColumn>
                     </EcosystemApps>
                 </EcosystemSection>

@@ -7,6 +7,8 @@ const LINKS = {
     ThalesMarketDocs: 'https://docs.thalesmarket.io/',
     ThalesMarkets: 'https://thalesmarket.io/',
     Overtime: 'https://overtimemarkets.xyz/',
+    BookieBot: 'https://bookiebot.app/',
+    Spongly: 'https://spongly.eth.limo/dashboard/',
     TaleOfThales: 'https://thalesmarket.io/tale-of-thales',
     MarketingAssets: 'https://docs.thales.io/resources/marketing-assets',
     Token: {

@@ -74,6 +74,9 @@ export const SectionTitle = styled.div`
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 15px;
+    }
 `;
 
 export const Stat = styled.div`
@@ -82,6 +85,9 @@ export const Stat = styled.div`
     font-size: 50px;
     font-style: normal;
     line-height: normal;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 25px;
+    }
 `;
 
 export const HomeButton = styled.button`
@@ -307,6 +313,9 @@ export const FooterContainer = styled.div`
 export const SocialIcon = styled(Icon)`
     padding-top: 10px;
     padding-right: 20px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 25px;
+    }
 `;
 
 export const BuySellSection = styled.div`
