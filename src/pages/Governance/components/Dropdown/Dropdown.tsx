@@ -101,7 +101,7 @@ const InnerButton = styled(FlexDivRowCentered)`
     font-size: 13px;
     line-height: 36px;
     letter-spacing: 0.35px;
-    color: ${(props) => props.theme.textColor.secondary};
+    color: ${(props) => props.theme.textColor.senary};
     text-transform: capitalize;
     padding-left: 20px;
     padding-right: 20px;
@@ -125,10 +125,11 @@ const DropDown = styled(FlexDivColumn)`
 const DropDownItem = styled(FlexDiv)`
     padding: 8px 12px;
     cursor: pointer;
-    color: ${(props) => props.theme.textColor.secondary};
+    color: ${(props) => props.theme.textColor.senary};
     &:hover {
         background: ${Colors.YANKEES_BLUE};
         border-radius: 12px;
+        color: ${(props) => props.theme.textColor.secondary};
     }
 `;
 
@@ -137,9 +138,12 @@ const Name = styled.div`
     font-size: 13px;
     line-height: 24px;
     letter-spacing: 0.35px;
-    color: ${(props) => props.theme.textColor.secondary};
+    color: ${(props) => props.theme.textColor.senary};
     display: block;
     text-transform: capitalize;
+    &:hover {
+        color: ${(props) => props.theme.textColor.secondary};
+    }
 `;
 
 const StyledDownIcon = styled.i`

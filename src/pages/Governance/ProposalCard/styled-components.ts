@@ -74,7 +74,7 @@ export const TipTable = styled(FlexDivColumn)`
     table {
         overflow-y: auto;
         display: block;
-        width: 841px;
+        width: 817px;
         th {
             border: 1px solid ${(props) => props.theme.borderColor.primary};
             padding: 6px 13px;
