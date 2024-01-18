@@ -6,12 +6,13 @@ import { getIsMobile } from 'redux/modules/ui';
 import { useTheme } from 'styled-components';
 import { Background } from 'styles/common';
 import { isAndroid, isMetamask } from 'thales-utils';
+import { ThemeInterface } from 'types/ui';
 import DappFooter from './DappFooter';
 import DappHeader from './DappHeader';
 import { Wrapper } from './styled-components';
 
 const DappLayout: React.FC = ({ children }) => {
-    const theme = useTheme();
+    const theme: ThemeInterface = useTheme();
     const isMobile = useSelector(getIsMobile);
     const [preventDiscordWidgetLoad, setPreventDiscordWidgetLoad] = useState(true);
 

@@ -297,7 +297,7 @@ export const FooterLine = styled.div`
     background-size: 13px 1px;
     background-repeat: repeat-x;
     height: 1px;
-    width: 200%;
+    width: 100%;
 `;
 export const FooterContainer = styled.div`
     width: 100%;
