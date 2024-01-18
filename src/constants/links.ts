@@ -25,6 +25,13 @@ const LINKS = {
             'https://app.uniswap.org/#/swap?outputCurrency=0x217d47011b23bb961eb6d93ca9945b7501a5bb11&chain=optimism',
         ThalesStaking: 'https://thales.io/staking',
     },
+    LPStaking: {
+        Velodrome:
+            'https://velodrome.finance/deposit?token0=0x217d47011b23bb961eb6d93ca9945b7501a5bb11&token1=0x4200000000000000000000000000000000000006&stable=false',
+        Aerodrome:
+            'https://aerodrome.finance/deposit?token0=0x4200000000000000000000000000000000000006&token1=0xf34e0cff046e154cafcae502c7541b9e5fd8c249&stable=false',
+        Camelot: 'https://app.camelot.exchange/pools/0xB5108062de111F61E0dD585f4225ae18d1BB21D9',
+    },
 };
 
 export default LINKS;

@@ -2,7 +2,6 @@ import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperl
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import {
-    Colors,
     FlexDiv,
     FlexDivCentered,
     FlexDivColumn,
@@ -103,7 +102,7 @@ export const Body = styled(FlexDivColumn)`
     color: ${(props) => props.theme.textColor.primary};
     p {
         margin-bottom: 15px;
-        color: ${Colors.LIGHT_GRAY};
+        color: ${(props) => props.theme.textColor.senary};
     }
     a {
         color: ${(props) => props.theme.link.textColor.primary};
@@ -118,7 +117,7 @@ export const Body = styled(FlexDivColumn)`
         th {
             border: 1px solid ${(props) => props.theme.borderColor.primary};
             padding: 6px 13px;
-            color: ${Colors.LIGHT_GRAY};
+            color: ${(props) => props.theme.textColor.senary};
         }
         td {
             border: 1px solid ${(props) => props.theme.borderColor.primary};
@@ -190,7 +189,7 @@ export const Icon = styled.i<{ color?: string }>`
 export const CouncilVotesLabel = styled.span`
     font-weight: 400;
     font-size: 13px;
-    color: ${Colors.GRAY};
+    color: ${(props) => props.theme.textColor.tertiary}
     margin-top: 5px;
 `;
 

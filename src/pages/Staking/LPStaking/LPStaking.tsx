@@ -1,6 +1,10 @@
+import SPAAnchor from 'components/SPAAnchor';
+import LINKS from 'constants/links';
 import React from 'react';
+import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
+import YourTransactions from '../LPStaking/components/Transactions';
 import { Container } from '../styled-components';
 import ClaimSection from './components/ClaimSection';
 import MyStakingBalance from './components/MyStakingBalance';
@@ -20,6 +24,51 @@ const LPStaking: React.FC = () => {
             <Wrapper>
                 <StakeSection />
             </Wrapper>
+            <RowsContainer>
+                <SPAAnchor href={LINKS.LPStaking.Velodrome}>
+                    <PoolWrapper>
+                        <Logo className="logo logo--velodrome" />
+                        <Text>
+                            <Trans
+                                i18nKey="staking.lp-staking.velodrome-text"
+                                components={{
+                                    strong: <PoolLabel />,
+                                }}
+                            />
+                        </Text>
+                        <Arrow className="icon icon--external-arrow" />
+                    </PoolWrapper>
+                </SPAAnchor>
+                <SPAAnchor href={LINKS.LPStaking.Aerodrome}>
+                    <PoolWrapper>
+                        <Logo className="logo logo--aerodrome" />
+                        <Text>
+                            <Trans
+                                i18nKey="staking.lp-staking.aerodrome-text"
+                                components={{
+                                    strong: <PoolLabel />,
+                                }}
+                            />
+                        </Text>
+                        <Arrow className="icon icon--external-arrow" />
+                    </PoolWrapper>
+                </SPAAnchor>
+                <SPAAnchor href={LINKS.LPStaking.Camelot}>
+                    <PoolWrapper>
+                        <Logo className="logo logo--camelot" />
+                        <Text>
+                            <Trans
+                                i18nKey="staking.lp-staking.camelot-text"
+                                components={{
+                                    strong: <PoolLabel />,
+                                }}
+                            />
+                        </Text>
+                        <Arrow className="icon icon--external-arrow" />
+                    </PoolWrapper>
+                </SPAAnchor>
+            </RowsContainer>
+            <YourTransactions />
         </Container>
     );
 };
@@ -37,10 +86,47 @@ const RowsContainer = styled(FlexDiv)`
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
     }
+    gap: 10px;
 `;
 
 const Wrapper = styled(FlexDiv)`
     flex-direction: column;
+`;
+
+const PoolWrapper = styled(Wrapper)`
+    font-size: 13px;
+    position: relative;
+    padding: 20px;
+    background-color: ${(props) => props.theme.background.primary};
+    border-radius: 8px;
+    cursor: pointer;
+`;
+
+const PoolLabel = styled.span`
+    font-size: 13px;
+    font-weight: 700;
+    color: ${(props) => props.theme.textColor.secondary};
+`;
+
+const Arrow = styled.i`
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 15px;
+`;
+
+const Text = styled.p`
+    display: inline;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    flex-direction: c;
+    color: ${(props) => props.theme.textColor.primary};
+    font-weight: 400;
+    line-height: 15px;
+`;
+
+const Logo = styled.i`
+    color: ${(props) => props.theme.textColor.primary};
 `;
 
 export default LPStaking;

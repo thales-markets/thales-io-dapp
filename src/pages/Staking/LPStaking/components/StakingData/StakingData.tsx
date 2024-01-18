@@ -77,7 +77,6 @@ const Header = styled(SectionHeader)`
 
 const StakingDataContainer = styled(FlexDiv)`
     flex-direction: column;
-    margin-right: 5px;
 `;
 
 const StakingDetails = styled(FlexDiv)`

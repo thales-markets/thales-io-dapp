@@ -583,6 +583,9 @@
                 "my-staking-share": "My staking share",
                 "tvl": "Total Value Locked (TVL)"
             },
+            "velodrome-text": "Stake <strong>THALES/WETH</strong> on Velodrome (Optimism) to earn VELO rewards",
+            "aerodrome-text": "Stake <strong>THALES/WETH</strong> on Aerodrome (Base) to earn VELO rewards",
+            "camelot-text": "Stake <strong>THALES/WETH</strong> on Camelot (Arbitrum) to earn VELO rewards",
             "claim": {
                 "claim-rewards": "Claim rewards",
                 "claiming-rewards": "Claiming rewards"
@@ -663,6 +666,8 @@
         },
         "integrators": {
             "title": "Integrators volume",
+            "thales-volume": "Thales volume",
+            "overtime-volume": "Overtime volume",
             "total-volume": "Total volume"
         },
         "protocol-volume": {

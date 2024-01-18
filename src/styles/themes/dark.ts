@@ -6,6 +6,8 @@ const darkTheme = {
         secondary: Colors.GRAY,
         tertiary: Colors.PURPLE_NAVY,
         quaternary: Colors.YANKEES_BLUE,
+        quinary: Colors.METALLIC_BLUE,
+        senary: Colors.LIGHT_GRAY,
     },
     textColor: {
         primary: Colors.WHITE,
@@ -13,12 +15,14 @@ const darkTheme = {
         tertiary: Colors.GRAY,
         quaternary: Colors.PURPLE_NAVY,
         quinary: Colors.YANKEES_BLUE,
+        senary: Colors.LIGHT_GRAY,
     },
     borderColor: {
         primary: Colors.GRAY,
         secondary: Colors.PURPLE_NAVY,
         tertiary: Colors.METALLIC_BLUE,
         quaternary: Colors.LIGHT_GRAY,
+        quinary: Colors.BLUE_DARK,
     },
     link: {
         textColor: {
@@ -31,6 +35,7 @@ const darkTheme = {
             primary: Colors.PURPLE_NAVY,
             secondary: Colors.METALLIC_BLUE,
             tertiary: Colors.CYAN,
+            quaternary: Colors.INDEPENDENCE,
         },
         textColor: {
             primary: Colors.WHITE,

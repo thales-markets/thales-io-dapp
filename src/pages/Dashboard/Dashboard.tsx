@@ -6,18 +6,16 @@ import Staking from './Staking';
 import TVLInfo from './TVLInfo';
 import TokenInfo from './ThalesTokenInfo';
 import TokenAddresses from './TokenAddresses';
-import TokenBurn from './TokenBurn';
 import {
     Container,
     EcosystemIcon,
     FlexDivColumnNativeFullWidth,
     FlexDivSpaceAroundFullWidth,
-    ItemBottomCenter,
+    ItemBottomCenterLeft,
+    ItemBottomCenterRight,
     ItemBottomLeft,
     ItemBottomRight,
-    ItemMiddleLeft,
-    ItemMiddleRight,
-    ItemTop,
+    ItemCenter,
     ItemUpperLeft,
     ItemUpperRight,
     TitleLabel,
@@ -39,24 +37,21 @@ const Dashboard: React.FC = () => {
                 <ItemUpperLeft>
                     <ProtocolVolume />
                 </ItemUpperLeft>
-                <ItemTop>
+                <ItemCenter>
                     <Staking />
-                </ItemTop>
+                </ItemCenter>
                 <ItemUpperRight>
                     <TokenInfo />
                 </ItemUpperRight>
-                <ItemMiddleLeft>
+                <ItemBottomCenterLeft>
                     <Governance />
-                </ItemMiddleLeft>
-                <ItemMiddleRight>
+                </ItemBottomCenterLeft>
+                <ItemBottomCenterRight>
                     <TokenAddresses />
-                </ItemMiddleRight>
+                </ItemBottomCenterRight>
                 <ItemBottomLeft>
                     <TVLInfo />
                 </ItemBottomLeft>
-                <ItemBottomCenter>
-                    <TokenBurn />
-                </ItemBottomCenter>
                 <ItemBottomRight>
                     <IntegratorsVolume />
                 </ItemBottomRight>

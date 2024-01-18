@@ -2,7 +2,7 @@ import { ReactComponent as ArrowBackIcon } from 'assets/images/arrow-back.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { PieChart } from 'recharts';
 import styled from 'styled-components';
-import { Colors, FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Container = styled(FlexDivRow)`
     width: 100%;
@@ -135,7 +135,7 @@ export const SidebarTitle = styled(FlexDivCentered)<{ bottomMargin?: number }>`
 `;
 
 export const SidebarContentWrapper = styled(FlexDivColumn)`
-    background: ${Colors.LIGHT_GRAY};
+    background: ${(props) => props.theme.background.senary};
     padding: 1px 0 0 0;
     border-radius: 0 0 8px 8px;
     height: 100%;
@@ -167,7 +167,7 @@ export const Percentage = styled(FlexDiv)`
 `;
 
 export const Votes = styled.div`
-    color: ${Colors.WHITE};
+    color: ${(props) => props.theme.textColor.primary};
 `;
 
 export const LoaderContainer = styled(FlexDivColumn)<{ height?: number }>`
@@ -247,7 +247,7 @@ export const StyledPieChart = styled(PieChart)`
 
 export const Line = styled.div`
     height: 1px;
-    background: ${Colors.GRAY};
+    background: ${(props) => props.theme.background.secondary};
     width: 100%;
 `;
 

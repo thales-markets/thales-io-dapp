@@ -243,3 +243,19 @@
 .icon--circle-arrow-down:before {
     content: '\0050';
 }
+
+.icon--aerodrome:before {
+    content: '\0074';
+}
+
+.icon--velodrome:before {
+    content: '\0075';
+}
+
+.icon--camelot:before {
+    content: '\0076';
+}
+
+.icon--external-arrow:before {
+    content: '\0051';
+}
