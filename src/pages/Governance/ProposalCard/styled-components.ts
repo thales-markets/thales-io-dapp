@@ -1,34 +1,25 @@
 import styled from 'styled-components';
-import { FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
+import { FlexDivCentered, FlexDivColumn, FlexDivRow } from 'styles/common';
 import { getStatusColor } from 'utils/governance';
 
-export const CardContainer = styled(FlexDivColumnCentered)`
-    width: 100%;
-    position: relative;
+export const Card = styled(FlexDivColumn)<{ closed: boolean }>`
     height: 222px;
-    padding: 2px;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    align-items: center;
-    color: ${(props) => props.theme.textColor.primary};
-    cursor: pointer;
-`;
-
-export const Card = styled.div<{ closed: boolean }>`
     border-radius: 8px;
     background: ${(props) => (props.closed ? 'rgba(49, 54, 82, 0.4)' : 'rgba(49, 54, 82, 1)')};
     border: ${(props) =>
         props.closed
             ? `1.5px solid ${props.theme.borderColor.secondary}`
             : `1.5px solid ${props.theme.borderColor.quinary}`};
-    width: 100%;
-    height: 100%;
     padding: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: ${(props) => props.theme.textColor.primary};
+    cursor: pointer;
     &:hover {
         border: ${(props) => `1.5px solid ${props.theme.background.secondary}`};
     }
+    gap: 15px;
 `;
 
 export const Status = styled(FlexDivCentered)<{ status: string }>`
@@ -51,15 +42,14 @@ export const Title = styled(FlexDivRow)<{ status: string }>`
     font-size: 16px;
     line-height: 24px;
     color: ${(props) => props.theme.textColor.primary};
-    margin-top: 10px;
-    margin-bottom: 15px;
 `;
 
 export const TipTable = styled(FlexDivColumn)`
-    margin-top: 15px;
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
+    display: flex;
+    flex-direction: row;
     color: ${(props) => props.theme.textColor.primary};
     p {
         margin-bottom: 15px;
@@ -72,17 +62,34 @@ export const TipTable = styled(FlexDivColumn)`
         cursor: default;
     }
     table {
-        overflow-y: auto;
-        display: block;
-        width: 817px;
+        width: 100% !important;
+        table-layout: fixed;
+        text-overflow: ellipsis;
         th {
             border: 1px solid ${(props) => props.theme.borderColor.primary};
             padding: 6px 13px;
-            color: ${(props) => props.theme.textColor.senary};
+            p {
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* number of lines to show */
+                line-clamp: 2;
+                -webkit-box-orient: vertical;
+                color: ${(props) => props.theme.textColor.senary};
+                margin-bottom: 0px;
+            }
         }
         td {
             border: 1px solid ${(props) => props.theme.borderColor.primary};
             padding: 6px 13px;
+            p {
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* number of lines to show */
+                line-clamp: 3;
+                -webkit-box-orient: vertical;
+                color: ${(props) => props.theme.textColor.primary};
+                margin-bottom: 0px;
+            }
         }
     }
     h2 {

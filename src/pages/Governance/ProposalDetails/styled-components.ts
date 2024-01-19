@@ -189,7 +189,7 @@ export const Icon = styled.i<{ color?: string }>`
 export const CouncilVotesLabel = styled.span`
     font-weight: 400;
     font-size: 13px;
-    color: ${(props) => props.theme.textColor.tertiary}
+    color: ${(props) => props.theme.textColor.tertiary};
     margin-top: 5px;
 `;
 
