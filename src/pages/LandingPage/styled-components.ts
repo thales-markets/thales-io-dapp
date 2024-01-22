@@ -2,7 +2,7 @@ import { CircularProgress } from '@material-ui/core';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceBetween, Icon } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween, Icon } from 'styles/common';
 
 export const About = styled.div`
     margin-top: 120px;
@@ -41,6 +41,20 @@ export const Title = styled(FlexDiv)`
     }
 `;
 
+export const EcosystemTitle = styled(FlexDiv)`
+    color: white;
+    font-size: 25px;
+    font-style: normal;
+    line-height: 91.4%;
+    height: 35px;
+    i {
+        margin: 0px 10px 13px 10px;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 10px;
+    }
+`;
+
 export const Subtitle = styled.div`
     color: #a9abbb;
     font-family: 'NunitoExtraLight';
@@ -60,6 +74,7 @@ export const Highlight = styled.div<{ marginBottom?: number; cursor?: string }>`
     font-size: 17px;
     font-style: normal;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
+    line-height: 140%;
 `;
 
 export const StatsSection = styled.div`
@@ -108,9 +123,15 @@ export const HomeButton = styled.button`
 
 export const EcosystemApps = styled(FlexDiv)`
     gap: 30px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+    }
 `;
 export const EcosystemSection = styled.div`
     margin-top: 150px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 50px;
+    }
 `;
 
 export const Description = styled(FlexDivColumn)<{ marginBottom?: number; marginTop?: number }>`
@@ -147,6 +168,10 @@ export const SectionSlogan = styled.div`
     font-style: normal;
     line-height: 140%;
     margin: 15px 0;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 30px;
+        text-align: left;
+    }
 `;
 
 export const SectionTitleLink = styled.div`
@@ -325,5 +350,17 @@ export const BuySellSection = styled.div`
 export const ThemedCircularProgress = styled(CircularProgress)`
     &.MuiCircularProgress-colorPrimary {
         color: ${(props) => props.theme.background.secondary};
+    }
+`;
+
+export const Partners = styled(FlexDivSpaceBetween)`
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+    }
+`;
+
+export const Backers = styled(FlexDivSpaceAround)`
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
     }
 `;
