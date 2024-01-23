@@ -1,13 +1,11 @@
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
 import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import YourTransactions from '../LPStaking/components/Transactions';
-import { Container } from '../styled-components';
-import ClaimSection from './components/ClaimSection';
-import MyStakingBalance from './components/MyStakingBalance';
 import StakeSection from './components/StakeSection';
 import StakingData from './components/StakingData';
 import Steps from './components/Steps';
@@ -18,9 +16,7 @@ const LPStaking: React.FC = () => {
             <Steps />
             <RowsContainer>
                 <StakingData />
-                <MyStakingBalance />
             </RowsContainer>
-            <ClaimSection />
             <Wrapper>
                 <StakeSection />
             </Wrapper>
@@ -72,6 +68,28 @@ const LPStaking: React.FC = () => {
         </Container>
     );
 };
+
+const Container = styled.div`
+    color: ${(props) => props.theme.textColor.tertiary};
+    font-family: Nunito;
+    font-size: 13px;
+    display: grid;
+    width: 60%;
+    grid-template-rows: fr 160px;
+    column-gap: 10px;
+    row-gap: 10px;
+    grid-template-areas: 'top' 'bottom';
+    z-index: 1;
+    > div {
+        position: relative;
+        padding: 20px;
+        background-color: ${(props) => props.theme.background.primary};
+        border-radius: 8px;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+    }
+`;
 
 const RowsContainer = styled(FlexDiv)`
     flex-direction: row;
