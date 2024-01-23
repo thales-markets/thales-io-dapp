@@ -1,5 +1,5 @@
 import { Icon } from '@material-ui/core';
-import { USD_SIGN } from 'constants/currency';
+import { LP_TOKEN, USD_SIGN } from 'constants/currency';
 import { SectionHeader } from 'pages/Staking/styled-components';
 import useGelatoQuery from 'queries/token/useGelatoQuery';
 import useLPStakingQuery from 'queries/token/useLPStakingQuery';
@@ -11,7 +11,8 @@ import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
-import { formatCurrencyWithPrecision, formatCurrencyWithSign } from 'thales-utils';
+import { formatCurrencyWithKey, formatCurrencyWithPrecision, formatCurrencyWithSign } from 'thales-utils';
+import ClaimSection from '../ClaimSection';
 
 const StakingData: React.FC = () => {
     const { t } = useTranslation();
@@ -44,30 +45,52 @@ const StakingData: React.FC = () => {
     const tvl = isLoading ? '-' : formatCurrencyWithSign(USD_SIGN, totalInUSD);
 
     return (
-        <StakingDataContainer>
-            <Header>
-                <Icon className={'icon icon--staking'} />
-                {t('staking.lp-staking.staking-data')}
-            </Header>
-            <StakingDetails>
-                <ItemName>{t('staking.lp-staking.staking-data-section.apr-in-total')}</ItemName>
-                <ItemValue>{totalAPR}</ItemValue>
-            </StakingDetails>
-            <StakingDetails>
-                <ItemName>{t('staking.lp-staking.staking-data-section.thales-op')}</ItemName>
-                <ItemValue>{thalesOPAPR}</ItemValue>
-            </StakingDetails>
-            <StakingDetails>
-                <ItemName>{t('staking.lp-staking.staking-data-section.my-staking-share')}</ItemName>
-                <ItemValue>{myStakedShareValue}</ItemValue>
-            </StakingDetails>
-            <StakingDetails>
-                <ItemName>{t('staking.lp-staking.staking-data-section.tvl')}</ItemName>
-                <ItemValue>{tvl}</ItemValue>
-            </StakingDetails>
-        </StakingDataContainer>
+        <Wrapper>
+            <StakingDataContainer>
+                <Header>
+                    <Icon className={'icon icon--staking'} />
+                    {t('staking.lp-staking.staking-data')}
+                </Header>
+                <StakingDetails>
+                    <ItemName>{t('staking.lp-staking.staking-data-section.apr-in-total')}</ItemName>
+                    <ItemValue>{totalAPR}</ItemValue>
+                </StakingDetails>
+                <StakingDetails>
+                    <ItemName>{t('staking.lp-staking.staking-data-section.thales-op')}</ItemName>
+                    <ItemValue>{thalesOPAPR}</ItemValue>
+                </StakingDetails>
+                <StakingDetails>
+                    <ItemName>{t('staking.lp-staking.staking-data-section.my-staking-share')}</ItemName>
+                    <ItemValue>{myStakedShareValue}</ItemValue>
+                </StakingDetails>
+                <StakingDetails>
+                    <ItemName>{t('staking.lp-staking.staking-data-section.tvl')}</ItemName>
+                    <ItemValue>{tvl}</ItemValue>
+                </StakingDetails>
+            </StakingDataContainer>
+            <ClaimSectionWrapper>
+                <MyStakingDetails>
+                    <ItemName>{t('staking.lp-staking.staking-data-section.my-staking-balance')}:</ItemName>
+                    <ItemValue>
+                        {formatCurrencyWithKey(LP_TOKEN, staked) +
+                            ` = ${formatCurrencyWithSign(USD_SIGN, stakedInUSD)}`}
+                    </ItemValue>
+                </MyStakingDetails>
+                <ClaimSection />
+            </ClaimSectionWrapper>
+        </Wrapper>
     );
 };
+
+const Wrapper = styled(FlexDiv)`
+    flex-direction: row;
+    gap: 30px;
+`;
+
+const ClaimSectionWrapper = styled(FlexDiv)`
+    flex-direction: column;
+    flex: 1;
+`;
 
 const Header = styled(SectionHeader)`
     margin-bottom: 15px;
@@ -77,6 +100,7 @@ const Header = styled(SectionHeader)`
 
 const StakingDataContainer = styled(FlexDiv)`
     flex-direction: column;
+    flex: 1;
 `;
 
 const StakingDetails = styled(FlexDiv)`
@@ -95,6 +119,26 @@ const StakingDetails = styled(FlexDiv)`
         flex: 1;
         align-items: center;
         justify-content: flex-end;
+        color: ${(props) => props.theme.textColor.primary};
+        font-weight: 800;
+    }
+`;
+
+const MyStakingDetails = styled(FlexDiv)`
+    font-size: 13px;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 20.15px;
+    margin-bottom: 30px;
+    > div:first-child {
+        align-items: center;
+        color: ${(props) => props.theme.textColor.tertiary};
+        text-transform: capitalize;
+        padding-right: 5px;
+    }
+    > div:nth-child(2) {
+        align-items: center;
         color: ${(props) => props.theme.textColor.primary};
         font-weight: 800;
     }
