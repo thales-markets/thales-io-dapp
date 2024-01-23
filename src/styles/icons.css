@@ -144,6 +144,10 @@
     content: '\006C';
 }
 
+.icon--bookie:before {
+    content: '\0073';
+}
+
 .icon--thales-markets:before {
     content: '\006D';
 }

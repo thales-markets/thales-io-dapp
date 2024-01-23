@@ -11,7 +11,7 @@ import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import useAllTVLsQuery from 'queries/useAllTVLsQueries';
 import React, { CSSProperties, Suspense, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
 import { AMMsTVLData, VaultsTVLData } from 'types/liquidity';
 import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
@@ -20,11 +20,13 @@ import Collapse from './components/Collapse';
 import MILESTONES from './milestones';
 import {
     About,
+    Backers,
     BulletNumber,
     BuySellSection,
     Description,
     EcosystemApps,
     EcosystemSection,
+    EcosystemTitle,
     Highlight,
     HomeButton,
     HomeIcon,
@@ -33,6 +35,7 @@ import {
     MilestoneDate,
     MilestoneDescription,
     MilestonesContainer,
+    Partners,
     Section,
     SectionSlogan,
     SectionTitle,
@@ -124,7 +127,14 @@ const Home: React.FC = () => {
                         {t('home.thales')}
                         <span>{t('home.protocol')}</span>
                     </Title>
-                    <Subtitle>{t('home.protocol-description-1')},</Subtitle>
+                    <EcosystemTitle>
+                        Part of the
+                        <SPAAnchor href="https://synthetix.io/">
+                            <HomeIcon fontSize="10em" className="icon icon--synthetix" />
+                        </SPAAnchor>
+                        Ecosystem
+                    </EcosystemTitle>
+                    <Subtitle>{t('home.protocol-description-1')}.</Subtitle>
                     <Subtitle>{t('home.protocol-description-2')}</Subtitle>
                     <Subtitle>{t('home.protocol-description-3')}</Subtitle>
                     <Subtitle>{t('home.protocol-description-4')}</Subtitle>
@@ -182,12 +192,7 @@ const Home: React.FC = () => {
                         </FlexDivColumn>
                         <FlexDivColumn>
                             <SPAAnchor href={LINKS.BookieBot}>
-                                <HomeIcon
-                                    style={{ height: '80px' }}
-                                    paddingBottom="10px"
-                                    fontSize="6em"
-                                    className="icon icon--telegram"
-                                />
+                                <HomeIcon style={{ height: '80px' }} fontSize="4em" className="icon icon--bookie" />
                             </SPAAnchor>
 
                             <Description>{t('home.ecosystem-apps.bookie')}</Description>
@@ -203,7 +208,7 @@ const Home: React.FC = () => {
                 </EcosystemSection>
                 <Section>
                     <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
-                    <FlexDivSpaceBetween>
+                    <Partners>
                         <SPAAnchor href="https://synthetix.io/">
                             <HomeIcon fontSize="17em" className="icon icon--synthetix" />
                         </SPAAnchor>
@@ -217,8 +222,8 @@ const Home: React.FC = () => {
                         <SPAAnchor href="https://arbitrum.io/">
                             <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
                         </SPAAnchor>
-                    </FlexDivSpaceBetween>
-                    <FlexDivSpaceAround>
+                    </Partners>
+                    <Backers>
                         <SPAAnchor href="https://base.org/">
                             <HomeIcon fontSize="9em" className="icon icon--base" />
                         </SPAAnchor>
@@ -228,7 +233,7 @@ const Home: React.FC = () => {
                         <SPAAnchor href="https://framework.ventures/">
                             <HomeIcon fontSize="11em" className="icon icon--framework" />
                         </SPAAnchor>
-                    </FlexDivSpaceAround>
+                    </Backers>
                 </Section>
                 <Section>
                     <SectionTitleLink>
