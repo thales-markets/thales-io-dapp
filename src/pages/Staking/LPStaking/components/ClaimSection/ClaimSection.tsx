@@ -1,4 +1,3 @@
-import { Icon } from '@material-ui/core';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import Button from 'components/Button';
 import {
@@ -9,7 +8,6 @@ import {
 } from 'components/ToastMessage/ToastMessage';
 import { CRYPTO_CURRENCY_MAP, THALES_CURRENCY } from 'constants/currency';
 import { ethers } from 'ethers';
-import { SectionHeader } from 'pages/Staking/styled-components';
 import useLPStakingQuery from 'queries/token/useLPStakingQuery';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -108,10 +106,6 @@ const ClaimSection: React.FC = () => {
 
     return (
         <Wrapper>
-            <Header>
-                <Icon className={'icon icon--download'} />
-                {t('staking.lp-staking.your-unclaimed')}
-            </Header>
             <ClaimWrapper>
                 <Balance>{`${formatCurrencyWithKey(THALES_CURRENCY, rewards)} + ${formatCurrencyWithKey(
                     CRYPTO_CURRENCY_MAP.OP,
@@ -138,12 +132,6 @@ const ClaimWrapper = styled(FlexDiv)`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-`;
-
-const Header = styled(SectionHeader)`
-    margin-bottom: 15px;
-    flex-direction: row;
-    padding: 0;
 `;
 
 export default ClaimSection;
