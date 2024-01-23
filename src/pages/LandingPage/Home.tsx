@@ -1,6 +1,7 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import buyingAnimation from 'assets/lotties/homepage-buying.json';
 import sellingAnimation from 'assets/lotties/homepage-selling.json';
+import Collapse from 'components/Collapse';
 import Loader from 'components/Loader';
 import NumberCountdown from 'components/NumberCountdown';
 import SPAAnchor from 'components/SPAAnchor';
@@ -16,7 +17,6 @@ import { AMMsTVLData, VaultsTVLData } from 'types/liquidity';
 import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
 import Footer from './Footer';
-import Collapse from './components/Collapse';
 import MILESTONES from './milestones';
 import {
     About,
