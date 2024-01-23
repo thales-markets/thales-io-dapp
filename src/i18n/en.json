@@ -582,7 +582,8 @@
                 "apr-in-total": "APR in total",
                 "thales-op": "Thales APR + OP APR",
                 "my-staking-share": "My staking share",
-                "tvl": "Total Value Locked (TVL)"
+                "tvl": "Total Value Locked (TVL)",
+                "my-staking-balance": "My Staking Balance"
             },
             "velodrome-text": "Stake <strong>THALES/WETH</strong> on Velodrome (Optimism) to earn VELO rewards",
             "aerodrome-text": "Stake <strong>THALES/WETH</strong> on Aerodrome (Base) to earn VELO rewards",
