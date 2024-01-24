@@ -11,13 +11,13 @@ import Lottie from 'lottie-react';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import useAllTVLsQuery from 'queries/useAllTVLsQueries';
 import React, { CSSProperties, Suspense, useEffect, useMemo, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
 import { AMMsTVLData, VaultsTVLData } from 'types/liquidity';
 import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
 import Footer from './Footer';
-import MILESTONES from './milestones';
+import Timeline from './components/Timeline';
 import {
     About,
     Backers,
@@ -31,10 +31,6 @@ import {
     HomeButton,
     HomeIcon,
     LottieContainer,
-    Milestone,
-    MilestoneDate,
-    MilestoneDescription,
-    MilestonesContainer,
     Partners,
     Section,
     SectionSlogan,
@@ -128,7 +124,6 @@ const Home: React.FC = () => {
                         <span>{t('home.protocol')}</span>
                     </Title>
                     <EcosystemTitle>
-                        Part of the
                         <SPAAnchor href="https://synthetix.io/">
                             <HomeIcon fontSize="10em" className="icon icon--synthetix" />
                         </SPAAnchor>
@@ -353,7 +348,11 @@ const Home: React.FC = () => {
                 </Section>
                 <Section marginBottom={80}>
                     <SectionSlogan>{t('home.timeline.title')}</SectionSlogan>
-                    <MilestonesContainer>
+                    <div>
+                        <Timeline />
+                    </div>
+
+                    {/* <MilestonesContainer>
                         {MILESTONES.map((milestone, index) => (
                             <Milestone
                                 key={index}
@@ -372,7 +371,7 @@ const Home: React.FC = () => {
                                 </MilestoneDescription>
                             </Milestone>
                         ))}
-                    </MilestonesContainer>
+                    </MilestonesContainer> */}
                 </Section>
             </Wrapper>
             <Footer />

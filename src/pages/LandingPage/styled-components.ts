@@ -48,7 +48,7 @@ export const EcosystemTitle = styled(FlexDiv)`
     line-height: 91.4%;
     height: 35px;
     i {
-        margin: 0px 10px 13px 10px;
+        margin: 0px 10px 13px 0px;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 10px;
