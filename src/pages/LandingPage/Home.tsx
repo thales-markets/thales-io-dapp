@@ -27,6 +27,7 @@ import {
     EcosystemApps,
     EcosystemSection,
     EcosystemTitle,
+    FooterLine,
     Highlight,
     HomeButton,
     HomeIcon,
@@ -373,6 +374,7 @@ const Home: React.FC = () => {
                         ))}
                     </MilestonesContainer> */}
                 </Section>
+                <FooterLine />
             </Wrapper>
             <Footer />
         </Suspense>

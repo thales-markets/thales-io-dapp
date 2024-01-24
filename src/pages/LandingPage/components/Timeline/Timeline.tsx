@@ -1,5 +1,7 @@
+import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
+import SPAAnchor from 'components/SPAAnchor';
 import { t } from 'i18next';
-import MILESTONES from 'pages/LandingPage/components/Timeline/milestones';
+import MILESTONES_BY_QUARTER from 'pages/LandingPage/components/Timeline/milestones';
 import { Chrono } from 'react-chrono';
 import { Trans } from 'react-i18next';
 import styled, { useTheme } from 'styled-components';
@@ -7,7 +9,7 @@ import { FlexDiv } from 'styles/common';
 import { adaptQuarterForTimeline } from './utils';
 
 const Timeline: React.FC = () => {
-    const items = MILESTONES.map((quarter) => adaptQuarterForTimeline(quarter));
+    const items = MILESTONES_BY_QUARTER.map((quarter) => adaptQuarterForTimeline(quarter));
 
     const theme = useTheme();
     return (
@@ -15,7 +17,7 @@ const Timeline: React.FC = () => {
             <Chrono
                 mode="HORIZONTAL"
                 items={items}
-                activeItemIndex={MILESTONES.length - 1}
+                activeItemIndex={MILESTONES_BY_QUARTER.length - 1}
                 theme={{
                     primary: '#424451',
                     secondary: 'transparent',
@@ -24,22 +26,25 @@ const Timeline: React.FC = () => {
                     titleColorActive: 'white',
                 }}
             >
-                {MILESTONES.map((item, index) => {
+                {MILESTONES_BY_QUARTER.map((item, index) => {
                     return (
                         <FlexDiv key={index}>
                             {item.milestones.map((milestone, index) => {
                                 return (
-                                    <Milestone hideBorder={item.milestones.length - 1 === index} key={index}>
-                                        <MilestoneDate>{`${t(`common.${milestone.month.toLowerCase()}`)} ${
-                                            milestone.year
-                                        }`}</MilestoneDate>
-                                        <MilestoneDescription>
-                                            <Trans
-                                                i18nKey={`milestones.${milestone.descriptionKey}`}
-                                                components={{ bold: <span /> }}
-                                            />
-                                        </MilestoneDescription>
-                                    </Milestone>
+                                    <SPAAnchor key={index} href={milestone.link}>
+                                        <Milestone hideBorder={item.milestones.length - 1 === index}>
+                                            <ArrowIcon />
+                                            <MilestoneDate>{`${t(`common.${milestone.month.toLowerCase()}`)} ${
+                                                milestone.year
+                                            }`}</MilestoneDate>
+                                            <MilestoneDescription>
+                                                <Trans
+                                                    i18nKey={`milestones.${milestone.descriptionKey}`}
+                                                    components={{ bold: <span /> }}
+                                                />
+                                            </MilestoneDescription>
+                                        </Milestone>
+                                    </SPAAnchor>
                                 );
                             })}
                         </FlexDiv>
@@ -77,7 +82,7 @@ const Container = styled.div`
     }
     #react-chrono-timeline {
         align-items: center;
-        min-height: 200px;
+        min-height: 210px;
     }
     #react-chrono-timeline > div {
         margin-bottom: 50px;
@@ -85,6 +90,7 @@ const Container = styled.div`
 `;
 
 const Milestone = styled.div<{ hideBorder?: boolean }>`
+    position: relative;
     width: 300px;
     border-right: ${(props) => (props.hideBorder ? '' : '2px solid #405682')};
     background: #313652;
@@ -110,6 +116,26 @@ const MilestoneDescription = styled.div`
     line-height: 155%;
     span {
         font-family: MontserratBold;
+    }
+`;
+
+const StyledLink = styled.a`
+    color: ${(props) => props.theme.link.textColor.secondary};
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
+const ArrowIcon = styled(ArrowHyperlinkIcon)`
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    margin-left: 5px;
+    ${StyledLink} {
+        fill: ${(props) => props.theme.link.textColor.secondary};
+    }
+    ${StyledLink}:hover & path {
+        text-decoration: underline;
     }
 `;
 
