@@ -28,6 +28,7 @@ const darkTheme = {
         textColor: {
             primary: Colors.CYAN,
             secondary: Colors.WHITE,
+            tertiary: Colors.GRAY,
         },
     },
     button: {
