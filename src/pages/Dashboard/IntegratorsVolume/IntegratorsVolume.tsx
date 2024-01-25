@@ -10,7 +10,7 @@ import { formatCurrency } from 'thales-utils';
 import { Integrator } from 'types/integrator';
 import { VolumeStats } from 'types/statistics';
 import {
-    FlexDivFullWidthSpaceBetween,
+    FlexDivIntegrators,
     FullWidthInfoSection,
     InfoStats,
     InfoText,
@@ -61,28 +61,36 @@ const IntegratorsVolume: React.FC = () => {
                 <TitleLabel>{t('dashboard.integrators.title')}</TitleLabel>
             </WidgetHeader>
             <FullWidthInfoSection>
-                <InfoText color={Colors.WHITE}>{t('dashboard.integrators.total-volume')}</InfoText>
-                <InfoStats color={Colors.CYAN}>
-                    ${' '}
-                    {volumeStats
-                        ? formatCurrency(
-                              allIntegratorsTotalVolume + volumeStats?.thalesAmmVolume + volumeStats?.overtimeAmmVolume
-                          )
-                        : 0}
-                </InfoStats>
-                <InfoText color={Colors.WHITE}>{t('dashboard.integrators.thales-volume')}</InfoText>
-                <InfoStats color={Colors.CYAN}>
-                    $ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}
-                </InfoStats>
-                <InfoText color={Colors.WHITE}>{t('dashboard.integrators.overtime-volume')}</InfoText>
-                <InfoStats color={Colors.CYAN}>
-                    $ {volumeStats ? formatCurrency(volumeStats?.overtimeAmmVolume) : 0}
-                </InfoStats>
+                <FlexDivIntegrators>
+                    <InfoText color={Colors.WHITE}>{t('dashboard.integrators.total-volume')}</InfoText>
+                    <InfoStats color={Colors.CYAN}>
+                        ${' '}
+                        {volumeStats
+                            ? formatCurrency(
+                                  allIntegratorsTotalVolume +
+                                      volumeStats?.thalesAmmVolume +
+                                      volumeStats?.overtimeAmmVolume +
+                                      +volumeStats.parlayAmmVolume
+                              )
+                            : 0}
+                    </InfoStats>
+                </FlexDivIntegrators>
+                <FlexDivIntegrators>
+                    <InfoText>{t('dashboard.integrators.thales-volume')}</InfoText>
+                    <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}</InfoStats>
+                </FlexDivIntegrators>
+                <FlexDivIntegrators>
+                    <InfoText>{t('dashboard.integrators.overtime-volume')}</InfoText>
+                    <InfoStats>
+                        ${' '}
+                        {volumeStats ? formatCurrency(volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume) : 0}
+                    </InfoStats>
+                </FlexDivIntegrators>
                 {integratorsData.map((integrator, index) => (
-                    <FlexDivFullWidthSpaceBetween marginRight={5} key={index}>
+                    <FlexDivIntegrators key={index}>
                         <InfoText>{integrator.id}</InfoText>
                         <InfoStats>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
-                    </FlexDivFullWidthSpaceBetween>
+                    </FlexDivIntegrators>
                 ))}
             </FullWidthInfoSection>
         </WidgetWrapper>

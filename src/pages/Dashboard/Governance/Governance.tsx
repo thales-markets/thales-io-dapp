@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
-import { formatShortDateWithTime } from 'thales-utils';
 import { Proposal } from 'types/governance';
 import { buildHref } from 'utils/routes';
 import {
@@ -25,12 +24,14 @@ const Governance: React.FC = () => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const [latestProposal, setLatestProposal] = useState<Proposal>();
+    const [totalProposals, setTotalProposals] = useState<number>(0);
 
-    const proposalsQuery = useProposalsQuery(SpaceKey.TIPS, 1, { enabled: isAppReady });
+    const proposalsQuery = useProposalsQuery(SpaceKey.TIPS, 1000, { enabled: isAppReady });
 
     useEffect(() => {
         if (proposalsQuery.isSuccess && proposalsQuery.data) {
             setLatestProposal(proposalsQuery.data[0]);
+            setTotalProposals(proposalsQuery.data.length);
         }
     }, [proposalsQuery.isSuccess, proposalsQuery.data]);
 
@@ -44,16 +45,16 @@ const Governance: React.FC = () => {
 
                 <InfoSection side="left">
                     <DoubleSideSectionSpan>
-                        <InfoStats>{latestProposal ? latestProposal.title.split(':')[0] + ':' : '-'}</InfoStats>
-                        <br />
-                        {latestProposal ? latestProposal.title.split(':')[1] : '-'}
+                        <InfoText>{t('dashboard.governance.total-proposals')}</InfoText>
                     </DoubleSideSectionSpan>
-                    <InfoText>{t('dashboard.governance.start-date')}</InfoText>
-                    <InfoText>{t('dashboard.governance.end-date')}</InfoText>
+                    <DoubleSideSectionSpan>
+                        <InfoText>{t('dashboard.governance.latest-proposal')}</InfoText>
+                        <br />
+                        <InfoStats>{latestProposal ? latestProposal.title : '-'}</InfoStats>
+                    </DoubleSideSectionSpan>
                 </InfoSection>
-                <InfoSection side="right">
-                    <InfoStats>{latestProposal ? formatShortDateWithTime(latestProposal.start * 1000) : '-'}</InfoStats>
-                    <InfoStats>{latestProposal ? formatShortDateWithTime(latestProposal.end * 1000) : '-'}</InfoStats>
+                <InfoSection side="right" justifyContent="start">
+                    <InfoStats>{totalProposals}</InfoStats>
                 </InfoSection>
             </WidgetWrapper>
         </SPAAnchor>

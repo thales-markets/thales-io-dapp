@@ -663,8 +663,8 @@
         "networks": "Networks",
         "governance": {
             "title": "Governance",
-            "start-date": "Start date",
-            "end-date": "End date"
+            "total-proposals": "Total TIPS implemented:",
+            "latest-proposal": "Latest TIP:"
         },
         "integrators": {
             "title": "Integrators volume",
@@ -674,8 +674,9 @@
         },
         "protocol-volume": {
             "total-protocol-volume": "Total protocol volume",
-            "safebox-fees": "Safebox fees",
+            "safebox-fees": "Protocol fees",
             "thales-amm": "Thales AMM",
+            "speed-amm": "Speed markets AMM",
             "overtime-amm": "Sports AMM",
             "parlay-amm": "Parlay AMM",
             "total-unique-users": "Total unique users",
