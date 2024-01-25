@@ -344,48 +344,6 @@ const Rewards: React.FC = () => {
             <div>
                 <SectionTitle>
                     <span>
-                        <i className="icon icon--house" />
-                        {t('staking.rewards.how-it-works.title')}
-                    </span>
-                </SectionTitle>
-                <SectionText>
-                    <Trans
-                        i18nKey="staking.rewards.how-it-works.every-week-description"
-                        components={{
-                            span: <span />,
-                        }}
-                    />
-                </SectionText>
-                <SectionText>
-                    <Trans
-                        i18nKey="staking.rewards.how-it-works.each-week-description"
-                        components={{
-                            span: <span />,
-                            br: <br />,
-                        }}
-                    />
-                </SectionText>
-                <SectionText>
-                    <Trans
-                        i18nKey="staking.rewards.how-it-works.how-points-are-earned"
-                        components={{
-                            span: <span />,
-                            br: <br />,
-                        }}
-                    />
-                </SectionText>
-                <SectionText>
-                    <Trans
-                        i18nKey="staking.rewards.how-it-works.multiplier-description"
-                        components={{
-                            br: <br />,
-                        }}
-                    />
-                </SectionText>
-            </div>
-            <div>
-                <SectionTitle>
-                    <span>
                         <i className="icon icon--gift" />
                         {t('staking.rewards.your-rewards.title')}
                     </span>
@@ -443,7 +401,48 @@ const Rewards: React.FC = () => {
                     </FlexDivColumn>
                 </FlexDiv>
             </div>
-
+            <div>
+                <SectionTitle>
+                    <span>
+                        <i className="icon icon--house" />
+                        {t('staking.rewards.how-it-works.title')}
+                    </span>
+                </SectionTitle>
+                <SectionText>
+                    <Trans
+                        i18nKey="staking.rewards.how-it-works.every-week-description"
+                        components={{
+                            span: <span />,
+                        }}
+                    />
+                </SectionText>
+                <SectionText>
+                    <Trans
+                        i18nKey="staking.rewards.how-it-works.each-week-description"
+                        components={{
+                            span: <span />,
+                            br: <br />,
+                        }}
+                    />
+                </SectionText>
+                <SectionText>
+                    <Trans
+                        i18nKey="staking.rewards.how-it-works.how-points-are-earned"
+                        components={{
+                            span: <span />,
+                            br: <br />,
+                        }}
+                    />
+                </SectionText>
+                <SectionText>
+                    <Trans
+                        i18nKey="staking.rewards.how-it-works.multiplier-description"
+                        components={{
+                            br: <br />,
+                        }}
+                    />
+                </SectionText>
+            </div>
             <div>
                 <FinalPointsTitle>{t('staking.rewards.how-it-works.final-points')}</FinalPointsTitle>
                 {isWalletConnected && (
@@ -453,16 +452,6 @@ const Rewards: React.FC = () => {
                     </FinalPoints>
                 )}
             </div>
-            <div>
-                <SectionTitle>
-                    <span>
-                        <i className="icon icon--pig" />
-                        {t('staking.rewards.current-estimated.title')}
-                    </span>
-                    <span>{baseRewardsData?.baseRewards}</span>
-                </SectionTitle>
-            </div>
-            <div>{t('staking.rewards.current-estimated.description')}</div>
         </Container>
     );
 };
