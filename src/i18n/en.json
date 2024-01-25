@@ -324,7 +324,7 @@
                 "staked-share": "Your Staked Share"
             },
             "your-rewards": {
-                "title": "Current Weekly Points",
+                "title": "Gamified rewards",
                 "current-points": "Your current points : ",
                 "trading-volume": "Trading Volume",
                 "amm-lp-balances": "AMM LP balances",

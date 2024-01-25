@@ -112,7 +112,7 @@ export const RewardsInfo = styled(FlexDiv)`
     }
 `;
 
-export const StakingMultiplier = styled(InfoDiv)`
+export const SubTitle = styled(InfoDiv)`
     justify-content: flex-start;
     > span:nth-child(2) {
         color: ${(props) => props.theme.textColor.secondary};

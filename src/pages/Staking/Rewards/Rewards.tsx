@@ -39,7 +39,7 @@ import {
     RewardsInfo,
     SectionText,
     StakingDetailsSection,
-    StakingMultiplier,
+    SubTitle,
 } from './styled-components';
 
 const Rewards: React.FC = () => {
@@ -307,10 +307,10 @@ const Rewards: React.FC = () => {
                     </span>
                     <span>{formatCurrencyWithKey(THALES_CURRENCY, lastValidUserStakingData?.baseRewards ?? 0, 2)}</span>
                 </SectionTitle>
-                <StakingMultiplier>
+                <SubTitle>
                     <span>{t('staking.rewards.base-rewards.current-multiplier')}</span>
                     <span>x{pointsData?.stakingMultiplier}</span>
-                </StakingMultiplier>
+                </SubTitle>
                 <FlexDiv gap="30px">
                     <FlexDivColumn>
                         <InfoDiv>
@@ -394,60 +394,56 @@ const Rewards: React.FC = () => {
                             formatCurrencyWithKey(THALES_CURRENCY, (userData.share as any) * userData.bonusRewards, 2)}
                     </span>
                 </SectionTitle>
-                <StakingDetailsSection>
-                    <Trans
-                        i18nKey="staking.rewards.your-rewards.current-points"
-                        components={{
-                            span: <span />,
-                        }}
-                    />
+                <SubTitle>
+                    <span>{t('staking.rewards.your-rewards.current-points')}</span>
                     <span>{pointsData?.totalPoints}</span>
-                </StakingDetailsSection>
+                </SubTitle>
+                <FlexDiv gap="30px">
+                    <FlexDivColumn>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.your-rewards.trading-volume')}</span>
+                            <span>{pointsData?.tradingVolume}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.your-rewards.amm-lp-balances')}</span>
+                            <span>{pointsData?.lpVolume}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.your-rewards.vaults-balances')}</span>
+                            <span>{pointsData?.vaultsVolume}</span>
+                        </InfoDiv>
+                    </FlexDivColumn>
+                    <FlexDivColumn>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.your-rewards.trading-multiplier')}</span>
+                            <span>X {pointsData?.tradingMultiplier}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.your-rewards.lp-multiplier')}</span>
+                            <span>X {pointsData?.lpMultiplier}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.your-rewards.vaults-multiplier')}</span>
+                            <span>X {pointsData?.vaultsMultiplier}</span>
+                        </InfoDiv>
+                    </FlexDivColumn>
+                    <FlexDivColumn>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.your-rewards.points')}</span>
+                            <span>{pointsData?.tradingPoints}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.your-rewards.points')}</span>
+                            <span>{pointsData?.lpPoints}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.your-rewards.points')}</span>
+                            <span>{pointsData?.vaultsPoints}</span>
+                        </InfoDiv>
+                    </FlexDivColumn>
+                </FlexDiv>
             </div>
-            <FlexDiv gap="30px">
-                <FlexDivColumn>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.your-rewards.trading-volume')}</span>
-                        <span>{pointsData?.tradingVolume}</span>
-                    </InfoDiv>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.your-rewards.amm-lp-balances')}</span>
-                        <span>{pointsData?.lpVolume}</span>
-                    </InfoDiv>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.your-rewards.vaults-balances')}</span>
-                        <span>{pointsData?.vaultsVolume}</span>
-                    </InfoDiv>
-                </FlexDivColumn>
-                <FlexDivColumn>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.your-rewards.trading-multiplier')}</span>
-                        <span>X {pointsData?.tradingMultiplier}</span>
-                    </InfoDiv>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.your-rewards.lp-multiplier')}</span>
-                        <span>X {pointsData?.lpMultiplier}</span>
-                    </InfoDiv>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.your-rewards.vaults-multiplier')}</span>
-                        <span>X {pointsData?.vaultsMultiplier}</span>
-                    </InfoDiv>
-                </FlexDivColumn>
-                <FlexDivColumn>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.your-rewards.points')}</span>
-                        <span>{pointsData?.tradingPoints}</span>
-                    </InfoDiv>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.your-rewards.points')}</span>
-                        <span>{pointsData?.lpPoints}</span>
-                    </InfoDiv>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.your-rewards.points')}</span>
-                        <span>{pointsData?.vaultsPoints}</span>
-                    </InfoDiv>
-                </FlexDivColumn>
-            </FlexDiv>
+
             <div>
                 <FinalPointsTitle>{t('staking.rewards.how-it-works.final-points')}</FinalPointsTitle>
                 {isWalletConnected && (
