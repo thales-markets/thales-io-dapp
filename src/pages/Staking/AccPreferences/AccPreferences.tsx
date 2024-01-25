@@ -125,7 +125,6 @@ const AccPreferences: React.FC = () => {
             ? srcStakingThalesQuery.data.mergeAccountEnabled
             : true;
 
-    const isUserLPing = srcStakingThalesQuery.data && srcStakingThalesQuery.data?.isUserLPing;
     const hasSrcAccountSomethingToClaim =
         srcStakingThalesQuery.isSuccess && srcStakingThalesQuery.data ? srcStakingThalesQuery.data.rewards > 0 : false;
     const isSrcAccountUnstaking =
@@ -150,7 +149,6 @@ const AccPreferences: React.FC = () => {
         isAccountMergingEnabled &&
         (hasSrcAccountSomethingToClaim ||
             isSrcAccountUnstaking ||
-            isUserLPing ||
             hasDestAccountSomethingToClaim ||
             isDestAccountUnstaking);
 
@@ -318,11 +316,6 @@ const AccPreferences: React.FC = () => {
             <>
                 <div>{t('staking.acc-preferences.merge.merge-blocked-message.title')}:</div>
                 <span>
-                    {isUserLPing && (
-                        <ValidationMessage>
-                            {t('staking.acc-preferences.merge.merge-blocked-message.user-lping')}
-                        </ValidationMessage>
-                    )}
                     {hasSrcAccountSomethingToClaim && (
                         <ValidationMessage>
                             {t('staking.acc-preferences.merge.merge-blocked-message.src-claim')}

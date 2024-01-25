@@ -76,7 +76,6 @@ const Unstake: React.FC = () => {
 
     const thalesStaked = userStakingData ? userStakingData.thalesStaked : 0;
     const unstakingAmount = userStakingData ? userStakingData.unstakingAmount : 0;
-    const isUserLPing = userStakingData && userStakingData.isUserLPing;
     const isStakingPaused = userStakingData && userStakingData.isPaused;
 
     const isAmountEntered = Number(amountToUnstake) > 0;
@@ -90,8 +89,7 @@ const Unstake: React.FC = () => {
         !isAmountEntered ||
         insufficientBalance ||
         !isWalletConnected ||
-        isStakingPaused ||
-        isUserLPing;
+        isStakingPaused;
 
     const isCancelUnstakeButtonDisabled = isUnstaking || isCanceling || !stakingThalesContract || !isWalletConnected;
     const isUnstakeButtonDisabled = isUnstaking || isCanceling || !stakingThalesContract || !isWalletConnected;
@@ -316,7 +314,7 @@ const Unstake: React.FC = () => {
                     <NumericInput
                         value={amountToUnstake}
                         onChange={(_, value) => setAmountToUnstake(value)}
-                        disabled={isUnstakingInContract || isUnstaking || isCanceling || isStakingPaused || isUserLPing}
+                        disabled={isUnstakingInContract || isUnstaking || isCanceling || isStakingPaused}
                         currencyLabel={THALES_CURRENCY}
                         placeholder={t('common.enter-amount')}
                         label={t('staking.staking.stake-unstake.amount-to-unstake')}
@@ -335,9 +333,6 @@ const Unstake: React.FC = () => {
                     {getSubmitButton()}
                     {isStakingPaused && (
                         <ClaimMessage>{t('staking.staking.stake-unstake.paused-message')}</ClaimMessage>
-                    )}
-                    {isUserLPing && (
-                        <ClaimMessage>{t('staking.staking.stake-unstake.user-lping-message')}</ClaimMessage>
                     )}
                 </ButtonsContainer>
             </SectionContentContainer>
