@@ -1,7 +1,7 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { AreaChart, PieChart } from 'recharts';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivColumnNative, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDiv, FlexDivColumnNative, FlexDivRow, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 
 export const Container = styled.div`
     display: grid;
@@ -10,9 +10,9 @@ export const Container = styled.div`
     grid-template-rows: repeat(3, 160px);
     column-gap: 10px;
     row-gap: 10px;
-    grid-template-areas: 'upper-left center center upper-right' 'upper-left center center upper-right' 'bottom-left bottom-center-left bottom-center-right bottom-right';
+    grid-template-areas: 'upper-left center center upper-right' 'upper-left center center upper-right' 'bottom-left bottom-center-left bottom-right bottom-right';
     z-index: 1;
-    margin-bottom: 100px;
+    margin: 100px 0px;
     > div {
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
@@ -41,10 +41,6 @@ export const ItemBottomRight = styled.div`
 
 export const ItemBottomCenterLeft = styled.div`
     grid-area: bottom-center-left;
-`;
-
-export const ItemBottomCenterRight = styled.div`
-    grid-area: bottom-center-right;
 `;
 
 export const ItemBottomCenter = styled.div`
@@ -207,41 +203,16 @@ export const ChartInnerText = styled.span`
 `;
 
 export const FullWidthInfoSection = styled(FlexDiv)`
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    grid-area: 2 / 1 / 3 /3;
-    gap: 1px;
-    width: 301px;
+    width: 670px;
     justify-content: space-between;
     height: 82px;
-    margin-top: -2px;
-    margin-left: 20px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: 5px; /* Firefox */
-    -ms-overflow-style: none;
-    ::-webkit-scrollbar {
-        /* WebKit */
-        width: 5px;
-        height: 5px;
-        background: #43496d;
-    }
-    ::-webkit-scrollbar-track {
-        background: ${(props) => props.theme.button.background.quaternary};
-    }
-    ::-webkit-scrollbar-thumb {
-        background: ${(props) => props.theme.button.background.tertiary};
-    }
-    > label {
-        display: flex;
-        flex: 49%;
-    }
-    > span {
-        display: flex;
-        flex: 48%;
-        justify-content: flex-end;
-        margin-right: 5px;
-    }
+    padding: 0px 20px;
+`;
+
+export const FlexDivIntegrators = styled(FlexDivRow)`
+    width: 290px;
 `;
 
 export const StyledAreaChart = styled(AreaChart)`

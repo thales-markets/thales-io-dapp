@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { CollapseContainer, CollapseIcon, Highlight } from './styled-components';
 
 type CollapseProps = {
+    headerTextAlign?: string;
     title: string;
     hideLine?: boolean;
     additionalStyling?: {
@@ -14,7 +15,7 @@ type CollapseProps = {
     };
 };
 
-const Collapse: React.FC<CollapseProps> = ({ title, hideLine, additionalStyling, children }) => {
+const Collapse: React.FC<CollapseProps> = ({ title, hideLine, additionalStyling, children, headerTextAlign }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     return (
         <CollapseContainer hideLine={hideLine} marginBottom={additionalStyling?.containerMarginButton}>
@@ -27,6 +28,7 @@ const Collapse: React.FC<CollapseProps> = ({ title, hideLine, additionalStyling,
                 onClick={() => {
                     setIsOpen(!isOpen);
                 }}
+                textAlign={headerTextAlign}
             >
                 {title}
                 <CollapseIcon className={`icon ${isOpen ? 'icon--caret-up' : 'icon--caret-down'}`} />

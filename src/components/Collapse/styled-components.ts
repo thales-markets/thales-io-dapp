@@ -16,6 +16,7 @@ export const Highlight = styled.div<{
     cursor?: string;
     fontSize?: string;
     fontFamily?: string;
+    textAlign?: string;
 }>`
     cursor: ${(props) => (props.cursor ? props.cursor : 'default')};
     color: white;
@@ -25,4 +26,5 @@ export const Highlight = styled.div<{
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0px')};
     margin-top: ${(props) => (props.marginTop ? props.marginTop : '')};
     line-height: 140%;
+    text-align: ${(props) => (props.textAlign ? props.textAlign : 'left')};
 `;

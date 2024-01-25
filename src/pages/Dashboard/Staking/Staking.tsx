@@ -69,9 +69,6 @@ const Staking: React.FC = () => {
     const stakedOfCirculatingSupplyPercentage =
         stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.circulatingSupply) * 100 : 0;
 
-    const stakedOfTotalSupplyPercentage =
-        stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.totalSupply) * 100 : 0;
-
     return (
         <SPAAnchor href={buildHref(ROUTES.Staking)}>
             <WidgetWrapper>
@@ -93,10 +90,6 @@ const Staking: React.FC = () => {
                     <FlexDivFullWidthSpaceBetween>
                         <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
                         <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
-                    </FlexDivFullWidthSpaceBetween>
-                    <FlexDivFullWidthSpaceBetween>
-                        <InfoText>{t('dashboard.staking.of-total-supply')}</InfoText>
-                        <InfoStats>{stakedOfTotalSupplyPercentage.toFixed(2)}%</InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                 </InfoSection>
                 <InfoSection side="right" direction="row" justifyContent="space-between">

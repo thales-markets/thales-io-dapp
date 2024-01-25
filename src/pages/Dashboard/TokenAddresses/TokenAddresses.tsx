@@ -1,20 +1,20 @@
 import SPAAnchor from 'components/SPAAnchor';
+import ROUTES from 'constants/routes';
+import { Network } from 'enums/network';
+import { useTranslation } from 'react-i18next';
+import { Colors, FlexDiv } from 'styles/common';
 import { getEtherscanTokenLink, truncateAddress } from 'thales-utils';
+import thalesContract from 'utils/contracts/thalesContract';
 import {
     InfoSection,
     InfoStats,
     InfoText,
     LinkArrow,
+    TitleLabel,
     WidgetHeader,
     WidgetIcon,
-    TitleLabel,
     WidgetWrapper,
 } from '../styled-components';
-import { Colors, FlexDiv } from 'styles/common';
-import { getCelerBridgeUrl } from 'utils/bridge';
-import { useTranslation } from 'react-i18next';
-import { Network } from 'enums/network';
-import thalesContract from 'utils/contracts/thalesContract';
 
 const TokenAddresses: React.FC = () => {
     const { t } = useTranslation();
@@ -26,7 +26,7 @@ const TokenAddresses: React.FC = () => {
                     <WidgetIcon className="icon icon--token-widget" />
                     <TitleLabel>{t('dashboard.token-addresses.title')}</TitleLabel>
                 </FlexDiv>
-                <SPAAnchor href={getCelerBridgeUrl(Network.OptimismMainnet)}>
+                <SPAAnchor href={ROUTES.Bridge}>
                     <TitleLabel isLink={true}>
                         {t('dashboard.token-addresses.bridge')}
                         <LinkArrow color={Colors.CYAN} />

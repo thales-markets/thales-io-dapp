@@ -82,7 +82,10 @@ const DappHeader: React.FC = () => {
             },
         ];
     }, [location.pathname, t]);
-
+    const hideWallet = useMemo(() => location.pathname === ROUTES.Dashboard || location.pathname === ROUTES.Home, [
+        location.pathname,
+    ]);
+    console.log(hideWallet);
     return (
         <>
             <HeaderContainer>
@@ -93,7 +96,7 @@ const DappHeader: React.FC = () => {
                 <LinksContainer>
                     <NavLinks items={navItems} />
                 </LinksContainer>
-                <UserWallet />
+                <UserWallet hide={hideWallet} />
             </HeaderContainer>
         </>
     );

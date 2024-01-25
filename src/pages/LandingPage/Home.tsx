@@ -12,11 +12,12 @@ import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import useAllTVLsQuery from 'queries/useAllTVLsQueries';
 import React, { CSSProperties, Suspense, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivSpaceAround } from 'styles/common';
 import { AMMsTVLData, VaultsTVLData } from 'types/liquidity';
 import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
 import Footer from './Footer';
+import EcosystemApps from './components/EcosystemApps';
 import Timeline from './components/Timeline';
 import {
     About,
@@ -24,7 +25,6 @@ import {
     BulletNumber,
     BuySellSection,
     Description,
-    EcosystemApps,
     EcosystemSection,
     EcosystemTitle,
     FooterLine,
@@ -173,34 +173,7 @@ const Home: React.FC = () => {
                 </HomeButton>
                 <EcosystemSection>
                     <SectionTitle>{t('home.ecosystem-apps.title')}</SectionTitle>
-                    <EcosystemApps>
-                        <FlexDivColumn>
-                            <SPAAnchor href={LINKS.Overtime}>
-                                <HomeIcon fontSize="10em" className="icon icon--overtime" />
-                            </SPAAnchor>
-                            <Description>{t('home.ecosystem-apps.overtime')}</Description>
-                        </FlexDivColumn>
-                        <FlexDivColumn>
-                            <SPAAnchor href={LINKS.ThalesMarkets}>
-                                <HomeIcon fontSize="10em" className="icon icon--thales-markets" />
-                            </SPAAnchor>
-                            <Description>{t('home.ecosystem-apps.thales-markets')}</Description>
-                        </FlexDivColumn>
-                        <FlexDivColumn>
-                            <SPAAnchor href={LINKS.BookieBot}>
-                                <HomeIcon style={{ height: '80px' }} fontSize="4em" className="icon icon--bookie" />
-                            </SPAAnchor>
-
-                            <Description>{t('home.ecosystem-apps.bookie')}</Description>
-                        </FlexDivColumn>
-                        <FlexDivColumn>
-                            <SPAAnchor href={LINKS.Spongly}>
-                                <HomeIcon fontSize="10em" className="icon icon--spongly" />
-                            </SPAAnchor>
-
-                            <Description>{t('home.ecosystem-apps.spongly')}</Description>
-                        </FlexDivColumn>
-                    </EcosystemApps>
+                    <EcosystemApps />
                 </EcosystemSection>
                 <Section>
                     <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
@@ -263,8 +236,8 @@ const Home: React.FC = () => {
                     <Description>{t('home.buying-selling.description-1')}</Description>
                     <Description>{t('home.buying-selling.description-2')}</Description>
                 </Section>
-                <div>
-                    <BuySellSection>
+                <FlexDivSpaceAround>
+                    <BuySellSection flex="0.5">
                         <FlexDivCentered>
                             <Highlight>{t('home.buying-selling.buying.title')}</Highlight>
                         </FlexDivCentered>
@@ -273,7 +246,11 @@ const Home: React.FC = () => {
                         </LottieContainer>
                         <FlexDivCentered>
                             <StepsSection>
-                                <Collapse hideLine title={t('home.buying-selling.buying.steps-title')}>
+                                <Collapse
+                                    headerTextAlign="center"
+                                    hideLine
+                                    title={t('home.buying-selling.buying.steps-title')}
+                                >
                                     <Description>
                                         <FlexDiv>
                                             <BulletNumber>{'\u2776'}</BulletNumber>
@@ -308,7 +285,7 @@ const Home: React.FC = () => {
                             </StepsSection>
                         </FlexDivCentered>
                     </BuySellSection>
-                    <BuySellSection>
+                    <BuySellSection flex="0.3">
                         <FlexDivCentered>
                             <Highlight>{t('home.buying-selling.selling.title')}</Highlight>
                         </FlexDivCentered>
@@ -317,7 +294,11 @@ const Home: React.FC = () => {
                         </LottieContainer>
                         <FlexDivCentered>
                             <StepsSection>
-                                <Collapse hideLine title={t('home.buying-selling.selling.steps-title')}>
+                                <Collapse
+                                    headerTextAlign="center"
+                                    hideLine
+                                    title={t('home.buying-selling.selling.steps-title')}
+                                >
                                     <Description>
                                         <FlexDiv>
                                             <BulletNumber>{'\u2776'}</BulletNumber>
@@ -334,7 +315,7 @@ const Home: React.FC = () => {
                             </StepsSection>
                         </FlexDivCentered>
                     </BuySellSection>
-                </div>
+                </FlexDivSpaceAround>
                 <Section>
                     <SectionTitleLink>
                         <SPAAnchor href={buildHref(ROUTES.About.Governance)}>
@@ -352,27 +333,6 @@ const Home: React.FC = () => {
                     <div>
                         <Timeline />
                     </div>
-
-                    {/* <MilestonesContainer>
-                        {MILESTONES.map((milestone, index) => (
-                            <Milestone
-                                key={index}
-                                isLastRow={index + 1 > Math.floor((MILESTONES.length - 1) / 4) * 4}
-                                isLast={MILESTONES.length - 1 === index}
-                                index={index + 1}
-                            >
-                                <MilestoneDate>{`${t(`common.${milestone.month.toLowerCase()}`)} ${
-                                    milestone.year
-                                }`}</MilestoneDate>
-                                <MilestoneDescription>
-                                    <Trans
-                                        i18nKey={`milestones.${milestone.descriptionKey}`}
-                                        components={{ bold: <span /> }}
-                                    />
-                                </MilestoneDescription>
-                            </Milestone>
-                        ))}
-                    </MilestonesContainer> */}
                 </Section>
                 <FooterLine />
             </Wrapper>
@@ -384,11 +344,9 @@ const Home: React.FC = () => {
 export default Home;
 
 const buyingAnimationStyle: CSSProperties = {
-    width: '50%',
     zIndex: '-1',
 };
 
 const sellingAnimationStyle: CSSProperties = {
-    width: '29.7%',
     zIndex: '-1',
 };
