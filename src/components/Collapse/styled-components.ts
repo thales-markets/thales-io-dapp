@@ -10,7 +10,13 @@ export const CollapseIcon = styled.i`
     font-size: 13px;
 `;
 
-export const Highlight = styled.div<{ marginBottom?: string; cursor?: string; fontSize?: string; fontFamily?: string }>`
+export const Highlight = styled.div<{
+    marginBottom?: string;
+    cursor?: string;
+    fontSize?: string;
+    fontFamily?: string;
+    textAlign?: string;
+}>`
     cursor: ${(props) => (props.cursor ? props.cursor : 'default')};
     color: white;
     font-family: ${(props) => (props.fontFamily ? props.fontFamily : 'MontserratBold')};
@@ -18,4 +24,5 @@ export const Highlight = styled.div<{ marginBottom?: string; cursor?: string; fo
     font-style: normal;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0px')};
     line-height: 140%;
+    text-align: ${(props) => (props.textAlign ? props.textAlign : 'left')};
 `;

@@ -121,12 +121,6 @@ export const HomeButton = styled.button`
     padding: 7px 12px;
 `;
 
-export const EcosystemApps = styled(FlexDiv)`
-    gap: 30px;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        flex-direction: column;
-    }
-`;
 export const EcosystemSection = styled.div`
     margin-top: 150px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -194,7 +188,6 @@ export const LottieContainer = styled(FlexDivCentered)`
 `;
 
 export const StepsSection = styled(FlexDivColumn)`
-    flex: 0.55;
     margin-top: -60px;
 `;
 
@@ -346,8 +339,12 @@ export const SocialIcon = styled(Icon)`
     }
 `;
 
-export const BuySellSection = styled.div`
+export const BuySellSection = styled.div<{ flex: string }>`
+    display: flex;
+    flex-direction: column;
+    align-self: baseline;
     margin-top: 50px;
+    flex: ${(props) => props.flex};
 `;
 
 export const ThemedCircularProgress = styled(CircularProgress)`
