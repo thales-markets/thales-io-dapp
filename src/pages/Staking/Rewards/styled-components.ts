@@ -1,26 +1,44 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
+import { FlexDiv } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
     font-family: Nunito;
     font-size: 13px;
     display: grid;
-    width: 100%;
-    grid-template-columns: repeat(2, 670px);
-    grid-template-rows: 550px 150px;
+    width: 60%;
+    grid-template-rows: fr 160px;
     column-gap: 10px;
     row-gap: 10px;
-    grid-template-areas: 'upper-left right' 'bottom-left right';
-    margin-bottom: 100px;
+    grid-template-areas: 'top' 'bottom';
     z-index: 1;
-    line-height: normal;
-    margin-top: 50px;
     > div {
         position: relative;
         padding: 20px;
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
     }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+    }
+`;
+
+export const ClaimableRewardsContainer = styled(FlexDiv)`
+    flex-direction: row;
+    > div {
+        flex: 1;
+    }
+`;
+
+export const RewardsDetailsContainer = styled(FlexDiv)`
+    flex-direction: column;
+`;
+export const ClaimContainer = styled(FlexDiv)``;
+
+export const ItemsWrapper = styled(FlexDiv)`
+    flex-direction: column;
+    margin-top: 7px;
 `;
 
 export const UpperLeft = styled.div`
@@ -65,9 +83,30 @@ export const BottomRight = styled.div`
     justify-content: space-between;
 `;
 
-export const SectionSubtitle = styled.div`
+export const StakingDetailsSection = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     margin-top: 5px;
     > span {
+        color: ${(props) => props.theme.textColor.primary};
+        font-weight: 700;
+    }
+`;
+
+export const ClaimSection = styled(FlexDiv)`
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+`;
+
+export const RewardsInfo = styled(FlexDiv)`
+    flex-direction: column;
+    > span {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: right;
         color: ${(props) => props.theme.textColor.secondary};
     }
 `;
