@@ -7,7 +7,6 @@ import { FlexDivColumn } from 'styles/common';
 import { buildHref } from 'utils/routes';
 import {
     FooterContainer,
-    FooterLine,
     FooterLogo,
     LinksContainer,
     ThalesLinks,
@@ -20,7 +19,6 @@ const Footer: React.FC = () => {
 
     return (
         <>
-            <FooterLine />
             <FooterContainer>
                 <LinksContainer>
                     <ThalesLinks>

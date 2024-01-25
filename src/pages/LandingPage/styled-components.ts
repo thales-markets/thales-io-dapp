@@ -48,7 +48,7 @@ export const EcosystemTitle = styled(FlexDiv)`
     line-height: 91.4%;
     height: 35px;
     i {
-        margin: 0px 10px 13px 10px;
+        margin: 0px 10px 13px 0px;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 10px;
@@ -323,12 +323,15 @@ export const ThalesLinksItem = styled.div`
     text-transform: capitalize;
 `;
 export const FooterLine = styled.div`
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-25%);
     background-image: linear-gradient(to right, white 17%, rgba(255, 255, 255, 0) 0%);
     background-position: bottom;
     background-size: 13px 1px;
     background-repeat: repeat-x;
     height: 1px;
-    width: 100%;
+    width: 200%;
 `;
 export const FooterContainer = styled.div`
     width: 100%;
