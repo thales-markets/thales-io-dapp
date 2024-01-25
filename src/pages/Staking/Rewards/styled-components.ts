@@ -1,6 +1,7 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
+import { InfoDiv } from '../styled-components';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
@@ -109,6 +110,17 @@ export const RewardsInfo = styled(FlexDiv)`
         text-align: right;
         color: ${(props) => props.theme.textColor.secondary};
     }
+`;
+
+export const StakingMultiplier = styled(InfoDiv)`
+    justify-content: flex-start;
+    > span:nth-child(2) {
+        color: ${(props) => props.theme.textColor.secondary};
+        text-align: right;
+        font-family: NunitoBold;
+        line-height: 155%;
+    }
+    margin-bottom: 30px;
 `;
 
 export const SectionText = styled.div`

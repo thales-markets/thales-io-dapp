@@ -29,8 +29,6 @@ import { refetchTokenQueries } from 'utils/queryConnector';
 import snxJSConnector from 'utils/snxJSConnector';
 import { InfoDiv, SectionTitle, StakingButton } from '../styled-components';
 import {
-    ButtonContainer,
-    ClaimButtonDisclaimer,
     ClaimSection,
     ClaimableRewardsContainer,
     Container,
@@ -41,6 +39,7 @@ import {
     RewardsInfo,
     SectionText,
     StakingDetailsSection,
+    StakingMultiplier,
 } from './styled-components';
 
 const Rewards: React.FC = () => {
@@ -301,57 +300,47 @@ const Rewards: React.FC = () => {
                 </ClaimSection>
             </ClaimableRewardsContainer>
             <div>
-                <FinalPointsTitle>{t('staking.rewards.claim.total-thales-points')}</FinalPointsTitle>
-                {isWalletConnected && (
-                    <FinalPoints>
-                        {formatCurrencyWithKey(THALES_CURRENCY, userStakingData ? userStakingData.rewards : 0, 2)}
-                        {' + '}
-                        {'3333 USDC'}
-                    </FinalPoints>
-                )}
-            </div>
-            <div>
-                <ButtonContainer></ButtonContainer>
-                <ClaimButtonDisclaimer>{t('staking.rewards.claim.disclaimer')}</ClaimButtonDisclaimer>
-            </div>
-            <div>
                 <SectionTitle>
                     <span>
                         <i className="icon icon--pig" />
                         {t('staking.rewards.base-rewards.title')}
                     </span>
-                    <span>{baseRewardsData?.baseRewards}</span>
+                    <span>{formatCurrencyWithKey(THALES_CURRENCY, lastValidUserStakingData?.baseRewards ?? 0, 2)}</span>
                 </SectionTitle>
+                <StakingMultiplier>
+                    <span>{t('staking.rewards.base-rewards.current-multiplier')}</span>
+                    <span>x{pointsData?.stakingMultiplier}</span>
+                </StakingMultiplier>
+                <FlexDiv gap="30px">
+                    <FlexDivColumn>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.base-rewards.your-staked')}</span>
+                            <span>{baseRewardsData?.thalesStaked}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>
+                                <Trans
+                                    i18nKey="staking.rewards.base-rewards.staking-divider"
+                                    components={{
+                                        span: <span />,
+                                    }}
+                                />
+                            </span>
+                            <span>{lastValidPointsData?.thalesDivider}</span>
+                        </InfoDiv>
+                    </FlexDivColumn>
+                    <FlexDivColumn>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.base-rewards.total-staked')}</span>
+                            <span>{baseRewardsData?.totalStaked}</span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>{t('staking.rewards.base-rewards.staked-share')}</span>
+                            <span>{baseRewardsData?.share}</span>
+                        </InfoDiv>
+                    </FlexDivColumn>
+                </FlexDiv>
             </div>
-            <FlexDiv gap="30px">
-                <FlexDivColumn>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.base-rewards.your-staked')}</span>
-                        <span>{baseRewardsData?.thalesStaked}</span>
-                    </InfoDiv>
-                    <InfoDiv>
-                        <span>
-                            <Trans
-                                i18nKey="staking.rewards.base-rewards.current-multiplier"
-                                components={{
-                                    span: <span />,
-                                }}
-                            />
-                        </span>
-                        <span>x{pointsData?.stakingMultiplier}</span>
-                    </InfoDiv>
-                </FlexDivColumn>
-                <FlexDivColumn>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.base-rewards.total-staked')}</span>
-                        <span>{baseRewardsData?.totalStaked}</span>
-                    </InfoDiv>
-                    <InfoDiv>
-                        <span>{t('staking.rewards.base-rewards.staked-share')}</span>
-                        <span>{baseRewardsData?.share}</span>
-                    </InfoDiv>
-                </FlexDivColumn>
-            </FlexDiv>
             <div>
                 <SectionTitle>
                     <span>
