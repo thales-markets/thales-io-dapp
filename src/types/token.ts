@@ -36,6 +36,14 @@ export type StakingData = {
     apyBase: number;
 };
 
+export type GlobalStakingData = {
+    totalStakedAmount: number;
+    feeApy: number;
+    thalesApy: number;
+    baseRewards: number;
+    extraRewards: number;
+};
+
 export type ThalesStakingData = {
     period: number;
     unstakeDurationPeriod: number;
@@ -86,21 +94,11 @@ export type UserStakingData = {
     delegatedVolume: string;
     rewards: number;
     baseRewards: number;
+    feeRewards: number;
     totalBonus: number;
-    snxBonus: number;
-    ammBonus: number;
-    maxSnxBonus: number;
-    maxAmmBonus: number;
-    maxThalesRoyaleBonus: number;
-    snxStaked: number;
-    ammVolume: number;
-    thalesAmmVolume: number;
-    rangedAmmVolume: number;
-    sportsAmmVolume: number;
     escrowedBalance: number;
     claimable: number;
     rawClaimable: string;
-    isUserLPing: boolean;
     isPaused: boolean;
     unstakeDurationPeriod: number;
     mergeAccountEnabled: boolean;

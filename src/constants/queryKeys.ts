@@ -48,6 +48,7 @@ const QUERY_KEYS = {
             networkId,
         ],
         StakingData: () => ['token', 'staking', 'data'],
+        GlobalStakingData: () => ['token', 'global', 'staking'],
         ThalesStakingData: (networkId: Network) => [networkId, 'token', 'staking', 'data'],
         UserStakingData: (walletAddress: string, networkId: Network) => [
             'token',
