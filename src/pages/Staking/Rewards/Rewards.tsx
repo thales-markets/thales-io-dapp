@@ -1,4 +1,5 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
+import Collapse from 'components/Collapse';
 import TimeRemaining from 'components/TimeRemaining';
 import {
     getDefaultToastContent,
@@ -408,49 +409,31 @@ const Rewards: React.FC = () => {
                         {t('staking.rewards.how-it-works.title')}
                     </span>
                 </SectionTitle>
-                <SectionText>
-                    <Trans
-                        i18nKey="staking.rewards.how-it-works.every-week-description"
-                        components={{
-                            span: <span />,
-                        }}
-                    />
-                </SectionText>
-                <SectionText>
-                    <Trans
-                        i18nKey="staking.rewards.how-it-works.each-week-description"
-                        components={{
-                            span: <span />,
-                            br: <br />,
-                        }}
-                    />
-                </SectionText>
-                <SectionText>
-                    <Trans
-                        i18nKey="staking.rewards.how-it-works.how-points-are-earned"
-                        components={{
-                            span: <span />,
-                            br: <br />,
-                        }}
-                    />
-                </SectionText>
-                <SectionText>
-                    <Trans
-                        i18nKey="staking.rewards.how-it-works.multiplier-description"
-                        components={{
-                            br: <br />,
-                        }}
-                    />
-                </SectionText>
-            </div>
-            <div>
-                <FinalPointsTitle>{t('staking.rewards.how-it-works.final-points')}</FinalPointsTitle>
-                {isWalletConnected && (
-                    <FinalPoints>
-                        {pointsData?.totalPoints} = ({pointsData?.tradingPoints} + {pointsData?.lpPoints} +{' '}
-                        {pointsData?.vaultsPoints}) x {pointsData?.stakingMultiplier}
-                    </FinalPoints>
-                )}
+                <Collapse
+                    title={t('staking.rewards.how-it-works.each-week')}
+                    additionalStyling={{ titleFontSize: '13px', titleMarginBottom: '5px', titleMarginTop: '20px' }}
+                >
+                    <SectionText>
+                        <Trans
+                            i18nKey="staking.rewards.how-it-works.each-week-description"
+                            components={{
+                                span: <span />,
+                            }}
+                        />
+                    </SectionText>
+                </Collapse>
+                <Collapse
+                    title={t('staking.rewards.how-it-works.how-points-are-earned-title')}
+                    additionalStyling={{ titleFontSize: '13px', titleMarginBottom: '5px', titleMarginTop: '20px' }}
+                >
+                    <FinalPointsTitle>{t('staking.rewards.how-it-works.final-points')}</FinalPointsTitle>
+                    {isWalletConnected && (
+                        <FinalPoints>
+                            {pointsData?.totalPoints} = ({pointsData?.tradingPoints} + {pointsData?.lpPoints} +{' '}
+                            {pointsData?.vaultsPoints}) x {pointsData?.stakingMultiplier}
+                        </FinalPoints>
+                    )}
+                </Collapse>
             </div>
         </Container>
     );
