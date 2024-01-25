@@ -9,6 +9,7 @@ type CollapseProps = {
         titleFontSize?: string;
         titleFontFamily?: string;
         titleMarginBottom?: string;
+        titleMarginTop?: string;
         containerMarginButton?: string;
     };
 };
@@ -20,6 +21,7 @@ const Collapse: React.FC<CollapseProps> = ({ title, hideLine, additionalStyling,
             <Highlight
                 cursor="pointer"
                 marginBottom={additionalStyling?.titleMarginBottom ? additionalStyling?.titleMarginBottom : '20px'}
+                marginTop={additionalStyling?.titleMarginTop ? additionalStyling?.titleMarginTop : ''}
                 fontSize={additionalStyling?.titleFontSize}
                 fontFamily={additionalStyling?.titleFontFamily}
                 onClick={() => {
