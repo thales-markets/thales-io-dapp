@@ -2,7 +2,7 @@ import { ZERO_ADDRESS } from 'constants/network';
 import { BALANCE_THRESHOLD } from 'constants/token';
 import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
-import { bigNumberFormatter } from 'thales-utils';
+import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
 import { UserStakingData } from 'types/token';
 import QUERY_KEYS from '../../constants/queryKeys';
 import snxJSConnector from '../../utils/snxJSConnector';
@@ -26,38 +26,28 @@ const useUserStakingDataQuery = (
                 rewards: 0,
                 baseRewards: 0,
                 totalBonus: 0,
-                snxBonus: 0,
-                ammBonus: 0,
-                maxSnxBonus: 0,
-                maxAmmBonus: 0,
-                maxThalesRoyaleBonus: 0,
-                snxStaked: 0,
-                ammVolume: 0,
-                thalesAmmVolume: 0,
-                rangedAmmVolume: 0,
-                sportsAmmVolume: 0,
+                feeRewards: 0,
                 escrowedBalance: 0,
                 claimable: 0,
                 rawClaimable: '0',
-                isUserLPing: false,
                 isPaused: false,
                 unstakeDurationPeriod: 7 * 24 * 60 * 60, // one week
                 mergeAccountEnabled: true,
             };
             try {
-                const {
-                    stakingDataContract,
-                    sportLiquidityPoolContract,
-                    thalesLiquidityPoolContract,
-                    parlayAMMLiquidityPoolContract,
-                } = snxJSConnector;
-
-                if (stakingDataContract) {
-                    const [contractStakingData, contractUserStakingData] = await Promise.all([
+                const { stakingDataContract, stakingThalesContract } = snxJSConnector;
+                if (stakingDataContract && stakingThalesContract) {
+                    const [
+                        contractStakingData,
+                        contractUserStakingData,
+                        feeRewards,
+                        closingPeriodInProgress,
+                    ] = await Promise.all([
                         stakingDataContract.getStakingData(),
                         stakingDataContract.getUserStakingData(walletAddress),
+                        stakingThalesContract.getRewardFeesAvailable(walletAddress),
+                        stakingThalesContract.closingPeriodInProgress(),
                     ]);
-
                     userStakingData.thalesStaked =
                         bigNumberFormatter(contractUserStakingData.thalesStaked) < BALANCE_THRESHOLD
                             ? 0
@@ -73,39 +63,15 @@ const useUserStakingDataQuery = (
                     userStakingData.rewards = bigNumberFormatter(contractUserStakingData.rewards);
                     userStakingData.baseRewards = bigNumberFormatter(contractUserStakingData.baseRewards);
                     userStakingData.totalBonus = bigNumberFormatter(contractUserStakingData.totalBonus);
-                    userStakingData.snxBonus = bigNumberFormatter(contractUserStakingData.snxBonus);
-                    userStakingData.ammBonus = bigNumberFormatter(contractUserStakingData.ammBonus);
-                    userStakingData.maxSnxBonus =
-                        (bigNumberFormatter(contractUserStakingData.baseRewards) *
-                            Number(contractStakingData.maxSNXRewardsPercentage)) /
-                        100;
-                    userStakingData.maxAmmBonus =
-                        (bigNumberFormatter(contractUserStakingData.baseRewards) *
-                            Number(contractStakingData.maxAMMVolumeRewardsPercentage)) /
-                        100;
-                    userStakingData.maxThalesRoyaleBonus =
-                        (bigNumberFormatter(contractUserStakingData.baseRewards) *
-                            Number(contractStakingData.maxThalesRoyaleRewardsPercentage)) /
-                        100;
-                    userStakingData.snxStaked = bigNumberFormatter(contractUserStakingData.snxStaked);
-                    userStakingData.ammVolume = bigNumberFormatter(contractUserStakingData.ammVolume);
-                    userStakingData.thalesAmmVolume = bigNumberFormatter(contractUserStakingData.thalesAmmVolume);
-                    userStakingData.rangedAmmVolume = bigNumberFormatter(contractUserStakingData.rangedAmmVolume);
-                    userStakingData.sportsAmmVolume = bigNumberFormatter(contractUserStakingData.sportsAmmVolume);
+                    userStakingData.feeRewards = bigNumberFormatter(
+                        feeRewards,
+                        getDefaultDecimalsForNetwork(networkId)
+                    );
                     userStakingData.escrowedBalance = bigNumberFormatter(contractUserStakingData.escrowedBalance);
                     userStakingData.claimable = bigNumberFormatter(contractUserStakingData.claimable);
                     userStakingData.rawClaimable = contractUserStakingData.claimable;
 
-                    if (sportLiquidityPoolContract && thalesLiquidityPoolContract && parlayAMMLiquidityPoolContract) {
-                        const [isUserSportLPing, isUserParlayLPing, isUserLPing] = await Promise.all([
-                            sportLiquidityPoolContract.isUserLPing(walletAddress),
-                            parlayAMMLiquidityPoolContract.isUserLPing(walletAddress),
-                            thalesLiquidityPoolContract.isUserLPing(walletAddress),
-                        ]);
-                        userStakingData.isUserLPing = isUserSportLPing || isUserLPing || isUserParlayLPing;
-                    }
-
-                    userStakingData.isPaused = contractStakingData.paused;
+                    userStakingData.isPaused = contractStakingData.paused || closingPeriodInProgress;
                     userStakingData.unstakeDurationPeriod = Number(contractStakingData.unstakeDurationPeriod) * 1000;
                     userStakingData.mergeAccountEnabled = contractStakingData.mergeAccountEnabled;
 
