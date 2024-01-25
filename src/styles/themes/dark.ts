@@ -52,6 +52,7 @@ const darkTheme = {
         },
         textColor: {
             primary: Colors.RED,
+            secondary: Colors.CHINA_PINK,
         },
         borderColor: {
             primary: Colors.RED,
