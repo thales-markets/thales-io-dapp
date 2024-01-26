@@ -199,6 +199,8 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
                                     ? `${t('common.balance')}: ${formatCurrency(lpTokensBalance)}`
                                     : undefined
                             }
+                            width="100%"
+                            containerWidth="70%"
                             isBalanceLoading={lpTokensBalanceQuery.isLoading}
                         />
                     </FlexDivCentered>

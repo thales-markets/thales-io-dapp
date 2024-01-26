@@ -123,6 +123,8 @@ const Unstake: React.FC<Properties> = ({ staked }) => {
                             balance={
                                 isWalletConnected ? `${t('common.balance')}: ${formatCurrency(staked)}` : undefined
                             }
+                            width="100%"
+                            containerWidth="70%"
                         />
                     </FlexDivCentered>
                 </StakeInputContainer>
