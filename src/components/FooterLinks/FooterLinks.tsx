@@ -12,34 +12,34 @@ const FooterLinks: React.FC<FooterLinksProps> = ({ iconSize }) => {
     const { t } = useTranslation();
     return (
         <Container>
-            <FlexDivColumnCentered style={{ alignItems: 'center' }}>
+            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
                 <SPAAnchor href={LINKS.Discord}>
                     <Icon iconSize={iconSize} className="icon icon--discord" />
                 </SPAAnchor>
                 <Name>{t('footer.discord')}</Name>
             </FlexDivColumnCentered>
-            <FlexDivColumnCentered style={{ alignItems: 'center' }}>
+            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
                 <SPAAnchor href={LINKS.Twitter}>
                     <Icon iconSize={iconSize} className="icon icon--twitter" />
                 </SPAAnchor>
 
                 <Name>{t('footer.twitter')}</Name>
             </FlexDivColumnCentered>
-            <FlexDivColumnCentered style={{ alignItems: 'center' }}>
+            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
                 <SPAAnchor href={LINKS.ThalesMarketDocs}>
                     <Icon iconSize={iconSize} className="icon icon--docs" />
                 </SPAAnchor>
 
                 <Name>{t('footer.docs')}</Name>
             </FlexDivColumnCentered>
-            <FlexDivColumnCentered style={{ alignItems: 'center' }}>
+            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
                 <SPAAnchor href={LINKS.Github}>
                     <Icon iconSize={iconSize} className="icon icon--github" />
                 </SPAAnchor>
 
                 <Name>{t('footer.github')}</Name>
             </FlexDivColumnCentered>
-            <FlexDivColumnCentered style={{ alignItems: 'center' }}>
+            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
                 <SPAAnchor href={LINKS.Medium}>
                     <Icon iconSize={iconSize} className="icon icon--medium" />
                 </SPAAnchor>
