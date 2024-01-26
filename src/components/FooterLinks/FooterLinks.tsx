@@ -12,40 +12,38 @@ const FooterLinks: React.FC<FooterLinksProps> = ({ iconSize }) => {
     const { t } = useTranslation();
     return (
         <Container>
-            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
-                <SPAAnchor href={LINKS.Discord}>
+            <SPAAnchor href={LINKS.Discord} style={{ cursor: 'pointer' }}>
+                <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                     <Icon iconSize={iconSize} className="icon icon--discord" />
-                </SPAAnchor>
-                <Name>{t('footer.discord')}</Name>
-            </FlexDivColumnCentered>
-            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
-                <SPAAnchor href={LINKS.Twitter}>
+                    <Name>{t('footer.discord')}</Name>
+                </FlexDivColumnCentered>
+            </SPAAnchor>
+
+            <SPAAnchor href={LINKS.Twitter} style={{ cursor: 'pointer' }}>
+                <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                     <Icon iconSize={iconSize} className="icon icon--twitter" />
-                </SPAAnchor>
-
-                <Name>{t('footer.twitter')}</Name>
-            </FlexDivColumnCentered>
-            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
-                <SPAAnchor href={LINKS.ThalesMarketDocs}>
+                    <Name>{t('footer.twitter')}</Name>
+                </FlexDivColumnCentered>
+            </SPAAnchor>
+            <SPAAnchor href={LINKS.ThalesMarketDocs} style={{ cursor: 'pointer' }}>
+                <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                     <Icon iconSize={iconSize} className="icon icon--docs" />
-                </SPAAnchor>
+                    <Name>{t('footer.docs')}</Name>
+                </FlexDivColumnCentered>
+            </SPAAnchor>
 
-                <Name>{t('footer.docs')}</Name>
-            </FlexDivColumnCentered>
-            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
-                <SPAAnchor href={LINKS.Github}>
+            <SPAAnchor href={LINKS.Github} style={{ cursor: 'pointer' }}>
+                <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                     <Icon iconSize={iconSize} className="icon icon--github" />
-                </SPAAnchor>
-
-                <Name>{t('footer.github')}</Name>
-            </FlexDivColumnCentered>
-            <FlexDivColumnCentered style={{ alignItems: 'center', cursor: 'pointer' }}>
-                <SPAAnchor href={LINKS.Medium}>
+                    <Name>{t('footer.github')}</Name>
+                </FlexDivColumnCentered>
+            </SPAAnchor>
+            <SPAAnchor href={LINKS.Medium} style={{ cursor: 'pointer' }}>
+                <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                     <Icon iconSize={iconSize} className="icon icon--medium" />
-                </SPAAnchor>
-
-                <Name>{t('footer.medium')}</Name>
-            </FlexDivColumnCentered>
+                    <Name>{t('footer.medium')}</Name>
+                </FlexDivColumnCentered>
+            </SPAAnchor>
         </Container>
     );
 };

@@ -350,7 +350,7 @@ const Rewards: React.FC = () => {
                     </span>
                     <span>
                         {userData &&
-                            formatCurrencyWithKey(THALES_CURRENCY, (userData.share as any) * userData.bonusRewards, 2)}
+                            formatCurrencyWithKey(THALES_CURRENCY, lastValidUserStakingData?.totalBonus ?? 0, 2)}
                     </span>
                 </SectionTitle>
                 <SubTitle>

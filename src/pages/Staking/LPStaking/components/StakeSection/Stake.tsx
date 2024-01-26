@@ -187,7 +187,6 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
                             value={amountToStake}
                             onChange={(_, value) => setAmountToStake(value)}
                             disabled={isStaking}
-                            currencyLabel={LP_TOKEN}
                             placeholder={t('common.enter-amount')}
                             label={t('staking.lp-staking.stake.amount-to-stake')}
                             onMaxButton={onMaxClick}
@@ -200,6 +199,8 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
                                     ? `${t('common.balance')}: ${formatCurrency(lpTokensBalance)}`
                                     : undefined
                             }
+                            width="100%"
+                            containerWidth="70%"
                             isBalanceLoading={lpTokensBalanceQuery.isLoading}
                         />
                     </FlexDivCentered>

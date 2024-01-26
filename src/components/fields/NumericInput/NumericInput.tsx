@@ -23,6 +23,7 @@ type NumericInputProps = {
     currencyLabel?: string;
     tooltip?: string;
     onMaxButton?: any;
+    maxButtonDisabled?: boolean;
     balance?: string;
     isBalanceLoading?: boolean;
     info?: string;
@@ -51,6 +52,7 @@ const NumericInput: React.FC<NumericInputProps> = ({
     currencyLabel,
     tooltip,
     onMaxButton,
+    maxButtonDisabled,
     balance,
     isBalanceLoading,
     info,
@@ -123,7 +125,7 @@ const NumericInput: React.FC<NumericInputProps> = ({
                 />
                 <RightContainer>
                     {onMaxButton && (
-                        <MaxButton disabled={disabled} onClick={onMaxButton}>
+                        <MaxButton disabled={disabled || maxButtonDisabled} onClick={onMaxButton}>
                             {t('common.max')}
                         </MaxButton>
                     )}

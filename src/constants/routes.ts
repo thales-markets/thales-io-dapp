@@ -2,8 +2,8 @@ const ROUTES = {
     Home: '/',
     Dashboard: '/dashboard',
     Staking: '/token',
-    Bridge: '/bridge',
-    LPStaking: '/lp-staking',
+    Bridge: '/token/bridge',
+    LPStaking: '/token/lp-staking',
     AMMLP: '/amm-lp',
     DAO: {
         Home: '/dao',

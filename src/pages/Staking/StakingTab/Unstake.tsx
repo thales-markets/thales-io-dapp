@@ -315,10 +315,10 @@ const Unstake: React.FC = () => {
                         value={amountToUnstake}
                         onChange={(_, value) => setAmountToUnstake(value)}
                         disabled={isUnstakingInContract || isUnstaking || isCanceling || isStakingPaused}
-                        currencyLabel={THALES_CURRENCY}
                         placeholder={t('common.enter-amount')}
                         label={t('staking.staking.stake-unstake.amount-to-unstake')}
                         onMaxButton={onMaxClick}
+                        maxButtonDisabled={!thalesStaked}
                         showValidation={!isAmountValid}
                         validationMessage={t(`common.errors.insufficient-balance-wallet`, {
                             currencyKey: THALES_CURRENCY,

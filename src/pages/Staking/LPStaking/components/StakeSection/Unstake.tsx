@@ -113,7 +113,6 @@ const Unstake: React.FC<Properties> = ({ staked }) => {
                             value={amountToUnstake}
                             onChange={(_, value) => setAmountToUnstake(value)}
                             disabled={isUnstaking}
-                            currencyLabel={LP_TOKEN}
                             placeholder={t('common.enter-amount')}
                             label={t('staking.lp-staking.unstake.amount-to-unstake')}
                             onMaxButton={onMaxClick}
@@ -124,6 +123,8 @@ const Unstake: React.FC<Properties> = ({ staked }) => {
                             balance={
                                 isWalletConnected ? `${t('common.balance')}: ${formatCurrency(staked)}` : undefined
                             }
+                            width="100%"
+                            containerWidth="70%"
                         />
                     </FlexDivCentered>
                 </StakeInputContainer>
