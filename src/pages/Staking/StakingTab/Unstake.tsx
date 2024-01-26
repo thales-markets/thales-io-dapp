@@ -327,6 +327,8 @@ const Unstake: React.FC = () => {
                             isWalletConnected ? `${t('common.balance')}: ${formatCurrency(thalesStaked)}` : undefined
                         }
                         isBalanceLoading={userStakingDataQuery.isLoading}
+                        width="100%"
+                        containerWidth="70%"
                     />
                 </InputContainer>
                 <ButtonsContainer twoButtons={isUnstakingInContract && unstakingEnded}>

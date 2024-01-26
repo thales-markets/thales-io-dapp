@@ -229,7 +229,8 @@ const Stake: React.FC = () => {
                                     : undefined
                             }
                             isBalanceLoading={thalesBalanceQuery.isLoading}
-                            width="400px"
+                            width="100%"
+                            containerWidth="70%"
                         />
                     </FlexDivCentered>
                 </StakeInputContainer>
