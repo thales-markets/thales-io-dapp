@@ -8,13 +8,13 @@ import { THALES_CURRENCY } from 'constants/currency';
 import { ethers } from 'ethers';
 import useUserVestingDataQuery from 'queries/token/useUserVestingDataQuery';
 import { useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import { FlexDiv, FlexDivColumnSpaceBetween } from 'styles/common';
+import { FlexDiv, FlexDivCentered } from 'styles/common';
 import { formatCurrency, formatCurrencyWithKey, formatShortDate } from 'thales-utils';
 import { UserVestingData } from 'types/token';
 import { refetchTokenQueries } from 'utils/queryConnector';
@@ -22,7 +22,11 @@ import snxJSConnector from 'utils/snxJSConnector';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
 import YourTransactions from './Transactions';
 import {
+    Amount,
+    AvailableToVestWrapper,
     Container,
+    DescriptionWrapper,
+    HighlightedDescText,
     ScheduleAmount,
     ScheduleContainer,
     ScheduleDate,
@@ -101,21 +105,28 @@ const Vesting: React.FC = () => {
         <>
             <Container>
                 <FlexDiv gap="20px">
-                    <FlexDivColumnSpaceBetween>
+                    <AvailableToVestWrapper>
                         <SectionTitle>
                             <span>
                                 <i className="icon icon--staking" />
                                 {t('staking.vesting.title')}
                             </span>
-                            <span>{formatCurrencyWithKey(THALES_CURRENCY, claimable, 0, true)}</span>
                         </SectionTitle>
-                        <div>{getVestButton()}</div>
-                    </FlexDivColumnSpaceBetween>
-                    <FlexDivColumnSpaceBetween>
-                        <SectionDescription>{t('staking.vesting.description')}</SectionDescription>
+                        <Amount>{formatCurrencyWithKey(THALES_CURRENCY, claimable, 0, true)}</Amount>
+                    </AvailableToVestWrapper>
+                    <DescriptionWrapper>
+                        <SectionDescription>
+                            <Trans
+                                i18nKey="staking.vesting.description"
+                                components={{
+                                    strong: <HighlightedDescText />,
+                                }}
+                            />
+                        </SectionDescription>
                         {/* <VestingValid>{t('staking.vesting.vested-until')} 30. November 2023.</VestingValid> */}
-                    </FlexDivColumnSpaceBetween>
+                    </DescriptionWrapper>
                 </FlexDiv>
+                <FlexDivCentered>{getVestButton()}</FlexDivCentered>
             </Container>
             {isWalletConnected && (
                 <ScheduleWrapper>

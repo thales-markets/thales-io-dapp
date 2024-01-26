@@ -20,6 +20,26 @@ export const Container = styled.div`
     }
 `;
 
+export const AvailableToVestWrapper = styled(FlexDiv)`
+    flex-direction: column;
+    flex: 1;
+`;
+
+export const Amount = styled.span`
+    font-size: 18px;
+    font-weight: 700;
+    color: ${(props) => props.theme.textColor.secondary};
+`;
+
+export const DescriptionWrapper = styled(FlexDiv)`
+    flex: 2;
+`;
+
+export const HighlightedDescText = styled.span`
+    font-weight: 600;
+    color: ${(props) => props.theme.textColor.primary};
+`;
+
 export const VestingDescription = styled.div`
     line-height: 120%;
 `;
