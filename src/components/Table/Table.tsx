@@ -28,6 +28,7 @@ import {
 } from './styled-components';
 // import MobileDropdownMenu from 'components/MobileDropdownMenu';
 import SimpleLoader from 'components/SimpleLoader/SimpleLoader';
+import { FlexDivColumn } from 'styles/common';
 
 const DEFAULT_PAGE_SIZE = 20;
 const DEFAULT_PAGE_SIZE_NO_PAGINATION = 1000;
@@ -52,6 +53,7 @@ type TableProps = {
     hasStickyRow?: boolean;
     preventMobileView?: boolean;
     defaultPageSize?: number;
+    stickyRow?: JSX.Element;
 };
 
 const Table: React.FC<TableProps> = ({
@@ -66,7 +68,7 @@ const Table: React.FC<TableProps> = ({
     initialState = {},
     searchQuery,
     hidePagination,
-    hasStickyRow,
+    stickyRow,
     preventMobileView,
     defaultPageSize,
 }) => {
@@ -86,7 +88,6 @@ const Table: React.FC<TableProps> = ({
         getTableBodyProps,
         headerGroups,
         page,
-        rows,
         prepareRow,
         state,
         setGlobalFilter,
@@ -239,90 +240,61 @@ const Table: React.FC<TableProps> = ({
                     ) : data.length === 0 ? (
                         <NoDataContainer>{noResultsMessage || t('common.no-data')}</NoDataContainer>
                     ) : (
-                        <TableBody {...getTableBodyProps()} isMobile={isMobile}>
-                            {hasStickyRow &&
-                                rows.map((row: any, rowIndex: number) => {
+                        <FlexDivColumn>
+                            {stickyRow}
+                            <TableBody {...getTableBodyProps()} isMobile={isMobile}>
+                                {page.map((row: any, rowIndex: number) => {
                                     prepareRow(row);
-                                    if (row.original.sticky) {
-                                        return (
-                                            <TableRow
-                                                key={rowIndex}
-                                                {...row.getRowProps()}
-                                                isMobile={isMobile}
-                                                isSticky={row.original.sticky}
-                                            >
-                                                {row.cells.map((cell: any, cellIndex: number) => {
-                                                    return isMobile ? (
-                                                        <TableRowMobile
-                                                            key={`msrm${rowIndex}${cellIndex}`}
-                                                            isSticky={row.original.sticky}
-                                                        >
-                                                            <TableCell key={`msh${cellIndex}`} {...cell.getCellProps()}>
-                                                                {cell.render('Header')}
-                                                            </TableCell>
-                                                            <TableCell key={`msc${cellIndex}`} {...cell.getCellProps()}>
-                                                                {cell.render('Cell')}
-                                                            </TableCell>
-                                                        </TableRowMobile>
-                                                    ) : (
-                                                        <TableCell key={cellIndex} {...cell.getCellProps()}>
+                                    const rowComponent = (
+                                        <TableRow
+                                            key={rowIndex}
+                                            {...row.getRowProps()}
+                                            onClick={onTableRowClick ? () => onTableRowClick(row) : undefined}
+                                            isMobile={isMobile}
+                                            isClaimed={row.original.claimed}
+                                            isClaimable={row.original.claimable}
+                                        >
+                                            {row.cells.map((cell: any, cellIndex: number) => {
+                                                return isMobile ? (
+                                                    <TableRowMobile key={`mrm${rowIndex}${cellIndex}`}>
+                                                        <TableCell key={`mh${cellIndex}`} {...cell.getCellProps()}>
+                                                            {cell.render('Header')}
+                                                        </TableCell>
+                                                        <TableCell {...cell.getCellProps()} key={`mc${cellIndex}`}>
                                                             {cell.render('Cell')}
                                                         </TableCell>
-                                                    );
-                                                })}
-                                            </TableRow>
-                                        );
-                                    }
-                                })}
-                            {page.map((row: any, rowIndex: number) => {
-                                prepareRow(row);
-                                const rowComponent = (
-                                    <TableRow
-                                        key={rowIndex}
-                                        {...row.getRowProps()}
-                                        onClick={onTableRowClick ? () => onTableRowClick(row) : undefined}
-                                        isMobile={isMobile}
-                                        isClaimed={row.original.claimed}
-                                        isClaimable={row.original.claimable}
-                                    >
-                                        {row.cells.map((cell: any, cellIndex: number) => {
-                                            return isMobile ? (
-                                                <TableRowMobile key={`mrm${rowIndex}${cellIndex}`}>
-                                                    <TableCell key={`mh${cellIndex}`} {...cell.getCellProps()}>
-                                                        {cell.render('Header')}
-                                                    </TableCell>
-                                                    <TableCell {...cell.getCellProps()} key={`mc${cellIndex}`}>
+                                                    </TableRowMobile>
+                                                ) : (
+                                                    <TableCell
+                                                        key={cellIndex}
+                                                        {...cell.getCellProps()}
+                                                        onClick={
+                                                            onTableCellClick
+                                                                ? () => onTableCellClick(row, cell)
+                                                                : undefined
+                                                        }
+                                                    >
                                                         {cell.render('Cell')}
                                                     </TableCell>
-                                                </TableRowMobile>
-                                            ) : (
-                                                <TableCell
-                                                    key={cellIndex}
-                                                    {...cell.getCellProps()}
-                                                    onClick={
-                                                        onTableCellClick ? () => onTableCellClick(row, cell) : undefined
-                                                    }
-                                                >
-                                                    {cell.render('Cell')}
-                                                </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                );
-
-                                if (row.original.link) {
-                                    return (
-                                        <SPAAnchor href={row.original.link} key={rowIndex}>
-                                            {rowComponent}
-                                        </SPAAnchor>
+                                                );
+                                            })}
+                                        </TableRow>
                                     );
-                                }
 
-                                if (row.original.sticky) return;
+                                    if (row.original.link) {
+                                        return (
+                                            <SPAAnchor href={row.original.link} key={rowIndex}>
+                                                {rowComponent}
+                                            </SPAAnchor>
+                                        );
+                                    }
 
-                                return rowComponent;
-                            })}
-                        </TableBody>
+                                    if (row.original.sticky) return;
+
+                                    return rowComponent;
+                                })}
+                            </TableBody>
+                        </FlexDivColumn>
                     )}
                 </TableView>
             </>
