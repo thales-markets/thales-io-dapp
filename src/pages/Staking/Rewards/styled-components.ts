@@ -119,6 +119,7 @@ export const SubTitle = styled(InfoDiv)`
         text-align: right;
         font-family: NunitoBold;
         line-height: 155%;
+        margin-left: 5px;
     }
     margin-bottom: 30px;
 `;
