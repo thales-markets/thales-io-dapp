@@ -32,6 +32,7 @@ type NumericInputProps = {
     width?: string;
     height?: string;
     enableCurrencyComponentOnly?: boolean;
+    containerWidth?: string;
 };
 
 const INVALID_CHARS = ['-', '+', 'e'];
@@ -59,6 +60,7 @@ const NumericInput: React.FC<NumericInputProps> = ({
     width,
     height,
     enableCurrencyComponentOnly,
+    containerWidth,
     ...rest
 }) => {
     const { t } = useTranslation();
@@ -79,7 +81,7 @@ const NumericInput: React.FC<NumericInputProps> = ({
 
     return (
         <ValidationTooltip open={showValidation} title={validationMessage || ''} placement="bottom">
-            <FieldContainer margin={margin}>
+            <FieldContainer margin={margin} width={containerWidth}>
                 {label && (
                     <FieldLabel>
                         {label}

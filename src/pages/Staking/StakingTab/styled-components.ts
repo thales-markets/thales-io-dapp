@@ -54,7 +54,7 @@ export const InputContainer = styled.div`
     display: flex;
     justify-content: center;
     > div {
-        width: 390px;
+        /* width: 390px; */
     }
     > div > span {
         font-size: 13px;
