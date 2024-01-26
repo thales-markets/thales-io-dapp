@@ -53,9 +53,11 @@ export const VestingValid = styled.div`
 
 export const ScheduleWrapper = styled(FlexDiv)`
     overflow: auto;
-    width: 60%;
+    width: 70%;
     align-items: center;
-    padding: 90px 20px 90px 20px;
+    justify-content: center;
+    padding: 90px 0px 90px 0px;
+    margin: 30px 0px;
     ::-webkit-scrollbar {
         height: 5px;
     }
