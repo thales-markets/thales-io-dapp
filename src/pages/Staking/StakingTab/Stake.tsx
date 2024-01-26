@@ -219,6 +219,7 @@ const Stake: React.FC = () => {
                                 'staking.staking.stake-unstake.stake'
                             )}`}
                             onMaxButton={onMaxClick}
+                            maxButtonDisabled={!thalesBalance}
                             showValidation={!isAmountValid}
                             validationMessage={t(`common.errors.insufficient-balance-wallet`, {
                                 currencyKey: THALES_CURRENCY,
