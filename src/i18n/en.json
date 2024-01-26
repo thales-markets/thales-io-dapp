@@ -669,20 +669,18 @@
         },
         "integrators": {
             "title": "Integrators volume",
-            "thales-volume": "Thales volume",
-            "overtime-volume": "Overtime volume",
-            "total-volume": "Total volume"
+            "thales-volume": "Thales Markets",
+            "overtime-volume": "Overtime",
+            "speed-volume": "Speed Markets"
         },
         "protocol-volume": {
             "total-protocol-volume": "Total protocol volume",
             "safebox-fees": "Protocol fees",
-            "thales-amm": "Thales AMM",
-            "speed-amm": "Speed markets AMM",
-            "overtime-amm": "Sports AMM",
-            "parlay-amm": "Parlay AMM",
+            "thales-amm": "Digital Options volume",
+            "speed-amm": "Speed Markets volume",
+            "overtime-amm": "Sports Markets volume",
             "total-unique-users": "Total unique users",
-            "average-unique-users": "AVG unique users",
-            "average-monthly-users": "AVG monthly users"
+            "average-unique-users": "Unique users count"
         },
         "staking": {
             "title": "Staking",
@@ -717,10 +715,10 @@
         },
         "tvl": {
             "title": "TVL",
-            "overtime-amm-tvl": "Sports AMM TVL",
-            "thales-amm-tvl": "Thales AMM TVL",
-            "parlay-amm-tvl": "Parlay AMM TVL",
-            "vaults-tvl": "Vaults TVL"
+            "overtime-amm-tvl": "Sports Markets",
+            "thales-amm-tvl": "Digital options",
+            "vaults-tvl": "Vaults",
+            "speed-markets": "Speed Markets"
         }
     },
     "governance": {

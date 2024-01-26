@@ -54,16 +54,16 @@ const ProtocolVolume: React.FC = () => {
             </WidgetHeader>
             <InfoSection side="left">
                 <InfoText>{t('dashboard.protocol-volume.thales-amm')}</InfoText>
-                <InfoText>{t('dashboard.protocol-volume.speed-amm')}</InfoText>
                 <InfoText>{t('dashboard.protocol-volume.overtime-amm')}</InfoText>
-                <InfoText>{t('dashboard.protocol-volume.parlay-amm')}</InfoText>
+                <InfoText>{t('dashboard.protocol-volume.speed-amm')}</InfoText>
                 <InfoText>{t('dashboard.protocol-volume.total-unique-users')}</InfoText>
             </InfoSection>
             <InfoSection side="right">
                 <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.thalesAmmVolume) : '-'}</InfoStats>
+                <InfoStats>
+                    $ {volumeStats ? formatCurrency(volumeStats.overtimeAmmVolume + volumeStats.parlayAmmVolume) : '-'}
+                </InfoStats>
                 <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.speedAmmVolume) : '-'}</InfoStats>
-                <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.overtimeAmmVolume) : '-'}</InfoStats>
-                <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.parlayAmmVolume) : '-'}</InfoStats>
                 <InfoStats>{usersStats ? formatCurrency(usersStats.totalUniqueUsers, 2, true) : '-'}</InfoStats>
             </InfoSection>
         </WidgetWrapper>

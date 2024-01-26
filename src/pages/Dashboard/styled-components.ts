@@ -69,12 +69,12 @@ export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean
 export const NumericStats = styled.span`
     font-family: Nunito !important;
     font-weight: 700;
-    font-size: 38px;
+    font-size: 35px;
     line-height: 55px;
     color: ${(props) => props.theme.textColor.secondary};
 `;
 
-export const InfoText = styled.label<{ color?: string }>`
+export const InfoText = styled.span<{ color?: string }>`
     font-family: Nunito !important;
     font-weight: 400;
     font-size: 13px;
@@ -125,7 +125,7 @@ export const InfoSection = styled.div<{
     grid-area: ${(props) => (props.side === 'left' ? 'bottom-left' : 'bottom-right')};
     height: 100%;
     width: 100%;
-    padding: 20px 20px 15px;
+    padding: ${(props) => (props.side === 'left' ? '20px 0px 15px 20px' : '20px 20px 15px')};
     display: flex;
     flex-direction: ${(props) => (props.direction ? props.direction : 'column')};
     justify-content: ${(props) => (props.justifyContent ? props.justifyContent : 'end')};
@@ -206,9 +206,10 @@ export const FullWidthInfoSection = styled(FlexDiv)`
     flex-direction: column;
     flex-wrap: wrap;
     width: 670px;
-    justify-content: space-between;
+    justify-content: start;
     height: 82px;
     padding: 0px 20px;
+    gap: 0px 50px;
 `;
 
 export const FlexDivIntegrators = styled(FlexDivRow)`

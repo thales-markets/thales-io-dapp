@@ -103,7 +103,13 @@ const ThalesTokenInfo: React.FC = () => {
                 percentage: (stakingData?.totalStakedAmount / tokenInfo.totalSupply) * 100,
                 color: Colors.BLUEBERRY,
             };
-            data1.push(burnedPiece, circulatingPiece, leftOverPiece);
+            const nonCirculating = {
+                id: '4',
+                value: 'Non-circulating',
+                stat: 0,
+                color: Colors.CYAN,
+            };
+            data1.push(burnedPiece, circulatingPiece, leftOverPiece, nonCirculating);
         }
 
         return data1;
@@ -116,7 +122,7 @@ const ThalesTokenInfo: React.FC = () => {
             <span style={{ color: Colors.GRAY, fontSize: 13, fontFamily: 'Nunito' }}>
                 {value}{' '}
                 <span style={{ color: Colors.WHITE, fontSize: 13, fontFamily: 'Nunito' }}>
-                    {percentage.toFixed(2)}%
+                    {value.toLowerCase() == 'non-circulating' ? '' : `${percentage.toFixed(2)}%`}
                 </span>
             </span>
         );
@@ -159,9 +165,9 @@ const ThalesTokenInfo: React.FC = () => {
                         layout="vertical"
                         align="left"
                         verticalAlign="top"
-                        height={40}
+                        height={80}
                         payload={pieLegendData}
-                        wrapperStyle={{ top: 57, left: 20 }}
+                        wrapperStyle={{ top: 47, left: 20 }}
                     />
                     <Pie
                         isAnimationActive={false}
