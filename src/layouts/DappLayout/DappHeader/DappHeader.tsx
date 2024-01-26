@@ -85,7 +85,7 @@ const DappHeader: React.FC = () => {
     const hideWallet = useMemo(() => location.pathname === ROUTES.Dashboard || location.pathname === ROUTES.Home, [
         location.pathname,
     ]);
-    console.log(hideWallet);
+
     return (
         <>
             <HeaderContainer>

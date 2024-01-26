@@ -8,8 +8,9 @@ import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 // import { getIsAppReady } from 'redux/modules/app';
+import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
-import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
+import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDivColumn } from 'styles/common';
@@ -33,9 +34,10 @@ const TransactionsWithFilters: React.FC<TransactionsWithFiltersProps> = ({
     height,
 }) => {
     const { t } = useTranslation();
-    // const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
+    const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
-    // const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
@@ -43,7 +45,7 @@ const TransactionsWithFilters: React.FC<TransactionsWithFiltersProps> = ({
     const [showFilters, setShowFilters] = useState<boolean>(false);
 
     const userTokenTransactionsQuery = useUserTokenTransactionsQuery(walletAddress, networkId, undefined, {
-        enabled: true, // isAppReady && isWalletConnected
+        enabled: isAppReady && isWalletConnected,
     });
 
     const userTokenTransactions = useMemo(
