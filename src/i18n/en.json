@@ -379,8 +379,7 @@
             "title": "Available to vest",
             "vest": "Vest",
             "vesting": "Vesting",
-            "description": "Vest your THALES staking rewards in escrow. THALES ongoing rewards are subject to 10 weeks vesting. Escrowed THALES is calculated in your staked THALES balance.",
-            "vested-until": "Vested until",
+            "description": "Your THALES staking rewards, that were claimed to escrow over 10 weeks ago, are now unlocked and can be claimed to your wallet on this page. Note that THALES tokens <strong>Available to Vest</strong> count as <strong>STAKED</strong> until claimed to your wallet.",
             "confirmation-message": "Tokens successfully vested"
         },
         "leaderboard": {
