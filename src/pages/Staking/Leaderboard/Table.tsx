@@ -10,9 +10,10 @@ import { formatCurrencyWithKey } from 'thales-utils';
 type TransactionsTableProps = {
     stakingData: StakerWithLeaderboardData[];
     isLoading: boolean;
+    stickyRow?: JSX.Element;
 };
 
-const LeaderboardTable: FC<TransactionsTableProps> = memo(({ stakingData, isLoading }) => {
+const LeaderboardTable: FC<TransactionsTableProps> = memo(({ stakingData, isLoading, stickyRow }) => {
     const { t } = useTranslation();
 
     const columns = useMemo(() => {
@@ -74,6 +75,7 @@ const LeaderboardTable: FC<TransactionsTableProps> = memo(({ stakingData, isLoad
                 <Table
                     columns={columns}
                     data={stakingData}
+                    stickyRow={stickyRow}
                     // expandedRow={(row) => {
                     //     return (
                     //         <ExpandedRow>
