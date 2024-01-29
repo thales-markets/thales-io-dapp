@@ -5,7 +5,7 @@ import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
 import useUserBaseRewardsQuery from 'queries/token/useUserBaseRewards';
 import useUserStakingDataQuery from 'queries/token/useUserStakingData';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
@@ -13,10 +13,11 @@ import { RootState } from 'redux/rootReducer';
 import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token';
-import { InfoDiv, InfoDivRewards, SectionTitle } from '../styled-components';
+import { InfoDivRewards, SectionTitle } from '../styled-components';
+import BaseStakingRewards from './components/BaseStakingRewards';
 import ClaimableSection from './components/ClaimbleSection';
 import GamifiedStakingExplainer from './components/GamifiedStakingExplainer';
-import { ClaimableLabel, Container, GamifiedRewardItem, ItemTitle, ItemValue, SubTitle } from './styled-components';
+import { Container, GamifiedRewardItem, ItemTitle, ItemValue } from './styled-components';
 
 const Rewards: React.FC = () => {
     const { t } = useTranslation();
@@ -102,48 +103,14 @@ const Rewards: React.FC = () => {
                 stakingData={stakingData}
                 isLoading={userStakingDataQuery.isLoading || stakingDataQuery.isLoading}
             />
-            <div>
-                <SectionTitle>
-                    <span>
-                        <i className="icon icon--pig" />
-                        {t('staking.rewards.base-rewards.title')}
-                    </span>
-                    <span>
-                        <ClaimableLabel>{t('staking.rewards.base-rewards.claimable')}</ClaimableLabel>
-                        {formatCurrencyWithKey(THALES_CURRENCY, lastValidUserStakingData?.baseRewards ?? 0, 2)}
-                    </span>
-                </SectionTitle>
-                <SubTitle></SubTitle>
-                <FlexDiv gap="30px">
-                    <FlexDivColumn>
-                        <InfoDiv>
-                            <span>{t('staking.rewards.base-rewards.your-staked')}</span>
-                            <span>{baseRewardsData?.thalesStaked}</span>
-                        </InfoDiv>
-                        <InfoDiv>
-                            <span>
-                                <Trans
-                                    i18nKey="staking.rewards.base-rewards.staking-divider"
-                                    components={{
-                                        span: <span />,
-                                    }}
-                                />
-                            </span>
-                            <span>{pointsData?.thalesDivider}</span>
-                        </InfoDiv>
-                    </FlexDivColumn>
-                    <FlexDivColumn>
-                        <InfoDiv>
-                            <span>{t('staking.rewards.base-rewards.total-staked')}</span>
-                            <span>{baseRewardsData?.totalStaked}</span>
-                        </InfoDiv>
-                        <InfoDiv>
-                            <span>{t('staking.rewards.base-rewards.staked-share')}</span>
-                            <span>{baseRewardsData?.share}</span>
-                        </InfoDiv>
-                    </FlexDivColumn>
-                </FlexDiv>
-            </div>
+            <BaseStakingRewards
+                userStakingData={userStakingData}
+                pointsData={pointsData}
+                baseStakingRewardsData={baseRewardsData}
+                isLoading={
+                    pointsBreakdownQuery?.isLoading || userStakingDataQuery?.isLoading || baseRewardsQuery?.isLoading
+                }
+            />
             <div>
                 <SectionTitle>
                     <span>
@@ -156,18 +123,18 @@ const Rewards: React.FC = () => {
                                 <ItemTitle>{t('staking.rewards.base-rewards.claimable')}</ItemTitle>
                             </ItemTitle>
                             <ItemValue>
-                                {formatCurrencyWithKey(
-                                    THALES_CURRENCY,
-                                    userStakingData?.totalBonus ? userStakingData?.totalBonus : 0,
-                                    2
-                                )}
+                                {userStakingData?.totalBonus
+                                    ? formatCurrencyWithKey(THALES_CURRENCY, userStakingData?.totalBonus, 2)
+                                    : '-'}
                             </ItemValue>
                         </GamifiedRewardItem>
                         <GamifiedRewardItem>
                             <ItemTitle>
                                 <ItemTitle>{t('staking.rewards.base-rewards.current-multiplier')}</ItemTitle>
                             </ItemTitle>
-                            <ItemValue>x{pointsData?.stakingMultiplier}</ItemValue>
+                            <ItemValue>{`${
+                                pointsData?.stakingMultiplier ? `x${pointsData?.stakingMultiplier}` : '-'
+                            }`}</ItemValue>
                         </GamifiedRewardItem>
                         <GamifiedRewardItem>
                             <ItemTitle>
