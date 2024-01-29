@@ -23,7 +23,7 @@ const useIntegratorsQuery = (options?: UseQueryOptions<Integrator[] | null>) => 
                     }),
                 ]);
 
-                const integratorsAddresses = Object.values(INTEGRATORS).map((address: string) => address.toLowerCase());
+                const integratorsAddresses = INTEGRATORS.map((integrator) => integrator.address.toLowerCase());
 
                 const integratorsOptimism = referrersOptimism.filter((integrator: Integrator) =>
                     integratorsAddresses.includes(integrator.id.toLowerCase())
@@ -44,6 +44,7 @@ const useIntegratorsQuery = (options?: UseQueryOptions<Integrator[] | null>) => 
                         trades: 0,
                         totalEarned: 0,
                         timestamp: new Date().getTime(),
+                        url: '',
                     };
 
                     integratorsOptimism.forEach((opIntegrator: Integrator) => {
@@ -70,10 +71,12 @@ const useIntegratorsQuery = (options?: UseQueryOptions<Integrator[] | null>) => 
                         }
                     });
 
-                    const key = Object.keys(INTEGRATORS).find(
-                        (key) => INTEGRATORS[key].toLowerCase() === aggregatedIntegrator.id.toLowerCase()
+                    const integrator = INTEGRATORS.find(
+                        (integrator) => integrator.address.toLowerCase() === aggregatedIntegrator.id.toLowerCase()
                     );
-                    aggregatedIntegrator.id = key ? key : aggregatedIntegrator.id;
+                    aggregatedIntegrator.id = integrator ? integrator.name : aggregatedIntegrator.id;
+                    aggregatedIntegrator.url = integrator ? integrator.url : '';
+
                     return aggregatedIntegrator;
                 });
 

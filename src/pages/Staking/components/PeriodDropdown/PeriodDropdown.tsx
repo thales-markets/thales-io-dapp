@@ -21,7 +21,7 @@ const PeriodDropdown: React.FC<PeriodDropdownProps> = ({ period, setPeriod, allP
     return (
         <OutsideWrapper>
             <OutsideClickHandler onOutsideClick={() => setOpen(false)}>
-                <Wrapper onClick={() => setOpen(!open)}>
+                <Wrapper onClick={() => setOpen(!open)} shadow={open}>
                     {open ? (
                         allPeriods.map((periodLocal, index) => {
                             if (periodLocal >= 0) {
@@ -40,7 +40,7 @@ const PeriodDropdown: React.FC<PeriodDropdownProps> = ({ period, setPeriod, allP
                             }
                         })
                     ) : (
-                        <Container>
+                        <Container alone={true}>
                             <Text>
                                 {t('staking.leaderboard.time-left.round')}{' '}
                                 {networkId === Network.Base ? period + 1 : period}
@@ -59,13 +59,14 @@ const OutsideWrapper = styled.div`
     width: 100%;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ shadow?: boolean }>`
     position: absolute;
     top: -38px;
     z-index: 1000;
-    background: ${(props) => props.theme.button.background.secondary};
+    background: ${(props) => props.theme.background.primary};
     border-radius: 8px;
     width: 100%;
+    box-shadow: ${(props) => (props.shadow ? '0px 10px 15px -5px rgba(0,0,0,0.46)' : '')};
 `;
 
 const Text = styled.p`
@@ -76,7 +77,7 @@ const Text = styled.p`
     color: ${(props) => props.theme.textColor.tertiary};
 `;
 
-const Container = styled.div<{ selected?: boolean }>`
+const Container = styled.div<{ selected?: boolean; alone?: boolean }>`
     height: 36px;
     padding: 16px 24px;
     display: flex;
@@ -84,9 +85,10 @@ const Container = styled.div<{ selected?: boolean }>`
     justify-content: space-between;
     border-radius: 8px;
     &:hover {
-        background: ${(props) => props.theme.background.quaternary};
+        background: ${(props) => (props.alone ? props.theme.background.tertiary : props.theme.background.quaternary)};
     }
-    background: ${(props) => (props.selected ? props.theme.background.quaternary : '')};
+    background: ${(props) =>
+        props.alone ? props.theme.background.tertiary : props.selected ? props.theme.background.quaternary : ''};
     cursor: pointer;
 `;
 

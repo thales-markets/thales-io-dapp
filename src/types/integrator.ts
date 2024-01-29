@@ -4,4 +4,5 @@ export type Integrator = {
     totalVolume: number;
     totalEarned: number;
     timestamp: number;
+    url: string;
 };

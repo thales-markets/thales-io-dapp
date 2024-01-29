@@ -30,18 +30,21 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
         }).use(linkify);
 
         if (!value) return { __html: '' };
-
         const splitValue = value?.split('Simple Summary')[0];
         const matchTipDateArray = splitValue.match(`(\\d{4}-\\d{2}-\\d{2})`);
         const matchTipDate = matchTipDateArray && matchTipDateArray[0] ? matchTipDateArray[0] : '';
-        const textWithoutTrailingSpaces = splitValue.split(matchTipDate)[0].concat(`${matchTipDate} |`);
-        const html = { __html: remarkable.render(textWithoutTrailingSpaces) };
-        const adaptedHtml = html.__html
-            .replaceAll('<td>', '<td><p>')
-            .replaceAll('</td>', '</p></td>')
-            .replaceAll('<th>', '<th><p>')
-            .replaceAll('</th>', '</p></th>');
-        return { __html: adaptedHtml };
+        if (splitValue.split(matchTipDate)[0] == undefined) {
+            return { __html: truncateText(value, 800) };
+        } else {
+            const textWithoutTrailingSpaces = splitValue.split(matchTipDate)[0].concat(`${matchTipDate} |`);
+            const html = { __html: remarkable.render(textWithoutTrailingSpaces) };
+            const adaptedHtml = html.__html
+                .replaceAll('<td>', '<td><p>')
+                .replaceAll('</td>', '</p></td>')
+                .replaceAll('<th>', '<th><p>')
+                .replaceAll('</th>', '</p></th>');
+            return { __html: adaptedHtml };
+        }
     };
 
     return (

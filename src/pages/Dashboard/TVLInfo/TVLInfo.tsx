@@ -124,12 +124,10 @@ const TVLInfo: React.FC = () => {
             <InfoSection side="left">
                 <InfoText>{t('dashboard.tvl.overtime-amm-tvl')}</InfoText>
                 <InfoText>{t('dashboard.tvl.thales-amm-tvl')}</InfoText>
-                <InfoText>{t('dashboard.tvl.parlay-amm-tvl')}</InfoText>
                 <InfoText>{t('dashboard.tvl.vaults-tvl')}</InfoText>
             </InfoSection>
             <InfoSection side="right">
-                <InfoStats>$ {formatCurrency(sportAmmAggregatedTvl)}</InfoStats>
-                <InfoStats>$ {formatCurrency(parlayAmmAggregatedTvl)}</InfoStats>
+                <InfoStats>$ {formatCurrency(sportAmmAggregatedTvl + parlayAmmAggregatedTvl)}</InfoStats>
                 <InfoStats>$ {formatCurrency(thalesAmmAggregatedTvl)}</InfoStats>
                 <InfoStats>$ {formatCurrency(vaultsAggregatedTvl)}</InfoStats>
             </InfoSection>
