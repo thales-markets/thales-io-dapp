@@ -1,4 +1,5 @@
 import TimeRemaining from 'components/TimeRemaining';
+import { PROPOSALS_DIFFERENT_FORMATTING } from 'constants/governance';
 import { SpaceKey, StatusEnum } from 'enums/governance';
 import { indexOf, max } from 'lodash';
 import React from 'react';
@@ -76,7 +77,7 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                 )}
             </FlexDivRowCentered>
             <Title status={proposal.state}>{proposal.title}</Title>
-            {proposal.space.id === SpaceKey.TIPS ? (
+            {proposal.space.id === SpaceKey.TIPS && !PROPOSALS_DIFFERENT_FORMATTING.includes(proposal.id) ? (
                 <TipTable dangerouslySetInnerHTML={getRawMarkup(proposal.body)} />
             ) : (
                 <Body>{truncateText(proposal.body, 400)}</Body>

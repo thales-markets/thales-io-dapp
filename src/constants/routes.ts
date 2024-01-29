@@ -16,5 +16,11 @@ const ROUTES = {
         Token: '/about/thales-token',
         Governance: '/about/governance',
     },
+    Token: {
+        Rewards: '/token?tab=rewards',
+        Vesting: '/token?tab=vesting',
+        Leaderboard: '/token?tab=leaderboard',
+        Preferences: '/token?tab=acc-preferences',
+    },
 };
 export default ROUTES;

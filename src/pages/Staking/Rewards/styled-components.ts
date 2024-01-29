@@ -25,10 +25,10 @@ export const Container = styled.div`
     }
 `;
 
-export const ClaimableRewardsContainer = styled(FlexDiv)`
+export const ClaimableRewardsContainer = styled(FlexDiv)<{ isClaimed?: boolean }>`
     flex-direction: row;
     > div {
-        flex: 1;
+        flex: ${(props) => (props.isClaimed ? '' : '1')};
     }
 `;
 
@@ -124,6 +124,14 @@ export const SubTitle = styled(InfoDiv)`
     margin-bottom: 30px;
 `;
 
+export const ClaimableLabel = styled.span`
+    font-size: 18px;
+    color: ${(props) => props.theme.textColor.primary};
+    font-weight: 700;
+    text-transform: none;
+    margin-right: 5px;
+`;
+
 export const SectionText = styled.div`
     margin-top: 20px;
     font-style: normal;
@@ -133,6 +141,23 @@ export const SectionText = styled.div`
         color: ${(props) => props.theme.textColor.primary};
         font-family: NunitoBold;
     }
+`;
+
+export const GamifiedRewardItem = styled(FlexDiv)`
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+export const ItemTitle = styled(ClaimableLabel)`
+    text-align: right;
+`;
+
+export const ItemValue = styled.span`
+    color: ${(props) => props.theme.textColor.secondary};
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
 `;
 
 export const FinalPointsTitle = styled.div`
@@ -157,6 +182,18 @@ export const ButtonContainer = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
+`;
+
+export const LeaderboardLink = styled(FlexDiv)`
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    align-items: center;
+    > i {
+        font-size: 20px;
+        font-weight: 200;
+        margin: 0 5px;
+    }
 `;
 
 export const ClaimButtonDisclaimer = styled.div`

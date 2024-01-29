@@ -100,6 +100,6 @@ export const ChartWrapper = styled(FlexDiv)`
 
 export const ChartInnerText = styled(FlexDivColumnCentered)`
     position: absolute;
-    top: 195px;
+    top: 206px;
     width: 230px;
 `;

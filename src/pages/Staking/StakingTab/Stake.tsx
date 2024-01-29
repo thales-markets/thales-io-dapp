@@ -20,7 +20,7 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { FlexDivCentered } from 'styles/common';
-import { formatCurrency, formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
+import { formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
 import { UserStakingData } from 'types/token';
 import { checkAllowance } from 'utils/network';
 import { refetchTokenQueries } from 'utils/queryConnector';
@@ -226,7 +226,7 @@ const Stake: React.FC = () => {
                             })}
                             balance={
                                 isWalletConnected
-                                    ? `${t('common.balance')}: ${formatCurrency(thalesBalance)}`
+                                    ? `${t('common.balance')}: ${formatCurrencyWithKey(THALES_CURRENCY, thalesBalance)}`
                                     : undefined
                             }
                             isBalanceLoading={thalesBalanceQuery.isLoading}

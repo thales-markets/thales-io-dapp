@@ -4,7 +4,7 @@ import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 export const VoteRow = styled(FlexDivColumnCentered)`
     margin-left: 20px;
     margin-right: 20px;
-    padding: 20px 0px;
+    padding: 5px 0px;
 `;
 
 export const VoteLabel = styled.div<{ color?: string; fontWeight?: number }>`
@@ -41,7 +41,7 @@ export const Divider = styled.div`
     background: ${(props) => props.theme.background.tertiary};
     width: 100%;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
 `;
 
 export const VotesChart = styled(FlexDivRow)`

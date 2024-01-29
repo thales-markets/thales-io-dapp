@@ -20,8 +20,6 @@ export const SectionTitle = styled.div`
         font-family: NunitoBold;
         font-size: 14px;
         font-style: normal;
-        margin-top: 5px;
-        margin-left: 3px;
         text-transform: none;
     }
     > span:nth-child(2) {
@@ -34,6 +32,21 @@ export const InfoDiv = styled.div`
     align-items: center;
     justify-content: space-between;
     > span:nth-child(2) {
+        color: ${(props) => props.theme.textColor.primary};
+        text-align: right;
+        font-family: NunitoBold;
+        line-height: 155%;
+    }
+`;
+
+export const InfoDivRewards = styled(InfoDiv)`
+    > span:nth-child(2) {
+        align-self: flex-end;
+        margin-bottom: 5px;
+        border-bottom: 1px white dotted;
+        flex: 1;
+    }
+    > span:nth-child(3) {
         color: ${(props) => props.theme.textColor.primary};
         text-align: right;
         font-family: NunitoBold;

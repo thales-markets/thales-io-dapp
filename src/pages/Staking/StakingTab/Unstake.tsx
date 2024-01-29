@@ -23,7 +23,7 @@ import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modu
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDivCentered, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
-import { formatCurrency, formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
+import { formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
 import { UserStakingData } from 'types/token';
 import { formattedDuration } from 'utils/formatters/date';
 import { refetchTokenQueries } from 'utils/queryConnector';
@@ -324,7 +324,9 @@ const Unstake: React.FC = () => {
                             currencyKey: THALES_CURRENCY,
                         })}
                         balance={
-                            isWalletConnected ? `${t('common.balance')}: ${formatCurrency(thalesStaked)}` : undefined
+                            isWalletConnected
+                                ? `${t('common.balance')}: ${formatCurrencyWithKey(THALES_CURRENCY, thalesStaked)}`
+                                : undefined
                         }
                         isBalanceLoading={userStakingDataQuery.isLoading}
                         width="100%"
