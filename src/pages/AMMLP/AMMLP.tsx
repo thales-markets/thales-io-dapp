@@ -16,7 +16,7 @@ import {
 import Tooltip from 'components/Tooltip';
 import NumericInput from 'components/fields/NumericInput';
 import RadioButton from 'components/fields/RadioButton';
-import { USD_SIGN } from 'constants/currency';
+import { SYNTHS_MAP, USD_SIGN } from 'constants/currency';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
@@ -616,6 +616,7 @@ const AMMLP: React.FC = () => {
                                                 !!exceededMaxAllowance ||
                                                 !!invalidAmount
                                             }
+                                            currencyLabel={SYNTHS_MAP.sUSD}
                                             validationMessage={
                                                 t(
                                                     `${
