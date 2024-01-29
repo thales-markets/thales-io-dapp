@@ -1,14 +1,5 @@
-import { useConnectModal } from '@rainbow-me/rainbowkit';
 import Collapse from 'components/Collapse';
-import TimeRemaining from 'components/TimeRemaining';
-import {
-    getDefaultToastContent,
-    getErrorToastOptions,
-    getLoadingToastOptions,
-    getSuccessToastOptions,
-} from 'components/ToastMessage/ToastMessage';
 import { THALES_CURRENCY } from 'constants/currency';
-import { ethers } from 'ethers';
 import usePointsBreakdownQuery, { PointsData } from 'queries/token/usePointsBreakdownQuery';
 import useStakersDataLeaderboardQuery from 'queries/token/useStakersDataLeaderboardQuery';
 import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
@@ -17,45 +8,35 @@ import useUserStakingDataQuery from 'queries/token/useUserStakingData';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import styled, { useTheme } from 'styled-components';
 import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token';
-import { getDefaultCollateral } from 'utils/currency';
-import { refetchTokenQueries } from 'utils/queryConnector';
 import snxJSConnector from 'utils/snxJSConnector';
-import { InfoDiv, SectionTitle, StakingButton } from '../styled-components';
+import { InfoDiv, SectionTitle } from '../styled-components';
+import ClaimableSection from './components/ClaimbleSection';
 import {
-    ClaimSection,
-    ClaimableRewardsContainer,
+    ClaimableLabel,
     Container,
     FinalPoints,
     FinalPointsTitle,
-    ItemsWrapper,
-    RewardsDetailsContainer,
-    RewardsInfo,
+    GamifiedRewardItem,
+    ItemTitle,
+    ItemValue,
     SectionText,
-    StakingDetailsSection,
     SubTitle,
 } from './styled-components';
 
 const Rewards: React.FC = () => {
     const { t } = useTranslation();
 
-    const theme = useTheme();
-
-    const { openConnectModal } = useConnectModal();
-
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const networkId = useSelector((state: RootState) => getNetworkId(state));
 
-    const [isClaiming, setIsClaiming] = useState(false);
     const [stakingThalesPeriod, setStakingThalesPeriod] = useState(0);
     const [lastValidPointsData, setLastValidPointsData] = useState<PointsData | undefined>(undefined);
     const [lastValidStakingData, setLastValidStakingData] = useState<ThalesStakingData | undefined>(undefined);
@@ -135,8 +116,6 @@ const Rewards: React.FC = () => {
         return lastValidUserStakingData;
     }, [userStakingDataQuery.isSuccess, userStakingDataQuery.data, lastValidUserStakingData]);
 
-    console.log('userStakingData ', userStakingData);
-
     useEffect(() => {
         if (userStakingDataQuery.isSuccess && userStakingDataQuery.data) {
             setLastValidUserStakingData(userStakingDataQuery.data);
@@ -160,158 +139,25 @@ const Rewards: React.FC = () => {
         return lastValidStakingData;
     }, [stakingDataQuery.isSuccess, stakingDataQuery.data, lastValidStakingData]);
 
-    const isClaimed = stakingData && userStakingData && !stakingData.isPaused && userStakingData.claimed;
-    const isPaused = stakingData && stakingData.isPaused;
-
-    const isClaimAvailable =
-        stakingData &&
-        userStakingData &&
-        userStakingData.hasClaimRights &&
-        !userStakingData.claimed &&
-        !stakingData.isPaused &&
-        isWalletConnected &&
-        stakingThalesContract &&
-        !isClaiming;
-
-    const handleClaimStakingRewards = async () => {
-        if (isClaimAvailable) {
-            const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
-            try {
-                setIsClaiming(true);
-                const stakingThalesContractWithSigner = stakingThalesContract.connect((snxJSConnector as any).signer);
-                const tx = (await stakingThalesContractWithSigner.claimReward()) as ethers.ContractTransaction;
-                const txResult = await tx.wait();
-
-                if (txResult && txResult.transactionHash) {
-                    toast.update(id, getSuccessToastOptions(t('staking.rewards.claim.claim-success'), id));
-                    refetchTokenQueries(walletAddress, networkId);
-                    setIsClaiming(false);
-                }
-            } catch (e) {
-                console.log(e);
-                toast.update(id, getErrorToastOptions(t('common.errors.unknown-error-try-again'), id));
-                setIsClaiming(false);
-            }
-        }
-    };
-
-    const getClaimButton = () => {
-        if (!isWalletConnected) {
-            return <StakingButton onClick={openConnectModal}>{t('common.wallet.connect-your-wallet')}</StakingButton>;
-        }
-
-        if (isPaused || isClaimed) {
-            return <StakingButton disabled={true}>{t('staking.rewards.claim.claim-rewards')}</StakingButton>;
-        }
-
-        return (
-            <StakingButton disabled={!isClaimAvailable} onClick={handleClaimStakingRewards}>
-                {isClaiming ? t('staking.rewards.claim.claiming') : t('staking.rewards.claim.claim-rewards')}
-            </StakingButton>
-        );
-    };
-
     return (
         <Container>
-            <ClaimableRewardsContainer>
-                <RewardsDetailsContainer>
-                    <SectionTitle>
-                        <span>
-                            <i className="icon icon--download" />
-                            {t('staking.rewards.claim.title')}
-                        </span>
-                    </SectionTitle>
-                    <ItemsWrapper>
-                        <StakingDetailsSection>
-                            <Trans
-                                i18nKey="staking.rewards.claim.time-left"
-                                components={{
-                                    span: <span />,
-                                }}
-                            />
-                            <HighlightedValue>
-                                {stakingData ? (
-                                    <TimeRemaining
-                                        end={stakingData?.closingDate}
-                                        textColor={theme.textColor.secondary}
-                                        fontSize={13}
-                                        showFullCounter
-                                    />
-                                ) : (
-                                    '--:--'
-                                )}
-                            </HighlightedValue>
-                        </StakingDetailsSection>
-                        <StakingDetailsSection>
-                            <Trans
-                                i18nKey="staking.rewards.claim.protocol-rewards"
-                                components={{
-                                    span: <span />,
-                                }}
-                            />
-                            <span>
-                                {formatCurrencyWithKey(
-                                    getDefaultCollateral(networkId),
-                                    lastValidUserStakingData ? lastValidUserStakingData.feeRewards : 0
-                                )}
-                            </span>
-                        </StakingDetailsSection>
-                        <StakingDetailsSection>
-                            <Trans
-                                i18nKey="staking.rewards.claim.base-rewards"
-                                components={{
-                                    span: <span />,
-                                }}
-                            />
-                            <span>
-                                {formatCurrencyWithKey(THALES_CURRENCY, lastValidUserStakingData?.baseRewards ?? 0, 2)}
-                            </span>
-                        </StakingDetailsSection>
-                        <StakingDetailsSection>
-                            <Trans
-                                i18nKey="staking.rewards.claim.gamified-staking-rewards"
-                                components={{
-                                    span: <span />,
-                                }}
-                            />
-                            <span>
-                                {formatCurrencyWithKey(THALES_CURRENCY, lastValidUserStakingData?.totalBonus ?? 0, 2)}
-                            </span>
-                        </StakingDetailsSection>
-                    </ItemsWrapper>
-                    <Notice>{t('staking.rewards.claim.disclaimer')}</Notice>
-                </RewardsDetailsContainer>
-                <ClaimSection>
-                    <RewardsInfo>
-                        <span>
-                            {formatCurrencyWithKey(
-                                THALES_CURRENCY,
-                                lastValidUserStakingData ? lastValidUserStakingData.rewards : 0,
-                                2
-                            )}
-                        </span>
-                        <span>
-                            {formatCurrencyWithKey(
-                                getDefaultCollateral(networkId),
-                                lastValidUserStakingData ? lastValidUserStakingData.feeRewards : 0
-                            )}
-                        </span>
-                    </RewardsInfo>
-                    <div>{getClaimButton()}</div>
-                </ClaimSection>
-            </ClaimableRewardsContainer>
+            <ClaimableSection
+                userStakingData={userStakingData}
+                stakingData={stakingData}
+                isLoading={userStakingDataQuery.isLoading || stakingDataQuery.isLoading}
+            />
             <div>
                 <SectionTitle>
                     <span>
                         <i className="icon icon--pig" />
                         {t('staking.rewards.base-rewards.title')}
                     </span>
-                    <span>{formatCurrencyWithKey(THALES_CURRENCY, lastValidUserStakingData?.baseRewards ?? 0, 2)}</span>
+                    <span>
+                        <ClaimableLabel>{t('staking.rewards.base-rewards.claimable')}</ClaimableLabel>
+                        {formatCurrencyWithKey(THALES_CURRENCY, lastValidUserStakingData?.baseRewards ?? 0, 2)}
+                    </span>
                 </SectionTitle>
-                <SubTitle>
-                    <span>{t('staking.rewards.base-rewards.current-multiplier')}</span>
-                    <span>x{pointsData?.stakingMultiplier}</span>
-                </SubTitle>
+                <SubTitle></SubTitle>
                 <FlexDiv gap="30px">
                     <FlexDivColumn>
                         <InfoDiv>
@@ -327,7 +173,7 @@ const Rewards: React.FC = () => {
                                     }}
                                 />
                             </span>
-                            <span>{lastValidPointsData?.thalesDivider}</span>
+                            <span>{pointsData?.thalesDivider}</span>
                         </InfoDiv>
                     </FlexDivColumn>
                     <FlexDivColumn>
@@ -349,15 +195,30 @@ const Rewards: React.FC = () => {
                         {t('staking.rewards.your-rewards.title')}
                     </span>
                     <span>
-                        {userData &&
-                            formatCurrencyWithKey(THALES_CURRENCY, lastValidUserStakingData?.totalBonus ?? 0, 2)}
+                        <GamifiedRewardItem>
+                            <ItemTitle>
+                                <ItemTitle>{t('staking.rewards.base-rewards.claimable')}</ItemTitle>
+                            </ItemTitle>
+                            <ItemValue>
+                                {userData &&
+                                    formatCurrencyWithKey(THALES_CURRENCY, userStakingData?.totalBonus ?? 0, 2)}
+                            </ItemValue>
+                        </GamifiedRewardItem>
+                        <GamifiedRewardItem>
+                            <ItemTitle>
+                                <ItemTitle>{t('staking.rewards.base-rewards.current-multiplier')}</ItemTitle>
+                            </ItemTitle>
+                            <ItemValue>x{pointsData?.stakingMultiplier}</ItemValue>
+                        </GamifiedRewardItem>
+                        <GamifiedRewardItem>
+                            <ItemTitle>
+                                <ItemTitle>{t('staking.rewards.your-rewards.current-points')}</ItemTitle>
+                            </ItemTitle>
+                            <ItemValue>{pointsData?.totalPoints}</ItemValue>
+                        </GamifiedRewardItem>
                     </span>
                 </SectionTitle>
-                <SubTitle>
-                    <span>{t('staking.rewards.your-rewards.current-points')}</span>
-                    <span>{pointsData?.totalPoints}</span>
-                </SubTitle>
-                <FlexDiv gap="30px">
+                <FlexDiv gap="30px" style={{ marginTop: '20px' }}>
                     <FlexDivColumn>
                         <InfoDiv>
                             <span>{t('staking.rewards.your-rewards.trading-volume')}</span>
@@ -438,16 +299,5 @@ const Rewards: React.FC = () => {
         </Container>
     );
 };
-
-const HighlightedValue = styled.span`
-    font-size: 13px;
-    font-weight: 700;
-    color: ${(props) => props.theme.textColor.secondary};
-`;
-
-const Notice = styled.span`
-    margin-top: 25px;
-    color: ${(props) => props.theme.error.textColor.secondary};
-`;
 
 export default Rewards;

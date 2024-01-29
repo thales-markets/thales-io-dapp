@@ -20,8 +20,6 @@ export const SectionTitle = styled.div`
         font-family: NunitoBold;
         font-size: 14px;
         font-style: normal;
-        margin-top: 5px;
-        margin-left: 3px;
         text-transform: none;
     }
     > span:nth-child(2) {
