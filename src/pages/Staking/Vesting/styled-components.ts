@@ -82,8 +82,8 @@ export const ScheduleDot = styled.div`
 export const ScheduleLine = styled.div<{ invisible?: boolean }>`
     background: ${(props) => props.theme.textColor.secondary};
     height: 2px;
-    width: ${(props) => (props.invisible ? '30px' : '70px')};
-    visibility: ${(props) => (props.invisible ? 'hidden' : 'visible')};
+    width: 70px;
+    display: ${(props) => (props.invisible ? 'none' : 'block')};
 `;
 
 export const ScheduleAmount = styled.div`

@@ -124,19 +124,17 @@ const NumericInput: React.FC<NumericInputProps> = ({
                     height={height}
                 />
                 <RightContainer>
+                    {currencyLabel && (
+                        <CurrencyLabel className={disabled ? 'currency-label disabled' : 'currency-label'}>
+                            {currencyLabel}
+                        </CurrencyLabel>
+                    )}
                     {onMaxButton && (
                         <MaxButton disabled={disabled || maxButtonDisabled} onClick={onMaxButton}>
                             {t('common.max')}
                         </MaxButton>
                     )}
-                    {currencyLabel && (
-                        <CurrencyLabel
-                            className={disabled ? 'currency-label disabled' : 'currency-label'}
-                            hasSeparator={onMaxButton}
-                        >
-                            {currencyLabel}
-                        </CurrencyLabel>
-                    )}
+
                     {currencyComponent && (
                         <CurrencyComponentContainer
                             className={disabled && !enableCurrencyComponentOnly ? 'disabled' : ''}
