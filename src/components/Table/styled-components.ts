@@ -147,6 +147,7 @@ export const Pagination = styled(TablePagination)`
     }
     .MuiIconButton-root.Mui-disabled {
         color: ${(props) => props.theme.background.secondary};
+        opacity: 0.5;
     }
     .MuiTablePagination-toolbar > .MuiTablePagination-caption:last-of-type {
         display: block;
