@@ -50,7 +50,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ userStakingData, poin
                                     <ItemTitle>{t('staking.rewards.base-rewards.current-multiplier')}</ItemTitle>
                                 </ItemTitle>
                                 <ItemValue>{`${
-                                    pointsData?.stakingMultiplier ? `x${pointsData?.stakingMultiplier}` : '-'
+                                    pointsData?.stakingMultiplier ? `x ${pointsData?.stakingMultiplier}` : '-'
                                 }`}</ItemValue>
                             </GamifiedRewardItem>
                             <GamifiedRewardItem>
