@@ -1,7 +1,4 @@
-import Collapse from 'components/Collapse';
-import SPAAnchor from 'components/SPAAnchor';
 import { THALES_CURRENCY } from 'constants/currency';
-import ROUTES from 'constants/routes';
 import usePointsBreakdownQuery, { PointsData } from 'queries/token/usePointsBreakdownQuery';
 import useStakersDataLeaderboardQuery from 'queries/token/useStakersDataLeaderboardQuery';
 import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
@@ -19,18 +16,8 @@ import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token
 import snxJSConnector from 'utils/snxJSConnector';
 import { InfoDiv, SectionTitle } from '../styled-components';
 import ClaimableSection from './components/ClaimbleSection';
-import {
-    ClaimableLabel,
-    Container,
-    FinalPoints,
-    FinalPointsTitle,
-    GamifiedRewardItem,
-    ItemTitle,
-    ItemValue,
-    LeaderboardLink,
-    SectionText,
-    SubTitle,
-} from './styled-components';
+import GamifiedStakingExplainer from './components/GamifiedStakingExplainer';
+import { ClaimableLabel, Container, GamifiedRewardItem, ItemTitle, ItemValue, SubTitle } from './styled-components';
 
 const Rewards: React.FC = () => {
     const { t } = useTranslation();
@@ -266,46 +253,7 @@ const Rewards: React.FC = () => {
                     </FlexDivColumn>
                 </FlexDiv>
             </div>
-            <div>
-                <SectionTitle>
-                    <span>
-                        <i className="icon icon--house" />
-                        {t('staking.rewards.how-it-works.title')}
-                    </span>
-                    <SPAAnchor href={ROUTES.Token.Leaderboard}>
-                        <LeaderboardLink>
-                            <i className="icon icon--protocol-volume" />
-                            {t('staking.nav.leaderboard')}
-                            <i className="icon icon--external-arrow" />
-                        </LeaderboardLink>
-                    </SPAAnchor>
-                </SectionTitle>
-                <Collapse
-                    title={t('staking.rewards.how-it-works.each-week')}
-                    additionalStyling={{ titleFontSize: '13px', titleMarginBottom: '5px', titleMarginTop: '20px' }}
-                >
-                    <SectionText>
-                        <Trans
-                            i18nKey="staking.rewards.how-it-works.each-week-description"
-                            components={{
-                                span: <span />,
-                            }}
-                        />
-                    </SectionText>
-                </Collapse>
-                <Collapse
-                    title={t('staking.rewards.how-it-works.how-points-are-earned-title')}
-                    additionalStyling={{ titleFontSize: '13px', titleMarginBottom: '5px', titleMarginTop: '20px' }}
-                >
-                    <FinalPointsTitle>{t('staking.rewards.how-it-works.final-points')}</FinalPointsTitle>
-                    {isWalletConnected && (
-                        <FinalPoints>
-                            {pointsData?.totalPoints} = ({pointsData?.tradingPoints} + {pointsData?.lpPoints} +{' '}
-                            {pointsData?.vaultsPoints}) x {pointsData?.stakingMultiplier}
-                        </FinalPoints>
-                    )}
-                </Collapse>
-            </div>
+            <GamifiedStakingExplainer pointsData={pointsData} />
         </Container>
     );
 };
