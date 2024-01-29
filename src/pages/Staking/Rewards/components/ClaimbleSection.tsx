@@ -43,8 +43,6 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     const { t } = useTranslation();
     const theme = useTheme();
 
-    console.log('isLoading ', isLoading);
-
     const { openConnectModal } = useConnectModal();
 
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));

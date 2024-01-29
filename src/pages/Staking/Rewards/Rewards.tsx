@@ -103,6 +103,7 @@ const Rewards: React.FC = () => {
                 isLoading={
                     pointsBreakdownQuery?.isLoading || userStakingDataQuery?.isLoading || baseRewardsQuery?.isLoading
                 }
+                isClaimed={!!stakingData && !!userStakingData && !stakingData.isPaused && userStakingData.claimed}
             />
             <GamifiedRewards
                 userStakingData={userStakingData}

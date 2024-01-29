@@ -16,6 +16,7 @@ type BaseStakingRewardsProps = {
     baseStakingRewardsData: BaseRewardsData | undefined;
     pointsData: PointsData | undefined;
     isLoading: boolean;
+    isClaimed: boolean;
 };
 
 const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
@@ -23,6 +24,7 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
     baseStakingRewardsData,
     pointsData,
     isLoading,
+    isClaimed,
 }) => {
     const { t } = useTranslation();
 
@@ -42,7 +44,7 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                         </span>
                         <span>
                             <ClaimableLabel>{t('staking.rewards.base-rewards.claimable')}</ClaimableLabel>
-                            {userStakingData?.baseRewards
+                            {userStakingData?.baseRewards && !isClaimed
                                 ? formatCurrencyWithKey(THALES_CURRENCY, userStakingData?.baseRewards, 2)
                                 : '-'}
                         </span>
