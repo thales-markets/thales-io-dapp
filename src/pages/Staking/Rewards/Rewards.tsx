@@ -1,6 +1,6 @@
 import { THALES_CURRENCY } from 'constants/currency';
 import usePointsBreakdownQuery, { PointsData } from 'queries/token/usePointsBreakdownQuery';
-import useStakersDataLeaderboardQuery from 'queries/token/useStakersDataLeaderboardQuery';
+// import useStakersDataLeaderboardQuery from 'queries/token/useStakersDataLeaderboardQuery';
 import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
 import useUserBaseRewardsQuery from 'queries/token/useUserBaseRewards';
 import useUserStakingDataQuery from 'queries/token/useUserStakingData';
@@ -13,7 +13,6 @@ import { RootState } from 'redux/rootReducer';
 import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token';
-import snxJSConnector from 'utils/snxJSConnector';
 import { InfoDiv, InfoDivRewards, SectionTitle } from '../styled-components';
 import ClaimableSection from './components/ClaimbleSection';
 import GamifiedStakingExplainer from './components/GamifiedStakingExplainer';
@@ -27,7 +26,6 @@ const Rewards: React.FC = () => {
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const networkId = useSelector((state: RootState) => getNetworkId(state));
 
-    const [stakingThalesPeriod, setStakingThalesPeriod] = useState(0);
     const [lastValidPointsData, setLastValidPointsData] = useState<PointsData | undefined>(undefined);
     const [lastValidStakingData, setLastValidStakingData] = useState<ThalesStakingData | undefined>(undefined);
     const [lastValidBaseRewardsData, setLastValidBaseRewardsData] = useState<BaseRewardsData | undefined>(undefined);
@@ -36,8 +34,6 @@ const Rewards: React.FC = () => {
     const userStakingDataQuery = useUserStakingDataQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
     });
-
-    const { stakingThalesContract } = snxJSConnector as any;
 
     const baseRewardsQuery = useUserBaseRewardsQuery(walletAddress, networkId, { enabled: isAppReady });
 
@@ -68,36 +64,6 @@ const Rewards: React.FC = () => {
         }
         return lastValidPointsData;
     }, [pointsBreakdownQuery.data, pointsBreakdownQuery.isSuccess, lastValidPointsData]);
-
-    useEffect(() => {
-        stakingThalesContract?.periodsOfStaking().then((period: number) => {
-            setStakingThalesPeriod(period);
-        });
-    }, [stakingThalesContract]);
-
-    const leaderboardQuery = useStakersDataLeaderboardQuery(walletAddress, networkId, stakingThalesPeriod, true, {
-        enabled: stakingThalesPeriod > 0,
-    });
-
-    const userData = useMemo(() => {
-        if (leaderboardQuery.isSuccess && leaderboardQuery.data) {
-            const user = leaderboardQuery.data.leaderboard.filter(
-                (user) => user.id.toLowerCase() === walletAddress.toLowerCase()
-            );
-            const length = leaderboardQuery.data.leaderboard.length;
-            if (user.length > 0) {
-                return {
-                    rank: user[0].rank,
-                    users: length,
-                    share: user[0].share,
-                    points: user[0].userRoundBonusPoints,
-                    globalPoints: leaderboardQuery.data.data.globalPoints,
-                    bonusRewards: leaderboardQuery.data.bonusRewards,
-                };
-            }
-        }
-        return undefined;
-    }, [leaderboardQuery.isSuccess, leaderboardQuery.data, walletAddress]);
 
     const userStakingData: UserStakingData | undefined = useMemo(() => {
         if (userStakingDataQuery.isSuccess && userStakingDataQuery.data) {
