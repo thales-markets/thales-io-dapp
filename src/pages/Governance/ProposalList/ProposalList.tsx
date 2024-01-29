@@ -24,7 +24,7 @@ const ProposalList: React.FC<ProposalListProps> = ({ spaceKey, onItemClick, stat
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
 
-    const proposalsQuery = useProposalsQuery(spaceKey, 100, { enabled: isAppReady });
+    const proposalsQuery = useProposalsQuery(spaceKey, 1000, { enabled: isAppReady });
     const proposals = useMemo(() => (proposalsQuery.isSuccess && proposalsQuery.data ? proposalsQuery.data : []), [
         proposalsQuery.isSuccess,
         proposalsQuery.data,

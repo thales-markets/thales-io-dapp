@@ -10,6 +10,7 @@ export const Container = styled(FlexDivRow)`
         flex-direction: column;
     }
     font-family: Nunito !important;
+    margin-bottom: 50px;
 `;
 
 export const MainContentContainer = styled.div<{ isOverviewPage: boolean; isThalesStakersPage: boolean }>`
@@ -49,7 +50,7 @@ export const SidebarContainer = styled(FlexDivColumn)<{ tipsOverview: boolean }>
 
 export const SidebarWrapper = styled.div`
     border-radius: 8px;
-    padding: 2px;
+    padding: 0px 2px;
     margin-bottom: 20px;
     &:first-child {
         @media (max-width: 1200px) {

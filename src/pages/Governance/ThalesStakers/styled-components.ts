@@ -27,6 +27,9 @@ export const TableContainer = styled(FlexDivColumn)`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
     }
+    > div {
+        overflow: hidden;
+    }
 `;
 
 export const Info = styled.div`

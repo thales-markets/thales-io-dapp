@@ -11,9 +11,9 @@ const LINKS = {
     Spongly: 'https://spongly.eth.limo/dashboard/',
     TaleOfThales: 'https://thalesmarket.io/tale-of-thales',
     MarketingAssets: 'https://docs.thales.io/resources/marketing-assets',
+    SpeedMarkets: 'https://thalesmarket.io/speed-markets',
     Token: {
-        TIP66:
-            'https://thalesmarket.io/governance/thalesgov.eth/0xa925cddfe73b58911c3a9308a0e9d70dff21e31e4d428247ac084e8cffa4eb4f',
+        TIP66: '/dao/thalesgov.eth/0xa925cddfe73b58911c3a9308a0e9d70dff21e31e4d428247ac084e8cffa4eb4f',
         TIP139: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-139.md',
         TIP142: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-142.md',
         TIP99: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-99.md',

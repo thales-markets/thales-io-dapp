@@ -1,3 +1,5 @@
+import SPAAnchor from 'components/SPAAnchor';
+import LINKS from 'constants/links';
 import useIntegratorsQuery from 'queries/dashboard/useIntegratorsQuery';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import { useEffect, useState } from 'react';
@@ -14,6 +16,7 @@ import {
     FullWidthInfoSection,
     InfoStats,
     InfoText,
+    LinkArrow,
     TitleLabel,
     WidgetHeader,
     WidgetIcon,
@@ -47,13 +50,6 @@ const IntegratorsVolume: React.FC = () => {
         }
     }, [integratorsQuery.isSuccess, integratorsQuery.data]);
 
-    const allIntegratorsTotalVolume =
-        integratorsData.length > 0
-            ? integratorsData
-                  .map((integrator: Integrator) => integrator.totalVolume)
-                  .reduce((prevVolume, currVolume) => prevVolume + currVolume)
-            : 0;
-
     return (
         <WidgetWrapper>
             <WidgetHeader>
@@ -62,34 +58,42 @@ const IntegratorsVolume: React.FC = () => {
             </WidgetHeader>
             <FullWidthInfoSection>
                 <FlexDivIntegrators>
-                    <InfoText color={Colors.WHITE}>{t('dashboard.integrators.total-volume')}</InfoText>
-                    <InfoStats color={Colors.CYAN}>
-                        ${' '}
-                        {volumeStats
-                            ? formatCurrency(
-                                  allIntegratorsTotalVolume +
-                                      volumeStats?.thalesAmmVolume +
-                                      volumeStats?.overtimeAmmVolume +
-                                      +volumeStats.parlayAmmVolume
-                              )
-                            : 0}
-                    </InfoStats>
+                    <SPAAnchor href={LINKS.ThalesMarkets} style={{ cursor: 'pointer' }}>
+                        <InfoText>
+                            {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
+                        </InfoText>
+                        <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}</InfoStats>
+                    </SPAAnchor>
                 </FlexDivIntegrators>
                 <FlexDivIntegrators>
-                    <InfoText>{t('dashboard.integrators.thales-volume')}</InfoText>
-                    <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}</InfoStats>
+                    <SPAAnchor href={LINKS.Overtime} style={{ cursor: 'pointer' }}>
+                        <InfoText>
+                            {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.GRAY} />
+                        </InfoText>
+                        <InfoStats>
+                            ${' '}
+                            {volumeStats
+                                ? formatCurrency(volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume)
+                                : 0}
+                        </InfoStats>
+                    </SPAAnchor>
                 </FlexDivIntegrators>
                 <FlexDivIntegrators>
-                    <InfoText>{t('dashboard.integrators.overtime-volume')}</InfoText>
-                    <InfoStats>
-                        ${' '}
-                        {volumeStats ? formatCurrency(volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume) : 0}
-                    </InfoStats>
+                    <SPAAnchor href={LINKS.SpeedMarkets} style={{ cursor: 'pointer' }}>
+                        <InfoText>
+                            {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
+                        </InfoText>
+                        <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.speedAmmVolume) : 0}</InfoStats>
+                    </SPAAnchor>
                 </FlexDivIntegrators>
                 {integratorsData.map((integrator, index) => (
                     <FlexDivIntegrators key={index}>
-                        <InfoText>{integrator.id}</InfoText>
-                        <InfoStats>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
+                        <SPAAnchor href={integrator.url} style={{ cursor: 'pointer' }}>
+                            <InfoText>
+                                {integrator.id} <LinkArrow color={Colors.GRAY} />
+                            </InfoText>
+                            <InfoStats>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
+                        </SPAAnchor>
                     </FlexDivIntegrators>
                 ))}
             </FullWidthInfoSection>
