@@ -323,7 +323,8 @@
                 "your-staked": "Your THALES staked",
                 "staking-divider": "Staking Divider",
                 "total-staked": "Total THALES staked",
-                "staked-share": "Your Staked Share"
+                "staked-share": "Your Staked Share",
+                "claimable": "Claimable:"
             },
             "your-rewards": {
                 "title": "Gamified rewards",
@@ -334,7 +335,9 @@
                 "trading-multiplier": "Trading multiplier",
                 "lp-multiplier": "LP multiplier",
                 "vaults-multiplier": "Vaults multiplier",
-                "points": "Points"
+                "points": "Points",
+                "already-claimed": "You have already claimed the rewards for this week.Please come back next week.",
+                "next-claim": "Next available claim in:"
             },
             "current-estimated": {
                 "title": "Current estimated rewards",
