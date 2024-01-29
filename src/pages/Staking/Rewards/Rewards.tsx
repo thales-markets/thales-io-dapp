@@ -1,5 +1,7 @@
 import Collapse from 'components/Collapse';
+import SPAAnchor from 'components/SPAAnchor';
 import { THALES_CURRENCY } from 'constants/currency';
+import ROUTES from 'constants/routes';
 import usePointsBreakdownQuery, { PointsData } from 'queries/token/usePointsBreakdownQuery';
 import useStakersDataLeaderboardQuery from 'queries/token/useStakersDataLeaderboardQuery';
 import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
@@ -25,6 +27,7 @@ import {
     GamifiedRewardItem,
     ItemTitle,
     ItemValue,
+    LeaderboardLink,
     SectionText,
     SubTitle,
 } from './styled-components';
@@ -269,6 +272,13 @@ const Rewards: React.FC = () => {
                         <i className="icon icon--house" />
                         {t('staking.rewards.how-it-works.title')}
                     </span>
+                    <SPAAnchor href={ROUTES.Token.Leaderboard}>
+                        <LeaderboardLink>
+                            <i className="icon icon--protocol-volume" />
+                            {t('staking.nav.leaderboard')}
+                            <i className="icon icon--external-arrow" />
+                        </LeaderboardLink>
+                    </SPAAnchor>
                 </SectionTitle>
                 <Collapse
                     title={t('staking.rewards.how-it-works.each-week')}

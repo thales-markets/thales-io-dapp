@@ -184,6 +184,18 @@ export const ButtonContainer = styled.div`
     justify-content: center;
 `;
 
+export const LeaderboardLink = styled(FlexDiv)`
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    align-items: center;
+    > i {
+        font-size: 20px;
+        font-weight: 200;
+        margin: 0 5px;
+    }
+`;
+
 export const ClaimButtonDisclaimer = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
     font-family: Nunito;
