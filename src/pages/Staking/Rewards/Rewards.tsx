@@ -9,6 +9,7 @@ import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modu
 import { RootState } from 'redux/rootReducer';
 import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token';
 import BaseStakingRewards from './components/BaseStakingRewards';
+import CCIPAnimation from './components/CCIPAnimation';
 import ClaimableSection from './components/ClaimbleSection';
 import GamifiedRewards from './components/GamifiedRewards';
 import GamifiedStakingExplainer from './components/GamifiedStakingExplainer';
@@ -91,6 +92,7 @@ const Rewards: React.FC = () => {
 
     return (
         <Container>
+            <CCIPAnimation stakingData={stakingData} />
             <ClaimableSection
                 userStakingData={userStakingData}
                 stakingData={stakingData}
