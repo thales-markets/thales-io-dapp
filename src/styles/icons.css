@@ -212,6 +212,10 @@
     content: '\004F';
 }
 
+.icon--caret-double:before {
+    content: '\0052';
+}
+
 .icon--delegate:before {
     content: '\0046';
 }

@@ -223,7 +223,7 @@ const Table: React.FC<TableProps> = ({
                                                     ? column.isSortedDesc
                                                         ? 'icon--caret-down'
                                                         : 'icon--caret-up'
-                                                    : 'icon--double-arrow'
+                                                    : 'icon--caret-double'
                                             }`}
                                         />
                                     )}
