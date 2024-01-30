@@ -74,7 +74,7 @@ export const NumericStats = styled.span`
     color: ${(props) => props.theme.textColor.secondary};
 `;
 
-export const InfoText = styled.span<{ color?: string; lineHeight }>`
+export const InfoText = styled.span<{ color?: string }>`
     font-family: Nunito !important;
     font-weight: 400;
     font-size: 13px;
