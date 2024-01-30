@@ -111,6 +111,7 @@ const Rewards: React.FC = () => {
             />
             <GamifiedRewards
                 userStakingData={userStakingData}
+                stakingData={stakingData}
                 pointsData={pointsData}
                 isLoading={pointsBreakdownQuery?.isLoading || userStakingDataQuery?.isLoading}
             />
