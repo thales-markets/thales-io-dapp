@@ -1,11 +1,10 @@
-import { Icon } from '@material-ui/core';
 import Collapse from 'components/Collapse';
 import { t } from 'i18next';
-import { SectionDescription, SectionTitle } from 'pages/Staking/styled-components';
+import { SectionDescription } from 'pages/Staking/styled-components';
 import React from 'react';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
-import { ContentContainer } from '../../styled-components';
+import { ContentContainer, Header, Icon } from '../../styled-components';
 
 const collapseAdditionalStyling = {
     titleFontFamily: 'Nunito',
@@ -18,10 +17,10 @@ const Steps: React.FC = () => {
     return (
         <ContentContainer>
             <HeaderContainer>
-                <SectionTitle>
+                <Header>
                     <Icon className={'icon icon--staking'} />
                     {t('staking.lp-staking.header')}
-                </SectionTitle>
+                </Header>
             </HeaderContainer>
             <StepsContainer>
                 <Collapse
