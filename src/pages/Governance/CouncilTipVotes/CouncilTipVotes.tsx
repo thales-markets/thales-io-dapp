@@ -1,5 +1,6 @@
 import SimpleLoader from 'components/SimpleLoader';
 import Tooltip from 'components/Tooltip/Tooltip';
+import { CURRENT_GOVERNANCE_EPOCH_END_DATE, CURRENT_GOVERNANCE_EPOCH_START_DATE } from 'constants/governance';
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
 import { LoaderContainer, StyledLink } from 'pages/Governance/styled-components';
@@ -101,48 +102,49 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                                             }`}
                                         />
                                     </CouncilVoteRowData>
-                                    {(proposalResults.votes.length - 1 > index ||
-                                        (councilMembersNotVoted && councilMembersNotVoted?.length > 0)) && <Divider />}
+                                    {index < 6 && <Divider />}
                                 </VoteRow>
                             </>
                         );
                     })}
-                    {councilMembersNotVoted?.map((address: string, index: number) => {
-                        return (
-                            <>
-                                <VoteRow key={address + index}>
-                                    <CouncilVoteRowData>
-                                        <FlexDivFullWidthSpaceBetween>
-                                            <StyledLink
-                                                href={getEtherscanAddressLink(Network.Mainnet, address)}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                            >
-                                                <FlexDivCentered>
-                                                    <Voter address={address} walletAddress={walletAddress} />
-                                                </FlexDivCentered>
-                                            </StyledLink>
-                                            <Tooltip
-                                                overlay={t(`governance.not-voted`)}
-                                                overlayInnerStyle={{
-                                                    fontFamily: 'Nunito !important',
-                                                    textAlign: 'center',
-                                                }}
-                                            >
-                                                <FlexDivCentered>
-                                                    <VoteLabel fontWeight={500} color={Colors.GRAY}>
-                                                        {t(`governance.not-voted`)}
-                                                    </VoteLabel>
-                                                </FlexDivCentered>
-                                            </Tooltip>
-                                        </FlexDivFullWidthSpaceBetween>
-                                        <Icon color={Colors.LIGHT_GRAY} className="icon icon--sleep" />
-                                    </CouncilVoteRowData>
-                                    {councilMembersNotVoted.length - 1 > index && <Divider />}
-                                </VoteRow>
-                            </>
-                        );
-                    })}
+                    {proposal.start * 1000 > CURRENT_GOVERNANCE_EPOCH_START_DATE.getTime() &&
+                        proposal.end * 1000 < CURRENT_GOVERNANCE_EPOCH_END_DATE.getTime() &&
+                        councilMembersNotVoted?.map((address: string, index: number) => {
+                            return (
+                                <>
+                                    <VoteRow key={address + index}>
+                                        <CouncilVoteRowData>
+                                            <FlexDivFullWidthSpaceBetween>
+                                                <StyledLink
+                                                    href={getEtherscanAddressLink(Network.Mainnet, address)}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                >
+                                                    <FlexDivCentered>
+                                                        <Voter address={address} walletAddress={walletAddress} />
+                                                    </FlexDivCentered>
+                                                </StyledLink>
+                                                <Tooltip
+                                                    overlay={t(`governance.not-voted`)}
+                                                    overlayInnerStyle={{
+                                                        fontFamily: 'Nunito !important',
+                                                        textAlign: 'center',
+                                                    }}
+                                                >
+                                                    <FlexDivCentered>
+                                                        <VoteLabel fontWeight={500} color={Colors.GRAY}>
+                                                            {t(`governance.not-voted`)}
+                                                        </VoteLabel>
+                                                    </FlexDivCentered>
+                                                </Tooltip>
+                                            </FlexDivFullWidthSpaceBetween>
+                                            <Icon color={Colors.LIGHT_GRAY} className="icon icon--sleep" />
+                                        </CouncilVoteRowData>
+                                        {councilMembersNotVoted.length - 1 > index && <Divider />}
+                                    </VoteRow>
+                                </>
+                            );
+                        })}
                     {calculatedVotesSectionsWidth && (
                         <>
                             <VotesChart>

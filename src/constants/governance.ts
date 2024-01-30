@@ -16,6 +16,9 @@ export const NUMBER_OF_ORACLE_COUNCIL_MEMBERS = 5;
 
 export const OLD_COUNCIL_END_DATE = new Date('Dec 22 2021 00:00:00 UTC');
 
+export const CURRENT_GOVERNANCE_EPOCH_START_DATE = new Date('Jan 01 2024 00:00:00 UTC');
+export const CURRENT_GOVERNANCE_EPOCH_END_DATE = new Date('Apr 30 2024 23:59:59 UTC');
+
 export const EXCLUDED_PROPOSALS = [
     'QmNhZzp96fEzA4LFBnARKw2A4SYBQRaftzR3cRw3NqC2Yb',
     '0x1aa3a61f66ab80e62f13f7eecd7572b33d90302af1e8d5e2ffbee48d01ce18bc',
