@@ -104,6 +104,8 @@ export const Colors = {
     LIGHT_ORANGE: '#FFB866',
     TURQUOISE: '#36E5D0',
     INDIAN_RED: '#DD5667',
+    VENETIAN_RED: '#E06AA2',
+    EGG_BLUE: '#03DAC6',
 };
 
 export const Background = styled.div`
