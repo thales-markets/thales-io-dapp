@@ -316,7 +316,8 @@
                 "claim-rewards": "Claim Rewards",
                 "claiming": "Claiming",
                 "claim-success": "Tokens successfully claimed",
-                "ccip-msg": "CCIP synchronization in progress"
+                "ccip-msg": "CCIP synchronization in progress",
+                "calculating-rewards": "Claiming is paused. <br />Calculating rewards in progress."
             },
             "base-rewards": {
                 "title": "Base staking rewards",
