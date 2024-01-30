@@ -315,7 +315,8 @@
                 "disclaimer": "Unclaimed weekly rewards are forfeited!",
                 "claim-rewards": "Claim Rewards",
                 "claiming": "Claiming",
-                "claim-success": "Tokens successfully claimed"
+                "claim-success": "Tokens successfully claimed",
+                "ccip-msg": "CCIP synchronization in progress"
             },
             "base-rewards": {
                 "title": "Base staking rewards",
