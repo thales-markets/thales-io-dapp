@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsWalletConnected, getNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { FlexDivCentered, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 import { bigNumberFormatter, coinParser } from 'thales-utils';
 
@@ -30,6 +30,7 @@ const ApprovalModal: React.FC<ApprovalModalProps> = ({
     onSubmit,
     onClose,
 }) => {
+    const theme = useTheme();
     const { t } = useTranslation();
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -49,13 +50,31 @@ const ApprovalModal: React.FC<ApprovalModalProps> = ({
 
     const getSubmitButton = () => {
         if (!isWalletConnected) {
-            return <Button onClick={() => openConnectModal?.()}>{t('common.wallet.connect-your-wallet')}</Button>;
+            return (
+                <Button
+                    textColor={theme.background.primary}
+                    backgroundColor={theme.button.background.tertiary}
+                    onClick={() => openConnectModal?.()}
+                >
+                    {t('common.wallet.connect-your-wallet')}
+                </Button>
+            );
         }
         if (!approveAll && !isAmountEntered) {
-            return <Button disabled={true}>{t(`common.errors.enter-amount`)}</Button>;
+            return (
+                <Button
+                    textColor={theme.background.primary}
+                    backgroundColor={theme.button.background.tertiary}
+                    disabled={true}
+                >
+                    {t(`common.errors.enter-amount`)}
+                </Button>
+            );
         }
         return (
             <Button
+                backgroundColor={theme.button.background.tertiary}
+                textColor={theme.background.primary}
                 disabled={isButtonDisabled}
                 onClick={() => onSubmit(approveAll ? ethers.constants.MaxUint256 : amountConverted)}
                 additionalStyles={{ textTransform: 'none' }}

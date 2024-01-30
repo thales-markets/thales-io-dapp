@@ -8,13 +8,12 @@ export const ResultRow = styled(FlexDivColumnCentered)<{
     paddingBottom?: number;
     paddingTop?: number;
 }>`
-    padding: 20px;
+    padding: 5px 20px;
     background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : props.theme.background.primary)};
     opacity: ${(props) => (props.opacity ? props.opacity : 1)};
-    border-bottom: ${(props) => (props.borderColor ? `1px solid ${props.borderColor}` : 'none')};
-    padding-bottom: ${(props) => (props.paddingBottom ? props.paddingBottom : '10')}px;
     border-radius: ${(props) => (props.borderColor ? 0 : 15)}px;
     &:last-child {
+        padding-bottom: 10px;
         & .divider {
             display: none;
         }
@@ -37,7 +36,7 @@ export const Divider = styled.div`
     background: ${(props) => props.theme.background.tertiary};
     width: 100%;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
 `;
 
 export const RowPercentageIndicator = styled(FlexDiv)<{ width: number }>`

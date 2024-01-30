@@ -129,8 +129,11 @@ const ValidationTooltip = styled((props) => <MuiTooltip classes={{ popper: props
         font-size: 13px;
         line-height: 15px;
         color: ${(props) => props.theme.error.textColor.primary};
-        background: linear-gradient(180deg, ${(props) => props.theme.background.quaternary} 50%, ${(props) =>
-    props.theme.background.primary} 50%)};
+        background: linear-gradient(
+            180deg,
+            ${(props) => props.theme.background.quaternary} 50%,
+            ${(props) => props.theme.background.primary} 50%
+        );
         text-align: center;
         max-width: 320px;
     }

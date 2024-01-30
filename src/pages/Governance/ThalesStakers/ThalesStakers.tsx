@@ -64,7 +64,7 @@ type TableData = {
     unstakingAmount: number;
     ensName: string | null;
     percentageOfCirculatingSupply: number;
-    percentageOfTotalSupply: number;
+    percentageOfStakedSupply: number;
 };
 
 const ThalesStakers: React.FC = () => {
@@ -184,15 +184,23 @@ const ThalesStakers: React.FC = () => {
     };
 
     const tableData: TableData[] = useMemo(() => {
-        if (stakersQuery.isSuccess && stakersQuery.data && tokenInfoQuery.isSuccess && tokenInfoQuery.data) {
+        if (
+            stakersQuery.isSuccess &&
+            stakersQuery.data &&
+            tokenInfoQuery.isSuccess &&
+            tokenInfoQuery.data &&
+            stakingData
+        ) {
             return stakersQuery.data.map((staker: Staker) => {
                 const percentageOfCirculatingSupply = tokenInfoQuery.data
                     ? (staker.totalStakedAmount / tokenInfoQuery.data.circulatingSupply) * 100
                     : 0;
 
-                const percentageOfTotalSupply = tokenInfoQuery.data
-                    ? (staker.totalStakedAmount / tokenInfoQuery.data.totalSupply) * 100
-                    : 0;
+                const percentageOfStakedSupply =
+                    tokenInfoQuery.data && stakingData
+                        ? (staker.totalStakedAmount / stakingData.totalStakedAmount) * 100
+                        : 0;
+
                 return {
                     id: staker.id,
                     timestamp: staker.timestamp,
@@ -202,12 +210,12 @@ const ThalesStakers: React.FC = () => {
                     unstakingAmount: staker.unstakingAmount,
                     ensName: staker.ensName,
                     percentageOfCirculatingSupply: percentageOfCirculatingSupply,
-                    percentageOfTotalSupply: percentageOfTotalSupply,
+                    percentageOfStakedSupply: percentageOfStakedSupply,
                 };
             });
         }
         return [];
-    }, [stakersQuery.isSuccess, stakersQuery.data, tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
+    }, [stakersQuery.isSuccess, stakersQuery.data, tokenInfoQuery.isSuccess, tokenInfoQuery.data, stakingData]);
 
     const searchFilteredTableData = useDebouncedMemo(
         () => {
@@ -246,8 +254,6 @@ const ThalesStakers: React.FC = () => {
     const totalStakedAmount = stakingData ? stakingData.totalStakedAmount : 0;
     const stakedOfCirculatingSupplyPercentage =
         stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.circulatingSupply) * 100 : 0;
-    const stakedOfTotalSupplyPercentage =
-        stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.totalSupply) * 100 : 0;
 
     return (
         <Container>
@@ -271,10 +277,6 @@ const ThalesStakers: React.FC = () => {
                             <FlexDivFullWidthSpaceBetween>
                                 <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
                                 <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
-                            </FlexDivFullWidthSpaceBetween>
-                            <FlexDivFullWidthSpaceBetween>
-                                <InfoText>{t('dashboard.staking.of-total-supply')}</InfoText>
-                                <InfoStats>{stakedOfTotalSupplyPercentage.toFixed(2)}%</InfoStats>
                             </FlexDivFullWidthSpaceBetween>
                         </ChartInnerText>
                         <StyledPieChart width={450} height={450}>
@@ -376,17 +378,17 @@ const ThalesStakers: React.FC = () => {
                             sortable: true,
                         },
                         {
-                            Header: <>{t('governance.stakers.percentage-of-circulating-supply-col')}</>,
-                            accessor: 'percentageOfCirculatingSupply',
-                            Cell: (cellProps: CellProps<TableData, TableData['percentageOfCirculatingSupply']>) => {
+                            Header: <>{t('governance.stakers.percentage-of-staked-supply-col')}</>,
+                            accessor: 'percentageOfStakedSupply',
+                            Cell: (cellProps: CellProps<TableData, TableData['percentageOfStakedSupply']>) => {
                                 return <Amount>{cellProps.cell.value.toFixed(2)}</Amount>;
                             },
                             sortable: true,
                         },
                         {
-                            Header: <>{t('governance.stakers.percentage-of-total-supply-col')}</>,
-                            accessor: 'percentageOfTotalSupply',
-                            Cell: (cellProps: CellProps<TableData, TableData['percentageOfTotalSupply']>) => {
+                            Header: <>{t('governance.stakers.percentage-of-circulating-supply-col')}</>,
+                            accessor: 'percentageOfCirculatingSupply',
+                            Cell: (cellProps: CellProps<TableData, TableData['percentageOfCirculatingSupply']>) => {
                                 return <Amount>{cellProps.cell.value.toFixed(2)}</Amount>;
                             },
                             sortable: true,
