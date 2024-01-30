@@ -185,6 +185,10 @@ const QUERY_KEYS = {
             networkId,
         ],
     },
+    Landing: {
+        Timeline: () => ['timeline'],
+        EcosystemApps: () => ['ecosystemApps'],
+    },
 };
 
 export default QUERY_KEYS;
