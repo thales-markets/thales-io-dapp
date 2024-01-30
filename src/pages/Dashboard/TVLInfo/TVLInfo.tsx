@@ -32,7 +32,6 @@ const TVLInfo: React.FC = () => {
         }
     }, [statsQuery.isSuccess, statsQuery.data]);
 
-    console.log(tvlStats);
     return (
         <WidgetWrapper>
             <WidgetHeader>
