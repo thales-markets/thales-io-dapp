@@ -61,7 +61,7 @@ export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean
     height: 100%;
     width: 100%;
     text-align: left;
-    padding: 20px;
+    padding: 15px 20px 20px 20px;
     display: ${(props) => (props.notFlex ? '' : 'flex')};
     justify-content: ${(props) => (props.isTwoSided ? 'space-between' : '')};
 `;
@@ -74,7 +74,7 @@ export const NumericStats = styled.span`
     color: ${(props) => props.theme.textColor.secondary};
 `;
 
-export const InfoText = styled.span<{ color?: string }>`
+export const InfoText = styled.span<{ color?: string; lineHeight }>`
     font-family: Nunito !important;
     font-weight: 400;
     font-size: 13px;

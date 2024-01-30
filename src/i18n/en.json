@@ -719,10 +719,11 @@
         },
         "tvl": {
             "title": "TVL",
+            "token-staking-tvl": "THALES token staking",
             "overtime-amm-tvl": "Sports Markets",
             "thales-amm-tvl": "Digital options",
             "vaults-tvl": "Vaults",
-            "speed-markets": "Speed Markets"
+            "speed-tvl": "Speed Markets"
         }
     },
     "governance": {
