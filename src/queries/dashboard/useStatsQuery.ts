@@ -3,8 +3,8 @@ import QUERY_KEYS from 'constants/queryKeys';
 import { UseQueryOptions, useQuery } from 'react-query';
 import { AllStats } from 'types/statistics';
 
-const useStatsQuery = (options?: UseQueryOptions<AllStats | undefined>) => {
-    return useQuery<AllStats | undefined>(
+const useStatsQuery = (options?: UseQueryOptions<AllStats>) => {
+    return useQuery<AllStats>(
         QUERY_KEYS.AllStats(),
         async () => {
             try {
@@ -27,12 +27,43 @@ const useStatsQuery = (options?: UseQueryOptions<AllStats | undefined>) => {
                     marketsStats: {
                         totalUniqueMarkets: stats.total_markets,
                     },
+                    TVLStats: {
+                        speedMarketsTVL: stats.speed_markets_tvl,
+                        vaultsTVL: stats.vault_tvl,
+                        thalesLpTVL: stats.thales_lp_tvl,
+                        overtimeSingleTVL: stats.overtime_single_lp_tvl,
+                        overtimeParlayTVL: stats.overtime_parlay_lp_tvl,
+                        stakingThalesTVL: stats.staking_thales_tvl,
+                    },
                 };
             } catch (e) {
                 console.log(e);
             }
 
-            return undefined;
+            return {
+                usersStats: {
+                    totalUniqueUsers: 0,
+                },
+                volumeStats: {
+                    totalProtocolVolume: 0,
+                    thalesAmmVolume: 0,
+                    overtimeAmmVolume: 0,
+                    parlayAmmVolume: 0,
+                    speedAmmVolume: 0,
+                    safeboxFees: 0,
+                },
+                marketsStats: {
+                    totalUniqueMarkets: 0,
+                },
+                TVLStats: {
+                    speedMarketsTVL: 0,
+                    vaultsTVL: 0,
+                    thalesLpTVL: 0,
+                    overtimeSingleTVL: 0,
+                    overtimeParlayTVL: 0,
+                    stakingThalesTVL: 0,
+                },
+            };
         },
         {
             ...options,

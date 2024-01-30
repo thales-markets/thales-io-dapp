@@ -9,11 +9,9 @@ import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import Lottie from 'lottie-react';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
-import useAllTVLsQuery from 'queries/useAllTVLsQueries';
 import React, { CSSProperties, Suspense, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlexDiv, FlexDivCentered, FlexDivSpaceAround } from 'styles/common';
-import { AMMsTVLData, VaultsTVLData } from 'types/liquidity';
 import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
 import Footer from './Footer';
@@ -49,72 +47,28 @@ import {
 
 const Home: React.FC = () => {
     const { t } = useTranslation();
-    const [duneStats, setDuneStats] = useState<AllStats | undefined>();
+    const [duneStats, setDuneStats] = useState<AllStats>();
 
     const statsQuery = useStatsQuery();
-
-    const TVLQueries = useAllTVLsQuery();
+    const TVL = useMemo(() => {
+        if (!duneStats?.TVLStats) {
+            return 0;
+        }
+        return (
+            duneStats.TVLStats.overtimeParlayTVL +
+            duneStats.TVLStats.overtimeSingleTVL +
+            duneStats.TVLStats.speedMarketsTVL +
+            duneStats.TVLStats.thalesLpTVL +
+            duneStats.TVLStats.vaultsTVL +
+            duneStats.TVLStats.stakingThalesTVL
+        );
+    }, [duneStats]);
 
     useEffect(() => {
         if (statsQuery.isSuccess && statsQuery.data) {
             setDuneStats(statsQuery.data);
         }
     }, [statsQuery.isSuccess, statsQuery.data]);
-
-    const TVL = useMemo(() => {
-        if (!TVLQueries.some((query) => query.isLoading)) {
-            const sportAmmTVLData = TVLQueries[0].data as AMMsTVLData;
-            const parlayAmmTVLData = TVLQueries[1].data as AMMsTVLData;
-            const sportVaultsTVLData = TVLQueries[2].data as VaultsTVLData;
-            const thalesAmmTVLData = TVLQueries[3].data as AMMsTVLData;
-            const thalesVaultsTVLData = TVLQueries[4].data as VaultsTVLData;
-
-            const sportAmmAggregatedTVL = sportAmmTVLData
-                ? sportAmmTVLData?.opTVL + sportAmmTVLData?.arbTVL + sportAmmTVLData?.baseTVL
-                : 0;
-
-            const parlayAmmAggregatedTVL = parlayAmmTVLData
-                ? parlayAmmTVLData?.opTVL + parlayAmmTVLData?.arbTVL + parlayAmmTVLData?.baseTVL
-                : 0;
-
-            const thalesAmmAggregatedTVL = thalesAmmTVLData
-                ? thalesAmmTVLData?.opTVL + thalesAmmTVLData?.arbTVL + thalesAmmTVLData?.baseTVL
-                : 0;
-
-            const sportVaultsAggregatedTVL = sportVaultsTVLData
-                ? sportVaultsTVLData?.opDiscountVaultTVL +
-                  sportVaultsTVLData?.opDegenDiscountVaultTVL +
-                  sportVaultsTVLData?.opSafuDiscountVaultTVL +
-                  sportVaultsTVLData?.opUpsettoorVaultTVL +
-                  sportVaultsTVLData?.arbDiscountVaultTVL +
-                  sportVaultsTVLData?.arbDegenDiscountVaultTVL +
-                  sportVaultsTVLData?.arbSafuDiscountVaultTVL +
-                  sportVaultsTVLData?.arbUpsettoorVaultTVL
-                : 0;
-
-            const thalesVaultsAggregatedTVL = thalesVaultsTVLData
-                ? thalesVaultsTVLData?.opDiscountVaultTVL +
-                  thalesVaultsTVLData?.opDegenDiscountVaultTVL +
-                  thalesVaultsTVLData?.opSafuDiscountVaultTVL +
-                  thalesVaultsTVLData?.opUpsettoorVaultTVL +
-                  thalesVaultsTVLData?.arbDiscountVaultTVL +
-                  thalesVaultsTVLData?.arbDegenDiscountVaultTVL +
-                  thalesVaultsTVLData?.arbSafuDiscountVaultTVL +
-                  thalesVaultsTVLData?.arbUpsettoorVaultTVL
-                : 0;
-
-            const vaultsAggregatedTVL = sportVaultsAggregatedTVL + thalesVaultsAggregatedTVL;
-
-            return sportAmmAggregatedTVL + parlayAmmAggregatedTVL + thalesAmmAggregatedTVL + vaultsAggregatedTVL;
-        }
-    }, [TVLQueries]);
-
-    // memo added to sync all stats counter animations
-    const stats = useMemo(() => {
-        if (duneStats && TVL) {
-            return { ...duneStats, tvl: TVL };
-        }
-    }, [TVL, duneStats]);
 
     return (
         <Suspense fallback={<Loader />}>
@@ -147,25 +101,25 @@ const Home: React.FC = () => {
                 <StatsSection>
                     <SectionTitle>{t('home.total-protocol-volume')}</SectionTitle>
                     <Stat>
-                        $ <NumberCountdown number={stats?.volumeStats?.totalProtocolVolume || 0} />
+                        $ <NumberCountdown number={duneStats?.volumeStats?.totalProtocolVolume || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.total-value-locked')}</SectionTitle>
                     <Stat>
-                        $ <NumberCountdown number={stats?.tvl || 0} />
+                        $ <NumberCountdown number={TVL || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.total-unique-users')}</SectionTitle>
                     <Stat>
-                        <NumberCountdown number={stats?.usersStats?.totalUniqueUsers || 0} />
+                        <NumberCountdown number={duneStats?.usersStats?.totalUniqueUsers || 0} />
                     </Stat>
                 </StatsSection>
                 <StatsSection>
                     <SectionTitle>{t('home.markets-created')}</SectionTitle>
                     <Stat>
-                        <NumberCountdown number={stats?.marketsStats?.totalUniqueMarkets || 0} />
+                        <NumberCountdown number={duneStats?.marketsStats?.totalUniqueMarkets || 0} />
                     </Stat>
                 </StatsSection>
                 <HomeButton onClick={() => navigateTo(ROUTES.Dashboard)}>

@@ -15,4 +15,18 @@ export type VolumeStats = {
     safeboxFees: number;
 };
 
-export type AllStats = { usersStats: UsersStats; marketsStats: MarketsStats; volumeStats: VolumeStats };
+export type TVLStats = {
+    speedMarketsTVL: number;
+    vaultsTVL: number;
+    thalesLpTVL: number;
+    overtimeSingleTVL: number;
+    overtimeParlayTVL: number;
+    stakingThalesTVL: number;
+};
+
+export type AllStats = {
+    usersStats: UsersStats;
+    marketsStats: MarketsStats;
+    volumeStats: VolumeStats;
+    TVLStats: TVLStats;
+};
