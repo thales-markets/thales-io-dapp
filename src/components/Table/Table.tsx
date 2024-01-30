@@ -221,9 +221,9 @@ const Table: React.FC<TableProps> = ({
                                             className={`icon ${
                                                 column.isSorted
                                                     ? column.isSortedDesc
-                                                        ? 'icon--arrow-down'
-                                                        : 'icon--arrow-up'
-                                                    : 'icon--double-arrow'
+                                                        ? 'icon--caret-down'
+                                                        : 'icon--caret-up'
+                                                    : 'icon--caret-double'
                                             }`}
                                         />
                                     )}

@@ -52,13 +52,8 @@ export type ThalesStakingData = {
     baseRewardsPool: number;
     bonusRewardsPool: number;
     totalStakedAmount: number;
-    maxSnxBonusPercentage: number;
-    maxAmmBonusPercentage: number;
-    maxThalesRoyaleBonusPercentage: number;
-    maxBonusRewardsPercentage: number;
-    snxVolumeRewardsMultiplier: number;
-    ammVolumeRewardsMultiplier: number;
     canClosePeriod: boolean;
+    closingPeriodInProgress: boolean;
     mergeAccountEnabled: boolean;
     totalEscrowBalanceNotIncludedInStaking: number;
     totalEscrowedRewards: number;

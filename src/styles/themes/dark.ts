@@ -67,6 +67,8 @@ const darkTheme = {
         textColor: {
             primary: Colors.ORANGE,
             secondary: Colors.DARK_ORANGE,
+            tertiary: Colors.EGG_BLUE,
+            quaternary: Colors.VENETIAN_RED,
         },
         borderColor: {
             primary: Colors.ORANGE,

@@ -1,6 +1,4 @@
-import { Icon } from '@material-ui/core';
 import { LP_TOKEN, USD_SIGN } from 'constants/currency';
-import { SectionHeader } from 'pages/Staking/styled-components';
 import useGelatoQuery from 'queries/token/useGelatoQuery';
 import useLPStakingQuery from 'queries/token/useLPStakingQuery';
 import React, { useMemo } from 'react';
@@ -12,6 +10,7 @@ import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { formatCurrencyWithKey, formatCurrencyWithPrecision, formatCurrencyWithSign } from 'thales-utils';
+import { Header, Icon } from '../../styled-components';
 import ClaimSection from '../ClaimSection';
 
 const StakingData: React.FC = () => {
@@ -90,12 +89,6 @@ const Wrapper = styled(FlexDiv)`
 const ClaimSectionWrapper = styled(FlexDiv)`
     flex-direction: column;
     flex: 1;
-`;
-
-const Header = styled(SectionHeader)`
-    margin-bottom: 15px;
-    flex-direction: row;
-    padding: 0;
 `;
 
 const StakingDataContainer = styled(FlexDiv)`

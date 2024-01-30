@@ -7,18 +7,21 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
-import { UserStakingData } from 'types/token';
+import { ThalesStakingData, UserStakingData } from 'types/token';
 import { SectionTitle } from '../../styled-components';
 import { GamifiedRewardItem, ItemTitle, ItemValue } from '../styled-components';
 
 type GamifiedRewardsProps = {
     userStakingData: UserStakingData | undefined;
+    stakingData: ThalesStakingData | undefined;
     pointsData: PointsData | undefined;
     isLoading: boolean;
 };
 
-const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ userStakingData, pointsData, isLoading }) => {
+const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ userStakingData, stakingData, pointsData, isLoading }) => {
     const { t } = useTranslation();
+
+    const isClaimed = stakingData && userStakingData && !stakingData.isPaused && userStakingData.claimed;
 
     return (
         <>
@@ -40,7 +43,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ userStakingData, poin
                                     <ItemTitle>{t('staking.rewards.base-rewards.claimable')}</ItemTitle>
                                 </ItemTitle>
                                 <ItemValue>
-                                    {userStakingData?.totalBonus
+                                    {userStakingData?.totalBonus && !isClaimed
                                         ? formatCurrencyWithKey(THALES_CURRENCY, userStakingData?.totalBonus, 2)
                                         : '-'}
                                 </ItemValue>
@@ -50,14 +53,16 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ userStakingData, poin
                                     <ItemTitle>{t('staking.rewards.base-rewards.current-multiplier')}</ItemTitle>
                                 </ItemTitle>
                                 <ItemValue>{`${
-                                    pointsData?.stakingMultiplier ? `x ${pointsData?.stakingMultiplier}` : '-'
+                                    pointsData?.stakingMultiplier && !isClaimed
+                                        ? `x ${pointsData?.stakingMultiplier}`
+                                        : '-'
                                 }`}</ItemValue>
                             </GamifiedRewardItem>
                             <GamifiedRewardItem>
                                 <ItemTitle>
                                     <ItemTitle>{t('staking.rewards.your-rewards.current-points')}</ItemTitle>
                                 </ItemTitle>
-                                <ItemValue>{pointsData?.totalPoints}</ItemValue>
+                                <ItemValue>{!isClaimed ? pointsData?.totalPoints : '-'}</ItemValue>
                             </GamifiedRewardItem>
                         </span>
                     </SectionTitle>

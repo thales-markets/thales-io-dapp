@@ -315,7 +315,9 @@
                 "disclaimer": "Unclaimed weekly rewards are forfeited!",
                 "claim-rewards": "Claim Rewards",
                 "claiming": "Claiming",
-                "claim-success": "Tokens successfully claimed"
+                "claim-success": "Tokens successfully claimed",
+                "ccip-msg": "CCIP synchronization in progress",
+                "calculating-rewards": "Claiming is paused. <br />Calculating rewards in progress."
             },
             "base-rewards": {
                 "title": "Base staking rewards",
@@ -580,6 +582,7 @@
         "lp-staking": {
             "header": "How LP Staking works?",
             "staking-data": "Staking data",
+            "other-lp": "Other LP Staking providers",
             "my-lp-staking": "My LP Staking Balance",
             "your-unclaimed": "Your unclaimed Rewards",
             "staking-data-section": {
@@ -589,9 +592,7 @@
                 "tvl": "Total Value Locked (TVL)",
                 "my-staking-balance": "My Staking Balance"
             },
-            "velodrome-text": "Stake <strong>THALES/WETH</strong> on Velodrome (Optimism) to earn VELO rewards",
-            "aerodrome-text": "Stake <strong>THALES/WETH</strong> on Aerodrome (Base) to earn VELO rewards",
-            "camelot-text": "Stake <strong>THALES/WETH</strong> on Camelot (Arbitrum) to earn VELO rewards",
+            "pool-text": "on {{ network }}",
             "claim": {
                 "claim-rewards": "Claim rewards",
                 "claiming-rewards": "Claiming rewards"

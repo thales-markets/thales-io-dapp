@@ -1,3 +1,4 @@
+import { TransactionFilterEnum } from 'enums/token';
 import usePointsBreakdownQuery, { PointsData } from 'queries/token/usePointsBreakdownQuery';
 import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
 import useUserBaseRewardsQuery from 'queries/token/useUserBaseRewards';
@@ -8,7 +9,9 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token';
+import TransactionsWithFilters from '../components/TransactionsWithFilters';
 import BaseStakingRewards from './components/BaseStakingRewards';
+import CCIPAnimation from './components/CCIPAnimation';
 import ClaimableSection from './components/ClaimbleSection';
 import GamifiedRewards from './components/GamifiedRewards';
 import GamifiedStakingExplainer from './components/GamifiedStakingExplainer';
@@ -91,6 +94,7 @@ const Rewards: React.FC = () => {
 
     return (
         <Container>
+            <CCIPAnimation stakingData={stakingData} />
             <ClaimableSection
                 userStakingData={userStakingData}
                 stakingData={stakingData}
@@ -107,10 +111,12 @@ const Rewards: React.FC = () => {
             />
             <GamifiedRewards
                 userStakingData={userStakingData}
+                stakingData={stakingData}
                 pointsData={pointsData}
                 isLoading={pointsBreakdownQuery?.isLoading || userStakingDataQuery?.isLoading}
             />
             <GamifiedStakingExplainer pointsData={pointsData} />
+            <TransactionsWithFilters filters={[TransactionFilterEnum.CLAIM_STAKING_REWARDS]} hideFilters hideTitle />
         </Container>
     );
 };

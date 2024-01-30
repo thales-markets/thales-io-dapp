@@ -17,50 +17,38 @@ const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<Thale
                 baseRewardsPool: 0,
                 bonusRewardsPool: 0,
                 totalStakedAmount: 0,
-                maxSnxBonusPercentage: 0,
-                maxAmmBonusPercentage: 0,
-                maxThalesRoyaleBonusPercentage: 0,
-                maxBonusRewardsPercentage: 0,
-                snxVolumeRewardsMultiplier: 0,
-                ammVolumeRewardsMultiplier: 0,
                 canClosePeriod: false,
+                closingPeriodInProgress: false,
                 mergeAccountEnabled: true,
                 totalEscrowBalanceNotIncludedInStaking: 0,
                 totalEscrowedRewards: 0,
                 durationPeriod: 0,
             };
             try {
-                const { stakingDataContract } = snxJSConnector;
-                if (stakingDataContract) {
-                    const contractStakingData = await stakingDataContract.getStakingData();
+                const { stakingDataContract, stakingThalesContract } = snxJSConnector;
+                if (stakingDataContract && stakingThalesContract) {
+                    const [contractStakingData, closingPeriodInProgress] = await Promise.all([
+                        stakingDataContract.getStakingData(),
+                        stakingThalesContract.closingPeriodInProgress(),
+                    ]);
 
+                    stakingData.durationPeriod = Number(contractStakingData.durationPeriod) * 1000;
                     stakingData.period = contractStakingData.periodsOfStaking;
                     stakingData.unstakeDurationPeriod = Number(contractStakingData.unstakeDurationPeriod) * 1000;
-                    stakingData.durationPeriod = Number(contractStakingData.durationPeriod) * 1000;
                     stakingData.closingDate =
                         Number(contractStakingData.lastPeriodTimeStamp) * 1000 +
                         Number(contractStakingData.durationPeriod) * 1000;
-                    stakingData.isPaused = contractStakingData.paused;
+                    stakingData.isPaused = contractStakingData.paused || closingPeriodInProgress;
                     stakingData.baseRewardsPool = bigNumberFormatter(contractStakingData.baseRewardsPool);
                     stakingData.bonusRewardsPool = bigNumberFormatter(contractStakingData.bonusRewardsPool);
                     stakingData.totalStakedAmount = bigNumberFormatter(contractStakingData.totalStakedAmount);
-                    stakingData.maxSnxBonusPercentage = Number(contractStakingData.maxSNXRewardsPercentage);
-                    stakingData.maxAmmBonusPercentage = Number(contractStakingData.maxAMMVolumeRewardsPercentage);
-                    stakingData.maxThalesRoyaleBonusPercentage = Number(
-                        contractStakingData.maxThalesRoyaleRewardsPercentage
-                    );
-                    stakingData.maxBonusRewardsPercentage =
-                        Number(contractStakingData.maxSNXRewardsPercentage) +
-                        Number(contractStakingData.maxAMMVolumeRewardsPercentage) +
-                        Number(contractStakingData.maxThalesRoyaleRewardsPercentage);
-                    stakingData.snxVolumeRewardsMultiplier = Number(contractStakingData.SNXVolumeRewardsMultiplier);
-                    stakingData.ammVolumeRewardsMultiplier = Number(contractStakingData.AMMVolumeRewardsMultiplier);
                     stakingData.canClosePeriod = contractStakingData.canClosePeriod;
                     stakingData.mergeAccountEnabled = contractStakingData.mergeAccountEnabled;
                     stakingData.totalEscrowBalanceNotIncludedInStaking = bigNumberFormatter(
                         contractStakingData.totalEscrowBalanceNotIncludedInStaking
                     );
                     stakingData.totalEscrowedRewards = bigNumberFormatter(contractStakingData.totalEscrowedRewards);
+                    stakingData.closingPeriodInProgress = closingPeriodInProgress;
 
                     return stakingData;
                 }

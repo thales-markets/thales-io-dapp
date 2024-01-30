@@ -1,69 +1,88 @@
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
+import { SUPPORTED_NETWORKS_PARAMS } from 'constants/network';
+import { Network } from 'enums/network';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import YourTransactions from '../LPStaking/components/Transactions';
 import StakeSection from './components/StakeSection';
 import StakingData from './components/StakingData';
 import Steps from './components/Steps';
+import { Header, Icon } from './styled-components';
 
 const LPStaking: React.FC = () => {
+    const { t } = useTranslation();
+
     return (
         <Container>
-            <Steps />
             <RowsContainer>
                 <StakingData />
             </RowsContainer>
             <Wrapper>
                 <StakeSection />
             </Wrapper>
-            <RowsContainer>
-                <SPAAnchor href={LINKS.LPStaking.Velodrome}>
-                    <PoolWrapper>
-                        <Logo className="logo logo--velodrome" />
-                        <Text>
-                            <Trans
-                                i18nKey="staking.lp-staking.velodrome-text"
-                                components={{
-                                    strong: <PoolLabel />,
-                                }}
-                            />
-                        </Text>
-                        <Arrow className="icon icon--external-arrow" />
-                    </PoolWrapper>
-                </SPAAnchor>
-                <SPAAnchor href={LINKS.LPStaking.Aerodrome}>
-                    <PoolWrapper>
-                        <Logo className="logo logo--aerodrome" />
-                        <Text>
-                            <Trans
-                                i18nKey="staking.lp-staking.aerodrome-text"
-                                components={{
-                                    strong: <PoolLabel />,
-                                }}
-                            />
-                        </Text>
-                        <Arrow className="icon icon--external-arrow" />
-                    </PoolWrapper>
-                </SPAAnchor>
-                <SPAAnchor href={LINKS.LPStaking.Camelot}>
-                    <PoolWrapper>
-                        <Logo className="logo logo--camelot" />
-                        <Text>
-                            <Trans
-                                i18nKey="staking.lp-staking.camelot-text"
-                                components={{
-                                    strong: <PoolLabel />,
-                                }}
-                            />
-                        </Text>
-                        <Arrow className="icon icon--external-arrow" />
-                    </PoolWrapper>
-                </SPAAnchor>
-            </RowsContainer>
+            <Wrapper>
+                <Header>
+                    <Icon className={'icon icon--staking'} />
+                    {t('staking.lp-staking.other-lp')}
+                </Header>
+                <RowsContainer>
+                    <SPAAnchor href={LINKS.LPStaking.Velodrome}>
+                        <PoolWrapper>
+                            <LogoContainer>
+                                <Logo className="logo logo--velodrome" />
+                                <Arrow className="icon icon--external-arrow" />
+                            </LogoContainer>
+                            <Text>
+                                <Trans
+                                    i18nKey="staking.lp-staking.pool-text"
+                                    values={{
+                                        network: SUPPORTED_NETWORKS_PARAMS[
+                                            Network.OptimismMainnet
+                                        ].chainName.toUpperCase(),
+                                    }}
+                                />
+                            </Text>
+                        </PoolWrapper>
+                    </SPAAnchor>
+                    <SPAAnchor href={LINKS.LPStaking.Aerodrome}>
+                        <PoolWrapper>
+                            <LogoContainer>
+                                <Logo className="logo logo--aerodrome" />
+                                <Arrow className="icon icon--external-arrow" />
+                            </LogoContainer>
+                            <Text>
+                                <Trans
+                                    i18nKey="staking.lp-staking.pool-text"
+                                    values={{
+                                        network: SUPPORTED_NETWORKS_PARAMS[Network.Base].chainName.toUpperCase(),
+                                    }}
+                                />
+                            </Text>
+                        </PoolWrapper>
+                    </SPAAnchor>
+                    <SPAAnchor href={LINKS.LPStaking.Camelot}>
+                        <PoolWrapper>
+                            <LogoContainer>
+                                <Arrow className="icon icon--external-arrow" />
+                                <Logo className="logo logo--camelot" />
+                            </LogoContainer>
+                            <Text>
+                                <Trans
+                                    i18nKey="staking.lp-staking.pool-text"
+                                    values={{
+                                        network: SUPPORTED_NETWORKS_PARAMS[Network.Arbitrum].chainName.toUpperCase(),
+                                    }}
+                                />
+                            </Text>
+                        </PoolWrapper>
+                    </SPAAnchor>
+                </RowsContainer>
+            </Wrapper>
+            <Steps />
             <YourTransactions />
         </Container>
     );
@@ -77,6 +96,7 @@ const Container = styled.div`
     width: 60%;
     grid-template-rows: fr 160px;
     column-gap: 10px;
+    margin-top: 90px;
     row-gap: 10px;
     grid-template-areas: 'top' 'bottom';
     z-index: 1;
@@ -93,7 +113,6 @@ const Container = styled.div`
 
 const RowsContainer = styled(FlexDiv)`
     flex-direction: row;
-    background-color: transparent !important;
     padding: 0 !important;
     justify-content: space-between;
     flex: 1;
@@ -113,34 +132,33 @@ const Wrapper = styled(FlexDiv)`
 
 const PoolWrapper = styled(Wrapper)`
     font-size: 13px;
+    align-items: center;
     position: relative;
+    flex: 1;
     padding: 20px;
     background-color: ${(props) => props.theme.background.primary};
     border-radius: 8px;
     cursor: pointer;
 `;
 
-const PoolLabel = styled.span`
-    font-size: 13px;
-    font-weight: 700;
-    color: ${(props) => props.theme.textColor.secondary};
-`;
-
 const Arrow = styled.i`
     position: absolute;
-    bottom: 15px;
-    right: 15px;
+    right: -15px;
+    top: 20px;
     font-size: 15px;
 `;
 
 const Text = styled.p`
     display: inline;
-    margin-top: 20px;
     margin-bottom: 30px;
-    flex-direction: c;
     color: ${(props) => props.theme.textColor.primary};
     font-weight: 400;
-    line-height: 15px;
+    text-align: center;
+    justify-content: center;
+`;
+
+const LogoContainer = styled(FlexDiv)`
+    position: relative;
 `;
 
 const Logo = styled.i`

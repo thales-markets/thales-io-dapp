@@ -7,7 +7,6 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsWalletConnected } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import styled from 'styled-components';
 import { SectionTitle } from '../../styled-components';
 import { FinalPoints, FinalPointsTitle, LeaderboardLink, SectionText } from '../styled-components';
 
@@ -21,7 +20,7 @@ const GamifiedStakingExplainer: React.FC<GamifiedStakingExplainerProps> = ({ poi
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
 
     return (
-        <Container>
+        <div>
             <SectionTitle>
                 <span>
                     <i className="icon icon--house" />
@@ -60,12 +59,8 @@ const GamifiedStakingExplainer: React.FC<GamifiedStakingExplainerProps> = ({ poi
                     </FinalPoints>
                 )}
             </Collapse>
-        </Container>
+        </div>
     );
 };
-
-const Container = styled.div`
-    margin-bottom: 50px;
-`;
 
 export default GamifiedStakingExplainer;

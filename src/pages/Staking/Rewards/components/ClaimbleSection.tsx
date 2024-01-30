@@ -1,4 +1,5 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
+import coinsAnimation from 'assets/lotties/rewards-coins.json';
 import SimpleLoader from 'components/SimpleLoader';
 import TimeRemaining from 'components/TimeRemaining';
 import {
@@ -9,6 +10,7 @@ import {
 } from 'components/ToastMessage/ToastMessage';
 import { THALES_CURRENCY } from 'constants/currency';
 import { ethers } from 'ethers';
+import Lottie from 'lottie-react';
 import { StakingButton } from 'pages/Staking/styled-components';
 import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -120,7 +122,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                             </span>
                         </SectionTitle>
 
-                        {!isClaimed && (
+                        {!isClaimed && !stakingData?.closingPeriodInProgress && (
                             <>
                                 <ItemsWrapper>
                                     <StakingDetailsSection>
@@ -192,10 +194,8 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                             </>
                         )}
                         {isClaimed && (
-                            <AlreadyClaimedWrapper>
-                                <AlreadyClaimedLabel>
-                                    {t('staking.rewards.your-rewards.already-claimed')}
-                                </AlreadyClaimedLabel>
+                            <StakingStateWrapper>
+                                <StateLabel>{t('staking.rewards.your-rewards.already-claimed')}</StateLabel>
                                 <FlexDiv>
                                     <Trans
                                         i18nKey="staking.rewards.your-rewards.next-claim"
@@ -214,7 +214,19 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                         '--:--'
                                     )}
                                 </FlexDiv>
-                            </AlreadyClaimedWrapper>
+                            </StakingStateWrapper>
+                        )}
+                        {stakingData?.closingPeriodInProgress && (
+                            <StakingStateWrapper>
+                                <StateLabel closingRoundInProgress={true}>
+                                    <Trans
+                                        i18nKey="staking.rewards.claim.calculating-rewards"
+                                        components={{
+                                            br: <br />,
+                                        }}
+                                    />
+                                </StateLabel>
+                            </StakingStateWrapper>
                         )}
                     </RewardsDetailsContainer>
                     {!isClaimed && (
@@ -239,7 +251,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                     )}
                     {isClaimed && (
                         <IconContainer>
-                            <Icon className="icon icon--staking" />
+                            <Lottie animationData={coinsAnimation} style={{ height: '150px' }} />
                         </IconContainer>
                     )}
                 </ClaimableRewardsContainer>
@@ -259,26 +271,25 @@ const Notice = styled.span`
     color: ${(props) => props.theme.error.textColor.secondary};
 `;
 
-const AlreadyClaimedWrapper = styled(FlexDivColumn)`
+const StakingStateWrapper = styled(FlexDivColumn)`
     justify-content: flex-start;
     align-items: flex-start;
 `;
 
-const AlreadyClaimedLabel = styled.span`
+const StateLabel = styled.span<{ closingRoundInProgress?: boolean }>`
     font-size: 18px;
     font-weight: 600;
-    color: ${(props) => props.theme.textColor.secondary};
+    color: ${(props) =>
+        props.closingRoundInProgress
+            ? props.theme.warning.textColor.quaternary
+            : props.theme.warning.textColor.tertiary};
     margin: 30px 0;
 `;
 
 const IconContainer = styled(FlexDiv)`
     justify-content: flex-end;
     align-items: center;
-`;
-
-const Icon = styled.i`
-    font-size: 100px;
-    color: ${(props) => props.theme.textColor.primary};
+    overflow: hidden;
 `;
 
 export default ClaimableSection;
