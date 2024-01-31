@@ -68,7 +68,6 @@ const Staking: React.FC = () => {
             ? (globalStakingData?.totalStakedAmount / tokenInfo?.circulatingSupply) * 100
             : 0;
 
-    console.log(globalStakingData);
     return (
         <SPAAnchor href={buildHref(ROUTES.Staking)}>
             <WidgetWrapper>
