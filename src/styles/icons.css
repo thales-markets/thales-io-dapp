@@ -12,6 +12,10 @@
     font-size: 20px;
 }
 
+.icon--ecosystem-fallback:before {
+    content: '\0075';
+}
+
 .icon--thales-logo:before {
     content: '\006A';
 }
@@ -266,4 +270,12 @@
 
 .icon--external-arrow:before {
     content: '\0051';
+}
+
+.thales-icon--left:before {
+    content: '\0074';
+}
+
+.thales-icon--right:before {
+    content: '\007A';
 }
