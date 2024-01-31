@@ -14,6 +14,13 @@
         "size": "10em"
     },
     {
+        "icon": "speed-markets",
+        "description":
+            "Fast-paced Speed Markets allow users to purchase UP or DOWN positions around current crypto prices on short timeframe countdown based expiries. Speed Markets also support chaining multiple sequential price movements in one go for leveraged payouts up to 47x.",
+        "link": "https://thalesmarket.io/",
+        "size": "10em"
+    }
+    {
         "icon": "bookie",
         "description":
             "Telegram-based Sports Markets application with easy onboarding that utilizes Thales Protocol Sports Markets infrastructure as its market making and liquidity backend.",
