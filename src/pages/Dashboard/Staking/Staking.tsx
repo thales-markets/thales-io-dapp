@@ -1,24 +1,26 @@
 import SPAAnchor from 'components/SPAAnchor';
 import ROUTES from 'constants/routes';
 import { StakersFilterEnum } from 'enums/governance';
-import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
+import useGlobalStakingDataQuery from 'queries/token/useGlobalStakingDataQuery';
 import useThalesStakersQuery from 'queries/useThalesStakersQuery';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
-import { Colors, FlexDiv, FlexDivColumnNative, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDiv } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { Staker } from 'types/governance';
-import { StakingData, TokenInfo } from 'types/token';
+import { GlobalStakingData, TokenInfo } from 'types/token';
 import { buildHref } from 'utils/routes';
 import {
+    FlexDivAlignStartSpaceBetween,
     FlexDivFullWidthSpaceBetween,
     InfoSection,
     InfoStats,
     InfoText,
+    StakingInfo,
     TitleLabel,
     WidgetHeader,
     WidgetIcon,
@@ -29,10 +31,10 @@ const Staking: React.FC = () => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
 
-    const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
-    const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
+    const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>();
+    const [globalStakingData, setGlobalStakingData] = useState<GlobalStakingData | undefined>();
 
-    const stakingDataQuery = useStakingDataQuery({
+    const globalStakingDataQuery = useGlobalStakingDataQuery({
         enabled: isAppReady,
     });
 
@@ -50,10 +52,10 @@ const Staking: React.FC = () => {
     });
 
     useEffect(() => {
-        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
-            setStakingData(stakingDataQuery.data);
+        if (globalStakingDataQuery.isSuccess && globalStakingDataQuery.data) {
+            setGlobalStakingData(globalStakingDataQuery.data);
         }
-    }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
+    }, [globalStakingDataQuery.isSuccess, globalStakingDataQuery.data]);
 
     useEffect(() => {
         if (tokenInfoQuery.isSuccess && tokenInfoQuery.data) {
@@ -61,14 +63,12 @@ const Staking: React.FC = () => {
         }
     }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
 
-    const totalStakedAmount = stakingData ? stakingData.totalStakedAmount : 0;
-    const totalStakedAmountOptimism = stakingData ? stakingData.totalStakedAmountOptimism : 0;
-    const totalStakedAmountArbitrum = stakingData ? stakingData.totalStakedAmountArbitrum : 0;
-    const totalStakedAmountBase = stakingData ? stakingData.totalStakedAmountBase : 0;
-
     const stakedOfCirculatingSupplyPercentage =
-        stakingData && tokenInfo ? (stakingData?.totalStakedAmount / tokenInfo?.circulatingSupply) * 100 : 0;
+        globalStakingData && tokenInfo
+            ? (globalStakingData?.totalStakedAmount / tokenInfo?.circulatingSupply) * 100
+            : 0;
 
+    console.log(globalStakingData);
     return (
         <SPAAnchor href={buildHref(ROUTES.Staking)}>
             <WidgetWrapper>
@@ -77,38 +77,43 @@ const Staking: React.FC = () => {
                         <WidgetIcon className="icon icon--staking" />
                         <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
                     </FlexDiv>
-                    <FlexDivSpaceBetween>
-                        <TitleLabel>{t('dashboard.staking.total-stakers')}</TitleLabel>
-                        <TitleLabel isHighlighted={true}>{stakersQuery.isLoading ? '-' : stakers.length}</TitleLabel>
-                    </FlexDivSpaceBetween>
+                    <FlexDivAlignStartSpaceBetween>
+                        <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
+                        <TitleLabel isHighlighted={true}>
+                            {globalStakingData
+                                ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
+                                : '-'}
+                        </TitleLabel>
+                    </FlexDivAlignStartSpaceBetween>
                 </WidgetHeader>
-                <InfoSection side="left">
-                    <FlexDivFullWidthSpaceBetween>
-                        <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
-                        <InfoStats>{formatCurrency(totalStakedAmount)}</InfoStats>
-                    </FlexDivFullWidthSpaceBetween>
-                    <FlexDivFullWidthSpaceBetween>
-                        <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
-                        <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
-                    </FlexDivFullWidthSpaceBetween>
-                </InfoSection>
-                <InfoSection side="right" direction="row" justifyContent="space-between">
-                    <FlexDivColumnNative>
-                        <InfoText>{t('dashboard.staking.staked-on-optimism')}</InfoText>
-                        <InfoText>{t('dashboard.staking.staked-on-arbitrum')}</InfoText>
-                        <InfoText>{t('dashboard.staking.staked-on-base')}</InfoText>
-                    </FlexDivColumnNative>
-                    <FlexDivColumnNative>
-                        <InfoStats>{formatCurrency(totalStakedAmountOptimism)}</InfoStats>
-                        <InfoStats>{formatCurrency(totalStakedAmountArbitrum)}</InfoStats>
-                        <InfoStats>{formatCurrency(totalStakedAmountBase)}</InfoStats>
-                    </FlexDivColumnNative>
-                    <FlexDivColumnNative>
-                        <InfoStats color={Colors.CYAN}>APY {stakingData?.apyOptimism.toFixed(2)} %</InfoStats>
-                        <InfoStats color={Colors.CYAN}>APY {stakingData?.apyArbitrum.toFixed(2)} %</InfoStats>
-                        <InfoStats color={Colors.CYAN}>APY {stakingData?.apyBase.toFixed(2)} %</InfoStats>
-                    </FlexDivColumnNative>
-                </InfoSection>
+                <StakingInfo>
+                    <InfoSection side="left" justifyContent="start">
+                        <FlexDivFullWidthSpaceBetween>
+                            <InfoText>{t('dashboard.staking.thales-token-rewards')}</InfoText>
+                            <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}</InfoStats>
+                        </FlexDivFullWidthSpaceBetween>
+                        <FlexDivFullWidthSpaceBetween>
+                            <InfoText>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
+                            <InfoStats>{globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}</InfoStats>
+                        </FlexDivFullWidthSpaceBetween>
+                        <FlexDivFullWidthSpaceBetween>
+                            <InfoText>{t('dashboard.staking.total-stakers')}</InfoText>
+                            <InfoStats>{stakers.length}</InfoStats>
+                        </FlexDivFullWidthSpaceBetween>
+                    </InfoSection>
+                    <InfoSection side="right" justifyContent="start">
+                        <FlexDivFullWidthSpaceBetween>
+                            <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
+                            <InfoStats>
+                                {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
+                            </InfoStats>
+                        </FlexDivFullWidthSpaceBetween>
+                        <FlexDivFullWidthSpaceBetween>
+                            <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
+                            <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)} %</InfoStats>
+                        </FlexDivFullWidthSpaceBetween>
+                    </InfoSection>
+                </StakingInfo>
             </WidgetWrapper>
         </SPAAnchor>
     );
