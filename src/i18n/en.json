@@ -687,14 +687,13 @@
             "average-unique-users": "Unique users count"
         },
         "staking": {
-            "title": "Staking",
-            "total-stakers": "Total Stakers",
-            "total-thales-staked": "Total Thales staked",
-            "of-circulating-supply": "Of circulating supply",
-            "of-total-supply": "Of total supply",
-            "staked-on-arbitrum": "Staked on Arbitrum",
-            "staked-on-optimism": "Staked on Optimism",
-            "staked-on-base": "Staked on Base"
+            "title": "Thales token staking",
+            "total-stakers": "Total stakers",
+            "total-apy": "Total APY",
+            "thales-token-rewards": "THALES token rewards",
+            "stablecoin-rewards": "Protocol rewards in USD",
+            "total-thales-staked": "Staked across all chains",
+            "of-circulating-supply": "Of circulating supply"
         },
         "token-addresses": {
             "title": "Thales token",

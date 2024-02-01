@@ -108,7 +108,7 @@ export const UpperInfoSection = styled.div`
     grid-area: top;
     height: 100%;
     width: 100%;
-    margin-top: 19%;
+    margin-top: 35px;
     padding: 20px 20px 15px;
     display: flex;
     flex-direction: column;
@@ -147,6 +147,10 @@ export const FlexDivFullWidthSpaceBetween = styled(FlexDivSpaceBetween)<{
 }>`
     width: 100%;
     margin-right: ${(props) => (props.marginRight ? props.marginRight + 'px' : '')};
+`;
+
+export const FlexDivAlignStartSpaceBetween = styled(FlexDivSpaceBetween)`
+    align-self: self-start;
 `;
 
 export const WidgetIcon = styled.i`
@@ -231,4 +235,9 @@ export const ChartTooltipBox = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+`;
+
+export const StakingInfo = styled(FlexDivRow)`
+    grid-area: top;
+    margin-top: 35px;
 `;

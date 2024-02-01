@@ -116,15 +116,6 @@ const QUERY_KEYS = {
             destNetwork,
         ],
     },
-    AMM: {
-        SportAMMsTVLData: () => ['amm', 'sport', 'tvl'],
-        ParlayAMMsTVLData: () => ['amm', 'parlay', 'tvl'],
-        ThalesAMMsTVLData: () => ['amm', 'thales', 'tvl'],
-    },
-    Vaults: {
-        sportVaultsData: () => ['vaults', 'sport', 'data'],
-        thalesVaultsData: () => ['vaults', 'thales', 'data'],
-    },
     Governance: {
         Proposals: (spaceKey: SpaceKey, limit: number) => ['governance', 'proposals', spaceKey, limit],
         Proposal: (spaceKey: SpaceKey, hash: string, walletAddress: string) => [
