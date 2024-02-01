@@ -37,7 +37,7 @@ export const Container = styled.div`
 
 export const Milestone = styled.div<{ hideBorder?: boolean }>`
     position: relative;
-    width: 300px;
+    width: 320px;
     border-right: ${(props) => (props.hideBorder ? '' : '2px solid #405682')};
     background: #313652;
     padding: 15px 25px;

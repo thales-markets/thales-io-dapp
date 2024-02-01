@@ -218,6 +218,8 @@
         "quarter": "Q1 2024",
         "milestones": [
             {
+                "year": "2024",
+                "month": "Q1",
                 "description": "Full Account Abstraction implementation"
             }
         ]
@@ -226,6 +228,8 @@
         "quarter": "Q2 2024",
         "milestones": [
             {
+                "year": "2024",
+                "month": "Q2",
                 "description": "Sports Markets V2 architecture deployment"
             }
         ]
@@ -234,6 +238,8 @@
         "quarter": "Q3 2024",
         "milestones": [
             {
+                "year": "2024",
+                "month": "Q3",
                 "description": "Thales Markets V2 architecture deployment"
             }
         ]
