@@ -7,13 +7,12 @@ export const Wrapper = styled.div`
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 20px;
     margin-top: 20px;
-    max-height: 750px;
-    overflow: auto;
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
-    ::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
-    }
+    // overflow: auto;
+    // -ms-overflow-style: none; /* Internet Explorer 10+ */
+    // scrollbar-width: none; /* Firefox */
+    // ::-webkit-scrollbar {
+    //     display: none; /* Safari and Chrome */
+    // }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
         max-height: initial;

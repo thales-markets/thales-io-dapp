@@ -735,6 +735,7 @@
         "you": "You",
         "voted": "Voted",
         "not-voted": "Not voted",
+        "search": "Search TIPs",
         "tabs": {
             "thalesgov": {
                 "eth": "TIPS"
