@@ -211,15 +211,9 @@
                 "year": "2024",
                 "month": "January",
                 "description": "Thales Protocol expands to zkSync Era"
-            }
-        ]
-    },
-    {
-        "quarter": "Q1 2024",
-        "milestones": [
+            },
             {
-                "year": "2024",
-                "month": "Q1",
+                "year": "SOON",
                 "description": "Full Account Abstraction implementation"
             }
         ]
