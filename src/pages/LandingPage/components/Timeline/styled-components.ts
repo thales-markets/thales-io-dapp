@@ -1,4 +1,4 @@
-import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
+import { StyledLink } from 'pages/Governance/styled-components';
 import styled from 'styled-components';
 
 // override styles from react-chrono
@@ -43,7 +43,8 @@ export const Milestone = styled.div<{ hideBorder?: boolean }>`
     padding: 15px 25px;
 `;
 
-export const MilestoneDate = styled.div`
+export const MilestoneDate = styled.div<{ visible?: boolean }>`
+    visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
     color: white;
     font-family: MontserratBold;
     font-size: 13px;

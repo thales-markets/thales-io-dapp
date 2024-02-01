@@ -191,6 +191,7 @@
         ]
     },
     {
+        "selected": true,
         "quarter": "Q1 2024",
         "milestones": [
             {
@@ -205,6 +206,35 @@
                 "link":
                     "https://thalesmarket.medium.com/thales-protocol-integrates-chainlink-ccip-to-unlock-cross-chain-staking-and-protocol-rewards-1b10348158d2",
                 "descriptionKey": "ccip"
+            },
+            {
+                "year": "2024",
+                "month": "January",
+                "description": "Thales Protocol expands to zkSync Era"
+            }
+        ]
+    },
+    {
+        "quarter": "Q1 2024",
+        "milestones": [
+            {
+                "description": "Full Account Abstraction implementation"
+            }
+        ]
+    },
+    {
+        "quarter": "Q2 2024",
+        "milestones": [
+            {
+                "description": "Sports Markets V2 architecture deployment"
+            }
+        ]
+    },
+    {
+        "quarter": "Q3 2024",
+        "milestones": [
+            {
+                "description": "Thales Markets V2 architecture deployment"
             }
         ]
     }

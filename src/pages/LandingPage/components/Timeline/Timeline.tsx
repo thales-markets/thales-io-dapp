@@ -25,7 +25,7 @@ const Timeline: React.FC = () => {
                 <Chrono
                     mode="HORIZONTAL"
                     items={items}
-                    activeItemIndex={milestonesByQuarter.length - 1}
+                    activeItemIndex={milestonesByQuarter.findIndex((quarter) => quarter.selected)}
                     theme={{
                         primary: '#424451',
                         secondary: 'transparent',
@@ -42,14 +42,18 @@ const Timeline: React.FC = () => {
                                         <SPAAnchor key={index} href={milestone.link}>
                                             <Milestone hideBorder={item.milestones.length - 1 === index}>
                                                 <ArrowIcon />
-                                                <MilestoneDate>{`${t(`common.${milestone.month.toLowerCase()}`)} ${
-                                                    milestone.year
-                                                }`}</MilestoneDate>
+                                                <MilestoneDate visible={!!(milestone.month && milestone.year)}>{`${t(
+                                                    `common.${milestone?.month?.toLowerCase()}`
+                                                )} ${milestone.year}`}</MilestoneDate>
                                                 <MilestoneDescription>
-                                                    <Trans
-                                                        i18nKey={`milestones.${milestone.descriptionKey}`}
-                                                        components={{ bold: <span /> }}
-                                                    />
+                                                    {milestone.description ? (
+                                                        milestone.description
+                                                    ) : (
+                                                        <Trans
+                                                            i18nKey={`milestones.${milestone.descriptionKey}`}
+                                                            components={{ bold: <span /> }}
+                                                        />
+                                                    )}
                                                 </MilestoneDescription>
                                             </Milestone>
                                         </SPAAnchor>

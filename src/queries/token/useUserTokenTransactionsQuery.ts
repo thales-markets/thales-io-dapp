@@ -1,8 +1,8 @@
+import QUERY_KEYS from 'constants/queryKeys';
+import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
 import thalesData from 'thales-data';
-import QUERY_KEYS from 'constants/queryKeys';
 import { TokenTransactions } from 'types/token';
-import { Network } from 'enums/network';
 
 const useUserTokenTransactionsQuery = (
     walletAddress: string | undefined,
@@ -14,7 +14,7 @@ const useUserTokenTransactionsQuery = (
         QUERY_KEYS.Token.Transactions(walletAddress, networkId, type_in),
         () =>
             thalesData.binaryOptions.tokenTransactions({
-                account: '0x169379d950ceffa34f5d92e33e40B7F3787F0f71', // TODO: remove
+                account: walletAddress,
                 network: 10,
                 type_in,
             }),
