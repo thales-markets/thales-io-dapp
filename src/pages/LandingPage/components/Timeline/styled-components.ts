@@ -1,4 +1,4 @@
-import { StyledLink } from 'pages/Governance/styled-components';
+import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import styled from 'styled-components';
 
 // override styles from react-chrono
