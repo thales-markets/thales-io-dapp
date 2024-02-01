@@ -42,9 +42,13 @@ const Timeline: React.FC = () => {
                                         <SPAAnchor key={index} href={milestone.link}>
                                             <Milestone hideBorder={item.milestones.length - 1 === index}>
                                                 {milestone.link && <ArrowIcon />}
-                                                <MilestoneDate visible={!!(milestone.month && milestone.year)}>{`${t(
-                                                    `common.${milestone?.month?.toLowerCase()}`
-                                                )} ${milestone.year}`}</MilestoneDate>
+                                                <MilestoneDate visible={!!milestone.month || !!milestone.year}>{`${t(
+                                                    `${
+                                                        milestone?.month
+                                                            ? `common.${milestone?.month?.toLowerCase()}`
+                                                            : ''
+                                                    }`
+                                                )}${' '}${milestone.year ? milestone.year : ''}`}</MilestoneDate>
                                                 <MilestoneDescription>
                                                     {milestone.description ? (
                                                         milestone.description

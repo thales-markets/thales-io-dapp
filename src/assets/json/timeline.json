@@ -222,8 +222,7 @@
         "quarter": "Q2 2024",
         "milestones": [
             {
-                "year": "2024",
-                "month": "Q2",
+                "year": "Q2 2024",
                 "description": "Sports Markets V2 architecture deployment"
             }
         ]
@@ -232,8 +231,7 @@
         "quarter": "Q3 2024",
         "milestones": [
             {
-                "year": "2024",
-                "month": "Q3",
+                "year": "Q3 2024",
                 "description": "Thales Markets V2 architecture deployment"
             }
         ]

@@ -23,8 +23,14 @@ export const Container = styled.div`
     .timeline-controls > li > button {
         background: #3f5580;
     }
+    #react-chrono-timeline {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
     #react-chrono-timeline section {
         min-height: auto;
+        width: 100%;
     }
     #react-chrono-timeline {
         align-items: center;
@@ -32,6 +38,12 @@ export const Container = styled.div`
     }
     #react-chrono-timeline > div {
         margin-bottom: 50px;
+        margin-left: 0;
+        margin-right: 0;
+        min-width: 350px;
+    }
+    .card-description {
+        width: 100%;
     }
 `;
 
