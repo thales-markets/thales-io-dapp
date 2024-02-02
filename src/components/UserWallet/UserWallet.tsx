@@ -11,7 +11,7 @@ import { truncateAddress } from 'thales-utils';
 
 const TRUNCATE_ADDRESS_NUMBER_OF_CHARS = 5;
 
-const UserWallet: React.FC<{ hide?: boolean }> = ({ hide }) => {
+const UserWallet: React.FC = () => {
     const { t } = useTranslation();
     const { openConnectModal } = useConnectModal();
     const { openAccountModal } = useAccountModal();
@@ -22,7 +22,7 @@ const UserWallet: React.FC<{ hide?: boolean }> = ({ hide }) => {
     const [walletText, setWalletText] = useState('');
 
     return (
-        <Container hidden={hide}>
+        <Container>
             <Wrapper>
                 <WalletButton
                     onClick={() => {
