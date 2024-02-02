@@ -85,7 +85,7 @@ const TextInput: React.FC<TextInputProps> = ({
 const StyledInput = styled(Input)<{ padding?: string; readOnly: boolean }>`
     color: ${(props) => props.theme.textColor.primary};
     width: ${(props) => props.width || ''};
-    height: 30px;
+    height: ${(props) => props.height || ''};
     border-radius: 8px;
     border: 1.5px solid ${(props) => props.theme.borderColor.secondary};
     background: ${(props) => props.theme.background.quaternary};

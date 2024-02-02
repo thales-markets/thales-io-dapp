@@ -18,9 +18,16 @@ type ProposalListProps = {
     onItemClick: any;
     statusFilter: StatusEnum;
     resetFilters: any;
+    proposalSearch: string;
 };
 
-const ProposalList: React.FC<ProposalListProps> = ({ spaceKey, onItemClick, statusFilter, resetFilters }) => {
+const ProposalList: React.FC<ProposalListProps> = ({
+    spaceKey,
+    onItemClick,
+    statusFilter,
+    resetFilters,
+    proposalSearch,
+}) => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
 
@@ -31,10 +38,16 @@ const ProposalList: React.FC<ProposalListProps> = ({ spaceKey, onItemClick, stat
     ]);
 
     const filteredProposals = useMemo(() => {
-        return statusFilter === StatusEnum.All
-            ? proposals
-            : proposals.filter((proposal: Proposal) => proposal.state === statusFilter);
-    }, [proposals, statusFilter]);
+        const filteredProposals =
+            statusFilter === StatusEnum.All
+                ? proposals
+                : proposals.filter((proposal: Proposal) => proposal.state === statusFilter);
+        const searchFilteredProposals = filteredProposals.filter((proposal: Proposal) =>
+            proposal.body.toLowerCase().includes(proposalSearch.toLowerCase())
+        );
+
+        return searchFilteredProposals;
+    }, [proposals, statusFilter, proposalSearch]);
 
     const hasProposals = filteredProposals.length > 0;
     const isLoading = proposalsQuery.isLoading;

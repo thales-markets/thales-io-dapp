@@ -1,10 +1,14 @@
 import { Item, Links } from 'components/NavLinks/styled-components';
+import SearchInput from 'components/SearchInput';
 import { SNAPSHOT_GRAPHQL_URL } from 'constants/governance';
 import { SpaceKey, StatusEnum } from 'enums/governance';
 import request, { gql } from 'graphql-request';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
+import { getProposalSearch, setProposalSearch } from 'redux/modules/proposal';
+import { RootState } from 'redux/rootReducer';
 import { Line, NavContainer } from 'styles/common';
 import { Proposal } from 'types/governance';
 import { navigateToGovernance } from 'utils/routes';
@@ -35,10 +39,11 @@ type GovernanceProps = RouteComponentProps<{
 
 const Governance: React.FC<GovernanceProps> = (props) => {
     const { t } = useTranslation();
-
+    const dispatch = useDispatch();
     const [selectedProposal, setSelectedProposal] = useState<Proposal | undefined>(undefined);
     const [selectedTab, setSelectedTab] = useState<SpaceKey>(SpaceKey.TIPS);
     const [statusFilter, setStatusFilter] = useState<StatusEnum>(StatusEnum.All);
+    const proposalSearch = useSelector((state: RootState) => getProposalSearch(state));
 
     // const isMobile = false;
 
@@ -179,12 +184,23 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                                         /> */}
 
                                     {selectedTab !== SpaceKey.THALES_STAKERS && (
-                                        <Dropdown
-                                            options={Object.values(StatusEnum)}
-                                            activeOption={statusFilter}
-                                            onSelect={setStatusFilter}
-                                            translationKey="status"
-                                        />
+                                        <>
+                                            <Dropdown
+                                                options={Object.values(StatusEnum)}
+                                                activeOption={statusFilter}
+                                                onSelect={setStatusFilter}
+                                                translationKey="status"
+                                            />
+                                            <SearchInput
+                                                text={proposalSearch}
+                                                handleChange={(value) => {
+                                                    dispatch(setProposalSearch(value));
+                                                }}
+                                                placeholder={t('governance.search')}
+                                                width="320px"
+                                                height="36px"
+                                            />
+                                        </>
                                     )}
                                 </OptionsTabWrapper>
                                 {selectedTab === SpaceKey.TIPS && (
@@ -192,6 +208,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                                         spaceKey={SpaceKey.TIPS}
                                         onItemClick={setSelectedProposal}
                                         statusFilter={statusFilter}
+                                        proposalSearch={proposalSearch}
                                         resetFilters={() => setStatusFilter(StatusEnum.All)}
                                     />
                                 )}
@@ -200,6 +217,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                                         spaceKey={SpaceKey.COUNCIL}
                                         onItemClick={setSelectedProposal}
                                         statusFilter={statusFilter}
+                                        proposalSearch={proposalSearch}
                                         resetFilters={() => setStatusFilter(StatusEnum.All)}
                                     />
                                 )}
