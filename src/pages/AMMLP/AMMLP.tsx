@@ -1,6 +1,7 @@
 import { Slider } from '@material-ui/core';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import ApprovalModal from 'components/ApprovalModal';
+import Collapse from 'components/Collapse';
 import Loader from 'components/Loader';
 import { NavItemType } from 'components/NavLinks/NavItem';
 import NavLinks from 'components/NavLinks/NavLinks';
@@ -45,9 +46,9 @@ import {
     FlexDivCentered,
     FlexDivColumn,
     FlexDivColumnCentered,
-    FlexDivColumnSpaceAround,
     FlexDivColumnSpaceBetween,
     FlexDivRow,
+    FlexDivSpaceBetween,
     FlexDivStart,
     Line,
     NavContainer,
@@ -60,7 +61,6 @@ import { checkAllowance } from 'utils/network';
 import { refetchLiquidityPoolData } from 'utils/queryConnector';
 import { buildHref } from 'utils/routes';
 import snxJSConnector from 'utils/snxJSConnector';
-import MaxAllowanceTooltip from './MaxAllowanceTooltip';
 import PnL from './PnL';
 import YourTransactions from './Transactions';
 import {
@@ -766,114 +766,73 @@ const AMMLP: React.FC = () => {
                     )}
                     <LPInfo>
                         {liquidityPoolData && (
-                            <>
+                            <div>
                                 <LiquidityPoolInfoTitle>{t('staking.amm-lp.total-info-label')}</LiquidityPoolInfoTitle>
-                                <span>
-                                    <Trans
-                                        i18nKey="staking.amm-lp.users-in-liquidity-pool-label"
-                                        values={{
-                                            number: liquidityPoolData.usersCurrentlyInLiquidityPool,
-                                            max: liquidityPoolData.maxAllowedUsers,
-                                        }}
-                                    />
-                                </span>
-                                <LiquidityPoolFilledGraphicContainer>
-                                    <LiquidityPoolFilledGraphicPercentage
-                                        width={liquidityPoolData.allocationNextRoundPercentage}
-                                    ></LiquidityPoolFilledGraphicPercentage>
-                                </LiquidityPoolFilledGraphicContainer>
                                 <LiquidityPoolFilledText>
-                                    <div>{`${formatCurrencyWithSign(
-                                        USD_SIGN,
-                                        liquidityPoolData.allocationNextRound
-                                    )} / ${formatCurrencyWithSign(
-                                        USD_SIGN,
-                                        liquidityPoolData.maxAllowedDeposit
-                                    )}`}</div>
                                     <div>
-                                        <Trans
-                                            i18nKey="staking.amm-lp.your-share-label"
-                                            values={{
-                                                percentage: formatPercentage(
-                                                    (userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0) /
-                                                        liquidityPoolData.allocationNextRound
-                                                ),
-                                            }}
-                                        />
+                                        <div>{t('staking.amm-lp.your-share-label')}</div>
+                                        <span>
+                                            {formatCurrencyWithSign(USD_SIGN, liquidityPoolData.allocationNextRound)}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div>{t('staking.amm-lp.pool-size')}</div>
+                                        <span>
+                                            {formatPercentage(
+                                                (userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0) /
+                                                    liquidityPoolData.allocationNextRound
+                                            )}
+                                        </span>
                                     </div>
                                 </LiquidityPoolFilledText>
-                            </>
+                            </div>
                         )}
-                        <LiquidityPoolInfoTitle>{t('staking.amm-lp.your-info-label')}</LiquidityPoolInfoTitle>
-                        {liquidityPoolData?.liquidityPoolStarted && (
+                        <div>
+                            <LiquidityPoolInfoTitle>{t('staking.amm-lp.your-info-label')}</LiquidityPoolInfoTitle>
+                            {liquidityPoolData?.liquidityPoolStarted && (
+                                <LiquidityPoolInfoContainer>
+                                    <LiquidityPoolInfoLabel>
+                                        {t('staking.amm-lp.current-balance-label')}:
+                                    </LiquidityPoolInfoLabel>
+                                    <LiquidityPoolInfo>
+                                        {formatCurrencyWithSign(
+                                            USD_SIGN,
+                                            userLiquidityPoolData ? userLiquidityPoolData.balanceCurrentRound : 0
+                                        )}
+                                    </LiquidityPoolInfo>
+                                </LiquidityPoolInfoContainer>
+                            )}
                             <LiquidityPoolInfoContainer>
+                                <LiquidityPoolInfoLabel>{t('staking.amm-lp.your-pnl')}:</LiquidityPoolInfoLabel>
+                                <LiquidityPoolInfo>55555</LiquidityPoolInfo>
+                            </LiquidityPoolInfoContainer>
+                            <LiquidityPoolInfoContainer>
+                                <LiquidityPoolInfoLabel>{t('staking.amm-lp.your-apr')}:</LiquidityPoolInfoLabel>
+                                <LiquidityPoolInfo>55555</LiquidityPoolInfo>
+                            </LiquidityPoolInfoContainer>
+                            {/* <LiquidityPoolInfoContainer>
                                 <LiquidityPoolInfoLabel>
-                                    {t('staking.amm-lp.current-balance-label')}:
+                                    {t('staking.amm-lp.next-round-balance-label')}:
                                 </LiquidityPoolInfoLabel>
-                                <LiquidityPoolInfoGraphic
-                                    background={'linear-gradient(90.21deg, #A40A95 0.18%, #FC6679 99.82%)'}
-                                    widthPercentage={infoGraphicPercentages.currentBalancePercenatage}
-                                />
                                 <LiquidityPoolInfo>
                                     {formatCurrencyWithSign(
                                         USD_SIGN,
-                                        userLiquidityPoolData ? userLiquidityPoolData.balanceCurrentRound : 0
+                                        userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0
                                     )}
+                                    {userLiquidityPoolData &&
+                                        userLiquidityPoolData.balanceCurrentRound > 0 &&
+                                        userLiquidityPoolData.balanceTotal > 0 && (
+                                            <Tooltip
+                                                overlay={t(`staking.amm-lp.estimated-amount-tooltip`)}
+                                                iconFontSize={14}
+                                                marginLeft={2}
+                                                top={-1}
+                                            />
+                                        )}
                                 </LiquidityPoolInfo>
-                            </LiquidityPoolInfoContainer>
-                        )}
-                        <LiquidityPoolInfoContainer>
-                            <LiquidityPoolInfoLabel>
-                                {t('staking.amm-lp.next-round-balance-label')}:
-                            </LiquidityPoolInfoLabel>
-                            <LiquidityPoolInfoGraphic
-                                background={'linear-gradient(90deg, #2A3895 0%, #893CE2 100%)'}
-                                widthPercentage={infoGraphicPercentages.nextRoundBalancePercenatage}
-                            />
-                            <LiquidityPoolInfo>
-                                {formatCurrencyWithSign(
-                                    USD_SIGN,
-                                    userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0
-                                )}
-                                {userLiquidityPoolData &&
-                                    userLiquidityPoolData.balanceCurrentRound > 0 &&
-                                    userLiquidityPoolData.balanceTotal > 0 && (
-                                        <Tooltip
-                                            overlay={t(`staking.amm-lp.estimated-amount-tooltip`)}
-                                            iconFontSize={14}
-                                            marginLeft={2}
-                                            top={-1}
-                                        />
-                                    )}
-                            </LiquidityPoolInfo>
-                        </LiquidityPoolInfoContainer>
-                        <LiquidityPoolInfoContainer>
-                            <LiquidityPoolInfoLabel>{t('staking.amm-lp.max-allowance-label')}:</LiquidityPoolInfoLabel>
-                            <LiquidityPoolInfoGraphic
-                                background={'linear-gradient(270deg, #3AECD3 0%, #017F9C 100%)'}
-                                widthPercentage={infoGraphicPercentages.maxAllowancePercenatage}
-                            />
-                            <LiquidityPoolInfo>
-                                {formatCurrencyWithSign(
-                                    USD_SIGN,
-                                    userLiquidityPoolData ? userLiquidityPoolData.maxDeposit : 0
-                                )}
-                                <Tooltip
-                                    overlay={
-                                        <MaxAllowanceTooltip
-                                            stakedThales={
-                                                userLiquidityPoolData ? userLiquidityPoolData.stakedThales : 0
-                                            }
-                                            stakedThalesMultiplier={liquidityPoolData?.stakedThalesMultiplier || 0}
-                                        />
-                                    }
-                                    overlayClassName="lp-max-allowance"
-                                    iconFontSize={14}
-                                    marginLeft={5}
-                                    top={-1}
-                                />
-                            </LiquidityPoolInfo>
-                        </LiquidityPoolInfoContainer>
+                            </LiquidityPoolInfoContainer> */}
+                        </div>
+
                         {isWithdrawalRequested && (
                             <WarningContentInfo>
                                 <Trans
@@ -919,76 +878,80 @@ const AMMLP: React.FC = () => {
                             <span>
                                 <i className="icon icon--staking" />
                                 {t(`staking.amm-lp.how-it-works.${paramTab}.title`)}
-                                <div>{t(`staking.amm-lp.how-it-works.${paramTab}.subtitle`)}</div>
                             </span>
                         </SectionTitle>
-                        <SectionDescription>
-                            <Trans
-                                i18nKey={t(`staking.amm-lp.how-it-works.${paramTab}.description`)}
-                                components={{
-                                    tip: <SPAAnchor href={TIPLinks[paramTab]} />,
-                                    bold: <span />,
-                                }}
-                            />
-                        </SectionDescription>
-
-                        <SectionTitle>
-                            <span>
-                                <div>{t('staking.amm-lp.how-it-works.variables')}</div>
-                            </span>
-                        </SectionTitle>
-                        <FlexDiv>
-                            <FlexDivColumn>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.max-total-deposit')}:</span>
-                                    <span>
-                                        {formatCurrencyWithSign(USD_SIGN, liquidityPoolData?.maxAllowedDeposit || 0, 0)}
-                                    </span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.max-users')}:</span>
-                                    <span>{liquidityPoolData?.maxAllowedUsers}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.minimum-deposit')}:</span>
-                                    <span>
-                                        {formatCurrencyWithSign(USD_SIGN, liquidityPoolData?.minDepositAmount || 0, 0)}
-                                    </span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.round-duration')}:</span>
-                                    <span>{liquidityPoolData?.roundLength}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.round-ends-in')}:</span>
-                                    <span>
-                                        {liquidityPoolData?.roundEndTime && (
-                                            <TimeRemaining
-                                                end={liquidityPoolData?.roundEndTime}
-                                                fontSize={13}
-                                                showFullCounter
-                                            />
-                                        )}
-                                    </span>
-                                </InfoDiv>
-                            </FlexDivColumn>
-                            <FlexDivColumnSpaceAround>
-                                <FlexDivCentered>
-                                    <a target="_blank" rel="noreferrer" href={getUniswapLink(networkId)}>
-                                        <StakingButton width="230px">
-                                            {t('staking.amm-lp.how-it-works.get-thales')}
-                                        </StakingButton>
-                                    </a>
-                                </FlexDivCentered>
-                                <FlexDivCentered>
-                                    <a target="_blank" rel="noreferrer" href={LINKS.Token.ThalesStaking}>
-                                        <StakingButton width="230px">
-                                            {t('staking.amm-lp.how-it-works.stake-thales')}
-                                        </StakingButton>
-                                    </a>
-                                </FlexDivCentered>
-                            </FlexDivColumnSpaceAround>
-                        </FlexDiv>
+                        <Collapse
+                            title={t(`staking.amm-lp.how-it-works.${paramTab}.subtitle`)}
+                            additionalStyling={{
+                                titleFontSize: '14px',
+                                titleMarginTop: '15px',
+                                titleMarginBottom: '5px',
+                                titleFontFamily: 'Nunito',
+                            }}
+                        >
+                            <SectionDescription>
+                                <Trans
+                                    i18nKey={t(`staking.amm-lp.how-it-works.${paramTab}.description`)}
+                                    components={{
+                                        tip: <SPAAnchor href={TIPLinks[paramTab]} />,
+                                        bold: <span />,
+                                    }}
+                                />
+                            </SectionDescription>
+                        </Collapse>
+                        <Collapse
+                            title={t(`staking.amm-lp.how-it-works.limits`)}
+                            additionalStyling={{
+                                titleFontSize: '14px',
+                                titleMarginBottom: '5px',
+                                titleFontFamily: 'Nunito',
+                            }}
+                        >
+                            <FlexDiv style={{ marginBottom: '10px' }}>
+                                <FlexDivColumn>
+                                    <InfoDiv>
+                                        <span>{t('staking.amm-lp.how-it-works.max-total-deposit')}:</span>
+                                        <span>
+                                            {formatCurrencyWithSign(
+                                                USD_SIGN,
+                                                liquidityPoolData?.maxAllowedDeposit || 0,
+                                                0
+                                            )}
+                                        </span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.amm-lp.how-it-works.max-users')}:</span>
+                                        <span>{liquidityPoolData?.maxAllowedUsers}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.amm-lp.how-it-works.minimum-deposit')}:</span>
+                                        <span>
+                                            {formatCurrencyWithSign(
+                                                USD_SIGN,
+                                                liquidityPoolData?.minDepositAmount || 0,
+                                                0
+                                            )}
+                                        </span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.amm-lp.how-it-works.round-duration')}:</span>
+                                        <span>{liquidityPoolData?.roundLength}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.amm-lp.how-it-works.round-ends-in')}:</span>
+                                        <span>
+                                            {liquidityPoolData?.roundEndTime && (
+                                                <TimeRemaining
+                                                    end={liquidityPoolData?.roundEndTime}
+                                                    fontSize={13}
+                                                    showFullCounter
+                                                />
+                                            )}
+                                        </span>
+                                    </InfoDiv>
+                                </FlexDivColumn>
+                            </FlexDiv>
+                        </Collapse>
                     </FlexDivColumnSpaceBetween>
                 </Bottom>
             </Container>
@@ -1013,7 +976,7 @@ const LiquidityPoolInfoTitle = styled.div`
     font-size: 18px;
     line-height: 100%;
     margin-top: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 `;
 
 export const ExternalButton = styled.a`
@@ -1037,7 +1000,7 @@ const ButtonContainer = styled(FlexDivCentered)`
     width: 100%;
 `;
 
-const LiquidityPoolInfoContainer = styled(FlexDivStart)`
+const LiquidityPoolInfoContainer = styled(FlexDivSpaceBetween)`
     align-items: center;
     margin-bottom: 10px;
 `;
@@ -1070,6 +1033,7 @@ const LiquidityPoolInfoGraphic = styled(FlexDivStart)<{ background: string; widt
 `;
 
 const LiquidityPoolInfo = styled.span`
+    color: white;
     white-space: nowrap;
 `;
 
@@ -1091,27 +1055,13 @@ const LiquidityPoolFilledText = styled(FlexDivColumn)`
     width: 100%;
     font-size: 14px;
     > div {
+        display: flex;
+        justify-content: space-between;
         height: 20px;
     }
-`;
-
-const LiquidityPoolFilledGraphicContainer = styled(FlexDivStart)`
-    position: relative;
-    width: 100%;
-    height: 14px;
-    background: ${(props) => props.theme.background.tertiary};
-    border-radius: 9px;
-    margin-top: 10px;
-`;
-
-const LiquidityPoolFilledGraphicPercentage = styled(FlexDivStart)<{ width: number }>`
-    position: absolute;
-    width: ${(props) => props.width}%;
-    transition: width 1s linear;
-    max-width: 100%;
-    height: 14px;
-    background: linear-gradient(269.97deg, #ff774c 16.18%, #b50a5e 77.77%);
-    border-radius: 9px;
+    span {
+        color: white;
+    }
 `;
 
 const getInfoGraphicPercentages = (currentBalance: number, nextRoundBalance: number, maxAllowance: number) => {
@@ -1142,9 +1092,13 @@ const getInfoGraphicPercentages = (currentBalance: number, nextRoundBalance: num
 };
 
 const LPInfo = styled.div`
+    display: flex;
+    flex-direction: column;
     color: ${(props) => props.theme.textColor.tertiary};
-    padding: 10px;
+    padding: 0 15px;
     font-size: 14px;
+    flex: 1;
+    justify-content: space-evenly;
 `;
 
 const getUniswapLink = (networkId: Network) => {

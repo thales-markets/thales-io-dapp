@@ -123,6 +123,7 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
 export const SectionDescription = styled.div`
     line-height: 180%;
     text-align: justify;
+    margin-bottom: 10px;
     a {
         color: ${(props) => props.theme.textColor.secondary};
         &:hover {
