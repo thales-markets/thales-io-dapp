@@ -231,6 +231,7 @@ const AMMLP: React.FC = () => {
         !userLiquidityPoolData.hasDepositForCurrentRound &&
         !userLiquidityPoolData.hasDepositForNextRound &&
         isAmountEntered;
+
     const insufficientBalance =
         (Number(paymentTokenBalance) < Number(amount) || Number(paymentTokenBalance) === 0) && isWalletConnected;
 
@@ -238,7 +239,6 @@ const AMMLP: React.FC = () => {
 
     const exceededLiquidityPoolCap =
         liquidityPoolData && liquidityPoolData.availableAllocationNextRound < Number(amount);
-    const exceededMaxAllowance = userLiquidityPoolData && userLiquidityPoolData.availableToDeposit < Number(amount);
     const isMaximumAmountOfUsersReached =
         liquidityPoolData &&
         liquidityPoolData.usersCurrentlyInLiquidityPool === liquidityPoolData.maxAllowedUsers &&
@@ -257,7 +257,6 @@ const AMMLP: React.FC = () => {
         isSubmitting ||
         isWithdrawalRequested ||
         exceededLiquidityPoolCap ||
-        exceededMaxAllowance ||
         isMaximumAmountOfUsersReached ||
         invalidAmount ||
         liquidityPoolPaused ||
@@ -355,15 +354,15 @@ const AMMLP: React.FC = () => {
     };
 
     const handleWithdrawalRequest = async () => {
-        const { signer, thalesLiquidityPoolContract } = snxJSConnector;
-        if (signer && thalesLiquidityPoolContract) {
+        const { signer } = snxJSConnector;
+        if (signer && activeLiquidityPoolContract) {
             const id = toast.loading(
                 getDefaultToastContent(t('markets.market.toast-messsage.transaction-pending')),
                 getLoadingToastOptions()
             );
             setIsSubmitting(true);
             try {
-                const liquidityPoolContractWithSigner = thalesLiquidityPoolContract.connect(signer);
+                const liquidityPoolContractWithSigner = activeLiquidityPoolContract.connect(signer);
                 const parsedPercentage = ethers.utils.parseEther((Number(withdrawalPercentage) / 100).toString());
 
                 const tx = withdrawAll
@@ -389,12 +388,12 @@ const AMMLP: React.FC = () => {
     };
 
     const handleDeposit = async () => {
-        const { signer, thalesLiquidityPoolContract } = snxJSConnector;
-        if (signer && thalesLiquidityPoolContract) {
+        const { signer } = snxJSConnector;
+        if (signer && activeLiquidityPoolContract) {
             const id = toast.loading(getDefaultToastContent(t('common.transaction-pending')), getLoadingToastOptions());
             setIsSubmitting(true);
             try {
-                const liquidityPoolContractWithSigner = thalesLiquidityPoolContract.connect(signer);
+                const liquidityPoolContractWithSigner = activeLiquidityPoolContract.connect(signer);
                 const parsedAmount = ethers.utils.parseUnits(
                     Number(amount).toString(),
                     getDefaultDecimalsForNetwork(networkId)
@@ -465,7 +464,12 @@ const AMMLP: React.FC = () => {
     };
 
     const setMaxAmount = () => {
-        setAmount(Math.trunc(userLiquidityPoolData ? userLiquidityPoolData.availableToDeposit * 100 : 0) / 100);
+        setAmount(
+            Math.min(
+                Math.trunc(userLiquidityPoolData ? userLiquidityPoolData.availableToDeposit * 100 : 0) / 100,
+                Math.trunc(paymentTokenBalance ? Number(paymentTokenBalance) * 100 : 0) / 100
+            )
+        );
     };
 
     useEffect(
@@ -494,84 +498,6 @@ const AMMLP: React.FC = () => {
             </NavContainer>
             <Container>
                 <Top>
-                    <FlexDivColumnSpaceBetween>
-                        <SectionTitle>
-                            <span>
-                                <i className="icon icon--staking" />
-                                {t(`staking.amm-lp.how-it-works.${paramTab}.title`)}
-                                <div>{t(`staking.amm-lp.how-it-works.${paramTab}.subtitle`)}</div>
-                            </span>
-                        </SectionTitle>
-                        <SectionDescription>
-                            <Trans
-                                i18nKey={t(`staking.amm-lp.how-it-works.${paramTab}.description`)}
-                                components={{
-                                    tip: <SPAAnchor href={TIPLinks[paramTab]} />,
-                                    bold: <span />,
-                                }}
-                            />
-                        </SectionDescription>
-
-                        <SectionTitle>
-                            <span>
-                                <div>{t('staking.amm-lp.how-it-works.variables')}</div>
-                            </span>
-                        </SectionTitle>
-                        <FlexDiv>
-                            <FlexDivColumn>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.max-total-deposit')}:</span>
-                                    <span>
-                                        {formatCurrencyWithSign(USD_SIGN, liquidityPoolData?.maxAllowedDeposit || 0, 0)}
-                                    </span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.max-users')}:</span>
-                                    <span>{liquidityPoolData?.maxAllowedUsers}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.minimum-deposit')}:</span>
-                                    <span>
-                                        {formatCurrencyWithSign(USD_SIGN, liquidityPoolData?.minDepositAmount || 0, 0)}
-                                    </span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.round-duration')}:</span>
-                                    <span>{liquidityPoolData?.roundLength}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.amm-lp.how-it-works.round-ends-in')}:</span>
-                                    <span>
-                                        {liquidityPoolData?.roundEndTime && (
-                                            <TimeRemaining
-                                                end={liquidityPoolData?.roundEndTime}
-                                                fontSize={13}
-                                                showFullCounter
-                                            />
-                                        )}
-                                    </span>
-                                </InfoDiv>
-                            </FlexDivColumn>
-                            <FlexDivColumnSpaceAround>
-                                <FlexDivCentered>
-                                    <a target="_blank" rel="noreferrer" href={getUniswapLink(networkId)}>
-                                        <StakingButton width="230px">
-                                            {t('staking.amm-lp.how-it-works.get-thales')}
-                                        </StakingButton>
-                                    </a>
-                                </FlexDivCentered>
-                                <FlexDivCentered>
-                                    <a target="_blank" rel="noreferrer" href={LINKS.Token.ThalesStaking}>
-                                        <StakingButton width="230px">
-                                            {t('staking.amm-lp.how-it-works.stake-thales')}
-                                        </StakingButton>
-                                    </a>
-                                </FlexDivCentered>
-                            </FlexDivColumnSpaceAround>
-                        </FlexDiv>
-                    </FlexDivColumnSpaceBetween>
-                </Top>
-                <Bottom>
                     <SwitchInput
                         label={{
                             firstLabel: t('staking.amm-lp.deposit-withdraw.deposit'),
@@ -611,10 +537,7 @@ const AMMLP: React.FC = () => {
                                             onMaxButton={setMaxAmount}
                                             placeholder={t('common.enter-amount')}
                                             showValidation={
-                                                insufficientBalance ||
-                                                !!exceededLiquidityPoolCap ||
-                                                !!exceededMaxAllowance ||
-                                                !!invalidAmount
+                                                insufficientBalance || !!exceededLiquidityPoolCap || !!invalidAmount
                                             }
                                             currencyLabel={SYNTHS_MAP.sUSD}
                                             validationMessage={
@@ -624,8 +547,6 @@ const AMMLP: React.FC = () => {
                                                             ? 'common.errors.insufficient-balance'
                                                             : exceededLiquidityPoolCap
                                                             ? 'staking.amm-lp.deposit-liquidity-pool-cap-error'
-                                                            : exceededMaxAllowance
-                                                            ? 'staking.amm-lp.deposit-staked-thales-error'
                                                             : 'staking.amm-lp.deposit-min-amount-error'
                                                     }`,
                                                     {
@@ -832,16 +753,9 @@ const AMMLP: React.FC = () => {
                             </>
                         )}
                     </SectionContentContainer>
-                </Bottom>
+                </Top>
             </Container>
             <ChartsContainer>
-                {liquidityPoolData && (
-                    <PnL
-                        liquidityPool={paramTab}
-                        lifetimePnl={liquidityPoolData.lifetimePnl}
-                        type={LiquidityPoolPnlType.PNL_PER_ROUND}
-                    />
-                )}
                 <FlexDiv>
                     {liquidityPoolData && (
                         <PnL
@@ -990,7 +904,94 @@ const AMMLP: React.FC = () => {
                         )}
                     </LPInfo>
                 </FlexDiv>
+                {liquidityPoolData && (
+                    <PnL
+                        liquidityPool={paramTab}
+                        lifetimePnl={liquidityPoolData.lifetimePnl}
+                        type={LiquidityPoolPnlType.PNL_PER_ROUND}
+                    />
+                )}
             </ChartsContainer>
+            <Container>
+                <Bottom>
+                    <FlexDivColumnSpaceBetween>
+                        <SectionTitle>
+                            <span>
+                                <i className="icon icon--staking" />
+                                {t(`staking.amm-lp.how-it-works.${paramTab}.title`)}
+                                <div>{t(`staking.amm-lp.how-it-works.${paramTab}.subtitle`)}</div>
+                            </span>
+                        </SectionTitle>
+                        <SectionDescription>
+                            <Trans
+                                i18nKey={t(`staking.amm-lp.how-it-works.${paramTab}.description`)}
+                                components={{
+                                    tip: <SPAAnchor href={TIPLinks[paramTab]} />,
+                                    bold: <span />,
+                                }}
+                            />
+                        </SectionDescription>
+
+                        <SectionTitle>
+                            <span>
+                                <div>{t('staking.amm-lp.how-it-works.variables')}</div>
+                            </span>
+                        </SectionTitle>
+                        <FlexDiv>
+                            <FlexDivColumn>
+                                <InfoDiv>
+                                    <span>{t('staking.amm-lp.how-it-works.max-total-deposit')}:</span>
+                                    <span>
+                                        {formatCurrencyWithSign(USD_SIGN, liquidityPoolData?.maxAllowedDeposit || 0, 0)}
+                                    </span>
+                                </InfoDiv>
+                                <InfoDiv>
+                                    <span>{t('staking.amm-lp.how-it-works.max-users')}:</span>
+                                    <span>{liquidityPoolData?.maxAllowedUsers}</span>
+                                </InfoDiv>
+                                <InfoDiv>
+                                    <span>{t('staking.amm-lp.how-it-works.minimum-deposit')}:</span>
+                                    <span>
+                                        {formatCurrencyWithSign(USD_SIGN, liquidityPoolData?.minDepositAmount || 0, 0)}
+                                    </span>
+                                </InfoDiv>
+                                <InfoDiv>
+                                    <span>{t('staking.amm-lp.how-it-works.round-duration')}:</span>
+                                    <span>{liquidityPoolData?.roundLength}</span>
+                                </InfoDiv>
+                                <InfoDiv>
+                                    <span>{t('staking.amm-lp.how-it-works.round-ends-in')}:</span>
+                                    <span>
+                                        {liquidityPoolData?.roundEndTime && (
+                                            <TimeRemaining
+                                                end={liquidityPoolData?.roundEndTime}
+                                                fontSize={13}
+                                                showFullCounter
+                                            />
+                                        )}
+                                    </span>
+                                </InfoDiv>
+                            </FlexDivColumn>
+                            <FlexDivColumnSpaceAround>
+                                <FlexDivCentered>
+                                    <a target="_blank" rel="noreferrer" href={getUniswapLink(networkId)}>
+                                        <StakingButton width="230px">
+                                            {t('staking.amm-lp.how-it-works.get-thales')}
+                                        </StakingButton>
+                                    </a>
+                                </FlexDivCentered>
+                                <FlexDivCentered>
+                                    <a target="_blank" rel="noreferrer" href={LINKS.Token.ThalesStaking}>
+                                        <StakingButton width="230px">
+                                            {t('staking.amm-lp.how-it-works.stake-thales')}
+                                        </StakingButton>
+                                    </a>
+                                </FlexDivCentered>
+                            </FlexDivColumnSpaceAround>
+                        </FlexDiv>
+                    </FlexDivColumnSpaceBetween>
+                </Bottom>
+            </Container>
             <YourTransactions liquidityPool={paramTab} currentRound={liquidityPoolData?.round || 0} />
             {openApprovalModal && (
                 <ApprovalModal
@@ -1007,7 +1008,6 @@ const AMMLP: React.FC = () => {
 
 const LiquidityPoolInfoTitle = styled.div`
     color: ${(props) => props.theme.textColor.primary};
-    text-align: center;
     white-space: nowrap;
     font-weight: 400;
     font-size: 18px;

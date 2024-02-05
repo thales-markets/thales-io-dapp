@@ -31,6 +31,16 @@ export const Top = styled.div`
     }
 `;
 
+export const Middle = styled.div`
+    grid-area: bottom;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    > div {
+        height: 100%;
+    }
+`;
+
 export const Bottom = styled.div`
     grid-area: bottom;
     display: flex;

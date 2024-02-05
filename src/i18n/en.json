@@ -468,7 +468,7 @@
             "liquidity-pool-paused-message": "The liquidity pool is paused",
             "round-end-label": "The round ends in",
             "round-ended-label": "Round ended",
-            "total-info-label": "Total LP info",
+            "total-info-label": "Global LP info",
             "users-in-liquidity-pool-label": "Users in the liquidity pool: {{number}} / {{max}}",
             "your-share-label": "Your share: {{percentage}} of LP",
             "your-info-label": "Your LP info",
