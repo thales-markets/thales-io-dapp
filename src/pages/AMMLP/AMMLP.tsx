@@ -21,8 +21,6 @@ import { SYNTHS_MAP, USD_SIGN } from 'constants/currency';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
-import { Network } from 'enums/network';
-import { ScreenSizeBreakpoint } from 'enums/ui';
 import { BigNumber, ethers } from 'ethers';
 import useParlayLiquidityPoolDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolDataQuery';
 import useParlayLiquidityPoolUserDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolUserDataQuery';
@@ -49,7 +47,6 @@ import {
     FlexDivColumnSpaceBetween,
     FlexDivRow,
     FlexDivSpaceBetween,
-    FlexDivStart,
     Line,
     NavContainer,
 } from 'styles/common';
@@ -269,11 +266,11 @@ const AMMLP: React.FC = () => {
         liquidityPoolPaused ||
         isLiquidityPoolCapReached;
 
-    const infoGraphicPercentages = getInfoGraphicPercentages(
-        userLiquidityPoolData ? userLiquidityPoolData.balanceCurrentRound : 0,
-        userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0,
-        userLiquidityPoolData ? userLiquidityPoolData.maxDeposit : 0
-    );
+    // const infoGraphicPercentages = getInfoGraphicPercentages(
+    //     userLiquidityPoolData ? userLiquidityPoolData.balanceCurrentRound : 0,
+    //     userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0,
+    //     userLiquidityPoolData ? userLiquidityPoolData.maxDeposit : 0
+    // );
 
     const nothingToWithdraw = userLiquidityPoolData && userLiquidityPoolData.balanceCurrentRound === 0;
 
@@ -1012,26 +1009,6 @@ const LiquidityPoolInfoLabel = styled.span`
     font-size: 14px;
 `;
 
-const LiquidityPoolInfoGraphic = styled(FlexDivStart)<{ background: string; widthPercentage: number }>`
-    width: ${(props) => 170 * props.widthPercentage}px;
-    height: 14px;
-    background: ${(props) => props.background};
-    border-radius: 9px;
-    margin-right: ${(props) => (props.widthPercentage === 0 ? 0 : 6)}px;
-    @media (max-width: 1199px) {
-        width: ${(props) => 150 * props.widthPercentage}px;
-    }
-    @media (max-width: 991px) {
-        width: ${(props) => 120 * props.widthPercentage}px;
-    }
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        width: ${(props) => 200 * props.widthPercentage}px;
-    }
-    @media (max-width: 575px) {
-        width: ${(props) => 120 * props.widthPercentage}px;
-    }
-`;
-
 const LiquidityPoolInfo = styled.span`
     color: white;
     white-space: nowrap;
@@ -1064,32 +1041,32 @@ const LiquidityPoolFilledText = styled(FlexDivColumn)`
     }
 `;
 
-const getInfoGraphicPercentages = (currentBalance: number, nextRoundBalance: number, maxAllowance: number) => {
-    let currentBalancePercenatage = 1;
-    let nextRoundBalancePercenatage = 1;
-    let maxAllowancePercenatage = 1;
+// const getInfoGraphicPercentages = (currentBalance: number, nextRoundBalance: number, maxAllowance: number) => {
+//     let currentBalancePercenatage = 1;
+//     let nextRoundBalancePercenatage = 1;
+//     let maxAllowancePercenatage = 1;
 
-    if (maxAllowance > currentBalance && maxAllowance > nextRoundBalance) {
-        currentBalancePercenatage = currentBalance / maxAllowance;
-        nextRoundBalancePercenatage = nextRoundBalance / maxAllowance;
-    } else if (currentBalance > nextRoundBalance) {
-        maxAllowancePercenatage = maxAllowance / currentBalance;
-        nextRoundBalancePercenatage = nextRoundBalance / currentBalance;
-    } else if (nextRoundBalance === 0) {
-        currentBalancePercenatage = 0;
-        nextRoundBalancePercenatage = 0;
-        maxAllowancePercenatage = 0;
-    } else {
-        maxAllowancePercenatage = maxAllowance / nextRoundBalance;
-        currentBalancePercenatage = currentBalance / nextRoundBalance;
-    }
+//     if (maxAllowance > currentBalance && maxAllowance > nextRoundBalance) {
+//         currentBalancePercenatage = currentBalance / maxAllowance;
+//         nextRoundBalancePercenatage = nextRoundBalance / maxAllowance;
+//     } else if (currentBalance > nextRoundBalance) {
+//         maxAllowancePercenatage = maxAllowance / currentBalance;
+//         nextRoundBalancePercenatage = nextRoundBalance / currentBalance;
+//     } else if (nextRoundBalance === 0) {
+//         currentBalancePercenatage = 0;
+//         nextRoundBalancePercenatage = 0;
+//         maxAllowancePercenatage = 0;
+//     } else {
+//         maxAllowancePercenatage = maxAllowance / nextRoundBalance;
+//         currentBalancePercenatage = currentBalance / nextRoundBalance;
+//     }
 
-    return {
-        currentBalancePercenatage,
-        nextRoundBalancePercenatage,
-        maxAllowancePercenatage,
-    };
-};
+//     return {
+//         currentBalancePercenatage,
+//         nextRoundBalancePercenatage,
+//         maxAllowancePercenatage,
+//     };
+// };
 
 const LPInfo = styled.div`
     display: flex;
@@ -1101,11 +1078,11 @@ const LPInfo = styled.div`
     justify-content: space-evenly;
 `;
 
-const getUniswapLink = (networkId: Network) => {
-    if (networkId === Network.Arbitrum) return LINKS.Token.UniswapBuyThalesArbitrum;
-    if (networkId === Network.Base) return LINKS.Token.UniswapBuyThalesBase;
-    return LINKS.Token.UniswapBuyThalesOp;
-};
+// const getUniswapLink = (networkId: Network) => {
+//     if (networkId === Network.Arbitrum) return LINKS.Token.UniswapBuyThalesArbitrum;
+//     if (networkId === Network.Base) return LINKS.Token.UniswapBuyThalesBase;
+//     return LINKS.Token.UniswapBuyThalesOp;
+// };
 
 const TIPLinks = {
     [LiquidityPool.THALES]: LINKS.Token.TIP139,
