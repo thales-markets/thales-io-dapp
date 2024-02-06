@@ -1,20 +1,26 @@
 import SPAAnchor from 'components/SPAAnchor';
+import { MONTH_NAMES } from 'constants/date';
 import ROUTES from 'constants/routes';
 import { StakersFilterEnum } from 'enums/governance';
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
+import useWeeklyStatsQuery from 'queries/dashboard/useWeeklyStatsQuery';
 import useGlobalStakingDataQuery from 'queries/token/useGlobalStakingDataQuery';
 import useThalesStakersQuery from 'queries/useThalesStakersQuery';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Bar, BarChart, Cell, Tooltip as ChartTooltip, XAxis } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
-import { FlexDiv } from 'styles/common';
+import { Colors, FlexDiv } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { Staker } from 'types/governance';
+import { Fee, WeeklyStats } from 'types/statistics';
 import { GlobalStakingData, TokenInfo } from 'types/token';
 import { buildHref } from 'utils/routes';
 import {
+    ChartTooltipBox,
+    ChartWrapper,
     FlexDivAlignStartSpaceBetween,
     FlexDivFullWidthSpaceBetween,
     InfoSection,
@@ -33,12 +39,17 @@ const Staking: React.FC = () => {
 
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>();
     const [globalStakingData, setGlobalStakingData] = useState<GlobalStakingData | undefined>();
+    const [weeklyData, setWeeklyData] = useState<WeeklyStats | undefined>();
 
     const globalStakingDataQuery = useGlobalStakingDataQuery({
         enabled: isAppReady,
     });
 
     const stakersQuery = useThalesStakersQuery(StakersFilterEnum.All, {
+        enabled: isAppReady,
+    });
+
+    const weeklyStatsQuery = useWeeklyStatsQuery({
         enabled: isAppReady,
     });
 
@@ -63,10 +74,80 @@ const Staking: React.FC = () => {
         }
     }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
 
+    useEffect(() => {
+        if (weeklyStatsQuery.isSuccess && weeklyStatsQuery.data) {
+            setWeeklyData(weeklyStatsQuery.data);
+        }
+    }, [weeklyStatsQuery.isSuccess, weeklyStatsQuery.data]);
+
     const stakedOfCirculatingSupplyPercentage =
         globalStakingData && tokenInfo
             ? (globalStakingData?.totalStakedAmount / tokenInfo?.circulatingSupply) * 100
             : 0;
+
+    const chartData = useMemo(() => {
+        let data: any[] = [];
+        if (weeklyData) {
+            const safeboxChartData = weeklyData.safeboxFees
+                .sort((a, b) => {
+                    const dateOfA = new Date(a.day);
+                    const dateOfB = new Date(b.day);
+
+                    return dateOfA.getTime() - dateOfB.getTime();
+                })
+                .map((safeboxData: Fee) => {
+                    const dateOfSafebox = new Date(safeboxData.day);
+                    const month = MONTH_NAMES[dateOfSafebox.getMonth()];
+                    return {
+                        name: 'Safebox',
+                        date: safeboxData.day,
+                        month: `${month}-${dateOfSafebox.getFullYear()}`,
+                        amount: Number(safeboxData.amount.toFixed(2)),
+                        color: Colors.METALLIC_BLUE,
+                    };
+                });
+
+            const revShareChartData = weeklyData.revShare
+                .sort((a, b) => {
+                    const dateOfA = new Date(a.day);
+                    const dateOfB = new Date(b.day);
+
+                    return dateOfA.getTime() - dateOfB.getTime();
+                })
+                .slice(3)
+                .map((revShareData: Fee) => {
+                    const dateOfRevShare = new Date(revShareData.day);
+                    const month = MONTH_NAMES[dateOfRevShare.getMonth()];
+                    return {
+                        name: 'RevShare',
+                        date: revShareData.day,
+                        month: `${month}-${dateOfRevShare.getFullYear()}`,
+                        amount: Number(revShareData.amount.toFixed(2)),
+                        color: Colors.CYAN,
+                    };
+                });
+
+            data = [...safeboxChartData, ...revShareChartData].slice(-16);
+        }
+
+        return data;
+    }, [weeklyData]);
+
+    const CustomTooltip = ({ active, payload }: any) => {
+        if (active && payload && payload.length) {
+            return (
+                <ChartTooltipBox>
+                    <InfoText color={Colors.WHITE}>
+                        {payload[0].payload.name.toLowerCase() == 'revshare' ? 'Fees distributed' : 'Safebox fees'}
+                    </InfoText>
+                    <InfoStats>$ {payload[0].payload.amount}</InfoStats>
+                    <InfoStats>{payload[0].payload.date}</InfoStats>
+                </ChartTooltipBox>
+            );
+        }
+
+        return null;
+    };
 
     return (
         <SPAAnchor href={buildHref(ROUTES.Staking)}>
@@ -113,6 +194,30 @@ const Staking: React.FC = () => {
                         </FlexDivFullWidthSpaceBetween>
                     </InfoSection>
                 </StakingInfo>
+                <ChartWrapper>
+                    <BarChart width={650} height={200} data={chartData}>
+                        <XAxis
+                            axisLine={false}
+                            dataKey="month"
+                            tickLine={false}
+                            padding={{ left: 15, right: 15 }}
+                            interval={4}
+                        />
+                        <ChartTooltip
+                            content={<CustomTooltip />}
+                            cursor={{
+                                stroke: Colors.INDEPENDENCE,
+                                strokeWidth: 2,
+                                fill: 'transparent',
+                            }}
+                        />
+                        <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
+                            {chartData.map((slice, index) => (
+                                <Cell key={index} fill={slice.color} />
+                            ))}
+                        </Bar>
+                    </BarChart>
+                </ChartWrapper>
             </WidgetWrapper>
         </SPAAnchor>
     );
