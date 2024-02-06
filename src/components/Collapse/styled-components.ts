@@ -17,6 +17,7 @@ export const Highlight = styled.div<{
     fontSize?: string;
     fontFamily?: string;
     textAlign?: string;
+    downwardsArrowAlignRight?: boolean;
 }>`
     cursor: ${(props) => (props.cursor ? props.cursor : 'default')};
     color: white;
@@ -27,4 +28,6 @@ export const Highlight = styled.div<{
     margin-top: ${(props) => (props.marginTop ? props.marginTop : '')};
     line-height: 140%;
     text-align: ${(props) => (props.textAlign ? props.textAlign : 'left')};
+    display: ${(props) => (props.downwardsArrowAlignRight ? 'flex' : 'block')};
+    justify-content: ${(props) => (props.downwardsArrowAlignRight ? 'space-between' : '')};
 `;

@@ -100,7 +100,6 @@ const PnL: React.FC<PnlProps> = ({ lifetimePnl, type, liquidityPool }) => {
     return (
         <Container>
             <Header noData={noData}>
-                <Title>{t(`staking.amm-lp.pnl.${type}.title`)}</Title>
                 {type === LiquidityPoolPnlType.CUMULATIVE_PNL && (
                     <LifetimePnlContainer>
                         <LifetimePnlLabel>{t('staking.amm-lp.pnl.lifetime-pnl')}:</LifetimePnlLabel>
@@ -117,12 +116,28 @@ const PnL: React.FC<PnlProps> = ({ lifetimePnl, type, liquidityPool }) => {
                         </LifetimePnl>
                     </LifetimePnlContainer>
                 )}
+                {type === LiquidityPoolPnlType.PNL_PER_ROUND && liquidityPoolPnls[liquidityPoolPnls.length - 1] && (
+                    <LifetimePnlContainer>
+                        <LifetimePnlLabel>{t('staking.amm-lp.pnl.previous-pnl')}:</LifetimePnlLabel>
+                        <LifetimePnl
+                            color={
+                                lifetimePnl === 0
+                                    ? theme.textColor.primary
+                                    : lifetimePnl > 0
+                                    ? theme.textColor.secondary
+                                    : theme.textColor.tertiary
+                            }
+                        >
+                            {formatPercentageWithSign(liquidityPoolPnls[liquidityPoolPnls.length - 1].pnlPerRound)}
+                        </LifetimePnl>
+                    </LifetimePnlContainer>
+                )}
             </Header>
             {!noData ? (
                 <ChartContainer>
                     <ResponsiveContainer width="100%" height="100%">
                         <Chart data={liquidityPoolPnls}>
-                            <CartesianGrid strokeDasharray="2 2" strokeWidth={0.5} stroke={theme.textColor.tertiary} />
+                            <CartesianGrid strokeDasharray="2 2" strokeWidth={0.5} stroke="#3b4472" />
                             <XAxis
                                 dataKey="round"
                                 tickLine={false}
@@ -206,10 +221,6 @@ const TooltipAmount = styled(FlexDivColumn)`
 
 const Header = styled(FlexDivRow)<{ noData?: boolean }>`
     margin: ${(props) => (props.noData ? '20px 0px 5px 0px' : '20px 6px 5px 58px')};
-`;
-
-const Title = styled.span`
-    color: ${(props) => props.theme.textColor.tertiary};
 `;
 
 const LifetimePnlContainer = styled(FlexDivRow)`

@@ -524,7 +524,8 @@
                     "title": "PnL over time"
                 },
                 "no-data": "No PnL data for previous rounds.",
-                "lifetime-pnl": "Lifetime PnL"
+                "lifetime-pnl": "Lifetime PnL",
+                "previous-pnl": "Previous round PnL"
             },
             "user-transactions": {
                 "title": "User TX",

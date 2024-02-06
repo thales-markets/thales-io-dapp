@@ -26,6 +26,9 @@ export const Top = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    > div:first-child {
+        margin-bottom: 20px;
+    }
     > div {
         height: 100%;
     }
@@ -49,6 +52,7 @@ export const Bottom = styled.div`
     > div {
         height: 100%;
     }
+    padding: 10px 0;
 `;
 
 export const SectionContentContainer = styled(FlexDivColumn)`

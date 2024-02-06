@@ -10,7 +10,7 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivRow } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivRow, Icon } from 'styles/common';
 import { LiquidityPoolUserTransaction, LiquidityPoolUserTransactions } from 'types/liquidityPool';
 import UserTransactionsTable from '../UserTransactionsTable';
 
@@ -106,6 +106,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
                             }}
                             className={`${tab.id === selectedTab ? 'selected' : ''}`}
                         >
+                            <Icon className="icon icon--transactions" iconSize={15} color="inherit" />
                             {tab.name}
                         </Tab>
                     ))}
@@ -154,12 +155,11 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
 const Container = styled(FlexDivColumn)`
     font-family: Nunito;
     position: relative;
-    max-height: 370px;
     min-height: 370px;
     overflow-y: auto;
     width: 60%;
     margin-top: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
     @media (max-width: 1440px) {
         width: 95%;
     }
@@ -170,7 +170,7 @@ const Container = styled(FlexDivColumn)`
 `;
 
 const Header = styled(FlexDivRow)`
-    margin: 15px 18px;
+    margin: 15px 0;
     align-items: center;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
@@ -201,6 +201,9 @@ const Tab = styled(FlexDivCentered)<{ isActive: boolean; index: number }>`
     margin-right: 40px;
     text-transform: uppercase;
     color: ${(props) => props.theme.textColor.tertiary};
+    i {
+        margin-right: 5px;
+    }
     &.selected {
         transition: 0.2s;
         color: ${(props) => props.theme.textColor.secondary};

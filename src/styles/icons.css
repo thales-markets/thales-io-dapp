@@ -272,6 +272,10 @@
     content: '\0051';
 }
 
+.icon--transactions:before {
+    content: '\0054';
+}
+
 .thales-icon--left:before {
     content: '\0074';
 }

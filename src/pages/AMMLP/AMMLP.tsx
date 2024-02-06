@@ -50,7 +50,12 @@ import {
     Line,
     NavContainer,
 } from 'styles/common';
-import { formatCurrencyWithSign, formatPercentage, getDefaultDecimalsForNetwork } from 'thales-utils';
+import {
+    formatCurrencyWithKey,
+    formatCurrencyWithSign,
+    formatPercentage,
+    getDefaultDecimalsForNetwork,
+} from 'thales-utils';
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
 import { getCurrencyKeyStableBalance } from 'utils/balances';
 import { getDefaultCollateral } from 'utils/currency';
@@ -536,7 +541,14 @@ const AMMLP: React.FC = () => {
                                             showValidation={
                                                 insufficientBalance || !!exceededLiquidityPoolCap || !!invalidAmount
                                             }
-                                            currencyLabel={SYNTHS_MAP.sUSD}
+                                            balance={
+                                                isWalletConnected
+                                                    ? `${t('common.balance')}: ${formatCurrencyWithKey(
+                                                          SYNTHS_MAP.sUSD,
+                                                          paymentTokenBalance
+                                                      )}`
+                                                    : undefined
+                                            }
                                             validationMessage={
                                                 t(
                                                     `${
@@ -753,7 +765,7 @@ const AMMLP: React.FC = () => {
                 </Top>
             </Container>
             <ChartsContainer>
-                <FlexDiv>
+                <FlexDiv gap="20px">
                     {liquidityPoolData && (
                         <PnL
                             liquidityPool={paramTab}
@@ -767,13 +779,13 @@ const AMMLP: React.FC = () => {
                                 <LiquidityPoolInfoTitle>{t('staking.amm-lp.total-info-label')}</LiquidityPoolInfoTitle>
                                 <LiquidityPoolFilledText>
                                     <div>
-                                        <div>{t('staking.amm-lp.your-share-label')}</div>
+                                        <div>{t('staking.amm-lp.pool-size')}</div>
                                         <span>
                                             {formatCurrencyWithSign(USD_SIGN, liquidityPoolData.allocationNextRound)}
                                         </span>
                                     </div>
                                     <div>
-                                        <div>{t('staking.amm-lp.pool-size')}</div>
+                                        <div>{t('staking.amm-lp.your-share-label')}</div>
                                         <span>
                                             {formatPercentage(
                                                 (userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0) /
@@ -884,6 +896,7 @@ const AMMLP: React.FC = () => {
                                 titleMarginTop: '15px',
                                 titleMarginBottom: '5px',
                                 titleFontFamily: 'Nunito',
+                                downwardsArrowAlignRight: true,
                             }}
                         >
                             <SectionDescription>
@@ -902,6 +915,8 @@ const AMMLP: React.FC = () => {
                                 titleFontSize: '14px',
                                 titleMarginBottom: '5px',
                                 titleFontFamily: 'Nunito',
+                                containerMarginBottom: '5px',
+                                downwardsArrowAlignRight: true,
                             }}
                         >
                             <FlexDiv style={{ marginBottom: '10px' }}>

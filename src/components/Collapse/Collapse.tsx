@@ -11,14 +11,15 @@ type CollapseProps = {
         titleFontFamily?: string;
         titleMarginBottom?: string;
         titleMarginTop?: string;
-        containerMarginButton?: string;
+        downwardsArrowAlignRight?: boolean;
+        containerMarginBottom?: string;
     };
 };
 
 const Collapse: React.FC<CollapseProps> = ({ title, hideLine, additionalStyling, children, headerTextAlign }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     return (
-        <CollapseContainer hideLine={hideLine} marginBottom={additionalStyling?.containerMarginButton}>
+        <CollapseContainer hideLine={hideLine} marginBottom={additionalStyling?.containerMarginBottom}>
             <Highlight
                 cursor="pointer"
                 marginBottom={additionalStyling?.titleMarginBottom ? additionalStyling?.titleMarginBottom : '20px'}
@@ -29,8 +30,9 @@ const Collapse: React.FC<CollapseProps> = ({ title, hideLine, additionalStyling,
                     setIsOpen(!isOpen);
                 }}
                 textAlign={headerTextAlign}
+                downwardsArrowAlignRight={additionalStyling?.downwardsArrowAlignRight}
             >
-                {title}
+                <span>{title}</span>
                 <CollapseIcon className={`icon ${isOpen ? 'icon--caret-up' : 'icon--caret-down'}`} />
             </Highlight>
             <MaterialCollapse in={isOpen}>{children}</MaterialCollapse>

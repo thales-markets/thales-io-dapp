@@ -17,6 +17,7 @@ const UserTransactionsTable: FC<UserTransactionsTableProps> = memo(({ transactio
 
     return (
         <Table
+            defaultPageSize={10}
             columns={[
                 {
                     Header: <>{t('staking.amm-lp.table.date-time-col')}</>,

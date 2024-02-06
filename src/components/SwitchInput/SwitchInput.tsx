@@ -126,6 +126,7 @@ const SwitchContainer = styled.div<SwitchContainerProps>`
     border-radius: 30px;
     width: ${(props: any) => props.width || defaultSwitchHeight * 2.18 + 'px'};
     height: ${(props: any) => props.height || defaultSwitchHeight + 'px'};
+    background: ${(props: any) => props.theme.background.quaternary};
 `;
 
 const Circle = styled.div<CircleProps>`
