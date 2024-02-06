@@ -11,11 +11,11 @@ const useWeeklyStatsQuery = (options?: UseQueryOptions<WeeklyStats>) => {
                 const response = await fetch(`${generalConfig.API_URL}/thales/thales-io/weekly-stats`);
                 const stats = await response.json();
 
-                const safeboxFees = stats.safebox.map((safeboxData) => {
+                const safeboxFees = stats.safebox.map((safeboxData: any) => {
                     return { amount: safeboxData.fee, day: safeboxData.w.split(' ')[0] };
                 });
 
-                const revShare = stats.revShare.map((revShareData) => {
+                const revShare = stats.revShare.map((revShareData: any) => {
                     return { amount: revShareData.revShare, day: revShareData.day.split(' ')[0] };
                 });
 
