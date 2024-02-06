@@ -820,7 +820,7 @@
             "number-of-stakers": "Total number of stakers",
             "search-wallet": "Search wallet address",
             "percentage-of-staked-supply-col": "% of staked supply",
-            "percentage-of-circulating-supply-col": "% of circulating supply"
+            "percentage-of-circulating-supply-col": "% of circ. supply"
         },
         "stakers-filter": {
             "all": "all",

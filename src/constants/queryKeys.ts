@@ -139,6 +139,7 @@ const QUERY_KEYS = {
     VolumeStats: () => ['volume', 'stats'],
     UsersStats: () => ['users', 'stats'],
     AllStats: () => ['all', 'stats'],
+    WeeklyStats: () => ['weekly', 'stats'],
     LiquidityPoolPnL: (networkId: Network, liquidityPool: LiquidityPool) => [
         'liquidityPoolPnL',
         networkId,

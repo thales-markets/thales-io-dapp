@@ -229,8 +229,9 @@ export const ChartTooltipBox = styled.div`
     background: ${(props) => props.theme.background.quinary};
     border-radius: 8px;
     z-index: 2;
-    width: 125px;
-    height: 50px;
+    width: 150px;
+    padding: 10px;
+    height: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -240,4 +241,10 @@ export const ChartTooltipBox = styled.div`
 export const StakingInfo = styled(FlexDivRow)`
     grid-area: top;
     margin-top: 35px;
+`;
+
+export const ChartWrapper = styled(FlexDivRow)`
+    grid-area: 2 / 1 / 2 / 3;
+    width: 100%;
+    padding: 0px 20px;
 `;

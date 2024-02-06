@@ -30,3 +30,13 @@ export type AllStats = {
     volumeStats: VolumeStats;
     TVLStats: TVLStats;
 };
+
+export type Fee = {
+    day: string;
+    amount: number;
+};
+
+export type WeeklyStats = {
+    safeboxFees: Fee[];
+    revShare: Fee[];
+};
