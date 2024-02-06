@@ -86,7 +86,7 @@ const Staking: React.FC = () => {
             : 0;
 
     const chartData = useMemo(() => {
-        let data = [];
+        let data: any[] = [];
         if (weeklyData) {
             const safeboxChartData = weeklyData.safeboxFees
                 .sort((a, b) => {
