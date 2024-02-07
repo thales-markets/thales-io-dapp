@@ -2,7 +2,7 @@ import SelectInput from 'components/SelectInput';
 import { LiquidityPool, LiquidityPoolTransaction } from 'enums/liquidityPool';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { orderBy } from 'lodash';
-import useLiquidityPoolUserTransactionsQuery from 'queries/liquidityPool/useThalesLiquidityPoolUserTransactionsQuery';
+import useLiquidityPoolUserTransactionsQuery from 'queries/liquidityPool/useLiquidityPoolUserTransactionsQuery';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';

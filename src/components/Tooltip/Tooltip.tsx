@@ -71,7 +71,7 @@ const InfoIcon = styled.i<{
     color: ${(props) => props.color || 'white'};
     &:before {
         font-family: ThalesIcons !important;
-        content: '\\0043';
+        content: '\\0046';
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: ${(props) =>

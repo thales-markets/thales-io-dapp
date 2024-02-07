@@ -22,6 +22,7 @@ import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
 import { BigNumber, ethers } from 'ethers';
+import useLiquidityPoolUserTransactionsQuery from 'queries/liquidityPool/useLiquidityPoolUserTransactionsQuery';
 import useParlayLiquidityPoolDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolDataQuery';
 import useParlayLiquidityPoolUserDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolUserDataQuery';
 import useSportsAmmLiquidityPoolDataQuery from 'queries/liquidityPool/useSportsAmmLiquidityPoolDataQuery';
@@ -56,7 +57,7 @@ import {
     formatPercentage,
     getDefaultDecimalsForNetwork,
 } from 'thales-utils';
-import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
+import { LiquidityPoolData, LiquidityPoolUserTransaction, UserLiquidityPoolData } from 'types/liquidityPool';
 import { getCurrencyKeyStableBalance } from 'utils/balances';
 import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance } from 'utils/network';
@@ -160,6 +161,26 @@ const AMMLP: React.FC = () => {
     const parlayUserLiquidityPoolDataQuery = useParlayLiquidityPoolUserDataQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected && paramTab === LiquidityPool.OVERTIME_PARLAY,
     });
+
+    const userTransactionsQuery = useLiquidityPoolUserTransactionsQuery(networkId, paramTab);
+
+    const userPnL = useMemo(() => {
+        if (userTransactionsQuery.isSuccess) {
+            return userTransactionsQuery.data
+                .filter((tx: LiquidityPoolUserTransaction) => tx.account === walletAddress)
+                .reverse()
+                .reduce((prev: number, curr: LiquidityPoolUserTransaction) => {
+                    if (curr.type === 'deposit') {
+                        return prev - curr.amount;
+                    }
+                    if (curr.type === 'claim') {
+                        return prev + curr.amount;
+                    }
+                    return prev;
+                }, 0);
+        }
+        return 0;
+    }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess, walletAddress]);
 
     useEffect(() => {
         if (
@@ -597,8 +618,8 @@ const AMMLP: React.FC = () => {
                                                                 <Trans i18nKey="staking.amm-lp.withdrawal-deposit-warning" />
                                                             </WarningContentInfo>
                                                         ) : (
-                                                            <>
-                                                                <ContentInfo>
+                                                            <WithdrawalContainer>
+                                                                <ContentInfo color="white">
                                                                     <Trans
                                                                         i18nKey="staking.amm-lp.available-to-withdraw-label"
                                                                         components={{
@@ -616,8 +637,8 @@ const AMMLP: React.FC = () => {
                                                                             `staking.amm-lp.estimated-amount-tooltip`
                                                                         )}
                                                                         iconFontSize={14}
-                                                                        marginLeft={2}
-                                                                        top={-1}
+                                                                        marginLeft={3}
+                                                                        top={2}
                                                                     />
                                                                 </ContentInfo>
                                                                 <ContentInfo>
@@ -690,7 +711,7 @@ const AMMLP: React.FC = () => {
                                                                         </SliderRange>
                                                                     </FlexDivRow>
                                                                 </SliderContainer>
-                                                                <ContentInfo>
+                                                                <ContentInfo color="white">
                                                                     <Trans
                                                                         i18nKey="staking.amm-lp.withdrawal-amount-label"
                                                                         components={{
@@ -708,11 +729,11 @@ const AMMLP: React.FC = () => {
                                                                             `staking.amm-lp.estimated-amount-tooltip`
                                                                         )}
                                                                         iconFontSize={14}
-                                                                        marginLeft={2}
-                                                                        top={-1}
+                                                                        marginLeft={3}
+                                                                        top={2}
                                                                     />
                                                                 </ContentInfo>
-                                                            </>
+                                                            </WithdrawalContainer>
                                                         )}
                                                     </>
                                                 )}
@@ -813,7 +834,11 @@ const AMMLP: React.FC = () => {
                             )}
                             <LiquidityPoolInfoContainer>
                                 <LiquidityPoolInfoLabel>{t('staking.amm-lp.your-pnl')}:</LiquidityPoolInfoLabel>
-                                <LiquidityPoolInfo>55555</LiquidityPoolInfo>
+                                <LiquidityPoolInfo>
+                                    {userPnL && userLiquidityPoolData
+                                        ? userPnL - userLiquidityPoolData.balanceCurrentRound
+                                        : 0}
+                                </LiquidityPoolInfo>
                             </LiquidityPoolInfoContainer>
                             <LiquidityPoolInfoContainer>
                                 <LiquidityPoolInfoLabel>{t('staking.amm-lp.your-apr')}:</LiquidityPoolInfoLabel>
@@ -1029,7 +1054,8 @@ const LiquidityPoolInfo = styled.span`
     white-space: nowrap;
 `;
 
-const ContentInfo = styled.p`
+const ContentInfo = styled.p<{ color?: string }>`
+    color: ${(props) => props.color || 'inherit'};
     padding: 10px 0;
     text-align: center;
 `;
@@ -1181,6 +1207,11 @@ const SliderRange = styled.div`
         opacity: 0.4;
         cursor: default;
     }
+`;
+
+const WithdrawalContainer = styled.div`
+    width: 60%;
+    align-self: center;
 `;
 
 export default AMMLP;
