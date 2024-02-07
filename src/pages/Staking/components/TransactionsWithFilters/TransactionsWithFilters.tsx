@@ -87,11 +87,12 @@ const TransactionsWithFilters: React.FC<TransactionsWithFiltersProps> = ({
                     >
                         <Button
                             height="30px"
-                            padding="5px 40px"
+                            padding="5px 30px"
                             fontSize="15px"
                             onClick={() => setShowFilters(!showFilters)}
                         >
                             {t(`staking.table.filter.button`)}
+                            <Icon className="icon icon--caret-down" />
                         </Button>
                         <DropDownWrapper hidden={!showFilters}>
                             <DropDown>
@@ -200,6 +201,12 @@ const FilterText = styled.p`
     &:hover {
         background: ${(props) => props.theme.background.quaternary};
     }
+`;
+
+const Icon = styled.i`
+    font-size: 12px;
+    margin-left: 7px;
+    color: ${(props) => props.theme.textColor.primary};
 `;
 
 export default TransactionsWithFilters;
