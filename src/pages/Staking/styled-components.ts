@@ -81,6 +81,9 @@ export const SectionHeader = styled(FlexDiv)`
     text-transform: uppercase;
     min-height: 30px;
     padding-left: 20px;
+    > i {
+        margin-right: 6px;
+    }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 16px;
         padding: 0px 5px;
