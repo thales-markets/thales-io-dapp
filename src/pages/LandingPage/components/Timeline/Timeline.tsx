@@ -19,6 +19,7 @@ const Timeline: React.FC = () => {
     }, [milestonesQuery.isSuccess, milestonesQuery.data]);
 
     const items = milestonesByQuarter.map((quarter) => adaptQuarterForTimeline(quarter));
+
     return (
         <Container>
             {items.length && (

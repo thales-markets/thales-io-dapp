@@ -45,6 +45,21 @@ export const Container = styled.div`
     .card-description {
         width: 100%;
     }
+    .timeline-main-wrapper ul {
+        position: relative;
+    }
+    .timeline-main-wrapper ul:after {
+        content: '🚀';
+        font-size: 25px;
+        width: 27px;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+    }
+    button[aria-disabled='true'] {
+        opacity: 0.5;
+    }
 `;
 
 export const Milestone = styled.div<{ hideBorder?: boolean }>`
