@@ -34,6 +34,13 @@ const Timeline: React.FC = () => {
                         titleColor: 'white',
                         titleColorActive: 'white',
                     }}
+                    // hacky way to disable scrolling the element into view
+                    onItemSelected={() => {
+                        const itemElement = document.getElementsByClassName('timeline-horz-card-wrapper')?.[0];
+                        if (itemElement) {
+                            itemElement.scrollIntoView = function () {};
+                        }
+                    }}
                 >
                     {milestonesByQuarter.map((item, index) => {
                         return (
