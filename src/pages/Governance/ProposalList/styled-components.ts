@@ -7,12 +7,6 @@ export const Wrapper = styled.div`
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 12px;
     margin-top: 20px;
-    // overflow: auto;
-    // -ms-overflow-style: none; /* Internet Explorer 10+ */
-    // scrollbar-width: none; /* Firefox */
-    // ::-webkit-scrollbar {
-    //     display: none; /* Safari and Chrome */
-    // }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
         max-height: initial;
