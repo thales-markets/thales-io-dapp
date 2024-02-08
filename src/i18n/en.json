@@ -472,7 +472,7 @@
             "users-in-liquidity-pool-label": "Users in the liquidity pool: {{number}} / {{max}}",
             "your-share-label": "Your share of pool:",
             "pool-size": "Pool size:",
-            "total-deposits": "Total deposits:",
+            "total-deposits": "Users in pool:",
             "your-info-label": "Your LP info",
             "current-balance-label": "Your current deposit",
             "your-pnl": "Your current PnL",

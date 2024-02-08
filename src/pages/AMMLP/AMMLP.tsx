@@ -165,15 +165,16 @@ const AMMLP: React.FC = () => {
     const userTransactionsQuery = useLiquidityPoolUserTransactionsQuery(networkId, paramTab);
 
     const totalDeposits = useMemo(() => {
-        let counter = 0;
+        const uniqueUsersMap = {} as Record<string, boolean>;
         if (userTransactionsQuery.isSuccess) {
             userTransactionsQuery.data.forEach((tx: LiquidityPoolUserTransaction) => {
                 if (tx.type === 'deposit') {
-                    counter++;
+                    uniqueUsersMap[tx.account] = true;
                 }
             });
+            return Object.keys(uniqueUsersMap).length;
         }
-        return counter;
+        return 0;
     }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess]);
 
     useEffect(() => {
