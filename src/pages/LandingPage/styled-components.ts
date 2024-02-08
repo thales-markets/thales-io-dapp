@@ -56,7 +56,7 @@ export const EcosystemTitle = styled(FlexDiv)`
 `;
 
 export const Subtitle = styled.div`
-    color: #a9abbb;
+    color: #c6c8da;
     font-family: 'NunitoExtraLight';
     font-size: 20px;
     font-style: normal;
@@ -82,7 +82,7 @@ export const StatsSection = styled.div`
 `;
 
 export const SectionTitle = styled.div`
-    color: #a9abbb;
+    color: #c6c8da;
     font-family: 'NunitoExtraLight';
     font-size: 17px;
     font-style: normal;
@@ -169,7 +169,7 @@ export const SectionSlogan = styled.div`
 `;
 
 export const SectionTitleLink = styled.div`
-    color: #a9abbb;
+    color: #c6c8da;
     font-family: NunitoExtraLight;
     font-size: 13px;
     font-style: normal;
@@ -178,7 +178,7 @@ export const SectionTitleLink = styled.div`
 `;
 
 export const SectionTitleLinkArrow = styled(ArrowHyperlinkIcon)`
-    color: #a9abbb;
+    color: #c6c8da;
     width: 9px;
     height: 9px;
 `;
@@ -252,7 +252,7 @@ export const MilestoneDate = styled.div`
 
 export const MilestoneDescription = styled.div`
     padding-top: 8px;
-    color: #a9abbb;
+    color: #c6c8da;
     font-family: MontserratLight;
     font-size: 13px;
     font-style: normal;
@@ -307,7 +307,7 @@ export const ThalesLinksTitle = styled.div`
     text-transform: capitalize;
 `;
 export const ThalesLinksItem = styled.div`
-    color: #a9abbb;
+    color: #c6c8da;
     font-family: MontserratLight;
     font-size: 13px;
     font-style: normal;

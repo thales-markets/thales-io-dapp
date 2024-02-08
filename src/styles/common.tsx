@@ -77,8 +77,8 @@ export const Icon = styled.i<{ color?: string; iconSize?: number }>`
 `;
 
 export const Colors = {
-    GRAY: '#BCBCBC',
-    LIGHT_GRAY: '#A9ABBB',
+    GRAY: '#C6C8DA',
+    LIGHT_GRAY: '#C6C8DA',
     DARK_GRAY: '#181A20',
     WHITE: '#FFFFFF',
     CYAN: '#19F8EF',
