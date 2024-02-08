@@ -508,6 +508,28 @@ const AMMLP: React.FC = () => {
         }
     }, [withdrawalPercentage, withdrawAll, userLiquidityPoolData]);
 
+    const totalDeposited = useMemo(() => {
+        let depositedCount = 0;
+        if (userTransactionsQuery.isSuccess) {
+            userTransactionsQuery.data
+                .filter(
+                    (tx: LiquidityPoolUserTransaction) =>
+                        tx.account.toLocaleLowerCase() === walletAddress.toLocaleLowerCase()
+                )
+                .forEach((tx: LiquidityPoolUserTransaction) => {
+                    console.log(tx.type, tx.amount);
+                    if (tx.type === 'deposit') {
+                        console.log(depositedCount);
+                        depositedCount += tx.amount;
+                    }
+                    if (tx.type === 'claim') {
+                        depositedCount -= tx.amount;
+                    }
+                });
+        }
+        return depositedCount;
+    }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess, walletAddress]);
+
     return (
         <Suspense fallback={<Loader />}>
             <Line />
@@ -821,6 +843,12 @@ const AMMLP: React.FC = () => {
                                                 userLiquidityPoolData ? userLiquidityPoolData.balanceCurrentRound : 0
                                             )}
                                         </LiquidityPoolInfo>
+                                    </LiquidityPoolInfoContainer>
+                                    <LiquidityPoolInfoContainer>
+                                        <LiquidityPoolInfoLabel>
+                                            {t('staking.amm-lp.total-deposited')}:
+                                        </LiquidityPoolInfoLabel>
+                                        <LiquidityPoolInfo>{totalDeposited}</LiquidityPoolInfo>
                                     </LiquidityPoolInfoContainer>
                                     <LiquidityPoolInfoContainer>
                                         <LiquidityPoolInfoLabel>
