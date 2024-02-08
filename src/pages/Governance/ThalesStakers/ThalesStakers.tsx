@@ -338,6 +338,8 @@ const ThalesStakers: React.FC = () => {
                             accessor: 'index',
                             Cell: (cellProps: any) => <p>{cellProps?.row?.id ? Number(cellProps?.row?.id) + 1 : ''}</p>,
                             sortable: true,
+                            width: 30,
+                            maxWidth: 30,
                         },
                         {
                             Header: <>{t('governance.stakers.staker-col')}</>,
