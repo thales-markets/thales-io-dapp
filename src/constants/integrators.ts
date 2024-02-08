@@ -11,11 +11,11 @@ export const INTEGRATORS = [
     //     address: '0xE15Ac94D5a9592113DD63a38C91D8e628AF7762F',
     //     url: '',
     // },
-    // {
-    //     name: 'LeagueBot',
-    //     address: '0x740e2bdE0D80DeCd72e16C5b60EaD9Cd22d9d90f',
-    //     url: '',
-    // },
+    {
+        name: 'LeagueBot',
+        address: '0x740e2bdE0D80DeCd72e16C5b60EaD9Cd22d9d90f',
+        url: '',
+    },
     {
         name: 'Spongly',
         address: '0x4ae4669aa1e5171d7C012B2f2ca48f41f701744A',
