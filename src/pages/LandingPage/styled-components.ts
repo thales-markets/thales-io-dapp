@@ -287,7 +287,7 @@ export const FooterLogo = styled.i`
 export const LinksContainer = styled(FlexDivSpaceBetween)`
     height: 100%;
     & > div:nth-child(1) {
-        width: 40%;
+        width: 45%;
     }
     & > div:nth-child(2) {
         width: 30%;

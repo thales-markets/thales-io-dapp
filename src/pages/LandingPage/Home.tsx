@@ -164,19 +164,28 @@ const Home: React.FC = () => {
                     <Description marginBottom={50} marginTop={20}>
                         {t('home.integrations.description')}
                     </Description>
-                    <Collapse title={t('home.integrations.thales-sports-markets-api-title')}>
+                    <Collapse
+                        title={t('home.integrations.thales-sports-markets-api-title')}
+                        additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
+                    >
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-sports-markets-api-description')}</span>
                             <HomeButton>{t('home.integrations.integrate-with-thales-sports-button')}</HomeButton>
                         </Description>
                     </Collapse>
-                    <Collapse title={t('home.integrations.thales-digital-options-api-title')}>
+                    <Collapse
+                        title={t('home.integrations.thales-digital-options-api-title')}
+                        additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
+                    >
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-digital-options-api-description')}</span>
                             <HomeButton>{t('home.integrations.integrate-with-thales-markets-button')}</HomeButton>
                         </Description>
                     </Collapse>
-                    <Collapse title={t('home.integrations.thales-speed-markets-api-title')}>
+                    <Collapse
+                        title={t('home.integrations.thales-speed-markets-api-title')}
+                        additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
+                    >
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-speed-markets-api-description')}</span>
                             <HomeButton>{t('home.integrations.integrate-with-thales-speed-button')}</HomeButton>

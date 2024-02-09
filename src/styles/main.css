@@ -141,6 +141,7 @@ table {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     scrollbar-width: thin;
+    scrollbar-color: #C6C8DA transparent;
 }
 
 *::-webkit-scrollbar {
