@@ -103,7 +103,7 @@ const Vesting: React.FC = () => {
 
     return (
         <>
-            <Container>
+            <Container marginBottom={isWalletConnected ? '0' : '50px'}>
                 <FlexDiv gap="20px">
                     <AvailableToVestWrapper>
                         <SectionTitle>
@@ -145,8 +145,6 @@ const Vesting: React.FC = () => {
                     })}
                 </ScheduleWrapper>
             )}
-            <br />
-            <br />
             <YourTransactions width="60%" />
         </>
     );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 
-export const Container = styled.div`
+export const Container = styled.div<{ marginBottom: string }>`
     color: ${(props) => props.theme.textColor.tertiary};
     background-color: ${(props) => props.theme.background.primary};
     border-radius: 8px;
@@ -12,6 +12,7 @@ export const Container = styled.div`
     height: 160px;
     z-index: 1;
     margin-top: 50px;
+    margin-bottom: ${(props) => props.marginBottom};
     > div {
         position: relative;
         padding: 20px;
