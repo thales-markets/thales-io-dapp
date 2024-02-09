@@ -164,23 +164,18 @@ const AMMLP: React.FC = () => {
 
     const userTransactionsQuery = useLiquidityPoolUserTransactionsQuery(networkId, paramTab);
 
-    const userPnL = useMemo(() => {
+    const totalDeposits = useMemo(() => {
+        const uniqueUsersMap = {} as Record<string, boolean>;
         if (userTransactionsQuery.isSuccess) {
-            return userTransactionsQuery.data
-                .filter((tx: LiquidityPoolUserTransaction) => tx.account === walletAddress)
-                .reverse()
-                .reduce((prev: number, curr: LiquidityPoolUserTransaction) => {
-                    if (curr.type === 'deposit') {
-                        return prev - curr.amount;
-                    }
-                    if (curr.type === 'claim') {
-                        return prev + curr.amount;
-                    }
-                    return prev;
-                }, 0);
+            userTransactionsQuery.data.forEach((tx: LiquidityPoolUserTransaction) => {
+                if (tx.type === 'deposit') {
+                    uniqueUsersMap[tx.account] = true;
+                }
+            });
+            return Object.keys(uniqueUsersMap).length;
         }
         return 0;
-    }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess, walletAddress]);
+    }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess]);
 
     useEffect(() => {
         if (
@@ -513,6 +508,28 @@ const AMMLP: React.FC = () => {
         }
     }, [withdrawalPercentage, withdrawAll, userLiquidityPoolData]);
 
+    const totalDeposited = useMemo(() => {
+        let depositedCount = 0;
+        if (userTransactionsQuery.isSuccess) {
+            userTransactionsQuery.data
+                .filter(
+                    (tx: LiquidityPoolUserTransaction) =>
+                        tx.account.toLocaleLowerCase() === walletAddress.toLocaleLowerCase()
+                )
+                .forEach((tx: LiquidityPoolUserTransaction) => {
+                    console.log(tx.type, tx.amount);
+                    if (tx.type === 'deposit') {
+                        console.log(depositedCount);
+                        depositedCount += tx.amount;
+                    }
+                    if (tx.type === 'claim') {
+                        depositedCount -= tx.amount;
+                    }
+                });
+        }
+        return depositedCount;
+    }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess, walletAddress]);
+
     return (
         <Suspense fallback={<Loader />}>
             <Line />
@@ -806,13 +823,8 @@ const AMMLP: React.FC = () => {
                                         </span>
                                     </div>
                                     <div>
-                                        <div>{t('staking.amm-lp.your-share-label')}</div>
-                                        <span>
-                                            {formatPercentage(
-                                                (userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0) /
-                                                    liquidityPoolData.allocationNextRound
-                                            )}
-                                        </span>
+                                        <div>{t('staking.amm-lp.total-deposits')}</div>
+                                        <span>{totalDeposits}</span>
                                     </div>
                                 </LiquidityPoolFilledText>
                             </div>
@@ -820,30 +832,38 @@ const AMMLP: React.FC = () => {
                         <div>
                             <LiquidityPoolInfoTitle>{t('staking.amm-lp.your-info-label')}</LiquidityPoolInfoTitle>
                             {liquidityPoolData?.liquidityPoolStarted && (
-                                <LiquidityPoolInfoContainer>
-                                    <LiquidityPoolInfoLabel>
-                                        {t('staking.amm-lp.current-balance-label')}:
-                                    </LiquidityPoolInfoLabel>
-                                    <LiquidityPoolInfo>
-                                        {formatCurrencyWithSign(
-                                            USD_SIGN,
-                                            userLiquidityPoolData ? userLiquidityPoolData.balanceCurrentRound : 0
-                                        )}
-                                    </LiquidityPoolInfo>
-                                </LiquidityPoolInfoContainer>
+                                <>
+                                    <LiquidityPoolInfoContainer>
+                                        <LiquidityPoolInfoLabel>
+                                            {t('staking.amm-lp.current-balance-label')}:
+                                        </LiquidityPoolInfoLabel>
+                                        <LiquidityPoolInfo>
+                                            {formatCurrencyWithSign(
+                                                USD_SIGN,
+                                                userLiquidityPoolData ? userLiquidityPoolData.balanceCurrentRound : 0
+                                            )}
+                                        </LiquidityPoolInfo>
+                                    </LiquidityPoolInfoContainer>
+                                    <LiquidityPoolInfoContainer>
+                                        <LiquidityPoolInfoLabel>
+                                            {t('staking.amm-lp.total-deposited')}:
+                                        </LiquidityPoolInfoLabel>
+                                        <LiquidityPoolInfo>{totalDeposited}</LiquidityPoolInfo>
+                                    </LiquidityPoolInfoContainer>
+                                    <LiquidityPoolInfoContainer>
+                                        <LiquidityPoolInfoLabel>
+                                            {t('staking.amm-lp.your-share-label')}
+                                        </LiquidityPoolInfoLabel>
+                                        <LiquidityPoolInfo>
+                                            {formatPercentage(
+                                                (userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0) /
+                                                    liquidityPoolData.allocationNextRound
+                                            )}
+                                        </LiquidityPoolInfo>
+                                    </LiquidityPoolInfoContainer>
+                                </>
                             )}
-                            <LiquidityPoolInfoContainer>
-                                <LiquidityPoolInfoLabel>{t('staking.amm-lp.your-pnl')}:</LiquidityPoolInfoLabel>
-                                <LiquidityPoolInfo>
-                                    {userPnL && userLiquidityPoolData
-                                        ? userPnL - userLiquidityPoolData.balanceCurrentRound
-                                        : 0}
-                                </LiquidityPoolInfo>
-                            </LiquidityPoolInfoContainer>
-                            <LiquidityPoolInfoContainer>
-                                <LiquidityPoolInfoLabel>{t('staking.amm-lp.your-apr')}:</LiquidityPoolInfoLabel>
-                                <LiquidityPoolInfo>55555</LiquidityPoolInfo>
-                            </LiquidityPoolInfoContainer>
+
                             {/* <LiquidityPoolInfoContainer>
                                 <LiquidityPoolInfoLabel>
                                     {t('staking.amm-lp.next-round-balance-label')}:

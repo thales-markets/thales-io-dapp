@@ -141,6 +141,7 @@ table {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     scrollbar-width: thin;
+    scrollbar-color: #C6C8DA transparent;
 }
 
 *::-webkit-scrollbar {
@@ -152,7 +153,7 @@ table {
     border-radius: 8px;
 }
 *::-webkit-scrollbar-thumb {
-    background: #A9ABBB ;
+    background: #C6C8DA ;
     border-radius: 8px;
 }
 

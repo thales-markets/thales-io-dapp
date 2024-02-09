@@ -82,7 +82,7 @@ export const MilestoneDate = styled.div<{ visible?: boolean }>`
 
 export const MilestoneDescription = styled.div`
     padding-top: 8px;
-    color: #a9abbb;
+    color: #c6c8da;
     font-family: MontserratLight;
     font-size: 13px;
     font-style: normal;

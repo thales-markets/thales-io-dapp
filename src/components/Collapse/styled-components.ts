@@ -13,6 +13,7 @@ export const CollapseIcon = styled.i`
 export const Highlight = styled.div<{
     marginBottom?: string;
     marginTop?: string;
+    marginRight?: string;
     cursor?: string;
     fontSize?: string;
     fontFamily?: string;
@@ -26,6 +27,7 @@ export const Highlight = styled.div<{
     font-style: normal;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0px')};
     margin-top: ${(props) => (props.marginTop ? props.marginTop : '')};
+    margin-right: ${(props) => (props.marginRight ? props.marginRight : '5px')};
     line-height: 140%;
     text-align: ${(props) => (props.textAlign ? props.textAlign : 'left')};
     display: ${(props) => (props.downwardsArrowAlignRight ? 'flex' : 'block')};

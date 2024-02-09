@@ -16,7 +16,6 @@ export const Container = styled(FlexDivRow)`
 export const MainContentContainer = styled.div<{ isOverviewPage: boolean; isThalesStakersPage: boolean }>`
     background: transparent;
     width: ${(props) => (props.isThalesStakersPage ? '100%' : '66%')};
-    padding: 2px;
     border-radius: 8px;
     height: 100%;
     @media (max-width: 1200px) {
@@ -41,7 +40,7 @@ export const MainContentWrapper = styled.div<{ isOverviewPage: boolean }>`
 export const SidebarContainer = styled(FlexDivColumn)<{ tipsOverview: boolean }>`
     width: 33%;
     margin-left: 10px;
-    margin-top: ${(props) => (props.tipsOverview ? '52px' : '25px')};
+    margin-top: ${(props) => (props.tipsOverview ? '56px' : '25px')};
     @media (max-width: 1200px) {
         width: 100%;
         margin-left: 0;
