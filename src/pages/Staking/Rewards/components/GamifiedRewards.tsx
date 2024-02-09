@@ -94,9 +94,13 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
 
                     <Collapse
                         title={t('staking.rewards.how-it-works.each-week')}
-                        additionalStyling={{ titleFontSize: '13px', titleMarginBottom: '5px', titleMarginTop: '20px' }}
+                        additionalStyling={{
+                            titleFontSize: '13px',
+                            titleMarginBottom: '5px',
+                            titleMarginTop: '20px',
+                        }}
                     >
-                        <SectionText>
+                        <SectionText style={{ marginBottom: '10px' }}>
                             <Trans
                                 i18nKey="staking.rewards.how-it-works.each-week-description"
                                 components={{
@@ -109,7 +113,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                         title={t('staking.rewards.how-it-works.how-points-are-earned-title')}
                         additionalStyling={{ titleFontSize: '13px', titleMarginBottom: '5px', titleMarginTop: '20px' }}
                     >
-                        <FlexDiv gap="30px" style={{ marginTop: '20px' }}>
+                        <FlexDiv gap="30px" style={{ marginBottom: '10px' }}>
                             <FlexDivColumn>
                                 <InfoDivRewards>
                                     <span>{t('staking.rewards.your-rewards.trading-volume')}</span>
