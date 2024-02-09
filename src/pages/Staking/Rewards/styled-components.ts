@@ -121,7 +121,6 @@ export const SubTitle = styled(InfoDiv)`
         line-height: 155%;
         margin-left: 5px;
     }
-    margin-bottom: 30px;
 `;
 
 export const ClaimableLabel = styled.span`

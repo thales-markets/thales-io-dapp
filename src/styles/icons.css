@@ -287,3 +287,7 @@
 .thales-icon--right:before {
     content: '\007A';
 }
+
+.thales-icon--close:before {
+    content: '\0042';
+}

@@ -63,7 +63,9 @@ const Modal: React.FC<ModalProps> = ({
             <Container mobileStyle={mobileStyle?.container}>
                 <Header mobileStyle={mobileStyle?.header}>
                     <Title>{title}</Title>
-                    <FlexDivRow>{<CloseIcon className="icon icon--x-sign" onClick={onClose} />}</FlexDivRow>
+                    <FlexDivRow>
+                        {<CloseIcon className="thales-icon thales-icon--close" onClick={onClose} />}
+                    </FlexDivRow>
                 </Header>
                 {children}
             </Container>
@@ -100,7 +102,6 @@ const Title = styled(FlexDiv)`
 `;
 
 const CloseIcon = styled.i`
-    font-family: Icons !important;
     font-size: 16px;
     line-height: 16px;
     cursor: pointer;

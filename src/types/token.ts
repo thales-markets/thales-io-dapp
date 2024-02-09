@@ -75,6 +75,7 @@ export type TokenTransaction = {
     amount: number | string;
     blockNumber: number;
     destAccount?: string;
+    feeRewards: number;
 };
 
 export type TokenTransactions = TokenTransaction[];
