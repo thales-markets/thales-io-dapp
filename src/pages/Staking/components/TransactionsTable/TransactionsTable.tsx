@@ -84,7 +84,6 @@ const TransactionsTable: FC<TransactionsTableProps> = memo(({ transactions, noRe
                 isLoading={isLoading}
                 noResultsMessage={noResultsMessage}
                 preventMobileView
-                hidePagination
             />
         </>
     );

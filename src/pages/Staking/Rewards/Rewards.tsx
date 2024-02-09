@@ -92,29 +92,38 @@ const Rewards: React.FC = () => {
     }, [stakingDataQuery.isSuccess, stakingDataQuery.data, lastValidStakingData]);
 
     return (
-        <Container>
-            <CCIPAnimation stakingData={stakingData} />
-            <ClaimableSection
-                userStakingData={userStakingData}
-                stakingData={stakingData}
-                isLoading={userStakingDataQuery.isLoading || stakingDataQuery.isLoading}
+        <>
+            <Container>
+                <CCIPAnimation stakingData={stakingData} />
+                <ClaimableSection
+                    userStakingData={userStakingData}
+                    stakingData={stakingData}
+                    isLoading={userStakingDataQuery.isLoading || stakingDataQuery.isLoading}
+                />
+                <BaseStakingRewards
+                    userStakingData={userStakingData}
+                    pointsData={pointsData}
+                    baseStakingRewardsData={baseRewardsData}
+                    isLoading={
+                        pointsBreakdownQuery?.isLoading ||
+                        userStakingDataQuery?.isLoading ||
+                        baseRewardsQuery?.isLoading
+                    }
+                    isClaimed={!!stakingData && !!userStakingData && !stakingData.isPaused && userStakingData.claimed}
+                />
+                <GamifiedRewards
+                    stakingData={stakingData}
+                    pointsData={pointsData}
+                    isLoading={pointsBreakdownQuery?.isLoading || userStakingDataQuery?.isLoading}
+                />
+            </Container>
+            <TransactionsWithFilters
+                width="60%"
+                filters={[TransactionFilterEnum.CLAIM_STAKING_REWARDS]}
+                hideFilters
+                hideTitle
             />
-            <BaseStakingRewards
-                userStakingData={userStakingData}
-                pointsData={pointsData}
-                baseStakingRewardsData={baseRewardsData}
-                isLoading={
-                    pointsBreakdownQuery?.isLoading || userStakingDataQuery?.isLoading || baseRewardsQuery?.isLoading
-                }
-                isClaimed={!!stakingData && !!userStakingData && !stakingData.isPaused && userStakingData.claimed}
-            />
-            <GamifiedRewards
-                stakingData={stakingData}
-                pointsData={pointsData}
-                isLoading={pointsBreakdownQuery?.isLoading || userStakingDataQuery?.isLoading}
-            />
-            <TransactionsWithFilters filters={[TransactionFilterEnum.CLAIM_STAKING_REWARDS]} hideFilters hideTitle />
-        </Container>
+        </>
     );
 };
 

@@ -136,9 +136,8 @@ const SectionContainer = styled.section<{
 }>`
     font-family: Nunito;
     width: ${(props) => (props.width ? props.width : '100%')};
-    height: ${(props) => (props.txCount > 10 ? (props.height ? props.height : '390px') : '100%')};
     min-height: 200px;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         height: 100%;
     }
