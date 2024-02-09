@@ -302,6 +302,7 @@
                 "multiplier-description": "The more THALES you stake, the more your points multiply, up to 2x. <br /> Your total points determine your share of the 15,000 THALES bonus.",
                 "final-points": "Final Points = (Trading + Pool + Vault points) x THALES Multiplier",
                 "each-week": "Each week",
+                "for-period": "For round {{round}}:",
                 "how-points-are-earned-title": "How points are earned"
             },
             "claim": {

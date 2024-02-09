@@ -14,7 +14,6 @@ import BaseStakingRewards from './components/BaseStakingRewards';
 import CCIPAnimation from './components/CCIPAnimation';
 import ClaimableSection from './components/ClaimbleSection';
 import GamifiedRewards from './components/GamifiedRewards';
-import GamifiedStakingExplainer from './components/GamifiedStakingExplainer';
 import { Container } from './styled-components';
 
 const Rewards: React.FC = () => {
@@ -110,12 +109,10 @@ const Rewards: React.FC = () => {
                 isClaimed={!!stakingData && !!userStakingData && !stakingData.isPaused && userStakingData.claimed}
             />
             <GamifiedRewards
-                userStakingData={userStakingData}
                 stakingData={stakingData}
                 pointsData={pointsData}
                 isLoading={pointsBreakdownQuery?.isLoading || userStakingDataQuery?.isLoading}
             />
-            <GamifiedStakingExplainer pointsData={pointsData} />
             <TransactionsWithFilters filters={[TransactionFilterEnum.CLAIM_STAKING_REWARDS]} hideFilters hideTitle />
         </Container>
     );

@@ -48,6 +48,9 @@ const useUserStakingDataQuery = (
                         stakingThalesContract.getRewardFeesAvailable(walletAddress),
                         stakingThalesContract.closingPeriodInProgress(),
                     ]);
+
+                    console.log('feeRewards ', feeRewards);
+                    console.log('contractUserStakingData ', contractUserStakingData);
                     userStakingData.thalesStaked =
                         bigNumberFormatter(contractUserStakingData.thalesStaked) < BALANCE_THRESHOLD
                             ? 0

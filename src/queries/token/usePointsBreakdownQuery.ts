@@ -1,9 +1,9 @@
-import { useQuery, UseQueryOptions } from 'react-query';
-import QUERY_KEYS from '../../constants/queryKeys';
-import snxJSConnector from 'utils/snxJSConnector';
-import { formatCurrency, formatCurrencyWithKey, bigNumberFormatter } from 'thales-utils';
 import { THALES_CURRENCY, USD_SIGN } from 'constants/currency';
 import { Network } from 'enums/network';
+import { UseQueryOptions, useQuery } from 'react-query';
+import { bigNumberFormatter, formatCurrency, formatCurrencyWithKey } from 'thales-utils';
+import snxJSConnector from 'utils/snxJSConnector';
+import QUERY_KEYS from '../../constants/queryKeys';
 
 export type PointsData = {
     vaultsVolume: string;
@@ -21,6 +21,7 @@ export type PointsData = {
     thalesStaked: string;
     thalesDivider: string;
     totalPoints: string | number;
+    totalBonusRewards: string | number;
 };
 
 export const DEFAULT_POINTS_BREAKDOWN_DATA = {
@@ -39,6 +40,7 @@ export const DEFAULT_POINTS_BREAKDOWN_DATA = {
     thalesStaked: '-',
     thalesDivider: '-',
     totalPoints: '-',
+    totalBonusRewards: '-',
 };
 
 const usePointsBreakdownQuery = (
@@ -68,6 +70,7 @@ const usePointsBreakdownQuery = (
                     stakingMultiplier,
                     stakedBalance,
                     thalesDivider,
+                    totalBonus,
                 ] = await Promise.all([
                     stakingBonusRewardsManager?.getEstimatedCurrentVaultPoints(walletAddress),
                     stakingBonusRewardsManager?.getEstimatedCurrentLPsPoints(walletAddress),
@@ -78,6 +81,7 @@ const usePointsBreakdownQuery = (
                     stakingBonusRewardsManager?.getStakingMultiplier(walletAddress),
                     stakingThalesContract?.stakedBalanceOf(walletAddress),
                     stakingBonusRewardsManager?.stakingBaseDivider(),
+                    stakingThalesContract?.getTotalBonus(walletAddress),
                 ]);
 
                 return {
@@ -108,6 +112,7 @@ const usePointsBreakdownQuery = (
                             bigNumberFormatter(tradingPoints)) *
                             (bigNumberFormatter(stakingMultiplier) + 1)
                     ),
+                    totalBonusRewards: formatCurrency(bigNumberFormatter(totalBonus)),
                 };
             } catch (e) {
                 console.log(e);

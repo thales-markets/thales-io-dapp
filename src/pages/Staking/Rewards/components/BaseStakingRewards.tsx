@@ -9,7 +9,7 @@ import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { BaseRewardsData, UserStakingData } from 'types/token';
 import { SectionTitle } from '../../styled-components';
-import { ClaimableLabel, SubTitle } from '../styled-components';
+import { SubTitle } from '../styled-components';
 
 type BaseStakingRewardsProps = {
     userStakingData: UserStakingData | undefined;
@@ -24,7 +24,6 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
     baseStakingRewardsData,
     pointsData,
     isLoading,
-    isClaimed,
 }) => {
     const { t } = useTranslation();
 
@@ -43,14 +42,13 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                             {t('staking.rewards.base-rewards.title')}
                         </span>
                         <span>
-                            <ClaimableLabel>{t('staking.rewards.base-rewards.claimable')}</ClaimableLabel>
-                            {userStakingData?.baseRewards && !isClaimed
+                            {userStakingData?.baseRewards
                                 ? formatCurrencyWithKey(THALES_CURRENCY, userStakingData?.baseRewards, 2)
                                 : '-'}
                         </span>
                     </SectionTitle>
                     <SubTitle></SubTitle>
-                    <FlexDiv gap="30px">
+                    <FlexDiv gap="30px" style={{ marginTop: '35px' }}>
                         <FlexDivColumn>
                             <InfoDiv>
                                 <span>{t('staking.rewards.base-rewards.your-staked')}</span>
