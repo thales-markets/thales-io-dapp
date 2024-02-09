@@ -48,12 +48,17 @@ export const Container = styled.div`
     .timeline-main-wrapper ul {
         position: relative;
     }
+    .timeline-main-wrapper ul li:last-child {
+        margin-right: -35px;
+    }
     .timeline-main-wrapper ul:after {
-        content: '🚀';
-        font-size: 25px;
-        width: 27px;
-        right: 0;
-        top: 50%;
+        font-family: Icons !important;
+        content: '\\003F';
+        color: white;
+        font-size: 39px;
+        width: 34px;
+        right: -25px;
+        top: 48%;
         transform: translateY(-50%);
         position: absolute;
     }
