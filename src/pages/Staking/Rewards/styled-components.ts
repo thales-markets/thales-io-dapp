@@ -27,6 +27,9 @@ export const Container = styled.div`
 
 export const ClaimableRewardsContainer = styled(FlexDiv)<{ isClaimed?: boolean }>`
     flex-direction: row;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+    }
     > div {
         flex: ${(props) => (props.isClaimed ? '' : '1')};
     }
@@ -99,6 +102,14 @@ export const ClaimSection = styled(FlexDiv)`
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 15px;
+        justify-content: center;
+        align-items: center;
+        > div > button {
+            margin-top: 10px;
+        }
+    }
 `;
 
 export const RewardsInfo = styled(FlexDiv)`
@@ -108,6 +119,10 @@ export const RewardsInfo = styled(FlexDiv)`
         font-weight: 700;
         text-transform: uppercase;
         text-align: right;
+        @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+            text-align: center;
+            line-height: 120%;
+        }
         color: ${(props) => props.theme.textColor.secondary};
     }
 `;

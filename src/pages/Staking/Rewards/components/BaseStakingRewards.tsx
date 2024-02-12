@@ -1,5 +1,6 @@
 import SimpleLoader from 'components/SimpleLoader';
 import { THALES_CURRENCY } from 'constants/currency';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import { InfoDiv } from 'pages/Staking/styled-components';
 import { PointsData } from 'queries/token/usePointsBreakdownQuery';
 import React from 'react';
@@ -48,7 +49,7 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                         </span>
                     </SectionTitle>
                     <SubTitle></SubTitle>
-                    <FlexDiv gap="30px" style={{ marginTop: '35px' }}>
+                    <DataWrapper>
                         <FlexDivColumn>
                             <InfoDiv>
                                 <span>{t('staking.rewards.base-rewards.your-staked')}</span>
@@ -76,7 +77,7 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                                 <span>{baseStakingRewardsData?.share}</span>
                             </InfoDiv>
                         </FlexDivColumn>
-                    </FlexDiv>
+                    </DataWrapper>
                 </div>
             )}
         </>
@@ -85,6 +86,18 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
 
 const LoaderWrapper = styled(FlexDiv)`
     margin: 40px 0px;
+`;
+
+const DataWrapper = styled(FlexDiv)`
+    margin-top: 35px;
+    gap: 30px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        gap: 0px;
+        flex-direction: column;
+        > ${FlexDivColumn} {
+            width: 100%;
+        }
+    }
 `;
 
 export default BaseStakingRewards;

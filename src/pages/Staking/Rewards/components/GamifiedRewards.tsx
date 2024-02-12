@@ -3,11 +3,13 @@ import SPAAnchor from 'components/SPAAnchor';
 import SimpleLoader from 'components/SimpleLoader';
 import { THALES_CURRENCY } from 'constants/currency';
 import ROUTES from 'constants/routes';
-import { InfoDivRewards } from 'pages/Staking/styled-components';
+import { ScreenSizeBreakpoint } from 'enums/ui';
+import { InfoDiv, InfoDivRewards } from 'pages/Staking/styled-components';
 import { PointsData } from 'queries/token/usePointsBreakdownQuery';
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
@@ -35,6 +37,7 @@ type GamifiedRewardsProps = {
 const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsData, isLoading }) => {
     const { t } = useTranslation();
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
+    const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
     return (
         <>
@@ -50,48 +53,96 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                             <i className="icon icon--gift" />
                             {t('staking.rewards.your-rewards.title')}
                         </span>
-                        <span>
-                            <GamifiedRewardItem>
-                                <ItemTitle>
-                                    <Trans
-                                        i18nKey={'staking.rewards.how-it-works.for-period'}
-                                        values={{
-                                            round: stakingData?.period,
-                                        }}
-                                    />
-                                </ItemTitle>
-                                <ItemValue>
-                                    {pointsData?.totalBonusRewards
-                                        ? formatCurrencyWithKey(THALES_CURRENCY, pointsData?.totalBonusRewards, 2)
-                                        : '-'}
-                                </ItemValue>
-                            </GamifiedRewardItem>
-                        </span>
+                        {!isMobile && (
+                            <span>
+                                <GamifiedRewardItem>
+                                    <ItemTitle>
+                                        <Trans
+                                            i18nKey={'staking.rewards.how-it-works.for-period'}
+                                            values={{
+                                                round: stakingData?.period,
+                                            }}
+                                        />
+                                    </ItemTitle>
+                                    <ItemValue>
+                                        {pointsData?.totalBonusRewards
+                                            ? formatCurrencyWithKey(THALES_CURRENCY, pointsData?.totalBonusRewards, 2)
+                                            : '-'}
+                                    </ItemValue>
+                                </GamifiedRewardItem>
+                            </span>
+                        )}
                     </SectionTitle>
-                    <SubTitleWrapper>
-                        <FlexDivColumn>
-                            <SubTitle>
-                                <span>{t('staking.rewards.base-rewards.current-multiplier')}</span>
-                                <span>{`${
-                                    pointsData?.stakingMultiplier ? `x ${pointsData?.stakingMultiplier}` : '-'
-                                }`}</span>
-                            </SubTitle>
-                            <SubTitle>
-                                <span>{t('staking.rewards.your-rewards.current-points')}</span>
-                                <span>{pointsData?.totalPoints || '-'}</span>
-                            </SubTitle>
-                        </FlexDivColumn>
-                        <LeaderboardLinkContainer>
-                            <SPAAnchor href={ROUTES.Token.Leaderboard}>
-                                <LeaderboardLink>
-                                    <i className="icon icon--protocol-volume" />
-                                    {t('staking.nav.leaderboard')}
-                                    <i className="icon icon--external-arrow" />
-                                </LeaderboardLink>
-                            </SPAAnchor>
-                        </LeaderboardLinkContainer>
-                    </SubTitleWrapper>
-
+                    {!isMobile && (
+                        <SubTitleWrapper>
+                            <FlexDivColumn>
+                                <SubTitle>
+                                    <span>{t('staking.rewards.base-rewards.current-multiplier')}</span>
+                                    <span>{`${
+                                        pointsData?.stakingMultiplier ? `x ${pointsData?.stakingMultiplier}` : '-'
+                                    }`}</span>
+                                </SubTitle>
+                                <SubTitle>
+                                    <span>{t('staking.rewards.your-rewards.current-points')}</span>
+                                    <span>{pointsData?.totalPoints || '-'}</span>
+                                </SubTitle>
+                            </FlexDivColumn>
+                            <LeaderboardLinkContainer>
+                                <SPAAnchor href={ROUTES.Token.Leaderboard}>
+                                    <LeaderboardLink>
+                                        <i className="icon icon--protocol-volume" />
+                                        {t('staking.nav.leaderboard')}
+                                        <i className="icon icon--external-arrow" />
+                                    </LeaderboardLink>
+                                </SPAAnchor>
+                            </LeaderboardLinkContainer>
+                        </SubTitleWrapper>
+                    )}
+                    {isMobile && (
+                        <>
+                            <FlexDivColumn>
+                                <InfoDiv>
+                                    <span>
+                                        {t('staking.rewards.how-it-works.for-period', { round: stakingData?.period })}
+                                    </span>
+                                    <span>
+                                        <HighlightedValue>
+                                            {pointsData?.totalBonusRewards
+                                                ? formatCurrencyWithKey(
+                                                      THALES_CURRENCY,
+                                                      pointsData?.totalBonusRewards,
+                                                      2
+                                                  )
+                                                : '-'}
+                                        </HighlightedValue>
+                                    </span>
+                                </InfoDiv>
+                                <InfoDiv>
+                                    <span>{t('staking.rewards.base-rewards.current-multiplier')}</span>
+                                    <span>
+                                        <HighlightedValue>{`${
+                                            pointsData?.stakingMultiplier ? `x ${pointsData?.stakingMultiplier}` : '-'
+                                        }`}</HighlightedValue>
+                                    </span>
+                                </InfoDiv>
+                                <InfoDiv>
+                                    <span>{t('staking.rewards.your-rewards.current-points')}</span>
+                                    <span>
+                                        <HighlightedValue>{pointsData?.totalPoints || '-'}</HighlightedValue>
+                                    </span>
+                                </InfoDiv>
+                            </FlexDivColumn>
+                            <LeaderboardLinkContainer>
+                                <SPAAnchor href={ROUTES.Token.Leaderboard}>
+                                    <LeaderboardLink>
+                                        <i className="icon icon--protocol-volume" />
+                                        {t('staking.nav.leaderboard')}
+                                        <i className="icon icon--external-arrow" />
+                                    </LeaderboardLink>
+                                </SPAAnchor>
+                            </LeaderboardLinkContainer>
+                        </>
+                    )}
                     <Collapse
                         title={t('staking.rewards.how-it-works.how-points-are-earned-title')}
                         additionalStyling={{
@@ -184,6 +235,10 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
     );
 };
 
+const HighlightedValue = styled.span`
+    color: ${(props) => props.theme.textColor.secondary};
+`;
+
 const LoaderWrapper = styled(FlexDiv)`
     margin: 40px 0px;
 `;
@@ -196,6 +251,10 @@ const SubTitleWrapper = styled(FlexDiv)`
 const LeaderboardLinkContainer = styled(FlexDiv)`
     justify-content: flex-end;
     align-items: center;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        justify-content: center;
+        margin-top: 10px;
+    }
 `;
 
 export default GamifiedRewards;
