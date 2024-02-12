@@ -51,7 +51,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
     );
 
     const rounds: Array<{ value: number; label: string }> = [];
-    for (let index = 0; index <= currentRound; index++) {
+    for (let index = currentRound; index >= 0; index--) {
         rounds.push({
             value: index,
             label: `${t('staking.amm-lp.user-transactions.round-label')} ${index}`,
@@ -117,7 +117,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
                             <SelectInput
                                 options={rounds}
                                 handleChange={(value) => setRound(Number(value))}
-                                defaultValue={round}
+                                defaultValue={rounds.length - 1 - round}
                                 width={230}
                             />
                         </SelectContainer>
