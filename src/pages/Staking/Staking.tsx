@@ -5,7 +5,10 @@ import ROUTES from 'constants/routes';
 import queryString from 'query-string';
 import { Suspense, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
+import { getIsMobile } from 'redux/modules/ui';
+import { RootState } from 'redux/rootReducer';
 import { Line, NavContainer } from 'styles/common';
 import { buildHref } from 'utils/routes';
 import AccPreferences from './AccPreferences';
@@ -26,6 +29,8 @@ const Staking: React.FC = () => {
     const { t } = useTranslation();
     const location = useLocation();
     const paramTab = queryString.parse(location.search).tab || Tab.STAKING;
+
+    const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
     const navItems: NavItemType[] = useMemo(() => {
         return [
@@ -60,9 +65,11 @@ const Staking: React.FC = () => {
     return (
         <Suspense fallback={<Loader />}>
             <Line />
-            <NavContainer>
-                <NavLinks items={navItems} />
-            </NavContainer>
+            {!isMobile && (
+                <NavContainer>
+                    <NavLinks items={navItems} />
+                </NavContainer>
+            )}
             {paramTab === Tab.STAKING && <StakingTab />}
             {paramTab === Tab.REWARDS && <Rewards />}
             {paramTab === Tab.VESTING && <Vesting />}
