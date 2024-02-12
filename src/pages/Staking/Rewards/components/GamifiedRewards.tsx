@@ -93,7 +93,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                     </SubTitleWrapper>
 
                     <Collapse
-                        title={t('staking.rewards.how-it-works.each-week')}
+                        title={t('staking.rewards.how-it-works.how-points-are-earned-title')}
                         additionalStyling={{
                             titleFontSize: '13px',
                             titleMarginBottom: '5px',
@@ -110,7 +110,9 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                         </SectionText>
                     </Collapse>
                     <Collapse
-                        title={t('staking.rewards.how-it-works.how-points-are-earned-title')}
+                        title={t('staking.rewards.how-it-works.points-breakdown-for-round', {
+                            round: stakingData?.period,
+                        })}
                         additionalStyling={{ titleFontSize: '13px', titleMarginBottom: '5px', titleMarginTop: '20px' }}
                     >
                         <FlexDiv gap="30px" style={{ marginBottom: '10px' }}>
