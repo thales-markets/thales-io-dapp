@@ -303,6 +303,7 @@
                 "final-points": "Final Points = (Trading + Pool + Vault points) x THALES Multiplier",
                 "each-week": "Each week",
                 "for-period": "For round {{round}}:",
+                "points-breakdown-for-round": "Your points breakdown for round {{ round }}",
                 "how-points-are-earned-title": "How points are earned"
             },
             "claim": {
