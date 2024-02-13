@@ -6,6 +6,7 @@ import useUserStakingDataQuery from 'queries/token/useUserStakingData';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token';
@@ -21,6 +22,7 @@ const Rewards: React.FC = () => {
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const networkId = useSelector((state: RootState) => getNetworkId(state));
+    const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
     const [lastValidPointsData, setLastValidPointsData] = useState<PointsData | undefined>(undefined);
     const [lastValidStakingData, setLastValidStakingData] = useState<ThalesStakingData | undefined>(undefined);
@@ -118,7 +120,7 @@ const Rewards: React.FC = () => {
                 />
             </Container>
             <TransactionsWithFilters
-                width="60%"
+                width={isMobile ? `100%` : `60%`}
                 filters={[TransactionFilterEnum.CLAIM_STAKING_REWARDS]}
                 hideFilters
                 hideTitle
