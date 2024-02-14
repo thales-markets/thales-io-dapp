@@ -149,6 +149,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                             titleFontSize: '13px',
                             titleMarginBottom: '5px',
                             titleMarginTop: '20px',
+                            downwardsArrowAlignRight: true,
                         }}
                     >
                         <SectionText style={{ marginBottom: '10px' }}>
@@ -164,7 +165,12 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                         title={t('staking.rewards.how-it-works.points-breakdown-for-round', {
                             round: stakingData?.period,
                         })}
-                        additionalStyling={{ titleFontSize: '13px', titleMarginBottom: '5px', titleMarginTop: '20px' }}
+                        additionalStyling={{
+                            titleFontSize: '13px',
+                            titleMarginBottom: '5px',
+                            titleMarginTop: '20px',
+                            downwardsArrowAlignRight: true,
+                        }}
                     >
                         <FlexDiv gap="30px" style={{ marginBottom: '10px' }}>
                             <FlexDivColumn>
