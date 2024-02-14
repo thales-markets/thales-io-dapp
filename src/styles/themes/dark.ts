@@ -23,6 +23,7 @@ const darkTheme = {
         tertiary: Colors.METALLIC_BLUE,
         quaternary: Colors.LIGHT_GRAY,
         quinary: Colors.BLUE_DARK,
+        senary: Colors.CYAN,
     },
     link: {
         textColor: {

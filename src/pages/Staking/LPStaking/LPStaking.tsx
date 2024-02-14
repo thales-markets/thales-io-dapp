@@ -24,6 +24,7 @@ const LPStaking: React.FC = () => {
             <Wrapper>
                 <StakeSection />
             </Wrapper>
+            <Steps />
             <Wrapper>
                 <Header>
                     <Icon className={'icon icon--staking'} />
@@ -82,7 +83,6 @@ const LPStaking: React.FC = () => {
                     </SPAAnchor>
                 </RowsContainer>
             </Wrapper>
-            <Steps />
             <YourTransactions />
         </Container>
     );
@@ -135,7 +135,7 @@ const PoolWrapper = styled(Wrapper)`
     align-items: center;
     position: relative;
     flex: 1;
-    padding: 20px;
+    padding: 5px;
     background-color: ${(props) => props.theme.background.primary};
     border-radius: 8px;
     cursor: pointer;
