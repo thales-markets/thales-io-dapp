@@ -508,28 +508,6 @@ const AMMLP: React.FC = () => {
         }
     }, [withdrawalPercentage, withdrawAll, userLiquidityPoolData]);
 
-    const totalDeposited = useMemo(() => {
-        let depositedCount = 0;
-        if (userTransactionsQuery.isSuccess) {
-            userTransactionsQuery.data
-                .filter(
-                    (tx: LiquidityPoolUserTransaction) =>
-                        tx.account.toLocaleLowerCase() === walletAddress.toLocaleLowerCase()
-                )
-                .forEach((tx: LiquidityPoolUserTransaction) => {
-                    console.log(tx.type, tx.amount);
-                    if (tx.type === 'deposit') {
-                        console.log(depositedCount);
-                        depositedCount += tx.amount;
-                    }
-                    if (tx.type === 'claim') {
-                        depositedCount -= tx.amount;
-                    }
-                });
-        }
-        return depositedCount;
-    }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess, walletAddress]);
-
     return (
         <Suspense fallback={<Loader />}>
             <Line />
@@ -850,9 +828,14 @@ const AMMLP: React.FC = () => {
                                     </LiquidityPoolInfoContainer>
                                     <LiquidityPoolInfoContainer>
                                         <LiquidityPoolInfoLabel>
-                                            {t('staking.amm-lp.total-deposited')}:
+                                            {t('staking.amm-lp.next-round-balance-label')}:
                                         </LiquidityPoolInfoLabel>
-                                        <LiquidityPoolInfo>{totalDeposited}</LiquidityPoolInfo>
+                                        <LiquidityPoolInfo>
+                                            {formatCurrencyWithSign(
+                                                USD_SIGN,
+                                                userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0
+                                            )}
+                                        </LiquidityPoolInfo>
                                     </LiquidityPoolInfoContainer>
                                     <LiquidityPoolInfoContainer>
                                         <LiquidityPoolInfoLabel>
@@ -867,28 +850,6 @@ const AMMLP: React.FC = () => {
                                     </LiquidityPoolInfoContainer>
                                 </>
                             )}
-
-                            {/* <LiquidityPoolInfoContainer>
-                                <LiquidityPoolInfoLabel>
-                                    {t('staking.amm-lp.next-round-balance-label')}:
-                                </LiquidityPoolInfoLabel>
-                                <LiquidityPoolInfo>
-                                    {formatCurrencyWithSign(
-                                        USD_SIGN,
-                                        userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0
-                                    )}
-                                    {userLiquidityPoolData &&
-                                        userLiquidityPoolData.balanceCurrentRound > 0 &&
-                                        userLiquidityPoolData.balanceTotal > 0 && (
-                                            <Tooltip
-                                                overlay={t(`staking.amm-lp.estimated-amount-tooltip`)}
-                                                iconFontSize={14}
-                                                marginLeft={2}
-                                                top={-1}
-                                            />
-                                        )}
-                                </LiquidityPoolInfo>
-                            </LiquidityPoolInfoContainer> */}
                         </div>
 
                         {isWithdrawalRequested && (
@@ -996,7 +957,9 @@ const AMMLP: React.FC = () => {
                                     </InfoDiv>
                                     <InfoDiv>
                                         <span>{t('staking.amm-lp.how-it-works.round-duration')}:</span>
-                                        <span>{liquidityPoolData?.roundLength}</span>
+                                        <span>
+                                            {liquidityPoolData?.roundLength} {t('staking.amm-lp.how-it-works.days')}
+                                        </span>
                                     </InfoDiv>
                                     <InfoDiv>
                                         <span>{t('staking.amm-lp.how-it-works.round-ends-in')}:</span>
