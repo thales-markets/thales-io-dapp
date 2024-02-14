@@ -16,17 +16,17 @@ type NavItemProps = {
 
 const NavItem: React.FC<NavItemProps> = ({ item }) => {
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
-
+    const active = item.active || !!item?.children?.find((child) => child.active);
     return (
         <SPAAnchor href={item.href}>
             <FlexDivCentered>
                 <Item
                     onMouseEnter={() => setDropdownVisible(true)}
                     onMouseLeave={() => setDropdownVisible(false)}
-                    active={item.active}
+                    active={active}
                 >
                     <span>{item.title}</span>
-                    {item.children && <Icon active={item.active} className={`icon icon--caret-down`} />}
+                    {item.children && <Icon active={active} className={`icon icon--caret-down`} />}
                     {item.children && dropdownVisible && (
                         <DropdownContainer>
                             {item.children.map((child, index) => {
