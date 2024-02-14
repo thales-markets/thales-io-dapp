@@ -80,6 +80,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                         ) : (
                             React.createElement(selectedNetwork.icon, {
                                 style: { marginRight: 5, fill: theme.textColor.secondary },
+                                onClick: () => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive),
                             })
                         )}
                         <span onClick={() => (isWalletConnected ? openAccountModal?.() : openConnectModal?.())}>
@@ -176,7 +177,7 @@ const NetworkDropDown = styled.div`
     align-items: center;
     gap: 5px;
     @media (max-width: 500px) {
-        width: 110px;
+        width: 100%;
     }
 `;
 
@@ -189,9 +190,9 @@ const SelectedNetworkContainer = styled.div<{ cursor: string }>`
     cursor: ${(props) => props.cursor};
     flex-direction: column;
     z-index: 1;
-    @media (max-width: 500px) {
+    /* @media (max-width: 500px) {
         width: 110px;
-    }
+    } */
 `;
 
 const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?: boolean }>`
@@ -209,9 +210,9 @@ const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?:
         width: 16px;
         height: 16px;
     }
-    @media (max-width: 500px) {
+    /* @media (max-width: 500px) {
         ${(props) => (props.selectedItem ? 'padding: 4px 7px' : '')}
-    }
+    } */
 `;
 
 const Icon = styled.i`
