@@ -532,8 +532,8 @@
                 "previous-pnl": "Previous round PnL"
             },
             "user-transactions": {
-                "title": "User TX",
-                "your-transactions-title": "Your TX",
+                "title": "User TXs",
+                "your-transactions-title": "Your TXs",
                 "no-transactions": "No user transactions associated with this liquidity pool in the selected round.",
                 "round-label": "Round",
                 "type": {
@@ -577,16 +577,16 @@
                 "deposit-confirmation-message": "Deposit successfully placed"
             },
             "table": {
-                "date-time-col": "date | time",
-                "wallet-address": "wallet address",
-                "type-col": "type",
-                "amount-col": "amount",
-                "asset": "asset",
-                "maturity-date-col": "maturity",
-                "strike-price-col": "strike price",
-                "usd-value-col": "usd value",
-                "result-col": "result",
-                "tx-status-col": "tx status"
+                "date-time-col": "Date | Time",
+                "wallet-address": "Wallet Address",
+                "type-col": "Type",
+                "amount-col": "Amount",
+                "asset": "Asset",
+                "maturity-date-col": "Maturity",
+                "strike-price-col": "Strike Price",
+                "usd-value-col": "Usd Value",
+                "result-col": "Result",
+                "tx-status-col": "TX Status"
             }
         },
         "lp-staking": {
