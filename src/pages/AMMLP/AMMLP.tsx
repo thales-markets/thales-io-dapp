@@ -44,9 +44,9 @@ import {
     FlexDiv,
     FlexDivCentered,
     FlexDivColumn,
-    FlexDivColumnCentered,
     FlexDivColumnSpaceBetween,
     FlexDivRow,
+    FlexDivSpaceAround,
     FlexDivSpaceBetween,
     Line,
     NavContainer,
@@ -650,15 +650,19 @@ const AMMLP: React.FC = () => {
                                                                         }}
                                                                     />
                                                                     <Tooltip
-                                                                        overlay={t(
-                                                                            `staking.amm-lp.estimated-amount-tooltip`
-                                                                        )}
+                                                                        overlay={
+                                                                            <span>
+                                                                                {t(
+                                                                                    `staking.amm-lp.estimated-amount-tooltip`
+                                                                                )}
+                                                                            </span>
+                                                                        }
                                                                         iconFontSize={14}
                                                                         marginLeft={3}
                                                                         top={2}
                                                                     />
                                                                 </ContentInfo>
-                                                                <ContentInfo>
+                                                                <ContentInfo color="#BCBCBC">
                                                                     <Trans i18nKey="staking.amm-lp.withdrawal-message" />
                                                                 </ContentInfo>
                                                                 <RadioButtonContainer>
@@ -1155,8 +1159,8 @@ const BoldContent = styled.span`
     font-weight: 600;
 `;
 
-const RadioButtonContainer = styled(FlexDivColumnCentered)`
-    align-items: center;
+const RadioButtonContainer = styled(FlexDivSpaceAround)`
+    padding-top: 20px;
     label {
         text-transform: uppercase;
     }
@@ -1186,8 +1190,8 @@ export const StyledSlider = styled((props) => (
     }
 
     &.MuiSlider-thumb {
-        width: 14px;
-        height: 14px;
+        width: 10px;
+        height: 10px;
         margin-top: -2px;
         background: ${(props) => props.theme.textColor.primary};
         box-shadow: none;
@@ -1198,8 +1202,8 @@ export const StyledSlider = styled((props) => (
         }
 
         &.Mui-disabled {
-            width: 14px;
-            height: 14px;
+            width: 10px;
+            height: 10px;
             margin-top: -2px;
             margin-left: -6px;
             box-shadow: none;
@@ -1208,12 +1212,13 @@ export const StyledSlider = styled((props) => (
     }
 
     &.MuiSlider-track {
-        height: 10px;
+        height: 5px;
         border-radius: 10px;
+        background: ${(props) => props.theme.textColor.secondary};
     }
 
     &.MuiSlider-rail {
-        height: 10px;
+        height: 5px;
         border-radius: 10px;
     }
 `;
