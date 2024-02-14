@@ -182,3 +182,17 @@ input[type='number'] {
 a {
     text-decoration: none;
 }
+
+.MuiMenu-paper {
+    background: #313652 !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+
+.MuiMenu-paper .Mui-selected {
+    background: #1F2438 !important;
+}
+
+.MuiMenu-paper .MuiListItem-button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
