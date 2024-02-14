@@ -47,7 +47,7 @@ const History: React.FC = () => {
 };
 
 const Container = styled(FlexDivColumn)`
-    width: 60%;
+    width: 70%;
     position: relative;
     max-height: 370px;
     min-height: 370px;
