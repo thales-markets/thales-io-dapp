@@ -117,6 +117,7 @@ const Rewards: React.FC = () => {
                     stakingData={stakingData}
                     pointsData={pointsData}
                     isLoading={pointsBreakdownQuery?.isLoading || userStakingDataQuery?.isLoading}
+                    isClaimed={!!stakingData && !!userStakingData && !stakingData.isPaused && userStakingData.claimed}
                 />
             </Container>
             <TransactionsWithFilters

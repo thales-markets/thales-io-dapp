@@ -25,6 +25,7 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
     baseStakingRewardsData,
     pointsData,
     isLoading,
+    isClaimed,
 }) => {
     const { t } = useTranslation();
 
@@ -42,11 +43,13 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                             <i className="icon icon--pig" />
                             {t('staking.rewards.base-rewards.title')}
                         </span>
-                        <span>
-                            {userStakingData?.baseRewards
-                                ? formatCurrencyWithKey(THALES_CURRENCY, userStakingData?.baseRewards, 2)
-                                : '-'}
-                        </span>
+                        {!isClaimed && (
+                            <span>
+                                {userStakingData?.baseRewards
+                                    ? formatCurrencyWithKey(THALES_CURRENCY, userStakingData?.baseRewards, 2)
+                                    : '-'}
+                            </span>
+                        )}
                     </SectionTitle>
                     <SubTitle></SubTitle>
                     <DataWrapper>

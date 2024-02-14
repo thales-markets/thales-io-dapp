@@ -32,9 +32,10 @@ type GamifiedRewardsProps = {
     stakingData: ThalesStakingData | undefined;
     pointsData: PointsData | undefined;
     isLoading: boolean;
+    isClaimed: boolean;
 };
 
-const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsData, isLoading }) => {
+const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsData, isLoading, isClaimed }) => {
     const { t } = useTranslation();
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
@@ -53,7 +54,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                             <i className="icon icon--gift" />
                             {t('staking.rewards.your-rewards.title')}
                         </span>
-                        {!isMobile && (
+                        {!isMobile && !isClaimed && (
                             <span>
                                 <GamifiedRewardItem>
                                     <ItemTitle>
