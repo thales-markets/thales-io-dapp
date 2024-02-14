@@ -482,12 +482,7 @@ const AMMLP: React.FC = () => {
     };
 
     const setMaxAmount = () => {
-        setAmount(
-            Math.min(
-                Math.trunc(userLiquidityPoolData ? userLiquidityPoolData.availableToDeposit * 100 : 0) / 100,
-                Math.trunc(paymentTokenBalance ? Number(paymentTokenBalance) * 100 : 0) / 100
-            )
-        );
+        setAmount(Math.trunc(paymentTokenBalance ? Number(paymentTokenBalance) * 100 : 0) / 100);
     };
 
     useEffect(
