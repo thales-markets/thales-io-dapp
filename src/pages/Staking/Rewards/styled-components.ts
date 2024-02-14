@@ -21,7 +21,7 @@ export const Container = styled.div`
         border-radius: 8px;
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        width: 100%;
+        width: 100% !important;
     }
 `;
 
@@ -29,6 +29,7 @@ export const ClaimableRewardsContainer = styled(FlexDiv)<{ isClaimed?: boolean }
     flex-direction: row;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
+        flex: 1;
     }
     > div {
         flex: ${(props) => (props.isClaimed ? '' : '1')};
@@ -37,6 +38,9 @@ export const ClaimableRewardsContainer = styled(FlexDiv)<{ isClaimed?: boolean }
 
 export const RewardsDetailsContainer = styled(FlexDiv)`
     flex-direction: column;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+    }
 `;
 export const ClaimContainer = styled(FlexDiv)``;
 

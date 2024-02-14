@@ -22,6 +22,11 @@ export const Container = styled.div`
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
     }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-areas: 'upper-left' 'upper-right' 'bottom';
+    }
 `;
 
 export const UpperLeft = styled.div`
