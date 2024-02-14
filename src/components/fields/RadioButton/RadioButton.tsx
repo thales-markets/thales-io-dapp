@@ -34,7 +34,7 @@ const Container = styled.label`
     cursor: pointer;
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     min-height: 24px;
     color: ${(props) => props.theme.textColor.primary};

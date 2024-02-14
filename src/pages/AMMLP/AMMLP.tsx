@@ -44,9 +44,9 @@ import {
     FlexDiv,
     FlexDivCentered,
     FlexDivColumn,
-    FlexDivColumnCentered,
     FlexDivColumnSpaceBetween,
     FlexDivRow,
+    FlexDivSpaceAround,
     FlexDivSpaceBetween,
     Line,
     NavContainer,
@@ -508,28 +508,6 @@ const AMMLP: React.FC = () => {
         }
     }, [withdrawalPercentage, withdrawAll, userLiquidityPoolData]);
 
-    const totalDeposited = useMemo(() => {
-        let depositedCount = 0;
-        if (userTransactionsQuery.isSuccess) {
-            userTransactionsQuery.data
-                .filter(
-                    (tx: LiquidityPoolUserTransaction) =>
-                        tx.account.toLocaleLowerCase() === walletAddress.toLocaleLowerCase()
-                )
-                .forEach((tx: LiquidityPoolUserTransaction) => {
-                    console.log(tx.type, tx.amount);
-                    if (tx.type === 'deposit') {
-                        console.log(depositedCount);
-                        depositedCount += tx.amount;
-                    }
-                    if (tx.type === 'claim') {
-                        depositedCount -= tx.amount;
-                    }
-                });
-        }
-        return depositedCount;
-    }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess, walletAddress]);
-
     return (
         <Suspense fallback={<Loader />}>
             <Line />
@@ -650,15 +628,19 @@ const AMMLP: React.FC = () => {
                                                                         }}
                                                                     />
                                                                     <Tooltip
-                                                                        overlay={t(
-                                                                            `staking.amm-lp.estimated-amount-tooltip`
-                                                                        )}
+                                                                        overlay={
+                                                                            <span>
+                                                                                {t(
+                                                                                    `staking.amm-lp.estimated-amount-tooltip`
+                                                                                )}
+                                                                            </span>
+                                                                        }
                                                                         iconFontSize={14}
                                                                         marginLeft={3}
                                                                         top={2}
                                                                     />
                                                                 </ContentInfo>
-                                                                <ContentInfo>
+                                                                <ContentInfo color="#BCBCBC">
                                                                     <Trans i18nKey="staking.amm-lp.withdrawal-message" />
                                                                 </ContentInfo>
                                                                 <RadioButtonContainer>
@@ -846,9 +828,14 @@ const AMMLP: React.FC = () => {
                                     </LiquidityPoolInfoContainer>
                                     <LiquidityPoolInfoContainer>
                                         <LiquidityPoolInfoLabel>
-                                            {t('staking.amm-lp.total-deposited')}:
+                                            {t('staking.amm-lp.next-round-balance-label')}:
                                         </LiquidityPoolInfoLabel>
-                                        <LiquidityPoolInfo>{totalDeposited}</LiquidityPoolInfo>
+                                        <LiquidityPoolInfo>
+                                            {formatCurrencyWithSign(
+                                                USD_SIGN,
+                                                userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0
+                                            )}
+                                        </LiquidityPoolInfo>
                                     </LiquidityPoolInfoContainer>
                                     <LiquidityPoolInfoContainer>
                                         <LiquidityPoolInfoLabel>
@@ -863,28 +850,6 @@ const AMMLP: React.FC = () => {
                                     </LiquidityPoolInfoContainer>
                                 </>
                             )}
-
-                            {/* <LiquidityPoolInfoContainer>
-                                <LiquidityPoolInfoLabel>
-                                    {t('staking.amm-lp.next-round-balance-label')}:
-                                </LiquidityPoolInfoLabel>
-                                <LiquidityPoolInfo>
-                                    {formatCurrencyWithSign(
-                                        USD_SIGN,
-                                        userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0
-                                    )}
-                                    {userLiquidityPoolData &&
-                                        userLiquidityPoolData.balanceCurrentRound > 0 &&
-                                        userLiquidityPoolData.balanceTotal > 0 && (
-                                            <Tooltip
-                                                overlay={t(`staking.amm-lp.estimated-amount-tooltip`)}
-                                                iconFontSize={14}
-                                                marginLeft={2}
-                                                top={-1}
-                                            />
-                                        )}
-                                </LiquidityPoolInfo>
-                            </LiquidityPoolInfoContainer> */}
                         </div>
 
                         {isWithdrawalRequested && (
@@ -992,7 +957,9 @@ const AMMLP: React.FC = () => {
                                     </InfoDiv>
                                     <InfoDiv>
                                         <span>{t('staking.amm-lp.how-it-works.round-duration')}:</span>
-                                        <span>{liquidityPoolData?.roundLength}</span>
+                                        <span>
+                                            {liquidityPoolData?.roundLength} {t('staking.amm-lp.how-it-works.days')}
+                                        </span>
                                     </InfoDiv>
                                     <InfoDiv>
                                         <span>{t('staking.amm-lp.how-it-works.round-ends-in')}:</span>
@@ -1155,8 +1122,8 @@ const BoldContent = styled.span`
     font-weight: 600;
 `;
 
-const RadioButtonContainer = styled(FlexDivColumnCentered)`
-    align-items: center;
+const RadioButtonContainer = styled(FlexDivSpaceAround)`
+    padding-top: 20px;
     label {
         text-transform: uppercase;
     }
@@ -1186,8 +1153,8 @@ export const StyledSlider = styled((props) => (
     }
 
     &.MuiSlider-thumb {
-        width: 14px;
-        height: 14px;
+        width: 10px;
+        height: 10px;
         margin-top: -2px;
         background: ${(props) => props.theme.textColor.primary};
         box-shadow: none;
@@ -1198,8 +1165,8 @@ export const StyledSlider = styled((props) => (
         }
 
         &.Mui-disabled {
-            width: 14px;
-            height: 14px;
+            width: 10px;
+            height: 10px;
             margin-top: -2px;
             margin-left: -6px;
             box-shadow: none;
@@ -1208,12 +1175,13 @@ export const StyledSlider = styled((props) => (
     }
 
     &.MuiSlider-track {
-        height: 10px;
+        height: 5px;
         border-radius: 10px;
+        background: ${(props) => props.theme.textColor.secondary};
     }
 
     &.MuiSlider-rail {
-        height: 10px;
+        height: 5px;
         border-radius: 10px;
     }
 `;
