@@ -25,6 +25,9 @@ export const SectionTitle = styled.div`
     > span:nth-child(2) {
         color: ${(props) => props.theme.textColor.secondary};
     }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding-bottom: 10px;
+    }
 `;
 
 export const InfoDiv = styled.div`

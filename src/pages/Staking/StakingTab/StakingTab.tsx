@@ -171,7 +171,7 @@ const StakingTab: React.FC = () => {
                     {stakeSelected ? <Stake /> : <Unstake />}
                 </Bottom>
             </Container>
-            <YourTransactions width="60%" />
+            <YourTransactions />
         </>
     );
 };

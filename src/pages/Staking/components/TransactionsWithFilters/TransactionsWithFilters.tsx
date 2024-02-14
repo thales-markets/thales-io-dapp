@@ -135,11 +135,12 @@ const SectionContainer = styled.section<{
     height?: string;
 }>`
     font-family: Nunito;
-    width: ${(props) => (props.width ? props.width : '100%')};
+    width: ${(props) => (props.width ? props.width : '60%')};
     min-height: 200px;
     margin-bottom: 20px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         height: 100%;
+        width: 100%;
     }
 `;
 

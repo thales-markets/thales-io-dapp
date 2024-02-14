@@ -2,6 +2,7 @@ import MuiTooltip from '@material-ui/core/Tooltip';
 import { ReactComponent as BalanceIcon } from 'assets/images/balance-icon.svg';
 import InlineLoader from 'components/InlineLoader';
 import Tooltip from 'components/Tooltip';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import React, { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -225,6 +226,9 @@ const StyledBalanceIcon = styled(BalanceIcon)`
     margin: 0 5px 1px 0;
     path {
         fill: ${(props) => props.theme.textColor.secondary};
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        display: none;
     }
 `;
 

@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 // import { getIsMobile } from 'redux/modules/ui';
+import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { FlexDivCentered } from 'styles/common';
@@ -35,7 +36,7 @@ const Stake: React.FC = () => {
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
-    // const isMobile = useSelector((state: RootState) => getIsMobile(state));
+    const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
     const [amountToStake, setAmountToStake] = useState<number | string>('');
     const [isAmountValid, setIsAmountValid] = useState<boolean>(true);
@@ -226,12 +227,15 @@ const Stake: React.FC = () => {
                             })}
                             balance={
                                 isWalletConnected
-                                    ? `${t('common.balance')}: ${formatCurrencyWithKey(THALES_CURRENCY, thalesBalance)}`
+                                    ? `${isMobile ? '' : `${t('common.balance')}:`} ${formatCurrencyWithKey(
+                                          THALES_CURRENCY,
+                                          thalesBalance
+                                      )}`
                                     : undefined
                             }
                             isBalanceLoading={thalesBalanceQuery.isLoading}
                             width="100%"
-                            containerWidth="70%"
+                            containerWidth={isMobile ? '100%' : '70%'}
                         />
                     </FlexDivCentered>
                 </StakeInputContainer>
