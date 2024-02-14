@@ -340,7 +340,7 @@
                 "lp-multiplier": "LP multiplier",
                 "vaults-multiplier": "Vaults multiplier",
                 "points": "Points",
-                "already-claimed": "You have already claimed the rewards for this week.Please come back next week.",
+                "already-claimed": "You already claimed the rewards for this round.",
                 "next-claim": "Next available claim in:"
             },
             "current-estimated": {
