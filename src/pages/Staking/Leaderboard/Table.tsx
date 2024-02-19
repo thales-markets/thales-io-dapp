@@ -4,6 +4,9 @@ import { ScreenSizeBreakpoint } from 'enums/ui';
 import { StakerWithLeaderboardData } from 'queries/token/useStakersDataLeaderboardQuery';
 import { FC, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
+import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { formatCurrencyWithKey } from 'thales-utils';
 
@@ -15,6 +18,7 @@ type TransactionsTableProps = {
 
 const LeaderboardTable: FC<TransactionsTableProps> = memo(({ stakingData, isLoading, stickyRow }) => {
     const { t } = useTranslation();
+    const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
     const columns = useMemo(() => {
         if (stakingData) {
@@ -71,7 +75,7 @@ const LeaderboardTable: FC<TransactionsTableProps> = memo(({ stakingData, isLoad
 
     return (
         <>
-            <SectionContainer width="60%" rowCount={stakingData.length}>
+            <SectionContainer width={isMobile ? '100%' : '60%'} rowCount={stakingData.length}>
                 <Table
                     columns={columns}
                     data={stakingData}

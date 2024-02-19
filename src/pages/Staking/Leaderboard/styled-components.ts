@@ -1,6 +1,6 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDivCentered, FlexDivColumn } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
@@ -14,12 +14,15 @@ export const Container = styled.div`
     grid-template-areas: 'top' 'bottom';
     margin-bottom: 100px;
     z-index: 1;
-    margin-top: 50px;
     > div {
         position: relative;
         padding: 20px;
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+        grid-template-rows: repeat(2, auto);
     }
 `;
 
@@ -31,6 +34,11 @@ export const Top = styled.div`
     > div {
         height: 100%;
     }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        > ${FlexDiv} {
+            flex-direction: column;
+        }
+    }
 `;
 
 export const Bottom = styled.div`
@@ -40,6 +48,11 @@ export const Bottom = styled.div`
     justify-content: space-between;
     > div {
         height: 100%;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        > ${FlexDiv} {
+            flex-direction: column;
+        }
     }
 `;
 
