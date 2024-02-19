@@ -1,5 +1,7 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
+import { FlexDiv } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
@@ -20,6 +22,9 @@ export const Container = styled.div`
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
     }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+    }
 `;
 
 export const Top = styled.div`
@@ -30,6 +35,11 @@ export const Top = styled.div`
     > div {
         height: 100%;
     }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        > ${FlexDiv} {
+            flex-direction: column-reverse;
+        }
+    }
 `;
 
 export const Middle = styled.div`
@@ -39,6 +49,11 @@ export const Middle = styled.div`
     justify-content: space-between;
     > div {
         height: 100%;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        > ${FlexDiv} {
+            flex-direction: column-reverse;
+        }
     }
 `;
 
@@ -99,5 +114,12 @@ export const ClaimContainer = styled.div`
     }
     & > div:first-child {
         margin-right: 20px;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        display: flex;
+        flex-direction: column-reverse;
+        & > div {
+            width: 100%;
+        }
     }
 `;
