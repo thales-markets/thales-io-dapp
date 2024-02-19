@@ -1,3 +1,4 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 
@@ -9,9 +10,8 @@ export const Container = styled.div<{ marginBottom: string }>`
     font-size: 13px;
     display: grid;
     width: 60%;
-    height: 160px;
+    /* height: 160px; */
     z-index: 1;
-    margin-top: 50px;
     margin-bottom: ${(props) => props.marginBottom};
     > div {
         position: relative;
@@ -19,11 +19,21 @@ export const Container = styled.div<{ marginBottom: string }>`
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
     }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+    }
 `;
 
 export const AvailableToVestWrapper = styled(FlexDiv)`
     flex-direction: column;
     flex: 1;
+`;
+
+export const VestingWrapper = styled(FlexDiv)`
+    margin-bottom: 20px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+    }
 `;
 
 export const Amount = styled.span`
@@ -53,7 +63,7 @@ export const VestingValid = styled.div`
 `;
 
 export const ScheduleWrapper = styled(FlexDiv)`
-    overflow: auto;
+    overflow: scroll;
     width: 70%;
     align-items: center;
     justify-content: center;
@@ -64,6 +74,10 @@ export const ScheduleWrapper = styled(FlexDiv)`
     }
     ::-webkit-scrollbar-thumb {
         background: ${(props) => props.theme.textColor.quaternary};
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+        /* margin: 30px 0px; */
     }
 `;
 

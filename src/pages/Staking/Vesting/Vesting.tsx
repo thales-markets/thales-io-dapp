@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import { FlexDiv, FlexDivCentered } from 'styles/common';
+import { FlexDivCentered, FlexDivColumn } from 'styles/common';
 import { formatCurrency, formatCurrencyWithKey, formatShortDate } from 'thales-utils';
 import { UserVestingData } from 'types/token';
 import { refetchTokenQueries } from 'utils/queryConnector';
@@ -33,6 +33,7 @@ import {
     ScheduleDot,
     ScheduleLine,
     ScheduleWrapper,
+    VestingWrapper,
 } from './styled-components';
 
 const Vesting: React.FC = () => {
@@ -104,29 +105,31 @@ const Vesting: React.FC = () => {
     return (
         <>
             <Container marginBottom={isWalletConnected ? '0' : '50px'}>
-                <FlexDiv gap="20px">
-                    <AvailableToVestWrapper>
-                        <SectionTitle>
-                            <span>
-                                <i className="icon icon--staking" />
-                                {t('staking.vesting.title')}
-                            </span>
-                        </SectionTitle>
-                        <Amount>{formatCurrencyWithKey(THALES_CURRENCY, claimable, 0, true)}</Amount>
-                    </AvailableToVestWrapper>
-                    <DescriptionWrapper>
-                        <SectionDescription>
-                            <Trans
-                                i18nKey="staking.vesting.description"
-                                components={{
-                                    strong: <HighlightedDescText />,
-                                }}
-                            />
-                        </SectionDescription>
-                        {/* <VestingValid>{t('staking.vesting.vested-until')} 30. November 2023.</VestingValid> */}
-                    </DescriptionWrapper>
-                </FlexDiv>
-                <FlexDivCentered>{getVestButton()}</FlexDivCentered>
+                <FlexDivColumn>
+                    <VestingWrapper gap="20px">
+                        <AvailableToVestWrapper>
+                            <SectionTitle>
+                                <span>
+                                    <i className="icon icon--staking" />
+                                    {t('staking.vesting.title')}
+                                </span>
+                            </SectionTitle>
+                            <Amount>{formatCurrencyWithKey(THALES_CURRENCY, claimable, 0, true)}</Amount>
+                        </AvailableToVestWrapper>
+                        <DescriptionWrapper>
+                            <SectionDescription>
+                                <Trans
+                                    i18nKey="staking.vesting.description"
+                                    components={{
+                                        strong: <HighlightedDescText />,
+                                    }}
+                                />
+                            </SectionDescription>
+                            {/* <VestingValid>{t('staking.vesting.vested-until')} 30. November 2023.</VestingValid> */}
+                        </DescriptionWrapper>
+                    </VestingWrapper>
+                    <FlexDivCentered>{getVestButton()}</FlexDivCentered>
+                </FlexDivColumn>
             </Container>
             {isWalletConnected && (
                 <ScheduleWrapper>
