@@ -19,6 +19,22 @@ export const Container = styled.div`
     }
 `;
 
+export const MobileContainer = styled(FlexDivColumnNative)`
+    width: 100%;
+    justify-content: start;
+    gap: 10px;
+    z-index: 1;
+    margin: 100px 0px;
+    > div {
+        background-color: ${(props) => props.theme.background.primary};
+        border-radius: 8px;
+    }
+    > a > div {
+        background-color: ${(props) => props.theme.background.primary};
+        border-radius: 8px;
+    }
+`;
+
 export const ItemUpperLeft = styled.div`
     grid-area: upper-left;
 `;
@@ -206,18 +222,18 @@ export const ChartInnerText = styled.span`
     text-align: center;
 `;
 
-export const FullWidthInfoSection = styled(FlexDiv)`
+export const FullWidthInfoSection = styled(FlexDiv)<{ isMobile: boolean }>`
     flex-direction: column;
     flex-wrap: wrap;
-    width: 670px;
+    width: ${(props) => (props.isMobile ? '100%' : '670px')};
     justify-content: start;
     height: 82px;
     padding: 0px 20px;
-    gap: 0px 50px;
+    gap: ${(props) => (props.isMobile ? '0px 40px' : '0px 50px')};
 `;
 
-export const FlexDivIntegrators = styled(FlexDivRow)`
-    width: 290px;
+export const FlexDivIntegrators = styled(FlexDivRow)<{ isMobile: boolean }>`
+    width: ${(props) => (props.isMobile ? '100%' : '290px')};
 `;
 
 export const StyledAreaChart = styled(AreaChart)`

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
@@ -26,6 +27,7 @@ import {
 const IntegratorsVolume: React.FC = () => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+    const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
     const [integratorsData, setIntegratorsData] = useState<Integrator[]>([]);
     const [volumeStats, setVolumeStats] = useState<VolumeStats | undefined>();
@@ -56,8 +58,8 @@ const IntegratorsVolume: React.FC = () => {
                 <WidgetIcon className="icon icon--integrators" />
                 <TitleLabel>{t('dashboard.integrators.title')}</TitleLabel>
             </WidgetHeader>
-            <FullWidthInfoSection>
-                <FlexDivIntegrators>
+            <FullWidthInfoSection isMobile={isMobile}>
+                <FlexDivIntegrators isMobile={isMobile}>
                     <SPAAnchor href={LINKS.ThalesMarkets} style={{ cursor: 'pointer' }}>
                         <InfoText>
                             {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
@@ -65,7 +67,7 @@ const IntegratorsVolume: React.FC = () => {
                         <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}</InfoStats>
                     </SPAAnchor>
                 </FlexDivIntegrators>
-                <FlexDivIntegrators>
+                <FlexDivIntegrators isMobile={isMobile}>
                     <SPAAnchor href={LINKS.Overtime} style={{ cursor: 'pointer' }}>
                         <InfoText>
                             {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.GRAY} />
@@ -78,7 +80,7 @@ const IntegratorsVolume: React.FC = () => {
                         </InfoStats>
                     </SPAAnchor>
                 </FlexDivIntegrators>
-                <FlexDivIntegrators>
+                <FlexDivIntegrators isMobile={isMobile}>
                     <SPAAnchor href={LINKS.SpeedMarkets} style={{ cursor: 'pointer' }}>
                         <InfoText>
                             {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
@@ -87,7 +89,7 @@ const IntegratorsVolume: React.FC = () => {
                     </SPAAnchor>
                 </FlexDivIntegrators>
                 {integratorsData.map((integrator, index) => (
-                    <FlexDivIntegrators key={index}>
+                    <FlexDivIntegrators key={index} isMobile={isMobile}>
                         <SPAAnchor href={integrator.url} style={{ cursor: 'pointer' }}>
                             <InfoText>
                                 {integrator.id} <LinkArrow color={Colors.GRAY} />

@@ -6,9 +6,9 @@ export const Wrapper = styled(FlexDivColumn)`
     position: relative;
     z-index: 1;
     align-items: center;
-    width: 99%;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
     padding: 20px 0px;
     min-height: 100vh;
     justify-content: flex-start;
