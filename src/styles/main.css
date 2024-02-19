@@ -196,3 +196,13 @@ a {
 .MuiMenu-paper .MuiListItem-button:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }
+
+.chartLabel {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    fill: rgb(255, 255, 255) !important;
+    font-family: Nunito !important;
+    width: min-content;
+    text-align: center;
+}

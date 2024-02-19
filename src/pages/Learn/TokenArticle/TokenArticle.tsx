@@ -38,8 +38,7 @@ const TokenArticle: React.FC = () => {
                     style={{ color: Colors.CYAN }}
                     href={getEtherscanTokenLink(Network.Arbitrum, thalesContract.addresses[Network.Arbitrum])}
                 >
-                    Thales on Arbitrum
-                    <LinkArrow color={Colors.CYAN} />
+                    Thales on Arbitrum <LinkArrow color={Colors.CYAN} />
                 </SPAAnchor>
             </ListItem>
             <ListItem>
@@ -47,8 +46,7 @@ const TokenArticle: React.FC = () => {
                     style={{ color: Colors.CYAN }}
                     href={getEtherscanTokenLink(Network.Base, thalesContract.addresses[Network.Base])}
                 >
-                    Thales on Base
-                    <LinkArrow color={Colors.CYAN} />
+                    Thales on Base <LinkArrow color={Colors.CYAN} />
                 </SPAAnchor>
             </ListItem>
             <ListItem>
@@ -56,8 +54,7 @@ const TokenArticle: React.FC = () => {
                     style={{ color: Colors.CYAN }}
                     href={getEtherscanTokenLink(Network.Mainnet, thalesContract.addresses[Network.Mainnet])}
                 >
-                    Thales on Mainnet
-                    <LinkArrow color={Colors.CYAN} />
+                    Thales on Mainnet <LinkArrow color={Colors.CYAN} />
                 </SPAAnchor>
             </ListItem>
             <H2 id="section1">{t('about-thales-token.list.2')}</H2>
@@ -108,7 +105,7 @@ const TokenArticle: React.FC = () => {
                         thalesContract.addresses[Network.OptimismMainnet]
                     )}
                 >
-                    {truncateAddress(thalesContract.addresses[Network.OptimismMainnet].toLowerCase())}
+                    {truncateAddress(thalesContract.addresses[Network.OptimismMainnet].toLowerCase())}{' '}
                     <LinkArrow color={Colors.CYAN} />
                 </SPAAnchor>
             </ListItem>
@@ -118,7 +115,7 @@ const TokenArticle: React.FC = () => {
                     style={{ color: Colors.CYAN }}
                     href={getEtherscanTokenLink(Network.Arbitrum, thalesContract.addresses[Network.Arbitrum])}
                 >
-                    {truncateAddress(thalesContract.addresses[Network.Arbitrum].toLowerCase())}
+                    {truncateAddress(thalesContract.addresses[Network.Arbitrum].toLowerCase())}{' '}
                     <LinkArrow color={Colors.CYAN} />
                 </SPAAnchor>
             </ListItem>
@@ -128,7 +125,7 @@ const TokenArticle: React.FC = () => {
                     style={{ color: Colors.CYAN }}
                     href={getEtherscanTokenLink(Network.Base, thalesContract.addresses[Network.Base])}
                 >
-                    {truncateAddress(thalesContract.addresses[Network.Base].toLowerCase())}
+                    {truncateAddress(thalesContract.addresses[Network.Base].toLowerCase())}{' '}
                     <LinkArrow color={Colors.CYAN} />
                 </SPAAnchor>
             </ListItem>

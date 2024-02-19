@@ -90,26 +90,26 @@ export const NumericStats = styled.span`
     color: ${(props) => props.theme.textColor.secondary};
 `;
 
-export const InfoText = styled.span<{ color?: string }>`
+export const InfoText = styled.span<{ color?: string; isMobile: boolean }>`
     font-family: Nunito !important;
     font-weight: 400;
-    font-size: 13px;
+    font-size: ${(props) => (props.isMobile ? `11px` : '13px')};
     line-height: 20px;
     color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.tertiary)};
 `;
 
-export const InfoStats = styled.span<{ color?: string }>`
+export const InfoStats = styled.span<{ color?: string; isMobile: boolean }>`
     font-family: Nunito !important;
     font-weight: 800;
-    font-size: 13px;
+    font-size: ${(props) => (props.isMobile ? `11px` : '13px')};
     line-height: 20px;
     color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.primary)};
 `;
 
-export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolean }>`
+export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolean; isMobile: boolean }>`
     font-family: Nunito !important;
     font-weight: 700;
-    font-size: 18px;
+    font-size: ${(props) => (props.isMobile ? `16px` : '18px')};
     line-height: 25px;
     color: ${(props) =>
         props.isLink || props.isHighlighted ? props.theme.textColor.secondary : props.theme.textColor.primary};
@@ -179,7 +179,6 @@ export const LinkArrow = styled(ArrowHyperlinkIcon)<{ color?: string }>`
     color: ${(props) => (props.color ? props.color : props.theme.textColor.primary)};
     width: 12px;
     height: 12px;
-    margin-left: 3px;
 `;
 
 export const FlexDivColumnNativeFullWidth = styled(FlexDivColumnNative)`
@@ -210,9 +209,6 @@ export const StyledPieChart = styled(PieChart)`
 `;
 
 export const ChartInnerText = styled.span`
-    position: absolute;
-    top: 63px;
-    left: 220px;
     font-weight: 400;
     font-size: 13px;
     line-height: 20px;

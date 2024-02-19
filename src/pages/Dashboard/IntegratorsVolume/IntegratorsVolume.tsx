@@ -56,23 +56,25 @@ const IntegratorsVolume: React.FC = () => {
         <WidgetWrapper>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--integrators" />
-                <TitleLabel>{t('dashboard.integrators.title')}</TitleLabel>
+                <TitleLabel isMobile={isMobile}>{t('dashboard.integrators.title')}</TitleLabel>
             </WidgetHeader>
             <FullWidthInfoSection isMobile={isMobile}>
                 <FlexDivIntegrators isMobile={isMobile}>
                     <SPAAnchor href={LINKS.ThalesMarkets} style={{ cursor: 'pointer' }}>
-                        <InfoText>
+                        <InfoText isMobile={isMobile}>
                             {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
                         </InfoText>
-                        <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}</InfoStats>
+                        <InfoStats isMobile={isMobile}>
+                            $ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}
+                        </InfoStats>
                     </SPAAnchor>
                 </FlexDivIntegrators>
                 <FlexDivIntegrators isMobile={isMobile}>
                     <SPAAnchor href={LINKS.Overtime} style={{ cursor: 'pointer' }}>
-                        <InfoText>
+                        <InfoText isMobile={isMobile}>
                             {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.GRAY} />
                         </InfoText>
-                        <InfoStats>
+                        <InfoStats isMobile={isMobile}>
                             ${' '}
                             {volumeStats
                                 ? formatCurrency(volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume)
@@ -82,19 +84,21 @@ const IntegratorsVolume: React.FC = () => {
                 </FlexDivIntegrators>
                 <FlexDivIntegrators isMobile={isMobile}>
                     <SPAAnchor href={LINKS.SpeedMarkets} style={{ cursor: 'pointer' }}>
-                        <InfoText>
+                        <InfoText isMobile={isMobile}>
                             {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
                         </InfoText>
-                        <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.speedAmmVolume) : 0}</InfoStats>
+                        <InfoStats isMobile={isMobile}>
+                            $ {volumeStats ? formatCurrency(volumeStats?.speedAmmVolume) : 0}
+                        </InfoStats>
                     </SPAAnchor>
                 </FlexDivIntegrators>
                 {integratorsData.map((integrator, index) => (
                     <FlexDivIntegrators key={index} isMobile={isMobile}>
                         <SPAAnchor href={integrator.url} style={{ cursor: 'pointer' }}>
-                            <InfoText>
+                            <InfoText isMobile={isMobile}>
                                 {integrator.id} <LinkArrow color={Colors.GRAY} />
                             </InfoText>
-                            <InfoStats>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
+                            <InfoStats isMobile={isMobile}>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
                         </SPAAnchor>
                     </FlexDivIntegrators>
                 ))}

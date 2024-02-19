@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import { formatCurrency } from 'thales-utils';
 import { TVLStats } from 'types/statistics';
@@ -19,6 +20,7 @@ import {
 const TVLInfo: React.FC = () => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+    const isMobile = useSelector(getIsMobile);
 
     const [tvlStats, setTvlStats] = useState<TVLStats | undefined>();
 
@@ -36,23 +38,29 @@ const TVLInfo: React.FC = () => {
         <WidgetWrapper>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--lock" />
-                <TitleLabel>{t('dashboard.tvl.title')}</TitleLabel>
+                <TitleLabel isMobile={isMobile}>{t('dashboard.tvl.title')}</TitleLabel>
             </WidgetHeader>
             <InfoSection side="left">
-                <InfoText>{t('dashboard.tvl.token-staking-tvl')}</InfoText>
-                <InfoText>{t('dashboard.tvl.overtime-amm-tvl')}</InfoText>
-                <InfoText>{t('dashboard.tvl.thales-amm-tvl')}</InfoText>
-                <InfoText>{t('dashboard.tvl.vaults-tvl')}</InfoText>
-                <InfoText>{t('dashboard.tvl.speed-tvl')}</InfoText>
+                <InfoText isMobile={isMobile}>{t('dashboard.tvl.token-staking-tvl')}</InfoText>
+                <InfoText isMobile={isMobile}>{t('dashboard.tvl.overtime-amm-tvl')}</InfoText>
+                <InfoText isMobile={isMobile}>{t('dashboard.tvl.thales-amm-tvl')}</InfoText>
+                <InfoText isMobile={isMobile}>{t('dashboard.tvl.vaults-tvl')}</InfoText>
+                <InfoText isMobile={isMobile}>{t('dashboard.tvl.speed-tvl')}</InfoText>
             </InfoSection>
             <InfoSection side="right">
-                <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.stakingThalesTVL)}` : '-'}</InfoStats>
-                <InfoStats>
+                <InfoStats isMobile={isMobile}>
+                    {tvlStats ? `$ ${formatCurrency(tvlStats.stakingThalesTVL)}` : '-'}
+                </InfoStats>
+                <InfoStats isMobile={isMobile}>
                     {tvlStats ? `$ ${formatCurrency(tvlStats.overtimeSingleTVL + tvlStats.overtimeParlayTVL)}` : '-'}
                 </InfoStats>
-                <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.thalesLpTVL)}` : '-'}</InfoStats>
-                <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.vaultsTVL)}` : '-'}</InfoStats>
-                <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.speedMarketsTVL)}` : '-'}</InfoStats>
+                <InfoStats isMobile={isMobile}>
+                    {tvlStats ? `$ ${formatCurrency(tvlStats.thalesLpTVL)}` : '-'}
+                </InfoStats>
+                <InfoStats isMobile={isMobile}>{tvlStats ? `$ ${formatCurrency(tvlStats.vaultsTVL)}` : '-'}</InfoStats>
+                <InfoStats isMobile={isMobile}>
+                    {tvlStats ? `$ ${formatCurrency(tvlStats.speedMarketsTVL)}` : '-'}
+                </InfoStats>
             </InfoSection>
         </WidgetWrapper>
     );
