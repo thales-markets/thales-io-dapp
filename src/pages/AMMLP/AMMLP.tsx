@@ -37,6 +37,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled, { useTheme } from 'styled-components';
@@ -83,6 +84,7 @@ const AMMLP: React.FC = () => {
     const { t } = useTranslation();
     const location = useLocation();
     const paramTab: LiquidityPool = (queryString.parse(location.search).tab as LiquidityPool) || LiquidityPool.THALES;
+    const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
     const navItems: NavItemType[] = useMemo(() => {
         return [
@@ -506,9 +508,11 @@ const AMMLP: React.FC = () => {
     return (
         <Suspense fallback={<Loader />}>
             <Line />
-            <NavContainer width="40%">
-                <NavLinks items={navItems} />
-            </NavContainer>
+            {!isMobile && (
+                <NavContainer width="40%">
+                    <NavLinks items={navItems} />
+                </NavContainer>
+            )}
             <Container>
                 <Top>
                     <SwitchInput

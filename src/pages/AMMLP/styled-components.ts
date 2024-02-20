@@ -1,6 +1,6 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDivColumn, FlexDivColumnCentered } from 'styles/common';
+import { FlexDiv, FlexDivColumn, FlexDivColumnCentered } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
@@ -18,6 +18,9 @@ export const Container = styled.div`
         padding: 20px;
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
     }
 `;
 
@@ -92,6 +95,12 @@ export const ClaimMessage = styled.div<{ invisible?: boolean; color?: string; ab
 export const ChartsContainer = styled.div`
     font-family: Nunito;
     width: 60%;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+        > ${FlexDiv} {
+            flex-direction: column-reverse;
+        }
+    }
 `;
 
 export const InfoDiv = styled.div`
