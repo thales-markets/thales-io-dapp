@@ -1,10 +1,10 @@
+import Tooltip from 'components/Tooltip';
+import NumericInput from 'components/fields/NumericInput';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
 import { countDecimals } from 'thales-utils';
-import NumericInput from 'components/fields/NumericInput';
-import Tooltip from 'components/Tooltip';
 
 type SlippageProps = {
     fixed: Array<number>;
@@ -50,7 +50,7 @@ const Slippage: React.FC<SlippageProps> = ({ fixed, defaultValue, onChangeHandle
     return (
         <Container>
             <Text>
-                {t('markets.amm-trading.slippage.label')}
+                {t('bridge.slippage.label')}
                 {tooltip && <Tooltip overlay={tooltip} iconFontSize={14} />}
             </Text>
             <Row>
@@ -58,28 +58,29 @@ const Slippage: React.FC<SlippageProps> = ({ fixed, defaultValue, onChangeHandle
                     <FlexDivRowCentered>
                         {fixed.map((value, index) => (
                             <Value key={index} isSelected={value === slippage} onClick={() => setSlippage(value)}>
-                                <Text>{value}%</Text>
+                                <Text isSelected={value === slippage}>{value}%</Text>
                             </Value>
                         ))}
                     </FlexDivRowCentered>
                 )}
                 <NumericInput
                     value={slippage}
-                    placeholder={t('markets.amm-trading.slippage.enter-value')}
+                    placeholder={t('bridge.slippage.enter-value')}
                     onChange={(_, value) => onInputValueChange(value)}
                     currencyLabel="%"
                     showValidation={slippage !== '' && !isSlippageValid(Number(slippage), max)}
-                    validationMessage={t('markets.amm-trading.slippage.invalid-value')}
+                    validationMessage={t('bridge.slippage.invalid-value')}
                     margin="0px"
                     inputPadding="5px 10px"
                     inputFontSize="13px"
+                    width="60px"
                 />
             </Row>
         </Container>
     );
 };
 
-const HEIGHT = '34px';
+const HEIGHT = '30px';
 
 const Container = styled(FlexDivColumnCentered)``;
 
@@ -89,24 +90,25 @@ const Row = styled(FlexDivRowCentered)`
 `;
 
 const Value = styled(FlexDivColumnCentered)<{ isSelected: boolean }>`
-    width: 35px;
+    width: 45px;
     height: ${HEIGHT};
-    background: ${(props) => (props.isSelected ? props.theme.background.secondary : 'transparent')};
-    border: 1px solid ${(props) => props.theme.borderColor.primary};
+    background: ${(props) => (props.isSelected ? props.theme.textColor.secondary : props.theme.background.tertiary)};
     border-radius: 8px;
     align-items: center;
     margin-right: 10px;
     cursor: pointer;
+    padding: 2px 10px;
 `;
 
-const Text = styled.span`
+const Text = styled.span<{ isSelected?: boolean }>`
+    display: flex;
     font-style: normal;
-    font-weight: 600;
+    font-weight: ${(props) => (props.isSelected ? 'bold' : 'normal')};
     font-size: 13px;
     line-height: 15px;
-    color: ${(props) => props.theme.textColor.secondary};
+    color: ${(props) => (props.isSelected ? props.theme.background.primary : props.theme.textColor.primary)};
     i {
-        color: ${(props) => props.theme.textColor.secondary};
+        color: ${(props) => props.theme.textColor.primary};
     }
 `;
 

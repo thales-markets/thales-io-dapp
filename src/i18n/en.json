@@ -578,7 +578,7 @@
             },
             "table": {
                 "date-time-col": "Date | Time",
-                "wallet-address": "Wallet Address",
+                "wallet-address": "Wallet address",
                 "type-col": "Type",
                 "amount-col": "Amount",
                 "asset": "Asset",
@@ -918,6 +918,11 @@
             },
             "switch-message": "Please switch to {{network}} before requesting a refund",
             "switch-label": "Switch"
+        },
+        "slippage": {
+            "label": "Slippage tolerance",
+            "enter-value": "Enter value",
+            "invalid-value": "Invalid value"
         }
     },
     "whitepaper": {

@@ -6,7 +6,7 @@ const UserWallet: React.FC = () => {
     return (
         <Container>
             <Wrapper>
-                <NetworkSwitch />
+                <NetworkSwitch isWalletConnectorSwitch={true} />
             </Wrapper>
         </Container>
     );
