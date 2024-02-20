@@ -3,14 +3,14 @@ import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Cell, Legend, Pie } from 'recharts';
+import { Cell, Label, Legend, Pie } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { StakingData, TokenInfo } from 'types/token';
 import {
-    ChartInnerText,
     DoubleSideInfoSection,
     FlexDivFullWidthSpaceBetween,
     InfoStats,
@@ -26,7 +26,7 @@ import {
 const ThalesTokenInfo: React.FC = () => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
-
+    const isMobile = useSelector(getIsMobile);
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
     const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
 
@@ -132,24 +132,31 @@ const ThalesTokenInfo: React.FC = () => {
         <WidgetWrapper isDoubleHeight={true}>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--thales-round-logo" />
-                <TitleLabel>{t('dashboard.token-info.title')}</TitleLabel>
+                <TitleLabel isMobile={isMobile}>{t('dashboard.token-info.title')}</TitleLabel>
             </WidgetHeader>
             <UpperInfoSection>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>{t('dashboard.token-info.total-supply')}</InfoText>
-                    <InfoStats> {tokenInfo ? `${formatCurrency(tokenInfo.totalSupply)} THALES` : 'N/A'}</InfoStats>
+                    <InfoText isMobile={isMobile}>{t('dashboard.token-info.total-supply')}</InfoText>
+                    <InfoStats isMobile={isMobile}>
+                        {' '}
+                        {tokenInfo ? `${formatCurrency(tokenInfo.totalSupply)} THALES` : 'N/A'}
+                    </InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>{t('dashboard.token-info.circulating-supply')}</InfoText>
-                    <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.circulatingSupply)} THALES` : 'N/A'}</InfoStats>
+                    <InfoText isMobile={isMobile}>{t('dashboard.token-info.circulating-supply')}</InfoText>
+                    <InfoStats isMobile={isMobile}>
+                        {tokenInfo ? `${formatCurrency(tokenInfo.circulatingSupply)} THALES` : 'N/A'}
+                    </InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>{t('dashboard.token-info.burned-supply')}</InfoText>
-                    <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.thalesBurned)} THALES` : 'N/A'}</InfoStats>
+                    <InfoText isMobile={isMobile}>{t('dashboard.token-info.burned-supply')}</InfoText>
+                    <InfoStats isMobile={isMobile}>
+                        {tokenInfo ? `${formatCurrency(tokenInfo.thalesBurned)} THALES` : 'N/A'}
+                    </InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>
-                    <InfoStats>
+                    <InfoText isMobile={isMobile}>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>
+                    <InfoStats isMobile={isMobile}>
                         {tokenInfo
                             ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.circulatingSupply) * 100)} %`
                             : 'N/A'}
@@ -157,7 +164,6 @@ const ThalesTokenInfo: React.FC = () => {
                 </FlexDivFullWidthSpaceBetween>
             </UpperInfoSection>
             <DoubleSideInfoSection>
-                <ChartInnerText>{t('dashboard.token-info.total-100m')}</ChartInnerText>
                 <StyledPieChart width={330} height={165}>
                     <Legend
                         formatter={formatChartLegend}
@@ -182,6 +188,7 @@ const ThalesTokenInfo: React.FC = () => {
                         {pieData.map((slice, index) => (
                             <Cell key={index} fill={slice.color} />
                         ))}
+                        <Label className="chartLabel" value={t('dashboard.token-info.total-100m')} position="center" />
                     </Pie>
                     <Pie
                         isAnimationActive={false}

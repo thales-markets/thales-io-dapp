@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Bar, BarChart, Cell, Tooltip as ChartTooltip, XAxis } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import { Colors, FlexDiv } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
@@ -36,6 +37,7 @@ import {
 const Staking: React.FC = () => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+    const isMobile = useSelector(getIsMobile);
 
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>();
     const [globalStakingData, setGlobalStakingData] = useState<GlobalStakingData | undefined>();
@@ -137,11 +139,11 @@ const Staking: React.FC = () => {
         if (active && payload && payload.length) {
             return (
                 <ChartTooltipBox>
-                    <InfoText color={Colors.WHITE}>
+                    <InfoText isMobile={isMobile} color={Colors.WHITE}>
                         {payload[0].payload.name.toLowerCase() == 'revshare' ? 'Fees distributed' : 'Safebox fees'}
                     </InfoText>
-                    <InfoStats>$ {payload[0].payload.amount}</InfoStats>
-                    <InfoStats>{payload[0].payload.date}</InfoStats>
+                    <InfoStats isMobile={isMobile}>$ {payload[0].payload.amount}</InfoStats>
+                    <InfoStats isMobile={isMobile}>{payload[0].payload.date}</InfoStats>
                 </ChartTooltipBox>
             );
         }
@@ -155,11 +157,11 @@ const Staking: React.FC = () => {
                 <WidgetHeader isTwoSided={true}>
                     <FlexDiv>
                         <WidgetIcon className="icon icon--staking" />
-                        <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
+                        <TitleLabel isMobile={isMobile}>{t('dashboard.staking.title')}</TitleLabel>
                     </FlexDiv>
                     <FlexDivAlignStartSpaceBetween>
-                        <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
-                        <TitleLabel isHighlighted={true}>
+                        <TitleLabel isMobile={isMobile}>{t('dashboard.staking.total-apy')}</TitleLabel>
+                        <TitleLabel isMobile={isMobile} isHighlighted={true}>
                             {globalStakingData
                                 ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
                                 : '-'}
@@ -169,28 +171,34 @@ const Staking: React.FC = () => {
                 <StakingInfo>
                     <InfoSection side="left" justifyContent="start">
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText>{t('dashboard.staking.thales-token-rewards')}</InfoText>
-                            <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}</InfoStats>
+                            <InfoText isMobile={isMobile}>{t('dashboard.staking.thales-token-rewards')}</InfoText>
+                            <InfoStats isMobile={isMobile}>
+                                {globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}
+                            </InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
-                            <InfoStats>{globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}</InfoStats>
+                            <InfoText isMobile={isMobile}>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
+                            <InfoStats isMobile={isMobile}>
+                                {globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}
+                            </InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText>{t('dashboard.staking.total-stakers')}</InfoText>
-                            <InfoStats>{stakers.length}</InfoStats>
+                            <InfoText isMobile={isMobile}>{t('dashboard.staking.total-stakers')}</InfoText>
+                            <InfoStats isMobile={isMobile}>{stakers.length}</InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                     </InfoSection>
                     <InfoSection side="right" justifyContent="start">
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
-                            <InfoStats>
+                            <InfoText isMobile={isMobile}>{t('dashboard.staking.total-thales-staked')}</InfoText>
+                            <InfoStats isMobile={isMobile}>
                                 {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
                             </InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
-                            <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)} %</InfoStats>
+                            <InfoText isMobile={isMobile}>{t('dashboard.staking.of-circulating-supply')}</InfoText>
+                            <InfoStats isMobile={isMobile}>
+                                {stakedOfCirculatingSupplyPercentage.toFixed(2)} %
+                            </InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                     </InfoSection>
                 </StakingInfo>

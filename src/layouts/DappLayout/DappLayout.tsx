@@ -28,7 +28,7 @@ const DappLayout: React.FC = ({ children }) => {
     useWidgetBotScript(preventDiscordWidgetLoad, theme);
 
     return (
-        <div>
+        <>
             <Background id="radial-background" />
             {!isMobile && <WavesBackground />}
             <Wrapper>
@@ -36,7 +36,7 @@ const DappLayout: React.FC = ({ children }) => {
                 {children}
                 <DappFooter />
             </Wrapper>
-        </div>
+        </>
     );
 };
 

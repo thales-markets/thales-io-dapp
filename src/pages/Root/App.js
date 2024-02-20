@@ -117,90 +117,88 @@ const App = () => {
     }, [dispatch]);
 
     return (
-        <div className="App">
-            <ThemeProvider>
-                <QueryClientProvider client={queryConnector.queryClient}>
-                    <Router history={history}>
-                        <Switch>
-                            <Route exact path={ROUTES.Home}>
+        <ThemeProvider>
+            <QueryClientProvider client={queryConnector.queryClient}>
+                <Router history={history}>
+                    <Switch>
+                        <Route exact path={ROUTES.Home}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <Home />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                        <Route exact path={ROUTES.Dashboard}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <Dashboard />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                        <Route exact path={ROUTES.Staking}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <Staking />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                        <Route exact path={ROUTES.AMMLP}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <AMMLP />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                        <Route exact path={ROUTES.LPStaking}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <LPStaking />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                        <Route exact path={ROUTES.Bridge}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <Bridge />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                        <Route
+                            exact
+                            path={[ROUTES.DAO.Home, ROUTES.DAO.Space, ROUTES.DAO.Proposal]}
+                            render={(routeProps) => (
                                 <Suspense fallback={<Loader />}>
                                     <DappLayout>
-                                        <Home />
+                                        <Governance {...routeProps} />
                                     </DappLayout>
                                 </Suspense>
-                            </Route>
-                            <Route exact path={ROUTES.Dashboard}>
-                                <Suspense fallback={<Loader />}>
-                                    <DappLayout>
-                                        <Dashboard />
-                                    </DappLayout>
-                                </Suspense>
-                            </Route>
-                            <Route exact path={ROUTES.Staking}>
-                                <Suspense fallback={<Loader />}>
-                                    <DappLayout>
-                                        <Staking />
-                                    </DappLayout>
-                                </Suspense>
-                            </Route>
-                            <Route exact path={ROUTES.AMMLP}>
-                                <Suspense fallback={<Loader />}>
-                                    <DappLayout>
-                                        <AMMLP />
-                                    </DappLayout>
-                                </Suspense>
-                            </Route>
-                            <Route exact path={ROUTES.LPStaking}>
-                                <Suspense fallback={<Loader />}>
-                                    <DappLayout>
-                                        <LPStaking />
-                                    </DappLayout>
-                                </Suspense>
-                            </Route>
-                            <Route exact path={ROUTES.Bridge}>
-                                <Suspense fallback={<Loader />}>
-                                    <DappLayout>
-                                        <Bridge />
-                                    </DappLayout>
-                                </Suspense>
-                            </Route>
-                            <Route
-                                exact
-                                path={[ROUTES.DAO.Home, ROUTES.DAO.Space, ROUTES.DAO.Proposal]}
-                                render={(routeProps) => (
-                                    <Suspense fallback={<Loader />}>
-                                        <DappLayout>
-                                            <Governance {...routeProps} />
-                                        </DappLayout>
-                                    </Suspense>
-                                )}
-                            />
-                            <Route exact path={ROUTES.About.Whitepaper}>
-                                <Suspense fallback={<Loader />}>
-                                    <DappLayout>
-                                        <WhitepaperArticle />
-                                    </DappLayout>
-                                </Suspense>
-                            </Route>
-                            <Route exact path={ROUTES.About.Governance}>
-                                <Suspense fallback={<Loader />}>
-                                    <DappLayout>
-                                        <GovernanceArticle />
-                                    </DappLayout>
-                                </Suspense>
-                            </Route>
-                            <Route exact path={ROUTES.About.Token}>
-                                <Suspense fallback={<Loader />}>
-                                    <DappLayout>
-                                        <TokenArticle />
-                                    </DappLayout>
-                                </Suspense>
-                            </Route>
-                        </Switch>
-                    </Router>
-                </QueryClientProvider>
-            </ThemeProvider>
-        </div>
+                            )}
+                        />
+                        <Route exact path={ROUTES.About.Whitepaper}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <WhitepaperArticle />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                        <Route exact path={ROUTES.About.Governance}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <GovernanceArticle />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                        <Route exact path={ROUTES.About.Token}>
+                            <Suspense fallback={<Loader />}>
+                                <DappLayout>
+                                    <TokenArticle />
+                                </DappLayout>
+                            </Suspense>
+                        </Route>
+                    </Switch>
+                </Router>
+            </QueryClientProvider>
+        </ThemeProvider>
     );
 };
 
