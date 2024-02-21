@@ -1,7 +1,11 @@
 const ROUTES = {
     Home: '/',
     Dashboard: '/dashboard',
-    AMMLP: '/amm-lp',
+    AmmLP: {
+        Home: '/amm-lp',
+        SportsAMM: '/amm-lp?tab=overtime-single',
+        ParlayAMM: '/amm-lp?tab=overtime-parlay',
+    },
     Token: {
         Staking: {
             Home: '/token',

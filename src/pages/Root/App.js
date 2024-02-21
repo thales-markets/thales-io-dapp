@@ -142,7 +142,7 @@ const App = () => {
                                 </DappLayout>
                             </Suspense>
                         </Route>
-                        <Route exact path={ROUTES.AMMLP}>
+                        <Route exact path={ROUTES.AmmLP.Home}>
                             <Suspense fallback={<Loader />}>
                                 <DappLayout>
                                     <AMMLP />

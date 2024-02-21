@@ -1,3 +1,4 @@
+import BreadcrumbsMenu from 'components/BreadcrumbsMenu';
 import { NavItemType } from 'components/NavLinks/NavItem';
 import NavLinks from 'components/NavLinks/NavLinks';
 import UserWallet from 'components/UserWallet';
@@ -41,9 +42,9 @@ const DappHeader: React.FC = () => {
                 ],
             },
             {
-                href: buildHref(ROUTES.AMMLP),
+                href: buildHref(ROUTES.AmmLP.Home),
                 title: t('header.links.amm-lp'),
-                active: location.pathname === ROUTES.AMMLP,
+                active: location.pathname === ROUTES.AmmLP.Home,
             },
             {
                 href: buildHref(ROUTES.DAO.Home),
@@ -94,6 +95,7 @@ const DappHeader: React.FC = () => {
                 </LinksContainer>
                 <UserWallet />
             </HeaderContainer>
+            <BreadcrumbsMenu />
         </>
     );
 };
