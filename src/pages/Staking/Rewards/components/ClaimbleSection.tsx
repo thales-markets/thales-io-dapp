@@ -229,7 +229,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                             </StakingStateWrapper>
                         )}
                     </RewardsDetailsContainer>
-                    {!isClaimed && (
+                    {!isClaimed && !stakingData?.closingPeriodInProgress && (
                         <ClaimSection>
                             <RewardsInfo>
                                 <span>

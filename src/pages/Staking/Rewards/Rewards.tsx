@@ -104,6 +104,7 @@ const Rewards: React.FC = () => {
                 />
                 <BaseStakingRewards
                     userStakingData={userStakingData}
+                    stakingData={stakingData}
                     pointsData={pointsData}
                     baseStakingRewardsData={baseRewardsData}
                     isLoading={

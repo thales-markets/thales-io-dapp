@@ -8,12 +8,13 @@ import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
-import { BaseRewardsData, UserStakingData } from 'types/token';
+import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token';
 import { SectionTitle } from '../../styled-components';
 import { SubTitle } from '../styled-components';
 
 type BaseStakingRewardsProps = {
     userStakingData: UserStakingData | undefined;
+    stakingData: ThalesStakingData | undefined;
     baseStakingRewardsData: BaseRewardsData | undefined;
     pointsData: PointsData | undefined;
     isLoading: boolean;
@@ -22,6 +23,7 @@ type BaseStakingRewardsProps = {
 
 const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
     userStakingData,
+    stakingData,
     baseStakingRewardsData,
     pointsData,
     isLoading,
@@ -43,7 +45,7 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                             <i className="icon icon--pig" />
                             {t('staking.rewards.base-rewards.title')}
                         </span>
-                        {!isClaimed && (
+                        {!isClaimed && !stakingData?.closingPeriodInProgress && (
                             <span>
                                 {userStakingData?.baseRewards
                                     ? formatCurrencyWithKey(THALES_CURRENCY, userStakingData?.baseRewards, 2)
