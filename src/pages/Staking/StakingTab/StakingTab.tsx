@@ -14,8 +14,6 @@ import { useTheme } from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { formatCurrencyWithKey, formatCurrencyWithPrecision } from 'thales-utils';
 import { GlobalStakingData, ThalesStakingData, UserStakingData } from 'types/token';
-import { getNumberLabel } from 'utils/number';
-import { aprToApy } from 'utils/token';
 import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
 import Stake from './Stake';
 import YourTransactions from './Transactions/YourTransactions';
@@ -107,8 +105,6 @@ const StakingTab: React.FC = () => {
                       Number(totalEscrowBalanceNotIncludedInStaking)),
         [baseRewardsPool, totalStakedAmount, totalEscrowedRewards, totalEscrowBalanceNotIncludedInStaking]
     );
-
-    const formattedAPY = useMemo(() => getNumberLabel(aprToApy(APR)), [APR]);
 
     const totalThalesStaked = useMemo(
         () => totalStakedAmount + totalEscrowedRewards - totalEscrowBalanceNotIncludedInStaking,
