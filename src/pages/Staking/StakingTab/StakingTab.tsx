@@ -1,5 +1,7 @@
 import SwitchInput from 'components/SwitchInput';
+import Tooltip from 'components/Tooltip';
 import { THALES_CURRENCY } from 'constants/currency';
+import useGlobalStakingDataQuery from 'queries/token/useGlobalStakingDataQuery';
 import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
 import useUserStakingDataQuery from 'queries/token/useUserStakingData';
 import { useEffect, useMemo, useState } from 'react';
@@ -9,11 +11,12 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { useTheme } from 'styled-components';
-import { formatCurrencyWithKey, formatCurrencyWithPrecision, formatShortDate } from 'thales-utils';
-import { ThalesStakingData, UserStakingData } from 'types/token';
+import { FlexDiv } from 'styles/common';
+import { formatCurrencyWithKey, formatCurrencyWithPrecision } from 'thales-utils';
+import { GlobalStakingData, ThalesStakingData, UserStakingData } from 'types/token';
 import { getNumberLabel } from 'utils/number';
 import { aprToApy } from 'utils/token';
-import { InfoDiv, SectionTitle } from '../styled-components';
+import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
 import Stake from './Stake';
 import YourTransactions from './Transactions/YourTransactions';
 import Unstake from './Unstake';
@@ -25,6 +28,9 @@ const StakingTab: React.FC = () => {
 
     const [lastValidStakingData, setLastValidStakingData] = useState<ThalesStakingData | undefined>(undefined);
     const [lastValidUserStakingData, setLastValidUserStakingData] = useState<UserStakingData | undefined>(undefined);
+    const [lastValidGlobalStakingData, setLastValidGlobalStakingData] = useState<GlobalStakingData | undefined>(
+        undefined
+    );
     const [stakeSelected, setStakeSelected] = useState<boolean>(true);
 
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
@@ -35,6 +41,21 @@ const StakingTab: React.FC = () => {
     const stakingDataQuery = useThalesStakingDataQuery(networkId, {
         enabled: isAppReady,
     });
+
+    const globalStakingDataQuery = useGlobalStakingDataQuery({ enabled: isAppReady });
+
+    useEffect(() => {
+        if (globalStakingDataQuery.isSuccess && globalStakingDataQuery.data) {
+            setLastValidGlobalStakingData(globalStakingDataQuery.data);
+        }
+    }, [globalStakingDataQuery.isSuccess, globalStakingDataQuery.data]);
+
+    const globalStakingData: GlobalStakingData | undefined = useMemo(() => {
+        if (globalStakingDataQuery.isSuccess && globalStakingDataQuery.data) {
+            return globalStakingDataQuery.data;
+        }
+        return lastValidGlobalStakingData;
+    }, [globalStakingDataQuery.isSuccess, globalStakingDataQuery.data, lastValidGlobalStakingData]);
 
     useEffect(() => {
         if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
@@ -99,8 +120,6 @@ const StakingTab: React.FC = () => {
         [thalesStaked, totalThalesStaked, escrowedBalance]
     );
 
-    const estimatedRewards = useMemo(() => (myStakedShare / 100) * baseRewardsPool, [myStakedShare, baseRewardsPool]);
-
     return (
         <>
             <Container>
@@ -113,26 +132,52 @@ const StakingTab: React.FC = () => {
                     </SectionTitle>
                     <div>
                         <InfoDiv>
-                            <span>APY:</span>
-                            <span>{formattedAPY}%</span>
-                        </InfoDiv>
-                        <InfoDiv>
-                            <span>{t('staking.staking.staking-data.my-staking-share')}:</span>
-                            <span>{formatCurrencyWithPrecision(myStakedShare)}%</span>
-                        </InfoDiv>
-                        <InfoDiv>
-                            <span>{t('staking.staking.staking-data.estimated-rewards')}:</span>
-                            <span>{formatCurrencyWithKey(THALES_CURRENCY, estimatedRewards)}</span>
-                        </InfoDiv>
-                        <InfoDiv>
-                            <span>{t('staking.staking.staking-data.for-date')}:</span>
+                            <TooltipContainer>
+                                APY:{' '}
+                                <Tooltip
+                                    overlay={t('staking.staking.staking-data.apy-tooltip')}
+                                    marginTop={2}
+                                    mobileIconFontSize={11}
+                                    iconFontSize={13}
+                                />
+                            </TooltipContainer>
                             <span>
-                                {stakingData
-                                    ? `${formatShortDate(
-                                          new Date(stakingData?.closingDate - stakingData?.durationPeriod)
-                                      )} - ${formatShortDate(new Date(stakingData?.closingDate))}`
-                                    : '-'}
+                                <FlexDiv gap="5px">
+                                    <TooltipContainer>
+                                        {globalStakingData?.thalesApy}%{' '}
+                                        <Tooltip
+                                            overlay={t('staking.staking.staking-data.bonus-estimated-rewards-tooltip')}
+                                            marginTop={2}
+                                            mobileIconFontSize={11}
+                                            iconFontSize={13}
+                                        />{' '}
+                                    </TooltipContainer>
+                                    <TooltipContainer>
+                                        {' '}
+                                        + {globalStakingData?.feeApy}%{' '}
+                                        <Tooltip
+                                            overlay={t('staking.staking.staking-data.fee-rewards-tooltip')}
+                                            marginTop={2}
+                                            mobileIconFontSize={11}
+                                            iconFontSize={13}
+                                        />
+                                    </TooltipContainer>
+                                </FlexDiv>
                             </span>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <span>
+                                <TooltipContainer>
+                                    {t('staking.staking.staking-data.my-staking-share')}:
+                                    <Tooltip
+                                        overlay={t('staking.staking.staking-data.staked-share-tooltip')}
+                                        marginTop={2}
+                                        mobileIconFontSize={11}
+                                        iconFontSize={13}
+                                    />
+                                </TooltipContainer>
+                            </span>
+                            <span>{formatCurrencyWithPrecision(myStakedShare)}%</span>
                         </InfoDiv>
                     </div>
                 </UpperLeft>
@@ -146,11 +191,31 @@ const StakingTab: React.FC = () => {
                     </SectionTitle>
                     <div>
                         <InfoDiv>
-                            <span>{t('staking.staking.my-balance.staked-directly')}:</span>
+                            <span>
+                                <TooltipContainer>
+                                    {t('staking.staking.my-balance.staked-directly')}:
+                                    <Tooltip
+                                        overlay={t('staking.staking.staking-data.staked-balance-tooltip')}
+                                        marginTop={2}
+                                        mobileIconFontSize={11}
+                                        iconFontSize={13}
+                                    />
+                                </TooltipContainer>
+                            </span>
                             <span>{formatCurrencyWithKey(THALES_CURRENCY, thalesStaked)}</span>
                         </InfoDiv>
                         <InfoDiv>
-                            <span>{t('staking.staking.my-balance.escrowed-balance')}:</span>
+                            <span>
+                                <TooltipContainer>
+                                    {t('staking.staking.my-balance.escrowed-balance')}:
+                                    <Tooltip
+                                        overlay={t('staking.staking.staking-data.escrowed-balance-tooltip')}
+                                        marginTop={2}
+                                        mobileIconFontSize={11}
+                                        iconFontSize={13}
+                                    />
+                                </TooltipContainer>
+                            </span>
                             <span>{formatCurrencyWithKey(THALES_CURRENCY, escrowedBalance)}</span>
                         </InfoDiv>
                     </div>

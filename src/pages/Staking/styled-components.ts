@@ -127,3 +127,8 @@ export const Container = styled.div`
         border-radius: 8px;
     }
 `;
+
+export const TooltipContainer = styled.span`
+    display: flex;
+    align-items: center;
+`;

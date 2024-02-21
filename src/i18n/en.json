@@ -351,9 +351,15 @@
         "staking": {
             "staking-data": {
                 "title": "Staking data",
-                "my-staking-share": "My Staking Share",
+                "my-staking-share": "My staked share",
                 "estimated-rewards": "Estimated Rewards",
-                "for-date": "For date"
+                "for-date": "For date",
+                "apy-tooltip": "These are estimations of Annual Percentage Yields for THALES token rewards and stablecoin Protocol Rewards",
+                "bonus-estimated-rewards-tooltip": "Annual Percentage Yield estimation for THALES token rewards",
+                "fee-rewards-tooltip": "Annual Percentage Yield estimation for Protocol Rewards in stablecoins",
+                "staked-share-tooltip": "Your percentage (%) of the total amount of THALES staked on this chain.",
+                "staked-balance-tooltip": "Amount of THALES tokens you are currently staking.",
+                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed."
             },
             "my-balance": {
                 "title": "My staking balance",
@@ -600,7 +606,12 @@
                 "thales-op": "Thales APR + OP APR",
                 "my-staking-share": "My staking share",
                 "tvl": "Total Value Locked (TVL)",
-                "my-staking-balance": "My Staking Balance"
+                "my-staking-balance": "My Staking Balance",
+                "staked-balance-tooltip": "How much liquidity you have staked in the LP staking contract.",
+                "apr-tooltip": "Total current Annual Percentage Return as sum of both OP and THALES rewards.",
+                "apr-percentage-tooltip": "Current Annual Percentage Return in THALES + OP tokens.",
+                "tvl-tooltip": "Total amount of liquidity staked in the LP staking contract.",
+                "share-tooltip": "My percentage share of the total staked liquidity in the LP staking contract."
             },
             "pool-text": "on {{ network }}",
             "claim": {

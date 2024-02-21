@@ -10,6 +10,7 @@ type TooltipProps = {
     customIconStyling?: CSSProperties;
     overlayInnerStyle?: CSSProperties;
     marginLeft?: number;
+    marginTop?: number;
     top?: number;
     overlayClassName?: string;
     iconColor?: string;
@@ -23,6 +24,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     customIconStyling,
     overlayInnerStyle,
     marginLeft,
+    marginTop,
     top,
     overlayClassName,
     iconColor,
@@ -45,6 +47,7 @@ const Tooltip: React.FC<TooltipProps> = ({
                     color={iconColor}
                     iconFontSize={iconFontSize}
                     marginLeft={marginLeft}
+                    marginTop={marginTop}
                     top={top}
                     style={customIconStyling}
                     mobileIconFontSize={mobileIconFontSize}
@@ -57,6 +60,7 @@ const Tooltip: React.FC<TooltipProps> = ({
 const InfoIcon = styled.i<{
     iconFontSize?: number;
     marginLeft?: number;
+    marginTop?: number;
     top?: number;
     color?: string;
     mobileIconFontSize?: number;
@@ -67,6 +71,7 @@ const InfoIcon = styled.i<{
     cursor: pointer;
     position: relative;
     margin-left: ${(props) => props.marginLeft || 4}px;
+    margin-top: ${(props) => props.marginTop || 0}px;
     top: ${(props) => props.top || 0}px;
     color: ${(props) => props.color || 'white'};
     &:before {
