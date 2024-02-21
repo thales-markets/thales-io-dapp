@@ -20,6 +20,7 @@ type NetworkSwitchProps = {
     supportedNetworks?: number[];
     forceNetworkSwitch?: boolean;
     xl?: boolean;
+    isWalletConnectorSwitch?: boolean;
 };
 
 const TRUNCATE_ADDRESS_NUMBER_OF_CHARS = 5;
@@ -30,6 +31,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
     supportedNetworks,
     forceNetworkSwitch,
     xl,
+    isWalletConnectorSwitch,
 }) => {
     const { switchNetwork } = useSwitchNetwork();
     const dispatch = useDispatch();
@@ -74,7 +76,12 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
         <OutsideClickHandler display="contents" onOutsideClick={() => isDropdownOpen && setIsDropdownOpen(false)}>
             <NetworkInfoContainer>
                 <SelectedNetworkContainer cursor={isLedgerLive ? 'initial' : 'pointer'}>
-                    <NetworkItem xl={xl} selectedItem={true} noHover>
+                    <NetworkItem
+                        onClick={() => !isWalletConnectorSwitch && setIsDropdownOpen(!isDropdownOpen)}
+                        xl={xl}
+                        selectedItem={true}
+                        noHover
+                    >
                         {!isWalletConnected ? (
                             <WalletIcon className="icon icon--wallet" />
                         ) : (
@@ -83,14 +90,24 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                 onClick: () => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive),
                             })
                         )}
-                        <span onClick={() => (isWalletConnected ? openAccountModal?.() : openConnectModal?.())}>
-                            {walletAddress
-                                ? truncateAddress(
-                                      walletAddress,
-                                      TRUNCATE_ADDRESS_NUMBER_OF_CHARS,
-                                      TRUNCATE_ADDRESS_NUMBER_OF_CHARS
-                                  )
-                                : t('common.wallet.connect-your-wallet')}
+                        <span
+                            onClick={() =>
+                                isWalletConnectorSwitch
+                                    ? isWalletConnected
+                                        ? openAccountModal?.()
+                                        : openConnectModal?.()
+                                    : setIsDropdownOpen(!isDropdownOpen)
+                            }
+                        >
+                            {isWalletConnectorSwitch
+                                ? walletAddress
+                                    ? truncateAddress(
+                                          walletAddress,
+                                          TRUNCATE_ADDRESS_NUMBER_OF_CHARS,
+                                          TRUNCATE_ADDRESS_NUMBER_OF_CHARS
+                                      )
+                                    : t('common.wallet.connect-your-wallet')
+                                : selectedNetwork.name}
                         </span>
                         {!hideNetworkSwitcher && (
                             <Icon

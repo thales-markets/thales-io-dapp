@@ -135,7 +135,7 @@ const App = () => {
                                 </DappLayout>
                             </Suspense>
                         </Route>
-                        <Route exact path={ROUTES.Staking}>
+                        <Route exact path={ROUTES.Token.Staking.Home}>
                             <Suspense fallback={<Loader />}>
                                 <DappLayout>
                                     <Staking />
@@ -149,14 +149,14 @@ const App = () => {
                                 </DappLayout>
                             </Suspense>
                         </Route>
-                        <Route exact path={ROUTES.LPStaking}>
+                        <Route exact path={ROUTES.Token.LPStaking}>
                             <Suspense fallback={<Loader />}>
                                 <DappLayout>
                                     <LPStaking />
                                 </DappLayout>
                             </Suspense>
                         </Route>
-                        <Route exact path={ROUTES.Bridge}>
+                        <Route exact path={ROUTES.Token.Bridge}>
                             <Suspense fallback={<Loader />}>
                                 <DappLayout>
                                     <Bridge />

@@ -162,12 +162,12 @@ const RightContainer = styled(FlexDivCentered)`
 
 const CurrencyLabel = styled.label<{ hasSeparator?: boolean }>`
     border-left: ${(props) => (props.hasSeparator ? `2px solid ${props.theme.borderColor.primary}` : 'none')};
-    font-weight: bold;
+    font-weight: normal;
     font-size: 13px;
     line-height: 20px;
     color: ${(props) => props.theme.textColor.primary};
-    padding-left: 8px;
-    padding-right: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
     pointer-events: none;
     &.disabled {
         opacity: 0.4;

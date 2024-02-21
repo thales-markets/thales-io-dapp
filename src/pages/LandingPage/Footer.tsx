@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
                         </FlexDivColumn>
                         <FlexDivColumn>
                             <ThalesLinksTitle>DAO DAPP</ThalesLinksTitle>
-                            <SPAAnchor href={buildHref(ROUTES.Staking)}>
+                            <SPAAnchor href={buildHref(ROUTES.Token.Staking.Home)}>
                                 <ThalesLinksItem>{t('home.footer.dao-dapp.staking')}</ThalesLinksItem>
                             </SPAAnchor>
                             <SPAAnchor href={buildHref(ROUTES.DAO.Home)}>

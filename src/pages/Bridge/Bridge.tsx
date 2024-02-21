@@ -325,28 +325,28 @@ const Bridge: React.FC = () => {
                                     forceNetworkSwitch={true}
                                 />
                             </NetworkSwitchWrapper>
+                            <SlippageContainer>
+                                <OutsideClickHandler
+                                    onOutsideClick={() => isSlippageDropdownOpen && setIsSlippageDropdownOpen(false)}
+                                >
+                                    <DetailsIcon
+                                        className="thales-icon thales-icon--gear"
+                                        onClick={() => setIsSlippageDropdownOpen(!isSlippageDropdownOpen)}
+                                    />
+                                    {isSlippageDropdownOpen && (
+                                        <SlippageDropDown>
+                                            <Slippage
+                                                fixed={BRIDGE_SLIPPAGE_PERCENTAGE}
+                                                defaultValue={slippage}
+                                                onChangeHandler={setSlippage}
+                                                maxValue={10}
+                                                tooltip={t('bridge.slippage-tooltip')}
+                                            />
+                                        </SlippageDropDown>
+                                    )}
+                                </OutsideClickHandler>
+                            </SlippageContainer>
                         </NetworkSwitchContainer>
-                        <SlippageContainer>
-                            <OutsideClickHandler
-                                onOutsideClick={() => isSlippageDropdownOpen && setIsSlippageDropdownOpen(false)}
-                            >
-                                <DetailsIcon
-                                    className="icon icon--gear"
-                                    onClick={() => setIsSlippageDropdownOpen(!isSlippageDropdownOpen)}
-                                />
-                                {isSlippageDropdownOpen && (
-                                    <SlippageDropDown>
-                                        <Slippage
-                                            fixed={BRIDGE_SLIPPAGE_PERCENTAGE}
-                                            defaultValue={slippage}
-                                            onChangeHandler={setSlippage}
-                                            maxValue={10}
-                                            tooltip={t('bridge.slippage-tooltip')}
-                                        />
-                                    </SlippageDropDown>
-                                )}
-                            </OutsideClickHandler>
-                        </SlippageContainer>
                     </FlexDivSpaceBetween>
                     <InputContainer mediaMarginBottom={10}>
                         <NumericInput
@@ -518,6 +518,7 @@ const InfoSection = styled.span`
 `;
 
 const NetworkSwitchContainer = styled(FlexDivColumn)`
+    position: relative;
     margin-top: 10px;
     margin-bottom: 15px;
 `;
@@ -569,7 +570,9 @@ const SubmitButtonContainer = styled(FlexDivColumnCentered)`
 `;
 
 const SlippageContainer = styled(FlexDivCentered)`
-    position: relative;
+    position: absolute;
+    right: 5px;
+    top: -5px;
 `;
 
 const SlippageDropDown = styled(FlexDivCentered)`
@@ -578,17 +581,17 @@ const SlippageDropDown = styled(FlexDivCentered)`
     top: 30px;
     right: 0;
     border-radius: 8px;
-    border: 2px solid ${(props) => props.theme.borderColor.primary};
     background: ${(props) => props.theme.background.primary};
-    width: 280px;
+    width: 260px;
     max-width: 280px;
     padding: 10px 15px;
     user-select: none;
+    box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
 `;
 
 const DetailsIcon = styled.i`
     font-size: 20px;
-    color: ${(props) => props.theme.textColor.secondary};
+    color: ${(props) => props.theme.textColor.tertiary};
     cursor: pointer;
     margin-bottom: 5px;
 `;

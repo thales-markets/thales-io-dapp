@@ -24,19 +24,19 @@ const DappHeader: React.FC = () => {
                 title: t('header.links.token'),
                 children: [
                     {
-                        href: buildHref(ROUTES.Staking),
+                        href: buildHref(ROUTES.Token.Staking.Home),
                         title: t('header.links.staking'),
-                        active: location.pathname === ROUTES.Staking,
+                        active: location.pathname === ROUTES.Token.Staking.Home,
                     },
                     {
-                        href: buildHref(ROUTES.Bridge),
+                        href: buildHref(ROUTES.Token.Bridge),
                         title: t('header.links.bridge'),
-                        active: location.pathname === ROUTES.Bridge,
+                        active: location.pathname === ROUTES.Token.Bridge,
                     },
                     {
-                        href: buildHref(ROUTES.LPStaking),
+                        href: buildHref(ROUTES.Token.LPStaking),
                         title: t('header.links.lp-staking'),
-                        active: location.pathname === ROUTES.LPStaking,
+                        active: location.pathname === ROUTES.Token.LPStaking,
                     },
                 ],
             },

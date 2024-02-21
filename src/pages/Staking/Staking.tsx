@@ -35,27 +35,27 @@ const Staking: React.FC = () => {
     const navItems: NavItemType[] = useMemo(() => {
         return [
             {
-                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.STAKING}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.STAKING}`,
                 title: t('staking.nav.staking'),
                 active: paramTab === Tab.STAKING,
             },
             {
-                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.REWARDS}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.REWARDS}`,
                 title: t('staking.nav.rewards'),
                 active: paramTab === Tab.REWARDS,
             },
             {
-                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.VESTING}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.VESTING}`,
                 title: t('staking.nav.vesting'),
                 active: paramTab === Tab.VESTING,
             },
             {
-                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.LEADERBOARD}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.LEADERBOARD}`,
                 title: t('staking.nav.leaderboard'),
                 active: paramTab === Tab.LEADERBOARD,
             },
             {
-                href: `${buildHref(ROUTES.Staking)}?tab=${Tab.ACC_PREFERENCES}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.ACC_PREFERENCES}`,
                 title: t('staking.nav.acc-preferences'),
                 active: paramTab === Tab.ACC_PREFERENCES,
             },
