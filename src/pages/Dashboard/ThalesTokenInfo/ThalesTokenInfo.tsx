@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Cell, Label, Legend, Pie } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
-import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
@@ -26,7 +25,6 @@ import {
 const ThalesTokenInfo: React.FC = () => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
-    const isMobile = useSelector(getIsMobile);
     const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
     const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
 
@@ -132,31 +130,24 @@ const ThalesTokenInfo: React.FC = () => {
         <WidgetWrapper isDoubleHeight={true}>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--thales-round-logo" />
-                <TitleLabel isMobile={isMobile}>{t('dashboard.token-info.title')}</TitleLabel>
+                <TitleLabel>{t('dashboard.token-info.title')}</TitleLabel>
             </WidgetHeader>
             <UpperInfoSection>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText isMobile={isMobile}>{t('dashboard.token-info.total-supply')}</InfoText>
-                    <InfoStats isMobile={isMobile}>
-                        {' '}
-                        {tokenInfo ? `${formatCurrency(tokenInfo.totalSupply)} THALES` : 'N/A'}
-                    </InfoStats>
+                    <InfoText>{t('dashboard.token-info.total-supply')}</InfoText>
+                    <InfoStats> {tokenInfo ? `${formatCurrency(tokenInfo.totalSupply)} THALES` : 'N/A'}</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText isMobile={isMobile}>{t('dashboard.token-info.circulating-supply')}</InfoText>
-                    <InfoStats isMobile={isMobile}>
-                        {tokenInfo ? `${formatCurrency(tokenInfo.circulatingSupply)} THALES` : 'N/A'}
-                    </InfoStats>
+                    <InfoText>{t('dashboard.token-info.circulating-supply')}</InfoText>
+                    <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.circulatingSupply)} THALES` : 'N/A'}</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText isMobile={isMobile}>{t('dashboard.token-info.burned-supply')}</InfoText>
-                    <InfoStats isMobile={isMobile}>
-                        {tokenInfo ? `${formatCurrency(tokenInfo.thalesBurned)} THALES` : 'N/A'}
-                    </InfoStats>
+                    <InfoText>{t('dashboard.token-info.burned-supply')}</InfoText>
+                    <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.thalesBurned)} THALES` : 'N/A'}</InfoStats>
                 </FlexDivFullWidthSpaceBetween>
                 <FlexDivFullWidthSpaceBetween>
-                    <InfoText isMobile={isMobile}>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>
-                    <InfoStats isMobile={isMobile}>
+                    <InfoText>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>
+                    <InfoStats>
                         {tokenInfo
                             ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.circulatingSupply) * 100)} %`
                             : 'N/A'}

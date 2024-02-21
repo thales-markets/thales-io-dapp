@@ -13,7 +13,7 @@ import { Bar, BarChart, Cell, Tooltip as ChartTooltip, XAxis } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
-import { Colors, FlexDiv } from 'styles/common';
+import { Colors, FlexDiv, FlexDivStart } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
 import { Staker } from 'types/governance';
 import { Fee, WeeklyStats } from 'types/statistics';
@@ -28,6 +28,7 @@ import {
     InfoStats,
     InfoText,
     StakingInfo,
+    StyledBarChart,
     TitleLabel,
     WidgetHeader,
     WidgetIcon,
@@ -139,11 +140,11 @@ const Staking: React.FC = () => {
         if (active && payload && payload.length) {
             return (
                 <ChartTooltipBox>
-                    <InfoText isMobile={isMobile} color={Colors.WHITE}>
+                    <InfoText color={Colors.WHITE}>
                         {payload[0].payload.name.toLowerCase() == 'revshare' ? 'Fees distributed' : 'Safebox fees'}
                     </InfoText>
-                    <InfoStats isMobile={isMobile}>$ {payload[0].payload.amount}</InfoStats>
-                    <InfoStats isMobile={isMobile}>{payload[0].payload.date}</InfoStats>
+                    <InfoStats>$ {payload[0].payload.amount}</InfoStats>
+                    <InfoStats>{payload[0].payload.date}</InfoStats>
                 </ChartTooltipBox>
             );
         }
@@ -151,17 +152,76 @@ const Staking: React.FC = () => {
         return null;
     };
 
-    return (
+    return isMobile ? (
+        <WidgetWrapper>
+            <WidgetHeader notFlex={true}>
+                <FlexDiv>
+                    <WidgetIcon className="icon icon--staking" />
+                    <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
+                </FlexDiv>
+                <FlexDivStart>
+                    <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
+                    <TitleLabel isHighlighted={true}>
+                        {globalStakingData
+                            ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
+                            : '-'}
+                    </TitleLabel>
+                </FlexDivStart>
+            </WidgetHeader>
+            <StakingInfo>
+                <InfoSection side="left">
+                    <InfoText>{t('dashboard.staking.thales-token-rewards')}</InfoText>
+                    <InfoText>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
+                    <InfoText>{t('dashboard.staking.total-stakers')}</InfoText>
+                    <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
+                    <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
+                </InfoSection>
+                <InfoSection side="right">
+                    <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}</InfoStats>
+                    <InfoStats>{globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}</InfoStats>
+                    <InfoStats>{stakersQuery.isLoading ? '-' : stakers.length}</InfoStats>
+                    <InfoStats>
+                        {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
+                    </InfoStats>
+                    <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)} %</InfoStats>
+                </InfoSection>
+            </StakingInfo>
+            <ChartWrapper>
+                <StyledBarChart width={650} height={200} data={chartData}>
+                    <XAxis
+                        axisLine={false}
+                        dataKey="month"
+                        tickLine={false}
+                        padding={{ left: 15, right: 15 }}
+                        interval={4}
+                    />
+                    <ChartTooltip
+                        content={<CustomTooltip />}
+                        cursor={{
+                            stroke: Colors.INDEPENDENCE,
+                            strokeWidth: 2,
+                            fill: 'transparent',
+                        }}
+                    />
+                    <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
+                        {chartData.map((slice, index) => (
+                            <Cell key={index} fill={slice.color} />
+                        ))}
+                    </Bar>
+                </StyledBarChart>
+            </ChartWrapper>
+        </WidgetWrapper>
+    ) : (
         <SPAAnchor href={buildHref(ROUTES.Token.Staking.Home)}>
             <WidgetWrapper>
                 <WidgetHeader isTwoSided={true}>
                     <FlexDiv>
                         <WidgetIcon className="icon icon--staking" />
-                        <TitleLabel isMobile={isMobile}>{t('dashboard.staking.title')}</TitleLabel>
+                        <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
                     </FlexDiv>
                     <FlexDivAlignStartSpaceBetween>
-                        <TitleLabel isMobile={isMobile}>{t('dashboard.staking.total-apy')}</TitleLabel>
-                        <TitleLabel isMobile={isMobile} isHighlighted={true}>
+                        <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
+                        <TitleLabel isHighlighted={true}>
                             {globalStakingData
                                 ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
                                 : '-'}
@@ -171,34 +231,28 @@ const Staking: React.FC = () => {
                 <StakingInfo>
                     <InfoSection side="left" justifyContent="start">
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText isMobile={isMobile}>{t('dashboard.staking.thales-token-rewards')}</InfoText>
-                            <InfoStats isMobile={isMobile}>
-                                {globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}
-                            </InfoStats>
+                            <InfoText>{t('dashboard.staking.thales-token-rewards')}</InfoText>
+                            <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}</InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText isMobile={isMobile}>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
-                            <InfoStats isMobile={isMobile}>
-                                {globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}
-                            </InfoStats>
+                            <InfoText>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
+                            <InfoStats>{globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}</InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText isMobile={isMobile}>{t('dashboard.staking.total-stakers')}</InfoText>
-                            <InfoStats isMobile={isMobile}>{stakers.length}</InfoStats>
+                            <InfoText>{t('dashboard.staking.total-stakers')}</InfoText>
+                            <InfoStats>{stakers.length}</InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                     </InfoSection>
                     <InfoSection side="right" justifyContent="start">
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText isMobile={isMobile}>{t('dashboard.staking.total-thales-staked')}</InfoText>
-                            <InfoStats isMobile={isMobile}>
+                            <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
+                            <InfoStats>
                                 {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
                             </InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                         <FlexDivFullWidthSpaceBetween>
-                            <InfoText isMobile={isMobile}>{t('dashboard.staking.of-circulating-supply')}</InfoText>
-                            <InfoStats isMobile={isMobile}>
-                                {stakedOfCirculatingSupplyPercentage.toFixed(2)} %
-                            </InfoStats>
+                            <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
+                            <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)} %</InfoStats>
                         </FlexDivFullWidthSpaceBetween>
                     </InfoSection>
                 </StakingInfo>
