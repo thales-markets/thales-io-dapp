@@ -89,7 +89,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                 </SubTitle>
                             </FlexDivColumn>
                             <LeaderboardLinkContainer>
-                                <SPAAnchor href={ROUTES.Token.Leaderboard}>
+                                <SPAAnchor href={ROUTES.Token.Staking.Leaderboard}>
                                     <LeaderboardLink>
                                         <i className="icon icon--protocol-volume" />
                                         {t('staking.nav.leaderboard')}
@@ -134,7 +134,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                 </InfoDiv>
                             </FlexDivColumn>
                             <LeaderboardLinkContainer>
-                                <SPAAnchor href={ROUTES.Token.Leaderboard}>
+                                <SPAAnchor href={ROUTES.Token.Staking.Leaderboard}>
                                     <LeaderboardLink>
                                         <i className="icon icon--protocol-volume" />
                                         {t('staking.nav.leaderboard')}

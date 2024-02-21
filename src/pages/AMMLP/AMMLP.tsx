@@ -89,17 +89,17 @@ const AMMLP: React.FC = () => {
     const navItems: NavItemType[] = useMemo(() => {
         return [
             {
-                href: `${buildHref(ROUTES.AMMLP)}?tab=${LiquidityPool.THALES}`,
+                href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
                 title: t('amm-lp.nav.thales'),
                 active: paramTab === LiquidityPool.THALES,
             },
             {
-                href: `${buildHref(ROUTES.AMMLP)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
+                href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
                 title: t('amm-lp.nav.overtime-single'),
                 active: paramTab === LiquidityPool.OVERTIME_SINGLE,
             },
             {
-                href: `${buildHref(ROUTES.AMMLP)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
+                href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
                 title: t('amm-lp.nav.overtime-parlay'),
                 active: paramTab === LiquidityPool.OVERTIME_PARLAY,
             },

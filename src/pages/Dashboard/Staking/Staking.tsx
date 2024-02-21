@@ -152,7 +152,7 @@ const Staking: React.FC = () => {
     };
 
     return (
-        <SPAAnchor href={buildHref(ROUTES.Staking)}>
+        <SPAAnchor href={buildHref(ROUTES.Token.Staking.Home)}>
             <WidgetWrapper>
                 <WidgetHeader isTwoSided={true}>
                     <FlexDiv>

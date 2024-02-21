@@ -135,7 +135,7 @@ const TokenArticle: React.FC = () => {
                     i18nKey="about-thales-token.paragraphs.5"
                     components={{
                         bold: <strong />,
-                        urlStaking: <a target="_blank" rel="noreferrer" href={buildHref(ROUTES.Staking)} />,
+                        urlStaking: <a target="_blank" rel="noreferrer" href={buildHref(ROUTES.Token.Staking.Home)} />,
                         urlStakingGuide: (
                             <a
                                 target="_blank"
