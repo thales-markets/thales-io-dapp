@@ -295,3 +295,7 @@
 .thales-icon--gear:before {
     content: '\0033';
 }
+
+.icon--house:before {
+    content: '\0056';
+}
