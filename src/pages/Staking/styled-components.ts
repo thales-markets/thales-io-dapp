@@ -30,10 +30,11 @@ export const SectionTitle = styled.div`
     }
 `;
 
-export const InfoDiv = styled.div`
+export const InfoDiv = styled.div<{ height?: string }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: ${(props) => props.height || 'auto'};
     > span:nth-child(2) {
         color: ${(props) => props.theme.textColor.primary};
         text-align: right;

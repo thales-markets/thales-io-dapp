@@ -115,7 +115,7 @@ const StakingTab: React.FC = () => {
                         </span>
                     </SectionTitle>
                     <div>
-                        <InfoDiv>
+                        <InfoDiv height="20px">
                             <TooltipContainer>
                                 APY:{' '}
                                 <Tooltip
@@ -150,17 +150,15 @@ const StakingTab: React.FC = () => {
                             </span>
                         </InfoDiv>
                         <InfoDiv>
-                            <span>
-                                <TooltipContainer>
-                                    {t('staking.staking.staking-data.my-staking-share')}:
-                                    <Tooltip
-                                        overlay={t('staking.staking.staking-data.staked-share-tooltip')}
-                                        marginTop={2}
-                                        mobileIconFontSize={11}
-                                        iconFontSize={13}
-                                    />
-                                </TooltipContainer>
-                            </span>
+                            <TooltipContainer>
+                                {t('staking.staking.staking-data.my-staking-share')}:
+                                <Tooltip
+                                    overlay={t('staking.staking.staking-data.staked-share-tooltip')}
+                                    marginTop={2}
+                                    mobileIconFontSize={11}
+                                    iconFontSize={13}
+                                />
+                            </TooltipContainer>
                             <span>{formatCurrencyWithPrecision(myStakedShare)}%</span>
                         </InfoDiv>
                     </div>
