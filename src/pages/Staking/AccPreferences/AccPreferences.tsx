@@ -119,7 +119,7 @@ const AccPreferences: React.FC = () => {
         });
         return Object.keys(map);
     }, [userTokenTransactions, walletAddress]);
-    console.log(addressesThatDelegateToYou);
+    console.log(addressesThatDelegateToYou, 'TODO');
     const isAccountMergingEnabled =
         srcStakingThalesQuery.isSuccess && srcStakingThalesQuery.data
             ? srcStakingThalesQuery.data.mergeAccountEnabled
@@ -410,7 +410,7 @@ const AccPreferences: React.FC = () => {
                             </SectionTitle>
                             <FlexDivColumn>
                                 <Subtitle>{t('staking.acc-preferences.source')}:</Subtitle>
-                                <TextInput value={walletAddress} disabled={true} />
+                                <TextInput inputFontSize="14px" value={walletAddress} disabled={true} />
                             </FlexDivColumn>
                             <FlexDivCentered>
                                 <Icon
@@ -422,6 +422,7 @@ const AccPreferences: React.FC = () => {
                             <FlexDivColumn>
                                 <Subtitle>{t('staking.acc-preferences.destination')}:</Subtitle>
                                 <TextInput
+                                    inputFontSize="14px"
                                     value={
                                         delegatedVolumeAddress !== ZERO_ADDRESS
                                             ? delegatedVolumeAddress
@@ -460,7 +461,7 @@ const AccPreferences: React.FC = () => {
                             </SectionTitle>
                             <FlexDivColumn>
                                 <Subtitle>{t('staking.acc-preferences.source')}:</Subtitle>
-                                <TextInput value={walletAddress} disabled={true} />
+                                <TextInput inputFontSize="14px" value={walletAddress} disabled={true} />
                             </FlexDivColumn>
                             <FlexDivCentered>
                                 <Icon
@@ -472,6 +473,7 @@ const AccPreferences: React.FC = () => {
                             <FlexDivColumn>
                                 <Subtitle>{t('staking.acc-preferences.destination')}:</Subtitle>
                                 <TextInput
+                                    inputFontSize="14px"
                                     value={destAddress}
                                     onChange={(e: any) => setDestAddress(e.target.value)}
                                     disabled={
@@ -507,6 +509,7 @@ const AccPreferences: React.FC = () => {
                             <Subtitle>{t('staking.acc-preferences.claim.subtitle')}:</Subtitle>
                             <FlexDivSpaceBetween>
                                 <TextInput
+                                    inputFontSize="14px"
                                     margin={'0'}
                                     value={claimAccount}
                                     onChange={(e: any) => setClaimAccount(e.target.value)}

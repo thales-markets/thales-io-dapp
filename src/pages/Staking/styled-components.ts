@@ -101,12 +101,14 @@ export const SectionHeader = styled(FlexDiv)`
 export const SectionDescription = styled.div`
     line-height: 180%;
     text-align: justify;
-    height: 130px;
     a {
         color: ${(props) => props.theme.textColor.secondary};
         &:hover {
             text-decoration: underline;
         }
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        height: 130px;
     }
 `;
 
