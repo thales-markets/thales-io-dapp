@@ -1,5 +1,6 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
-import { AreaChart, PieChart } from 'recharts';
+import { ScreenSizeBreakpoint } from 'enums/ui';
+import { AreaChart, BarChart, PieChart } from 'recharts';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivColumnNative, FlexDivRow, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 
@@ -80,6 +81,9 @@ export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean
     padding: 15px 20px 20px 20px;
     display: ${(props) => (props.notFlex ? '' : 'flex')};
     justify-content: ${(props) => (props.isTwoSided ? 'space-between' : '')};
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 15px 20px 0px 20px;
+    }
 `;
 
 export const NumericStats = styled.span`
@@ -90,26 +94,32 @@ export const NumericStats = styled.span`
     color: ${(props) => props.theme.textColor.secondary};
 `;
 
-export const InfoText = styled.span<{ color?: string; isMobile: boolean }>`
+export const InfoText = styled.span<{ color?: string }>`
     font-family: Nunito !important;
     font-weight: 400;
-    font-size: ${(props) => (props.isMobile ? `11px` : '13px')};
+    font-size: 13px;
     line-height: 20px;
     color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.tertiary)};
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 11px;
+    }
 `;
 
-export const InfoStats = styled.span<{ color?: string; isMobile: boolean }>`
+export const InfoStats = styled.span<{ color?: string }>`
     font-family: Nunito !important;
     font-weight: 800;
-    font-size: ${(props) => (props.isMobile ? `11px` : '13px')};
+    font-size: 13px;
     line-height: 20px;
     color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.primary)};
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 11px;
+    }
 `;
 
-export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolean; isMobile: boolean }>`
+export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolean }>`
     font-family: Nunito !important;
     font-weight: 700;
-    font-size: ${(props) => (props.isMobile ? `16px` : '18px')};
+    font-size: 18px;
     line-height: 25px;
     color: ${(props) =>
         props.isLink || props.isHighlighted ? props.theme.textColor.secondary : props.theme.textColor.primary};
@@ -118,6 +128,9 @@ export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolea
     text-transform: ${(props) => (props.isLink ? '' : 'uppercase')};
     letter-spacing: 1px;
     align-items: baseline;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 16px;
+    }
 `;
 
 export const UpperInfoSection = styled.div`
@@ -206,6 +219,9 @@ export const StyledPieChart = styled(PieChart)`
     display: flex;
     justify-self: center;
     align-self: flex-end;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100% !important;
+    }
 `;
 
 export const ChartInnerText = styled.span`
@@ -218,18 +234,25 @@ export const ChartInnerText = styled.span`
     text-align: center;
 `;
 
-export const FullWidthInfoSection = styled(FlexDiv)<{ isMobile: boolean }>`
+export const FullWidthInfoSection = styled(FlexDiv)`
     flex-direction: column;
     flex-wrap: wrap;
-    width: ${(props) => (props.isMobile ? '100%' : '670px')};
+    width: 670px;
     justify-content: start;
     height: 82px;
     padding: 0px 20px;
-    gap: ${(props) => (props.isMobile ? '0px 40px' : '0px 50px')};
+    gap: 0px 50px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        gap: 0px 40px;
+        width: 100%;
+    }
 `;
 
-export const FlexDivIntegrators = styled(FlexDivRow)<{ isMobile: boolean }>`
-    width: ${(props) => (props.isMobile ? '100%' : '290px')};
+export const FlexDivIntegrators = styled(FlexDivRow)`
+    width: 290px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+    }
 `;
 
 export const StyledAreaChart = styled(AreaChart)`
@@ -253,10 +276,23 @@ export const ChartTooltipBox = styled.div`
 export const StakingInfo = styled(FlexDivRow)`
     grid-area: top;
     margin-top: 35px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 175px;
+    }
 `;
 
 export const ChartWrapper = styled(FlexDivRow)`
     grid-area: 2 / 1 / 2 / 3;
     width: 100%;
     padding: 0px 20px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        height: 10px;
+    }
+`;
+
+export const StyledBarChart = styled(BarChart)`
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 310px !important;
+        margin-top: 30px;
+    }
 `;

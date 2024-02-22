@@ -15,6 +15,7 @@ import { VolumeStats } from 'types/statistics';
 import {
     FlexDivIntegrators,
     FullWidthInfoSection,
+    InfoSection,
     InfoStats,
     InfoText,
     LinkArrow,
@@ -27,7 +28,7 @@ import {
 const IntegratorsVolume: React.FC = () => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
-    const isMobile = useSelector((state: RootState) => getIsMobile(state));
+    const isMobile = useSelector(getIsMobile);
 
     const [integratorsData, setIntegratorsData] = useState<Integrator[]>([]);
     const [volumeStats, setVolumeStats] = useState<VolumeStats | undefined>();
@@ -56,53 +57,92 @@ const IntegratorsVolume: React.FC = () => {
         <WidgetWrapper>
             <WidgetHeader>
                 <WidgetIcon className="icon icon--integrators" />
-                <TitleLabel isMobile={isMobile}>{t('dashboard.integrators.title')}</TitleLabel>
+                <TitleLabel>{t('dashboard.integrators.title')}</TitleLabel>
             </WidgetHeader>
-            <FullWidthInfoSection isMobile={isMobile}>
-                <FlexDivIntegrators isMobile={isMobile}>
-                    <SPAAnchor href={LINKS.ThalesMarkets} style={{ cursor: 'pointer' }}>
-                        <InfoText isMobile={isMobile}>
-                            {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
-                        </InfoText>
-                        <InfoStats isMobile={isMobile}>
-                            $ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}
-                        </InfoStats>
-                    </SPAAnchor>
-                </FlexDivIntegrators>
-                <FlexDivIntegrators isMobile={isMobile}>
-                    <SPAAnchor href={LINKS.Overtime} style={{ cursor: 'pointer' }}>
-                        <InfoText isMobile={isMobile}>
-                            {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.GRAY} />
-                        </InfoText>
-                        <InfoStats isMobile={isMobile}>
+            {isMobile ? (
+                <>
+                    <InfoSection side="left">
+                        <SPAAnchor href={LINKS.ThalesMarkets} style={{ cursor: 'pointer' }}>
+                            <InfoText>
+                                {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
+                            </InfoText>
+                        </SPAAnchor>
+                        <SPAAnchor href={LINKS.Overtime} style={{ cursor: 'pointer' }}>
+                            <InfoText>
+                                {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.GRAY} />
+                            </InfoText>
+                        </SPAAnchor>
+                        <SPAAnchor href={LINKS.SpeedMarkets} style={{ cursor: 'pointer' }}>
+                            {' '}
+                            <InfoText>
+                                {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
+                            </InfoText>{' '}
+                        </SPAAnchor>
+                        {integratorsData.map((integrator, index) => (
+                            <SPAAnchor key={index} href={integrator.url} style={{ cursor: 'pointer' }}>
+                                <InfoText>
+                                    {integrator.id} <LinkArrow color={Colors.GRAY} />
+                                </InfoText>
+                            </SPAAnchor>
+                        ))}
+                    </InfoSection>
+                    <InfoSection side="right">
+                        <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}</InfoStats>
+                        <InfoStats>
                             ${' '}
                             {volumeStats
                                 ? formatCurrency(volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume)
                                 : 0}
                         </InfoStats>
-                    </SPAAnchor>
-                </FlexDivIntegrators>
-                <FlexDivIntegrators isMobile={isMobile}>
-                    <SPAAnchor href={LINKS.SpeedMarkets} style={{ cursor: 'pointer' }}>
-                        <InfoText isMobile={isMobile}>
-                            {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
-                        </InfoText>
-                        <InfoStats isMobile={isMobile}>
-                            $ {volumeStats ? formatCurrency(volumeStats?.speedAmmVolume) : 0}
-                        </InfoStats>
-                    </SPAAnchor>
-                </FlexDivIntegrators>
-                {integratorsData.map((integrator, index) => (
-                    <FlexDivIntegrators key={index} isMobile={isMobile}>
-                        <SPAAnchor href={integrator.url} style={{ cursor: 'pointer' }}>
-                            <InfoText isMobile={isMobile}>
-                                {integrator.id} <LinkArrow color={Colors.GRAY} />
+                        <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.speedAmmVolume) : 0}</InfoStats>
+                        {integratorsData.map((integrator, index) => (
+                            <InfoStats key={index}>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
+                        ))}
+                    </InfoSection>
+                </>
+            ) : (
+                <FullWidthInfoSection>
+                    <FlexDivIntegrators>
+                        <SPAAnchor href={LINKS.ThalesMarkets} style={{ cursor: 'pointer' }}>
+                            <InfoText>
+                                {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
                             </InfoText>
-                            <InfoStats isMobile={isMobile}>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
+                            <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}</InfoStats>
                         </SPAAnchor>
                     </FlexDivIntegrators>
-                ))}
-            </FullWidthInfoSection>
+                    <FlexDivIntegrators>
+                        <SPAAnchor href={LINKS.Overtime} style={{ cursor: 'pointer' }}>
+                            <InfoText>
+                                {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.GRAY} />
+                            </InfoText>
+                            <InfoStats>
+                                ${' '}
+                                {volumeStats
+                                    ? formatCurrency(volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume)
+                                    : 0}
+                            </InfoStats>
+                        </SPAAnchor>
+                    </FlexDivIntegrators>
+                    <FlexDivIntegrators>
+                        <SPAAnchor href={LINKS.SpeedMarkets} style={{ cursor: 'pointer' }}>
+                            <InfoText>
+                                {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
+                            </InfoText>
+                            <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.speedAmmVolume) : 0}</InfoStats>
+                        </SPAAnchor>
+                    </FlexDivIntegrators>
+                    {integratorsData.map((integrator, index) => (
+                        <FlexDivIntegrators key={index}>
+                            <SPAAnchor href={integrator.url} style={{ cursor: 'pointer' }}>
+                                <InfoText>
+                                    {integrator.id} <LinkArrow color={Colors.GRAY} />
+                                </InfoText>
+                                <InfoStats>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
+                            </SPAAnchor>
+                        </FlexDivIntegrators>
+                    ))}
+                </FullWidthInfoSection>
+            )}
         </WidgetWrapper>
     );
 };
