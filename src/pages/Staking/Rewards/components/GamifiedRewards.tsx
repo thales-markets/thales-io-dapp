@@ -54,7 +54,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                             <i className="icon icon--gift" />
                             {t('staking.rewards.your-rewards.title')}
                         </span>
-                        {!isMobile && !isClaimed && (
+                        {!isMobile && !isClaimed && !stakingData?.closingPeriodInProgress && (
                             <span>
                                 <GamifiedRewardItem>
                                     <ItemTitle>
