@@ -11,6 +11,6 @@ export const LoaderContainer = styled.div`
 
 export const CustomCircularProgress = styled(CircularProgress)`
     &.MuiCircularProgress-colorPrimary {
-        color: ${(props) => props.theme.background.secondary};
+        color: ${(props) => props.theme.textColor.secondary};
     }
 `;

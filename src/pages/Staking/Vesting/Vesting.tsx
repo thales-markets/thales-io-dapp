@@ -105,7 +105,7 @@ const Vesting: React.FC = () => {
 
     return (
         <>
-            <Container marginBottom={isWalletConnected ? '0' : '50px'}>
+            <Container marginBottom={isWalletConnected && !!scheduleData.length ? '0' : '50px'}>
                 <LoadingContainer isLoading={userVestingDataQuery.isLoading}>
                     <FlexDivColumn>
                         <VestingWrapper gap="20px">
@@ -134,7 +134,7 @@ const Vesting: React.FC = () => {
                     </FlexDivColumn>
                 </LoadingContainer>
             </Container>
-            {isWalletConnected && (
+            {isWalletConnected && !!scheduleData.length && (
                 <ScheduleWrapper>
                     {scheduleData.map((data, index) => {
                         return (
