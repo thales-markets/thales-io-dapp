@@ -1,6 +1,6 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import coinsAnimation from 'assets/lotties/rewards-coins.json';
-import SimpleLoader from 'components/SimpleLoader';
+import LoadingContainer from 'components/LoadingContainer';
 import TimeRemaining from 'components/TimeRemaining';
 import {
     getDefaultToastContent,
@@ -107,12 +107,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
 
     return (
         <>
-            {isLoading && (
-                <FlexDiv>
-                    <SimpleLoader />
-                </FlexDiv>
-            )}
-            {!isLoading && (
+            <LoadingContainer isLoading={isLoading}>
                 <ClaimableRewardsContainer>
                     <RewardsDetailsContainer>
                         <SectionTitle>
@@ -255,7 +250,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                         </IconContainer>
                     )}
                 </ClaimableRewardsContainer>
-            )}
+            </LoadingContainer>
         </>
     );
 };

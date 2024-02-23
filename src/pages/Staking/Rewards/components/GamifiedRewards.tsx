@@ -1,6 +1,6 @@
 import Collapse from 'components/Collapse';
+import LoadingContainer from 'components/LoadingContainer';
 import SPAAnchor from 'components/SPAAnchor';
-import SimpleLoader from 'components/SimpleLoader';
 import { THALES_CURRENCY } from 'constants/currency';
 import ROUTES from 'constants/routes';
 import { ScreenSizeBreakpoint } from 'enums/ui';
@@ -42,12 +42,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
 
     return (
         <>
-            {isLoading && (
-                <LoaderWrapper>
-                    <SimpleLoader />
-                </LoaderWrapper>
-            )}
-            {!isLoading && (
+            <LoadingContainer isLoading={isLoading}>
                 <div>
                     <SectionTitle>
                         <span>
@@ -237,7 +232,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                         </FlexDivColumnCentered>
                     )}
                 </div>
-            )}
+            </LoadingContainer>
         </>
     );
 };

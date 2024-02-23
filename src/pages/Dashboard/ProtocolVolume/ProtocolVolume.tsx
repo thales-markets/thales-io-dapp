@@ -1,4 +1,4 @@
-import LoadingContainer from 'components/LoadingContainer/LoadingContainer';
+import LoadingContainer from 'components/LoadingContainer';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';

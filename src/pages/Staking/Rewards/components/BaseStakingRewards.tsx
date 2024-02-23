@@ -1,4 +1,4 @@
-import SimpleLoader from 'components/SimpleLoader';
+import LoadingContainer from 'components/LoadingContainer';
 import { THALES_CURRENCY } from 'constants/currency';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { InfoDiv } from 'pages/Staking/styled-components';
@@ -33,12 +33,7 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
 
     return (
         <>
-            {isLoading && (
-                <LoaderWrapper>
-                    <SimpleLoader />
-                </LoaderWrapper>
-            )}
-            {!isLoading && (
+            <LoadingContainer isLoading={isLoading}>
                 <div>
                     <SectionTitle>
                         <span>
@@ -84,14 +79,10 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                         </FlexDivColumn>
                     </DataWrapper>
                 </div>
-            )}
+            </LoadingContainer>
         </>
     );
 };
-
-const LoaderWrapper = styled(FlexDiv)`
-    margin: 40px 0px;
-`;
 
 const DataWrapper = styled(FlexDiv)`
     margin-top: 35px;

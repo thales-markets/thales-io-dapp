@@ -1,3 +1,4 @@
+import LoadingContainer from 'components/LoadingContainer';
 import TimeRemaining from 'components/TimeRemaining';
 import { USD_SIGN } from 'constants/currency';
 import useStakersDataLeaderboardQuery, {
@@ -106,118 +107,124 @@ const Leaderboard: React.FC = () => {
         <>
             <Container>
                 <Top>
-                    <FlexDiv gap="30px">
-                        <FlexDivColumnSpaceBetween>
-                            <SectionTitle>
-                                <span>
-                                    <i className="icon icon--hourglass" />
-                                    {t('staking.leaderboard.time-left.title')}
-                                </span>
-                                <span>
-                                    <TimeRemaining
-                                        end={closingDate}
-                                        textColor={theme.textColor.secondary}
-                                        fontSize={18}
-                                        showFullCounter
-                                        fontWeight={700}
+                    <LoadingContainer isLoading={leaderboardQuery.isLoading}>
+                        <FlexDiv gap="30px">
+                            <FlexDivColumnSpaceBetween>
+                                <SectionTitle>
+                                    <span>
+                                        <i className="icon icon--hourglass" />
+                                        {t('staking.leaderboard.time-left.title')}
+                                    </span>
+                                    <span>
+                                        <TimeRemaining
+                                            end={closingDate}
+                                            textColor={theme.textColor.secondary}
+                                            fontSize={18}
+                                            showFullCounter
+                                            fontWeight={700}
+                                        />
+                                    </span>
+                                </SectionTitle>
+                                <FlexDivColumnBottom>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.time-left.points-for')}</span>
+                                        <span>{formatCurrencyWithKey('', globalData.estimationForOneThales, 2)}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.time-left.multiplier')}</span>
+                                        <span>x{globalData.maxStakingMultiplier}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.time-left.total-points')}</span>
+                                        <span>{formatCurrencyWithKey('', globalData.globalPoints, 2)}</span>
+                                    </InfoDiv>
+                                </FlexDivColumnBottom>
+                            </FlexDivColumnSpaceBetween>
+                            <FlexDivColumnSpaceBetween>
+                                <SectionDescription>
+                                    {t('staking.leaderboard.time-left.description')}
+                                </SectionDescription>
+                                <FlexDivColumnBottom>
+                                    <PeriodDropdown
+                                        period={Number(period)}
+                                        setPeriod={setPeriod}
+                                        allPeriods={[
+                                            Number(currentPeriod),
+                                            currentPeriod - 1,
+                                            currentPeriod - 2,
+                                            currentPeriod - 3,
+                                        ]}
                                     />
-                                </span>
-                            </SectionTitle>
-                            <FlexDivColumnBottom>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.time-left.points-for')}</span>
-                                    <span>{formatCurrencyWithKey('', globalData.estimationForOneThales, 2)}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.time-left.multiplier')}</span>
-                                    <span>x{globalData.maxStakingMultiplier}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.time-left.total-points')}</span>
-                                    <span>{formatCurrencyWithKey('', globalData.globalPoints, 2)}</span>
-                                </InfoDiv>
-                            </FlexDivColumnBottom>
-                        </FlexDivColumnSpaceBetween>
-                        <FlexDivColumnSpaceBetween>
-                            <SectionDescription>{t('staking.leaderboard.time-left.description')}</SectionDescription>
-                            <FlexDivColumnBottom>
-                                <PeriodDropdown
-                                    period={Number(period)}
-                                    setPeriod={setPeriod}
-                                    allPeriods={[
-                                        Number(currentPeriod),
-                                        currentPeriod - 1,
-                                        currentPeriod - 2,
-                                        currentPeriod - 3,
-                                    ]}
-                                />
-                            </FlexDivColumnBottom>
-                        </FlexDivColumnSpaceBetween>
-                    </FlexDiv>
+                                </FlexDivColumnBottom>
+                            </FlexDivColumnSpaceBetween>
+                        </FlexDiv>
+                    </LoadingContainer>
                 </Top>
                 <Bottom>
-                    <FlexDiv gap="20px">
-                        <FlexDivColumnSpaceBetween>
-                            <LeaderboardBreakdownTitle>
-                                <i className="icon icon--magnifying-glass" />
-                                <span>{t('staking.leaderboard.breakdown.trading')}</span>
-                            </LeaderboardBreakdownTitle>
-                            <div>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.breakdown.volume')}</span>
-                                    <span>{formatCurrencyWithKey(USD_SIGN, globalData.globalTrading, 2)}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
-                                    <span>x{globalData.tradingMultiplier}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.breakdown.points')}</span>
-                                    <span>{formatCurrencyWithKey('', globalData.tradingPoints, 2)}</span>
-                                </InfoDiv>
-                            </div>
-                        </FlexDivColumnSpaceBetween>
-                        <FlexDivColumnSpaceBetween>
-                            <LeaderboardBreakdownTitle>
-                                <i className="icon icon--dollar-arrow-circle" />
-                                <span>{t('staking.leaderboard.breakdown.amm-lp')}</span>
-                            </LeaderboardBreakdownTitle>
-                            <div>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.breakdown.volume')}</span>
-                                    <span>{formatCurrencyWithKey(USD_SIGN, globalData.globalLp, 2)}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
-                                    <span>x{globalData.lpMultiplier}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.breakdown.points')}</span>
-                                    <span>{formatCurrencyWithKey('', globalData.lpPoints, 2)}</span>
-                                </InfoDiv>
-                            </div>
-                        </FlexDivColumnSpaceBetween>
-                        <FlexDivColumnSpaceBetween>
-                            <LeaderboardBreakdownTitle>
-                                <i className="icon icon--thales-cog" />
-                                <span>{t('staking.leaderboard.breakdown.vaults')}</span>
-                            </LeaderboardBreakdownTitle>
-                            <div>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.breakdown.volume')}</span>
-                                    <span>{formatCurrencyWithKey(USD_SIGN, globalData.globalVaults, 2)}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
-                                    <span>x{globalData.vaultMultiplier}</span>
-                                </InfoDiv>
-                                <InfoDiv>
-                                    <span>{t('staking.leaderboard.breakdown.points')}</span>
-                                    <span>{formatCurrencyWithKey('', globalData.vaultPoints, 2)}</span>
-                                </InfoDiv>
-                            </div>
-                        </FlexDivColumnSpaceBetween>
-                    </FlexDiv>
+                    <LoadingContainer isLoading={leaderboardQuery.isLoading}>
+                        <FlexDiv gap="20px">
+                            <FlexDivColumnSpaceBetween>
+                                <LeaderboardBreakdownTitle>
+                                    <i className="icon icon--magnifying-glass" />
+                                    <span>{t('staking.leaderboard.breakdown.trading')}</span>
+                                </LeaderboardBreakdownTitle>
+                                <div>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.breakdown.volume')}</span>
+                                        <span>{formatCurrencyWithKey(USD_SIGN, globalData.globalTrading, 2)}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
+                                        <span>x{globalData.tradingMultiplier}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.breakdown.points')}</span>
+                                        <span>{formatCurrencyWithKey('', globalData.tradingPoints, 2)}</span>
+                                    </InfoDiv>
+                                </div>
+                            </FlexDivColumnSpaceBetween>
+                            <FlexDivColumnSpaceBetween>
+                                <LeaderboardBreakdownTitle>
+                                    <i className="icon icon--dollar-arrow-circle" />
+                                    <span>{t('staking.leaderboard.breakdown.amm-lp')}</span>
+                                </LeaderboardBreakdownTitle>
+                                <div>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.breakdown.volume')}</span>
+                                        <span>{formatCurrencyWithKey(USD_SIGN, globalData.globalLp, 2)}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
+                                        <span>x{globalData.lpMultiplier}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.breakdown.points')}</span>
+                                        <span>{formatCurrencyWithKey('', globalData.lpPoints, 2)}</span>
+                                    </InfoDiv>
+                                </div>
+                            </FlexDivColumnSpaceBetween>
+                            <FlexDivColumnSpaceBetween>
+                                <LeaderboardBreakdownTitle>
+                                    <i className="icon icon--thales-cog" />
+                                    <span>{t('staking.leaderboard.breakdown.vaults')}</span>
+                                </LeaderboardBreakdownTitle>
+                                <div>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.breakdown.volume')}</span>
+                                        <span>{formatCurrencyWithKey(USD_SIGN, globalData.globalVaults, 2)}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
+                                        <span>x{globalData.vaultMultiplier}</span>
+                                    </InfoDiv>
+                                    <InfoDiv>
+                                        <span>{t('staking.leaderboard.breakdown.points')}</span>
+                                        <span>{formatCurrencyWithKey('', globalData.vaultPoints, 2)}</span>
+                                    </InfoDiv>
+                                </div>
+                            </FlexDivColumnSpaceBetween>
+                        </FlexDiv>
+                    </LoadingContainer>
                 </Bottom>
             </Container>
             <Table

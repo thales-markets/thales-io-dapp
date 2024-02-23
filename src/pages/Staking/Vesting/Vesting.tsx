@@ -1,3 +1,4 @@
+import LoadingContainer from 'components/LoadingContainer';
 import {
     getDefaultToastContent,
     getErrorToastOptions,
@@ -105,31 +106,33 @@ const Vesting: React.FC = () => {
     return (
         <>
             <Container marginBottom={isWalletConnected ? '0' : '50px'}>
-                <FlexDivColumn>
-                    <VestingWrapper gap="20px">
-                        <AvailableToVestWrapper>
-                            <SectionTitle>
-                                <span>
-                                    <i className="icon icon--staking" />
-                                    {t('staking.vesting.title')}
-                                </span>
-                            </SectionTitle>
-                            <Amount>{formatCurrencyWithKey(THALES_CURRENCY, claimable, 0, true)}</Amount>
-                        </AvailableToVestWrapper>
-                        <DescriptionWrapper>
-                            <SectionDescription>
-                                <Trans
-                                    i18nKey="staking.vesting.description"
-                                    components={{
-                                        strong: <HighlightedDescText />,
-                                    }}
-                                />
-                            </SectionDescription>
-                            {/* <VestingValid>{t('staking.vesting.vested-until')} 30. November 2023.</VestingValid> */}
-                        </DescriptionWrapper>
-                    </VestingWrapper>
-                    <FlexDivCentered>{getVestButton()}</FlexDivCentered>
-                </FlexDivColumn>
+                <LoadingContainer isLoading={userVestingDataQuery.isLoading}>
+                    <FlexDivColumn>
+                        <VestingWrapper gap="20px">
+                            <AvailableToVestWrapper>
+                                <SectionTitle>
+                                    <span>
+                                        <i className="icon icon--staking" />
+                                        {t('staking.vesting.title')}
+                                    </span>
+                                </SectionTitle>
+                                <Amount>{formatCurrencyWithKey(THALES_CURRENCY, claimable, 0, true)}</Amount>
+                            </AvailableToVestWrapper>
+                            <DescriptionWrapper>
+                                <SectionDescription>
+                                    <Trans
+                                        i18nKey="staking.vesting.description"
+                                        components={{
+                                            strong: <HighlightedDescText />,
+                                        }}
+                                    />
+                                </SectionDescription>
+                                {/* <VestingValid>{t('staking.vesting.vested-until')} 30. November 2023.</VestingValid> */}
+                            </DescriptionWrapper>
+                        </VestingWrapper>
+                        <FlexDivCentered>{getVestButton()}</FlexDivCentered>
+                    </FlexDivColumn>
+                </LoadingContainer>
             </Container>
             {isWalletConnected && (
                 <ScheduleWrapper>

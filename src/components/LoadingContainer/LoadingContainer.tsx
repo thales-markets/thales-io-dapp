@@ -1,4 +1,4 @@
-import { Container, CustomCircularProgress } from './styled-components';
+import { CustomCircularProgress, LoaderContainer } from './styled-components';
 
 type LoadingContainerProps = {
     isLoading: boolean;
@@ -6,7 +6,17 @@ type LoadingContainerProps = {
 };
 
 const LoadingContainer: React.FC<LoadingContainerProps> = ({ isLoading, children }) => {
-    return <Container>{isLoading ? <CustomCircularProgress /> : children}</Container>;
+    return (
+        <>
+            {isLoading ? (
+                <LoaderContainer>
+                    <CustomCircularProgress />
+                </LoaderContainer>
+            ) : (
+                children
+            )}
+        </>
+    );
 };
 
 export default LoadingContainer;

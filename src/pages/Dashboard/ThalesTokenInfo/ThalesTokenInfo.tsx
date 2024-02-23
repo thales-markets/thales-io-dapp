@@ -1,4 +1,4 @@
-import LoadingContainer from 'components/LoadingContainer/LoadingContainer';
+import LoadingContainer from 'components/LoadingContainer';
 import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useMemo, useState } from 'react';

@@ -1,4 +1,4 @@
-import LoadingContainer from 'components/LoadingContainer/LoadingContainer';
+import LoadingContainer from 'components/LoadingContainer';
 import SPAAnchor from 'components/SPAAnchor';
 import { MONTH_NAMES } from 'constants/date';
 import ROUTES from 'constants/routes';

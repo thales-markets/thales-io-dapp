@@ -1,4 +1,4 @@
-import LoadingContainer from 'components/LoadingContainer/LoadingContainer';
+import LoadingContainer from 'components/LoadingContainer';
 import SPAAnchor from 'components/SPAAnchor';
 import ROUTES from 'constants/routes';
 import { SpaceKey } from 'enums/governance';
