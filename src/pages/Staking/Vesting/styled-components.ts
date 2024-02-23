@@ -63,12 +63,18 @@ export const VestingValid = styled.div`
 `;
 
 export const ScheduleWrapper = styled(FlexDiv)`
-    overflow: hidden;
+    overflow: auto;
     width: 70%;
     align-items: center;
     justify-content: center;
     padding: 90px 0px 90px 0px;
     margin: 30px 0px;
+    ::-webkit-scrollbar {
+        height: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: ${(props) => props.theme.textColor.quaternary};
+    }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
         /* margin: 30px 0px; */
