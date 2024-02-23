@@ -1,3 +1,4 @@
+import LoadingContainer from 'components/LoadingContainer/LoadingContainer';
 import SPAAnchor from 'components/SPAAnchor';
 import ROUTES from 'constants/routes';
 import { SpaceKey } from 'enums/governance';
@@ -36,28 +37,30 @@ const Governance: React.FC = () => {
     }, [proposalsQuery.isSuccess, proposalsQuery.data]);
 
     return (
-        <SPAAnchor href={buildHref(ROUTES.DAO.Home)}>
-            <WidgetWrapper>
-                <WidgetHeader>
-                    <WidgetIcon className="icon icon--governance" />
-                    <TitleLabel>{t('dashboard.governance.title')}</TitleLabel>
-                </WidgetHeader>
+        <LoadingContainer isLoading={proposalsQuery.isLoading}>
+            <SPAAnchor href={buildHref(ROUTES.DAO.Home)}>
+                <WidgetWrapper>
+                    <WidgetHeader>
+                        <WidgetIcon className="icon icon--governance" />
+                        <TitleLabel>{t('dashboard.governance.title')}</TitleLabel>
+                    </WidgetHeader>
 
-                <InfoSection side="left">
-                    <DoubleSideSectionSpan>
-                        <InfoText>{t('dashboard.governance.total-proposals')}</InfoText>
-                    </DoubleSideSectionSpan>
-                    <DoubleSideSectionSpan>
-                        <InfoText>{t('dashboard.governance.latest-proposal')}</InfoText>
-                        <br />
-                        <InfoStats>{latestProposal ? latestProposal.title : '-'}</InfoStats>
-                    </DoubleSideSectionSpan>
-                </InfoSection>
-                <InfoSection side="right" justifyContent="start">
-                    <InfoStats>{totalProposals}</InfoStats>
-                </InfoSection>
-            </WidgetWrapper>
-        </SPAAnchor>
+                    <InfoSection side="left">
+                        <DoubleSideSectionSpan>
+                            <InfoText>{t('dashboard.governance.total-proposals')}</InfoText>
+                        </DoubleSideSectionSpan>
+                        <DoubleSideSectionSpan>
+                            <InfoText>{t('dashboard.governance.latest-proposal')}</InfoText>
+                            <br />
+                            <InfoStats>{latestProposal ? latestProposal.title : '-'}</InfoStats>
+                        </DoubleSideSectionSpan>
+                    </InfoSection>
+                    <InfoSection side="right" justifyContent="start">
+                        <InfoStats>{totalProposals}</InfoStats>
+                    </InfoSection>
+                </WidgetWrapper>
+            </SPAAnchor>
+        </LoadingContainer>
     );
 };
 

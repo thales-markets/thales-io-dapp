@@ -1,3 +1,4 @@
+import LoadingContainer from 'components/LoadingContainer/LoadingContainer';
 import SPAAnchor from 'components/SPAAnchor';
 import { MONTH_NAMES } from 'constants/date';
 import ROUTES from 'constants/routes';
@@ -152,136 +153,147 @@ const Staking: React.FC = () => {
         return null;
     };
 
-    return isMobile ? (
-        <WidgetWrapper>
-            <WidgetHeader notFlex={true}>
-                <FlexDiv>
-                    <WidgetIcon className="icon icon--staking" />
-                    <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
-                </FlexDiv>
-                <FlexDivStart>
-                    <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
-                    <TitleLabel isHighlighted={true}>
-                        {globalStakingData
-                            ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
-                            : '-'}
-                    </TitleLabel>
-                </FlexDivStart>
-            </WidgetHeader>
-            <StakingInfo>
-                <InfoSection side="left">
-                    <InfoText>{t('dashboard.staking.thales-token-rewards')}</InfoText>
-                    <InfoText>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
-                    <InfoText>{t('dashboard.staking.total-stakers')}</InfoText>
-                    <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
-                    <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
-                </InfoSection>
-                <InfoSection side="right">
-                    <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}</InfoStats>
-                    <InfoStats>{globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}</InfoStats>
-                    <InfoStats>{stakersQuery.isLoading ? '-' : stakers.length}</InfoStats>
-                    <InfoStats>
-                        {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
-                    </InfoStats>
-                    <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)} %</InfoStats>
-                </InfoSection>
-            </StakingInfo>
-            <ChartWrapper>
-                <StyledBarChart width={650} height={200} data={chartData}>
-                    <XAxis
-                        axisLine={false}
-                        dataKey="month"
-                        tickLine={false}
-                        padding={{ left: 15, right: 15 }}
-                        interval={4}
-                    />
-                    <ChartTooltip
-                        content={<CustomTooltip />}
-                        cursor={{
-                            stroke: Colors.INDEPENDENCE,
-                            strokeWidth: 2,
-                            fill: 'transparent',
-                        }}
-                    />
-                    <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
-                        {chartData.map((slice, index) => (
-                            <Cell key={index} fill={slice.color} />
-                        ))}
-                    </Bar>
-                </StyledBarChart>
-            </ChartWrapper>
-        </WidgetWrapper>
-    ) : (
-        <SPAAnchor href={buildHref(ROUTES.Token.Staking.Home)}>
-            <WidgetWrapper>
-                <WidgetHeader isTwoSided={true}>
-                    <FlexDiv>
-                        <WidgetIcon className="icon icon--staking" />
-                        <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
-                    </FlexDiv>
-                    <FlexDivAlignStartSpaceBetween>
-                        <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
-                        <TitleLabel isHighlighted={true}>
-                            {globalStakingData
-                                ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
-                                : '-'}
-                        </TitleLabel>
-                    </FlexDivAlignStartSpaceBetween>
-                </WidgetHeader>
-                <StakingInfo>
-                    <InfoSection side="left" justifyContent="start">
-                        <FlexDivFullWidthSpaceBetween>
+    return (
+        <LoadingContainer
+            isLoading={globalStakingDataQuery.isLoading || tokenInfoQuery.isLoading || weeklyStatsQuery.isLoading}
+        >
+            {' '}
+            {isMobile ? (
+                <WidgetWrapper>
+                    <WidgetHeader notFlex={true}>
+                        <FlexDiv>
+                            <WidgetIcon className="icon icon--staking" />
+                            <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
+                        </FlexDiv>
+                        <FlexDivStart>
+                            <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
+                            <TitleLabel isHighlighted={true}>
+                                {globalStakingData
+                                    ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
+                                    : '-'}
+                            </TitleLabel>
+                        </FlexDivStart>
+                    </WidgetHeader>
+                    <StakingInfo>
+                        <InfoSection side="left">
                             <InfoText>{t('dashboard.staking.thales-token-rewards')}</InfoText>
-                            <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}</InfoStats>
-                        </FlexDivFullWidthSpaceBetween>
-                        <FlexDivFullWidthSpaceBetween>
                             <InfoText>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
-                            <InfoStats>{globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}</InfoStats>
-                        </FlexDivFullWidthSpaceBetween>
-                        <FlexDivFullWidthSpaceBetween>
                             <InfoText>{t('dashboard.staking.total-stakers')}</InfoText>
-                            <InfoStats>{stakers.length}</InfoStats>
-                        </FlexDivFullWidthSpaceBetween>
-                    </InfoSection>
-                    <InfoSection side="right" justifyContent="start">
-                        <FlexDivFullWidthSpaceBetween>
                             <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
+                            <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
+                        </InfoSection>
+                        <InfoSection side="right">
+                            <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}</InfoStats>
+                            <InfoStats>{globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}</InfoStats>
+                            <InfoStats>{stakersQuery.isLoading ? '-' : stakers.length}</InfoStats>
                             <InfoStats>
                                 {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
                             </InfoStats>
-                        </FlexDivFullWidthSpaceBetween>
-                        <FlexDivFullWidthSpaceBetween>
-                            <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
                             <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)} %</InfoStats>
-                        </FlexDivFullWidthSpaceBetween>
-                    </InfoSection>
-                </StakingInfo>
-                <ChartWrapper>
-                    <BarChart width={650} height={200} data={chartData}>
-                        <XAxis
-                            axisLine={false}
-                            dataKey="month"
-                            tickLine={false}
-                            padding={{ left: 15, right: 15 }}
-                            interval={4}
-                        />
-                        <ChartTooltip
-                            content={<CustomTooltip />}
-                            cursor={{
-                                stroke: Colors.INDEPENDENCE,
-                                strokeWidth: 2,
-                                fill: 'transparent',
-                            }}
-                        />
-                        <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
-                            {chartData.map((slice, index) => (
-                                <Cell key={index} fill={slice.color} />
-                            ))}
-                        </Bar>
-                    </BarChart>
-                </ChartWrapper>
-            </WidgetWrapper>
-        </SPAAnchor>
+                        </InfoSection>
+                    </StakingInfo>
+                    <ChartWrapper>
+                        <StyledBarChart width={650} height={200} data={chartData}>
+                            <XAxis
+                                axisLine={false}
+                                dataKey="month"
+                                tickLine={false}
+                                padding={{ left: 15, right: 15 }}
+                                interval={4}
+                            />
+                            <ChartTooltip
+                                content={<CustomTooltip />}
+                                cursor={{
+                                    stroke: Colors.INDEPENDENCE,
+                                    strokeWidth: 2,
+                                    fill: 'transparent',
+                                }}
+                            />
+                            <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
+                                {chartData.map((slice, index) => (
+                                    <Cell key={index} fill={slice.color} />
+                                ))}
+                            </Bar>
+                        </StyledBarChart>
+                    </ChartWrapper>
+                </WidgetWrapper>
+            ) : (
+                <SPAAnchor href={buildHref(ROUTES.Token.Staking.Home)}>
+                    <WidgetWrapper>
+                        <WidgetHeader isTwoSided={true}>
+                            <FlexDiv>
+                                <WidgetIcon className="icon icon--staking" />
+                                <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
+                            </FlexDiv>
+                            <FlexDivAlignStartSpaceBetween>
+                                <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
+                                <TitleLabel isHighlighted={true}>
+                                    {globalStakingData
+                                        ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
+                                        : '-'}
+                                </TitleLabel>
+                            </FlexDivAlignStartSpaceBetween>
+                        </WidgetHeader>
+                        <StakingInfo>
+                            <InfoSection side="left" justifyContent="start">
+                                <FlexDivFullWidthSpaceBetween>
+                                    <InfoText>{t('dashboard.staking.thales-token-rewards')}</InfoText>
+                                    <InfoStats>
+                                        {globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}
+                                    </InfoStats>
+                                </FlexDivFullWidthSpaceBetween>
+                                <FlexDivFullWidthSpaceBetween>
+                                    <InfoText>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
+                                    <InfoStats>
+                                        {globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}
+                                    </InfoStats>
+                                </FlexDivFullWidthSpaceBetween>
+                                <FlexDivFullWidthSpaceBetween>
+                                    <InfoText>{t('dashboard.staking.total-stakers')}</InfoText>
+                                    <InfoStats>{stakers.length}</InfoStats>
+                                </FlexDivFullWidthSpaceBetween>
+                            </InfoSection>
+                            <InfoSection side="right" justifyContent="start">
+                                <FlexDivFullWidthSpaceBetween>
+                                    <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
+                                    <InfoStats>
+                                        {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
+                                    </InfoStats>
+                                </FlexDivFullWidthSpaceBetween>
+                                <FlexDivFullWidthSpaceBetween>
+                                    <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
+                                    <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)} %</InfoStats>
+                                </FlexDivFullWidthSpaceBetween>
+                            </InfoSection>
+                        </StakingInfo>
+                        <ChartWrapper>
+                            <BarChart width={650} height={200} data={chartData}>
+                                <XAxis
+                                    axisLine={false}
+                                    dataKey="month"
+                                    tickLine={false}
+                                    padding={{ left: 15, right: 15 }}
+                                    interval={4}
+                                />
+                                <ChartTooltip
+                                    content={<CustomTooltip />}
+                                    cursor={{
+                                        stroke: Colors.INDEPENDENCE,
+                                        strokeWidth: 2,
+                                        fill: 'transparent',
+                                    }}
+                                />
+                                <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
+                                    {chartData.map((slice, index) => (
+                                        <Cell key={index} fill={slice.color} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ChartWrapper>
+                    </WidgetWrapper>
+                </SPAAnchor>
+            )}
+        </LoadingContainer>
     );
 };
 

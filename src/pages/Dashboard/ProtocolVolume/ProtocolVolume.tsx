@@ -1,3 +1,4 @@
+import LoadingContainer from 'components/LoadingContainer/LoadingContainer';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -37,36 +38,43 @@ const ProtocolVolume: React.FC = () => {
     }, [statsQuery.isSuccess, statsQuery.data]);
 
     return (
-        <WidgetWrapper isDoubleHeight={true}>
-            <WidgetHeader notFlex={true}>
-                <FlexDiv>
-                    <WidgetIcon className="icon icon--protocol-volume" />
-                    <TitleLabel>{t('dashboard.protocol-volume.total-protocol-volume')}</TitleLabel>
-                </FlexDiv>
-                <NumericStats>
-                    $ {volumeStats ? formatCurrency(volumeStats.totalProtocolVolume, 2, true) : '-'}
-                </NumericStats>
-                <FlexDiv>
-                    <WidgetIcon className="icon icon--safebox" />
-                    <TitleLabel>{t('dashboard.protocol-volume.safebox-fees')}</TitleLabel>
-                </FlexDiv>
-                <NumericStats>$ {volumeStats ? formatCurrency(volumeStats.safeboxFees, 2, true) : '-'}</NumericStats>
-            </WidgetHeader>
-            <InfoSection side="left">
-                <InfoText>{t('dashboard.protocol-volume.thales-amm')}</InfoText>
-                <InfoText>{t('dashboard.protocol-volume.overtime-amm')}</InfoText>
-                <InfoText>{t('dashboard.protocol-volume.speed-amm')}</InfoText>
-                <InfoText>{t('dashboard.protocol-volume.total-unique-users')}</InfoText>
-            </InfoSection>
-            <InfoSection side="right">
-                <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.thalesAmmVolume) : '-'}</InfoStats>
-                <InfoStats>
-                    $ {volumeStats ? formatCurrency(volumeStats.overtimeAmmVolume + volumeStats.parlayAmmVolume) : '-'}
-                </InfoStats>
-                <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.speedAmmVolume) : '-'}</InfoStats>
-                <InfoStats>{usersStats ? formatCurrency(usersStats.totalUniqueUsers, 2, true) : '-'}</InfoStats>
-            </InfoSection>
-        </WidgetWrapper>
+        <LoadingContainer isLoading={statsQuery.isLoading}>
+            <WidgetWrapper isDoubleHeight={true}>
+                <WidgetHeader notFlex={true}>
+                    <FlexDiv>
+                        <WidgetIcon className="icon icon--protocol-volume" />
+                        <TitleLabel>{t('dashboard.protocol-volume.total-protocol-volume')}</TitleLabel>
+                    </FlexDiv>
+                    <NumericStats>
+                        $ {volumeStats ? formatCurrency(volumeStats.totalProtocolVolume, 2, true) : '-'}
+                    </NumericStats>
+                    <FlexDiv>
+                        <WidgetIcon className="icon icon--safebox" />
+                        <TitleLabel>{t('dashboard.protocol-volume.safebox-fees')}</TitleLabel>
+                    </FlexDiv>
+                    <NumericStats>
+                        $ {volumeStats ? formatCurrency(volumeStats.safeboxFees, 2, true) : '-'}
+                    </NumericStats>
+                </WidgetHeader>
+                <InfoSection side="left">
+                    <InfoText>{t('dashboard.protocol-volume.thales-amm')}</InfoText>
+                    <InfoText>{t('dashboard.protocol-volume.overtime-amm')}</InfoText>
+                    <InfoText>{t('dashboard.protocol-volume.speed-amm')}</InfoText>
+                    <InfoText>{t('dashboard.protocol-volume.total-unique-users')}</InfoText>
+                </InfoSection>
+                <InfoSection side="right">
+                    <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.thalesAmmVolume) : '-'}</InfoStats>
+                    <InfoStats>
+                        ${' '}
+                        {volumeStats
+                            ? formatCurrency(volumeStats.overtimeAmmVolume + volumeStats.parlayAmmVolume)
+                            : '-'}
+                    </InfoStats>
+                    <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.speedAmmVolume) : '-'}</InfoStats>
+                    <InfoStats>{usersStats ? formatCurrency(usersStats.totalUniqueUsers, 2, true) : '-'}</InfoStats>
+                </InfoSection>
+            </WidgetWrapper>
+        </LoadingContainer>
     );
 };
 
