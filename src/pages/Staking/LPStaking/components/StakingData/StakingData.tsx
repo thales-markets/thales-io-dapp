@@ -1,3 +1,4 @@
+import LoadingContainer from 'components/LoadingContainer';
 import Tooltip from 'components/Tooltip';
 import { LP_TOKEN, USD_SIGN } from 'constants/currency';
 import { TooltipContainer } from 'pages/Staking/styled-components';
@@ -47,88 +48,90 @@ const StakingData: React.FC = () => {
 
     return (
         <Wrapper>
-            <StakingDataContainer>
-                <Header>
-                    <Icon className={'icon icon--staking'} />
-                    {t('staking.lp-staking.staking-data')}
-                </Header>
-                <StakingDetails>
-                    <ItemName>
-                        <TooltipContainer>
-                            {t('staking.lp-staking.staking-data-section.apr-in-total')}
-                            <Tooltip
-                                overlay={t('staking.lp-staking.staking-data-section.apr-tooltip')}
-                                marginTop={2}
-                                mobileIconFontSize={11}
-                                iconFontSize={13}
-                            />
-                        </TooltipContainer>
-                    </ItemName>
-                    <ItemValue>{totalAPR}</ItemValue>
-                </StakingDetails>
-                <StakingDetails>
-                    <ItemName>
-                        <TooltipContainer>
-                            {t('staking.lp-staking.staking-data-section.thales-op')}
-                            <Tooltip
-                                overlay={t('staking.lp-staking.staking-data-section.apr-percentage-tooltip')}
-                                marginTop={2}
-                                mobileIconFontSize={11}
-                                iconFontSize={13}
-                            />
-                        </TooltipContainer>
-                    </ItemName>
-                    <ItemValue>{thalesOPAPR}</ItemValue>
-                </StakingDetails>
-                <StakingDetails>
-                    <ItemName>
-                        <TooltipContainer>
-                            {t('staking.lp-staking.staking-data-section.my-staking-share')}
-                            <Tooltip
-                                overlay={t('staking.lp-staking.staking-data-section.share-tooltip')}
-                                marginTop={2}
-                                mobileIconFontSize={11}
-                                iconFontSize={13}
-                            />
-                        </TooltipContainer>
-                    </ItemName>
-                    <ItemValue>{myStakedShareValue}</ItemValue>
-                </StakingDetails>
-                <StakingDetails>
-                    <ItemName>
-                        <TooltipContainer>
-                            {t('staking.lp-staking.staking-data-section.tvl')}
-                            <Tooltip
-                                overlay={t('staking.lp-staking.staking-data-section.tvl-tooltip')}
-                                marginTop={2}
-                                mobileIconFontSize={11}
-                                iconFontSize={13}
-                            />
-                        </TooltipContainer>
-                    </ItemName>
-                    <ItemValue>{tvl}</ItemValue>
-                </StakingDetails>
-            </StakingDataContainer>
-            <ClaimSectionWrapper>
-                <MyStakingDetails>
-                    <ItemName>
-                        <TooltipContainer>
-                            {t('staking.lp-staking.staking-data-section.my-staking-balance')}:
-                            <Tooltip
-                                overlay={t('staking.lp-staking.staking-data-section.staked-balance-tooltip')}
-                                marginTop={2}
-                                mobileIconFontSize={11}
-                                iconFontSize={13}
-                            />
-                        </TooltipContainer>
-                    </ItemName>
-                    <ItemValue>
-                        {formatCurrencyWithKey(LP_TOKEN, staked) +
-                            ` = ${formatCurrencyWithSign(USD_SIGN, stakedInUSD)}`}
-                    </ItemValue>
-                </MyStakingDetails>
-                <ClaimSection />
-            </ClaimSectionWrapper>
+            <LoadingContainer isLoading={isLoading}>
+                <StakingDataContainer>
+                    <Header>
+                        <Icon className={'icon icon--staking'} />
+                        {t('staking.lp-staking.staking-data')}
+                    </Header>
+                    <StakingDetails>
+                        <ItemName>
+                            <TooltipContainer>
+                                {t('staking.lp-staking.staking-data-section.apr-in-total')}
+                                <Tooltip
+                                    overlay={t('staking.lp-staking.staking-data-section.apr-tooltip')}
+                                    marginTop={2}
+                                    mobileIconFontSize={11}
+                                    iconFontSize={13}
+                                />
+                            </TooltipContainer>
+                        </ItemName>
+                        <ItemValue>{totalAPR}</ItemValue>
+                    </StakingDetails>
+                    <StakingDetails>
+                        <ItemName>
+                            <TooltipContainer>
+                                {t('staking.lp-staking.staking-data-section.thales-op')}
+                                <Tooltip
+                                    overlay={t('staking.lp-staking.staking-data-section.apr-percentage-tooltip')}
+                                    marginTop={2}
+                                    mobileIconFontSize={11}
+                                    iconFontSize={13}
+                                />
+                            </TooltipContainer>
+                        </ItemName>
+                        <ItemValue>{thalesOPAPR}</ItemValue>
+                    </StakingDetails>
+                    <StakingDetails>
+                        <ItemName>
+                            <TooltipContainer>
+                                {t('staking.lp-staking.staking-data-section.my-staking-share')}
+                                <Tooltip
+                                    overlay={t('staking.lp-staking.staking-data-section.share-tooltip')}
+                                    marginTop={2}
+                                    mobileIconFontSize={11}
+                                    iconFontSize={13}
+                                />
+                            </TooltipContainer>
+                        </ItemName>
+                        <ItemValue>{myStakedShareValue}</ItemValue>
+                    </StakingDetails>
+                    <StakingDetails>
+                        <ItemName>
+                            <TooltipContainer>
+                                {t('staking.lp-staking.staking-data-section.tvl')}
+                                <Tooltip
+                                    overlay={t('staking.lp-staking.staking-data-section.tvl-tooltip')}
+                                    marginTop={2}
+                                    mobileIconFontSize={11}
+                                    iconFontSize={13}
+                                />
+                            </TooltipContainer>
+                        </ItemName>
+                        <ItemValue>{tvl}</ItemValue>
+                    </StakingDetails>
+                </StakingDataContainer>
+                <ClaimSectionWrapper>
+                    <MyStakingDetails>
+                        <ItemName>
+                            <TooltipContainer>
+                                {t('staking.lp-staking.staking-data-section.my-staking-balance')}:
+                                <Tooltip
+                                    overlay={t('staking.lp-staking.staking-data-section.staked-balance-tooltip')}
+                                    marginTop={2}
+                                    mobileIconFontSize={11}
+                                    iconFontSize={13}
+                                />
+                            </TooltipContainer>
+                        </ItemName>
+                        <ItemValue>
+                            {formatCurrencyWithKey(LP_TOKEN, staked) +
+                                ` = ${formatCurrencyWithSign(USD_SIGN, stakedInUSD)}`}
+                        </ItemValue>
+                    </MyStakingDetails>
+                    <ClaimSection />
+                </ClaimSectionWrapper>
+            </LoadingContainer>
         </Wrapper>
     );
 };

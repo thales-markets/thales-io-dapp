@@ -3,6 +3,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit';
 import ApprovalModal from 'components/ApprovalModal';
 import Collapse from 'components/Collapse';
 import Loader from 'components/Loader';
+import LoadingContainer from 'components/LoadingContainer';
 import { NavItemType } from 'components/NavLinks/NavItem';
 import NavLinks from 'components/NavLinks/NavLinks';
 import SPAAnchor from 'components/SPAAnchor';
@@ -178,6 +179,35 @@ const AMMLP: React.FC = () => {
         }
         return 0;
     }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess]);
+
+    const activePoolDataQuery = useMemo(() => {
+        if (paramTab === LiquidityPool.THALES) {
+            return thalesLiquidityPoolDataQuery;
+        }
+        if (paramTab === LiquidityPool.OVERTIME_SINGLE) {
+            return sportsAmmLiquidityPoolDataQuery;
+        }
+        if (paramTab === LiquidityPool.OVERTIME_PARLAY) {
+            return parlayLiquidityPoolDataQuery;
+        }
+    }, [paramTab, parlayLiquidityPoolDataQuery, sportsAmmLiquidityPoolDataQuery, thalesLiquidityPoolDataQuery]);
+
+    const activeUserPoolDataQuery = useMemo(() => {
+        if (paramTab === LiquidityPool.THALES) {
+            return thalesUserLiquidityPoolDataQuery;
+        }
+        if (paramTab === LiquidityPool.OVERTIME_SINGLE) {
+            return sportsAmmUserLiquidityPoolDataQuery;
+        }
+        if (paramTab === LiquidityPool.OVERTIME_PARLAY) {
+            return parlayUserLiquidityPoolDataQuery;
+        }
+    }, [
+        paramTab,
+        parlayUserLiquidityPoolDataQuery,
+        sportsAmmUserLiquidityPoolDataQuery,
+        thalesUserLiquidityPoolDataQuery,
+    ]);
 
     useEffect(() => {
         if (
@@ -515,379 +545,393 @@ const AMMLP: React.FC = () => {
             )}
             <Container>
                 <Top>
-                    <SwitchInput
-                        label={{
-                            firstLabel: t('staking.amm-lp.deposit-withdraw.deposit'),
-                            secondLabel: t('staking.amm-lp.deposit-withdraw.withdraw'),
-                            fontSize: '18px',
-                        }}
-                        borderColor={theme.borderColor.secondary}
-                        dotBackground={theme.textColor.secondary}
-                        dotSize="20px"
-                        active={!depositSelected}
-                        handleClick={() => setDepositSelected(!depositSelected)}
-                    />
-                    <SectionContentContainer>
-                        {depositSelected && (
-                            <>
-                                {isWithdrawalRequested && (
-                                    <WarningContentInfo>
-                                        <Trans i18nKey="staking.amm-lp.deposit-withdrawal-warning" />
-                                    </WarningContentInfo>
-                                )}
-                                {isLiquidityPoolCapReached && (
-                                    <WarningContentInfo>
-                                        <Trans i18nKey="staking.amm-lp.deposit-liquidity-pool-cap-reached-warning" />
-                                    </WarningContentInfo>
-                                )}
-                                {isMaximumAmountOfUsersReached && (
-                                    <WarningContentInfo>
-                                        <Trans i18nKey="staking.amm-lp.deposit-max-amount-of-users-warning" />
-                                    </WarningContentInfo>
-                                )}
-                                <InputContainer marginTop={10}>
-                                    <FlexDivCentered>
-                                        <NumericInput
-                                            value={amount}
-                                            disabled={isDepositAmountInputDisabled}
-                                            onChange={(_, value) => setAmount(value)}
-                                            onMaxButton={setMaxAmount}
-                                            placeholder={t('common.enter-amount')}
-                                            showValidation={
-                                                insufficientBalance || !!exceededLiquidityPoolCap || !!invalidAmount
-                                            }
-                                            balance={
-                                                isWalletConnected
-                                                    ? `${t('common.balance')}: ${formatCurrencyWithKey(
-                                                          getDefaultCollateral(networkId),
-                                                          paymentTokenBalance
-                                                      )}`
-                                                    : undefined
-                                            }
-                                            validationMessage={
-                                                t(
-                                                    `${
-                                                        insufficientBalance
-                                                            ? 'common.errors.insufficient-balance'
-                                                            : exceededLiquidityPoolCap
-                                                            ? 'staking.amm-lp.deposit-liquidity-pool-cap-error'
-                                                            : 'staking.amm-lp.deposit-min-amount-error'
-                                                    }`,
-                                                    {
-                                                        amount: formatCurrencyWithSign(
-                                                            USD_SIGN,
-                                                            liquidityPoolData?.minDepositAmount || 0
-                                                        ),
-                                                    }
-                                                ) as string
-                                            }
-                                        />
-                                    </FlexDivCentered>
-                                </InputContainer>
-                                <ButtonContainer>{getDepositSubmitButton()}</ButtonContainer>
-                            </>
-                        )}
-                        {!depositSelected && (
-                            <>
-                                {((liquidityPoolData && userLiquidityPoolData && !isWithdrawalRequested) ||
-                                    !isWalletConnected) && (
-                                    <>
-                                        {nothingToWithdraw || !isWalletConnected ? (
-                                            <>
-                                                <ContentInfo>
-                                                    <Trans i18nKey="staking.amm-lp.nothing-to-withdraw-label" />
-                                                </ContentInfo>
-                                                {userLiquidityPoolData && userLiquidityPoolData.hasDepositForNextRound && (
+                    <LoadingContainer isLoading={paymentTokenBalanceQuery.isLoading}>
+                        <SwitchInput
+                            label={{
+                                firstLabel: t('staking.amm-lp.deposit-withdraw.deposit'),
+                                secondLabel: t('staking.amm-lp.deposit-withdraw.withdraw'),
+                                fontSize: '18px',
+                            }}
+                            borderColor={theme.borderColor.secondary}
+                            dotBackground={theme.textColor.secondary}
+                            dotSize="20px"
+                            active={!depositSelected}
+                            handleClick={() => setDepositSelected(!depositSelected)}
+                        />
+                        <SectionContentContainer>
+                            {depositSelected && (
+                                <>
+                                    {isWithdrawalRequested && (
+                                        <WarningContentInfo>
+                                            <Trans i18nKey="staking.amm-lp.deposit-withdrawal-warning" />
+                                        </WarningContentInfo>
+                                    )}
+                                    {isLiquidityPoolCapReached && (
+                                        <WarningContentInfo>
+                                            <Trans i18nKey="staking.amm-lp.deposit-liquidity-pool-cap-reached-warning" />
+                                        </WarningContentInfo>
+                                    )}
+                                    {isMaximumAmountOfUsersReached && (
+                                        <WarningContentInfo>
+                                            <Trans i18nKey="staking.amm-lp.deposit-max-amount-of-users-warning" />
+                                        </WarningContentInfo>
+                                    )}
+                                    <InputContainer marginTop={10}>
+                                        <FlexDivCentered>
+                                            <NumericInput
+                                                value={amount}
+                                                disabled={isDepositAmountInputDisabled}
+                                                onChange={(_, value) => setAmount(value)}
+                                                onMaxButton={setMaxAmount}
+                                                placeholder={t('common.enter-amount')}
+                                                showValidation={
+                                                    insufficientBalance || !!exceededLiquidityPoolCap || !!invalidAmount
+                                                }
+                                                balance={
+                                                    isWalletConnected
+                                                        ? `${t('common.balance')}: ${formatCurrencyWithKey(
+                                                              getDefaultCollateral(networkId),
+                                                              paymentTokenBalance
+                                                          )}`
+                                                        : undefined
+                                                }
+                                                validationMessage={
+                                                    t(
+                                                        `${
+                                                            insufficientBalance
+                                                                ? 'common.errors.insufficient-balance'
+                                                                : exceededLiquidityPoolCap
+                                                                ? 'staking.amm-lp.deposit-liquidity-pool-cap-error'
+                                                                : 'staking.amm-lp.deposit-min-amount-error'
+                                                        }`,
+                                                        {
+                                                            amount: formatCurrencyWithSign(
+                                                                USD_SIGN,
+                                                                liquidityPoolData?.minDepositAmount || 0
+                                                            ),
+                                                        }
+                                                    ) as string
+                                                }
+                                            />
+                                        </FlexDivCentered>
+                                    </InputContainer>
+                                    <ButtonContainer>{getDepositSubmitButton()}</ButtonContainer>
+                                </>
+                            )}
+                            {!depositSelected && (
+                                <>
+                                    {((liquidityPoolData && userLiquidityPoolData && !isWithdrawalRequested) ||
+                                        !isWalletConnected) && (
+                                        <>
+                                            {nothingToWithdraw || !isWalletConnected ? (
+                                                <>
                                                     <ContentInfo>
-                                                        <Trans i18nKey="staking.amm-lp.first-deposit-withdrawal-message" />
+                                                        <Trans i18nKey="staking.amm-lp.nothing-to-withdraw-label" />
                                                     </ContentInfo>
-                                                )}
-                                            </>
-                                        ) : (
-                                            <>
-                                                {userLiquidityPoolData && (
-                                                    <>
-                                                        {userLiquidityPoolData.hasDepositForNextRound ? (
-                                                            <WarningContentInfo>
-                                                                <Trans i18nKey="staking.amm-lp.withdrawal-deposit-warning" />
-                                                            </WarningContentInfo>
-                                                        ) : (
-                                                            <WithdrawalContainer>
-                                                                <ContentInfo color="white">
-                                                                    <Trans
-                                                                        i18nKey="staking.amm-lp.available-to-withdraw-label"
-                                                                        components={{
-                                                                            bold: <BoldContent />,
-                                                                        }}
-                                                                        values={{
-                                                                            amount: formatCurrencyWithSign(
-                                                                                USD_SIGN,
-                                                                                userLiquidityPoolData.balanceCurrentRound
-                                                                            ),
-                                                                        }}
-                                                                    />
-                                                                    <Tooltip
-                                                                        overlay={
-                                                                            <span>
-                                                                                {t(
-                                                                                    `staking.amm-lp.estimated-amount-tooltip`
-                                                                                )}
-                                                                            </span>
-                                                                        }
-                                                                        iconFontSize={14}
-                                                                        marginLeft={3}
-                                                                        top={2}
-                                                                    />
-                                                                </ContentInfo>
-                                                                <ContentInfo color="#BCBCBC">
-                                                                    <Trans i18nKey="staking.amm-lp.withdrawal-message" />
-                                                                </ContentInfo>
-                                                                <RadioButtonContainer>
-                                                                    <RadioButton
-                                                                        checked={withdrawAll}
-                                                                        value={'true'}
-                                                                        onChange={() => setWithdrawAll(true)}
-                                                                        label={t(
-                                                                            `staking.amm-lp.full-withdrawal-label`
-                                                                        )}
-                                                                    />
-                                                                    <RadioButton
-                                                                        checked={!withdrawAll}
-                                                                        value={'false'}
-                                                                        onChange={() => setWithdrawAll(false)}
-                                                                        label={t(
-                                                                            `staking.amm-lp.partial-withdrawal-label`
-                                                                        )}
-                                                                    />
-                                                                </RadioButtonContainer>
-                                                                <NumericInput
-                                                                    value={withdrawalPercentage}
-                                                                    onChange={(_, value) =>
-                                                                        setWithdrawalPercentage(value)
-                                                                    }
-                                                                    disabled={isPartialWithdrawalDisabled}
-                                                                    step="1"
-                                                                    currencyLabel="%"
-                                                                    placeholder={t('common.enter-percentage')}
-                                                                    showValidation={!isWithdrawalPercentageValid}
-                                                                    validationMessage={t(
-                                                                        Number(withdrawalPercentage) === 0
-                                                                            ? 'common.errors.enter-percentage'
-                                                                            : 'common.errors.invalid-percentage-range',
-                                                                        { min: 10, max: 90 }
-                                                                    )}
-                                                                />
-                                                                <SliderContainer>
-                                                                    <StyledSlider
-                                                                        value={Number(withdrawalPercentage)}
-                                                                        step={1}
-                                                                        max={90}
-                                                                        min={10}
-                                                                        onChange={(_: any, value: any) =>
-                                                                            setWithdrawalPercentage(Number(value))
+                                                    {userLiquidityPoolData &&
+                                                        userLiquidityPoolData.hasDepositForNextRound && (
+                                                            <ContentInfo>
+                                                                <Trans i18nKey="staking.amm-lp.first-deposit-withdrawal-message" />
+                                                            </ContentInfo>
+                                                        )}
+                                                </>
+                                            ) : (
+                                                <>
+                                                    {userLiquidityPoolData && (
+                                                        <>
+                                                            {userLiquidityPoolData.hasDepositForNextRound ? (
+                                                                <WarningContentInfo>
+                                                                    <Trans i18nKey="staking.amm-lp.withdrawal-deposit-warning" />
+                                                                </WarningContentInfo>
+                                                            ) : (
+                                                                <WithdrawalContainer>
+                                                                    <ContentInfo color="white">
+                                                                        <Trans
+                                                                            i18nKey="staking.amm-lp.available-to-withdraw-label"
+                                                                            components={{
+                                                                                bold: <BoldContent />,
+                                                                            }}
+                                                                            values={{
+                                                                                amount: formatCurrencyWithSign(
+                                                                                    USD_SIGN,
+                                                                                    userLiquidityPoolData.balanceCurrentRound
+                                                                                ),
+                                                                            }}
+                                                                        />
+                                                                        <Tooltip
+                                                                            overlay={
+                                                                                <span>
+                                                                                    {t(
+                                                                                        `staking.amm-lp.estimated-amount-tooltip`
+                                                                                    )}
+                                                                                </span>
+                                                                            }
+                                                                            iconFontSize={14}
+                                                                            marginLeft={3}
+                                                                            top={2}
+                                                                        />
+                                                                    </ContentInfo>
+                                                                    <ContentInfo color="#BCBCBC">
+                                                                        <Trans i18nKey="staking.amm-lp.withdrawal-message" />
+                                                                    </ContentInfo>
+                                                                    <RadioButtonContainer>
+                                                                        <RadioButton
+                                                                            checked={withdrawAll}
+                                                                            value={'true'}
+                                                                            onChange={() => setWithdrawAll(true)}
+                                                                            label={t(
+                                                                                `staking.amm-lp.full-withdrawal-label`
+                                                                            )}
+                                                                        />
+                                                                        <RadioButton
+                                                                            checked={!withdrawAll}
+                                                                            value={'false'}
+                                                                            onChange={() => setWithdrawAll(false)}
+                                                                            label={t(
+                                                                                `staking.amm-lp.partial-withdrawal-label`
+                                                                            )}
+                                                                        />
+                                                                    </RadioButtonContainer>
+                                                                    <NumericInput
+                                                                        value={withdrawalPercentage}
+                                                                        onChange={(_, value) =>
+                                                                            setWithdrawalPercentage(value)
                                                                         }
                                                                         disabled={isPartialWithdrawalDisabled}
-                                                                    />
-                                                                    <FlexDivRow>
-                                                                        <SliderRange
-                                                                            className={
-                                                                                isPartialWithdrawalDisabled
-                                                                                    ? 'disabled'
-                                                                                    : ''
-                                                                            }
-                                                                        >
-                                                                            10%
-                                                                        </SliderRange>
-                                                                        <SliderRange
-                                                                            className={
-                                                                                isPartialWithdrawalDisabled
-                                                                                    ? 'disabled'
-                                                                                    : ''
-                                                                            }
-                                                                        >
-                                                                            90%
-                                                                        </SliderRange>
-                                                                    </FlexDivRow>
-                                                                </SliderContainer>
-                                                                <ContentInfo color="white">
-                                                                    <Trans
-                                                                        i18nKey="staking.amm-lp.withdrawal-amount-label"
-                                                                        components={{
-                                                                            bold: <BoldContent />,
-                                                                        }}
-                                                                        values={{
-                                                                            amount: formatCurrencyWithSign(
-                                                                                USD_SIGN,
-                                                                                withdrawalAmount
-                                                                            ),
-                                                                        }}
-                                                                    />
-                                                                    <Tooltip
-                                                                        overlay={t(
-                                                                            `staking.amm-lp.estimated-amount-tooltip`
+                                                                        step="1"
+                                                                        currencyLabel="%"
+                                                                        placeholder={t('common.enter-percentage')}
+                                                                        showValidation={!isWithdrawalPercentageValid}
+                                                                        validationMessage={t(
+                                                                            Number(withdrawalPercentage) === 0
+                                                                                ? 'common.errors.enter-percentage'
+                                                                                : 'common.errors.invalid-percentage-range',
+                                                                            { min: 10, max: 90 }
                                                                         )}
-                                                                        iconFontSize={14}
-                                                                        marginLeft={3}
-                                                                        top={2}
                                                                     />
-                                                                </ContentInfo>
-                                                            </WithdrawalContainer>
-                                                        )}
-                                                    </>
-                                                )}
-                                            </>
-                                        )}
-                                        <ButtonContainer>{getWithdrawSubmitButton()}</ButtonContainer>
-                                    </>
-                                )}
-                                {liquidityPoolData &&
-                                    userLiquidityPoolData &&
-                                    userLiquidityPoolData.isWithdrawalRequested && (
-                                        <>
-                                            <ContentInfo>
-                                                <Trans
-                                                    i18nKey={`staking.amm-lp.${
-                                                        userLiquidityPoolData.isPartialWithdrawalRequested
-                                                            ? 'partial'
-                                                            : 'full'
-                                                    }-withdrawal-requested-message`}
-                                                    components={{
-                                                        bold: <BoldContent />,
-                                                        tooltip: (
-                                                            <Tooltip
-                                                                overlay={t(`staking.amm-lp.estimated-amount-tooltip`)}
-                                                                iconFontSize={14}
-                                                                marginLeft={2}
-                                                                top={-1}
-                                                            />
-                                                        ),
-                                                    }}
-                                                    values={{
-                                                        amount: formatCurrencyWithSign(
-                                                            USD_SIGN,
-                                                            userLiquidityPoolData.withdrawalAmount
-                                                        ),
-                                                        percentage: formatPercentage(
-                                                            userLiquidityPoolData.withdrawalShare
-                                                        ),
-                                                    }}
-                                                />
-                                            </ContentInfo>
-                                            <ContentInfo>
-                                                <Trans i18nKey="staking.amm-lp.withdrawal-requested-message" />
-                                            </ContentInfo>
+                                                                    <SliderContainer>
+                                                                        <StyledSlider
+                                                                            value={Number(withdrawalPercentage)}
+                                                                            step={1}
+                                                                            max={90}
+                                                                            min={10}
+                                                                            onChange={(_: any, value: any) =>
+                                                                                setWithdrawalPercentage(Number(value))
+                                                                            }
+                                                                            disabled={isPartialWithdrawalDisabled}
+                                                                        />
+                                                                        <FlexDivRow>
+                                                                            <SliderRange
+                                                                                className={
+                                                                                    isPartialWithdrawalDisabled
+                                                                                        ? 'disabled'
+                                                                                        : ''
+                                                                                }
+                                                                            >
+                                                                                10%
+                                                                            </SliderRange>
+                                                                            <SliderRange
+                                                                                className={
+                                                                                    isPartialWithdrawalDisabled
+                                                                                        ? 'disabled'
+                                                                                        : ''
+                                                                                }
+                                                                            >
+                                                                                90%
+                                                                            </SliderRange>
+                                                                        </FlexDivRow>
+                                                                    </SliderContainer>
+                                                                    <ContentInfo color="white">
+                                                                        <Trans
+                                                                            i18nKey="staking.amm-lp.withdrawal-amount-label"
+                                                                            components={{
+                                                                                bold: <BoldContent />,
+                                                                            }}
+                                                                            values={{
+                                                                                amount: formatCurrencyWithSign(
+                                                                                    USD_SIGN,
+                                                                                    withdrawalAmount
+                                                                                ),
+                                                                            }}
+                                                                        />
+                                                                        <Tooltip
+                                                                            overlay={t(
+                                                                                `staking.amm-lp.estimated-amount-tooltip`
+                                                                            )}
+                                                                            iconFontSize={14}
+                                                                            marginLeft={3}
+                                                                            top={2}
+                                                                        />
+                                                                    </ContentInfo>
+                                                                </WithdrawalContainer>
+                                                            )}
+                                                        </>
+                                                    )}
+                                                </>
+                                            )}
+                                            <ButtonContainer>{getWithdrawSubmitButton()}</ButtonContainer>
                                         </>
                                     )}
-                            </>
-                        )}
-                    </SectionContentContainer>
+                                    {liquidityPoolData &&
+                                        userLiquidityPoolData &&
+                                        userLiquidityPoolData.isWithdrawalRequested && (
+                                            <>
+                                                <ContentInfo>
+                                                    <Trans
+                                                        i18nKey={`staking.amm-lp.${
+                                                            userLiquidityPoolData.isPartialWithdrawalRequested
+                                                                ? 'partial'
+                                                                : 'full'
+                                                        }-withdrawal-requested-message`}
+                                                        components={{
+                                                            bold: <BoldContent />,
+                                                            tooltip: (
+                                                                <Tooltip
+                                                                    overlay={t(
+                                                                        `staking.amm-lp.estimated-amount-tooltip`
+                                                                    )}
+                                                                    iconFontSize={14}
+                                                                    marginLeft={2}
+                                                                    top={-1}
+                                                                />
+                                                            ),
+                                                        }}
+                                                        values={{
+                                                            amount: formatCurrencyWithSign(
+                                                                USD_SIGN,
+                                                                userLiquidityPoolData.withdrawalAmount
+                                                            ),
+                                                            percentage: formatPercentage(
+                                                                userLiquidityPoolData.withdrawalShare
+                                                            ),
+                                                        }}
+                                                    />
+                                                </ContentInfo>
+                                                <ContentInfo>
+                                                    <Trans i18nKey="staking.amm-lp.withdrawal-requested-message" />
+                                                </ContentInfo>
+                                            </>
+                                        )}
+                                </>
+                            )}
+                        </SectionContentContainer>
+                    </LoadingContainer>
                 </Top>
             </Container>
             <ChartsContainer>
-                <FlexDiv gap="20px">
+                <LoadingContainer isLoading={!!activePoolDataQuery?.isLoading || !!activeUserPoolDataQuery?.isLoading}>
+                    <FlexDiv gap="20px">
+                        {liquidityPoolData && (
+                            <PnL
+                                liquidityPool={paramTab}
+                                lifetimePnl={liquidityPoolData.lifetimePnl}
+                                type={LiquidityPoolPnlType.CUMULATIVE_PNL}
+                            />
+                        )}
+                        <LPInfo>
+                            {liquidityPoolData && (
+                                <div>
+                                    <LiquidityPoolInfoTitle>
+                                        {t('staking.amm-lp.total-info-label')}
+                                    </LiquidityPoolInfoTitle>
+                                    <LiquidityPoolFilledText>
+                                        <div>
+                                            <div>{t('staking.amm-lp.pool-size')}</div>
+                                            <span>
+                                                {formatCurrencyWithSign(
+                                                    USD_SIGN,
+                                                    liquidityPoolData.allocationNextRound
+                                                )}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <div>{t('staking.amm-lp.total-deposits')}</div>
+                                            <span>{totalDeposits}</span>
+                                        </div>
+                                    </LiquidityPoolFilledText>
+                                </div>
+                            )}
+                            <div>
+                                <LiquidityPoolInfoTitle>{t('staking.amm-lp.your-info-label')}</LiquidityPoolInfoTitle>
+                                {liquidityPoolData?.liquidityPoolStarted && (
+                                    <>
+                                        <LiquidityPoolInfoContainer>
+                                            <LiquidityPoolInfoLabel>
+                                                {t('staking.amm-lp.current-balance-label')}:
+                                            </LiquidityPoolInfoLabel>
+                                            <LiquidityPoolInfo>
+                                                {formatCurrencyWithSign(
+                                                    USD_SIGN,
+                                                    userLiquidityPoolData
+                                                        ? userLiquidityPoolData.balanceCurrentRound
+                                                        : 0
+                                                )}
+                                            </LiquidityPoolInfo>
+                                        </LiquidityPoolInfoContainer>
+                                        <LiquidityPoolInfoContainer>
+                                            <LiquidityPoolInfoLabel>
+                                                {t('staking.amm-lp.next-round-balance-label')}:
+                                            </LiquidityPoolInfoLabel>
+                                            <LiquidityPoolInfo>
+                                                {formatCurrencyWithSign(
+                                                    USD_SIGN,
+                                                    userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0
+                                                )}
+                                            </LiquidityPoolInfo>
+                                        </LiquidityPoolInfoContainer>
+                                        <LiquidityPoolInfoContainer>
+                                            <LiquidityPoolInfoLabel>
+                                                {t('staking.amm-lp.your-share-label')}
+                                            </LiquidityPoolInfoLabel>
+                                            <LiquidityPoolInfo>
+                                                {formatPercentage(
+                                                    (userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0) /
+                                                        liquidityPoolData.allocationNextRound
+                                                )}
+                                            </LiquidityPoolInfo>
+                                        </LiquidityPoolInfoContainer>
+                                    </>
+                                )}
+                            </div>
+
+                            {isWithdrawalRequested && (
+                                <WarningContentInfo>
+                                    <Trans
+                                        i18nKey={`staking.amm-lp.${
+                                            userLiquidityPoolData.isPartialWithdrawalRequested ? 'partial' : 'full'
+                                        }-withdrawal-request-label`}
+                                        components={{
+                                            tooltip: (
+                                                <Tooltip
+                                                    overlay={t(`staking.amm-lp.estimated-amount-tooltip`)}
+                                                    iconFontSize={14}
+                                                    marginLeft={2}
+                                                    top={-1}
+                                                />
+                                            ),
+                                        }}
+                                        values={{
+                                            amount: formatCurrencyWithSign(
+                                                USD_SIGN,
+                                                userLiquidityPoolData ? userLiquidityPoolData.withdrawalAmount : 0
+                                            ),
+                                            percentage: formatPercentage(
+                                                userLiquidityPoolData ? userLiquidityPoolData.withdrawalShare : 0
+                                            ),
+                                        }}
+                                    />
+                                </WarningContentInfo>
+                            )}
+                        </LPInfo>
+                    </FlexDiv>
                     {liquidityPoolData && (
                         <PnL
                             liquidityPool={paramTab}
                             lifetimePnl={liquidityPoolData.lifetimePnl}
-                            type={LiquidityPoolPnlType.CUMULATIVE_PNL}
+                            type={LiquidityPoolPnlType.PNL_PER_ROUND}
                         />
                     )}
-                    <LPInfo>
-                        {liquidityPoolData && (
-                            <div>
-                                <LiquidityPoolInfoTitle>{t('staking.amm-lp.total-info-label')}</LiquidityPoolInfoTitle>
-                                <LiquidityPoolFilledText>
-                                    <div>
-                                        <div>{t('staking.amm-lp.pool-size')}</div>
-                                        <span>
-                                            {formatCurrencyWithSign(USD_SIGN, liquidityPoolData.allocationNextRound)}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <div>{t('staking.amm-lp.total-deposits')}</div>
-                                        <span>{totalDeposits}</span>
-                                    </div>
-                                </LiquidityPoolFilledText>
-                            </div>
-                        )}
-                        <div>
-                            <LiquidityPoolInfoTitle>{t('staking.amm-lp.your-info-label')}</LiquidityPoolInfoTitle>
-                            {liquidityPoolData?.liquidityPoolStarted && (
-                                <>
-                                    <LiquidityPoolInfoContainer>
-                                        <LiquidityPoolInfoLabel>
-                                            {t('staking.amm-lp.current-balance-label')}:
-                                        </LiquidityPoolInfoLabel>
-                                        <LiquidityPoolInfo>
-                                            {formatCurrencyWithSign(
-                                                USD_SIGN,
-                                                userLiquidityPoolData ? userLiquidityPoolData.balanceCurrentRound : 0
-                                            )}
-                                        </LiquidityPoolInfo>
-                                    </LiquidityPoolInfoContainer>
-                                    <LiquidityPoolInfoContainer>
-                                        <LiquidityPoolInfoLabel>
-                                            {t('staking.amm-lp.next-round-balance-label')}:
-                                        </LiquidityPoolInfoLabel>
-                                        <LiquidityPoolInfo>
-                                            {formatCurrencyWithSign(
-                                                USD_SIGN,
-                                                userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0
-                                            )}
-                                        </LiquidityPoolInfo>
-                                    </LiquidityPoolInfoContainer>
-                                    <LiquidityPoolInfoContainer>
-                                        <LiquidityPoolInfoLabel>
-                                            {t('staking.amm-lp.your-share-label')}
-                                        </LiquidityPoolInfoLabel>
-                                        <LiquidityPoolInfo>
-                                            {formatPercentage(
-                                                (userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0) /
-                                                    liquidityPoolData.allocationNextRound
-                                            )}
-                                        </LiquidityPoolInfo>
-                                    </LiquidityPoolInfoContainer>
-                                </>
-                            )}
-                        </div>
-
-                        {isWithdrawalRequested && (
-                            <WarningContentInfo>
-                                <Trans
-                                    i18nKey={`staking.amm-lp.${
-                                        userLiquidityPoolData.isPartialWithdrawalRequested ? 'partial' : 'full'
-                                    }-withdrawal-request-label`}
-                                    components={{
-                                        tooltip: (
-                                            <Tooltip
-                                                overlay={t(`staking.amm-lp.estimated-amount-tooltip`)}
-                                                iconFontSize={14}
-                                                marginLeft={2}
-                                                top={-1}
-                                            />
-                                        ),
-                                    }}
-                                    values={{
-                                        amount: formatCurrencyWithSign(
-                                            USD_SIGN,
-                                            userLiquidityPoolData ? userLiquidityPoolData.withdrawalAmount : 0
-                                        ),
-                                        percentage: formatPercentage(
-                                            userLiquidityPoolData ? userLiquidityPoolData.withdrawalShare : 0
-                                        ),
-                                    }}
-                                />
-                            </WarningContentInfo>
-                        )}
-                    </LPInfo>
-                </FlexDiv>
-                {liquidityPoolData && (
-                    <PnL
-                        liquidityPool={paramTab}
-                        lifetimePnl={liquidityPoolData.lifetimePnl}
-                        type={LiquidityPoolPnlType.PNL_PER_ROUND}
-                    />
-                )}
+                </LoadingContainer>
             </ChartsContainer>
             <Container>
                 <Bottom>
