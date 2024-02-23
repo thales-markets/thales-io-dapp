@@ -117,7 +117,7 @@ const StakingTab: React.FC = () => {
                     <div>
                         <InfoDiv height="20px">
                             <TooltipContainer>
-                                APY:{' '}
+                                APY{' '}
                                 <Tooltip
                                     overlay={t('staking.staking.staking-data.apy-tooltip')}
                                     marginTop={2}
@@ -151,7 +151,7 @@ const StakingTab: React.FC = () => {
                         </InfoDiv>
                         <InfoDiv>
                             <TooltipContainer>
-                                {t('staking.staking.staking-data.my-staking-share')}:
+                                {t('staking.staking.staking-data.my-staking-share')}
                                 <Tooltip
                                     overlay={t('staking.staking.staking-data.staked-share-tooltip')}
                                     marginTop={2}
@@ -175,7 +175,7 @@ const StakingTab: React.FC = () => {
                         <InfoDiv>
                             <span>
                                 <TooltipContainer>
-                                    {t('staking.staking.my-balance.staked-directly')}:
+                                    {t('staking.staking.my-balance.staked-directly')}
                                     <Tooltip
                                         overlay={t('staking.staking.staking-data.staked-balance-tooltip')}
                                         marginTop={2}
@@ -189,7 +189,7 @@ const StakingTab: React.FC = () => {
                         <InfoDiv>
                             <span>
                                 <TooltipContainer>
-                                    {t('staking.staking.my-balance.escrowed-balance')}:
+                                    {t('staking.staking.my-balance.escrowed-balance')}
                                     <Tooltip
                                         overlay={t('staking.staking.staking-data.escrowed-balance-tooltip')}
                                         marginTop={2}
