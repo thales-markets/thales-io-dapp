@@ -130,7 +130,7 @@ const Leaderboard: React.FC = () => {
                                 </InfoDiv>
                                 <InfoDiv>
                                     <span>{t('staking.leaderboard.time-left.multiplier')}</span>
-                                    <span>{globalData.maxStakingMultiplier}X</span>
+                                    <span>x{globalData.maxStakingMultiplier}</span>
                                 </InfoDiv>
                                 <InfoDiv>
                                     <span>{t('staking.leaderboard.time-left.total-points')}</span>
@@ -169,7 +169,7 @@ const Leaderboard: React.FC = () => {
                                 </InfoDiv>
                                 <InfoDiv>
                                     <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
-                                    <span>{globalData.tradingMultiplier}X</span>
+                                    <span>x{globalData.tradingMultiplier}</span>
                                 </InfoDiv>
                                 <InfoDiv>
                                     <span>{t('staking.leaderboard.breakdown.points')}</span>
@@ -189,7 +189,7 @@ const Leaderboard: React.FC = () => {
                                 </InfoDiv>
                                 <InfoDiv>
                                     <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
-                                    <span>{globalData.lpMultiplier}X</span>
+                                    <span>x{globalData.lpMultiplier}</span>
                                 </InfoDiv>
                                 <InfoDiv>
                                     <span>{t('staking.leaderboard.breakdown.points')}</span>
@@ -209,7 +209,7 @@ const Leaderboard: React.FC = () => {
                                 </InfoDiv>
                                 <InfoDiv>
                                     <span>{t('staking.leaderboard.breakdown.multiplier')}</span>
-                                    <span>{globalData.vaultMultiplier}X</span>
+                                    <span>x{globalData.vaultMultiplier}</span>
                                 </InfoDiv>
                                 <InfoDiv>
                                     <span>{t('staking.leaderboard.breakdown.points')}</span>
