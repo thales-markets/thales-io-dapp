@@ -241,10 +241,6 @@ const HighlightedValue = styled.span`
     color: ${(props) => props.theme.textColor.secondary};
 `;
 
-const LoaderWrapper = styled(FlexDiv)`
-    margin: 40px 0px;
-`;
-
 const SubTitleWrapper = styled(FlexDiv)`
     justify-content: space-between;
     align-items: flex-start;
