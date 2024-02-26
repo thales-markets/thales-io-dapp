@@ -313,7 +313,7 @@
                 "gamified-staking-rewards": "Gamified Staking Rewards",
                 "base-rewards": "Base Rewards",
                 "protocol-rewards": "Protocol Rewards",
-                "protocol-rewards-tooltip": "Your share of protocol fees accrued previous weekly round.",
+                "protocol-rewards-tooltip": "Your share of protocol fees accrued in the previous round.",
                 "total-thales-points": "Total Thales Rewards + Protocol Rewards",
                 "disclaimer": "Unclaimed weekly rewards are forfeited!",
                 "claim-rewards": "Claim Rewards",
