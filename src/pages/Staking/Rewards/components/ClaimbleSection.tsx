@@ -274,6 +274,9 @@ const Notice = styled.span`
 const StakingStateWrapper = styled(FlexDivColumn)`
     justify-content: flex-start;
     align-items: flex-start;
+    ${FlexDiv} > span {
+        margin-left: 2px;
+    }
 `;
 
 const StateLabel = styled.span<{ closingRoundInProgress?: boolean }>`
