@@ -49,7 +49,7 @@ const Leaderboard: React.FC = () => {
             setPeriod(period);
             setCurrentPeriod(period);
         });
-    }, []);
+    }, [networkId]);
 
     const leaderboardQuery = useStakersDataLeaderboardQuery(
         walletAddress,
