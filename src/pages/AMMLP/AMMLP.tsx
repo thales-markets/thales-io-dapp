@@ -66,18 +66,26 @@ import { checkAllowance } from 'utils/network';
 import { refetchLiquidityPoolData } from 'utils/queryConnector';
 import { buildHref } from 'utils/routes';
 import snxJSConnector from 'utils/snxJSConnector';
+import { delay } from 'utils/timer';
 import PnL from './PnL';
 import YourTransactions from './Transactions';
 import {
     Bottom,
     ChartsContainer,
+    CloseRoundButton,
     Container,
     InfoDiv,
     InputContainer,
+    RoundEnd,
+    RoundEndContainer,
+    RoundEndLabel,
+    RoundInfo,
+    RoundInfoContainer,
     SectionContentContainer,
     SectionDescription,
     SectionTitle,
     StakingButton,
+    SwitchContainer,
     Top,
 } from './styled-components';
 
@@ -517,6 +525,67 @@ const AMMLP: React.FC = () => {
         setAmount(Math.trunc(paymentTokenBalance ? Number(paymentTokenBalance) * 100 : 0) / 100);
     };
 
+    const closeRound = async () => {
+        const id = toast.loading(getDefaultToastContent(t('staking.amm-lp.closing-round')), getLoadingToastOptions());
+        setIsSubmitting(true);
+        try {
+            const { signer } = snxJSConnector;
+
+            if (signer && activeLiquidityPoolContract) {
+                const lpContractWithSigner = activeLiquidityPoolContract.connect(signer);
+
+                const canCloseCurrentRound = await lpContractWithSigner?.canCloseCurrentRound();
+                const roundClosingPrepared = await lpContractWithSigner?.roundClosingPrepared();
+
+                let getUsersCountInCurrentRound = await lpContractWithSigner?.getUsersCountInCurrentRound();
+                let usersProcessedInRound = await lpContractWithSigner?.usersProcessedInRound();
+                if (canCloseCurrentRound) {
+                    try {
+                        if (!roundClosingPrepared) {
+                            const tx = await lpContractWithSigner.prepareRoundClosing({
+                                type: 2,
+                            });
+                            await tx.wait().then(() => {
+                                console.log('prepareRoundClosing closed');
+                            });
+                            await delay(1000 * 2);
+                        }
+
+                        while (usersProcessedInRound < getUsersCountInCurrentRound) {
+                            const tx = await lpContractWithSigner.processRoundClosingBatch(100, {
+                                type: 2,
+                            });
+                            await tx.wait().then(() => {
+                                console.log('processRoundClosingBatch for batch done');
+                            });
+                            await delay(1000 * 2);
+                            getUsersCountInCurrentRound = await lpContractWithSigner.getUsersCountInCurrentRound();
+                            usersProcessedInRound = await lpContractWithSigner.usersProcessedInRound();
+                        }
+
+                        const tx = await lpContractWithSigner.closeRound({
+                            type: 2,
+                        });
+                        await tx.wait().then(() => {
+                            console.log('Round closed');
+                        });
+
+                        toast.update(id, getSuccessToastOptions(t('staking.amm-lp.round-successfully-closed'), id));
+                        setIsSubmitting(false);
+                    } catch (e) {
+                        toast.update(id, getErrorToastOptions(t('common.errors.unknown-error-try-again'), id));
+                        setIsSubmitting(false);
+                        console.log(e);
+                    }
+                }
+            }
+        } catch (e) {
+            console.log('E ', e);
+            toast.update(id, getErrorToastOptions(t('common.errors.unknown-error-try-again'), id));
+            setIsSubmitting(false);
+        }
+    };
+
     useEffect(
         () =>
             setIsWithdrawalPercentageValid(
@@ -543,21 +612,58 @@ const AMMLP: React.FC = () => {
                     <NavLinks items={navItems} />
                 </NavContainer>
             )}
+            {liquidityPoolPaused ? (
+                <RoundInfoContainer>
+                    <RoundInfo>{t('staking.amm-lp.liquidity-pool-paused-message')}</RoundInfo>
+                </RoundInfoContainer>
+            ) : liquidityPoolData?.liquidityPoolStarted ? (
+                <>
+                    <RoundEndContainer>
+                        <FlexDivCentered gap="10px">
+                            <RoundEndLabel>{t('staking.amm-lp.round-end-label')}:</RoundEndLabel>
+                            <RoundEnd>
+                                {liquidityPoolData.isRoundEnded ? (
+                                    t('staking.amm-lp.round-ended-label')
+                                ) : (
+                                    <TimeRemaining
+                                        end={liquidityPoolData.roundEndTime}
+                                        fontSize={20}
+                                        showFullCounter
+                                        textColor="white"
+                                    />
+                                )}
+                            </RoundEnd>
+                        </FlexDivCentered>
+                        {liquidityPoolData.canCloseCurrentRound && (
+                            <CloseRoundButton disabled={isSubmitting} onClick={closeRound}>
+                                {t('staking.amm-lp.button.close-round')}
+                            </CloseRoundButton>
+                        )}
+                    </RoundEndContainer>
+                </>
+            ) : (
+                <RoundInfoContainer>
+                    <RoundInfo>{t('staking.amm-lp.liquidity-pool-not-started-message')}</RoundInfo>
+                </RoundInfoContainer>
+            )}
             <Container>
                 <Top>
                     <LoadingContainer isLoading={paymentTokenBalanceQuery.isLoading}>
-                        <SwitchInput
-                            label={{
-                                firstLabel: t('staking.amm-lp.deposit-withdraw.deposit'),
-                                secondLabel: t('staking.amm-lp.deposit-withdraw.withdraw'),
-                                fontSize: '18px',
-                            }}
-                            borderColor={theme.borderColor.secondary}
-                            dotBackground={theme.textColor.secondary}
-                            dotSize="20px"
-                            active={!depositSelected}
-                            handleClick={() => setDepositSelected(!depositSelected)}
-                        />
+                        <SwitchContainer>
+                            <SwitchInput
+                                label={{
+                                    firstLabel: t('staking.amm-lp.deposit-withdraw.deposit'),
+                                    secondLabel: t('staking.amm-lp.deposit-withdraw.withdraw'),
+                                    fontSize: '18px',
+                                }}
+                                borderColor={theme.borderColor.secondary}
+                                dotBackground={theme.textColor.secondary}
+                                dotSize="20px"
+                                active={!depositSelected}
+                                handleClick={() => setDepositSelected(!depositSelected)}
+                            />
+                        </SwitchContainer>
+
                         <SectionContentContainer>
                             {depositSelected && (
                                 <>

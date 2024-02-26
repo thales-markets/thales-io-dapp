@@ -174,3 +174,77 @@ export const SectionTitle = styled.div`
         color: ${(props) => props.theme.textColor.secondary};
     }
 `;
+
+export const RoundEndContainer = styled(FlexDivColumn)`
+    color: white;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    line-height: 15px;
+    margin-bottom: 10px;
+    span {
+        font-size: 15px;
+        font-weight: 600;
+        color: ${(props) => props.theme.textColor.secondary};
+        line-height: 15px;
+    }
+    @media (max-width: 1199px) {
+        font-size: 15px;
+        line-height: 15px;
+        span {
+            font-size: 15px;
+            line-height: 15px;
+        }
+    }
+`;
+
+export const RoundEndLabel = styled.p``;
+
+export const RoundEnd = styled.p`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    color: ${(props) => props.theme.textColor.secondary};
+    line-height: 15px;
+`;
+
+export const RoundInfoContainer = styled(FlexDivColumn)`
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+`;
+
+export const RoundInfoLabel = styled.p``;
+
+export const RoundInfo = styled.p`
+    font-size: 15px;
+    font-weight: 600;
+    color: ${(props) => props.theme.textColor.secondary};
+    line-height: 15px;
+`;
+
+export const SwitchContainer = styled.div`
+    margin-bottom: 25px;
+`;
+
+export const CloseRoundButton = styled.button`
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+    font-family: NunitoExtraBold;
+    font-size: 13px;
+    line-height: 20px;
+    background: ${(props) => props.theme.button.background.tertiary};
+    color: ${(props) => props.theme.button.textColor.tertiary};
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0 10px;
+    &:disabled {
+        opacity: 0.4;
+        cursor: default;
+    }
+`;
