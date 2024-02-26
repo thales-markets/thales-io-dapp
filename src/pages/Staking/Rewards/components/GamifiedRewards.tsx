@@ -80,7 +80,9 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                 <SubTitle>
                                     <span>{t('staking.rewards.base-rewards.current-multiplier')}</span>
                                     <span>{`${
-                                        pointsData?.stakingMultiplier ? `x ${pointsData?.stakingMultiplier}` : '-'
+                                        pointsData?.stakingMultiplier
+                                            ? `x ${formatCurrencyWithKey('', pointsData?.stakingMultiplier, 1)}`
+                                            : '-'
                                     }`}</span>
                                 </SubTitle>
                                 <SubTitle>
@@ -122,7 +124,9 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                     <span>{t('staking.rewards.base-rewards.current-multiplier')}</span>
                                     <span>
                                         <HighlightedValue>{`${
-                                            pointsData?.stakingMultiplier ? `x ${pointsData?.stakingMultiplier}` : '-'
+                                            pointsData?.stakingMultiplier
+                                                ? `x ${formatCurrencyWithKey('x', pointsData?.stakingMultiplier, 1)}`
+                                                : '-'
                                         }`}</HighlightedValue>
                                     </span>
                                 </InfoDiv>
