@@ -39,3 +39,7 @@ export const bigNumberParser = (value: number, decimals?: number) =>
         floorNumberToDecimals(Number(value), decimals ? decimals : 18).toString(),
         decimals ? decimals : 18
     );
+
+export const formatMultiplier = (value: string | number | undefined) => {
+    return `x${value ? value : '0.00'}`;
+};

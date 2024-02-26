@@ -16,6 +16,7 @@ import styled from 'styled-components';
 import { FlexDiv, FlexDivColumn, FlexDivColumnCentered } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { ThalesStakingData } from 'types/token';
+import { formatMultiplier } from 'utils/formatters/number';
 import { SectionTitle } from '../../styled-components';
 import {
     FinalPoints,
@@ -76,7 +77,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                     <span>{t('staking.rewards.base-rewards.current-multiplier')}</span>
                                     <span>{`${
                                         pointsData?.stakingMultiplier
-                                            ? `x ${formatCurrencyWithKey('', pointsData?.stakingMultiplier, 1)}`
+                                            ? formatMultiplier(pointsData?.stakingMultiplier)
                                             : '-'
                                     }`}</span>
                                 </SubTitle>
@@ -120,7 +121,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                     <span>
                                         <HighlightedValue>{`${
                                             pointsData?.stakingMultiplier
-                                                ? `x ${formatCurrencyWithKey('x', pointsData?.stakingMultiplier, 1)}`
+                                                ? formatMultiplier(pointsData?.stakingMultiplier)
                                                 : '-'
                                         }`}</HighlightedValue>
                                     </span>
@@ -194,17 +195,17 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                 <InfoDivRewards>
                                     <span>{t('staking.rewards.your-rewards.trading-multiplier')}</span>
                                     <span></span>
-                                    <span>X {pointsData?.tradingMultiplier}</span>
+                                    <span>{formatMultiplier(pointsData?.tradingMultiplier)}</span>
                                 </InfoDivRewards>
                                 <InfoDivRewards>
                                     <span>{t('staking.rewards.your-rewards.lp-multiplier')}</span>
                                     <span></span>
-                                    <span>X {pointsData?.lpMultiplier}</span>
+                                    <span>{formatMultiplier(pointsData?.lpMultiplier)}</span>
                                 </InfoDivRewards>
                                 <InfoDivRewards>
                                     <span>{t('staking.rewards.your-rewards.vaults-multiplier')}</span>
                                     <span></span>
-                                    <span>X {pointsData?.vaultsMultiplier}</span>
+                                    <span>{formatMultiplier(pointsData?.vaultsMultiplier)}</span>
                                 </InfoDivRewards>
                             </FlexDivColumn>
                             <FlexDivColumn>
