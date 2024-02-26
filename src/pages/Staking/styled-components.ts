@@ -131,7 +131,7 @@ export const Container = styled.div`
     }
 `;
 
-export const TooltipContainer = styled.span`
+export const TooltipContainer = styled.div`
     display: flex;
     align-items: center;
 `;
