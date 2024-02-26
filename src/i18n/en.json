@@ -323,7 +323,7 @@
                 "calculating-rewards": "Claiming is paused. <br />Calculating rewards in progress."
             },
             "base-rewards": {
-                "title": "Base staking rewards",
+                "title": "Core staking rewards",
                 "current-multiplier": "Your current multiplier : ",
                 "your-staked": "Your THALES staked",
                 "staking-divider": "Staking Divider",
