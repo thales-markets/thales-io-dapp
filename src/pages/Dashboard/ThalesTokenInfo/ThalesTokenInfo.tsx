@@ -1,3 +1,4 @@
+import LoadingContainer from 'components/LoadingContainer';
 import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import { useEffect, useMemo, useState } from 'react';
@@ -127,77 +128,85 @@ const ThalesTokenInfo: React.FC = () => {
     };
 
     return (
-        <WidgetWrapper isDoubleHeight={true}>
-            <WidgetHeader>
-                <WidgetIcon className="icon icon--thales-round-logo" />
-                <TitleLabel>{t('dashboard.token-info.title')}</TitleLabel>
-            </WidgetHeader>
-            <UpperInfoSection>
-                <FlexDivFullWidthSpaceBetween>
-                    <InfoText>{t('dashboard.token-info.total-supply')}</InfoText>
-                    <InfoStats> {tokenInfo ? `${formatCurrency(tokenInfo.totalSupply)} THALES` : 'N/A'}</InfoStats>
-                </FlexDivFullWidthSpaceBetween>
-                <FlexDivFullWidthSpaceBetween>
-                    <InfoText>{t('dashboard.token-info.circulating-supply')}</InfoText>
-                    <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.circulatingSupply)} THALES` : 'N/A'}</InfoStats>
-                </FlexDivFullWidthSpaceBetween>
-                <FlexDivFullWidthSpaceBetween>
-                    <InfoText>{t('dashboard.token-info.burned-supply')}</InfoText>
-                    <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.thalesBurned)} THALES` : 'N/A'}</InfoStats>
-                </FlexDivFullWidthSpaceBetween>
-                <FlexDivFullWidthSpaceBetween>
-                    <InfoText>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>
-                    <InfoStats>
-                        {tokenInfo
-                            ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.circulatingSupply) * 100)} %`
-                            : 'N/A'}
-                    </InfoStats>
-                </FlexDivFullWidthSpaceBetween>
-            </UpperInfoSection>
-            <DoubleSideInfoSection>
-                <StyledPieChart width={330} height={165}>
-                    <Legend
-                        formatter={formatChartLegend}
-                        iconType="circle"
-                        layout="vertical"
-                        align="left"
-                        verticalAlign="top"
-                        height={80}
-                        payload={pieLegendData}
-                        wrapperStyle={{ top: 47, left: 20 }}
-                    />
-                    <Pie
-                        isAnimationActive={false}
-                        blendStroke={true}
-                        data={pieData}
-                        dataKey={'value'}
-                        innerRadius={35}
-                        outerRadius={55}
-                        cx="50%"
-                        cy="50%"
-                    >
-                        {pieData.map((slice, index) => (
-                            <Cell key={index} fill={slice.color} />
-                        ))}
-                        <Label className="chartLabel" value={t('dashboard.token-info.total-100m')} position="center" />
-                    </Pie>
-                    <Pie
-                        isAnimationActive={false}
-                        blendStroke={true}
-                        data={pie2Data}
-                        dataKey={'value'}
-                        innerRadius={65}
-                        outerRadius={75}
-                        cx="50%"
-                        cy="50%"
-                    >
-                        {pie2Data.map((slice, index) => (
-                            <Cell key={index} fill={slice.color} />
-                        ))}
-                    </Pie>
-                </StyledPieChart>
-            </DoubleSideInfoSection>
-        </WidgetWrapper>
+        <LoadingContainer isLoading={tokenInfoQuery.isLoading || stakingDataQuery.isLoading}>
+            <WidgetWrapper isDoubleHeight={true}>
+                <WidgetHeader>
+                    <WidgetIcon className="icon icon--thales-round-logo" />
+                    <TitleLabel>{t('dashboard.token-info.title')}</TitleLabel>
+                </WidgetHeader>
+                <UpperInfoSection>
+                    <FlexDivFullWidthSpaceBetween>
+                        <InfoText>{t('dashboard.token-info.total-supply')}</InfoText>
+                        <InfoStats> {tokenInfo ? `${formatCurrency(tokenInfo.totalSupply)} THALES` : 'N/A'}</InfoStats>
+                    </FlexDivFullWidthSpaceBetween>
+                    <FlexDivFullWidthSpaceBetween>
+                        <InfoText>{t('dashboard.token-info.circulating-supply')}</InfoText>
+                        <InfoStats>
+                            {tokenInfo ? `${formatCurrency(tokenInfo.circulatingSupply)} THALES` : 'N/A'}
+                        </InfoStats>
+                    </FlexDivFullWidthSpaceBetween>
+                    <FlexDivFullWidthSpaceBetween>
+                        <InfoText>{t('dashboard.token-info.burned-supply')}</InfoText>
+                        <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.thalesBurned)} THALES` : 'N/A'}</InfoStats>
+                    </FlexDivFullWidthSpaceBetween>
+                    <FlexDivFullWidthSpaceBetween>
+                        <InfoText>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>
+                        <InfoStats>
+                            {tokenInfo
+                                ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.circulatingSupply) * 100)} %`
+                                : 'N/A'}
+                        </InfoStats>
+                    </FlexDivFullWidthSpaceBetween>
+                </UpperInfoSection>
+                <DoubleSideInfoSection>
+                    <StyledPieChart width={330} height={165}>
+                        <Legend
+                            formatter={formatChartLegend}
+                            iconType="circle"
+                            layout="vertical"
+                            align="left"
+                            verticalAlign="top"
+                            height={80}
+                            payload={pieLegendData}
+                            wrapperStyle={{ top: 47, left: 20 }}
+                        />
+                        <Pie
+                            isAnimationActive={false}
+                            blendStroke={true}
+                            data={pieData}
+                            dataKey={'value'}
+                            innerRadius={35}
+                            outerRadius={55}
+                            cx="50%"
+                            cy="50%"
+                        >
+                            {pieData.map((slice, index) => (
+                                <Cell key={index} fill={slice.color} />
+                            ))}
+                            <Label
+                                className="chartLabel"
+                                value={t('dashboard.token-info.total-100m')}
+                                position="center"
+                            />
+                        </Pie>
+                        <Pie
+                            isAnimationActive={false}
+                            blendStroke={true}
+                            data={pie2Data}
+                            dataKey={'value'}
+                            innerRadius={65}
+                            outerRadius={75}
+                            cx="50%"
+                            cy="50%"
+                        >
+                            {pie2Data.map((slice, index) => (
+                                <Cell key={index} fill={slice.color} />
+                            ))}
+                        </Pie>
+                    </StyledPieChart>
+                </DoubleSideInfoSection>
+            </WidgetWrapper>
+        </LoadingContainer>
     );
 };
 

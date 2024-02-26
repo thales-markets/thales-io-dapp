@@ -63,7 +63,7 @@ export const VestingValid = styled.div`
 `;
 
 export const ScheduleWrapper = styled(FlexDiv)`
-    overflow: scroll;
+    overflow: auto;
     width: 70%;
     align-items: center;
     justify-content: center;

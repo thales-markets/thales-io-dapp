@@ -309,10 +309,11 @@
             "claim": {
                 "title": "Your Current Claimable Rewards",
                 "description": "By staking THALES tokens you are eligible for weekly THALES Staking Rewards. <br /> • Your Total Staking Rewards are determined by your total share of the Staking Pool (Base Rewards) and by your trading and LP-ing activity (Gamified Rewards), at the time of the weekly snapshot (Wednesday 14:00 UTC)<br />• THALES staking rewards have to be actively claimed once a week or they are forfeited. <br />• After the weekly THALES Staking Rewards are Claimed to Escrow, they are locked in a 10 weeks Vesting Period.<br />• After the Vesting Period has elapsed, the rewards become Vested (unlocked) and can be Claimed to Wallet on the Vesting page.",
-                "time-left": "Time left to claim : ",
+                "time-left": "Time left to claim",
                 "gamified-staking-rewards": "Gamified Staking Rewards",
                 "base-rewards": "Base Rewards",
                 "protocol-rewards": "Protocol Rewards",
+                "protocol-rewards-tooltip": "Your share of protocol fees accrued in the previous round.",
                 "total-thales-points": "Total Thales Rewards + Protocol Rewards",
                 "disclaimer": "Unclaimed weekly rewards are forfeited!",
                 "claim-rewards": "Claim Rewards",

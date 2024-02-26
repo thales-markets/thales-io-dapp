@@ -1,3 +1,4 @@
+import LoadingContainer from 'components/LoadingContainer';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -33,28 +34,32 @@ const TVLInfo: React.FC = () => {
     }, [statsQuery.isSuccess, statsQuery.data]);
 
     return (
-        <WidgetWrapper>
-            <WidgetHeader>
-                <WidgetIcon className="icon icon--lock" />
-                <TitleLabel>{t('dashboard.tvl.title')}</TitleLabel>
-            </WidgetHeader>
-            <InfoSection side="left">
-                <InfoText>{t('dashboard.tvl.token-staking-tvl')}</InfoText>
-                <InfoText>{t('dashboard.tvl.overtime-amm-tvl')}</InfoText>
-                <InfoText>{t('dashboard.tvl.thales-amm-tvl')}</InfoText>
-                <InfoText>{t('dashboard.tvl.vaults-tvl')}</InfoText>
-                <InfoText>{t('dashboard.tvl.speed-tvl')}</InfoText>
-            </InfoSection>
-            <InfoSection side="right">
-                <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.stakingThalesTVL)}` : '-'}</InfoStats>
-                <InfoStats>
-                    {tvlStats ? `$ ${formatCurrency(tvlStats.overtimeSingleTVL + tvlStats.overtimeParlayTVL)}` : '-'}
-                </InfoStats>
-                <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.thalesLpTVL)}` : '-'}</InfoStats>
-                <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.vaultsTVL)}` : '-'}</InfoStats>
-                <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.speedMarketsTVL)}` : '-'}</InfoStats>
-            </InfoSection>
-        </WidgetWrapper>
+        <LoadingContainer isLoading={statsQuery.isLoading}>
+            <WidgetWrapper>
+                <WidgetHeader>
+                    <WidgetIcon className="icon icon--lock" />
+                    <TitleLabel>{t('dashboard.tvl.title')}</TitleLabel>
+                </WidgetHeader>
+                <InfoSection side="left">
+                    <InfoText>{t('dashboard.tvl.token-staking-tvl')}</InfoText>
+                    <InfoText>{t('dashboard.tvl.overtime-amm-tvl')}</InfoText>
+                    <InfoText>{t('dashboard.tvl.thales-amm-tvl')}</InfoText>
+                    <InfoText>{t('dashboard.tvl.vaults-tvl')}</InfoText>
+                    <InfoText>{t('dashboard.tvl.speed-tvl')}</InfoText>
+                </InfoSection>
+                <InfoSection side="right">
+                    <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.stakingThalesTVL)}` : '-'}</InfoStats>
+                    <InfoStats>
+                        {tvlStats
+                            ? `$ ${formatCurrency(tvlStats.overtimeSingleTVL + tvlStats.overtimeParlayTVL)}`
+                            : '-'}
+                    </InfoStats>
+                    <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.thalesLpTVL)}` : '-'}</InfoStats>
+                    <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.vaultsTVL)}` : '-'}</InfoStats>
+                    <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.speedMarketsTVL)}` : '-'}</InfoStats>
+                </InfoSection>
+            </WidgetWrapper>
+        </LoadingContainer>
     );
 };
 

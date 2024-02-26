@@ -1,6 +1,6 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import coinsAnimation from 'assets/lotties/rewards-coins.json';
-import SimpleLoader from 'components/SimpleLoader';
+import LoadingContainer from 'components/LoadingContainer';
 import TimeRemaining from 'components/TimeRemaining';
 import {
     getDefaultToastContent,
@@ -8,10 +8,11 @@ import {
     getLoadingToastOptions,
     getSuccessToastOptions,
 } from 'components/ToastMessage/ToastMessage';
+import Tooltip from 'components/Tooltip';
 import { THALES_CURRENCY } from 'constants/currency';
 import { ethers } from 'ethers';
 import Lottie from 'lottie-react';
-import { StakingButton } from 'pages/Staking/styled-components';
+import { StakingButton, TooltipContainer } from 'pages/Staking/styled-components';
 import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -107,12 +108,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
 
     return (
         <>
-            {isLoading && (
-                <FlexDiv>
-                    <SimpleLoader />
-                </FlexDiv>
-            )}
-            {!isLoading && (
+            <LoadingContainer isLoading={isLoading}>
                 <ClaimableRewardsContainer>
                     <RewardsDetailsContainer>
                         <SectionTitle>
@@ -146,12 +142,20 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                         </HighlightedValue>
                                     </StakingDetailsSection>
                                     <StakingDetailsSection>
-                                        <Trans
-                                            i18nKey="staking.rewards.claim.protocol-rewards"
-                                            components={{
-                                                span: <span />,
-                                            }}
-                                        />
+                                        <TooltipContainer>
+                                            <Trans
+                                                i18nKey="staking.rewards.claim.protocol-rewards"
+                                                components={{
+                                                    span: <span />,
+                                                }}
+                                            />
+                                            <Tooltip
+                                                overlay={t('staking.rewards.claim.protocol-rewards-tooltip')}
+                                                marginTop={2}
+                                                mobileIconFontSize={11}
+                                                iconFontSize={13}
+                                            />
+                                        </TooltipContainer>
                                         <span>
                                             {formatCurrencyWithKey(
                                                 getDefaultCollateral(networkId),
@@ -255,7 +259,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                         </IconContainer>
                     )}
                 </ClaimableRewardsContainer>
-            )}
+            </LoadingContainer>
         </>
     );
 };

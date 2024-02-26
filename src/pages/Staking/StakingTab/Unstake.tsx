@@ -345,8 +345,9 @@ const Unstake: React.FC = () => {
 };
 
 const UnstakingContainer = styled(FlexDivRowCentered)<{ twoButtons: boolean }>`
-    margin-bottom: 15px;
     min-height: ${(props) => (props.twoButtons ? '30px' : '66px')};
+    width: 70%;
+    margin: 0 auto 15px auto;
 `;
 
 const UnstakingPeriodWrapper = styled(FlexDivColumnCentered)`

@@ -30,10 +30,11 @@ export const SectionTitle = styled.div`
     }
 `;
 
-export const InfoDiv = styled.div`
+export const InfoDiv = styled.div<{ height?: string }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: ${(props) => props.height || 'auto'};
     > span:nth-child(2) {
         color: ${(props) => props.theme.textColor.primary};
         text-align: right;
@@ -100,12 +101,14 @@ export const SectionHeader = styled(FlexDiv)`
 export const SectionDescription = styled.div`
     line-height: 180%;
     text-align: justify;
-    height: 130px;
     a {
         color: ${(props) => props.theme.textColor.secondary};
         &:hover {
             text-decoration: underline;
         }
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        height: 130px;
     }
 `;
 
@@ -128,7 +131,7 @@ export const Container = styled.div`
     }
 `;
 
-export const TooltipContainer = styled.span`
+export const TooltipContainer = styled.div`
     display: flex;
     align-items: center;
 `;
