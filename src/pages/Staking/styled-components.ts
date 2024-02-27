@@ -12,6 +12,10 @@ export const SectionTitle = styled.div`
     font-style: normal;
     line-height: 24px;
     text-transform: uppercase;
+    > span:first-child {
+        display: flex;
+        align-items: center;
+    }
     > span > i {
         margin-right: 5px;
     }
