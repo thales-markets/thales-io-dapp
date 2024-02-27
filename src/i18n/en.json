@@ -539,8 +539,8 @@
                 "previous-pnl": "Previous round PnL"
             },
             "user-transactions": {
-                "title": "User TXs",
-                "your-transactions-title": "Your TXs",
+                "title": "USER TXs",
+                "your-transactions-title": "YOUR TXs",
                 "no-transactions": "No user transactions associated with this liquidity pool in the selected round.",
                 "round-label": "Round",
                 "type": {

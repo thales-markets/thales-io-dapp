@@ -199,7 +199,6 @@ const Tab = styled(FlexDivCentered)<{ isActive: boolean; index: number }>`
     user-select: none;
     margin-left: 0px;
     margin-right: 40px;
-    text-transform: uppercase;
     color: ${(props) => props.theme.textColor.tertiary};
     i {
         margin-right: 5px;
