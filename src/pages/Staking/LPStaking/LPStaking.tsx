@@ -83,7 +83,7 @@ const LPStaking: React.FC = () => {
                     </SPAAnchor>
                 </RowsContainer>
             </Wrapper>
-            <YourTransactions />
+            <YourTransactions width={'100%'} />
         </Container>
     );
 };
