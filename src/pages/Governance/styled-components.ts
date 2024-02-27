@@ -44,6 +44,7 @@ export const SidebarContainer = styled(FlexDivColumn)<{ tipsOverview: boolean }>
     @media (max-width: 1200px) {
         width: 100%;
         margin-left: 0;
+        margin-top: 0px;
     }
 `;
 
@@ -68,6 +69,8 @@ export const OptionsTabWrapper = styled(FlexDivRow)`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         padding: 0;
+        gap: 10px;
+        width: 100%;
     }
 `;
 
@@ -157,8 +160,8 @@ export const SidebarRowData = styled(FlexDivRow)<{ fontWeight?: number }>`
     font-size: 16px;
     line-height: 36px;
     color: ${(props) => props.theme.textColor.primary};
-    @media (max-width: 575px) {
-        font-size: 14px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 13px;
     }
 `;
 

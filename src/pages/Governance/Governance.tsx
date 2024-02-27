@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { getProposalSearch, setProposalSearch } from 'redux/modules/proposal';
+import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import { Line, NavContainer } from 'styles/common';
 import { Proposal } from 'types/governance';
@@ -40,6 +41,7 @@ type GovernanceProps = RouteComponentProps<{
 const Governance: React.FC<GovernanceProps> = (props) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const isMobile = useSelector(getIsMobile);
     const [selectedProposal, setSelectedProposal] = useState<Proposal | undefined>(undefined);
     const [selectedTab, setSelectedTab] = useState<SpaceKey>(SpaceKey.TIPS);
     const [statusFilter, setStatusFilter] = useState<StatusEnum>(StatusEnum.All);
@@ -175,14 +177,6 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                         {!selectedProposal && (
                             <>
                                 <OptionsTabWrapper>
-                                    {/* {isMobile ? (
-                                        <Dropdown
-                                            options={Object.values(SpaceKey)}
-                                            activeOption={selectedTab}
-                                            onSelect={setSelectedTab}
-                                            translationKey="tabs"
-                                        /> */}
-
                                     {selectedTab !== SpaceKey.THALES_STAKERS && (
                                         <>
                                             <Dropdown
@@ -197,7 +191,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                                                     dispatch(setProposalSearch(value));
                                                 }}
                                                 placeholder={t('governance.search')}
-                                                width="320px"
+                                                width={isMobile ? '100%' : '320px'}
                                                 height="36px"
                                             />
                                         </>

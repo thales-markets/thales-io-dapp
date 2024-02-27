@@ -1,3 +1,4 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDivCentered, FlexDivColumn, FlexDivRow } from 'styles/common';
 import { getStatusColor } from 'utils/governance';
@@ -20,6 +21,9 @@ export const Card = styled(FlexDivColumn)<{ closed: boolean }>`
         border: ${(props) => `1.5px solid ${props.theme.background.secondary}`};
     }
     gap: 15px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 14px;
+    }
 `;
 
 export const Status = styled(FlexDivCentered)<{ status: string }>`
@@ -34,6 +38,9 @@ export const Status = styled(FlexDivCentered)<{ status: string }>`
     height: 18px;
     text-align: center;
     margin-right: 20px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 16px;
+    }
 `;
 
 export const Title = styled(FlexDivRow)<{ status: string }>`
@@ -42,6 +49,9 @@ export const Title = styled(FlexDivRow)<{ status: string }>`
     font-size: 16px;
     line-height: 24px;
     color: ${(props) => props.theme.textColor.primary};
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 14px;
+    }
 `;
 
 export const TipTable = styled(FlexDivColumn)`
@@ -108,6 +118,9 @@ export const Body = styled(FlexDivRow)`
     line-height: 24px;
     color: ${(props) => props.theme.textColor.tertiary};
     overflow-wrap: anywhere;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 13px;
+    }
 `;
 
 export const ResultContainer = styled.div`
@@ -116,6 +129,9 @@ export const ResultContainer = styled.div`
     font-size: 18px;
     font-weight: 600px;
     line-height: 18px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 16px;
+    }
 `;
 
 export const RightSection = styled.div`
@@ -123,6 +139,9 @@ export const RightSection = styled.div`
     font-size: 18px;
     font-weight: 600px;
     line-height: 18px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 16px;
+    }
 `;
 
 export const StatusIcon = styled.i<{ color: string }>`

@@ -4,6 +4,8 @@ import { SpaceKey, StatusEnum } from 'enums/governance';
 import { indexOf, max } from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
 import { Remarkable } from 'remarkable';
 import { linkify } from 'remarkable/linkify';
 import { Colors, FlexDivRowCentered } from 'styles/common';
@@ -18,9 +20,10 @@ type ProposalCardProps = {
 
 const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
     const { t } = useTranslation();
+    const isMobile = useSelector(getIsMobile);
+
     const closed = proposal.state === StatusEnum.Closed;
     const pending = proposal.state === StatusEnum.Pending;
-
     const finalChoice = proposal.choices[indexOf(proposal.scores, max(proposal.scores))];
 
     const getRawMarkup = (value?: string | null) => {
@@ -77,10 +80,12 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                 )}
             </FlexDivRowCentered>
             <Title status={proposal.state}>{proposal.title}</Title>
-            {proposal.space.id === SpaceKey.TIPS && !PROPOSALS_DIFFERENT_FORMATTING.includes(proposal.id) ? (
+            {proposal.space.id === SpaceKey.TIPS &&
+            !PROPOSALS_DIFFERENT_FORMATTING.includes(proposal.id) &&
+            !isMobile ? (
                 <TipTable dangerouslySetInnerHTML={getRawMarkup(proposal.body)} />
             ) : (
-                <Body>{truncateText(proposal.body, 400)}</Body>
+                <Body>{truncateText(proposal.body, isMobile ? 150 : 400)}</Body>
             )}
         </Card>
     );

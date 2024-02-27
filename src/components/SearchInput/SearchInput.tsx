@@ -1,4 +1,5 @@
 import TextInput from 'components/fields/TextInput';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -35,6 +36,12 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder, text, handleChan
 const Wrapper = styled(FlexDivCentered)`
     position: relative;
     height: fit-content;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+        & > div {
+            width: 100%;
+        }
+    }
 `;
 
 const Icon = styled.i<{ iconTop?: string }>`
