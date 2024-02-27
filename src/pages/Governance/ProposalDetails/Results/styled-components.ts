@@ -1,3 +1,4 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivColumnCentered } from 'styles/common';
 
@@ -52,7 +53,7 @@ export const RowPercentageIndicator = styled(FlexDiv)<{ width: number }>`
 
 export const ResultLabel = styled.div`
     width: 160px;
-    @media (max-width: 575px) {
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 140px;
     }
 `;
