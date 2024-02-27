@@ -222,6 +222,9 @@ export const StyledPieChart = styled(PieChart)`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100% !important;
     }
+    .recharts-legend-item {
+        padding-bottom: 3px;
+    }
 `;
 
 export const ChartInnerText = styled.span`
