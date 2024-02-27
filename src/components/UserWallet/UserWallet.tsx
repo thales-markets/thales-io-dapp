@@ -25,8 +25,7 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     background: transparent;
-    color: ${(props) => props.theme.textColor.secondary};
-    border: 1px solid ${(props) => props.theme.borderColor.quaternary};
+    border: 1px solid ${(props) => props.theme.borderColor.senary};
     border-radius: 8px;
     @media (max-width: 500px) {
         height: 26px;
