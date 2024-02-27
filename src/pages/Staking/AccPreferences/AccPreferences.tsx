@@ -23,15 +23,8 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { useTheme } from 'styled-components';
-import {
-    FlexDiv,
-    FlexDivCentered,
-    FlexDivColumn,
-    FlexDivColumnSpaceBetween,
-    FlexDivSpaceBetween,
-    Icon,
-} from 'styles/common';
-import { getAddress, getEtherscanAddressLink, truncateAddress } from 'thales-utils';
+import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnSpaceBetween, Icon } from 'styles/common';
+import { getAddress, getEtherscanAddressLink } from 'thales-utils';
 import snxJSConnector from 'utils/snxJSConnector';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
 import YourTransactions from './Transactions';
@@ -507,10 +500,10 @@ const AccPreferences: React.FC = () => {
                                 </span>
                             </SectionTitle>
                             <Subtitle>{t('staking.acc-preferences.claim.subtitle')}:</Subtitle>
-                            <FlexDivSpaceBetween>
+                            <FlexDivColumn>
                                 <TextInput
                                     inputFontSize="14px"
-                                    margin={'0'}
+                                    margin={'0 0 10px 0'}
                                     value={claimAccount}
                                     onChange={(e: any) => setClaimAccount(e.target.value)}
                                     disabled={isSubmittingClaim || !isWalletConnected}
@@ -518,8 +511,8 @@ const AccPreferences: React.FC = () => {
                                     showValidation={!isClaimAccountValid}
                                     width="100%"
                                 ></TextInput>
-                                {getClaimButton()}
-                            </FlexDivSpaceBetween>
+                                <FlexDivCentered>{getClaimButton()}</FlexDivCentered>
+                            </FlexDivColumn>
                         </FlexDivColumnSpaceBetween>
                         <FlexDivColumn gap="20px">
                             <SectionDescription>
@@ -541,7 +534,7 @@ const AccPreferences: React.FC = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                 >
-                                    {truncateAddress(enabledAddress)}
+                                    {enabledAddress}
                                     <ArrowIcon width="8" height="8" />
                                 </StyledLink>
                             ))}
