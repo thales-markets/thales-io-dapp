@@ -267,7 +267,7 @@ const Staking: React.FC = () => {
                             </InfoSection>
                         </StakingInfo>
                         <ChartWrapper>
-                            <BarChart width={650} height={200} data={chartData}>
+                            <BarChart width={630} height={200} data={chartData}>
                                 <XAxis
                                     axisLine={false}
                                     dataKey="month"
