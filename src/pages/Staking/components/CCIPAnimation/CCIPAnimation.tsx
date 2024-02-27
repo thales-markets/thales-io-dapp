@@ -1,16 +1,38 @@
 import ccipAnimation from 'assets/lotties/ccip.json';
 import Lottie from 'lottie-react';
-import React from 'react';
+import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
+import { getNetworkId } from 'redux/modules/wallet';
+import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { ThalesStakingData } from 'types/token';
 
-type CCIPAnimationProps = {
-    stakingData: ThalesStakingData | undefined;
-};
-
-const CCIPAnimation: React.FC<CCIPAnimationProps> = ({ stakingData }) => {
+const CCIPAnimation: React.FC = () => {
     const { t } = useTranslation();
+    const networkId = useSelector((state: RootState) => getNetworkId(state));
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+
+    const [lastValidStakingData, setLastValidStakingData] = useState<ThalesStakingData | undefined>(undefined);
+
+    const stakingDataQuery = useThalesStakingDataQuery(networkId, {
+        enabled: isAppReady,
+    });
+
+    useEffect(() => {
+        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
+            setLastValidStakingData(stakingDataQuery.data);
+        }
+    }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
+
+    const stakingData: ThalesStakingData | undefined = useMemo(() => {
+        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
+            return stakingDataQuery.data;
+        }
+        return lastValidStakingData;
+    }, [stakingDataQuery.isSuccess, stakingDataQuery.data, lastValidStakingData]);
 
     return stakingData?.closingPeriodInProgress ? (
         <LottieContainer>

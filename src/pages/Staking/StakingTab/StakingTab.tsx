@@ -15,6 +15,7 @@ import { useTheme } from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { formatCurrencyWithKey, formatCurrencyWithPrecision } from 'thales-utils';
 import { GlobalStakingData, ThalesStakingData, UserStakingData } from 'types/token';
+import CCIPAnimation from '../components/CCIPAnimation';
 import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
 import Stake from './Stake';
 import YourTransactions from './Transactions/YourTransactions';
@@ -107,6 +108,7 @@ const StakingTab: React.FC = () => {
 
     return (
         <>
+            <CCIPAnimation />
             <Container>
                 <UpperLeft>
                     <LoadingContainer
@@ -225,6 +227,7 @@ const StakingTab: React.FC = () => {
                         borderColor={theme.borderColor.secondary}
                         dotBackground={theme.textColor.secondary}
                         dotSize="20px"
+                        disabled={stakingData?.closingPeriodInProgress}
                         active={!stakeSelected}
                         handleClick={() => setStakeSelected(!stakeSelected)}
                     />
