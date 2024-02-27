@@ -42,7 +42,9 @@ const StakingData: React.FC = () => {
 
     // Values
     const totalAPR = isLoading ? '-' : gelatoData?.totalApr;
-    const thalesOPAPR = isLoading ? '-' : `${gelatoData?.apr} + ${gelatoData?.secondApr}`;
+    const thalesOPAPR = isLoading
+        ? '-'
+        : `${gelatoData?.apr ? gelatoData?.apr : 0} + ${gelatoData?.secondApr ? gelatoData?.secondApr : 0}`;
     const myStakedShareValue = isLoading ? '-' : `${formatCurrencyWithPrecision(myStakedShare)}%`;
     const tvl = isLoading ? '-' : formatCurrencyWithSign(USD_SIGN, totalInUSD);
 
