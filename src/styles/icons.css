@@ -299,3 +299,19 @@
 .icon--house:before {
     content: '\0056';
 }
+
+.icon--op-logo:before {
+    content: '\0078';
+}
+
+.icon--arb-logo:before {
+    content: '\0077';
+}
+
+.icon--base-logo:before {
+    content: '\0076';
+}
+
+.icon--eth-logo:before {
+    content: '\0079';
+}

@@ -17,12 +17,13 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 // import { getIsMobile } from 'redux/modules/ui';
+import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
 import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { FlexDivCentered } from 'styles/common';
 import { formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
-import { UserStakingData } from 'types/token';
+import { ThalesStakingData, UserStakingData } from 'types/token';
 import { checkAllowance } from 'utils/network';
 import { refetchTokenQueries } from 'utils/queryConnector';
 import snxJSConnector from 'utils/snxJSConnector';
@@ -46,6 +47,7 @@ const Stake: React.FC = () => {
     const [openApprovalModal, setOpenApprovalModal] = useState<boolean>(false);
     const { stakingThalesContract } = snxJSConnector as any;
     const [lastValidUserStakingData, setLastValidUserStakingData] = useState<UserStakingData | undefined>(undefined);
+    const [lastValidStakingData, setLastValidStakingData] = useState<ThalesStakingData | undefined>(undefined);
 
     const thalesBalanceQuery = useThalesBalanceQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
@@ -54,6 +56,23 @@ const Stake: React.FC = () => {
     const userStakingDataQuery = useUserStakingDataQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
     });
+
+    const stakingDataQuery = useThalesStakingDataQuery(networkId, {
+        enabled: isAppReady,
+    });
+
+    useEffect(() => {
+        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
+            setLastValidStakingData(stakingDataQuery.data);
+        }
+    }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
+
+    const stakingData: ThalesStakingData | undefined = useMemo(() => {
+        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
+            return stakingDataQuery.data;
+        }
+        return lastValidStakingData;
+    }, [stakingDataQuery.isSuccess, stakingDataQuery.data, lastValidStakingData]);
 
     useEffect(() => {
         if (userStakingDataQuery.isSuccess && userStakingDataQuery.data) {
@@ -214,7 +233,9 @@ const Stake: React.FC = () => {
                         <NumericInput
                             value={amountToStake}
                             onChange={(_, value) => setAmountToStake(value)}
-                            disabled={isStaking || isUnstaking || isStakingPaused}
+                            disabled={
+                                isStaking || isUnstaking || isStakingPaused || stakingData?.closingPeriodInProgress
+                            }
                             placeholder={t('common.enter-amount')}
                             label={`${t('staking.staking.stake-unstake.amount-to')} ${t(
                                 'staking.staking.stake-unstake.stake'

@@ -13,6 +13,7 @@ import { changeNetwork } from 'thales-utils';
 type DropdownNetwork = {
     name: string;
     icon: FunctionComponent<SVGProps<SVGSVGElement>>;
+    logoClassName: string;
     changeNetwork: (networkId: number, callback?: VoidFunction) => Promise<void>;
     order: number;
 };
@@ -21,6 +22,7 @@ export const SUPPORTED_NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
     [Network.OptimismMainnet]: {
         name: 'Optimism',
         icon: OpLogo,
+        logoClassName: 'icon icon--op-logo',
         changeNetwork: async (networkId: number, callback?: VoidFunction) => {
             const switchTo = L1_TO_L2_NETWORK_MAPPER[networkId] ?? 10;
             const optimismNetworkParms = SUPPORTED_NETWORKS_PARAMS[switchTo];
@@ -32,6 +34,7 @@ export const SUPPORTED_NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
     [Network.Arbitrum]: {
         name: 'Arbitrum',
         icon: ArbitrumLogo,
+        logoClassName: 'icon icon--arb-logo',
         changeNetwork: async (networkId: number, callback?: VoidFunction) => {
             const arbNetworkParams = SUPPORTED_NETWORKS_PARAMS[networkId];
             // @ts-ignore
@@ -42,6 +45,7 @@ export const SUPPORTED_NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
     [Network.Base]: {
         name: 'Base',
         icon: BaseLogo,
+        logoClassName: 'icon icon--base-logo',
         changeNetwork: async (networkId: number, callback?: VoidFunction) => {
             const baseNetworkParams = SUPPORTED_NETWORKS_PARAMS[networkId];
             // @ts-ignore
@@ -52,6 +56,7 @@ export const SUPPORTED_NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
     [Network.PolygonMainnet]: {
         name: 'Polygon',
         icon: PolygonLogo,
+        logoClassName: 'icon icon--op-logo',
         changeNetwork: async (networkId: number, callback?: VoidFunction) => {
             const polygonNetworkParams = SUPPORTED_NETWORKS_PARAMS[networkId];
             // @ts-ignore
@@ -62,6 +67,7 @@ export const SUPPORTED_NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
     [Network.Mainnet]: {
         name: 'Mainnet',
         icon: EthereumLogo,
+        logoClassName: 'icon icon--eth-logo',
         changeNetwork: async (networkId: number, callback?: VoidFunction) => {
             const formattedChainId = hexStripZeros(BigNumber.from(networkId).toHexString());
             await changeNetwork(undefined, callback, formattedChainId);

@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress, switchToNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
+import { FlexDiv } from 'styles/common';
 import { truncateAddress } from 'thales-utils';
 import { isLedgerDappBrowserProvider } from 'utils/ledger';
 import { SUPPORTED_NETWORK_IDS_MAP } from 'utils/network';
@@ -35,7 +36,6 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
 }) => {
     const { switchNetwork } = useSwitchNetwork();
     const dispatch = useDispatch();
-    const theme = useTheme();
 
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -85,10 +85,15 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                         {!isWalletConnected ? (
                             <WalletIcon className="icon icon--wallet" />
                         ) : (
-                            React.createElement(selectedNetwork.icon, {
-                                style: { marginRight: 5, fill: theme.textColor.secondary },
-                                onClick: () => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive),
-                            })
+                            <NetworkIconWrapper onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}>
+                                <NetworkIcon className={selectedNetwork.logoClassName} />
+                                {!hideNetworkSwitcher && (
+                                    <Icon
+                                        className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`}
+                                        onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
+                                    />
+                                )}
+                            </NetworkIconWrapper>
                         )}
                         <span
                             onClick={() =>
@@ -109,12 +114,6 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                     : t('common.wallet.connect-your-wallet')
                                 : selectedNetwork.name}
                         </span>
-                        {!hideNetworkSwitcher && (
-                            <Icon
-                                className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`}
-                                onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
-                            />
-                        )}
                     </NetworkItem>
                     {!hideNetworkSwitcher && isDropdownOpen && (
                         <NetworkDropDown>
@@ -201,7 +200,6 @@ const NetworkDropDown = styled.div`
 const SelectedNetworkContainer = styled.div<{ cursor: string }>`
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 100%;
     color: ${(props) => props.theme.textColor.primary};
     cursor: ${(props) => props.cursor};
@@ -230,11 +228,32 @@ const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?:
     /* @media (max-width: 500px) {
         ${(props) => (props.selectedItem ? 'padding: 4px 7px' : '')}
     } */
+    span {
+        color: ${(props) => props.theme.textColor.secondary};
+    }
 `;
 
 const Icon = styled.i`
-    margin-left: auto;
+    margin-left: 5px;
     font-size: 10px;
+`;
+
+const NetworkIcon = styled.i`
+    width: 20px;
+    height: 20px;
+    color: ${(props) => props.theme.textColor.secondary};
+`;
+
+const NetworkIconWrapper = styled(FlexDiv)`
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    padding-right: 3px;
+    border-right: 1px ${(props) => props.theme.borderColor.primary} solid;
+    color: ${(props) => props.theme.textColor.secondary} !important;
+    svg {
+        fill: ${(props) => props.theme.textColor.secondary};
+    }
 `;
 
 export default NetworkSwitch;
