@@ -114,6 +114,7 @@ export const Background = styled.div`
     height: 100vh;
     font-size: 16px;
     background: radial-gradient(circle at center, #262847, #0d111e);
+    min-height: -webkit-fill-available;
 `;
 
 export const Line = styled.div`

@@ -4,6 +4,8 @@ import { useGetTimelineQuery } from 'queries/landing/useGetTimelineQuery';
 import { useMemo } from 'react';
 import { Chrono } from 'react-chrono';
 import { Trans } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
 import { useTheme } from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { ArrowIcon, Container, Milestone, MilestoneDate, MilestoneDescription } from './styled-components';
@@ -20,11 +22,13 @@ const Timeline: React.FC = () => {
 
     const items = milestonesByQuarter.map((quarter) => adaptQuarterForTimeline(quarter));
 
+    const isMobile = useSelector(getIsMobile);
+
     return (
         <Container>
             {items.length && (
                 <Chrono
-                    mode="HORIZONTAL"
+                    mode={isMobile ? 'VERTICAL' : 'HORIZONTAL'}
                     items={items}
                     activeItemIndex={milestonesByQuarter.findIndex((quarter) => quarter.selected)}
                     theme={{

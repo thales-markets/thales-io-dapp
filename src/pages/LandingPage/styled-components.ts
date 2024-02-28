@@ -37,7 +37,8 @@ export const Title = styled(FlexDiv)`
         font-weight: normal;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 25px;
+        font-size: 28px;
+        letter-spacing: 2px;
     }
 `;
 
@@ -51,7 +52,14 @@ export const EcosystemTitle = styled(FlexDiv)`
         margin: 0px 10px 13px 0px;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 10px;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        font-size: 17px;
+        margin-top: -10px;
+        i {
+            margin: 0;
+        }
     }
 `;
 
