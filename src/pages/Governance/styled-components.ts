@@ -33,7 +33,7 @@ export const MainContentWrapper = styled.div<{ isOverviewPage: boolean }>`
     background: transparent;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         background: ${(props) => (props.isOverviewPage ? 'transparent' : props.theme.background.primary)};
-        padding: ${(props) => (props.isOverviewPage ? '0px 0px 10px 0px' : '25px 0px 30px 0px')};
+        padding: 0px 0px 10px 0px;
     }
 `;
 
@@ -138,7 +138,6 @@ export const SidebarTitle = styled(FlexDivCentered)<{ bottomMargin?: number }>`
 `;
 
 export const SidebarContentWrapper = styled(FlexDivColumn)`
-    background: ${(props) => props.theme.background.senary};
     padding: 1px 0 0 0;
     border-radius: 0 0 8px 8px;
     height: 100%;
@@ -167,10 +166,16 @@ export const SidebarRowData = styled(FlexDivRow)<{ fontWeight?: number }>`
 
 export const Percentage = styled(FlexDiv)`
     text-align: right;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 12px;
+    }
 `;
 
 export const Votes = styled.div`
     color: ${(props) => props.theme.textColor.primary};
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 12px;
+    }
 `;
 
 export const LoaderContainer = styled(FlexDivColumn)<{ height?: number }>`
@@ -260,6 +265,9 @@ export const InfoText = styled.label<{ color?: string }>`
     font-size: 13px;
     line-height: 20px;
     color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.tertiary)};
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 12px;
+    }
 `;
 
 export const InfoStats = styled.span<{ color?: string }>`
@@ -269,4 +277,7 @@ export const InfoStats = styled.span<{ color?: string }>`
     line-height: 20px;
     color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.primary)};
     letter-spacing: 1px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 12px;
+    }
 `;

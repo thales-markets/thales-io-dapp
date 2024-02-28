@@ -1,7 +1,7 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivColumn, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
+import { FlexDiv, FlexDivColumn, FlexDivColumnCentered, FlexDivRow, FlexDivSpaceBetween } from 'styles/common';
 
 export const Container = styled(FlexDivColumnCentered)`
     align-items: center;
@@ -10,12 +10,14 @@ export const Container = styled(FlexDivColumnCentered)`
     }
 `;
 
-export const TableHeaderContainer = styled(FlexDivRowCentered)`
+export const TableHeaderContainer = styled(FlexDivRow)`
     margin: 0 30px 20px 30px;
     width: 55%;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
-        margin: 0 0 20px 0;
+        padding: 0;
+        gap: 10px;
+        width: 100%;
     }
 `;
 
@@ -24,11 +26,15 @@ export const TableContainer = styled(FlexDivColumn)`
     align-items: center;
     padding: 0 30px;
     width: 60%;
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        padding: 0;
-    }
     > div {
         overflow: hidden;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        width: 100%;
+        > div {
+            overflow: auto;
+        }
     }
 `;
 
@@ -102,4 +108,16 @@ export const ChartInnerText = styled(FlexDivColumnCentered)`
     position: absolute;
     top: 206px;
     width: 245px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        top: 190px;
+    }
+`;
+
+export const ChartLabel = styled(FlexDivSpaceBetween)<{
+    direction?: string;
+}>`
+    width: 100%;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: ${(props) => (props.direction ? `${props.direction}` : '')};
+    }
 `;

@@ -30,42 +30,40 @@ const Dropdown: React.FC<DropdownProps> = ({ options, activeOption, onSelect, tr
     };
 
     return (
-        <>
-            <OutsideClickHandler onOutsideClick={() => handleDropdownOpening(false)}>
-                <Container>
-                    <Button
-                        onClick={() => {
-                            handleDropdownOpening(!dropdownIsOpen);
-                        }}
-                        isActive={dropdownIsOpen}
-                    >
-                        <InnerButton>
-                            <FlexDiv>{t(`governance.${translationKey}.${activeOption}`)}</FlexDiv>
-                            <StyledDownIcon className={`icon icon--caret-down`} />
-                        </InnerButton>
-                    </Button>
-                    {dropdownIsOpen && (
-                        <DropdownContainer>
-                            <DropDown>
-                                {options.map((options: string) => (
-                                    <DropDownItem
-                                        key={options}
-                                        onClick={() => {
-                                            onSelect(options);
-                                            handleDropdownOpening(false);
-                                        }}
-                                    >
-                                        <FlexDivCentered>
-                                            <Name>{t(`governance.${translationKey}.${options}`)}</Name>
-                                        </FlexDivCentered>
-                                    </DropDownItem>
-                                ))}
-                            </DropDown>
-                        </DropdownContainer>
-                    )}
-                </Container>
-            </OutsideClickHandler>
-        </>
+        <OutsideClickHandler onOutsideClick={() => handleDropdownOpening(false)}>
+            <Container>
+                <Button
+                    onClick={() => {
+                        handleDropdownOpening(!dropdownIsOpen);
+                    }}
+                    isActive={dropdownIsOpen}
+                >
+                    <InnerButton>
+                        <FlexDiv>{t(`governance.${translationKey}.${activeOption}`)}</FlexDiv>
+                        <StyledDownIcon className={`icon icon--caret-down`} />
+                    </InnerButton>
+                </Button>
+                {dropdownIsOpen && (
+                    <DropdownContainer>
+                        <DropDown>
+                            {options.map((options: string) => (
+                                <DropDownItem
+                                    key={options}
+                                    onClick={() => {
+                                        onSelect(options);
+                                        handleDropdownOpening(false);
+                                    }}
+                                >
+                                    <FlexDivCentered>
+                                        <Name>{t(`governance.${translationKey}.${options}`)}</Name>
+                                    </FlexDivCentered>
+                                </DropDownItem>
+                            ))}
+                        </DropDown>
+                    </DropdownContainer>
+                )}
+            </Container>
+        </OutsideClickHandler>
     );
 };
 

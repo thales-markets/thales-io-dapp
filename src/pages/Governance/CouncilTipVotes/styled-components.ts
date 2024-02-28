@@ -1,3 +1,4 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
@@ -11,9 +12,6 @@ export const VoteLabel = styled.div<{ color?: string; fontWeight?: number }>`
     font-weight: ${(props) => (props.fontWeight ? props.fontWeight : '800')};
     font-size: 18px;
     margin-right: 10px;
-    @media (max-width: 575px) {
-        width: 100px;
-    }
     color: ${(props) => (props.color ? props.color : '')};
 `;
 
@@ -21,9 +19,6 @@ export const CouncilMemberLabel = styled.div`
     width: 125px;
     font-weight: 700;
     font-size: 18px;
-    @media (max-width: 575px) {
-        width: 100px;
-    }
 `;
 
 export const CouncilVoteRowData = styled(FlexDivRow)`
@@ -31,7 +26,7 @@ export const CouncilVoteRowData = styled(FlexDivRow)`
     font-size: 18px;
     line-height: 36px;
     color: ${(props) => props.theme.textColor.primary};
-    @media (max-width: 575px) {
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 14px;
     }
 `;

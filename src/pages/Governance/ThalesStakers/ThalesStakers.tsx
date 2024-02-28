@@ -14,9 +14,9 @@ import useThalesStakersQuery from 'queries/useThalesStakersQuery';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { CellProps } from 'react-table';
-import { Cell, Tooltip as ChartTooltip, Pie } from 'recharts';
+import { Cell, CellProps, Tooltip as ChartTooltip, Pie } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { getNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { Colors, FlexDiv } from 'styles/common';
@@ -25,7 +25,6 @@ import { DEFAULT_SEARCH_DEBOUNCE_MS } from 'thales-utils/src/constants/defaults'
 import { EnsNames, Staker, Stakers } from 'types/governance';
 import { StakingData, TokenInfo } from 'types/token';
 import snxJSConnector from 'utils/snxJSConnector';
-import { FlexDivFullWidthSpaceBetween } from '../ProposalDetails/ProposalHeader/styled-components';
 import Dropdown from '../components/Dropdown/Dropdown';
 import { Blockie, InfoStats, InfoText, LoaderContainer, StyledLink, StyledPieChart } from '../styled-components';
 import {
@@ -33,6 +32,7 @@ import {
     Amount,
     ArrowIcon,
     ChartInnerText,
+    ChartLabel,
     ChartTooltipBox,
     ChartWrapper,
     ColoredInfo,
@@ -69,6 +69,7 @@ type TableData = {
 
 const ThalesStakers: React.FC = () => {
     const { t } = useTranslation();
+    const isMobile = useSelector(getIsMobile);
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const [addressSearch, setAddressSearch] = useState<string>('');
@@ -270,14 +271,14 @@ const ThalesStakers: React.FC = () => {
                 ) : (
                     <>
                         <ChartInnerText>
-                            <FlexDivFullWidthSpaceBetween>
+                            <ChartLabel direction={isMobile ? 'column' : 'row'}>
                                 <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
                                 <InfoStats>{formatCurrency(totalStakedAmount)}</InfoStats>
-                            </FlexDivFullWidthSpaceBetween>
-                            <FlexDivFullWidthSpaceBetween>
+                            </ChartLabel>
+                            <ChartLabel direction={isMobile ? 'column' : 'row'}>
                                 <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
                                 <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
-                            </FlexDivFullWidthSpaceBetween>
+                            </ChartLabel>
                         </ChartInnerText>
                         <StyledPieChart width={450} height={450}>
                             <Pie
@@ -327,75 +328,136 @@ const ThalesStakers: React.FC = () => {
                     text={addressSearch}
                     placeholder={t('governance.stakers.search-wallet')}
                     handleChange={setAddressSearch}
-                    width="320px"
+                    width={isMobile ? '100%' : '320px'}
                 />
             </TableHeaderContainer>
             <TableContainer>
                 <Table
-                    columns={[
-                        {
-                            Header: <></>,
-                            accessor: 'index',
-                            Cell: (cellProps: any) => <p>{cellProps?.row?.id ? Number(cellProps?.row?.id) + 1 : ''}</p>,
-                            sortable: true,
-                            width: 30,
-                            maxWidth: 30,
-                        },
-                        {
-                            Header: <>{t('governance.stakers.staker-col')}</>,
-                            accessor: 'id',
-                            Cell: (cellProps: CellProps<TableData, TableData['id']>) => (
-                                <StyledLink
-                                    href={getEtherscanAddressLink(Network.Mainnet, cellProps.cell.value)}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <FlexDiv style={{ textAlign: 'left' }}>
-                                        <Blockie src={makeBlockie(cellProps.cell.value)} style={{ marginBottom: 2 }} />
-                                        <StakerCell staker={cellProps.cell.row.original} />
-                                        <ArrowIcon />
-                                    </FlexDiv>
-                                </StyledLink>
-                            ),
-                            sortable: true,
-                        },
-                        {
-                            Header: <>{t('governance.stakers.total-staked-col')}</>,
-                            accessor: 'totalStakedAmount',
-                            Cell: (cellProps: CellProps<TableData, TableData['totalStakedAmount']>) => {
-                                const amountTooltip = `${formatCurrencyWithKey(
-                                    THALES_CURRENCY,
-                                    cellProps.cell.row.original.stakedAmount
-                                )} (${t('governance.stakers.tooltip-staked-directly')}) + ${formatCurrencyWithKey(
-                                    THALES_CURRENCY,
-                                    cellProps.cell.row.original.escrowedAmount
-                                )} (${t('governance.stakers.tooltip-escrowed-amount')})`;
+                    columns={
+                        isMobile
+                            ? [
+                                  {
+                                      Header: <>{t('governance.stakers.staker-col')}</>,
+                                      accessor: 'id',
+                                      Cell: (cellProps: CellProps<TableData, TableData['id']>) => (
+                                          <StyledLink
+                                              href={getEtherscanAddressLink(Network.Mainnet, cellProps.cell.value)}
+                                              target="_blank"
+                                              rel="noreferrer"
+                                          >
+                                              <FlexDiv style={{ textAlign: 'left' }}>
+                                                  <Blockie
+                                                      src={makeBlockie(cellProps.cell.value)}
+                                                      style={{ marginBottom: 2 }}
+                                                  />
+                                                  <StakerCell staker={cellProps.cell.row.original} />
+                                                  <ArrowIcon />
+                                              </FlexDiv>
+                                          </StyledLink>
+                                      ),
+                                      sortable: true,
+                                  },
+                                  {
+                                      Header: <>{t('governance.stakers.total-staked-col')}</>,
+                                      accessor: 'totalStakedAmount',
+                                      Cell: (cellProps: CellProps<TableData, TableData['totalStakedAmount']>) => {
+                                          const amountTooltip = `${formatCurrencyWithKey(
+                                              THALES_CURRENCY,
+                                              cellProps.cell.row.original.stakedAmount
+                                          )} (${t(
+                                              'governance.stakers.tooltip-staked-directly'
+                                          )}) + ${formatCurrencyWithKey(
+                                              THALES_CURRENCY,
+                                              cellProps.cell.row.original.escrowedAmount
+                                          )} (${t('governance.stakers.tooltip-escrowed-amount')})`;
 
-                                return (
-                                    <Tooltip overlay={amountTooltip}>
-                                        <Amount>{formatCurrencyWithKey(THALES_CURRENCY, cellProps.cell.value)}</Amount>
-                                    </Tooltip>
-                                );
-                            },
-                            sortable: true,
-                        },
-                        {
-                            Header: <>{t('governance.stakers.percentage-of-staked-supply-col')}</>,
-                            accessor: 'percentageOfStakedSupply',
-                            Cell: (cellProps: CellProps<TableData, TableData['percentageOfStakedSupply']>) => {
-                                return <Amount>{cellProps.cell.value.toFixed(2)}</Amount>;
-                            },
-                            sortable: true,
-                        },
-                        {
-                            Header: <>{t('governance.stakers.percentage-of-circulating-supply-col')}</>,
-                            accessor: 'percentageOfCirculatingSupply',
-                            Cell: (cellProps: CellProps<TableData, TableData['percentageOfCirculatingSupply']>) => {
-                                return <Amount>{cellProps.cell.value.toFixed(2)}</Amount>;
-                            },
-                            sortable: true,
-                        },
-                    ]}
+                                          return (
+                                              <Tooltip overlay={amountTooltip}>
+                                                  <Amount>
+                                                      {formatCurrencyWithKey(THALES_CURRENCY, cellProps.cell.value)}
+                                                  </Amount>
+                                              </Tooltip>
+                                          );
+                                      },
+                                      sortable: true,
+                                  },
+                              ]
+                            : [
+                                  {
+                                      Header: <></>,
+                                      accessor: 'index',
+                                      Cell: (cellProps: any) => (
+                                          <p>{cellProps?.row?.id ? Number(cellProps?.row?.id) + 1 : ''}</p>
+                                      ),
+                                      sortable: true,
+                                  },
+                                  {
+                                      Header: <>{t('governance.stakers.staker-col')}</>,
+                                      accessor: 'id',
+                                      Cell: (cellProps: CellProps<TableData, TableData['id']>) => (
+                                          <StyledLink
+                                              href={getEtherscanAddressLink(Network.Mainnet, cellProps.cell.value)}
+                                              target="_blank"
+                                              rel="noreferrer"
+                                          >
+                                              <FlexDiv style={{ textAlign: 'left' }}>
+                                                  <Blockie
+                                                      src={makeBlockie(cellProps.cell.value)}
+                                                      style={{ marginBottom: 2 }}
+                                                  />
+                                                  <StakerCell staker={cellProps.cell.row.original} />
+                                                  <ArrowIcon />
+                                              </FlexDiv>
+                                          </StyledLink>
+                                      ),
+                                      sortable: true,
+                                  },
+                                  {
+                                      Header: <>{t('governance.stakers.total-staked-col')}</>,
+                                      accessor: 'totalStakedAmount',
+                                      Cell: (cellProps: CellProps<TableData, TableData['totalStakedAmount']>) => {
+                                          const amountTooltip = `${formatCurrencyWithKey(
+                                              THALES_CURRENCY,
+                                              cellProps.cell.row.original.stakedAmount
+                                          )} (${t(
+                                              'governance.stakers.tooltip-staked-directly'
+                                          )}) + ${formatCurrencyWithKey(
+                                              THALES_CURRENCY,
+                                              cellProps.cell.row.original.escrowedAmount
+                                          )} (${t('governance.stakers.tooltip-escrowed-amount')})`;
+
+                                          return (
+                                              <Tooltip overlay={amountTooltip}>
+                                                  <Amount>
+                                                      {formatCurrencyWithKey(THALES_CURRENCY, cellProps.cell.value)}
+                                                  </Amount>
+                                              </Tooltip>
+                                          );
+                                      },
+                                      sortable: true,
+                                  },
+                                  {
+                                      Header: <>{t('governance.stakers.percentage-of-staked-supply-col')}</>,
+                                      accessor: 'percentageOfStakedSupply',
+                                      Cell: (
+                                          cellProps: CellProps<TableData, TableData['percentageOfStakedSupply']>
+                                      ) => {
+                                          return <Amount>{cellProps.cell.value.toFixed(2)}</Amount>;
+                                      },
+                                      sortable: true,
+                                  },
+                                  {
+                                      Header: <>{t('governance.stakers.percentage-of-circulating-supply-col')}</>,
+                                      accessor: 'percentageOfCirculatingSupply',
+                                      Cell: (
+                                          cellProps: CellProps<TableData, TableData['percentageOfCirculatingSupply']>
+                                      ) => {
+                                          return <Amount>{cellProps.cell.value.toFixed(2)}</Amount>;
+                                      },
+                                      sortable: true,
+                                  },
+                              ]
+                    }
                     data={addressSearch ? searchFilteredTableData : tableData}
                     isLoading={stakersQuery.isLoading}
                     noResultsMessage={t('governance.stakers.no-stakers-found')}
