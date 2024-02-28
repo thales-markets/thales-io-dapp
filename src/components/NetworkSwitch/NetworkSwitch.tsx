@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress, switchToNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { truncateAddress } from 'thales-utils';
 import { isLedgerDappBrowserProvider } from 'utils/ledger';
@@ -36,6 +36,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
 }) => {
     const { switchNetwork } = useSwitchNetwork();
     const dispatch = useDispatch();
+    const theme = useTheme();
 
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -82,20 +83,8 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                         selectedItem={true}
                         noHover
                     >
-                        {!isWalletConnected ? (
-                            <WalletIcon className="icon icon--wallet" />
-                        ) : (
-                            <NetworkIconWrapper onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}>
-                                <NetworkIcon className={selectedNetwork.logoClassName} />
-                                {!hideNetworkSwitcher && (
-                                    <Icon
-                                        className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`}
-                                        onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
-                                    />
-                                )}
-                            </NetworkIconWrapper>
-                        )}
-                        <span
+                        {!isWalletConnected && <WalletIcon className="icon icon--wallet" />}
+                        <WalletAddress
                             onClick={() =>
                                 isWalletConnectorSwitch
                                     ? isWalletConnected
@@ -113,7 +102,20 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                       )
                                     : t('common.wallet.connect-your-wallet')
                                 : selectedNetwork.name}
-                        </span>
+                        </WalletAddress>
+                        <NetworkIconWrapper>
+                            {isWalletConnected &&
+                                React.createElement(selectedNetwork.icon, {
+                                    style: { fill: theme.textColor.secondary },
+                                    onClick: () => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive),
+                                })}
+                            {!hideNetworkSwitcher && (
+                                <Icon
+                                    className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`}
+                                    onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
+                                />
+                            )}
+                        </NetworkIconWrapper>
                     </NetworkItem>
                     {!hideNetworkSwitcher && isDropdownOpen && (
                         <NetworkDropDown>
@@ -168,6 +170,7 @@ const NetworkInfoContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2px;
     width: 100%;
 `;
 
@@ -175,6 +178,10 @@ const WalletIcon = styled.i`
     font-size: 20px;
     margin-right: 5px;
     color: ${(props) => props.theme.textColor.secondary};
+`;
+
+const WalletAddress = styled.span`
+    height: 100%;
 `;
 
 const NetworkDropDown = styled.div`
@@ -192,6 +199,7 @@ const NetworkDropDown = styled.div`
     justify-content: center;
     align-items: center;
     gap: 5px;
+    color: ${(props) => props.theme.textColor.primary};
     @media (max-width: 500px) {
         width: 100%;
     }
@@ -201,7 +209,6 @@ const SelectedNetworkContainer = styled.div<{ cursor: string }>`
     display: flex;
     align-items: center;
     width: 100%;
-    color: ${(props) => props.theme.textColor.primary};
     cursor: ${(props) => props.cursor};
     flex-direction: column;
     z-index: 1;
@@ -229,7 +236,10 @@ const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?:
         ${(props) => (props.selectedItem ? 'padding: 4px 7px' : '')}
     } */
     span {
-        color: ${(props) => props.theme.textColor.secondary};
+        color: ${(props) => props.theme.textColor.primary};
+        display: flex;
+        align-items: center;
+        margin-top: 2px;
     }
 `;
 
@@ -238,22 +248,13 @@ const Icon = styled.i`
     font-size: 10px;
 `;
 
-const NetworkIcon = styled.i`
-    width: 20px;
-    height: 20px;
-    color: ${(props) => props.theme.textColor.secondary};
-`;
-
 const NetworkIconWrapper = styled(FlexDiv)`
     align-items: center;
     justify-content: center;
-    margin-right: 5px;
-    padding-right: 3px;
-    border-right: 1px ${(props) => props.theme.borderColor.primary} solid;
-    color: ${(props) => props.theme.textColor.secondary} !important;
-    svg {
-        fill: ${(props) => props.theme.textColor.secondary};
-    }
+    margin-left: 5px;
+    padding-left: 6px;
+    border-left: 1px ${(props) => props.theme.borderColor.primary} solid;
+    color: ${(props) => props.theme.textColor.primary} !important;
 `;
 
 export default NetworkSwitch;
