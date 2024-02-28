@@ -149,6 +149,10 @@ export const Description = styled(FlexDivColumn)<{ marginBottom?: number; margin
     > span {
         margin-bottom: 15px;
     }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        display: flex;
+        justify-content: center;
+    }
 `;
 
 export const BulletNumber = styled.span`
@@ -160,6 +164,9 @@ export const BulletNumber = styled.span`
 export const Section = styled.div<{ marginBottom?: number }>`
     margin-top: 100px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 50px;
+    }
 `;
 
 export const SectionSlogan = styled.div`
@@ -271,7 +278,7 @@ export const MilestoneDescription = styled.div`
     }
 `;
 
-export const HomeIcon = styled.i<{ fontSize?: string; paddingBottom?: string }>`
+export const HomeIcon = styled.i<{ fontSize?: string; paddingBottom?: string; mobileFontSize?: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -279,6 +286,9 @@ export const HomeIcon = styled.i<{ fontSize?: string; paddingBottom?: string }>`
     font-size: ${(props) => props.fontSize ?? '20em'};
     padding-bottom: ${(props) => props.paddingBottom ?? '0'};
     line-height: 0.5em;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: ${(props) => props.mobileFontSize ?? props.fontSize ?? '20em'};
+    }
 `;
 export const FooterLogo = styled.i`
     position: absolute;

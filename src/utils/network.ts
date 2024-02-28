@@ -1,9 +1,6 @@
-import { hexStripZeros } from '@ethersproject/bytes';
 import { ReactComponent as ArbitrumLogo } from 'assets/images/arbitrum-circle-logo.svg';
 import { ReactComponent as BaseLogo } from 'assets/images/base-circle-logo.svg';
-import { ReactComponent as EthereumLogo } from 'assets/images/ethereum-circle-logo.svg';
 import { ReactComponent as OpLogo } from 'assets/images/optimism-circle-logo.svg';
-import { ReactComponent as PolygonLogo } from 'assets/images/polygon-circle-logo.svg';
 import { L1_TO_L2_NETWORK_MAPPER, SUPPORTED_NETWORKS_PARAMS } from 'constants/network';
 import { Network } from 'enums/network';
 import { BigNumber } from 'ethers';
@@ -52,27 +49,6 @@ export const SUPPORTED_NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
             await changeNetwork(baseNetworkParams, callback);
         },
         order: 3,
-    },
-    [Network.PolygonMainnet]: {
-        name: 'Polygon',
-        icon: PolygonLogo,
-        logoClassName: 'icon icon--op-logo',
-        changeNetwork: async (networkId: number, callback?: VoidFunction) => {
-            const polygonNetworkParams = SUPPORTED_NETWORKS_PARAMS[networkId];
-            // @ts-ignore
-            await changeNetwork(polygonNetworkParams, callback);
-        },
-        order: 4,
-    },
-    [Network.Mainnet]: {
-        name: 'Mainnet',
-        icon: EthereumLogo,
-        logoClassName: 'icon icon--eth-logo',
-        changeNetwork: async (networkId: number, callback?: VoidFunction) => {
-            const formattedChainId = hexStripZeros(BigNumber.from(networkId).toHexString());
-            await changeNetwork(undefined, callback, formattedChainId);
-        },
-        order: 6,
     },
 };
 

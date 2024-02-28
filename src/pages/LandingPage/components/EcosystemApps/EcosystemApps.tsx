@@ -2,26 +2,29 @@ import SPAAnchor from 'components/SPAAnchor';
 import { Description, HomeIcon } from 'pages/LandingPage/styled-components';
 import { useGetEcosystemAppsQuery } from 'queries/landing/useGetEcosystemAppsQuery';
 import { useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
 import styled from 'styled-components';
 import { FlexDivColumn } from 'styles/common';
-import { EcosystemAppsContainer } from './styled-components';
+import { Dot, DotContainer, EcosystemAppsContainer } from './styled-components';
 import { EcosystemApp } from './types';
-
-const DISPLAYED_APPS_COUNT = 4;
 
 const EcosystemApps: React.FC = () => {
     const ecosystemAppsQuery = useGetEcosystemAppsQuery();
+    const isMobile = useSelector(getIsMobile);
+
+    const displayedAppsCount = useMemo(() => (isMobile ? 1 : 4), [isMobile]);
 
     const ecosystemApps: EcosystemApp[] = useMemo(() => {
         return ecosystemAppsQuery.isSuccess && ecosystemAppsQuery.data ? ecosystemAppsQuery.data : [];
     }, [ecosystemAppsQuery.isSuccess, ecosystemAppsQuery.data]);
 
-    const [appsCount, setAppsCount] = useState<number>(DISPLAYED_APPS_COUNT);
+    const [appsCount, setAppsCount] = useState<number>(displayedAppsCount);
 
     const carouselChangeHandler = (change: number) => {
         if (change < 0) {
-            return appsCount + change < DISPLAYED_APPS_COUNT
-                ? setAppsCount(DISPLAYED_APPS_COUNT)
+            return appsCount + change < displayedAppsCount
+                ? setAppsCount(displayedAppsCount)
                 : setAppsCount(appsCount + change);
         }
 
@@ -29,23 +32,23 @@ const EcosystemApps: React.FC = () => {
 
         if (ecosystemApps) {
             if (appsCount == ecosystemApps.length) {
-                setAppsCount(ecosystemApps.length ? ecosystemApps.length : DISPLAYED_APPS_COUNT);
+                setAppsCount(ecosystemApps.length ? ecosystemApps.length : displayedAppsCount);
             }
         }
     };
 
-    const slicedApps = ecosystemApps.slice(appsCount - DISPLAYED_APPS_COUNT, appsCount);
+    const slicedApps = ecosystemApps.slice(appsCount - displayedAppsCount, appsCount);
 
     return (
         <EcosystemAppsContainer>
             <Arrow
-                disabled={appsCount - DISPLAYED_APPS_COUNT === 0}
+                disabled={appsCount - displayedAppsCount === 0}
                 className="thales-icon thales-icon--left"
                 style={{ fontSize: 35, left: '-50px', top: '50%', transform: 'translateY(-50%)' }}
                 onClick={() => carouselChangeHandler(-1)}
             />
             {slicedApps.map((app, index) => (
-                <FlexDivColumn key={index}>
+                <FlexDivColumn key={index} style={{ minHeight: '210px' }}>
                     <SPAAnchor href={app.link}>
                         <HomeIcon
                             style={{ height: '80px' }}
@@ -62,6 +65,19 @@ const EcosystemApps: React.FC = () => {
                 style={{ right: '-50px', fontSize: 35, top: '50%', transform: 'translateY(-50%)' }}
                 onClick={() => carouselChangeHandler(1)}
             />
+            {isMobile && (
+                <DotContainer>
+                    {ecosystemApps.map((_app, index) => {
+                        return (
+                            <Dot
+                                className={appsCount === displayedAppsCount + index ? 'selected' : ''}
+                                onClick={setAppsCount.bind(this, displayedAppsCount + index)}
+                                key={index}
+                            />
+                        );
+                    })}
+                </DotContainer>
+            )}
         </EcosystemAppsContainer>
     );
 };

@@ -9,18 +9,14 @@ export const ARB_SAFE_BOX_ADDRESS = '0xE9F5E7579931a46e4beaC08Ca9ab52961AD66203'
 export const BASE_SAFE_BOX_ADDRESS = '0x860C4DD827DdDd98755e0843b89d909f5A0347Ff';
 
 export const SUPPORTED_NETWORKS: Record<Network, string> = {
-    [Network.Mainnet]: 'MAINNET',
     [Network.OptimismMainnet]: 'OPTIMISTIC',
-    [Network.PolygonMainnet]: 'POLYGON-MAINNET',
     [Network.OptimismGoerli]: 'GOERLI-OPTIMISM',
     [Network.Arbitrum]: 'ARBITRUM-ONE',
     [Network.Base]: 'BASE',
 };
 
 export const SUPPORTED_NETWORKS_NAMES: Record<Network, string> = {
-    [Network.Mainnet]: 'MAINNET',
     [Network.OptimismMainnet]: 'OPTIMISM MAINNET',
-    [Network.PolygonMainnet]: 'POLYGON',
     [Network.OptimismGoerli]: 'OPTIMISM GOERLI',
     [Network.Arbitrum]: 'ARBITRUM ONE',
     [Network.Base]: 'BASE',
@@ -51,17 +47,6 @@ export const SUPPORTED_NETWORKS_PARAMS: Record<number, NetworkParams> = {
         iconUrls: ['https://optimism.io/images/metamask_icon.svg', 'https://optimism.io/images/metamask_icon.png'],
         nativeCurrency: {
             symbol: 'ETH',
-            decimals: 18,
-        },
-    },
-    [Network.PolygonMainnet]: {
-        chainId: '0x89',
-        chainName: 'Polygon Mainnet',
-        rpcUrls: ['https://polygon-rpc.com'],
-        blockExplorerUrls: ['https://explorer.matic.network/'],
-        iconUrls: ['https://optimism.io/images/metamask_icon.svg', 'https://optimism.io/images/metamask_icon.png'],
-        nativeCurrency: {
-            symbol: 'MATIC',
             decimals: 18,
         },
     },
