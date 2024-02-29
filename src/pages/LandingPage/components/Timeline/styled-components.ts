@@ -1,10 +1,15 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
+import { FlexDiv } from 'styles/common';
 
 // override styles from react-chrono
 export const Container = styled.div`
     & > div > div:nth-child(1) {
         order: 1;
+        @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+            padding: 0;
+        }
     }
     & > div > div:nth-child(2) {
         order: 3;
@@ -65,6 +70,41 @@ export const Container = styled.div`
     button[aria-disabled='true'] {
         opacity: 0.5;
     }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        & > div > div:nth-child(1) {
+            order: 2;
+            @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+                padding: 0;
+            }
+        }
+        & > div > div:nth-child(2) {
+            order: 1;
+        }
+        & > div > div:nth-child(3) {
+            order: 3;
+        }
+        height: 500px;
+        .card-content-wrapper {
+            visibility: hidden !important;
+        }
+        #react-chrono-timeline {
+            display: none;
+        }
+        .timeline-main-wrapper {
+            height: 500px;
+            overflow: hidden;
+        }
+        div[data-testid='tree-main'] {
+            height: 800px;
+        }
+    }
+`;
+
+export const MilestoneContainer = styled(FlexDiv)`
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+        width: 100%;
+    }
 `;
 
 export const Milestone = styled.div<{ hideBorder?: boolean }>`
@@ -73,10 +113,15 @@ export const Milestone = styled.div<{ hideBorder?: boolean }>`
     border-right: ${(props) => (props.hideBorder ? '' : '2px solid #405682')};
     background: #313652;
     padding: 15px 25px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+        border-right: none;
+        border-bottom: ${(props) => (props.hideBorder ? '' : '2px solid #405682')};
+    }
 `;
 
 export const MilestoneDate = styled.div<{ visible?: boolean }>`
-    visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+    display: ${(props) => (props.visible ? 'block' : 'none')};
     color: white;
     font-family: MontserratBold;
     font-size: 13px;
@@ -95,6 +140,9 @@ export const MilestoneDescription = styled.div`
     line-height: 155%;
     span {
         font-family: MontserratBold;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 11px;
     }
 `;
 

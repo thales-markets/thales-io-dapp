@@ -305,10 +305,19 @@ export const FooterLogo = styled.i`
 export const LinksContainer = styled(FlexDivSpaceBetween)`
     height: 100%;
     & > div:nth-child(1) {
-        width: 45%;
+        flex: 0.45;
     }
     & > div:nth-child(2) {
-        width: 30%;
+        flex: 0.3;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+        & > div:nth-child(1) {
+            flex: 1;
+        }
+        & > div:nth-child(2) {
+            flex: 1;
+        }
     }
 `;
 export const ThalesLinks = styled(FlexDiv)`
@@ -343,6 +352,10 @@ export const FooterLine = styled.div`
     background-repeat: repeat-x;
     height: 1px;
     width: 200%;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+        transform: none;
+    }
 `;
 export const FooterContainer = styled.div`
     width: 100%;

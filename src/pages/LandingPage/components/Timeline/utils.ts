@@ -4,6 +4,7 @@ import { Quarter } from './types';
 export const adaptQuarterForTimeline = (quarter: Quarter): TimelineItemModel => {
     return {
         title: quarter.quarter,
-        url: 'http://www.history.com', // TODO
+        // @ts-ignore
+        milestones: quarter.milestones,
     };
 };
