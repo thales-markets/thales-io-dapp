@@ -103,17 +103,13 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                     : t('common.wallet.connect-your-wallet')
                                 : selectedNetwork.name}
                         </WalletAddress>
-                        <NetworkIconWrapper>
+                        <NetworkIconWrapper onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}>
                             {isWalletConnected &&
                                 React.createElement(selectedNetwork.icon, {
                                     style: { fill: theme.textColor.secondary },
-                                    onClick: () => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive),
                                 })}
                             {!hideNetworkSwitcher && (
-                                <Icon
-                                    className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`}
-                                    onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
-                                />
+                                <Icon className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`} />
                             )}
                         </NetworkIconWrapper>
                     </NetworkItem>
