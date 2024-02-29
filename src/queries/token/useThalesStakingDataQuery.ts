@@ -48,7 +48,7 @@ const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<Thale
                         contractStakingData.totalEscrowBalanceNotIncludedInStaking
                     );
                     stakingData.totalEscrowedRewards = bigNumberFormatter(contractStakingData.totalEscrowedRewards);
-                    stakingData.closingPeriodInProgress = !closingPeriodInProgress;
+                    stakingData.closingPeriodInProgress = closingPeriodInProgress;
 
                     return stakingData;
                 }
