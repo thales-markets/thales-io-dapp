@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { Remarkable } from 'remarkable';
@@ -25,6 +26,7 @@ type ProposalDetailsProps = {
 
 const ProposalDetails: React.FC<ProposalDetailsProps> = ({ proposal }) => {
     const { t } = useTranslation();
+    const isMobile = useSelector(getIsMobile);
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
@@ -62,7 +64,7 @@ const ProposalDetails: React.FC<ProposalDetailsProps> = ({ proposal }) => {
     return (
         <>
             <ProposalHeader proposal={proposal} authorEns={authorEns} />
-            <Container topMargin={10}>
+            <Container topMargin={isMobile ? 30 : 10}>
                 <DetailsTitle>{proposal.title}</DetailsTitle>
                 <Body dangerouslySetInnerHTML={getRawMarkup(proposal.body)}></Body>
                 {proposal.state === StatusEnum.Active && (

@@ -5,6 +5,7 @@ import useProposalQuery from 'queries/governance/useProposalQuery';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
 import { getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
@@ -19,7 +20,7 @@ type ElectionVotes = {
 const ElectionVotes: React.FC<ElectionVotes> = ({ proposal }) => {
     const { t } = useTranslation();
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
-
+    const isMobile = useSelector(getIsMobile);
     const proposalResultsQuery = useProposalQuery(proposal.space.id, proposal.id, walletAddress);
     const proposalResults =
         proposalResultsQuery.isSuccess && proposalResultsQuery.data ? proposalResultsQuery.data : undefined;
@@ -47,7 +48,7 @@ const ElectionVotes: React.FC<ElectionVotes> = ({ proposal }) => {
                             proposal={proposal}
                             proposalResults={proposalResults}
                             isLoading={proposalResultsQuery.isLoading}
-                            truncateSize={60}
+                            truncateSize={isMobile ? 12 : 60}
                         />
                     </SidebarContent>
                 </SidebarContentWrapper>

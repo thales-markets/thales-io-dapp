@@ -20,7 +20,6 @@ import { formatCurrency, formatCurrencyWithKey, formatShortDate } from 'thales-u
 import { UserVestingData } from 'types/token';
 import { refetchTokenQueries } from 'utils/queryConnector';
 import snxJSConnector from 'utils/snxJSConnector';
-import CCIPAnimation from '../components/CCIPAnimation';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
 import YourTransactions from './Transactions';
 import {
@@ -106,7 +105,6 @@ const Vesting: React.FC = () => {
 
     return (
         <>
-            <CCIPAnimation />
             <Container marginBottom={isWalletConnected && !!scheduleData.length ? '0' : '50px'}>
                 <LoadingContainer isLoading={userVestingDataQuery.isLoading}>
                     <FlexDivColumn>

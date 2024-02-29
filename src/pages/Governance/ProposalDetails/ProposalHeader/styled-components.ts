@@ -1,3 +1,4 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDivColumnCentered, FlexDivSpaceBetween } from 'styles/common';
 
@@ -15,6 +16,9 @@ export const WidgetWrapper = styled.div<{ isDoubleHeight?: boolean }>`
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: ${(props) => (props.isDoubleHeight ? '50% 50%' : '40% 60%;')};
     grid-template-areas: 'top top' 'bottom-left bottom-right';
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        grid-row-gap: 35px;
+    }
 `;
 
 export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean }>`

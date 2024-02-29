@@ -157,7 +157,6 @@ const Staking: React.FC = () => {
         <LoadingContainer
             isLoading={globalStakingDataQuery.isLoading || tokenInfoQuery.isLoading || weeklyStatsQuery.isLoading}
         >
-            {' '}
             {isMobile ? (
                 <WidgetWrapper>
                     <WidgetHeader notFlex={true}>

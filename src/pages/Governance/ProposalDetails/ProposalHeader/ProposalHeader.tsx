@@ -4,6 +4,8 @@ import { Network } from 'enums/network';
 import makeBlockie from 'ethereum-blockies-base64';
 import { Blockie, InfoStats, InfoText, StyledLink } from 'pages/Governance/styled-components';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
 import { Colors, FlexDiv, FlexDivColumnNative } from 'styles/common';
 import {
     formatCurrency,
@@ -33,35 +35,44 @@ type ProposalHeaderProps = {
 
 const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) => {
     const { t } = useTranslation();
+    const isMobile = useSelector(getIsMobile);
 
     const closed = proposal.state === StatusEnum.Closed;
     const pending = proposal.state === StatusEnum.Pending;
 
     return (
         <Container>
-            <WidgetWrapper>
-                <WidgetHeader isTwoSided={true}>
-                    <FlexDiv>
-                        <Icon className="icon icon--proposal" />
-                        <TitleLabel>{t(`governance.proposal.details`)}</TitleLabel>
-                    </FlexDiv>
-                    {!closed && (
-                        <TimeLeftContainer>
-                            <TimeLeftLabel>
-                                {t(`governance.proposal.${pending ? 'starts-in-label' : 'ends-in-label'}`)}:{' '}
-                            </TimeLeftLabel>
-                            <TimeRemaining
-                                end={proposal.end * 1000}
-                                fontSize={18}
-                                fontWeight={700}
-                                textColor={Colors.CYAN}
-                            />
-                        </TimeLeftContainer>
-                    )}
-                </WidgetHeader>
-                <InfoSection side="left">
-                    <FlexDivFullWidthSpaceBetween>
+            {isMobile ? (
+                <WidgetWrapper>
+                    <WidgetHeader isTwoSided={true}>
+                        <FlexDiv>
+                            <Icon className="icon icon--proposal" />
+                            <TitleLabel>{t(`governance.proposal.details`)}</TitleLabel>
+                        </FlexDiv>
+                        {!closed && (
+                            <TimeLeftContainer>
+                                <TimeLeftLabel>
+                                    {t(`governance.proposal.${pending ? 'starts-in-label' : 'ends-in-label'}`)}:{' '}
+                                </TimeLeftLabel>
+                                <TimeRemaining
+                                    end={proposal.end * 1000}
+                                    fontSize={18}
+                                    fontWeight={700}
+                                    textColor={Colors.CYAN}
+                                />
+                            </TimeLeftContainer>
+                        )}
+                    </WidgetHeader>
+
+                    <InfoSection side="left">
                         <InfoText>{t(`governance.proposal.author-label`)}</InfoText>
+                        <InfoText>{t(`governance.proposal.proposal-label`)}</InfoText>
+                        <InfoText>{t(`governance.proposal.voting-system-label`)}</InfoText>
+                        <InfoText>{t(`governance.proposal.start-date-label`)}</InfoText>
+                        <InfoText>{t(`governance.proposal.end-date-label`)}</InfoText>
+                        <InfoText>{t(`governance.proposal.snapshot-label`)}</InfoText>
+                    </InfoSection>
+                    <InfoSection side="right">
                         <InfoStats>
                             <StyledLink
                                 href={getEtherscanAddressLink(Network.Mainnet, proposal.author)}
@@ -78,9 +89,6 @@ const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) 
                                 <ArrowIcon />
                             </StyledLink>
                         </InfoStats>
-                    </FlexDivFullWidthSpaceBetween>
-                    <FlexDivFullWidthSpaceBetween>
-                        <InfoText>{t(`governance.proposal.proposal-label`)}</InfoText>
                         <InfoStats>
                             <StyledLink
                                 href={getProposalUrl(proposal.space.id, proposal.id)}
@@ -91,19 +99,7 @@ const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) 
                                 <ArrowIcon />
                             </StyledLink>
                         </InfoStats>
-                    </FlexDivFullWidthSpaceBetween>
-                    <FlexDivFullWidthSpaceBetween>
-                        <InfoText>{t(`governance.proposal.voting-system-label`)}</InfoText>
                         <InfoStats>{t(`governance.proposal.type.${proposal.type}`)}</InfoStats>
-                    </FlexDivFullWidthSpaceBetween>
-                </InfoSection>
-                <InfoSection side="right" direction="row" justifyContent="space-between">
-                    <FlexDivColumnNative>
-                        <InfoText>{t(`governance.proposal.start-date-label`)}</InfoText>
-                        <InfoText>{t(`governance.proposal.end-date-label`)}</InfoText>
-                        <InfoText>{t(`governance.proposal.snapshot-label`)}</InfoText>
-                    </FlexDivColumnNative>
-                    <FlexDivColumnNative>
                         <InfoStats>{formatShortDateWithTime(proposal.start * 1000)}</InfoStats>
                         <InfoStats>{formatShortDateWithTime(proposal.end * 1000)}</InfoStats>
                         <InfoStats>
@@ -116,9 +112,91 @@ const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) 
                                 <ArrowIcon />
                             </StyledLink>
                         </InfoStats>
-                    </FlexDivColumnNative>
-                </InfoSection>
-            </WidgetWrapper>
+                    </InfoSection>
+                </WidgetWrapper>
+            ) : (
+                <WidgetWrapper>
+                    <WidgetHeader isTwoSided={true}>
+                        <FlexDiv>
+                            <Icon className="icon icon--proposal" />
+                            <TitleLabel>{t(`governance.proposal.details`)}</TitleLabel>
+                        </FlexDiv>
+                        {!closed && (
+                            <TimeLeftContainer>
+                                <TimeLeftLabel>
+                                    {t(`governance.proposal.${pending ? 'starts-in-label' : 'ends-in-label'}`)}:{' '}
+                                </TimeLeftLabel>
+                                <TimeRemaining
+                                    end={proposal.end * 1000}
+                                    fontSize={18}
+                                    fontWeight={700}
+                                    textColor={Colors.CYAN}
+                                />
+                            </TimeLeftContainer>
+                        )}
+                    </WidgetHeader>
+
+                    <InfoSection side="left">
+                        <FlexDivFullWidthSpaceBetween>
+                            <InfoText>{t(`governance.proposal.author-label`)}</InfoText>
+                            <InfoStats>
+                                <StyledLink
+                                    href={getEtherscanAddressLink(Network.Mainnet, proposal.author)}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <Blockie
+                                        src={makeBlockie(proposal.author)}
+                                        style={{ width: '16px', height: '16px', marginBottom: '-3px' }}
+                                    />
+                                    <InfoStats>
+                                        {authorEns != null ? authorEns : truncateAddress(proposal.author)}
+                                    </InfoStats>
+                                    <ArrowIcon />
+                                </StyledLink>
+                            </InfoStats>
+                        </FlexDivFullWidthSpaceBetween>
+                        <FlexDivFullWidthSpaceBetween>
+                            <InfoText>{t(`governance.proposal.proposal-label`)}</InfoText>
+                            <InfoStats>
+                                <StyledLink
+                                    href={getProposalUrl(proposal.space.id, proposal.id)}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <InfoStats>{truncateAddress(proposal.id)}</InfoStats>
+                                    <ArrowIcon />
+                                </StyledLink>
+                            </InfoStats>
+                        </FlexDivFullWidthSpaceBetween>
+                        <FlexDivFullWidthSpaceBetween>
+                            <InfoText>{t(`governance.proposal.voting-system-label`)}</InfoText>
+                            <InfoStats>{t(`governance.proposal.type.${proposal.type}`)}</InfoStats>
+                        </FlexDivFullWidthSpaceBetween>
+                    </InfoSection>
+                    <InfoSection side="right" direction="row" justifyContent="space-between">
+                        <FlexDivColumnNative>
+                            <InfoText>{t(`governance.proposal.start-date-label`)}</InfoText>
+                            <InfoText>{t(`governance.proposal.end-date-label`)}</InfoText>
+                            <InfoText>{t(`governance.proposal.snapshot-label`)}</InfoText>
+                        </FlexDivColumnNative>
+                        <FlexDivColumnNative>
+                            <InfoStats>{formatShortDateWithTime(proposal.start * 1000)}</InfoStats>
+                            <InfoStats>{formatShortDateWithTime(proposal.end * 1000)}</InfoStats>
+                            <InfoStats>
+                                <StyledLink
+                                    href={getEtherscanBlockLink(Network.Mainnet, proposal.snapshot)}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <InfoStats>{formatCurrency(proposal.snapshot, 0)}</InfoStats>
+                                    <ArrowIcon />
+                                </StyledLink>
+                            </InfoStats>
+                        </FlexDivColumnNative>
+                    </InfoSection>
+                </WidgetWrapper>
+            )}
         </Container>
     );
 };

@@ -1,3 +1,4 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDivColumn, FlexDivColumnCentered } from 'styles/common';
 
@@ -10,8 +11,9 @@ export const VoteRow = styled(FlexDivColumnCentered)`
 
 export const VoteLabel = styled.div`
     width: 125px;
-    @media (max-width: 575px) {
-        width: 100px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 92px;
+        font-size: 12px;
     }
 `;
 
