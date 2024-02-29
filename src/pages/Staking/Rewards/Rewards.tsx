@@ -10,7 +10,6 @@ import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { BaseRewardsData, ThalesStakingData, UserStakingData } from 'types/token';
-import CCIPAnimation from '../components/CCIPAnimation';
 import TransactionsWithFilters from '../components/TransactionsWithFilters';
 import BaseStakingRewards from './components/BaseStakingRewards';
 import ClaimableSection from './components/ClaimbleSection';
@@ -96,7 +95,6 @@ const Rewards: React.FC = () => {
     return (
         <>
             <Container>
-                <CCIPAnimation />
                 <ClaimableSection
                     userStakingData={userStakingData}
                     stakingData={stakingData}

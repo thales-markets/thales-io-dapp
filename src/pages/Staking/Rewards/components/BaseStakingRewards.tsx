@@ -1,7 +1,8 @@
 import LoadingContainer from 'components/LoadingContainer';
+import Tooltip from 'components/Tooltip';
 import { THALES_CURRENCY } from 'constants/currency';
 import { ScreenSizeBreakpoint } from 'enums/ui';
-import { InfoDiv } from 'pages/Staking/styled-components';
+import { InfoDiv, TooltipContainer } from 'pages/Staking/styled-components';
 import { PointsData } from 'queries/token/usePointsBreakdownQuery';
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -52,7 +53,15 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                     <DataWrapper>
                         <FlexDivColumn>
                             <InfoDiv>
-                                <span>{t('staking.rewards.base-rewards.your-staked')}</span>
+                                <TooltipContainer>
+                                    <span>{t('staking.rewards.base-rewards.your-staked')}</span>
+                                    <Tooltip
+                                        overlay={t('staking.staking.staking-data.apy-tooltip')}
+                                        marginTop={2}
+                                        mobileIconFontSize={11}
+                                        iconFontSize={13}
+                                    />
+                                </TooltipContainer>
                                 <span>{baseStakingRewardsData?.thalesStaked}</span>
                             </InfoDiv>
                             <InfoDiv>

@@ -16,6 +16,7 @@ import Leaderboard from './Leaderboard';
 import Rewards from './Rewards';
 import StakingTab from './StakingTab';
 import Vesting from './Vesting';
+import CCIPAnimation from './components/CCIPAnimation';
 
 enum Tab {
     REWARDS = 'rewards',
@@ -70,6 +71,7 @@ const Staking: React.FC = () => {
                     <NavLinks items={navItems} />
                 </NavContainer>
             )}
+            <CCIPAnimation />
             {paramTab === Tab.STAKING && <StakingTab />}
             {paramTab === Tab.REWARDS && <Rewards />}
             {paramTab === Tab.VESTING && <Vesting />}
