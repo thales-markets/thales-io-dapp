@@ -73,7 +73,7 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                                         }}
                                     />
                                     <Tooltip
-                                        overlay={t('staking.rewards.base-rewards.tooltips.your-staked')}
+                                        overlay={t('staking.rewards.base-rewards.tooltips.staking-divider')}
                                         marginTop={2}
                                         mobileIconFontSize={11}
                                         iconFontSize={13}
