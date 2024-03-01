@@ -89,7 +89,7 @@ export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean
 export const NumericStats = styled.span`
     font-family: Nunito !important;
     font-weight: 700;
-    font-size: 35px;
+    font-size: 34px;
     line-height: 55px;
     color: ${(props) => props.theme.textColor.secondary};
 `;

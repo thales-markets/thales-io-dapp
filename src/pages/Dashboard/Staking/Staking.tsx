@@ -92,25 +92,6 @@ const Staking: React.FC = () => {
     const chartData = useMemo(() => {
         let data: any[] = [];
         if (weeklyData) {
-            const safeboxChartData = weeklyData.safeboxFees
-                .sort((a, b) => {
-                    const dateOfA = new Date(a.day);
-                    const dateOfB = new Date(b.day);
-
-                    return dateOfA.getTime() - dateOfB.getTime();
-                })
-                .map((safeboxData: Fee) => {
-                    const dateOfSafebox = new Date(safeboxData.day);
-                    const month = MONTH_NAMES[dateOfSafebox.getMonth()];
-                    return {
-                        name: 'Safebox',
-                        date: safeboxData.day,
-                        month: `${month}-${dateOfSafebox.getFullYear()}`,
-                        amount: Number(safeboxData.amount.toFixed(2)),
-                        color: Colors.METALLIC_BLUE,
-                    };
-                });
-
             const revShareChartData = weeklyData.revShare
                 .sort((a, b) => {
                     const dateOfA = new Date(a.day);
@@ -130,8 +111,14 @@ const Staking: React.FC = () => {
                         color: Colors.CYAN,
                     };
                 });
-
-            data = [...safeboxChartData, ...revShareChartData].slice(-16);
+            if (revShareChartData.length >= 16) {
+                data = [...revShareChartData].slice(-16);
+            } else {
+                data = [...revShareChartData];
+                for (let i = 0; i < 16 - revShareChartData.length; i++) {
+                    data.push({ name: 'RevShare', date: '', month: ``, amount: 0, color: Colors.CYAN });
+                }
+            }
         }
 
         return data;
@@ -139,6 +126,9 @@ const Staking: React.FC = () => {
 
     const CustomTooltip = ({ active, payload }: any) => {
         if (active && payload && payload.length) {
+            if (payload[0].payload.amount == 0) {
+                return <></>;
+            }
             return (
                 <ChartTooltipBox>
                     <InfoText color={Colors.WHITE}>
@@ -182,13 +172,13 @@ const Staking: React.FC = () => {
                             <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
                         </InfoSection>
                         <InfoSection side="right">
-                            <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}</InfoStats>
-                            <InfoStats>{globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}</InfoStats>
+                            <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy}% APY` : '-'}</InfoStats>
+                            <InfoStats>{globalStakingData ? `${globalStakingData.feeApy}% APY` : '-'}</InfoStats>
                             <InfoStats>{stakersQuery.isLoading ? '-' : stakers.length}</InfoStats>
                             <InfoStats>
                                 {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
                             </InfoStats>
-                            <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)} %</InfoStats>
+                            <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
                         </InfoSection>
                     </StakingInfo>
                     <ChartWrapper>
@@ -200,14 +190,7 @@ const Staking: React.FC = () => {
                                 padding={{ left: 15, right: 15 }}
                                 interval={4}
                             />
-                            <ChartTooltip
-                                content={<CustomTooltip />}
-                                cursor={{
-                                    stroke: Colors.INDEPENDENCE,
-                                    strokeWidth: 2,
-                                    fill: 'transparent',
-                                }}
-                            />
+                            <ChartTooltip content={<CustomTooltip />} cursor={false} />
                             <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
                                 {chartData.map((slice, index) => (
                                     <Cell key={index} fill={slice.color} />
@@ -228,7 +211,7 @@ const Staking: React.FC = () => {
                                 <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
                                 <TitleLabel isHighlighted={true}>
                                     {globalStakingData
-                                        ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
+                                        ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)}%`
                                         : '-'}
                                 </TitleLabel>
                             </FlexDivAlignStartSpaceBetween>
@@ -238,13 +221,13 @@ const Staking: React.FC = () => {
                                 <FlexDivFullWidthSpaceBetween>
                                     <InfoText>{t('dashboard.staking.thales-token-rewards')}</InfoText>
                                     <InfoStats>
-                                        {globalStakingData ? `${globalStakingData.thalesApy} % APY` : '-'}
+                                        {globalStakingData ? `${globalStakingData.thalesApy}% APY` : '-'}
                                     </InfoStats>
                                 </FlexDivFullWidthSpaceBetween>
                                 <FlexDivFullWidthSpaceBetween>
                                     <InfoText>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
                                     <InfoStats>
-                                        {globalStakingData ? `${globalStakingData.feeApy} % APY` : '-'}
+                                        {globalStakingData ? `${globalStakingData.feeApy}% APY` : '-'}
                                     </InfoStats>
                                 </FlexDivFullWidthSpaceBetween>
                                 <FlexDivFullWidthSpaceBetween>
@@ -261,7 +244,7 @@ const Staking: React.FC = () => {
                                 </FlexDivFullWidthSpaceBetween>
                                 <FlexDivFullWidthSpaceBetween>
                                     <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
-                                    <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)} %</InfoStats>
+                                    <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
                                 </FlexDivFullWidthSpaceBetween>
                             </InfoSection>
                         </StakingInfo>
@@ -274,14 +257,7 @@ const Staking: React.FC = () => {
                                     padding={{ left: 15, right: 15 }}
                                     interval={4}
                                 />
-                                <ChartTooltip
-                                    content={<CustomTooltip />}
-                                    cursor={{
-                                        stroke: Colors.INDEPENDENCE,
-                                        strokeWidth: 2,
-                                        fill: 'transparent',
-                                    }}
-                                />
+                                <ChartTooltip content={<CustomTooltip />} cursor={false} />
                                 <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
                                     {chartData.map((slice, index) => (
                                         <Cell key={index} fill={slice.color} />
