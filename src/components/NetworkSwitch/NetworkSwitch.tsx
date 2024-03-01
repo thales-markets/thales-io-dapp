@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress, switchToNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { truncateAddress } from 'thales-utils';
 import { isLedgerDappBrowserProvider } from 'utils/ledger';
@@ -36,7 +36,6 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
 }) => {
     const { switchNetwork } = useSwitchNetwork();
     const dispatch = useDispatch();
-    const theme = useTheme();
 
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -88,9 +87,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
                                 isWalletConnectorSwitch={false}
                             >
-                                {React.createElement(selectedNetwork.icon, {
-                                    style: { fill: theme.textColor.secondary },
-                                })}
+                                {React.createElement(selectedNetwork.icon, {})}
                             </NetworkIconWrapper>
                         )}
                         {!isWalletConnected && <WalletIcon className="icon icon--wallet" />}
@@ -118,10 +115,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
                                 isWalletConnectorSwitch={true}
                             >
-                                {isWalletConnected &&
-                                    React.createElement(selectedNetwork.icon, {
-                                        style: { fill: theme.textColor.secondary },
-                                    })}
+                                {isWalletConnected && React.createElement(selectedNetwork.icon)}
                                 {!hideNetworkSwitcher && (
                                     <Icon
                                         className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`}
