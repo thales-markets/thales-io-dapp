@@ -164,12 +164,20 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                         </span>
                                     </StakingDetailsSection>
                                     <StakingDetailsSection>
-                                        <Trans
-                                            i18nKey="staking.rewards.claim.base-rewards"
-                                            components={{
-                                                span: <span />,
-                                            }}
-                                        />
+                                        <TooltipContainer>
+                                            <Trans
+                                                i18nKey="staking.rewards.claim.base-rewards"
+                                                components={{
+                                                    span: <span />,
+                                                }}
+                                            />
+                                            <Tooltip
+                                                overlay={t('staking.rewards.claim.base-reward-tooltip')}
+                                                marginTop={2}
+                                                mobileIconFontSize={11}
+                                                iconFontSize={13}
+                                            />
+                                        </TooltipContainer>
                                         <span>
                                             {formatCurrencyWithKey(
                                                 THALES_CURRENCY,
@@ -179,12 +187,21 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                         </span>
                                     </StakingDetailsSection>
                                     <StakingDetailsSection>
-                                        <Trans
-                                            i18nKey="staking.rewards.claim.gamified-staking-rewards"
-                                            components={{
-                                                span: <span />,
-                                            }}
-                                        />
+                                        <TooltipContainer>
+                                            <Trans
+                                                i18nKey="staking.rewards.claim.gamified-staking-rewards"
+                                                components={{
+                                                    span: <span />,
+                                                }}
+                                            />
+                                            <Tooltip
+                                                overlay={t('staking.rewards.claim.gamified-staking-rewards-tooltip')}
+                                                marginTop={2}
+                                                mobileIconFontSize={11}
+                                                iconFontSize={13}
+                                            />
+                                        </TooltipContainer>
+
                                         <span>
                                             {formatCurrencyWithKey(
                                                 THALES_CURRENCY,
