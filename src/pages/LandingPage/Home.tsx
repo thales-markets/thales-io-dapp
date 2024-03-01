@@ -11,7 +11,7 @@ import Lottie from 'lottie-react';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import React, { CSSProperties, Suspense, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlexDiv, FlexDivCentered, FlexDivSpaceAround } from 'styles/common';
+import { FlexDiv, FlexDivCentered } from 'styles/common';
 import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
 import Footer from './Footer';
@@ -21,7 +21,8 @@ import {
     About,
     Backers,
     BulletNumber,
-    BuySellSection,
+    BuySection,
+    BuySellSections,
     Description,
     EcosystemSection,
     EcosystemTitle,
@@ -36,6 +37,7 @@ import {
     SectionTitle,
     SectionTitleLink,
     SectionTitleLinkArrow,
+    SellSection,
     SocialIcon,
     Stat,
     StatsSection,
@@ -197,8 +199,8 @@ const Home: React.FC = () => {
                     <Description>{t('home.buying-selling.description-1')}</Description>
                     <Description>{t('home.buying-selling.description-2')}</Description>
                 </Section>
-                <FlexDivSpaceAround>
-                    <BuySellSection flex="0.5">
+                <BuySellSections>
+                    <BuySection>
                         <FlexDivCentered>
                             <Highlight>{t('home.buying-selling.buying.title')}</Highlight>
                         </FlexDivCentered>
@@ -245,8 +247,8 @@ const Home: React.FC = () => {
                                 </Collapse>
                             </StepsSection>
                         </FlexDivCentered>
-                    </BuySellSection>
-                    <BuySellSection flex="0.3">
+                    </BuySection>
+                    <SellSection>
                         <FlexDivCentered>
                             <Highlight>{t('home.buying-selling.selling.title')}</Highlight>
                         </FlexDivCentered>
@@ -275,8 +277,8 @@ const Home: React.FC = () => {
                                 </Collapse>
                             </StepsSection>
                         </FlexDivCentered>
-                    </BuySellSection>
-                </FlexDivSpaceAround>
+                    </SellSection>
+                </BuySellSections>
                 <Section>
                     <SectionTitleLink>
                         <SPAAnchor href={buildHref(ROUTES.About.Governance)}>
