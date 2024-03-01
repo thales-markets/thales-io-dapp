@@ -1,6 +1,6 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
-import { AreaChart, BarChart, PieChart } from 'recharts';
+import { AreaChart, PieChart } from 'recharts';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivColumnNative, FlexDivRow, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
 
@@ -64,13 +64,19 @@ export const ItemBottomCenter = styled.div`
     grid-area: bottom;
 `;
 
-export const WidgetWrapper = styled.div<{ isDoubleHeight?: boolean }>`
+export const WidgetWrapper = styled.div<{ isDoubleHeight?: boolean; isStakingWidget?: boolean }>`
     display: grid;
     width: 100%;
     height: 100%;
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: ${(props) => (props.isDoubleHeight ? '50% 50%' : '40% 60%;')};
     grid-template-areas: 'top top' 'bottom-left bottom-right';
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        grid-template-rows: ${(props) =>
+            props.isStakingWidget ? '20% 40% 40%' : props.isDoubleHeight ? '50% 50%' : '40% 60%;'};
+        ${(props) =>
+            props.isStakingWidget ? `grid-template-areas: 'top top' 'middle-left middle-right' 'bottom bottom'` : ''};
+    }
 `;
 
 export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean }>`
@@ -150,6 +156,7 @@ export const InfoSection = styled.div<{
     side: string;
     direction?: string;
     justifyContent?: string;
+    isStakingWidget?: boolean;
 }>`
     grid-area: ${(props) => (props.side === 'left' ? 'bottom-left' : 'bottom-right')};
     height: 100%;
@@ -160,6 +167,13 @@ export const InfoSection = styled.div<{
     justify-content: ${(props) => (props.justifyContent ? props.justifyContent : 'end')};
     align-items: ${(props) => (props.side === 'left' ? 'start' : 'end')};
     gap: 1px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        ${(props) =>
+            props.isStakingWidget ? `grid-area: ${props.side === 'left' ? '1 / 1 / 2 / 2' : '1 / 2 / 2 / 2'};` : ''};
+        padding: ${(props) =>
+            props.isStakingWidget ? (props.side === 'left' ? '0px 0px 0px 20px' : '0px 20px 0px') : ''};
+        ${(props) => (props.isStakingWidget ? 'justify-content: flex-start' : '')};
+    }
 `;
 
 export const DoubleSideSectionSpan = styled.span`
@@ -280,7 +294,9 @@ export const StakingInfo = styled(FlexDivRow)`
     grid-area: top;
     margin-top: 35px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-top: 175px;
+        grid-area: 2 / 1 / 2 / last-line;
+        margin-top: 5px;
+        display: grid;
     }
 `;
 
@@ -289,13 +305,9 @@ export const ChartWrapper = styled(FlexDivRow)`
     width: 100%;
     padding: 0px 20px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        height: 10px;
-    }
-`;
-
-export const StyledBarChart = styled(BarChart)`
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        width: 310px !important;
-        margin-top: 30px;
+        grid-area: bottom;
+        height: fit-content;
+        margin-top: -10px;
+        margin-bottom: 20px;
     }
 `;

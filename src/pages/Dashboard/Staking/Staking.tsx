@@ -10,7 +10,7 @@ import useThalesStakersQuery from 'queries/useThalesStakersQuery';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Bar, BarChart, Cell, Tooltip as ChartTooltip, XAxis } from 'recharts';
+import { Bar, BarChart, Cell, Tooltip as ChartTooltip, ResponsiveContainer, XAxis } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
@@ -29,7 +29,6 @@ import {
     InfoStats,
     InfoText,
     StakingInfo,
-    StyledBarChart,
     TitleLabel,
     WidgetHeader,
     WidgetIcon,
@@ -148,7 +147,7 @@ const Staking: React.FC = () => {
             isLoading={globalStakingDataQuery.isLoading || tokenInfoQuery.isLoading || weeklyStatsQuery.isLoading}
         >
             {isMobile ? (
-                <WidgetWrapper>
+                <WidgetWrapper isStakingWidget={true}>
                     <WidgetHeader notFlex={true}>
                         <FlexDiv>
                             <WidgetIcon className="icon icon--staking" />
@@ -164,14 +163,14 @@ const Staking: React.FC = () => {
                         </FlexDivStart>
                     </WidgetHeader>
                     <StakingInfo>
-                        <InfoSection side="left">
+                        <InfoSection isStakingWidget={true} side="left">
                             <InfoText>{t('dashboard.staking.thales-token-rewards')}</InfoText>
                             <InfoText>{t('dashboard.staking.stablecoin-rewards')}</InfoText>
                             <InfoText>{t('dashboard.staking.total-stakers')}</InfoText>
                             <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
                             <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
                         </InfoSection>
-                        <InfoSection side="right">
+                        <InfoSection isStakingWidget={true} side="right">
                             <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy}% APY` : '-'}</InfoStats>
                             <InfoStats>{globalStakingData ? `${globalStakingData.feeApy}% APY` : '-'}</InfoStats>
                             <InfoStats>{stakersQuery.isLoading ? '-' : stakers.length}</InfoStats>
@@ -182,21 +181,23 @@ const Staking: React.FC = () => {
                         </InfoSection>
                     </StakingInfo>
                     <ChartWrapper>
-                        <StyledBarChart width={650} height={200} data={chartData}>
-                            <XAxis
-                                axisLine={false}
-                                dataKey="month"
-                                tickLine={false}
-                                padding={{ left: 15, right: 15 }}
-                                interval={4}
-                            />
-                            <ChartTooltip content={<CustomTooltip />} cursor={false} />
-                            <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
-                                {chartData.map((slice, index) => (
-                                    <Cell key={index} fill={slice.color} />
-                                ))}
-                            </Bar>
-                        </StyledBarChart>
+                        <ResponsiveContainer width="100%" height={140}>
+                            <BarChart data={chartData}>
+                                <XAxis
+                                    axisLine={false}
+                                    dataKey="month"
+                                    tickLine={false}
+                                    padding={{ left: 15, right: 15 }}
+                                    interval={4}
+                                />
+                                <ChartTooltip content={<CustomTooltip />} cursor={false} />
+                                <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
+                                    {chartData.map((slice, index) => (
+                                        <Cell key={index} fill={slice.color} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
                     </ChartWrapper>
                 </WidgetWrapper>
             ) : (
