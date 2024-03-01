@@ -278,7 +278,12 @@ export const MilestoneDescription = styled.div`
     }
 `;
 
-export const HomeIcon = styled.i<{ fontSize?: string; paddingBottom?: string; mobileFontSize?: string }>`
+export const HomeIcon = styled.i<{
+    fontSize?: string;
+    paddingBottom?: string;
+    mobileFontSize?: string;
+    margin?: string;
+}>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -286,6 +291,7 @@ export const HomeIcon = styled.i<{ fontSize?: string; paddingBottom?: string; mo
     font-size: ${(props) => props.fontSize ?? '20em'};
     padding-bottom: ${(props) => props.paddingBottom ?? '0'};
     line-height: 0.5em;
+    margin: ${(props) => props.margin ?? '0'};
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: ${(props) => props.mobileFontSize ?? props.fontSize ?? '20em'};
     }
@@ -323,7 +329,11 @@ export const LinksContainer = styled(FlexDivSpaceBetween)`
 export const ThalesLinks = styled(FlexDiv)`
     position: relative;
     gap: 50px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-bottom: 50px;
+    }
 `;
+
 export const ThalesLinksTitle = styled.div`
     color: #fff;
     font-family: MontserratBold;
@@ -360,6 +370,9 @@ export const FooterLine = styled.div`
 export const FooterContainer = styled.div`
     width: 100%;
     padding: 150px 0 75px 0;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 100px 0 75px 0;
+    }
 `;
 
 export const SocialIcon = styled(Icon)`
@@ -416,5 +429,13 @@ export const Partners = styled(FlexDivSpaceBetween)`
 export const Backers = styled(FlexDivSpaceAround)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
+    }
+`;
+
+export const PartnersAndBackers = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    a:first-child {
+        grid-column: 1 / 3;
     }
 `;

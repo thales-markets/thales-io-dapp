@@ -11,7 +11,9 @@ import Lottie from 'lottie-react';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import React, { CSSProperties, Suspense, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlexDiv, FlexDivCentered } from 'styles/common';
+import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
+import { FlexDiv, FlexDivCentered, FlexDivSpaceAround } from 'styles/common';
 import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
 import Footer from './Footer';
@@ -50,6 +52,8 @@ import {
 const Home: React.FC = () => {
     const { t } = useTranslation();
     const [duneStats, setDuneStats] = useState<AllStats>();
+
+    const isMobile = useSelector(getIsMobile);
 
     const statsQuery = useStatsQuery();
     const TVL = useMemo(() => {
@@ -131,32 +135,69 @@ const Home: React.FC = () => {
                 </EcosystemSection>
                 <Section>
                     <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
-                    <Partners>
-                        <SPAAnchor href="https://synthetix.io/">
-                            <HomeIcon fontSize="17em" className="icon icon--synthetix" />
-                        </SPAAnchor>
+                    {!isMobile && (
+                        <>
+                            <Partners>
+                                <SPAAnchor href="https://synthetix.io/">
+                                    <HomeIcon mobileFontSize="20em" fontSize="17em" className="icon icon--synthetix" />
+                                </SPAAnchor>
 
-                        <SPAAnchor href="https://chain.link/">
-                            <HomeIcon fontSize="10em" className="icon icon--chainlink" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://www.optimism.io/">
-                            <HomeIcon fontSize="11em" className="icon icon--optimism" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://arbitrum.io/">
-                            <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
-                        </SPAAnchor>
-                    </Partners>
-                    <Backers>
-                        <SPAAnchor href="https://base.org/">
-                            <HomeIcon fontSize="9em" className="icon icon--base" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://pyth.network/">
-                            <HomeIcon fontSize="9em" className="icon icon--pyth" />
-                        </SPAAnchor>
-                        <SPAAnchor href="https://framework.ventures/">
-                            <HomeIcon fontSize="11em" className="icon icon--framework" />
-                        </SPAAnchor>
-                    </Backers>
+                                <SPAAnchor href="https://chain.link/">
+                                    <HomeIcon mobileFontSize="8em" fontSize="10em" className="icon icon--chainlink" />
+                                </SPAAnchor>
+                                <SPAAnchor href="https://www.optimism.io/">
+                                    <HomeIcon mobileFontSize="8em" fontSize="11em" className="icon icon--optimism" />
+                                </SPAAnchor>
+                                <SPAAnchor href="https://arbitrum.io/">
+                                    <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
+                                </SPAAnchor>
+                            </Partners>
+                            <Backers>
+                                <SPAAnchor href="https://base.org/">
+                                    <HomeIcon fontSize="9em" className="icon icon--base" />
+                                </SPAAnchor>
+                                <SPAAnchor href="https://pyth.network/">
+                                    <HomeIcon fontSize="9em" className="icon icon--pyth" />
+                                </SPAAnchor>
+                                <SPAAnchor href="https://framework.ventures/">
+                                    <HomeIcon fontSize="11em" className="icon icon--framework" />
+                                </SPAAnchor>
+                            </Backers>
+                        </>
+                    )}
+                    {isMobile && (
+                        <>
+                            <FlexDivCentered>
+                                <SPAAnchor href="https://synthetix.io/">
+                                    <HomeIcon margin="-35px 0" fontSize="20em" className="icon icon--synthetix" />
+                                </SPAAnchor>
+                            </FlexDivCentered>
+                            <FlexDivSpaceAround>
+                                <SPAAnchor href="https://chain.link/">
+                                    <HomeIcon fontSize="9em" className="icon icon--chainlink" />
+                                </SPAAnchor>
+                                <SPAAnchor href="https://www.optimism.io/">
+                                    <HomeIcon fontSize="9em" className="icon icon--optimism" />
+                                </SPAAnchor>
+                            </FlexDivSpaceAround>
+                            <FlexDivSpaceAround>
+                                <SPAAnchor href="https://arbitrum.io/">
+                                    <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
+                                </SPAAnchor>
+                                <SPAAnchor href="https://base.org/">
+                                    <HomeIcon fontSize="7em" className="icon icon--base" />
+                                </SPAAnchor>
+                            </FlexDivSpaceAround>
+                            <FlexDivSpaceAround>
+                                <SPAAnchor href="https://pyth.network/">
+                                    <HomeIcon fontSize="9em" className="icon icon--pyth" />
+                                </SPAAnchor>
+                                <SPAAnchor href="https://framework.ventures/">
+                                    <HomeIcon fontSize="9em" className="icon icon--framework" />
+                                </SPAAnchor>
+                            </FlexDivSpaceAround>
+                        </>
+                    )}
                 </Section>
                 <Section>
                     <SectionTitleLink>

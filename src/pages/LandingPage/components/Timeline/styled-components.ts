@@ -22,6 +22,11 @@ export const Container = styled.div`
         width: 15px;
         height: 15px;
     }
+    .timeline-vertical-circle div.active:after {
+        background: #19f8ef !important;
+        width: 15px;
+        height: 15px;
+    }
     .timeline-controls {
         background: #313652;
     }
@@ -83,7 +88,7 @@ export const Container = styled.div`
         & > div > div:nth-child(3) {
             order: 3;
         }
-        height: 500px;
+        height: 600px;
         .card-content-wrapper {
             visibility: hidden !important;
         }
@@ -91,11 +96,11 @@ export const Container = styled.div`
             display: none;
         }
         .timeline-main-wrapper {
-            height: 500px;
+            height: 600px;
             overflow: hidden;
         }
-        div[data-testid='tree-main'] {
-            height: 800px;
+        .timeline-card-content {
+            min-height: auto;
         }
     }
 `;

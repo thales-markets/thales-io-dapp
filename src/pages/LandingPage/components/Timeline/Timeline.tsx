@@ -16,7 +16,12 @@ import {
     MilestoneDescription,
 } from './styled-components';
 import { Quarter } from './types';
-import { adaptQuarterForTimeline } from './utils';
+import {
+    adaptQuarterForTimeline,
+    disableAutoScrollTimeline,
+    displaySelectedCard,
+    scrollSelectedCardIntoView,
+} from './utils';
 
 const Timeline: React.FC = () => {
     const theme = useTheme();
@@ -37,31 +42,8 @@ const Timeline: React.FC = () => {
 
     useEffect(() => {
         if (isMobile) {
-            const cards = document.getElementsByClassName('card-content-wrapper');
-
-            const selectedIndex = items.findIndex((quarter) => {
-                // @ts-ignore
-                if (quarter?.milestones[0].descriptionKey) {
-                    // @ts-ignore
-                    return quarter.milestones[0].descriptionKey === selectedItem?.milestones[0].descriptionKey;
-                } else {
-                    // @ts-ignore
-                    return quarter.milestones[0].description === selectedItem?.milestones[0].description;
-                }
-            });
-
-            for (const index in cards) {
-                // @ts-ignore
-                if (cards[index]?.style) {
-                    if (Number(index) === selectedIndex) {
-                        // @ts-ignore
-                        cards[index].style.setProperty('visibility', 'visible', 'important');
-                    } else {
-                        // @ts-ignore
-                        cards[index].style.setProperty('visibility', 'hidden', 'important');
-                    }
-                }
-            }
+            displaySelectedCard(items, selectedItem);
+            scrollSelectedCardIntoView(items, selectedItem);
         }
     }, [selectedItem, items, isMobile]);
 
@@ -82,11 +64,7 @@ const Timeline: React.FC = () => {
                     onItemSelected={(item) => {
                         // @ts-ignore
                         setSelectedItem(item);
-                        // hacky way to disable scrolling the element into view
-                        const itemElement = document.getElementsByClassName('timeline-horz-card-wrapper')?.[0];
-                        if (itemElement) {
-                            itemElement.scrollIntoView = function () {};
-                        }
+                        disableAutoScrollTimeline();
                     }}
                 >
                     {milestonesByQuarter.map((item, index) => {
