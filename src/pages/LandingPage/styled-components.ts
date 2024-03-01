@@ -370,12 +370,35 @@ export const SocialIcon = styled(Icon)`
     }
 `;
 
-export const BuySellSection = styled.div<{ flex: string }>`
+export const BuySellSections = styled(FlexDivSpaceAround)`
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+    }
+`;
+
+export const BuySection = styled.div`
     display: flex;
     flex-direction: column;
     align-self: baseline;
     margin-top: 50px;
-    flex: ${(props) => props.flex};
+    flex: 0.5;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        gap: 30px;
+    }
+`;
+
+export const SellSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-self: baseline;
+    margin-top: 50px;
+    flex: 0.3;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        gap: 30px;
+        & > div:nth-child(2) > div {
+            flex: 0.62;
+        }
+    }
 `;
 
 export const ThemedCircularProgress = styled(CircularProgress)`
