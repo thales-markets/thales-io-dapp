@@ -145,7 +145,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                         </>
                     )}
                     <Collapse
-                        title={t('staking.rewards.how-it-works.how-points-are-earned-title')}
+                        title={t('staking.rewards.how-it-works.title')}
                         additionalStyling={{
                             titleFontSize: '13px',
                             titleMarginBottom: '5px',
@@ -155,9 +155,12 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                     >
                         <SectionText style={{ marginBottom: '10px' }}>
                             <Trans
-                                i18nKey="staking.rewards.how-it-works.each-week-description"
+                                i18nKey="staking.rewards.how-it-works.description"
                                 components={{
                                     span: <span />,
+                                    br: <br />,
+                                    ul: <ListItem />,
+                                    li: <li />,
                                 }}
                             />
                         </SectionText>
@@ -257,6 +260,13 @@ const LeaderboardLinkContainer = styled(FlexDiv)`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         justify-content: center;
         margin-top: 10px;
+    }
+`;
+
+const ListItem = styled.ul`
+    li {
+        list-style-type: circle;
+        list-style-position: inside;
     }
 `;
 
