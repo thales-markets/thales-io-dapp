@@ -5,17 +5,19 @@ import { THALES_CURRENCY } from 'constants/currency';
 import ROUTES from 'constants/routes';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { InfoDiv, InfoDivRewards } from 'pages/Staking/styled-components';
+import useGlobalStakingDataQuery from 'queries/token/useGlobalStakingDataQuery';
 import { PointsData } from 'queries/token/usePointsBreakdownQuery';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivColumn, FlexDivColumnCentered } from 'styles/common';
-import { formatCurrencyWithKey } from 'thales-utils';
-import { ThalesStakingData } from 'types/token';
+import { formatCurrency, formatCurrencyWithKey } from 'thales-utils';
+import { GlobalStakingData, ThalesStakingData } from 'types/token';
 import { formatMultiplier } from 'utils/formatters/number';
 import { SectionTitle } from '../../styled-components';
 import {
@@ -40,6 +42,17 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
     const { t } = useTranslation();
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+
+    const [globalStakingData, setGlobalStakingData] = useState<GlobalStakingData | undefined>();
+
+    const globalStakingDataQuery = useGlobalStakingDataQuery({ enabled: isAppReady });
+
+    useEffect(() => {
+        if (globalStakingDataQuery.isSuccess && globalStakingDataQuery.data) {
+            setGlobalStakingData(globalStakingDataQuery.data);
+        }
+    }, [globalStakingDataQuery.isSuccess, globalStakingDataQuery.data]);
 
     return (
         <>
@@ -161,6 +174,9 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                     br: <br />,
                                     ul: <ListItem />,
                                     li: <li />,
+                                }}
+                                values={{
+                                    periodReward: formatCurrency(globalStakingData?.baseRewards ?? 0),
                                 }}
                             />
                         </SectionText>
