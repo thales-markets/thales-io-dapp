@@ -56,7 +56,7 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                                 <TooltipContainer>
                                     <span>{t('staking.rewards.base-rewards.your-staked')}</span>
                                     <Tooltip
-                                        overlay={t('staking.staking.staking-data.apy-tooltip')}
+                                        overlay={t('staking.rewards.base-rewards.tooltips.your-staked')}
                                         marginTop={2}
                                         mobileIconFontSize={11}
                                         iconFontSize={13}
@@ -65,20 +65,34 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                                 <span>{baseStakingRewardsData?.thalesStaked}</span>
                             </InfoDiv>
                             <InfoDiv>
-                                <span>
+                                <TooltipContainer>
                                     <Trans
                                         i18nKey="staking.rewards.base-rewards.staking-divider"
                                         components={{
                                             span: <span />,
                                         }}
                                     />
-                                </span>
+                                    <Tooltip
+                                        overlay={t('staking.rewards.base-rewards.tooltips.your-staked')}
+                                        marginTop={2}
+                                        mobileIconFontSize={11}
+                                        iconFontSize={13}
+                                    />
+                                </TooltipContainer>
                                 <span>{pointsData?.thalesDivider}</span>
                             </InfoDiv>
                         </FlexDivColumn>
                         <FlexDivColumn>
                             <InfoDiv>
-                                <span>{t('staking.rewards.base-rewards.total-staked')}</span>
+                                <TooltipContainer>
+                                    <span>{t('staking.rewards.base-rewards.total-staked')}</span>
+                                    <Tooltip
+                                        overlay={t('staking.rewards.base-rewards.tooltips.total-staked')}
+                                        marginTop={2}
+                                        mobileIconFontSize={11}
+                                        iconFontSize={13}
+                                    />
+                                </TooltipContainer>
                                 <span>{baseStakingRewardsData?.totalStaked}</span>
                             </InfoDiv>
                             <InfoDiv>

@@ -83,6 +83,16 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                         selectedItem={true}
                         noHover
                     >
+                        {!isWalletConnectorSwitch && (
+                            <NetworkIconWrapper
+                                onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
+                                isWalletConnectorSwitch={false}
+                            >
+                                {React.createElement(selectedNetwork.icon, {
+                                    style: { fill: theme.textColor.secondary },
+                                })}
+                            </NetworkIconWrapper>
+                        )}
                         {!isWalletConnected && <WalletIcon className="icon icon--wallet" />}
                         <WalletAddress
                             onClick={() =>
@@ -103,15 +113,25 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                     : t('common.wallet.connect-your-wallet')
                                 : selectedNetwork.name}
                         </WalletAddress>
-                        <NetworkIconWrapper onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}>
-                            {isWalletConnected &&
-                                React.createElement(selectedNetwork.icon, {
-                                    style: { fill: theme.textColor.secondary },
-                                })}
-                            {!hideNetworkSwitcher && (
-                                <Icon className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`} />
-                            )}
-                        </NetworkIconWrapper>
+                        {isWalletConnectorSwitch && (
+                            <NetworkIconWrapper
+                                onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
+                                isWalletConnectorSwitch={true}
+                            >
+                                {isWalletConnected &&
+                                    React.createElement(selectedNetwork.icon, {
+                                        style: { fill: theme.textColor.secondary },
+                                    })}
+                                {!hideNetworkSwitcher && (
+                                    <Icon
+                                        className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`}
+                                    />
+                                )}
+                            </NetworkIconWrapper>
+                        )}
+                        {!isWalletConnectorSwitch && (
+                            <Icon className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`} />
+                        )}
                     </NetworkItem>
                     {!hideNetworkSwitcher && isDropdownOpen && (
                         <NetworkDropDown>
@@ -242,14 +262,17 @@ const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?:
 const Icon = styled.i`
     margin-left: 5px;
     font-size: 10px;
+    color: ${(props) => props.theme.textColor.primary};
 `;
 
-const NetworkIconWrapper = styled(FlexDiv)`
+const NetworkIconWrapper = styled(FlexDiv)<{ isWalletConnectorSwitch?: boolean }>`
     align-items: center;
     justify-content: center;
-    margin-left: 5px;
-    padding-left: 6px;
-    border-left: 1px ${(props) => props.theme.borderColor.primary} solid;
+    ${(props) => props.isWalletConnectorSwitch && `margin-left: 5px`};
+    ${(props) => props.isWalletConnectorSwitch && `padding-left: 6px`};
+    ${(props) => props.isWalletConnectorSwitch && `border-left: 1px ${props.theme.borderColor.primary} solid`};
+    ${(props) => !props?.isWalletConnectorSwitch && `margin-right: 5px`};
+    ${(props) => !props?.isWalletConnectorSwitch && `padding-right: 6px`};
     color: ${(props) => props.theme.textColor.primary} !important;
 `;
 
