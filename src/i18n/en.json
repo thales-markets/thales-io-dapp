@@ -296,6 +296,7 @@
         "rewards": {
             "how-it-works": {
                 "title": "How Gamified Staking Rewards Work?",
+                "description": "Next to the core staking rewards, stakers can earn bonus THALES rewards via a point based Gamified Staking model that awards users for doing certain activities within the Thales Protocol. Gamified Staking rewards eligible stakers 20,000 THALES each week, split pro-rata based on the points leaderboard.<br/><br />Activities that accrue Gamified Staking points:<br/><ul><li>Generating trading volume on any Thales product</li><li>Providing liquidity in any of the AMM LP pools</li><li>Having deposits into any of the Vaults</li><br/>These points are then multiplied by your personal Staking Multiplier that is determined by your amount of THALES staked.",
                 "every-week-description": "<span>Every week</span> THALES token holders earn staking rewards. The amount you earn depends on the percentage of THALES you've staked during the weekly snapshot. If you don't claim these rewards within a week, they expire.",
                 "each-week-description": "<span>Each week:</span> THALES token holders earn staking rewards. The amount you earn depends on the percentage of THALES you've staked during the weekly snapshot. If you don't claim these rewards within a week, they expire.",
                 "how-points-are-earned": "<span>How points are earned:</span> <br />• <span>Trading:</span> For every <span>$1</span> traded on Thales or Overtime, you earn <span>1 point</span>. <br />• <span>Liquidity</span> Pools: Deposit <span>$1</span> into any Thales liquidity pool and earn <span>0.1 points</span>. <br />• <span>Vaults:</span> Deposit <span>$1</span> into any Thales vault and earn <span>0.2 points</span>.",
@@ -329,7 +330,13 @@
                 "staking-divider": "Staking Divider",
                 "total-staked": "Total THALES staked",
                 "staked-share": "Your Staked Share",
-                "claimable": "Claimable:"
+                "claimable": "Claimable:",
+                "tooltips": {
+                    "staking-divider": "How much THALES you need to stake to reach max multiplier of x2.0 for Gamified Staking points",
+                    "total-staked": "Global amount of THALES currently staked on this network",
+                    "your-staked": "Your Total THALES staked pool on this network",
+                    "staked-share": "Your percentage of Total THALES staked pool on this network"
+                }
             },
             "your-rewards": {
                 "title": "Gamified rewards",
