@@ -391,8 +391,6 @@ const AccPreferences: React.FC = () => {
         );
     };
 
-    console.log('addressesThatDelegateToYou ', addressesThatDelegateToYou);
-
     return (
         <>
             <Container>
@@ -452,6 +450,7 @@ const AccPreferences: React.FC = () => {
                                         titleMarginTop: '10px',
                                         containerMarginBottom: '10px',
                                     }}
+                                    hideLine={true}
                                 >
                                     {addressesThatDelegateToYou.map((address) => {
                                         return (
