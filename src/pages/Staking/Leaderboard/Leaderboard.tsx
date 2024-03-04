@@ -40,15 +40,22 @@ const Leaderboard: React.FC = () => {
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const [period, setPeriod] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     const [currentPeriod, setCurrentPeriod] = useState(-1);
 
     useEffect(() => {
-        const { stakingThalesContract } = snxJSConnector;
+        try {
+            const { stakingThalesContract } = snxJSConnector;
 
-        stakingThalesContract?.periodsOfStaking().then((period: number) => {
-            setPeriod(period);
-            setCurrentPeriod(period);
-        });
+            stakingThalesContract?.periodsOfStaking().then((period: number) => {
+                setPeriod(period);
+                setCurrentPeriod(period);
+                setIsLoading(false);
+            });
+        } catch (e) {
+            console.log('Error ', e);
+            setIsLoading(false);
+        }
     }, [networkId]);
 
     const leaderboardQuery = useStakersDataLeaderboardQuery(
@@ -107,7 +114,7 @@ const Leaderboard: React.FC = () => {
         <>
             <Container>
                 <Top>
-                    <LoadingContainer isLoading={leaderboardQuery.isLoading}>
+                    <LoadingContainer isLoading={leaderboardQuery.isLoading || isLoading}>
                         <FlexDiv gap="30px">
                             <FlexDivColumnSpaceBetween>
                                 <SectionTitle>
@@ -161,7 +168,7 @@ const Leaderboard: React.FC = () => {
                     </LoadingContainer>
                 </Top>
                 <Bottom>
-                    <LoadingContainer isLoading={leaderboardQuery.isLoading}>
+                    <LoadingContainer isLoading={leaderboardQuery.isLoading || isLoading}>
                         <FlexDiv gap="20px">
                             <FlexDivColumnSpaceBetween>
                                 <LeaderboardBreakdownTitle>
@@ -229,7 +236,7 @@ const Leaderboard: React.FC = () => {
             </Container>
             <Table
                 stakingData={stakingData}
-                isLoading={leaderboardQuery.isLoading}
+                isLoading={leaderboardQuery.isLoading || isLoading}
                 stickyRow={stickyRowInfo.length > 0 ? <StickyRowComponent stickyRowInfo={stickyRowInfo} /> : <></>}
             />
         </>
