@@ -23,6 +23,7 @@ export const Card = styled(FlexDivColumn)<{ closed: boolean }>`
     gap: 15px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 14px;
+        height: 100px;
     }
 `;
 

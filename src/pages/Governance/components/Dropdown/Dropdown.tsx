@@ -89,6 +89,7 @@ const Button = styled.button<{ isActive: boolean }>`
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
+        padding: 0px;
     }
 `;
 
