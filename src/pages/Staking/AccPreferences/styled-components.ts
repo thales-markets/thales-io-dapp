@@ -135,3 +135,8 @@ export const Icon = styled.i`
     color: ${(props) => props.theme.textColor.primary};
     margin-left: 5px;
 `;
+
+export const DelegratedAddressWrapper = styled(FlexDiv)`
+    flex-direction: column;
+    margin-top: 20px;
+`;
