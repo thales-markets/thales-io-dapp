@@ -134,7 +134,7 @@ const Home: React.FC = () => {
                     <EcosystemApps />
                 </EcosystemSection>
                 <Section>
-                    <SectionSlogan>{t('home.infrastructure.title')}</SectionSlogan>
+                    <SectionSlogan align="center">{t('home.infrastructure.title')}</SectionSlogan>
                     {!isMobile && (
                         <>
                             <Partners>
@@ -236,7 +236,7 @@ const Home: React.FC = () => {
                     </Collapse>
                 </Section>
                 <Section>
-                    <SectionSlogan>{t('home.buying-selling.title')}</SectionSlogan>
+                    <SectionSlogan align="center">{t('home.buying-selling.title')}</SectionSlogan>
                     <Description>{t('home.buying-selling.description-1')}</Description>
                     <Description>{t('home.buying-selling.description-2')}</Description>
                 </Section>

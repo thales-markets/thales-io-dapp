@@ -1,3 +1,4 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 
 export const CollapseContainer = styled.div<{ hideLine?: boolean; marginBottom?: string }>`
@@ -32,4 +33,8 @@ export const Highlight = styled.div<{
     text-align: ${(props) => (props.textAlign ? props.textAlign : 'left')};
     display: ${(props) => (props.downwardsArrowAlignRight ? 'flex' : 'block')};
     justify-content: ${(props) => (props.downwardsArrowAlignRight ? 'space-between' : '')};
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 18px;
+        font-size: ${(props) => (props.fontSize ? props.fontSize : '15px')};
+    }
 `;

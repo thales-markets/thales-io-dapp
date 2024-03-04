@@ -140,7 +140,7 @@ export const Description = styled(FlexDivColumn)<{ marginBottom?: number; margin
     color: ${(props) => props.theme.borderColor.quaternary};
     text-align: justify;
     font-family: MontserratLight;
-    font-size: 15px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: 140%;
@@ -169,7 +169,7 @@ export const Section = styled.div<{ marginBottom?: number }>`
     }
 `;
 
-export const SectionSlogan = styled.div`
+export const SectionSlogan = styled.div<{ align?: string }>`
     color: white;
     text-align: justify;
     font-family: MontserratBold;
@@ -178,8 +178,8 @@ export const SectionSlogan = styled.div`
     line-height: 140%;
     margin: 15px 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 30px;
-        text-align: left;
+        font-size: 18px;
+        text-align: ${(props) => (props.align ? props.align : 'left')};
     }
 `;
 
