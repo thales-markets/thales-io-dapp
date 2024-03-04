@@ -129,3 +129,9 @@ export const DelegationAddress = styled.span`
     letter-spacing: 0.25px;
     color: ${(props) => props.theme.textColor.primary};
 `;
+
+export const Icon = styled.i`
+    font-size: 16px;
+    color: ${(props) => props.theme.textColor.primary};
+    margin-left: 5px;
+`;

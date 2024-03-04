@@ -391,6 +391,8 @@ const AccPreferences: React.FC = () => {
         );
     };
 
+    console.log('addressesThatDelegateToYou ', addressesThatDelegateToYou);
+
     return (
         <>
             <Container>
@@ -445,17 +447,24 @@ const AccPreferences: React.FC = () => {
                             {addressesThatDelegateToYou.length ? (
                                 <Collapse
                                     title={t('staking.acc-preferences.delegate.addresses-delegating-to-you')}
-                                    additionalStyling={{ titleFontSize: '13px', titleMarginTop: '10px' }}
+                                    additionalStyling={{
+                                        titleFontSize: '13px',
+                                        titleMarginTop: '10px',
+                                        containerMarginBottom: '10px',
+                                    }}
                                 >
                                     {addressesThatDelegateToYou.map((address) => {
-                                        <StyledLink
-                                            key={address}
-                                            href={getEtherscanAddressLink(networkId, address)}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            <DelegationAddress key={address}>{address}</DelegationAddress>
-                                        </StyledLink>;
+                                        return (
+                                            <StyledLink
+                                                key={address}
+                                                href={getEtherscanAddressLink(networkId, address)}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                <DelegationAddress key={address}>{address}</DelegationAddress>
+                                                <ArrowIcon className={'icon icon--external-arrow'} />
+                                            </StyledLink>
+                                        );
                                     })}
                                 </Collapse>
                             ) : (
