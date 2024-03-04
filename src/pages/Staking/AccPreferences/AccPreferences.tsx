@@ -390,8 +390,6 @@ const AccPreferences: React.FC = () => {
         );
     };
 
-    console.log('addressesThatDelegateToYou ', addressesThatDelegateToYou);
-
     return (
         <>
             <Container>
