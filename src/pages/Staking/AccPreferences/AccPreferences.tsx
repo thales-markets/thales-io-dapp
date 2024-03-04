@@ -447,20 +447,19 @@ const AccPreferences: React.FC = () => {
                                         {t('staking.acc-preferences.delegate.addresses-delegating-to-you')}:
                                     </Subtitle>
                                 )}
-                                {addressesThatDelegateToYou.length &&
-                                    addressesThatDelegateToYou.map((address, index) => {
-                                        return (
-                                            <StyledLink
-                                                key={index}
-                                                href={getEtherscanAddressLink(networkId, address)}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                            >
-                                                {address}
-                                                <ArrowIcon width="8" height="8" />
-                                            </StyledLink>
-                                        );
-                                    })}
+                                {addressesThatDelegateToYou.map((address, index) => {
+                                    return (
+                                        <StyledLink
+                                            key={index}
+                                            href={getEtherscanAddressLink(networkId, address)}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            {address}
+                                            <ArrowIcon width="8" height="8" />
+                                        </StyledLink>
+                                    );
+                                })}
                             </DelegratedAddressWrapper>
                         </FlexDivColumn>
                     </FlexDiv>
