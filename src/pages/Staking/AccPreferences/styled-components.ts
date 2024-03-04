@@ -122,3 +122,10 @@ export const ClaimContainer = styled.div`
         }
     }
 `;
+
+export const DelegationAddress = styled.span`
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.25px;
+    color: ${(props) => props.theme.textColor.primary};
+`;

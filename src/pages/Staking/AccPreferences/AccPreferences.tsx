@@ -1,5 +1,6 @@
 import { isAddress } from '@ethersproject/address';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
+import Collapse from 'components/Collapse';
 import SPAAnchor from 'components/SPAAnchor';
 import {
     getDefaultToastContent,
@@ -33,6 +34,7 @@ import {
     Bottom,
     ClaimContainer,
     Container,
+    DelegationAddress,
     Message,
     Middle,
     StyledLink,
@@ -112,7 +114,7 @@ const AccPreferences: React.FC = () => {
         });
         return Object.keys(map);
     }, [userTokenTransactions, walletAddress]);
-    console.log(addressesThatDelegateToYou, 'TODO');
+
     const isAccountMergingEnabled =
         srcStakingThalesQuery.isSuccess && srcStakingThalesQuery.data
             ? srcStakingThalesQuery.data.mergeAccountEnabled
@@ -440,6 +442,25 @@ const AccPreferences: React.FC = () => {
                             <SectionDescription>
                                 {t('staking.acc-preferences.delegate.description-2')}
                             </SectionDescription>
+                            {addressesThatDelegateToYou.length ? (
+                                <Collapse
+                                    title={t('staking.acc-preferences.delegate.addresses-delegating-to-you')}
+                                    additionalStyling={{ titleFontSize: '13px', titleMarginTop: '10px' }}
+                                >
+                                    {addressesThatDelegateToYou.map((address) => {
+                                        <StyledLink
+                                            key={address}
+                                            href={getEtherscanAddressLink(networkId, address)}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            <DelegationAddress key={address}>{address}</DelegationAddress>
+                                        </StyledLink>;
+                                    })}
+                                </Collapse>
+                            ) : (
+                                <></>
+                            )}
                         </FlexDivColumn>
                     </FlexDiv>
                 </Top>
