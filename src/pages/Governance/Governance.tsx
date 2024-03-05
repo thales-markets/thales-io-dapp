@@ -138,23 +138,27 @@ const Governance: React.FC<GovernanceProps> = (props) => {
 
     return (
         <>
-            <Line />
-            <NavContainer width="40%">
-                <Links>
-                    {optionsTabContent.map((tab, index) => (
-                        <Item
-                            key={index}
-                            onClick={() => {
-                                navigateToGovernance(tab.id);
-                                setSelectedTab(tab.id);
-                            }}
-                            active={tab.id === selectedTab}
-                        >
-                            {tab.name}
-                        </Item>
-                    ))}
-                </Links>
-            </NavContainer>
+            {!isMobile && (
+                <>
+                    <Line />
+                    <NavContainer width="40%">
+                        <Links>
+                            {optionsTabContent.map((tab, index) => (
+                                <Item
+                                    key={index}
+                                    onClick={() => {
+                                        navigateToGovernance(tab.id);
+                                        setSelectedTab(tab.id);
+                                    }}
+                                    active={tab.id === selectedTab}
+                                >
+                                    {tab.name}
+                                </Item>
+                            ))}
+                        </Links>
+                    </NavContainer>{' '}
+                </>
+            )}
             <BackLinkWrapper isOverviewPage={isOverviewPage}>
                 {selectedProposal && (
                     <BackLink
