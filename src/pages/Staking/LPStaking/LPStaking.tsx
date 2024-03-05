@@ -89,16 +89,14 @@ const LPStaking: React.FC = () => {
 };
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
     color: ${(props) => props.theme.textColor.tertiary};
     font-family: Nunito;
     font-size: 13px;
-    display: grid;
     width: 60%;
-    grid-template-rows: fr 160px;
-    column-gap: 10px;
     margin-top: 90px;
-    row-gap: 10px;
-    grid-template-areas: 'top' 'bottom';
+    gap: 10px;
     z-index: 1;
     > div {
         position: relative;
