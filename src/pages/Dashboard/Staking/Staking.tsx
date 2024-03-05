@@ -150,7 +150,7 @@ const Staking: React.FC = () => {
                 <WidgetWrapper isStakingWidget={true}>
                     <WidgetHeader notFlex={true}>
                         <FlexDiv>
-                            <WidgetIcon className="icon icon--staking" />
+                            <WidgetIcon marginLeft="-5px" className="icon icon--staking" />
                             <TitleLabel>{t('dashboard.staking.title')}</TitleLabel>
                         </FlexDiv>
                         <FlexDivStart>

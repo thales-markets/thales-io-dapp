@@ -25,7 +25,7 @@ export const MobileContainer = styled(FlexDivColumnNative)`
     justify-content: start;
     gap: 10px;
     z-index: 1;
-    margin: 100px 0px;
+    margin: 50px 0px;
     > div {
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
@@ -107,7 +107,7 @@ export const InfoText = styled.span<{ color?: string }>`
     line-height: 20px;
     color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.tertiary)};
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 11px;
+        font-size: 13px;
     }
 `;
 
@@ -118,7 +118,7 @@ export const InfoStats = styled.span<{ color?: string }>`
     line-height: 20px;
     color: ${(props) => (props.color ? `${props.color}` : props.theme.textColor.primary)};
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 11px;
+        font-size: 13px;
     }
 `;
 
@@ -196,9 +196,10 @@ export const FlexDivAlignStartSpaceBetween = styled(FlexDivSpaceBetween)`
     align-self: self-start;
 `;
 
-export const WidgetIcon = styled.i`
+export const WidgetIcon = styled.i<{ marginLeft?: string }>`
     font-size: 25px;
     margin-right: 5px;
+    margin-left: ${(props) => (props.marginLeft ? props.marginLeft : '0')};
     color: ${(props) => props.theme.textColor.primary};
 `;
 
@@ -237,7 +238,7 @@ export const StyledPieChart = styled(PieChart)`
         width: 100% !important;
     }
     .recharts-legend-item {
-        padding-bottom: 3px;
+        padding-bottom: 5px;
     }
 `;
 
