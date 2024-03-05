@@ -21,13 +21,13 @@ export const DotContainer = styled.div`
 
 export const Dot = styled.div`
     background: ${(props) => props.theme.textColor.primary};
-    width: 1em;
-    height: 1em;
+    width: 0.7em;
+    height: 0.7em;
     border-radius: 50%;
     opacity: 0.6;
     &.selected {
         opacity: 1;
     }
-    margin-right: 7px;
-    margin-left: 7px;
+    margin-right: 13px;
+    margin-left: 13px;
 `;
