@@ -23,7 +23,6 @@ import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
 import { BigNumber, ethers } from 'ethers';
-import useLiquidityPoolUserTransactionsQuery from 'queries/liquidityPool/useLiquidityPoolUserTransactionsQuery';
 import useParlayLiquidityPoolDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolDataQuery';
 import useParlayLiquidityPoolUserDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolUserDataQuery';
 import useSportsAmmLiquidityPoolDataQuery from 'queries/liquidityPool/useSportsAmmLiquidityPoolDataQuery';
@@ -59,7 +58,7 @@ import {
     formatPercentage,
     getDefaultDecimalsForNetwork,
 } from 'thales-utils';
-import { LiquidityPoolData, LiquidityPoolUserTransaction, UserLiquidityPoolData } from 'types/liquidityPool';
+import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
 import { getCurrencyKeyStableBalance } from 'utils/balances';
 import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance } from 'utils/network';
@@ -172,21 +171,6 @@ const AMMLP: React.FC = () => {
     const parlayUserLiquidityPoolDataQuery = useParlayLiquidityPoolUserDataQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected && paramTab === LiquidityPool.OVERTIME_PARLAY,
     });
-
-    const userTransactionsQuery = useLiquidityPoolUserTransactionsQuery(networkId, paramTab);
-
-    const totalDeposits = useMemo(() => {
-        const uniqueUsersMap = {} as Record<string, boolean>;
-        if (userTransactionsQuery.isSuccess) {
-            userTransactionsQuery.data.forEach((tx: LiquidityPoolUserTransaction) => {
-                if (tx.type === 'deposit') {
-                    uniqueUsersMap[tx.account] = true;
-                }
-            });
-            return Object.keys(uniqueUsersMap).length;
-        }
-        return 0;
-    }, [userTransactionsQuery.data, userTransactionsQuery.isSuccess]);
 
     const activePoolDataQuery = useMemo(() => {
         if (paramTab === LiquidityPool.THALES) {
@@ -951,8 +935,8 @@ const AMMLP: React.FC = () => {
                                             </span>
                                         </div>
                                         <div>
-                                            <div>{t('staking.amm-lp.total-deposits')}</div>
-                                            <span>{totalDeposits}</span>
+                                            <div>{t('staking.amm-lp.users-in-pool')}</div>
+                                            <span>{`${liquidityPoolData.usersCurrentlyInLiquidityPool} / ${liquidityPoolData.maxAllowedUsers}`}</span>
                                         </div>
                                     </LiquidityPoolFilledText>
                                 </div>
