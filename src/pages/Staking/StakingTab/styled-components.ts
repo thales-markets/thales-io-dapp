@@ -25,6 +25,7 @@ export const Container = styled.div`
         width: 100%;
         grid-template-columns: 1fr;
         grid-template-areas: 'upper-left' 'upper-right' 'bottom';
+        grid-template-rows: 140px 160px 190px;
     }
 `;
 

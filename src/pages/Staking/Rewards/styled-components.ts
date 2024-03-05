@@ -220,3 +220,16 @@ export const ClaimButtonDisclaimer = styled.div`
     text-align: center;
     margin-top: 5px;
 `;
+
+export const GamingRewardsContainer = styled.div`
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        display: flex;
+        flex-direction: column;
+        > div:nth-child(2) {
+            margin-bottom: 15px;
+        }
+        > div:nth-child(6) {
+            margin-top: 15px;
+        }
+    }
+`;

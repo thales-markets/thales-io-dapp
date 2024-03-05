@@ -38,6 +38,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
             borderRadius: 8,
             overflow: 'auto',
             fontSize: fontSize || 16,
+            maxHeight: 200,
         }),
         option: (provided: any) => ({
             ...provided,

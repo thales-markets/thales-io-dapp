@@ -97,8 +97,7 @@ export const SectionHeader = styled(FlexDiv)`
         padding: 0px 5px;
         min-height: 25px;
         margin-bottom: 10px;
-        flex-direction: column;
-        align-items: start;
+        align-items: center;
     }
 `;
 

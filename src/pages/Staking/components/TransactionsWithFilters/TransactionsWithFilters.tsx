@@ -160,6 +160,8 @@ const FilterContainer = styled.div`
     width: 115px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100px;
+        top: -38px;
+        right: 17px;
     }
 `;
 
