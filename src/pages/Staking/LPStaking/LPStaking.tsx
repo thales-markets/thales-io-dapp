@@ -122,6 +122,9 @@ const RowsContainer = styled(FlexDiv)`
         border-radius: 8px;
     }
     gap: 10px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+    }
 `;
 
 const Wrapper = styled(FlexDiv)`

@@ -16,6 +16,7 @@ import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 // import { getIsMobile } from 'redux/modules/ui';
 import useGelatoUserBalanceQuery from 'queries/token/useGelatoUserBalanceQuery';
+import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { FlexDivCentered } from 'styles/common';
@@ -36,6 +37,8 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
+    const isMobile = useSelector((state: RootState) => getIsMobile(state));
+
     const [amountToStake, setAmountToStake] = useState<number | string>('');
     const [isAmountValid, setIsAmountValid] = useState<boolean>(true);
     const [isAllowingStake, setIsAllowingStake] = useState<boolean>(false);
@@ -200,7 +203,7 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
                                     : undefined
                             }
                             width="100%"
-                            containerWidth="70%"
+                            containerWidth={isMobile ? '100%' : '70%'}
                             isBalanceLoading={lpTokensBalanceQuery.isLoading}
                         />
                     </FlexDivCentered>

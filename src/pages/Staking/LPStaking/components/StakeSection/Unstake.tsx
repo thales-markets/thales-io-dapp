@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 // import { getIsMobile } from 'redux/modules/ui';
 import { ScreenSizeBreakpoint } from 'enums/ui';
+import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
@@ -32,6 +33,8 @@ const Unstake: React.FC<Properties> = ({ staked }) => {
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
+    const isMobile = useSelector((state: RootState) => getIsMobile(state));
+
     const [isUnstaking, setIsUnstaking] = useState<boolean>(false);
     const [amountToUnstake, setAmountToUnstake] = useState<number | string>('');
     const [isAmountValid, setIsAmountValid] = useState<boolean>(true);
@@ -124,7 +127,7 @@ const Unstake: React.FC<Properties> = ({ staked }) => {
                                 isWalletConnected ? `${t('common.balance')}: ${formatCurrency(staked)}` : undefined
                             }
                             width="100%"
-                            containerWidth="70%"
+                            containerWidth={isMobile ? '100%' : '70%'}
                         />
                     </FlexDivCentered>
                 </StakeInputContainer>

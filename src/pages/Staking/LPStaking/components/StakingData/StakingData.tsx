@@ -1,6 +1,7 @@
 import LoadingContainer from 'components/LoadingContainer';
 import Tooltip from 'components/Tooltip';
 import { LP_TOKEN, USD_SIGN } from 'constants/currency';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import { TooltipContainer } from 'pages/Staking/styled-components';
 import useGelatoQuery from 'queries/token/useGelatoQuery';
 import useLPStakingQuery from 'queries/token/useLPStakingQuery';
@@ -141,6 +142,9 @@ const StakingData: React.FC = () => {
 const Wrapper = styled(FlexDiv)`
     flex-direction: row;
     gap: 30px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+    }
 `;
 
 const ClaimSectionWrapper = styled(FlexDiv)`
