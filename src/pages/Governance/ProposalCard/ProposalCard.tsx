@@ -11,7 +11,7 @@ import { linkify } from 'remarkable/linkify';
 import { Colors, FlexDivRowCentered } from 'styles/common';
 import { truncateText } from 'thales-utils';
 import { Proposal } from 'types/governance';
-import { Body, Card, ResultContainer, RightSection, Status, StatusIcon, TipTable, Title } from './styled-components';
+import { Card, ResultContainer, RightSection, Status, StatusIcon, TipTable, Title } from './styled-components';
 
 type ProposalCardProps = {
     proposal: Proposal;
@@ -85,7 +85,7 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
             !isMobile ? (
                 <TipTable dangerouslySetInnerHTML={getRawMarkup(proposal.body)} />
             ) : (
-                <Body>{truncateText(proposal.body, isMobile ? 150 : 400)}</Body>
+                <></>
             )}
         </Card>
     );
