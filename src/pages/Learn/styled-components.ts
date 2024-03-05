@@ -1,39 +1,35 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
 import { FlexDivCentered } from 'styles/common';
 
 export const Content = styled.div`
     margin-top: 100px;
-    grid-column-start: 7;
-    grid-column-end: 48;
-    grid-row-start: 8;
-    grid-row-end: 80;
+    display: flex;
+    flex-direction: column;
     width: 60%;
     margin-bottom: 50px;
     @media (max-width: 1024px) {
-        position: absolute;
-        display: block;
-        top: 140px;
         width: 100vw;
+        margin-top: 50px;
         padding: 0 40px;
         z-index: 9;
-        grid-column-start: unset;
-        grid-column-end: unset;
-        grid-row-start: unset;
-        grid-row-end: unset;
     }
 `;
 
 export const H1 = styled.h1`
     font-family: Nunito !important;
     font-weight: 700;
-    font-size: 50px;
-    line-height: 20px;
+    font-size: 40px;
+    line-height: 110%;
     text-align: justify;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: ${(props) => props.theme.textColor.primary};
     margin: 50px 0px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin: 10px 0px;
+    }
 `;
 
 export const H2 = styled.h2`
