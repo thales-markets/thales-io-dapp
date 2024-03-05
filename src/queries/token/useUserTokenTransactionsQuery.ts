@@ -15,7 +15,7 @@ const useUserTokenTransactionsQuery = (
         () =>
             thalesData.binaryOptions.tokenTransactions({
                 account: walletAddress,
-                network: 10,
+                network: networkId,
                 type_in,
             }),
         {
