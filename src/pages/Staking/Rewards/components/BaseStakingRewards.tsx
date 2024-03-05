@@ -96,7 +96,15 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                                 <span>{baseStakingRewardsData?.totalStaked}</span>
                             </InfoDiv>
                             <InfoDiv>
-                                <span>{t('staking.rewards.base-rewards.staked-share')}</span>
+                                <TooltipContainer>
+                                    <span>{t('staking.rewards.base-rewards.staked-share')}</span>
+                                    <Tooltip
+                                        overlay={t('staking.rewards.base-rewards.tooltips.staked-share')}
+                                        marginTop={2}
+                                        mobileIconFontSize={11}
+                                        iconFontSize={13}
+                                    />
+                                </TooltipContainer>
                                 <span>{baseStakingRewardsData?.share}</span>
                             </InfoDiv>
                         </FlexDivColumn>
