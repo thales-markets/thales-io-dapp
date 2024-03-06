@@ -32,16 +32,17 @@ const FooterLinks: React.FC<FooterLinksProps> = ({ iconSize }) => {
                 </FlexDivColumnCentered>
             </SPAAnchor>
 
-            <SPAAnchor href={LINKS.Github} style={{ cursor: 'pointer' }}>
-                <FlexDivColumnCentered style={{ alignItems: 'center' }}>
-                    <Icon iconSize={iconSize} className="icon icon--github" />
-                    <Name>{t('footer.github')}</Name>
-                </FlexDivColumnCentered>
-            </SPAAnchor>
             <SPAAnchor href={LINKS.Medium} style={{ cursor: 'pointer' }}>
                 <FlexDivColumnCentered style={{ alignItems: 'center' }}>
                     <Icon iconSize={iconSize} className="icon icon--medium" />
                     <Name>{t('footer.medium')}</Name>
+                </FlexDivColumnCentered>
+            </SPAAnchor>
+
+            <SPAAnchor href={LINKS.Github} style={{ cursor: 'pointer' }}>
+                <FlexDivColumnCentered style={{ alignItems: 'center' }}>
+                    <Icon iconSize={iconSize} className="icon icon--github" />
+                    <Name>{t('footer.github')}</Name>
                 </FlexDivColumnCentered>
             </SPAAnchor>
         </Container>
