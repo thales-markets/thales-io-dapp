@@ -232,7 +232,7 @@ const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?:
     align-items: center;
     width: 100%;
     padding: ${(props) => (props.xl ? '8px 13px' : '4px 13px')};
-    font-size: 13px;
+    font-size: 12px;
     border-radius: 8px;
     text-transform: ${(props) => (props.xl ? 'uppercase' : 'none')};
     &:hover {
