@@ -20,6 +20,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { useTheme } from 'styled-components';
@@ -58,6 +59,8 @@ const AccPreferences: React.FC = () => {
     const [claimAccount, setClaimAccount] = useState<string>('');
     const [isSubmittingClaim, setIsSubmittingClaim] = useState<boolean>(false);
     const { stakingThalesContract } = snxJSConnector as any;
+
+    const isMobile = useSelector(getIsMobile);
 
     const isDestAddressEntered = destAddress !== undefined && destAddress.trim() !== '';
     const isDestAddressValid =
@@ -395,7 +398,7 @@ const AccPreferences: React.FC = () => {
             <Container>
                 <Top>
                     <FlexDiv gap="20px">
-                        <FlexDivColumnSpaceBetween gap="20px">
+                        <FlexDivColumnSpaceBetween gap={isMobile ? '10px' : '20px'}>
                             <SectionTitle>
                                 <span>
                                     <i className="icon icon--delegate" />
@@ -466,7 +469,7 @@ const AccPreferences: React.FC = () => {
                 </Top>
                 <Middle>
                     <FlexDiv gap="20px">
-                        <FlexDivColumnSpaceBetween gap="20px">
+                        <FlexDivColumnSpaceBetween gap={isMobile ? '10px' : '20px'}>
                             <SectionTitle>
                                 <span>
                                     <i className="icon icon--merge" />
@@ -512,7 +515,7 @@ const AccPreferences: React.FC = () => {
                     </FlexDiv>
                 </Middle>
                 <Bottom>
-                    <ClaimContainer>
+                    <ClaimContainer gap="20px">
                         <FlexDivColumnSpaceBetween gap="20px">
                             <SectionTitle>
                                 <span>

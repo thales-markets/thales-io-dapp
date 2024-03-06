@@ -110,9 +110,6 @@ export const SectionDescription = styled.div`
             text-decoration: underline;
         }
     }
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        height: 130px;
-    }
 `;
 
 export const Container = styled.div`

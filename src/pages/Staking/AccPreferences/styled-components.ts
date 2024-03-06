@@ -117,6 +117,7 @@ export const ClaimContainer = styled.div`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         display: flex;
         flex-direction: column-reverse;
+        gap: 20px;
         & > div {
             width: 100%;
         }
