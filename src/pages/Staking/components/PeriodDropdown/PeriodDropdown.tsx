@@ -23,22 +23,31 @@ const PeriodDropdown: React.FC<PeriodDropdownProps> = ({ period, setPeriod, allP
             <OutsideClickHandler onOutsideClick={() => setOpen(false)}>
                 <Wrapper onClick={() => setOpen(!open)} shadow={open}>
                     {open ? (
-                        allPeriods.map((periodLocal, index) => {
-                            if (periodLocal >= 0) {
-                                return (
-                                    <Container
-                                        selected={periodLocal === period}
-                                        onClick={setPeriod.bind(this, periodLocal)}
-                                        key={index}
-                                    >
-                                        <Text>
-                                            {t('staking.leaderboard.time-left.round')}{' '}
-                                            {networkId === Network.Base ? periodLocal + 1 : periodLocal}
-                                        </Text>
-                                    </Container>
-                                );
-                            }
-                        })
+                        <>
+                            <Container alone={true}>
+                                <Text>
+                                    {t('staking.leaderboard.time-left.round')}{' '}
+                                    {networkId === Network.Base ? period + 1 : period}
+                                </Text>
+                                <Icon className={open ? `icon icon--caret-up` : `icon icon--caret-down`} />
+                            </Container>
+                            {allPeriods.map((periodLocal, index) => {
+                                if (periodLocal >= 0) {
+                                    return (
+                                        <Container
+                                            selected={periodLocal === period}
+                                            onClick={setPeriod.bind(this, periodLocal)}
+                                            key={index}
+                                        >
+                                            <Text>
+                                                {t('staking.leaderboard.time-left.round')}{' '}
+                                                {networkId === Network.Base ? periodLocal + 1 : periodLocal}
+                                            </Text>
+                                        </Container>
+                                    );
+                                }
+                            })}
+                        </>
                     ) : (
                         <Container alone={true}>
                             <Text>
