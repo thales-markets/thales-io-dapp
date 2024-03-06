@@ -315,3 +315,7 @@
 .icon--eth-logo:before {
     content: '\0079';
 }
+
+.thales-icon--menu:before {
+    content: '\002C';
+}

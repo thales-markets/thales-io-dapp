@@ -65,6 +65,16 @@ export const LeaderboardBreakdownTitle = styled(FlexDivColumn)`
         font-size: 25px;
         margin-bottom: 5px;
     }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        margin-bottom: 10px;
+        > i {
+            margin-right: 5px;
+            margin-bottom: 0px;
+        }
+    }
 `;
 export const TableText = styled.p`
     color: ${(props) => props.theme.textColor.primary};

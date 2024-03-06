@@ -1,18 +1,24 @@
 import BreadcrumbsMenu from 'components/BreadcrumbsMenu';
 import { NavItemType } from 'components/NavLinks/NavItem';
 import NavLinks from 'components/NavLinks/NavLinks';
+import NavMenuMobile from 'components/NavMenuMobile/NavMenuMobile';
 import UserWallet from 'components/UserWallet';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ReactModal from 'react-modal';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { getIsMobile } from 'redux/modules/ui';
 import { buildHref, navigateTo } from 'utils/routes';
-import { HeaderContainer, LinksContainer, Logo } from './styled-components';
+import { HeaderContainer, LinksContainer, Logo, MenuIcon } from './styled-components';
 
 const DappHeader: React.FC = () => {
     const { t } = useTranslation();
     const location = useLocation();
+    const isMobile = useSelector(getIsMobile);
+    const [navMenuVisibility, setNavMenuVisibility] = useState<boolean>(false);
 
     const navItems: NavItemType[] = useMemo(() => {
         return [
@@ -86,6 +92,17 @@ const DappHeader: React.FC = () => {
     return (
         <>
             <HeaderContainer>
+                <MenuIcon onClick={() => setNavMenuVisibility(true)} className="thales-icon thales-icon--menu" />
+                <ReactModal
+                    isOpen={navMenuVisibility && isMobile}
+                    onRequestClose={() => {
+                        setNavMenuVisibility(false);
+                    }}
+                    shouldCloseOnOverlayClick={false}
+                    style={getCustomModalStyles()}
+                >
+                    <NavMenuMobile setNavMenuVisibility={setNavMenuVisibility}></NavMenuMobile>
+                </ReactModal>
                 <Logo
                     onClick={() => navigateTo(ROUTES.Home, false, false, 'show')}
                     className="icon icon--thales-logo"
@@ -99,5 +116,25 @@ const DappHeader: React.FC = () => {
         </>
     );
 };
+
+const getCustomModalStyles = () => ({
+    content: {
+        top: '0',
+        overflow: 'auto',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        padding: '0px',
+        background: 'transparent',
+        border: 'none',
+        width: '100%',
+        height: '100vh',
+    },
+    overlay: {
+        backgroundColor: '#eeeeee',
+        zIndex: '10000',
+    },
+});
 
 export default DappHeader;

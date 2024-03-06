@@ -2,6 +2,7 @@ import Loader from 'components/Loader';
 import NavLinks from 'components/NavLinks';
 import { NavItemType } from 'components/NavLinks/NavItem';
 import ROUTES from 'constants/routes';
+import { STAKING_TABS } from 'constants/token';
 import queryString from 'query-string';
 import { Suspense, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,47 +19,39 @@ import StakingTab from './StakingTab';
 import Vesting from './Vesting';
 import CCIPAnimation from './components/CCIPAnimation';
 
-enum Tab {
-    REWARDS = 'rewards',
-    STAKING = 'staking',
-    VESTING = 'vesting',
-    LEADERBOARD = 'leaderboard',
-    ACC_PREFERENCES = 'acc-preferences',
-}
-
 const Staking: React.FC = () => {
     const { t } = useTranslation();
     const location = useLocation();
-    const paramTab = queryString.parse(location.search).tab || Tab.STAKING;
+    const paramTab = queryString.parse(location.search).tab || STAKING_TABS.STAKING;
 
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
     const navItems: NavItemType[] = useMemo(() => {
         return [
             {
-                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.STAKING}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.STAKING}`,
                 title: t('staking.nav.staking'),
-                active: paramTab === Tab.STAKING,
+                active: paramTab === STAKING_TABS.STAKING,
             },
             {
-                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.REWARDS}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.REWARDS}`,
                 title: t('staking.nav.rewards'),
-                active: paramTab === Tab.REWARDS,
+                active: paramTab === STAKING_TABS.REWARDS,
             },
             {
-                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.VESTING}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.VESTING}`,
                 title: t('staking.nav.vesting'),
-                active: paramTab === Tab.VESTING,
+                active: paramTab === STAKING_TABS.VESTING,
             },
             {
-                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.LEADERBOARD}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.LEADERBOARD}`,
                 title: t('staking.nav.leaderboard'),
-                active: paramTab === Tab.LEADERBOARD,
+                active: paramTab === STAKING_TABS.LEADERBOARD,
             },
             {
-                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${Tab.ACC_PREFERENCES}`,
+                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.ACC_PREFERENCES}`,
                 title: t('staking.nav.acc-preferences'),
-                active: paramTab === Tab.ACC_PREFERENCES,
+                active: paramTab === STAKING_TABS.ACC_PREFERENCES,
             },
         ];
     }, [paramTab, t]);
@@ -72,11 +65,11 @@ const Staking: React.FC = () => {
                 </NavContainer>
             )}
             <CCIPAnimation />
-            {paramTab === Tab.STAKING && <StakingTab />}
-            {paramTab === Tab.REWARDS && <Rewards />}
-            {paramTab === Tab.VESTING && <Vesting />}
-            {paramTab === Tab.LEADERBOARD && <Leaderboard />}
-            {paramTab === Tab.ACC_PREFERENCES && <AccPreferences />}
+            {paramTab === STAKING_TABS.STAKING && <StakingTab />}
+            {paramTab === STAKING_TABS.REWARDS && <Rewards />}
+            {paramTab === STAKING_TABS.VESTING && <Vesting />}
+            {paramTab === STAKING_TABS.LEADERBOARD && <Leaderboard />}
+            {paramTab === STAKING_TABS.ACC_PREFERENCES && <AccPreferences />}
         </Suspense>
     );
 };
