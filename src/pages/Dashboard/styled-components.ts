@@ -310,5 +310,8 @@ export const ChartWrapper = styled(FlexDivRow)`
         height: fit-content;
         margin-top: -10px;
         margin-bottom: 20px;
+        .recharts-wrapper {
+            max-height: 135px !important;
+        }
     }
 `;
