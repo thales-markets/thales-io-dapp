@@ -235,11 +235,25 @@ const Home: React.FC = () => {
                         </Description>
                     </Collapse>
                 </Section>
-                <Section>
-                    <SectionSlogan align="center">{t('home.buying-selling.title')}</SectionSlogan>
-                    <Description>{t('home.buying-selling.description-1')}</Description>
-                    <Description>{t('home.buying-selling.description-2')}</Description>
-                </Section>
+                {isMobile && (
+                    <Section>
+                        <Collapse
+                            title={t('home.buying-selling.title')}
+                            hideLine={true}
+                            additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
+                        >
+                            <Description>{t('home.buying-selling.description-1')}</Description>
+                            <Description>{t('home.buying-selling.description-2')}</Description>
+                        </Collapse>
+                    </Section>
+                )}
+                {!isMobile && (
+                    <Section>
+                        <SectionSlogan>{t('home.buying-selling.title')}</SectionSlogan>
+                        <Description>{t('home.buying-selling.description-1')}</Description>
+                        <Description>{t('home.buying-selling.description-2')}</Description>
+                    </Section>
+                )}
                 <BuySellSections>
                     <BuySection>
                         <FlexDivCentered>

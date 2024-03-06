@@ -515,7 +515,7 @@ const AccPreferences: React.FC = () => {
                     </FlexDiv>
                 </Middle>
                 <Bottom>
-                    <ClaimContainer gap="20px">
+                    <ClaimContainer>
                         <FlexDivColumnSpaceBetween gap="20px">
                             <SectionTitle>
                                 <span>
