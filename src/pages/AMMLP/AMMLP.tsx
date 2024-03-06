@@ -1181,7 +1181,8 @@ const ContentInfo = styled.p<{ color?: string }>`
 `;
 
 const WarningContentInfo = styled(ContentInfo)`
-    margin-top: 5px;
+    margin-top: -10px;
+    margin-bottom: 20px;
     color: ${(props) => props.theme.warning.textColor.primary};
     i {
         color: ${(props) => props.theme.warning.textColor.primary};
