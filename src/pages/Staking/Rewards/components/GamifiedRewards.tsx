@@ -24,6 +24,7 @@ import {
     FinalPoints,
     FinalPointsTitle,
     GamifiedRewardItem,
+    GamingRewardsContainer,
     ItemTitle,
     ItemValue,
     LeaderboardLink,
@@ -57,7 +58,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
     return (
         <>
             <LoadingContainer isLoading={isLoading}>
-                <div>
+                <GamingRewardsContainer>
                     <SectionTitle>
                         <span>
                             <i className="icon icon--gift" />
@@ -255,7 +256,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                             </FinalPoints>
                         </FlexDivColumnCentered>
                     )}
-                </div>
+                </GamingRewardsContainer>
             </LoadingContainer>
         </>
     );

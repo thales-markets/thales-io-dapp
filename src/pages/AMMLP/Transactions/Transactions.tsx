@@ -7,6 +7,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
+import { getIsMobile } from 'redux/modules/ui';
 import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
@@ -32,6 +33,8 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
     const [selectedTab, setSelectedTab] = useState<LiquidityPoolTransaction>(
         LiquidityPoolTransaction.USER_TRANSACTIONS
     );
+
+    const isMobile = useSelector(getIsMobile);
 
     const tabContent: Array<{
         id: LiquidityPoolTransaction;
@@ -118,7 +121,8 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
                                 options={rounds}
                                 handleChange={(value) => setRound(Number(value))}
                                 defaultValue={rounds.length - 1 - round}
-                                width={230}
+                                width={!isMobile ? 230 : 120}
+                                fontSize={!isMobile ? 16 : 13}
                             />
                         </SelectContainer>
                     </RightHeader>
@@ -172,9 +176,6 @@ const Container = styled(FlexDivColumn)`
 const Header = styled(FlexDivRow)`
     margin: 15px 0;
     align-items: center;
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        flex-direction: column;
-    }
 `;
 
 const RightHeader = styled(FlexDivRow)`
@@ -187,7 +188,7 @@ const RightHeader = styled(FlexDivRow)`
 const TabContainer = styled(FlexDiv)`
     min-height: 38px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        flex-direction: column;
+        gap: 10px;
     }
 `;
 
@@ -212,9 +213,9 @@ const Tab = styled(FlexDivCentered)<{ isActive: boolean; index: number }>`
         color: ${(props) => props.theme.textColor.primary};
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-bottom: 10px;
         margin-left: 0px;
         margin-right: 0px;
+        font-size: 15px;
     }
 `;
 
@@ -224,6 +225,9 @@ const TableContainer = styled(FlexDivColumn)`
 
 const SelectContainer = styled.div`
     width: 230px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 120px;
+    }
 `;
 
 export default Transactions;

@@ -11,6 +11,7 @@ type TooltipProps = {
     overlayInnerStyle?: CSSProperties;
     marginLeft?: number;
     marginTop?: number;
+    marginBottom?: number;
     top?: number;
     overlayClassName?: string;
     iconColor?: string;
@@ -25,6 +26,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     overlayInnerStyle,
     marginLeft,
     marginTop,
+    marginBottom,
     top,
     overlayClassName,
     iconColor,
@@ -48,6 +50,7 @@ const Tooltip: React.FC<TooltipProps> = ({
                     iconFontSize={iconFontSize}
                     marginLeft={marginLeft}
                     marginTop={marginTop}
+                    marginBottom={marginBottom}
                     top={top}
                     style={customIconStyling}
                     mobileIconFontSize={mobileIconFontSize}
@@ -61,6 +64,7 @@ const InfoIcon = styled.i<{
     iconFontSize?: number;
     marginLeft?: number;
     marginTop?: number;
+    marginBottom?: number;
     top?: number;
     color?: string;
     mobileIconFontSize?: number;
@@ -72,11 +76,12 @@ const InfoIcon = styled.i<{
     position: relative;
     margin-left: ${(props) => props.marginLeft || 4}px;
     margin-top: ${(props) => props.marginTop || 0}px;
+    margin-bottom: ${(props) => props.marginBottom || 0}px;
     top: ${(props) => props.top || 0}px;
     color: ${(props) => props.color || 'white'};
     &:before {
-        font-family: ThalesIcons !important;
-        content: '\\0046';
+        font-family: Icons !important;
+        content: '\\0027';
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: ${(props) =>

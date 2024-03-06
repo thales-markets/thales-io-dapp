@@ -127,8 +127,8 @@ const StakingTab: React.FC = () => {
                                 <TooltipContainer>
                                     APY{' '}
                                     <Tooltip
+                                        marginBottom={2}
                                         overlay={t('staking.staking.staking-data.apy-tooltip')}
-                                        marginTop={2}
                                         mobileIconFontSize={11}
                                         iconFontSize={13}
                                     />
@@ -141,7 +141,6 @@ const StakingTab: React.FC = () => {
                                                 overlay={t(
                                                     'staking.staking.staking-data.bonus-estimated-rewards-tooltip'
                                                 )}
-                                                marginTop={2}
                                                 mobileIconFontSize={11}
                                                 iconFontSize={13}
                                             />{' '}
@@ -151,7 +150,6 @@ const StakingTab: React.FC = () => {
                                             + {globalStakingData?.feeApy}%{' '}
                                             <Tooltip
                                                 overlay={t('staking.staking.staking-data.fee-rewards-tooltip')}
-                                                marginTop={2}
                                                 mobileIconFontSize={11}
                                                 iconFontSize={13}
                                             />
@@ -163,8 +161,8 @@ const StakingTab: React.FC = () => {
                                 <TooltipContainer>
                                     {t('staking.staking.staking-data.my-staking-share')}
                                     <Tooltip
+                                        marginBottom={2}
                                         overlay={t('staking.staking.staking-data.staked-share-tooltip')}
-                                        marginTop={2}
                                         mobileIconFontSize={11}
                                         iconFontSize={13}
                                     />
@@ -190,7 +188,7 @@ const StakingTab: React.FC = () => {
                                         {t('staking.staking.my-balance.staked-directly')}
                                         <Tooltip
                                             overlay={t('staking.staking.staking-data.staked-balance-tooltip')}
-                                            marginTop={2}
+                                            marginBottom={2}
                                             mobileIconFontSize={11}
                                             iconFontSize={13}
                                         />
@@ -204,7 +202,7 @@ const StakingTab: React.FC = () => {
                                         {t('staking.staking.my-balance.escrowed-balance')}:
                                         <Tooltip
                                             overlay={t('staking.staking.staking-data.escrowed-balance-tooltip')}
-                                            marginTop={2}
+                                            marginBottom={2}
                                             mobileIconFontSize={11}
                                             iconFontSize={13}
                                         />

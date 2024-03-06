@@ -33,3 +33,15 @@ export const Logo = styled.i`
     line-height: 50px;
     margin-top: 5px;
 `;
+
+export const MenuIcon = styled.i`
+    width: 100px;
+    color: ${(props) => props.theme.textColor.primary};
+    font-size: 25px;
+    cursor: pointer;
+    line-height: 50px;
+    margin-bottom: 5px;
+    @media (min-width: 1024px) {
+        display: none;
+    }
+`;

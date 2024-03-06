@@ -6,3 +6,11 @@ export const STYLE_GRID_GAP_MOBILE = 10;
 export const APR_FREQUENCY = 52;
 
 export const DEFAULT_TOKEN_DECIMALS = 18;
+
+export enum STAKING_TABS {
+    REWARDS = 'rewards',
+    STAKING = 'staking',
+    VESTING = 'vesting',
+    LEADERBOARD = 'leaderboard',
+    ACC_PREFERENCES = 'acc-preferences',
+}
