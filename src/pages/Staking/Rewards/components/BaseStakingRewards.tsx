@@ -57,9 +57,9 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                                     <span>{t('staking.rewards.base-rewards.your-staked')}</span>
                                     <Tooltip
                                         overlay={t('staking.rewards.base-rewards.tooltips.your-staked')}
-                                        marginTop={2}
+                                        marginBottom={2}
                                         mobileIconFontSize={11}
-                                        iconFontSize={13}
+                                        iconFontSize={11}
                                     />
                                 </TooltipContainer>
                                 <span>{baseStakingRewardsData?.thalesStaked}</span>
@@ -74,9 +74,9 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                                     />
                                     <Tooltip
                                         overlay={t('staking.rewards.base-rewards.tooltips.staking-divider')}
-                                        marginTop={2}
+                                        marginBottom={2}
                                         mobileIconFontSize={11}
-                                        iconFontSize={13}
+                                        iconFontSize={11}
                                     />
                                 </TooltipContainer>
                                 <span>{pointsData?.thalesDivider}</span>
@@ -88,9 +88,9 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                                     <span>{t('staking.rewards.base-rewards.total-staked')}</span>
                                     <Tooltip
                                         overlay={t('staking.rewards.base-rewards.tooltips.total-staked')}
-                                        marginTop={2}
+                                        marginBottom={2}
                                         mobileIconFontSize={11}
-                                        iconFontSize={13}
+                                        iconFontSize={11}
                                     />
                                 </TooltipContainer>
                                 <span>{baseStakingRewardsData?.totalStaked}</span>
@@ -100,9 +100,9 @@ const BaseStakingRewards: React.FC<BaseStakingRewardsProps> = ({
                                     <span>{t('staking.rewards.base-rewards.staked-share')}</span>
                                     <Tooltip
                                         overlay={t('staking.rewards.base-rewards.tooltips.staked-share')}
-                                        marginTop={2}
+                                        marginBottom={2}
                                         mobileIconFontSize={11}
-                                        iconFontSize={13}
+                                        iconFontSize={11}
                                     />
                                 </TooltipContainer>
                                 <span>{baseStakingRewardsData?.share}</span>
