@@ -40,7 +40,6 @@ export const MenuIcon = styled.i`
     font-size: 25px;
     cursor: pointer;
     line-height: 50px;
-    margin-bottom: 5px;
     @media (min-width: 1024px) {
         display: none;
     }

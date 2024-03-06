@@ -19,7 +19,6 @@ const NavItemMobile: React.FC<NavItemMobileProps> = ({ item, setNavMenuVisibilit
     const [childrenDropdownVisible, setChildrenDropdownVisible] = useState<boolean>(false);
     const active = item.active || !!item?.children?.find((child) => child.active);
 
-    console.log(item);
     return (
         <Container>
             <ItemContainer>
@@ -38,13 +37,18 @@ const NavItemMobile: React.FC<NavItemMobileProps> = ({ item, setNavMenuVisibilit
                             <span>{item.title}</span>
                         </Item>
                     </SPAAnchor>
-                    {item.children && (
-                        <Icon
-                            onClick={() => setDropdownVisible(!dropdownVisible)}
-                            active={active}
-                            className={`icon icon--caret-down`}
-                        />
-                    )}
+                    {item.children &&
+                        (dropdownVisible ? (
+                            <Icon
+                                onClick={() => setDropdownVisible(!dropdownVisible)}
+                                className={`icon icon--caret-up`}
+                            />
+                        ) : (
+                            <Icon
+                                onClick={() => setDropdownVisible(!dropdownVisible)}
+                                className={`icon icon--caret-down`}
+                            />
+                        ))}
                 </LabelContainer>
 
                 {item.children && dropdownVisible && (
@@ -67,13 +71,18 @@ const NavItemMobile: React.FC<NavItemMobileProps> = ({ item, setNavMenuVisibilit
                                                 <span>{child.title}</span>
                                             </Item>
                                         </SPAAnchor>
-                                        {child.children && (
-                                            <Icon
-                                                onClick={() => setChildrenDropdownVisible(!childrenDropdownVisible)}
-                                                active={active}
-                                                className={`icon icon--caret-down`}
-                                            />
-                                        )}
+                                        {child.children &&
+                                            (childrenDropdownVisible ? (
+                                                <Icon
+                                                    onClick={() => setChildrenDropdownVisible(!childrenDropdownVisible)}
+                                                    className={`icon icon--caret-up`}
+                                                />
+                                            ) : (
+                                                <Icon
+                                                    onClick={() => setChildrenDropdownVisible(!childrenDropdownVisible)}
+                                                    className={`icon icon--caret-down`}
+                                                />
+                                            ))}
                                     </LabelContainer>
                                     {child.children && childrenDropdownVisible && (
                                         <>

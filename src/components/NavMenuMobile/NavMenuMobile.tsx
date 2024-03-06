@@ -143,7 +143,7 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                 ],
             },
         ];
-    }, [location.pathname, t]);
+    }, [location.pathname, t, location.search]);
 
     return (
         <BurgerFiltersContainer>

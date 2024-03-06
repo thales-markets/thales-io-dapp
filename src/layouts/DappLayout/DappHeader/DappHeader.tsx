@@ -92,7 +92,7 @@ const DappHeader: React.FC = () => {
     return (
         <>
             <HeaderContainer>
-                <MenuIcon onClick={() => setNavMenuVisibility(true)} className="thales-icon thales-icon--menu" />
+                <MenuIcon onClick={() => setNavMenuVisibility(true)} className="icon icon--menu" />
                 <ReactModal
                     isOpen={navMenuVisibility && isMobile}
                     onRequestClose={() => {

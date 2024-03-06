@@ -280,6 +280,10 @@
     content: '\0054';
 }
 
+.icon--menu:before {
+    content: '\0057';
+}
+
 .thales-icon--left:before {
     content: '\0074';
 }
@@ -314,8 +318,4 @@
 
 .icon--eth-logo:before {
     content: '\0079';
-}
-
-.thales-icon--menu:before {
-    content: '\002C';
 }
