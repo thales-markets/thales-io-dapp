@@ -134,6 +134,9 @@ export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolea
     text-transform: ${(props) => (props.isLink ? '' : 'uppercase')};
     letter-spacing: 1px;
     align-items: baseline;
+    @supports (-moz-appearance: none) {
+        letter-spacing: 0px;
+    }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 16px;
     }
