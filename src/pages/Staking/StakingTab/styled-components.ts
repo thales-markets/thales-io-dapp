@@ -128,3 +128,8 @@ export const SectionContentContainer = styled(FlexDivColumn)`
         padding: 0 5px 0 5px;
     }
 `;
+
+export const AboutToken = styled.div`
+    padding: 10px 0;
+    line-height: normal;
+`;

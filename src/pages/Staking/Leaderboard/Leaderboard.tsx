@@ -22,7 +22,6 @@ import {
     Container,
     FlexWrapper,
     Icon,
-    Label,
     LeaderboardBreakdownTitle,
     StickyCell,
     StickyExpandedRow,
@@ -256,7 +255,7 @@ const StickyRowComponent: React.FC<{ stickyRowInfo: StakersWithLeaderboardData }
                 <StickyRowWrapper>
                     <StickyRowFlex>
                         <StickyCell first={true}>
-                            <TableText>#{stickyRowInfo[0].rank}</TableText>
+                            <TableText>{stickyRowInfo[0].rank}</TableText>
                         </StickyCell>
                         <StickyCell>
                             <TableText>
@@ -281,15 +280,10 @@ const StickyRowComponent: React.FC<{ stickyRowInfo: StakersWithLeaderboardData }
                         <StickyExpandedRow>
                             <FlexWrapper>
                                 <FlexDivCentered>
-                                    <Icon dark={true} className="sidebar-icon icon--markets" />
-                                    <TableText>
-                                        {t('thales-token.gamified-staking.rewards.leaderboard.expanded-row.trading')}
-                                    </TableText>
+                                    <Icon className="icon icon--magnifying-glass" />
+                                    <TableText>{t('staking.leaderboard.expanded-row.trading')}</TableText>
                                 </FlexDivCentered>
                                 <FlexWrapper>
-                                    <Label dark={true}>
-                                        {t('thales-token.gamified-staking.rewards.leaderboard.expanded-row.points')}
-                                    </Label>
                                     <TableText>
                                         {formatCurrencyWithKey('', stickyRowInfo[0].userTradingBasePointsPerRound, 2)}
                                     </TableText>
@@ -298,15 +292,10 @@ const StickyRowComponent: React.FC<{ stickyRowInfo: StakersWithLeaderboardData }
 
                             <FlexWrapper>
                                 <FlexDivCentered>
-                                    <Icon dark={true} className="sidebar-icon icon--liquidity-pool" />
-                                    <TableText>
-                                        {t('thales-token.gamified-staking.rewards.leaderboard.expanded-row.lp')}
-                                    </TableText>
+                                    <Icon className="icon icon--dollar-arrow-circle" />
+                                    <TableText>{t('staking.leaderboard.expanded-row.lp')}</TableText>
                                 </FlexDivCentered>
                                 <FlexWrapper>
-                                    <Label dark={true}>
-                                        {t('thales-token.gamified-staking.rewards.leaderboard.expanded-row.points')}
-                                    </Label>
                                     <TableText>
                                         {formatCurrencyWithKey('', stickyRowInfo[0].userLPBasePointsPerRound, 2)}
                                     </TableText>
@@ -315,15 +304,10 @@ const StickyRowComponent: React.FC<{ stickyRowInfo: StakersWithLeaderboardData }
 
                             <FlexWrapper>
                                 <FlexDivCentered>
-                                    <Icon dark={true} className="sidebar-icon icon--vaults" />
-                                    <TableText>
-                                        {t('thales-token.gamified-staking.rewards.leaderboard.expanded-row.vaults')}
-                                    </TableText>
+                                    <Icon className="icon icon--thales-cog" />
+                                    <TableText>{t('staking.leaderboard.expanded-row.vaults')}</TableText>
                                 </FlexDivCentered>
                                 <FlexWrapper>
-                                    <Label dark={true}>
-                                        {t('thales-token.gamified-staking.rewards.leaderboard.expanded-row.points')}
-                                    </Label>
                                     <TableText>
                                         {formatCurrencyWithKey('', stickyRowInfo[0].userVaultBasePointsPerRound, 2)}
                                     </TableText>

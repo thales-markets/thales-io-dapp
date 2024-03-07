@@ -1,3 +1,4 @@
+import Collapse from 'components/Collapse';
 import LoadingContainer from 'components/LoadingContainer';
 import SwitchInput from 'components/SwitchInput';
 import Tooltip from 'components/Tooltip';
@@ -12,14 +13,14 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { useTheme } from 'styled-components';
-import { FlexDiv } from 'styles/common';
+import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey, formatCurrencyWithPrecision } from 'thales-utils';
 import { GlobalStakingData, ThalesStakingData, UserStakingData } from 'types/token';
 import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
 import Stake from './Stake';
 import YourTransactions from './Transactions/YourTransactions';
 import Unstake from './Unstake';
-import { Bottom, Container, UpperLeft, UpperRight } from './styled-components';
+import { AboutToken, Bottom, Container, UpperLeft, UpperRight } from './styled-components';
 
 const StakingTab: React.FC = () => {
     const { t } = useTranslation();
@@ -228,6 +229,24 @@ const StakingTab: React.FC = () => {
                         handleClick={() => setStakeSelected(!stakeSelected)}
                     />
                     {stakeSelected ? <Stake /> : <Unstake />}
+                    <Collapse
+                        title={t('staking.staking.stake-unstake.about-title')}
+                        additionalStyling={{
+                            titleFontSize: '13px',
+                            titleMarginBottom: '5px',
+                            titleMarginTop: '20px',
+                            downwardsArrowAlignRight: true,
+                        }}
+                    >
+                        <AboutToken>
+                            <FlexDivColumn gap="10px">
+                                <div>{t('staking.staking.stake-unstake.about-1')}</div>
+                                <div>{t('staking.staking.stake-unstake.about-2')}</div>
+                                <div>{t('staking.staking.stake-unstake.about-3')}</div>
+                                <div>{t('staking.staking.stake-unstake.about-4')}</div>
+                            </FlexDivColumn>
+                        </AboutToken>
+                    </Collapse>
                 </Bottom>
             </Container>
             <YourTransactions />

@@ -116,9 +116,10 @@ export const StickyRowFlex = styled.div`
     }
 `;
 export const Icon = styled.i<{ dark?: boolean }>`
-    font-size: 32px;
+    font-size: 25px;
     color: ${(props) => (props.dark ? props.theme.background.primary : props.theme.textColor.primary)};
     margin-right: 6px;
+    margin-bottom: 8px;
 `;
 export const FlexWrapper = styled(FlexDivCentered)`
     flex-direction: column;

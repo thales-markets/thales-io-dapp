@@ -396,7 +396,12 @@
                 "cooldown-label": "Cooldown",
                 "start-unstaking": "Start unstaking",
                 "amount-to-unstake": "Amount to unstake",
-                "user-lping-message": "You cannot unstake while providing liquidity for Thales or Overtime."
+                "user-lping-message": "You cannot unstake while providing liquidity for Thales or Overtime.",
+                "about-title": "How THALES staking works",
+                "about-1": "By staking THALES on Optimism, Arbitrum or Base, every week you earn two types of rewards: Staking rewards in THALES tokens and Protocol Rewards in stablecoins. These rewards are synchronised and equal across all supported networks.",
+                "about-2": "Staking Rewards are the main inflationary rewards distributed to all stakers once a week proportional to their My Staked Share percentage value and proportional to their % of Total Global Points of Gamified Staking.",
+                "about-3": "Base inflationary rewards are currently 19,310.41 THALES per week for all stakers. Additional rewards in form of Gamified Staking are a bonus of 19,310.41 THALES per week for all stakers that drive Trading Volume during the week, have deposits in any of the AMM LP pools or have deposits in any of the Thales Protocol Vaults (Sports Vaults and Thales Vaults).",
+                "about-4": "Protocol Rewards are distributed in stablecoins to all THALES stakers from trading activity fees across all Thales Protocol contracts."
             }
         },
         "vesting": {
@@ -429,6 +434,12 @@
                 "points": "Total Points",
                 "multiplier": "Thales Multiplier",
                 "rewards": "Total Rewards"
+            },
+            "expanded-row": {
+                "trading": "Trading",
+                "lp": "LP",
+                "vaults": "Vaults",
+                "points": "Points"
             }
         },
         "acc-preferences": {
