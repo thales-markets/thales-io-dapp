@@ -1,6 +1,8 @@
 import SPAAnchor from 'components/SPAAnchor';
 import ROUTES from 'constants/routes';
+import { SpaceKey } from 'enums/governance';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getIsMobile } from 'redux/modules/ui';
@@ -11,6 +13,7 @@ import { FlexDiv } from 'styles/common';
 console.log('ROUTES ', ROUTES);
 
 const BreadcrumbsMenu: React.FC = () => {
+    const { t } = useTranslation();
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
     const location = useLocation();
 
@@ -22,11 +25,17 @@ const BreadcrumbsMenu: React.FC = () => {
                 <Icon className="icon icon--house" />
             </SPAAnchor>
             {splittedPath.map((item, index) => {
+                const formattedItem =
+                    item == SpaceKey.TIPS
+                        ? t('governance.nav.tips').toLowerCase()
+                        : item == SpaceKey.COUNCIL
+                        ? t('governance.nav.elections').toLowerCase()
+                        : item;
                 return (
                     <>
                         <Arrow className="thales-icon thales-icon--right" />
                         <SPAAnchor href={`/${item}`} key={index}>
-                            <Item>{item}</Item>
+                            <Item>{formattedItem}</Item>
                         </SPAAnchor>
                     </>
                 );
