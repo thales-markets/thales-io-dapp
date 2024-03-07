@@ -219,6 +219,9 @@ const BalanceContainer = styled(FlexDivCentered)`
     font-size: 13px;
     line-height: 15px;
     color: ${(props) => props.theme.textColor.secondary};
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 12px;
+    }
 `;
 
 const StyledBalanceIcon = styled(BalanceIcon)`

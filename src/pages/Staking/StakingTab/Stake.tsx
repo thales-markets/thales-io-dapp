@@ -228,7 +228,7 @@ const Stake: React.FC = () => {
     return (
         <>
             <SectionContentContainer>
-                <StakeInputContainer marginTop={10}>
+                <StakeInputContainer marginTop={isMobile ? 25 : 10}>
                     <FlexDivCentered>
                         <NumericInput
                             value={amountToStake}
@@ -237,9 +237,13 @@ const Stake: React.FC = () => {
                                 isStaking || isUnstaking || isStakingPaused || stakingData?.closingPeriodInProgress
                             }
                             placeholder={t('common.enter-amount')}
-                            label={`${t('staking.staking.stake-unstake.amount-to')} ${t(
-                                'staking.staking.stake-unstake.stake'
-                            )}`}
+                            label={
+                                isMobile
+                                    ? undefined
+                                    : `${t('staking.staking.stake-unstake.amount-to')} ${t(
+                                          'staking.staking.stake-unstake.stake'
+                                      )}`
+                            }
                             onMaxButton={onMaxClick}
                             maxButtonDisabled={!thalesBalance}
                             showValidation={!isAmountValid}

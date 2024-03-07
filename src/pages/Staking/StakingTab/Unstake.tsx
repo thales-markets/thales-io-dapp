@@ -333,7 +333,7 @@ const Unstake: React.FC = () => {
                         onChange={(_, value) => setAmountToUnstake(value)}
                         disabled={isUnstakingInContract || isUnstaking || isCanceling || isStakingPaused}
                         placeholder={t('common.enter-amount')}
-                        label={t('staking.staking.stake-unstake.amount-to-unstake')}
+                        label={isMobile ? undefined : t('staking.staking.stake-unstake.amount-to-unstake')}
                         onMaxButton={onMaxClick}
                         maxButtonDisabled={!thalesStaked}
                         showValidation={!isAmountValid}
@@ -366,6 +366,9 @@ const UnstakingContainer = styled(FlexDivColumnCentered)<{ twoButtons: boolean }
     min-height: ${(props) => (props.twoButtons ? '30px' : '66px')};
     width: 70%;
     margin: 0 auto 15px auto;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+    }
 `;
 
 const UnstakingPeriodWrapper = styled.div`
@@ -380,20 +383,23 @@ const UnstakingPeriodWrapper = styled.div`
     }
 `;
 
-const UnstakingPeriodContainer = styled.span`
+const UnstakingPeriodContainer = styled.div`
     border-radius: 10px;
     padding: 10px 0;
     text-align: center;
 `;
 
-const CooldownText = styled.span`
+const CooldownText = styled.div`
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
     color: ${(props) => props.theme.textColor.primary};
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 14px;
+    }
 `;
 
-const CooldownCounter = styled.span`
+const CooldownCounter = styled.div`
     margin-left: 10px;
     font-weight: bold;
     font-size: 18px;
