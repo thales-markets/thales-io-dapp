@@ -42,8 +42,10 @@ const ProposalList: React.FC<ProposalListProps> = ({
             statusFilter === StatusEnum.All
                 ? proposals
                 : proposals.filter((proposal: Proposal) => proposal.state === statusFilter);
-        const searchFilteredProposals = filteredProposals.filter((proposal: Proposal) =>
-            proposal.body.toLowerCase().includes(proposalSearch.toLowerCase())
+        const searchFilteredProposals = filteredProposals.filter(
+            (proposal: Proposal) =>
+                proposal.body.toLowerCase().includes(proposalSearch.toLowerCase()) ||
+                proposal.title.toLowerCase().includes(proposalSearch.toLowerCase())
         );
 
         return searchFilteredProposals;
