@@ -34,27 +34,27 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                         active: location.pathname === ROUTES.Token.Staking.Home,
                         children: [
                             {
-                                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.STAKING}`,
+                                href: `${buildHref(ROUTES.Token.Staking.Home)}`,
                                 title: t('staking.nav.stake-thales'),
                                 active: location.search.includes(STAKING_TABS.STAKING),
                             },
                             {
-                                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.REWARDS}`,
+                                href: `${buildHref(ROUTES.Token.Staking.Rewards)}`,
                                 title: t('staking.nav.rewards'),
                                 active: location.search.includes(STAKING_TABS.REWARDS),
                             },
                             {
-                                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.VESTING}`,
+                                href: `${buildHref(ROUTES.Token.Staking.Vesting)}`,
                                 title: t('staking.nav.vesting'),
                                 active: location.search.includes(STAKING_TABS.VESTING),
                             },
                             {
-                                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.LEADERBOARD}`,
+                                href: `${buildHref(ROUTES.Token.Staking.Leaderboard)}`,
                                 title: t('staking.nav.leaderboard'),
                                 active: location.search.includes(STAKING_TABS.LEADERBOARD),
                             },
                             {
-                                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.ACC_PREFERENCES}`,
+                                href: `${buildHref(ROUTES.Token.Staking.Preferences)}`,
                                 title: t('staking.nav.acc-preferences'),
                                 active: location.search.includes(STAKING_TABS.ACC_PREFERENCES),
                             },
@@ -76,17 +76,17 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                 title: t('header.links.amm-lp'),
                 children: [
                     {
-                        href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
+                        href: `${buildHref(ROUTES.AmmLP.Home)}`,
                         title: t('amm-lp.nav.thales'),
                         active: location.search.includes(LiquidityPool.THALES),
                     },
                     {
-                        href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
+                        href: `${buildHref(ROUTES.AmmLP.SportsAMM)}`,
                         title: t('amm-lp.nav.overtime-single'),
                         active: location.search.includes(LiquidityPool.OVERTIME_SINGLE),
                     },
                     {
-                        href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
+                        href: `${buildHref(ROUTES.AmmLP.ParlayAMM)}`,
                         title: t('amm-lp.nav.overtime-parlay'),
                         active: location.search.includes(LiquidityPool.OVERTIME_PARLAY),
                     },

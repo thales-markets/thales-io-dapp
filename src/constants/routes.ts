@@ -8,11 +8,11 @@ const ROUTES = {
     },
     Token: {
         Staking: {
-            Home: '/token',
-            Rewards: '/token?tab=rewards',
-            Vesting: '/token?tab=vesting',
-            Leaderboard: '/token?tab=leaderboard',
-            Preferences: '/token?tab=acc-preferences',
+            Home: '/token/staking',
+            Rewards: '/token/staking?tab=rewards',
+            Vesting: '/token/staking?tab=vesting',
+            Leaderboard: '/token/staking?tab=leaderboard',
+            Preferences: '/token/staking?tab=acc-preferences',
         },
         Bridge: '/token/bridge',
         LPStaking: '/token/lp-staking',
@@ -29,4 +29,13 @@ const ROUTES = {
         Governance: '/about/governance',
     },
 };
+
+export const ROUTE_NAMES = {
+    AmmLP: 'amm-lp',
+    Token: 'token',
+    Staking: 'staking',
+    About: 'about',
+    DAO: 'dao',
+};
+
 export default ROUTES;

@@ -13,7 +13,7 @@ export const Content = styled.div`
         width: 100vw;
         margin-top: 50px;
         padding: 0 40px;
-        z-index: 9;
+        z-index: 1;
     }
 `;
 

@@ -9,7 +9,7 @@ export const DEFAULT_TOKEN_DECIMALS = 18;
 
 export enum STAKING_TABS {
     REWARDS = 'rewards',
-    STAKING = 'staking',
+    STAKING = 'stake-thales',
     VESTING = 'vesting',
     LEADERBOARD = 'leaderboard',
     ACC_PREFERENCES = 'acc-preferences',
