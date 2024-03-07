@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getIsMobile } from 'redux/modules/ui';
 import { buildHref, navigateTo } from 'utils/routes';
-import { HeaderContainer, LinksContainer, Logo, MenuIcon } from './styled-components';
+import { HeaderContainer, LeftWrapper, LinksContainer, Logo, MenuIcon } from './styled-components';
 
 const DappHeader: React.FC = () => {
     const { t } = useTranslation();
@@ -92,27 +92,29 @@ const DappHeader: React.FC = () => {
     return (
         <>
             <HeaderContainer>
-                <MenuIcon onClick={() => setNavMenuVisibility(true)} className="icon icon--menu" />
-                <ReactModal
-                    isOpen={navMenuVisibility && isMobile}
-                    onRequestClose={() => {
-                        setNavMenuVisibility(false);
-                    }}
-                    shouldCloseOnOverlayClick={false}
-                    style={getCustomModalStyles()}
-                >
-                    <NavMenuMobile setNavMenuVisibility={setNavMenuVisibility}></NavMenuMobile>
-                </ReactModal>
-                <Logo
-                    onClick={() => navigateTo(ROUTES.Home, false, false, 'show')}
-                    className="icon icon--thales-logo"
-                />
+                <LeftWrapper>
+                    <MenuIcon onClick={() => setNavMenuVisibility(true)} className="icon icon--menu" />
+                    <Logo
+                        onClick={() => navigateTo(ROUTES.Home, false, false, 'show')}
+                        className="icon icon--thales-logo"
+                    />
+                </LeftWrapper>
                 <LinksContainer>
                     <NavLinks items={navItems} />
                 </LinksContainer>
                 <UserWallet />
             </HeaderContainer>
             <BreadcrumbsMenu />
+            <ReactModal
+                isOpen={navMenuVisibility && isMobile}
+                onRequestClose={() => {
+                    setNavMenuVisibility(false);
+                }}
+                shouldCloseOnOverlayClick={false}
+                style={getCustomModalStyles()}
+            >
+                <NavMenuMobile setNavMenuVisibility={setNavMenuVisibility}></NavMenuMobile>
+            </ReactModal>
         </>
     );
 };

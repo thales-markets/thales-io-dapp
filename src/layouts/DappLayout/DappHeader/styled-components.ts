@@ -1,8 +1,11 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDivSpaceBetween } from 'styles/common';
+import { FlexDiv, FlexDivSpaceBetween } from 'styles/common';
 
 export const HeaderContainer = styled(FlexDivSpaceBetween)`
     width: 100%;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+    }
 `;
 
 export const LinksContainer = styled.div`
@@ -26,7 +29,7 @@ export const PositionedContainer = styled.div`
 `;
 
 export const Logo = styled.i`
-    width: 140px;
+    width: 120px;
     color: ${(props) => props.theme.textColor.primary};
     font-size: 120px;
     cursor: pointer;
@@ -35,12 +38,16 @@ export const Logo = styled.i`
 `;
 
 export const MenuIcon = styled.i`
-    width: 100px;
     color: ${(props) => props.theme.textColor.primary};
     font-size: 25px;
+    margin-right: 10px;
     cursor: pointer;
     line-height: 50px;
     @media (min-width: 1024px) {
         display: none;
     }
+`;
+
+export const LeftWrapper = styled(FlexDiv)`
+    flex-direction: row;
 `;
