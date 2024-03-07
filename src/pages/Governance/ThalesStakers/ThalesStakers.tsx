@@ -262,7 +262,7 @@ const ThalesStakers: React.FC = () => {
             <Info>
                 <Icon className="icon icon--people" />
                 <span>{t('governance.stakers.number-of-stakers')}: </span>
-                <ColoredInfo>{stakersQuery.isLoading ? '-' : stakers.length}</ColoredInfo>
+                <ColoredInfo>{stakersQuery.isLoading ? '-' : formatCurrency(stakers.length, 0, true)}</ColoredInfo>
             </Info>
             <ChartWrapper>
                 {stakersQuery.isLoading ? (
