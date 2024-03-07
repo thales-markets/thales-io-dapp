@@ -914,12 +914,12 @@
             "title": "History",
             "no-history": "No history associated with this wallet.",
             "table": {
-                "date-time-col": "date | time",
-                "from-col": "from",
-                "sent-col": "sent",
-                "to-col": "to",
-                "received-col": "received",
-                "status-col": "status"
+                "date-time-col": "Date | Time",
+                "from-col": "From",
+                "sent-col": "Sent",
+                "to-col": "To",
+                "received-col": "Received",
+                "status-col": "Status"
             },
             "status": {
                 "0": "Unknown",

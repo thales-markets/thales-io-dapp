@@ -10,7 +10,7 @@ import { formatCurrencyWithKey, formatTxTimestamp } from 'thales-utils';
 import { TransferHistoryStatus } from 'ts-proto/sgn/cbridge/v1/query_pb';
 import { CelerBridgeHistory, CelerBridgeTransaction } from 'types/token';
 import { ThemeInterface } from 'types/ui';
-import { SUPPORTED_NETWORK_IDS_MAP } from 'utils/network';
+import { NETWORK_IDS_MAP } from 'utils/network';
 import ConfirmRefund from '../components/ConfirmRefund';
 import NetworkIcon from '../components/NetworkIcon';
 
@@ -27,7 +27,7 @@ const HistoryTable: FC<HistoryTableProps> = memo(({ transactions, noResultsMessa
     const getNetworkData = (networkId: number, showArrow?: boolean) => (
         <FlexDivRowCentered>
             <NetworkIcon networkId={networkId} margin="0 4px 1px 0" />
-            {SUPPORTED_NETWORK_IDS_MAP[networkId]?.name}
+            {NETWORK_IDS_MAP[networkId]?.name}
             {showArrow && <ArrowIcon width="8" height="8" />}
         </FlexDivRowCentered>
     );
