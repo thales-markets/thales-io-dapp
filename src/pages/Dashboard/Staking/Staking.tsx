@@ -10,7 +10,7 @@ import useThalesStakersQuery from 'queries/useThalesStakersQuery';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Bar, BarChart, Cell, Tooltip as ChartTooltip, ResponsiveContainer, XAxis } from 'recharts';
+import { Bar, BarChart, Cell, Tooltip as ChartTooltip, Label, ResponsiveContainer, XAxis } from 'recharts';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
@@ -184,14 +184,23 @@ const Staking: React.FC = () => {
                     </StakingInfo>
                     <ChartWrapper>
                         <ResponsiveContainer width="100%" height={140}>
-                            <BarChart data={chartData}>
+                            <BarChart data={chartData} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
                                 <XAxis
                                     axisLine={false}
                                     dataKey="month"
                                     tickLine={false}
-                                    padding={{ left: 15, right: 15 }}
+                                    padding={{ left: 12, right: 12 }}
                                     interval={4}
-                                />
+                                    tick={{ fontSize: 13 }}
+                                >
+                                    <Label
+                                        value="Fees distributed per round"
+                                        position="insideBottom"
+                                        dy={-115}
+                                        fill={Colors.WHITE}
+                                        fontSize={13}
+                                    />
+                                </XAxis>
                                 <ChartTooltip content={<CustomTooltip />} cursor={false} />
                                 <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
                                     {chartData.map((slice, index) => (
@@ -252,14 +261,26 @@ const Staking: React.FC = () => {
                             </InfoSection>
                         </StakingInfo>
                         <ChartWrapper>
-                            <BarChart width={630} height={200} data={chartData}>
+                            <BarChart
+                                width={630}
+                                height={200}
+                                data={chartData}
+                                margin={{ top: 25, right: 0, left: 0, bottom: 0 }}
+                            >
                                 <XAxis
                                     axisLine={false}
                                     dataKey="month"
                                     tickLine={false}
                                     padding={{ left: 15, right: 15 }}
                                     interval={4}
-                                />
+                                >
+                                    <Label
+                                        value="Fees distributed per round"
+                                        position="insideBottom"
+                                        dy={-175}
+                                        fill={Colors.WHITE}
+                                    />
+                                </XAxis>
                                 <ChartTooltip content={<CustomTooltip />} cursor={false} />
                                 <Bar dataKey="amount" radius={[25, 25, 25, 25]}>
                                     {chartData.map((slice, index) => (

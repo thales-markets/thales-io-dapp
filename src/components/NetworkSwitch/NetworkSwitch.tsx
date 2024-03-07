@@ -5,7 +5,6 @@ import { t } from 'i18next';
 import React, { useMemo, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress, switchToNetworkId } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
@@ -39,7 +38,6 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
 
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
-    const isMobile = useSelector((state: RootState) => getIsMobile(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
 
     const { openConnectModal } = useConnectModal();
@@ -70,7 +68,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
     const isLedgerLive = isLedgerDappBrowserProvider();
 
     // currently not supported network synchronization between browser without integrated wallet and wallet app on mobile
-    const hideNetworkSwitcher = !isMobile && !isWalletConnected && !forceNetworkSwitch;
+    const hideNetworkSwitcher = !isWalletConnected && !forceNetworkSwitch;
 
     return (
         <OutsideClickHandler display="contents" onOutsideClick={() => isDropdownOpen && setIsDropdownOpen(false)}>
@@ -90,7 +88,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                 {React.createElement(selectedNetwork.icon, {})}
                             </NetworkIconWrapper>
                         )}
-                        {!isWalletConnected && <WalletIcon className="icon icon--wallet" />}
+                        {!isWalletConnected && isWalletConnectorSwitch && <WalletIcon className="icon icon--wallet" />}
                         <WalletAddress
                             onClick={() =>
                                 isWalletConnectorSwitch
