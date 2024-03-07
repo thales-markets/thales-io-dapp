@@ -80,6 +80,7 @@ export const Colors = {
     GRAY: '#C6C8DA',
     LIGHT_GRAY: '#C6C8DA',
     DARK_GRAY: '#181A20',
+    DARKER_GRAY: '#8c8f90',
     WHITE: '#FFFFFF',
     CYAN: '#19F8EF',
     BLUE_DARK: '#313652',

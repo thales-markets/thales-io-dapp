@@ -1,6 +1,9 @@
+import MobileDropdownMenu from 'components/MobileDropdownMenu';
 import SPAAnchor from 'components/SPAAnchor';
-import React, { DependencyList, useEffect, useMemo, useState } from 'react';
+import SimpleLoader from 'components/SimpleLoader/SimpleLoader';
+import React, { DependencyList, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import {
     Cell,
     Column,
@@ -13,6 +16,8 @@ import {
     useSortBy,
     useTable,
 } from 'react-table';
+import { getIsMobile } from 'redux/modules/ui';
+import { FlexDivColumn } from 'styles/common';
 import {
     LoaderContainer,
     NoDataContainer,
@@ -26,9 +31,6 @@ import {
     TableRowMobile,
     TableView,
 } from './styled-components';
-// import MobileDropdownMenu from 'components/MobileDropdownMenu';
-import SimpleLoader from 'components/SimpleLoader/SimpleLoader';
-import { FlexDivColumn } from 'styles/common';
 
 const DEFAULT_PAGE_SIZE = 20;
 const DEFAULT_PAGE_SIZE_NO_PAGINATION = 1000;
@@ -69,11 +71,9 @@ const Table: React.FC<TableProps> = ({
     searchQuery,
     hidePagination,
     stickyRow,
-    preventMobileView,
     defaultPageSize,
 }) => {
     const { t } = useTranslation();
-    const [isMobile, setIsMobile] = useState(false);
 
     // eslint-disable-next-line
     const memoizedColumns = useMemo(() => columns, [...columnsDeps, t]);
@@ -82,6 +82,8 @@ const Table: React.FC<TableProps> = ({
         setGlobalFilter(searchQuery);
         // eslint-disable-next-line
     }, [searchQuery]);
+
+    const isMobile = useSelector(getIsMobile);
 
     const {
         getTableProps,
@@ -129,46 +131,30 @@ const Table: React.FC<TableProps> = ({
         gotoPage(0);
     }, [sortBy, searchQuery, gotoPage]);
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth <= columns.length * 150 * 0.9 && !preventMobileView) {
-                setIsMobile(true);
-            } else {
-                setIsMobile(false);
-            }
-        };
+    const sortHeaderMenus = useMemo(() => {
+        const menuItems: any = [];
 
-        window.addEventListener('resize', handleResize);
-        handleResize();
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [columns.length, preventMobileView]);
-
-    // const sortHeaderMenus = useMemo(() => {
-    //     const menuItems: any = [];
-
-    //     headerGroups.forEach((headerGroup: any) => {
-    //         headerGroup.headers.map((column: any) => {
-    //             if (column.sortable) {
-    //                 menuItems.push({
-    //                     active: false,
-    //                     onClick: column.toggleSortBy,
-    //                     title: column.render('Header'),
-    //                     sortableIndex: 0,
-    //                     sortable: true,
-    //                     clearSort: column.clearSortBy,
-    //                 });
-    //             }
-    //         });
-    //     });
-    //     return menuItems;
-    // }, [headerGroups]);
+        headerGroups.forEach((headerGroup: any) => {
+            headerGroup.headers.map((column: any) => {
+                if (column.sortable) {
+                    menuItems.push({
+                        active: false,
+                        onClick: column.toggleSortBy,
+                        title: column.render('Header'),
+                        sortableIndex: 0,
+                        sortable: true,
+                        clearSort: column.clearSortBy,
+                    });
+                }
+            });
+        });
+        return menuItems;
+    }, [headerGroups]);
 
     return (
         <>
             <>
-                {/* {isMobile ? ( TODO
+                {isMobile ? (
                     data.length > 0 && (
                         <MobileDropdownMenu
                             buttonTitle={t('common.sort-menu')}
@@ -178,7 +164,7 @@ const Table: React.FC<TableProps> = ({
                     )
                 ) : (
                     <TableHeader>
-                        {headerGroups.map((headerGroup: any, headerGroupIndex) => (
+                        {headerGroups.map((headerGroup: any, headerGroupIndex: any) => (
                             <TableRow key={headerGroupIndex} {...headerGroup.getHeaderGroupProps()}>
                                 {headerGroup.headers.map((column: any, columnIndex: number) => (
                                     <TableCell
@@ -193,9 +179,9 @@ const Table: React.FC<TableProps> = ({
                                                 className={`icon ${
                                                     column.isSorted
                                                         ? column.isSortedDesc
-                                                            ? 'icon--arrow-down'
-                                                            : 'icon--arrow-up'
-                                                        : 'icon--double-arrow'
+                                                            ? 'icon--caret-down'
+                                                            : 'icon--caret-up'
+                                                        : 'icon--caret-double'
                                                 }`}
                                             />
                                         )}
@@ -204,34 +190,8 @@ const Table: React.FC<TableProps> = ({
                             </TableRow>
                         ))}
                     </TableHeader>
-                )} */}
-                <TableHeader>
-                    {headerGroups.map((headerGroup: any, headerGroupIndex: any) => (
-                        <TableRow key={headerGroupIndex} {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: any, columnIndex: number) => (
-                                <TableCell
-                                    key={columnIndex}
-                                    {...column.getHeaderProps(
-                                        column.sortable ? column.getSortByToggleProps() : undefined
-                                    )}
-                                >
-                                    {column.render('Header')}
-                                    {column.sortable && (
-                                        <TableArrow
-                                            className={`icon ${
-                                                column.isSorted
-                                                    ? column.isSortedDesc
-                                                        ? 'icon--caret-down'
-                                                        : 'icon--caret-up'
-                                                    : 'icon--caret-double'
-                                            }`}
-                                        />
-                                    )}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    ))}
-                </TableHeader>
+                )}
+
                 <TableView {...getTableProps()}>
                     {isLoading ? (
                         <LoaderContainer>

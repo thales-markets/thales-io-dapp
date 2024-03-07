@@ -300,6 +300,18 @@
     content: '\0033';
 }
 
+.thales-icon--arrow-up:before {
+    content: '\0068';
+}
+
+.thales-icon--arrow-down:before {
+    content: '\006B';
+}
+
+.thales-icon--double-arrow:before {
+    content: '\006A';
+}
+
 .icon--house:before {
     content: '\0056';
 }

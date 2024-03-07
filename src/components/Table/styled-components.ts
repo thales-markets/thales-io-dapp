@@ -16,7 +16,7 @@ export const TableCell = styled.div`
     display: flex;
     flex: 1 !important;
     flex-direction: row;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     text-align: center;
 `;
@@ -32,17 +32,17 @@ export const TableRow = styled(FlexDiv)<{
     font-size: 13px;
     line-height: 16px;
     align-items: center;
-    color: ${(props) => (props.isSticky ? props.theme.button.textColor.primary : props.theme.textColor.primary)};
+    color: ${(props) => (props.isSticky ? props.theme.textColor.primary : props.theme.textColor.primary)};
     border: 1px solid
         ${(props) =>
             props.isMobile
                 ? props.isSticky
-                    ? props.theme.button.borderColor.primary
-                    : props.theme.borderColor.primary
+                    ? props.theme.borderColor.secondary
+                    : props.theme.borderColor.secondary
                 : props.isClaimable
-                ? props.theme.button.borderColor.primary
+                ? props.theme.borderColor.secondary
                 : 'transparent'};
-    border-bottom: 1px solid ${(props) => props.theme.button.borderColor.primary};
+    border-bottom: 1px solid ${(props) => props.theme.borderColor.secondary};
     background: ${(props) => (props.isSticky ? props.theme.button.background.primary : 'transparent')};
     border-radius: ${(props) => (props.isClaimable || props.isMobile || props.isSticky ? '15px' : '0px')};
     opacity: ${(props) => (props.isClaimed ? '0.5' : '1')};
@@ -61,18 +61,14 @@ export const TableRowMobile = styled.div<{ isSticky?: boolean }>`
     display: flex;
     flex-direction: row;
     padding: 0 10px;
-    :not(:last-child) {
-        border-bottom: 1px solid ${(props) => props.theme.borderColor.primary};
-    }
+
     ${TableCell} {
         height: auto;
         margin: 6px 0px;
         width: 100%;
         :first-child {
             justify-content: flex-start;
-            color: ${(props) =>
-                props.isSticky ? props.theme.button.textColor.primary : props.theme.textColor.secondary};
-            text-transform: uppercase;
+            color: ${(props) => (props.isSticky ? props.theme.textColor.tertiary : props.theme.textColor.tertiary)};
         }
     }
 `;
@@ -102,7 +98,7 @@ export const TableArrow = styled.i`
     margin-left: 5px;
     font-size: 10px;
     text-transform: none;
-    &.icon--double-arrow {
+    &.thales-icon--double-arrow {
         font-size: 12px;
     }
 `;

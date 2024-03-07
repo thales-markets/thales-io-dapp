@@ -16,6 +16,7 @@ const darkTheme = {
         quaternary: Colors.PURPLE_NAVY,
         quinary: Colors.YANKEES_BLUE,
         senary: Colors.LIGHT_GRAY,
+        septenary: Colors.DARKER_GRAY,
     },
     borderColor: {
         primary: Colors.GRAY,
