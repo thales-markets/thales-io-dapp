@@ -34,6 +34,7 @@ export const MainContentWrapper = styled.div<{ isOverviewPage: boolean }>`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         background: ${(props) => (props.isOverviewPage ? 'transparent' : props.theme.background.primary)};
         padding: 0px 0px 10px 0px;
+        flex-direction: column-reverse;
     }
 `;
 
