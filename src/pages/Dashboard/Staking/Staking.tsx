@@ -105,7 +105,7 @@ const Staking: React.FC = () => {
                     return {
                         name: 'RevShare',
                         date: revShareData.day,
-                        month: `${month}-${dateOfRevShare.getFullYear()}`,
+                        month: month,
                         amount: Number(revShareData.amount.toFixed(2)),
                         color: Colors.CYAN,
                     };
@@ -133,7 +133,7 @@ const Staking: React.FC = () => {
                     <InfoText color={Colors.WHITE}>
                         {payload[0].payload.name.toLowerCase() == 'revshare' ? 'Fees distributed' : 'Safebox fees'}
                     </InfoText>
-                    <InfoStats>$ {payload[0].payload.amount}</InfoStats>
+                    <InfoStats>$ {formatCurrency(payload[0].payload.amount)}</InfoStats>
                     <InfoStats>{payload[0].payload.date}</InfoStats>
                 </ChartTooltipBox>
             );

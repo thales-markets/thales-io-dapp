@@ -1,5 +1,5 @@
 import SPAAnchor from 'components/SPAAnchor';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Icon, Item, ItemContainer, LabelContainer } from './styled-components';
 
 export type NavItemType = {
@@ -15,9 +15,17 @@ type NavItemMobileProps = {
 };
 
 const NavItemMobile: React.FC<NavItemMobileProps> = ({ item, setNavMenuVisibility }) => {
-    const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
-    const [childrenDropdownVisible, setChildrenDropdownVisible] = useState<boolean>(false);
+    const [grandchildrenDropdownVisible, setGrandchildrenDropdownVisible] = useState<boolean>(false);
     const active = item.active || !!item?.children?.find((child) => child.active);
+    const [dropdownVisible, setDropdownVisible] = useState<boolean>(active ? true : false);
+
+    useEffect(() => {
+        item.children?.forEach((child) => {
+            child.children?.forEach((grandchild) => {
+                if (grandchild.active) setGrandchildrenDropdownVisible(true);
+            });
+        });
+    }, [item]);
 
     return (
         <Container>
@@ -61,7 +69,7 @@ const NavItemMobile: React.FC<NavItemMobileProps> = ({ item, setNavMenuVisibilit
                                             <Item
                                                 onClick={() => {
                                                     if (child.children) {
-                                                        setChildrenDropdownVisible(!childrenDropdownVisible);
+                                                        setGrandchildrenDropdownVisible(!grandchildrenDropdownVisible);
                                                     } else {
                                                         setNavMenuVisibility(false);
                                                     }
@@ -72,19 +80,23 @@ const NavItemMobile: React.FC<NavItemMobileProps> = ({ item, setNavMenuVisibilit
                                             </Item>
                                         </SPAAnchor>
                                         {child.children &&
-                                            (childrenDropdownVisible ? (
+                                            (grandchildrenDropdownVisible ? (
                                                 <Icon
-                                                    onClick={() => setChildrenDropdownVisible(!childrenDropdownVisible)}
+                                                    onClick={() =>
+                                                        setGrandchildrenDropdownVisible(!grandchildrenDropdownVisible)
+                                                    }
                                                     className={`icon icon--caret-up`}
                                                 />
                                             ) : (
                                                 <Icon
-                                                    onClick={() => setChildrenDropdownVisible(!childrenDropdownVisible)}
+                                                    onClick={() =>
+                                                        setGrandchildrenDropdownVisible(!grandchildrenDropdownVisible)
+                                                    }
                                                     className={`icon icon--caret-down`}
                                                 />
                                             ))}
                                     </LabelContainer>
-                                    {child.children && childrenDropdownVisible && (
+                                    {child.children && grandchildrenDropdownVisible && (
                                         <>
                                             {child.children.map((grandChild, index) => {
                                                 return (

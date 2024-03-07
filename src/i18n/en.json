@@ -222,6 +222,7 @@
         "nav": {
             "rewards": "Rewards",
             "staking": "Staking",
+            "stake-thales": "Stake THALES",
             "vesting": "Vesting",
             "leaderboard": "Leaderboard",
             "acc-preferences": "Preferences"

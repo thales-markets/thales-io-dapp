@@ -35,7 +35,7 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                         children: [
                             {
                                 href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.STAKING}`,
-                                title: t('staking.nav.staking'),
+                                title: t('staking.nav.stake-thales'),
                                 active: location.search.includes(STAKING_TABS.STAKING),
                             },
                             {
