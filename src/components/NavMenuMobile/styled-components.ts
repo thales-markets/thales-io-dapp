@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { FlexDivColumn } from 'styles/common';
+import { FlexDiv, FlexDivColumn } from 'styles/common';
 
-export const BurgerFiltersContainer = styled(FlexDivColumn)`
+export const NavMenuContainer = styled(FlexDivColumn)`
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@ export const BurgerFiltersContainer = styled(FlexDivColumn)`
     display: flex;
     z-index: 10000;
     gap: 30px;
-    padding: 50px 0px;
+    padding: 20px 0px;
     @media (max-width: 1300px) {
         margin: 0;
         scrollbar-width: 0px; /* Firefox */
@@ -22,4 +22,14 @@ export const BurgerFiltersContainer = styled(FlexDivColumn)`
             height: 0px;
         }
     }
+`;
+
+export const CloseIcon = styled.i`
+    color: ${(props) => props.theme.textColor.primary};
+    font-size: 30px;
+`;
+
+export const IconContainer = styled(FlexDiv)`
+    width: 90%;
+    align-self: center;
 `;

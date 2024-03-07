@@ -1,4 +1,5 @@
 import NetworkSwitch from 'components/NetworkSwitch';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -15,8 +16,9 @@ const UserWallet: React.FC = () => {
 const Container = styled.div<{ hidden?: boolean }>`
     visibility: ${(props) => (props.hidden ? 'hidden' : 'visible')};
     display: flex;
-    @media (max-width: 500px) {
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
+        justify-content: flex-end;
     }
 `;
 

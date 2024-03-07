@@ -56,7 +56,7 @@ const NavItemMobile: React.FC<NavItemMobileProps> = ({ item, setNavMenuVisibilit
                         {item.children.map((child, index) => {
                             return (
                                 <>
-                                    <LabelContainer key={index}>
+                                    <LabelContainer indentation={10} key={index}>
                                         <SPAAnchor href={child.href}>
                                             <Item
                                                 onClick={() => {
@@ -88,7 +88,7 @@ const NavItemMobile: React.FC<NavItemMobileProps> = ({ item, setNavMenuVisibilit
                                         <>
                                             {child.children.map((grandChild, index) => {
                                                 return (
-                                                    <LabelContainer key={index}>
+                                                    <LabelContainer indentation={20} key={index}>
                                                         <SPAAnchor href={grandChild.href}>
                                                             <Item
                                                                 onClick={() => setNavMenuVisibility(false)}
