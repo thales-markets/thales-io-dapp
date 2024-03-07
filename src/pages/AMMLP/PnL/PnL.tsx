@@ -96,7 +96,7 @@ const PnL: React.FC<PnlProps> = ({ lifetimePnl, type, liquidityPool }) => {
     const noData = liquidityPoolPnls.length === 0;
 
     const Chart = type === LiquidityPoolPnlType.PNL_PER_ROUND ? BarChart : LineChart;
-    console.log(liquidityPoolPnls[liquidityPoolPnls.length - 1].pnlPerRound === 0);
+
     return (
         <Container>
             <Header noData={noData}>
