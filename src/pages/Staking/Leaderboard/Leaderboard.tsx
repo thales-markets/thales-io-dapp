@@ -256,7 +256,7 @@ const StickyRowComponent: React.FC<{ stickyRowInfo: StakersWithLeaderboardData }
                 <StickyRowWrapper>
                     <StickyRowFlex>
                         <StickyCell first={true}>
-                            <TableText>{stickyRowInfo[0].rank}</TableText>
+                            <TableText>#{stickyRowInfo[0].rank}</TableText>
                         </StickyCell>
                         <StickyCell>
                             <TableText>

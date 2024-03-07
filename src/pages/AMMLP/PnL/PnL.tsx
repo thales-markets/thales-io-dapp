@@ -96,7 +96,7 @@ const PnL: React.FC<PnlProps> = ({ lifetimePnl, type, liquidityPool }) => {
     const noData = liquidityPoolPnls.length === 0;
 
     const Chart = type === LiquidityPoolPnlType.PNL_PER_ROUND ? BarChart : LineChart;
-
+    console.log(liquidityPoolPnls[liquidityPoolPnls.length - 1].pnlPerRound === 0);
     return (
         <Container>
             <Header noData={noData}>
@@ -121,11 +121,11 @@ const PnL: React.FC<PnlProps> = ({ lifetimePnl, type, liquidityPool }) => {
                         <LifetimePnlLabel>{t('staking.amm-lp.pnl.previous-pnl')}:</LifetimePnlLabel>
                         <LifetimePnl
                             color={
-                                lifetimePnl === 0
+                                liquidityPoolPnls[liquidityPoolPnls.length - 1].pnlPerRound === 0
                                     ? theme.textColor.primary
-                                    : lifetimePnl > 0
+                                    : liquidityPoolPnls[liquidityPoolPnls.length - 1].pnlPerRound > 0
                                     ? theme.textColor.secondary
-                                    : theme.textColor.tertiary
+                                    : theme.chart.negative
                             }
                         >
                             {formatPercentageWithSign(liquidityPoolPnls[liquidityPoolPnls.length - 1].pnlPerRound)}
