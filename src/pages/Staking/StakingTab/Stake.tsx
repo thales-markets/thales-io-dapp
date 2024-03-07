@@ -262,7 +262,9 @@ const Stake: React.FC = () => {
                 </StakeInputContainer>
                 <StakeButtonDiv>
                     {getStakeButton()}
-                    {isStakingPaused && <ClaimMessage>{t('staking.staking.stake-unstake.stake-success')}</ClaimMessage>}
+                    {isStakingPaused && !stakingData?.closingPeriodInProgress && (
+                        <ClaimMessage>{t('staking.staking.stake-unstake.stake-success')}</ClaimMessage>
+                    )}
                 </StakeButtonDiv>
             </SectionContentContainer>
             {openApprovalModal && (
