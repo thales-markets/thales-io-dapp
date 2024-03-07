@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { buildHref } from 'utils/routes';
 import NavItemMobile from './NavItemMobile';
-import { BurgerFiltersContainer } from './styled-components';
+import { CloseIcon, IconContainer, NavMenuContainer } from './styled-components';
 
 type NavMenuMobileProps = {
     setNavMenuVisibility: (value: boolean) => void;
@@ -146,11 +146,14 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
     }, [location.pathname, t, location.search]);
 
     return (
-        <BurgerFiltersContainer>
+        <NavMenuContainer>
+            <IconContainer>
+                <CloseIcon onClick={() => setNavMenuVisibility(false)} className={`icon icon--cross`} />
+            </IconContainer>
             {navItems.map((navItem: NavItemType, index: number) => {
                 return <NavItemMobile key={index} item={navItem} setNavMenuVisibility={setNavMenuVisibility} />;
             })}
-        </BurgerFiltersContainer>
+        </NavMenuContainer>
     );
 };
 

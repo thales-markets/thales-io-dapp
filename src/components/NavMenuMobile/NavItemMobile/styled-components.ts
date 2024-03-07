@@ -14,9 +14,10 @@ export const ItemContainer = styled(FlexDivColumn)`
     align-items: center;
 `;
 
-export const LabelContainer = styled(FlexDivSpaceBetween)`
+export const LabelContainer = styled(FlexDivSpaceBetween)<{ indentation?: number }>`
     width: 100%;
     margin: 5px 0px;
+    padding-left: ${(props) => (props.indentation ? `${props.indentation}px` : '0px')};
 `;
 
 export const Item = styled.label<{ active?: boolean }>`

@@ -173,7 +173,9 @@ const Staking: React.FC = () => {
                         <InfoSection isStakingWidget={true} side="right">
                             <InfoStats>{globalStakingData ? `${globalStakingData.thalesApy}% APY` : '-'}</InfoStats>
                             <InfoStats>{globalStakingData ? `${globalStakingData.feeApy}% APY` : '-'}</InfoStats>
-                            <InfoStats>{stakersQuery.isLoading ? '-' : stakers.length}</InfoStats>
+                            <InfoStats>
+                                {stakersQuery.isLoading ? '-' : formatCurrency(stakers.length, 0, true)}
+                            </InfoStats>
                             <InfoStats>
                                 {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
                             </InfoStats>
@@ -233,7 +235,7 @@ const Staking: React.FC = () => {
                                 </FlexDivFullWidthSpaceBetween>
                                 <FlexDivFullWidthSpaceBetween>
                                     <InfoText>{t('dashboard.staking.total-stakers')}</InfoText>
-                                    <InfoStats>{stakers.length}</InfoStats>
+                                    <InfoStats>{formatCurrency(stakers.length, 0, true)}</InfoStats>
                                 </FlexDivFullWidthSpaceBetween>
                             </InfoSection>
                             <InfoSection side="right" justifyContent="start">
