@@ -35,7 +35,7 @@ export const NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
         name: 'Polygon',
         icon: PolygonLogo,
         logoClassName: 'icon icon--polygon-logo',
-        changeNetwork: async (networkId: number, callback?: VoidFunction) => {
+        changeNetwork: async (_networkId: number, callback?: VoidFunction) => {
             await changeNetwork(undefined, callback);
         },
         order: 4,
