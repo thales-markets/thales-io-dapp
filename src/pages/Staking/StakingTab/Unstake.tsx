@@ -22,7 +22,7 @@ import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
-import { FlexDivCentered, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
+import { FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
 import { formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
 import { UserStakingData } from 'types/token';
 import { formattedDuration } from 'utils/formatters/date';
@@ -280,21 +280,31 @@ const Unstake: React.FC = () => {
         <EarnSection spanOnTablet={5} orderOnMobile={5} orderOnTablet={5}>
             <SectionContentContainer>
                 <UnstakingContainer twoButtons={isUnstakingInContract && unstakingEnded}>
-                    <UnstakingTitleText>
-                        {isUnstakingInContract
-                            ? unstakingEnded
-                                ? t('staking.staking.stake-unstake.cooldown-ended-text', {
-                                      amount: formatCurrencyWithKey(THALES_CURRENCY, unstakingAmount, 0, true),
-                                  })
-                                : t('staking.staking.stake-unstake.cooldown-started-text', {
-                                      amount: formatCurrencyWithKey(THALES_CURRENCY, unstakingAmount, 0, true),
-                                  })
-                            : t('staking.staking.stake-unstake.unlock-cooldown-text')}
-                    </UnstakingTitleText>
                     {((!unstakingEnded && isUnstakingInContract) || !isUnstakingInContract) && (
                         <UnstakingPeriodWrapper>
-                            <UnstakingPeriodConatiner>
-                                <CooldownText>{t('staking.staking.stake-unstake.cooldown-label')}</CooldownText>
+                            <UnstakingPeriodContainer>
+                                <CooldownText>
+                                    {isUnstakingInContract
+                                        ? unstakingEnded
+                                            ? t('staking.staking.stake-unstake.cooldown-ended-text', {
+                                                  amount: formatCurrencyWithKey(
+                                                      THALES_CURRENCY,
+                                                      unstakingAmount,
+                                                      0,
+                                                      true
+                                                  ),
+                                              })
+                                            : t('staking.staking.stake-unstake.cooldown-started-text', {
+                                                  amount: formatCurrencyWithKey(
+                                                      THALES_CURRENCY,
+                                                      unstakingAmount,
+                                                      0,
+                                                      true
+                                                  ),
+                                              })
+                                        : t('staking.staking.stake-unstake.cooldown-label')}
+                                    :
+                                </CooldownText>
                                 <CooldownCounter>
                                     {!isUnstakingInContract ? (
                                         unstakeDuration
@@ -306,9 +316,16 @@ const Unstake: React.FC = () => {
                                         />
                                     )}
                                 </CooldownCounter>
-                            </UnstakingPeriodConatiner>
+                            </UnstakingPeriodContainer>
                         </UnstakingPeriodWrapper>
                     )}
+                    <UnstakingTitleText>
+                        {isUnstakingInContract
+                            ? unstakingEnded
+                                ? ''
+                                : ''
+                            : t('staking.staking.stake-unstake.unlock-cooldown-text')}
+                    </UnstakingTitleText>
                 </UnstakingContainer>
                 <InputContainer>
                     <NumericInput
@@ -344,19 +361,17 @@ const Unstake: React.FC = () => {
     );
 };
 
-const UnstakingContainer = styled(FlexDivRowCentered)<{ twoButtons: boolean }>`
+const UnstakingContainer = styled(FlexDivColumnCentered)<{ twoButtons: boolean }>`
+    align-items: center;
     min-height: ${(props) => (props.twoButtons ? '30px' : '66px')};
     width: 70%;
     margin: 0 auto 15px auto;
 `;
 
-const UnstakingPeriodWrapper = styled(FlexDivColumnCentered)`
+const UnstakingPeriodWrapper = styled.div`
     border: none;
-    background: ${(props) => props.theme.background.secondary};
-    border-radius: 10px;
     padding: 1px;
-    min-width: 160px;
-    max-width: 160px;
+    margin-bottom: 3px;
     @media (max-width: 1192px) {
         min-width: 110px;
     }
@@ -365,8 +380,7 @@ const UnstakingPeriodWrapper = styled(FlexDivColumnCentered)`
     }
 `;
 
-const UnstakingPeriodConatiner = styled(FlexDivColumnCentered)`
-    background: ${(props) => props.theme.background.primary};
+const UnstakingPeriodContainer = styled.span`
     border-radius: 10px;
     padding: 10px 0;
     text-align: center;
@@ -374,25 +388,27 @@ const UnstakingPeriodConatiner = styled(FlexDivColumnCentered)`
 
 const CooldownText = styled.span`
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 24px;
     color: ${(props) => props.theme.textColor.primary};
-    text-transform: uppercase;
 `;
 
 const CooldownCounter = styled.span`
+    margin-left: 10px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 20px;
     letter-spacing: 0.25px;
     color: ${(props) => props.theme.textColor.secondary};
 `;
 
 const UnstakingTitleText = styled.span`
-    font-weight: 400;
+    font-family: Nunito;
+    font-weight: normal;
     font-size: 14px;
     line-height: 15px;
     margin-right: 10px;
+    margin-bottom: 5px;
     @media (max-width: 1192px) {
         font-size: 12px;
     }
