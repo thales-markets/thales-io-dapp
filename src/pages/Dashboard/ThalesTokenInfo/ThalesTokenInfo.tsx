@@ -181,7 +181,7 @@ const ThalesTokenInfo: React.FC = () => {
                             cy="50%"
                         >
                             {pieData.map((slice, index) => (
-                                <Cell key={index} fill={slice.color} />
+                                <Cell style={{ outline: 'none' }} key={index} fill={slice.color} />
                             ))}
                             <Label
                                 className="chartLabel"
@@ -200,7 +200,7 @@ const ThalesTokenInfo: React.FC = () => {
                             cy="50%"
                         >
                             {pie2Data.map((slice, index) => (
-                                <Cell key={index} fill={slice.color} />
+                                <Cell style={{ outline: 'none' }} key={index} fill={slice.color} />
                             ))}
                         </Pie>
                     </StyledPieChart>

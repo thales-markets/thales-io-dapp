@@ -294,7 +294,7 @@ const ThalesStakers: React.FC = () => {
                                 fill="#82ca9d"
                             >
                                 {pieData.map((slice, index) => (
-                                    <Cell key={index} fill={slice.color} />
+                                    <Cell style={{ outline: 'none' }} key={index} fill={slice.color} />
                                 ))}
                             </Pie>
                             <ChartTooltip content={<CustomTooltip />} />
@@ -309,7 +309,7 @@ const ThalesStakers: React.FC = () => {
                                 cy="50%"
                             >
                                 {outerPieData.map((slice, index) => (
-                                    <Cell key={index} fill={slice.color} />
+                                    <Cell style={{ outline: 'none' }} key={index} fill={slice.color} />
                                 ))}
                             </Pie>
                         </StyledPieChart>
