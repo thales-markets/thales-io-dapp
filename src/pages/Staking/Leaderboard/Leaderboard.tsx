@@ -7,6 +7,7 @@ import useStakersDataLeaderboardQuery, {
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
 import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { useTheme } from 'styled-components';
@@ -247,6 +248,8 @@ const StickyRowComponent: React.FC<{ stickyRowInfo: StakersWithLeaderboardData }
     const { t } = useTranslation();
     const [open, setOpen] = useState(false);
 
+    const isMobile = useSelector(getIsMobile);
+
     return (
         <>
             <StickyRow onClick={setOpen.bind(this, !open)}>
@@ -256,7 +259,12 @@ const StickyRowComponent: React.FC<{ stickyRowInfo: StakersWithLeaderboardData }
                             <TableText>{stickyRowInfo[0].rank}</TableText>
                         </StickyCell>
                         <StickyCell>
-                            <TableText>{truncateAddress(stickyRowInfo[0].id, 5, 5)} (YOU)</TableText>
+                            <TableText>
+                                {isMobile
+                                    ? truncateAddress(stickyRowInfo[0].id, 2, 2)
+                                    : truncateAddress(stickyRowInfo[0].id, 5, 5)}{' '}
+                                (YOU)
+                            </TableText>
                         </StickyCell>
                         <StickyCell>
                             <TableText>{formatCurrencyWithKey('', stickyRowInfo[0].userRoundBonusPoints, 2)}</TableText>

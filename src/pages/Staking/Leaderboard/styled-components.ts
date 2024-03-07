@@ -12,7 +12,7 @@ export const Container = styled.div`
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'top' 'bottom';
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     z-index: 1;
     > div {
         position: relative;
@@ -22,7 +22,7 @@ export const Container = styled.div`
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
-        grid-template-rows: repeat(2, auto);
+        grid-template-rows: 310px auto;
     }
 `;
 
@@ -111,6 +111,9 @@ export const StickyRowFlex = styled.div`
     align-items: center;
     height: 40px;
     border-radius: 8px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        height: 30px;
+    }
 `;
 export const Icon = styled.i<{ dark?: boolean }>`
     font-size: 32px;

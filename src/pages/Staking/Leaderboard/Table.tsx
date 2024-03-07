@@ -149,6 +149,8 @@ const SectionContainer = styled.section<{
     width?: string;
     height?: string;
 }>`
+    display: flex;
+    flex-direction: column;
     font-family: Nunito;
     width: ${(props) => (props.width ? props.width : '100%')};
     min-height: 200px;
