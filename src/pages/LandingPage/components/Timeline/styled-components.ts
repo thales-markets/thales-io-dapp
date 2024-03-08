@@ -88,7 +88,7 @@ export const Container = styled.div`
         & > div > div:nth-child(3) {
             order: 3;
         }
-        height: 600px;
+        height: 540px;
         .card-content-wrapper {
             visibility: hidden !important;
         }
@@ -96,11 +96,16 @@ export const Container = styled.div`
             display: none;
         }
         .timeline-main-wrapper {
-            height: 600px;
+            height: 540px;
             overflow: hidden;
         }
         .timeline-card-content {
             min-height: auto;
+        }
+        .timeline-controls li:not(:nth-child(4)) button {
+            margin-right: 20px;
+            width: 23px;
+            height: 23px;
         }
     }
 `;
