@@ -12,6 +12,7 @@ const LINKS = {
     TaleOfThales: 'https://thalesmarket.io/tale-of-thales',
     MarketingAssets: 'https://docs.thales.io/resources/marketing-assets',
     SpeedMarkets: 'https://speedmarkets.xyz/',
+    Audits: 'https://github.com/thales-markets/contracts?tab=readme-ov-file#audits',
     Token: {
         TIP66: '/dao/thalesgov.eth/0xa925cddfe73b58911c3a9308a0e9d70dff21e31e4d428247ac084e8cffa4eb4f',
         TIP139: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-139.md',
