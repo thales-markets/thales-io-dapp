@@ -350,7 +350,7 @@ const Bridge: React.FC = () => {
                     </FlexDivSpaceBetween>
                     <InputContainer mediaMarginBottom={10}>
                         <NumericInput
-                            value={amount}
+                            value={truncToDecimals(amount, 2)}
                             onChange={(_, value) => setAmount(value)}
                             disabled={isSubmitting}
                             placeholder={t('common.enter-amount')}
@@ -388,7 +388,7 @@ const Bridge: React.FC = () => {
                     </NetworkSwitchContainer>
                     <InputContainer mediaMarginBottom={10}>
                         <NumericInput
-                            value={isFetchingEstimation ? 0 : estimatedReceiveAmt}
+                            value={isFetchingEstimation ? 0 : truncToDecimals(estimatedReceiveAmt, 2)}
                             onChange={() => {}}
                             disabled={true}
                             currencyLabel={THALES_CURRENCY}
