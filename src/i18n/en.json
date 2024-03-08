@@ -352,6 +352,9 @@
                 "vaults-multiplier": "Vaults multiplier",
                 "points": "Points",
                 "already-claimed": "You already claimed the rewards for this round.",
+                "trading-volume-points": "Trading volume points",
+                "amm-lp-points": "AMM LP points",
+                "vaults-points": "Vaults points",
                 "next-claim": "Next available claim in:"
             },
             "current-estimated": {
