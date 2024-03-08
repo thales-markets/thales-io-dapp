@@ -2,6 +2,7 @@ import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
 import ROUTES, { ROUTE_NAMES } from 'constants/routes';
 import { SpaceKey } from 'enums/governance';
+import { TFunction } from 'i18next';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -141,7 +142,7 @@ const BreadcrumbsMenu: React.FC = () => {
                             </ItemContainer>
                         ) : (
                             <SPAAnchor {...(index !== splittedPath.length - 1 ? { href: `/${item}` } : {})}>
-                                <Item>{formatBreadcrumbsItem(item)}</Item>
+                                <Item>{formatBreadcrumbsItem(item, t)}</Item>
                             </SPAAnchor>
                         )}
                     </>
@@ -151,7 +152,7 @@ const BreadcrumbsMenu: React.FC = () => {
                 <>
                     <Arrow className="thales-icon thales-icon--right" />
                     <SPAAnchor href={``} key={'last'}>
-                        <Item>{formatBreadcrumbsItem(searchQuery)}</Item>
+                        <Item>{formatBreadcrumbsItem(searchQuery, t)}</Item>
                     </SPAAnchor>
                 </>
             ) : (
@@ -172,8 +173,11 @@ const getDropdownItems = (itemName: string) => {
     return [];
 };
 
-const formatBreadcrumbsItem = (item: string) => {
-    return item.replace('-', ' ').replace('?tab=', '');
+const formatBreadcrumbsItem = (item: string, t?: TFunction) => {
+    const final = item.replace('-', ' ').replace('?tab=', '');
+    if (final.includes(SpaceKey.TIPS) && t) return t('governance.nav.tips');
+    if (final.includes(SpaceKey.COUNCIL) && t) return t('governance.nav.elections');
+    return final;
 };
 
 const Wrapper = styled(FlexDiv)`
