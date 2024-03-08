@@ -4,9 +4,11 @@ import { USD_SIGN } from 'constants/currency';
 import useStakersDataLeaderboardQuery, {
     StakersWithLeaderboardData,
 } from 'queries/token/useStakersDataLeaderboardQuery';
+import queryString from 'query-string';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { getIsMobile } from 'redux/modules/ui';
 import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
@@ -36,6 +38,7 @@ const Leaderboard: React.FC = () => {
     const { t } = useTranslation();
 
     const theme = useTheme();
+    const location = useLocation();
 
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
@@ -43,20 +46,32 @@ const Leaderboard: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [currentPeriod, setCurrentPeriod] = useState(-1);
 
+    const roundFromQuery = queryString.parse(location.search).round || undefined;
+
+    useEffect(() => {
+        if (roundFromQuery) {
+            setPeriod(Number(roundFromQuery));
+            setCurrentPeriod(Number(roundFromQuery) + 1);
+            setIsLoading(false);
+        }
+    }, [roundFromQuery]);
+
     useEffect(() => {
         try {
             const { stakingThalesContract } = snxJSConnector;
 
-            stakingThalesContract?.periodsOfStaking().then((period: number) => {
-                setPeriod(period);
-                setCurrentPeriod(period);
-                setIsLoading(false);
-            });
+            if (!roundFromQuery) {
+                stakingThalesContract?.periodsOfStaking().then((period: number) => {
+                    setPeriod(period);
+                    setCurrentPeriod(period);
+                    setIsLoading(false);
+                });
+            }
         } catch (e) {
             console.log('Error ', e);
             setIsLoading(false);
         }
-    }, [networkId]);
+    }, [networkId, roundFromQuery]);
 
     const leaderboardQuery = useStakersDataLeaderboardQuery(
         walletAddress,

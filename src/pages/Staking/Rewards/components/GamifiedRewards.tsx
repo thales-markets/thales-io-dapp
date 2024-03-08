@@ -71,7 +71,9 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                         <Trans
                                             i18nKey={'staking.rewards.how-it-works.for-period'}
                                             values={{
-                                                round: stakingData?.period,
+                                                round: stakingData?.period
+                                                    ? Number(stakingData?.period) - 1
+                                                    : undefined,
                                             }}
                                         />
                                     </ItemTitle>
@@ -101,7 +103,11 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                 </SubTitle>
                             </FlexDivColumn>
                             <LeaderboardLinkContainer>
-                                <SPAAnchor href={ROUTES.Token.Staking.Leaderboard}>
+                                <SPAAnchor
+                                    href={`${ROUTES.Token.Staking.Leaderboard}${
+                                        stakingData?.period ? `&round=${Number(stakingData?.period) - 1}` : ''
+                                    }`}
+                                >
                                     <LeaderboardLink>
                                         <i className="icon icon--protocol-volume" />
                                         {t('staking.nav.leaderboard')}
@@ -116,7 +122,9 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                             <FlexDivColumn>
                                 <InfoDiv>
                                     <span>
-                                        {t('staking.rewards.how-it-works.for-period', { round: stakingData?.period })}
+                                        {t('staking.rewards.how-it-works.for-period', {
+                                            round: stakingData?.period ? Number(stakingData?.period) - 1 : undefined,
+                                        })}
                                     </span>
                                     <span>
                                         <HighlightedValue>
@@ -184,7 +192,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                     </Collapse>
                     <Collapse
                         title={t('staking.rewards.how-it-works.points-breakdown-for-round', {
-                            round: stakingData?.period,
+                            round: stakingData?.period ? Number(stakingData?.period) - 1 : undefined,
                         })}
                         additionalStyling={{
                             titleFontSize: '13px',
