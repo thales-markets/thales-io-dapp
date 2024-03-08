@@ -95,7 +95,6 @@ const Container = styled.div`
     font-family: Nunito;
     font-size: 13px;
     width: 60%;
-    margin-top: 90px;
     gap: 10px;
     z-index: 1;
     > div {
