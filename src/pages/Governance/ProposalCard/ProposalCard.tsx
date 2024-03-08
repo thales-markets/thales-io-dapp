@@ -79,7 +79,7 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                     </ResultContainer>
                 )}
             </FlexDivRowCentered>
-            <Title status={proposal.state}>{isMobile ? truncateText(proposal.title, 45) : proposal.title}</Title>
+            <Title status={proposal.state}>{proposal.title}</Title>
             {proposal.space.id === SpaceKey.TIPS &&
             !PROPOSALS_DIFFERENT_FORMATTING.includes(proposal.id) &&
             !isMobile ? (

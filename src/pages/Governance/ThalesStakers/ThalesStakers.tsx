@@ -26,7 +26,7 @@ import { DEFAULT_SEARCH_DEBOUNCE_MS } from 'thales-utils/src/constants/defaults'
 import { EnsNames, Staker, Stakers } from 'types/governance';
 import { StakingData, TokenInfo } from 'types/token';
 import snxJSConnector from 'utils/snxJSConnector';
-import Dropdown from '../components/Dropdown/Dropdown';
+import Dropdown from '../../../components/Dropdown/Dropdown';
 import { Blockie, InfoStats, InfoText, LoaderContainer, StyledLink, StyledPieChart } from '../styled-components';
 import {
     Address,
@@ -384,14 +384,6 @@ const ThalesStakers: React.FC = () => {
                                   },
                               ]
                             : [
-                                  {
-                                      Header: <></>,
-                                      accessor: 'index',
-                                      Cell: (cellProps: any) => (
-                                          <p>{cellProps?.row?.id ? Number(cellProps?.row?.id) + 1 : ''}</p>
-                                      ),
-                                      sortable: true,
-                                  },
                                   {
                                       Header: <>{t('governance.stakers.staker-col')}</>,
                                       accessor: 'id',

@@ -97,7 +97,7 @@ export const ChartsContainer = styled.div`
     width: 60%;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
-        > ${FlexDiv} {
+        > ${FlexDiv}:first-child {
             flex-direction: column-reverse;
         }
     }

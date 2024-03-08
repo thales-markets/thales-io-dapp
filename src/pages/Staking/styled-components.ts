@@ -89,6 +89,8 @@ export const SectionHeader = styled(FlexDiv)`
     text-transform: uppercase;
     min-height: 30px;
     padding-left: 20px;
+    justify-content: space-between;
+    align-items: baseline;
     > i {
         margin-right: 6px;
     }

@@ -1,4 +1,4 @@
-import SelectInput from 'components/SelectInput';
+import Dropdown from 'components/Dropdown';
 import { LiquidityPool, LiquidityPoolTransaction } from 'enums/liquidityPool';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { orderBy } from 'lodash';
@@ -7,7 +7,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
-import { getIsMobile } from 'redux/modules/ui';
 import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
@@ -33,8 +32,6 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
     const [selectedTab, setSelectedTab] = useState<LiquidityPoolTransaction>(
         LiquidityPoolTransaction.USER_TRANSACTIONS
     );
-
-    const isMobile = useSelector(getIsMobile);
 
     const tabContent: Array<{
         id: LiquidityPoolTransaction;
@@ -117,12 +114,11 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
                 {selectedTab === LiquidityPoolTransaction.USER_TRANSACTIONS && (
                     <RightHeader>
                         <SelectContainer>
-                            <SelectInput
-                                options={rounds}
-                                handleChange={(value) => setRound(Number(value))}
-                                defaultValue={rounds.length - 1 - round}
-                                width={!isMobile ? 230 : 120}
-                                fontSize={!isMobile ? 16 : 13}
+                            <Dropdown
+                                options={rounds.map((round) => round.value)}
+                                activeOption={Number(currentRound)}
+                                onSelect={setRound}
+                                translationKey="ammlp"
                             />
                         </SelectContainer>
                     </RightHeader>
@@ -175,7 +171,7 @@ const Container = styled(FlexDivColumn)`
 
 const Header = styled(FlexDivRow)`
     margin: 15px 0;
-    align-items: center;
+    align-items: baseline;
 `;
 
 const RightHeader = styled(FlexDivRow)`
@@ -223,8 +219,10 @@ const TableContainer = styled(FlexDivColumn)`
     overflow: auto;
 `;
 
-const SelectContainer = styled.div`
+const SelectContainer = styled(FlexDiv)`
     width: 230px;
+    justify-content: flex-end;
+    margin-right: 2px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 120px;
     }

@@ -339,7 +339,7 @@
                     "staking-divider": "How much THALES you need to stake to reach max multiplier of x2.0 for Gamified Staking points",
                     "total-staked": "Global amount of THALES currently staked on this network",
                     "your-staked": "Amount of THALES tokens you are staking on this network.",
-                    "staked-share": "Your percentage of Total THALES staked pool on this network"
+                    "staked-share": "Your percentage of the total amount of THALES staked on this network."
                 }
             },
             "your-rewards": {
@@ -372,9 +372,9 @@
                 "apy-tooltip": "These are estimations of Annual Percentage Yields for THALES token rewards and stablecoin Protocol Rewards",
                 "bonus-estimated-rewards-tooltip": "Annual Percentage Yield estimation for THALES token rewards",
                 "fee-rewards-tooltip": "Annual Percentage Yield estimation for Protocol Rewards in stablecoins",
-                "staked-share-tooltip": "Your percentage (%) of the total amount of THALES staked on this network.",
-                "staked-balance-tooltip": "Amount of THALES tokens you are currently staking.",
-                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed.",
+                "staked-share-tooltip": "Your percentage of the total amount of THALES staked on this network.",
+                "staked-balance-tooltip": "Amount of THALES tokens you are currently staking on this network.",
+                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed on this network.",
                 "not-eligible-message": "You are not eligible for staking rewards unless your directly staked balance is greater than 0"
             },
             "my-balance": {
@@ -578,7 +578,7 @@
                 }
             },
             "how-it-works": {
-                "thales": {
+                "thales-amm": {
                     "title": "PROVIDE LIQUIDITY FOR DIGITAL OPTIONS AMM",
                     "subtitle": "How Thales AMM LP works",
                     "description": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Digital Options Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Thales AMM Liquidity Pool. <tip>TIP-139</tip> document provides detailed technical information on this process."
@@ -1106,6 +1106,50 @@
                 "2": "Thales on Arbitrum: ",
                 "3": "Thales on Base: "
             }
+        }
+    },
+    "dropdown": {
+        "staking": {
+            "all": "All",
+            "stake": "Stake",
+            "unstake": "Unstake",
+            "startunstake": "Start unstake",
+            "cancelunstake": "Cancel unstake"
+        },
+        "vesting": {
+            "all": "All",
+            "vest": "Vest",
+            "addtoescrow": "Add to escrow"
+        },
+        "proposal-status": {
+            "all": "All",
+            "pending": "Pending",
+            "active": "Active",
+            "closed": "Closed"
+        },
+        "stakers-filter": {
+            "all": "All",
+            "optimism": "Optimism",
+            "arbitrum": "Arbitrum",
+            "base": "Base"
+        },
+        "preferences": {
+            "all": "All",
+            "mergeaccount": "Merge account",
+            "delegatevolume": "Delegate volume",
+            "removedelegation": "Remove delegation"
+        },
+        "leaderboard": {
+            "round": "Round {{roundNumber}}"
+        },
+        "lpstaking": {
+            "all": "All",
+            "lpstake": "LP stake",
+            "lpunstake": "LP unstake",
+            "lpclaimstakingrewards": "LP staking rewards"
+        },
+        "ammlp": {
+            "round": "Round {{roundNumber}}"
         }
     }
 }
