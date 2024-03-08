@@ -34,6 +34,9 @@ const Footer: React.FC = () => {
                             <SPAAnchor href={LINKS.Medium}>
                                 <ThalesLinksItem>{t('home.footer.thales.blog')}</ThalesLinksItem>
                             </SPAAnchor>
+                            <SPAAnchor href={LINKS.Audits}>
+                                <ThalesLinksItem>{t('home.footer.thales.audits')}</ThalesLinksItem>
+                            </SPAAnchor>
                         </FlexDivColumn>
                         <FlexDivColumn>
                             <ThalesLinksTitle>DAO DAPP</ThalesLinksTitle>

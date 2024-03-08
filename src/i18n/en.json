@@ -203,7 +203,8 @@
             "thales": {
                 "home": "Home",
                 "docs": "Docs",
-                "blog": "Blog"
+                "blog": "Blog",
+                "audits": "Audits"
             },
             "dao-dapp": {
                 "staking": "Staking",
