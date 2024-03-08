@@ -178,10 +178,16 @@ const StakingTab: React.FC = () => {
                 <UpperRight>
                     <LoadingContainer isLoading={userStakingDataQuery.isLoading}>
                         <SectionTitle>
-                            <span>
+                            <TooltipContainer>
                                 <i className="icon icon--person" />
                                 {t('staking.staking.my-balance.title')}
-                            </span>
+                                <Tooltip
+                                    overlay={t('staking.rewards.base-rewards.tooltips.your-staked')}
+                                    marginTop={2}
+                                    mobileIconFontSize={11}
+                                    iconFontSize={13}
+                                />
+                            </TooltipContainer>
                             <span>{formatCurrencyWithKey(THALES_CURRENCY, escrowedBalance + thalesStaked)}</span>
                         </SectionTitle>
                         {notEligibleForStakingRewards && (
