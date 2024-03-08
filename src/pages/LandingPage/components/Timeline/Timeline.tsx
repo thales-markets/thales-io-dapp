@@ -18,6 +18,7 @@ import {
 import { Quarter } from './types';
 import {
     adaptQuarterForTimeline,
+    checkVisible,
     disableAutoScrollTimeline,
     displaySelectedCard,
     scrollSelectedCardIntoView,
@@ -46,6 +47,17 @@ const Timeline: React.FC = () => {
             scrollSelectedCardIntoView(items, selectedItem);
         }
     }, [selectedItem, items, isMobile]);
+
+    useEffect(() => {
+        const listener = () => {
+            const elm = document.getElementById('timeline-main-wrapper');
+            if (elm && checkVisible(elm)) {
+                scrollSelectedCardIntoView(items, selectedItem);
+            }
+        };
+        window.removeEventListener('scroll', listener);
+        window.addEventListener('scroll', listener);
+    }, [items, selectedItem]);
 
     return (
         <Container>

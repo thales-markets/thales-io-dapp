@@ -38,6 +38,7 @@ export const displaySelectedCard = (items: TimelineItemModel[], selectedItem: Qu
 };
 
 export const scrollSelectedCardIntoView = (items: TimelineItemModel[], selectedItem: Quarter | undefined) => {
+    console.log('scroll');
     const selectedIndex = items.findIndex((quarter) => {
         // @ts-ignore
         if (quarter?.milestones[0].descriptionKey) {
@@ -70,4 +71,10 @@ export const disableAutoScrollTimeline = () => {
     if (itemElement) {
         itemElement.scrollIntoView = function () {};
     }
+};
+
+export const checkVisible = (elm: HTMLElement) => {
+    const rect = elm.getBoundingClientRect();
+    const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+    return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
 };
