@@ -165,3 +165,9 @@ export const StickyCell = styled(Cell)<{ first?: boolean; last?: boolean; hide?:
         display: ${(props) => (props.hide ? 'none' : 'flex')};
     }
 `;
+
+export const DropdownWrapper = styled(FlexDiv)`
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+`;

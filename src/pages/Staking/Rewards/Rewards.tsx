@@ -124,6 +124,7 @@ const Rewards: React.FC = () => {
                 filters={[TransactionFilterEnum.CLAIM_STAKING_REWARDS]}
                 hideFilters
                 hideTitle
+                translationKey={'rewards'}
             />
         </>
     );

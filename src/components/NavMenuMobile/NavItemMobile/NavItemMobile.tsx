@@ -64,48 +64,40 @@ const NavItemMobile: React.FC<NavItemMobileProps> = ({ item, setNavMenuVisibilit
                         {item.children.map((child, index) => {
                             return (
                                 <>
-                                    <LabelContainer indentation={10} key={index}>
+                                    <LabelContainer
+                                        indentation={10}
+                                        key={index}
+                                        onClick={() => {
+                                            if (child.children) {
+                                                setGrandchildrenDropdownVisible(!grandchildrenDropdownVisible);
+                                            } else {
+                                                setNavMenuVisibility(false);
+                                            }
+                                        }}
+                                    >
                                         <SPAAnchor href={child.href}>
-                                            <Item
-                                                onClick={() => {
-                                                    if (child.children) {
-                                                        setGrandchildrenDropdownVisible(!grandchildrenDropdownVisible);
-                                                    } else {
-                                                        setNavMenuVisibility(false);
-                                                    }
-                                                }}
-                                                active={child.active}
-                                            >
+                                            <Item active={child.active}>
                                                 <span>{child.title}</span>
                                             </Item>
                                         </SPAAnchor>
                                         {child.children &&
                                             (grandchildrenDropdownVisible ? (
-                                                <Icon
-                                                    onClick={() =>
-                                                        setGrandchildrenDropdownVisible(!grandchildrenDropdownVisible)
-                                                    }
-                                                    className={`icon icon--caret-up`}
-                                                />
+                                                <Icon className={`icon icon--caret-up`} />
                                             ) : (
-                                                <Icon
-                                                    onClick={() =>
-                                                        setGrandchildrenDropdownVisible(!grandchildrenDropdownVisible)
-                                                    }
-                                                    className={`icon icon--caret-down`}
-                                                />
+                                                <Icon className={`icon icon--caret-down`} />
                                             ))}
                                     </LabelContainer>
                                     {child.children && grandchildrenDropdownVisible && (
                                         <>
                                             {child.children.map((grandChild, index) => {
                                                 return (
-                                                    <LabelContainer indentation={20} key={index}>
+                                                    <LabelContainer
+                                                        indentation={20}
+                                                        key={index}
+                                                        onClick={() => setNavMenuVisibility(false)}
+                                                    >
                                                         <SPAAnchor href={grandChild.href}>
-                                                            <Item
-                                                                onClick={() => setNavMenuVisibility(false)}
-                                                                active={grandChild.active}
-                                                            >
+                                                            <Item active={grandChild.active}>
                                                                 <span>{grandChild.title}</span>
                                                             </Item>
                                                         </SPAAnchor>

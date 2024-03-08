@@ -16,7 +16,7 @@ type DropdownProps = {
     options: any;
     activeOption: any;
     onSelect: any;
-    translationKey: string;
+    translationKey?: string;
 };
 
 const Dropdown: React.FC<DropdownProps> = ({ options, activeOption, onSelect, translationKey }) => {
@@ -37,25 +37,34 @@ const Dropdown: React.FC<DropdownProps> = ({ options, activeOption, onSelect, tr
                         handleDropdownOpening(!dropdownIsOpen);
                     }}
                     isActive={dropdownIsOpen}
+                    fullWidth={translationKey == 'leaderboard'}
                 >
                     <InnerButton>
-                        <FlexDiv>{t(`governance.${translationKey}.${activeOption}`)}</FlexDiv>
-                        <StyledDownIcon className={`icon icon--caret-down`} />
+                        <FlexDiv>
+                            {translationKey == 'leaderboard' || translationKey == 'ammlp'
+                                ? t(`dropdown.${translationKey}.round`, { roundNumber: activeOption })
+                                : t(`dropdown.${translationKey}.${activeOption.toLowerCase()}`)}
+                        </FlexDiv>
+                        <StyledDownIcon className={dropdownIsOpen ? `icon icon--caret-up` : `icon icon--caret-down`} />
                     </InnerButton>
                 </Button>
                 {dropdownIsOpen && (
                     <DropdownContainer>
-                        <DropDown>
-                            {options.map((options: string) => (
+                        <DropDown fullWidth={translationKey == 'leaderboard'}>
+                            {options.map((option: string) => (
                                 <DropDownItem
-                                    key={options}
+                                    key={option}
                                     onClick={() => {
-                                        onSelect(options);
+                                        onSelect(option);
                                         handleDropdownOpening(false);
                                     }}
                                 >
                                     <FlexDivCentered>
-                                        <Name>{t(`governance.${translationKey}.${options}`)}</Name>
+                                        <Name>
+                                            {translationKey == 'leaderboard' || translationKey == 'ammlp'
+                                                ? t(`dropdown.${translationKey}.round`, { roundNumber: Number(option) })
+                                                : t(`dropdown.${translationKey}.${option.toLowerCase()}`)}
+                                        </Name>
                                     </FlexDivCentered>
                                 </DropDownItem>
                             ))}
@@ -68,17 +77,16 @@ const Dropdown: React.FC<DropdownProps> = ({ options, activeOption, onSelect, tr
 };
 
 const Container = styled(FlexDivColumnCentered)`
-    width: 140px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
-        min-width: 200px;
+        min-width: 170px;
         margin-bottom: 10px;
     }
 `;
 
-const Button = styled.button<{ isActive: boolean }>`
+const Button = styled.button<{ isActive: boolean; fullWidth: boolean }>`
     position: relative;
-    width: 105px;
+    width: ${(props) => (props.fullWidth ? '100%' : '170px')};
     height: 30px;
     border: none;
     background: transparent;
@@ -101,7 +109,6 @@ const InnerButton = styled(FlexDivRowCentered)`
     line-height: 36px;
     letter-spacing: 0.35px;
     color: ${(props) => props.theme.textColor.senary};
-    text-transform: capitalize;
     padding-left: 20px;
     padding-right: 20px;
 `;
@@ -111,14 +118,20 @@ const DropdownContainer = styled.div`
     z-index: 1000;
 `;
 
-const DropDown = styled(FlexDivColumn)`
+const DropDown = styled(FlexDivColumn)<{ fullWidth: boolean }>`
     background: ${(props) => props.theme.background.primary};
     border-radius: 8px;
     position: absolute;
     margin-top: 12px;
     margin-left: 2px;
     padding: 8px;
-    width: 101px;
+    width: ${(props) => (props.fullWidth ? '100%' : '170px')};
+    box-shadow: 0px 4px 31px 3px rgba(0, 0, 0, 0.45);
+    max-height: 250px;
+    overflow-y: auto;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+    }
 `;
 
 const DropDownItem = styled(FlexDiv)`
@@ -148,6 +161,7 @@ const Name = styled.div`
 const StyledDownIcon = styled.i`
     color: ${(props) => props.theme.textColor.primary};
     font-size: 13px;
+    margin-left: 10px;
 `;
 
 export default Dropdown;

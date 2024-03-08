@@ -13,13 +13,13 @@ import { RootState } from 'redux/rootReducer';
 import { Line, NavContainer } from 'styles/common';
 import { Proposal } from 'types/governance';
 import { navigateToGovernance } from 'utils/routes';
+import Dropdown from '../../components/Dropdown';
 import CouncilMembers from './CouncilMembers';
 import ProposalDetails from './ProposalDetails';
 import ElectionVotes from './ProposalDetails/ElectionVotes';
 import SidebarDetails from './ProposalDetails/SidebarDetails';
 import ProposalList from './ProposalList';
 import ThalesStakers from './ThalesStakers';
-import Dropdown from './components/Dropdown';
 import {
     ArrowIcon,
     BackLink,
@@ -187,7 +187,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                                                 options={Object.values(StatusEnum)}
                                                 activeOption={statusFilter}
                                                 onSelect={setStatusFilter}
-                                                translationKey="status"
+                                                translationKey="proposal-status"
                                             />
                                             <SearchInput
                                                 text={proposalSearch}

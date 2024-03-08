@@ -1107,5 +1107,49 @@
                 "3": "Thales on Base: "
             }
         }
+    },
+    "dropdown": {
+        "staking": {
+            "all": "All",
+            "stake": "Stake",
+            "unstake": "Unstake",
+            "startunstake": "Start unstake",
+            "cancelunstake": "Cancel unstake"
+        },
+        "vesting": {
+            "all": "All",
+            "vest": "Vest",
+            "addtoescrow": "Add to escrow"
+        },
+        "proposal-status": {
+            "all": "All",
+            "pending": "Pending",
+            "active": "Active",
+            "closed": "Closed"
+        },
+        "stakers-filter": {
+            "all": "All",
+            "optimism": "Optimism",
+            "arbitrum": "Arbitrum",
+            "base": "Base"
+        },
+        "preferences": {
+            "all": "All",
+            "mergeaccount": "Merge account",
+            "delegatevolume": "Delegate volume",
+            "removedelegation": "Remove delegation"
+        },
+        "leaderboard": {
+            "round": "Round {{roundNumber}}"
+        },
+        "lpstaking": {
+            "all": "All",
+            "lpstake": "LP stake",
+            "lpunstake": "LP unstake",
+            "lpclaimstakingrewards": "LP staking rewards"
+        },
+        "ammlp": {
+            "round": "Round {{roundNumber}}"
+        }
     }
 }
