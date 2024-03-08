@@ -16,9 +16,12 @@ export const TableCell = styled.div`
     display: flex;
     flex: 1 !important;
     flex-direction: row;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
     text-align: center;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        justify-content: end;
+    }
 `;
 
 export const TableRow = styled(FlexDiv)<{
