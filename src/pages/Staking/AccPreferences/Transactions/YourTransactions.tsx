@@ -11,7 +11,7 @@ const filters = [
 ];
 
 const YourTransactions: React.FC<{ width?: string; height?: string }> = ({ width, height }) => {
-    return <TransactionsWithFilters width={width} height={height} filters={filters} />;
+    return <TransactionsWithFilters width={width} height={height} filters={filters} translationKey="preferences" />;
 };
 
 export default YourTransactions;

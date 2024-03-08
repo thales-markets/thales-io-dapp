@@ -1,3 +1,4 @@
+import Dropdown from 'components/Dropdown';
 import LoadingContainer from 'components/LoadingContainer';
 import TimeRemaining from 'components/TimeRemaining';
 import { USD_SIGN } from 'constants/currency';
@@ -16,12 +17,12 @@ import { useTheme } from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumnBottom, FlexDivColumnSpaceBetween } from 'styles/common';
 import { formatCurrencyWithKey, truncateAddress } from 'thales-utils';
 import snxJSConnector from 'utils/snxJSConnector';
-import PeriodDropdown from '../components/PeriodDropdown';
 import { InfoDiv, SectionDescription, SectionTitle } from '../styled-components';
 import Table from './Table';
 import {
     Bottom,
     Container,
+    DropdownWrapper,
     FlexWrapper,
     Icon,
     LeaderboardBreakdownTitle,
@@ -166,18 +167,19 @@ const Leaderboard: React.FC = () => {
                                 <SectionDescription>
                                     {t('staking.leaderboard.time-left.description')}
                                 </SectionDescription>
-                                <FlexDivColumnBottom>
-                                    <PeriodDropdown
-                                        period={Number(period)}
-                                        setPeriod={setPeriod}
-                                        allPeriods={[
+                                <DropdownWrapper>
+                                    <Dropdown
+                                        options={[
                                             Number(currentPeriod),
                                             currentPeriod - 1,
                                             currentPeriod - 2,
                                             currentPeriod - 3,
                                         ]}
+                                        activeOption={Number(period)}
+                                        onSelect={setPeriod}
+                                        translationKey="leaderboard"
                                     />
-                                </FlexDivColumnBottom>
+                                </DropdownWrapper>
                             </FlexDivColumnSpaceBetween>
                         </FlexDiv>
                     </LoadingContainer>

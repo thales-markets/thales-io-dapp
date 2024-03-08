@@ -196,7 +196,7 @@ const NetworkDropDown = styled.div<{ xl?: boolean }>`
     box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
     z-index: 9999;
     position: absolute;
-    top: ${(props) => (props.xl ? '37px' : '30px')};
+    top: ${(props) => (props.xl ? '40px' : '30px')};
     right: 0;
     display: flex;
     flex-direction: column;
