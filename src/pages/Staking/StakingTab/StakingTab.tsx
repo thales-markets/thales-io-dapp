@@ -20,7 +20,7 @@ import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
 import Stake from './Stake';
 import YourTransactions from './Transactions/YourTransactions';
 import Unstake from './Unstake';
-import { AboutToken, Bottom, Container, UpperLeft, UpperRight } from './styled-components';
+import { AboutToken, Bottom, Container, UpperLeft, UpperRight, WarningMessage } from './styled-components';
 
 const StakingTab: React.FC = () => {
     const { t } = useTranslation();
@@ -106,6 +106,8 @@ const StakingTab: React.FC = () => {
         [thalesStaked, totalThalesStaked, escrowedBalance]
     );
 
+    const notEligibleForStakingRewards = thalesStaked === 0 && escrowedBalance > 0;
+
     return (
         <>
             <Container>
@@ -176,12 +178,21 @@ const StakingTab: React.FC = () => {
                 <UpperRight>
                     <LoadingContainer isLoading={userStakingDataQuery.isLoading}>
                         <SectionTitle>
-                            <span>
+                            <TooltipContainer>
                                 <i className="icon icon--person" />
                                 {t('staking.staking.my-balance.title')}
-                            </span>
+                                <Tooltip
+                                    overlay={t('staking.rewards.base-rewards.tooltips.your-staked')}
+                                    marginTop={2}
+                                    mobileIconFontSize={11}
+                                    iconFontSize={13}
+                                />
+                            </TooltipContainer>
                             <span>{formatCurrencyWithKey(THALES_CURRENCY, escrowedBalance + thalesStaked)}</span>
                         </SectionTitle>
+                        {notEligibleForStakingRewards && (
+                            <WarningMessage>{t('staking.staking.staking-data.not-eligible-message')}</WarningMessage>
+                        )}
                         <div>
                             <InfoDiv>
                                 <span>

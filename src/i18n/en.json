@@ -337,7 +337,7 @@
                 "tooltips": {
                     "staking-divider": "How much THALES you need to stake to reach max multiplier of x2.0 for Gamified Staking points",
                     "total-staked": "Global amount of THALES currently staked on this network",
-                    "your-staked": "Your Total THALES staked pool on this network",
+                    "your-staked": "Amount of THALES tokens you are staking on this network.",
                     "staked-share": "Your percentage of Total THALES staked pool on this network"
                 }
             },
@@ -370,7 +370,8 @@
                 "fee-rewards-tooltip": "Annual Percentage Yield estimation for Protocol Rewards in stablecoins",
                 "staked-share-tooltip": "Your percentage (%) of the total amount of THALES staked on this network.",
                 "staked-balance-tooltip": "Amount of THALES tokens you are currently staking.",
-                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed."
+                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed.",
+                "not-eligible-message": "You are not eligible for staking rewards unless your directly staked balance is greater than 0"
             },
             "my-balance": {
                 "title": "My staking balance",

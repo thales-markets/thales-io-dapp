@@ -8,6 +8,7 @@ type FieldValidationMessageProps = {
     style?: CSSProperties;
     href?: string;
     simpleOnClick?: boolean;
+    scrollTop?: boolean;
 };
 
 const ifIpfsDeployment = process.env.REACT_APP_IPFS_DEPLOYMENT === 'true';
@@ -19,6 +20,7 @@ const SPAAnchor: React.FC<FieldValidationMessageProps> = ({
     style,
     className,
     simpleOnClick,
+    scrollTop,
 }) => {
     if (!href) {
         return <>{children}</>;
@@ -41,7 +43,7 @@ const SPAAnchor: React.FC<FieldValidationMessageProps> = ({
                                   event.preventDefault();
                                   onClick && onClick(event);
                                   if (!href.includes('http')) {
-                                      navigateTo(href);
+                                      navigateTo(href, undefined, scrollTop);
                                   } else {
                                       window.open(href);
                                   }

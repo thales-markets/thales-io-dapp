@@ -336,13 +336,13 @@ const Home: React.FC = () => {
                 </BuySellSections>
                 <Section>
                     <SectionTitleLink>
-                        <SPAAnchor href={buildHref(ROUTES.About.Governance)}>
+                        <SPAAnchor href={buildHref(ROUTES.About.Governance)} scrollTop={true}>
                             {t('home.governance.title-link')} <SectionTitleLinkArrow />
                         </SPAAnchor>
                     </SectionTitleLink>
                     <SectionSlogan>{t('home.governance.title')}</SectionSlogan>
                     <Description marginBottom={20}>{t('home.governance.description')}</Description>
-                    <SPAAnchor href={buildHref(ROUTES.About.Governance)}>
+                    <SPAAnchor href={buildHref(ROUTES.About.Governance)} scrollTop={true}>
                         <HomeButton>{t('home.governance.explore-thales-dao-button')}</HomeButton>
                     </SPAAnchor>
                 </Section>
