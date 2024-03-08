@@ -49,15 +49,17 @@ const Timeline: React.FC = () => {
     }, [selectedItem, items, isMobile]);
 
     useEffect(() => {
-        const listener = () => {
-            const elm = document.getElementById('timeline-main-wrapper');
-            if (elm && checkVisible(elm)) {
-                scrollSelectedCardIntoView(items, selectedItem);
-            }
-        };
-        window.removeEventListener('scroll', listener);
-        window.addEventListener('scroll', listener);
-    }, [items, selectedItem]);
+        if (isMobile) {
+            const listener = () => {
+                const elm = document.getElementById('timeline-main-wrapper');
+                if (elm && checkVisible(elm)) {
+                    scrollSelectedCardIntoView(items, selectedItem);
+                }
+            };
+            window.removeEventListener('scroll', listener);
+            window.addEventListener('scroll', listener);
+        }
+    }, [isMobile, items, selectedItem]);
 
     return (
         <Container>
