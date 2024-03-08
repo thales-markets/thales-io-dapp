@@ -97,6 +97,7 @@ const Container = styled.div`
     width: 60%;
     gap: 10px;
     z-index: 1;
+    margin-top: 70px;
     > div {
         position: relative;
         padding: 20px;
@@ -105,6 +106,7 @@ const Container = styled.div`
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
+        margin-top: 0px;
     }
 `;
 
