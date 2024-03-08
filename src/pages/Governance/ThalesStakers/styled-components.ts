@@ -16,6 +16,7 @@ export const TableHeaderContainer = styled(FlexDivRow)`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         margin: 0 0 20px 0;
+        width: 100%;
     }
 `;
 
