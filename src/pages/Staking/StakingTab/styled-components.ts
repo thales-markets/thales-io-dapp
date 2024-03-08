@@ -97,6 +97,8 @@ export const ClaimMessage = styled.div<{ invisible?: boolean; color?: string; ab
     }
 `;
 
+export const WarningMessage = styled(ClaimMessage)``;
+
 export const EarnSection = styled.section<{
     orderOnMobile?: number;
     orderOnTablet?: number;

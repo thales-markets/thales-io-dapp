@@ -370,7 +370,8 @@
                 "fee-rewards-tooltip": "Annual Percentage Yield estimation for Protocol Rewards in stablecoins",
                 "staked-share-tooltip": "Your percentage (%) of the total amount of THALES staked on this network.",
                 "staked-balance-tooltip": "Amount of THALES tokens you are currently staking.",
-                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed."
+                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed.",
+                "not-eligible-message": "You are not eligible for staking rewards unless your directly staked balance is greater than 0"
             },
             "my-balance": {
                 "title": "My staking balance",
