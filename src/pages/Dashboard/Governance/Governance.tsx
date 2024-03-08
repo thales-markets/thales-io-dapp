@@ -8,11 +8,12 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
+import { FlexDivSpaceBetween } from 'styles/common';
 import { Proposal } from 'types/governance';
 import { buildHref } from 'utils/routes';
 import {
     DoubleSideSectionSpan,
-    InfoSection,
+    GovernanceInfoSection,
     InfoStats,
     InfoText,
     TitleLabel,
@@ -44,20 +45,17 @@ const Governance: React.FC = () => {
                         <WidgetIcon className="icon icon--governance" />
                         <TitleLabel>{t('dashboard.governance.title')}</TitleLabel>
                     </WidgetHeader>
-
-                    <InfoSection side="left">
-                        <DoubleSideSectionSpan>
+                    <GovernanceInfoSection>
+                        <FlexDivSpaceBetween>
                             <InfoText>{t('dashboard.governance.total-proposals')}</InfoText>
-                        </DoubleSideSectionSpan>
+                            <InfoStats>{totalProposals}</InfoStats>
+                        </FlexDivSpaceBetween>
                         <DoubleSideSectionSpan>
                             <InfoText>{t('dashboard.governance.latest-proposal')}</InfoText>
                             <br />
                             <InfoStats>{latestProposal ? latestProposal.title : '-'}</InfoStats>
                         </DoubleSideSectionSpan>
-                    </InfoSection>
-                    <InfoSection side="right" justifyContent="start">
-                        <InfoStats>{totalProposals}</InfoStats>
-                    </InfoSection>
+                    </GovernanceInfoSection>
                 </WidgetWrapper>
             </SPAAnchor>
         </LoadingContainer>
