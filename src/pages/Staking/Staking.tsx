@@ -58,7 +58,7 @@ const Staking: React.FC = () => {
 
     return (
         <Suspense fallback={<Loader />}>
-            <Line />
+            {!isMobile && <Line />}
             {!isMobile && (
                 <NavContainer>
                     <NavLinks items={navItems} />

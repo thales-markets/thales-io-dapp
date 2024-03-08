@@ -8,7 +8,7 @@ import { Background } from 'styles/common';
 import { isAndroid, isMetamask } from 'thales-utils';
 import DappFooter from './DappFooter';
 import DappHeader from './DappHeader';
-import { Wrapper } from './styled-components';
+import { ChildWrapper, Wrapper } from './styled-components';
 
 const DappLayout: React.FC = ({ children }) => {
     const theme = useTheme();
@@ -33,7 +33,7 @@ const DappLayout: React.FC = ({ children }) => {
             {!isMobile && <WavesBackground />}
             <Wrapper>
                 <DappHeader />
-                {children}
+                <ChildWrapper>{children}</ChildWrapper>
                 <DappFooter />
             </Wrapper>
         </>

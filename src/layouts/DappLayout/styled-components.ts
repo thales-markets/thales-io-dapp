@@ -20,3 +20,11 @@ export const Wrapper = styled(FlexDivColumn)`
         padding: 20px;
     }
 `;
+
+export const ChildWrapper = styled(FlexDivColumn)`
+    width: 100%;
+    align-items: center;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 50px;
+    }
+`;
