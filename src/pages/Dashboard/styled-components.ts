@@ -8,7 +8,7 @@ export const Container = styled.div`
     display: grid;
     width: 100%;
     grid-template-columns: repeat(4, 330px);
-    grid-template-rows: repeat(3, 160px);
+    grid-template-rows: repeat(3, 170px);
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'upper-left center center upper-right' 'upper-left center center upper-right' 'bottom-left bottom-center-left bottom-right bottom-right';
