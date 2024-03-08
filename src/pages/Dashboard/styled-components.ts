@@ -318,3 +318,13 @@ export const ChartWrapper = styled(FlexDivRow)`
         }
     }
 `;
+
+export const GovernanceInfoSection = styled.div`
+    width: 100%;
+    grid-area: 2 / 1 / 3 /3;
+    position: relative;
+    padding: 20px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 20px 20px 40px 20px;
+    }
+`;
