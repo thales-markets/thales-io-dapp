@@ -69,12 +69,14 @@ export const TableRowMobile = styled.div<{ isSticky?: boolean }>`
         :first-child {
             justify-content: flex-start;
             color: ${(props) => (props.isSticky ? props.theme.textColor.tertiary : props.theme.textColor.tertiary)};
+            text-transform: uppercase;
         }
     }
 `;
 
 export const TableHeader = styled(FlexDiv)`
     width: 100%;
+    text-transform: uppercase;
     ${TableCell} {
         color: ${(props) => props.theme.textColor.tertiary};
         user-select: none;
