@@ -35,6 +35,9 @@ const LINKS = {
             'https://aerodrome.finance/deposit?token0=0x4200000000000000000000000000000000000006&token1=0xf34e0cff046e154cafcae502c7541b9e5fd8c249&stable=false',
         Camelot: 'https://app.camelot.exchange/pools/0xB5108062de111F61E0dD585f4225ae18d1BB21D9',
     },
+    SPORTS_INTEGRATION: 'https://docs.thales.io/thales-sports-markets/sports-markets-integration',
+    DIGITAL_OPTIONS_INTEGRAITON: 'https://docs.thales.io/thales-digital-options/digital-options-integration',
+    SPEED_MARKETS_INTEGRATION: 'https://docs.thales.io/thales-speed-markets/speed-markets-integration',
 };
 
 export default LINKS;

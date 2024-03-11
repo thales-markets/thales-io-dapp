@@ -214,7 +214,9 @@ const Home: React.FC = () => {
                     >
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-sports-markets-api-description')}</span>
-                            <HomeButton>{t('home.integrations.integrate-with-thales-sports-button')}</HomeButton>
+                            <SPAAnchor href={LINKS.SPORTS_INTEGRATION}>
+                                <HomeButton>{t('home.integrations.integrate-with-thales-sports-button')}</HomeButton>
+                            </SPAAnchor>
                         </Description>
                     </Collapse>
                     <Collapse
@@ -223,7 +225,9 @@ const Home: React.FC = () => {
                     >
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-digital-options-api-description')}</span>
-                            <HomeButton>{t('home.integrations.integrate-with-thales-markets-button')}</HomeButton>
+                            <SPAAnchor href={LINKS.DIGITAL_OPTIONS_INTEGRAITON}>
+                                <HomeButton>{t('home.integrations.integrate-with-thales-markets-button')}</HomeButton>
+                            </SPAAnchor>
                         </Description>
                     </Collapse>
                     <Collapse
@@ -232,7 +236,9 @@ const Home: React.FC = () => {
                     >
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-speed-markets-api-description')}</span>
-                            <HomeButton>{t('home.integrations.integrate-with-thales-speed-button')}</HomeButton>
+                            <SPAAnchor href={LINKS.SPEED_MARKETS_INTEGRATION}>
+                                <HomeButton>{t('home.integrations.integrate-with-thales-speed-button')}</HomeButton>
+                            </SPAAnchor>
                         </Description>
                     </Collapse>
                 </Section>
