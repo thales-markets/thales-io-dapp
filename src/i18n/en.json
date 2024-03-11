@@ -303,7 +303,7 @@
                 "each-week-description": "<span>Each week:</span> THALES token holders earn staking rewards. The amount you earn depends on the percentage of THALES you've staked during the weekly snapshot. If you don't claim these rewards within a week, they expire.",
                 "how-points-are-earned": "<span>How points are earned:</span> <br />• <span>Trading:</span> For every <span>$1</span> traded on Thales or Overtime, you earn <span>1 point</span>. <br />• <span>Liquidity</span> Pools: Deposit <span>$1</span> into any Thales liquidity pool and earn <span>0.1 points</span>. <br />• <span>Vaults:</span> Deposit <span>$1</span> into any Thales vault and earn <span>0.2 points</span>.",
                 "multiplier-description": "The more THALES you stake, the more your points multiply, up to 2x. <br /> Your total points determine your share of the 15,000 THALES bonus.",
-                "final-points": "Total Points = (Trading Volume points + AMM LP points + Vaults Points) x THALES Staked Multiplier",
+                "final-points": "Total points = (Trading volume points + AMM LP points + Vaults points) x THALES Staked multiplier",
                 "each-week": "Each week",
                 "for-period": "For round {{round}}:",
                 "points-breakdown-for-round": "Your points breakdown for round {{ round }}",
@@ -331,9 +331,9 @@
                 "title": "Core staking rewards",
                 "current-multiplier": "Your current multiplier : ",
                 "your-staked": "Your THALES staked",
-                "staking-divider": "Staking Divider",
+                "staking-divider": "Staking divider",
                 "total-staked": "Total THALES staked",
-                "staked-share": "Your Staked Share",
+                "staked-share": "Your staked share",
                 "claimable": "Claimable:",
                 "tooltips": {
                     "staking-divider": "How much THALES you need to stake to reach max multiplier of x2.0 for Gamified Staking points",
@@ -345,7 +345,7 @@
             "your-rewards": {
                 "title": "Gamified staking rewards",
                 "current-points": "Your current points : ",
-                "trading-volume": "Trading Volume",
+                "trading-volume": "Trading volume",
                 "amm-lp-balances": "AMM LP balances",
                 "vaults-balances": "Vaults balances",
                 "trading-multiplier": "Trading multiplier",
@@ -436,9 +436,9 @@
             "table": {
                 "rank": "Rank",
                 "address": "Address",
-                "points": "Total Points",
-                "multiplier": "Thales Multiplier",
-                "rewards": "Total Rewards"
+                "points": "Total points",
+                "multiplier": "Thales multiplier",
+                "rewards": "Total rewards"
             },
             "expanded-row": {
                 "trading": "Trading",
