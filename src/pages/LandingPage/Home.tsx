@@ -32,6 +32,7 @@ import {
     Highlight,
     HomeButton,
     HomeIcon,
+    IconLink,
     LottieContainer,
     Partners,
     Section,
@@ -85,9 +86,9 @@ const Home: React.FC = () => {
                         <span>{t('home.protocol')}</span>
                     </Title>
                     <EcosystemTitle>
-                        <SPAAnchor href="https://synthetix.io/">
-                            <HomeIcon fontSize="10em" className="icon icon--synthetix" />
-                        </SPAAnchor>
+                        <HomeIcon fontSize="10em" className="icon icon--synthetix">
+                            <IconLink onClick={() => window.open('https://synthetix.io/')} />
+                        </HomeIcon>
                         Ecosystem
                     </EcosystemTitle>
                     <Subtitle>{t('home.protocol-description-1')}.</Subtitle>
@@ -168,33 +169,33 @@ const Home: React.FC = () => {
                     {isMobile && (
                         <>
                             <FlexDivCentered>
-                                <SPAAnchor href="https://synthetix.io/">
-                                    <HomeIcon margin="-35px 0" fontSize="20em" className="icon icon--synthetix" />
-                                </SPAAnchor>
+                                <HomeIcon height="90px" fontSize="20em" className="icon icon--synthetix">
+                                    <IconLink onClick={() => window.open('https://synthetix.io/')} />
+                                </HomeIcon>
                             </FlexDivCentered>
                             <FlexDivSpaceAround>
-                                <SPAAnchor href="https://chain.link/">
-                                    <HomeIcon fontSize="9em" className="icon icon--chainlink" />
-                                </SPAAnchor>
-                                <SPAAnchor href="https://www.optimism.io/">
-                                    <HomeIcon fontSize="9em" className="icon icon--optimism" />
-                                </SPAAnchor>
+                                <HomeIcon fontSize="9em" className="icon icon--chainlink">
+                                    <IconLink onClick={() => window.open('https://chain.link/')} />
+                                </HomeIcon>
+                                <HomeIcon fontSize="9em" className="icon icon--optimism">
+                                    <IconLink onClick={() => window.open('https://www.optimism.io/')} />
+                                </HomeIcon>
                             </FlexDivSpaceAround>
                             <FlexDivSpaceAround>
-                                <SPAAnchor href="https://arbitrum.io/">
-                                    <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
-                                </SPAAnchor>
-                                <SPAAnchor href="https://base.org/">
-                                    <HomeIcon fontSize="7em" className="icon icon--base" />
-                                </SPAAnchor>
+                                <HomeIcon fontSize="11em" className="icon icon--arbitrum">
+                                    <IconLink onClick={() => window.open('https://arbitrum.io/')} />
+                                </HomeIcon>
+                                <HomeIcon fontSize="7em" className="icon icon--base">
+                                    <IconLink onClick={() => window.open('https://base.org/')} />
+                                </HomeIcon>
                             </FlexDivSpaceAround>
                             <FlexDivSpaceAround>
-                                <SPAAnchor href="https://pyth.network/">
-                                    <HomeIcon fontSize="9em" className="icon icon--pyth" />
-                                </SPAAnchor>
-                                <SPAAnchor href="https://framework.ventures/">
-                                    <HomeIcon fontSize="9em" className="icon icon--framework" />
-                                </SPAAnchor>
+                                <HomeIcon fontSize="9em" className="icon icon--pyth">
+                                    <IconLink onClick={() => window.open('https://pyth.network/')} />
+                                </HomeIcon>
+                                <HomeIcon fontSize="9em" className="icon icon--framework">
+                                    <IconLink onClick={() => window.open('https://framework.ventures/')} />
+                                </HomeIcon>
                             </FlexDivSpaceAround>
                         </>
                     )}

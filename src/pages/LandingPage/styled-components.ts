@@ -278,13 +278,26 @@ export const MilestoneDescription = styled.div`
     }
 `;
 
+export const IconLink = styled.div`
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+`;
+
 export const HomeIcon = styled.i<{
     fontSize?: string;
     paddingBottom?: string;
     mobileFontSize?: string;
     margin?: string;
+    height?: string;
 }>`
     display: flex;
+    position: relative;
+    height: ${(props) => props.height ?? 'auto'};
     align-items: center;
     justify-content: center;
     color: white;
