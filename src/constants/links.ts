@@ -29,6 +29,10 @@ const LINKS = {
         ThalesStaking: 'https://thales.io/staking',
     },
     LPStaking: {
+        ArrakisLink:
+            'https://beta.arrakis.finance/vaults/0xac6705BC7f6a35eb194bdB89066049D6f1B0B1b5?sortDirection=desc&sort=tvl',
+        UniswapLink:
+            'https://app.uniswap.org/swap?inputCurrency=ETH&outputCurrency=0x4200000000000000000000000000000000000006&chain=optimism',
         Velodrome:
             'https://velodrome.finance/deposit?token0=0x217d47011b23bb961eb6d93ca9945b7501a5bb11&token1=0x4200000000000000000000000000000000000006&stable=false',
         Aerodrome:

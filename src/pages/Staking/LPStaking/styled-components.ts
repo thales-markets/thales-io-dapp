@@ -15,5 +15,6 @@ export const Icon = styled.i`
 export const Header = styled(SectionHeader)`
     margin-bottom: 15px;
     flex-direction: row;
+    justify-content: start;
     padding: 0;
 `;

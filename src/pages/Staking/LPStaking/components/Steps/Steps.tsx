@@ -1,7 +1,9 @@
 import Collapse from 'components/Collapse';
+import LINKS from 'constants/links';
 import { t } from 'i18next';
 import { SectionDescription } from 'pages/Staking/styled-components';
 import React from 'react';
+import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { ContentContainer, Header, Icon } from '../../styled-components';
@@ -33,13 +35,27 @@ const Steps: React.FC = () => {
                     title={t('staking.lp-staking.steps.step-2.header')}
                     additionalStyling={collapseAdditionalStyling}
                 >
-                    <StepDescription>{t('staking.lp-staking.steps.step-2.description')}</StepDescription>
+                    <StepDescription>
+                        <Trans
+                            i18nKey={'staking.lp-staking.steps.step-2.description'}
+                            components={{
+                                url: <Link target="_blank" href={LINKS.LPStaking.UniswapLink} />,
+                            }}
+                        />
+                    </StepDescription>
                 </Collapse>
                 <Collapse
                     title={t('staking.lp-staking.steps.step-3.header')}
                     additionalStyling={collapseAdditionalStyling}
                 >
-                    <StepDescription>{t('staking.lp-staking.steps.step-3.description')}</StepDescription>
+                    <StepDescription>
+                        <Trans
+                            i18nKey={'staking.lp-staking.steps.step-3.description'}
+                            components={{
+                                url: <Link target="_blank" href={LINKS.LPStaking.ArrakisLink} />,
+                            }}
+                        />
+                    </StepDescription>
                 </Collapse>
                 <Collapse
                     title={t('staking.lp-staking.steps.step-4.header')}
@@ -70,6 +86,10 @@ const StepDescription = styled(SectionDescription)`
 const StepsContainer = styled(FlexDiv)`
     flex-direction: column;
     margin-top: 20px;
+`;
+
+const Link = styled.a`
+    text-decoration: underline;
 `;
 
 export default Steps;

@@ -665,11 +665,11 @@
                 },
                 "step-2": {
                     "header": "Step 2. - Wrap ETH in WETH",
-                    "description": "To be able to provide liquidity and be eligible for LP rewards, you need to have Wrapped Ethereum. You can wrap your ETH to WETH on Optimism using this Uniswap page."
+                    "description": "To be able to provide liquidity and be eligible for LP rewards, you need to have Wrapped Ethereum. You can wrap your ETH to WETH on Optimism using this <url>Uniswap page</url>."
                 },
                 "step-3": {
                     "header": "Step 3. - Provide Liquidity",
-                    "description": "Provide THALES+WETH liquidity to the G-UNI pool on Arrakis Finance UI (here). Once the transaction is confirmed, you will receive THALES/WETH G-UNI LP tokens in your wallet that represent your share of the liquidity pool."
+                    "description": "Provide THALES+WETH liquidity to the G-UNI pool on Arrakis Finance UI (<url>here</url>). Once the transaction is confirmed, you will receive THALES/WETH G-UNI LP tokens in your wallet that represent your share of the liquidity pool."
                 },
                 "step-4": {
                     "header": "Step 4. - Stake",
