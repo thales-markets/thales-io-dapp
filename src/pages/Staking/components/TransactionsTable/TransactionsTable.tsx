@@ -6,6 +6,7 @@ import { TransactionFilterEnum } from 'enums/token';
 import React, { FC, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CellProps } from 'react-table';
+import styled from 'styled-components';
 import { formatCurrencyWithKey, formatShortDateWithTime } from 'thales-utils';
 import { TokenTransaction, TokenTransactions } from 'types/token';
 
@@ -51,7 +52,7 @@ const TransactionsTable: FC<TransactionsTableProps> = memo(({ transactions, noRe
                         Header: <>{t('staking.table.type-col')}</>,
                         accessor: 'type',
                         Cell: (cellProps: CellProps<TokenTransaction, TokenTransaction['type']>) => (
-                            <p>
+                            <TransactionType>
                                 {t(
                                     `staking.table.types.${
                                         cellProps.cell.value === TransactionFilterEnum.LP_CLAIM_STAKING_REWARDS_SECOND
@@ -59,7 +60,7 @@ const TransactionsTable: FC<TransactionsTableProps> = memo(({ transactions, noRe
                                             : cellProps.cell.value
                                     }`
                                 ).toUpperCase()}
-                            </p>
+                            </TransactionType>
                         ),
                         sortable: true,
                     },
@@ -109,5 +110,9 @@ const getAmount = (cellProps: CellProps<TokenTransaction, TokenTransaction['amou
             : EMPTY_VALUE;
     }
 };
+
+const TransactionType = styled.p`
+    text-align: right;
+`;
 
 export default TransactionsTable;
