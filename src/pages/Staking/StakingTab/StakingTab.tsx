@@ -183,9 +183,8 @@ const StakingTab: React.FC = () => {
                                 {t('staking.staking.my-balance.title')}
                                 <Tooltip
                                     overlay={t('staking.rewards.base-rewards.tooltips.your-staked')}
-                                    marginTop={2}
                                     mobileIconFontSize={11}
-                                    iconFontSize={13}
+                                    iconFontSize={11}
                                 />
                             </TooltipContainer>
                             <span>{formatCurrencyWithKey(THALES_CURRENCY, escrowedBalance + thalesStaked)}</span>
