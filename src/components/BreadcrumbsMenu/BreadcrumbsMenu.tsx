@@ -5,6 +5,7 @@ import { SpaceKey } from 'enums/governance';
 import { TFunction } from 'i18next';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getIsMobile } from 'redux/modules/ui';
@@ -116,7 +117,7 @@ const BreadcrumbsMenu: React.FC = () => {
                 const dropdownItems = getDropdownItems(item);
                 return (
                     <>
-                        <Arrow className="thales-icon thales-icon--right" />
+                        {showDropdownItem(item) && <Arrow className="thales-icon thales-icon--right" />}
                         {dropdownItems.length > 0 ? (
                             <ItemContainer
                                 onClick={() => {
@@ -130,20 +131,28 @@ const BreadcrumbsMenu: React.FC = () => {
                             >
                                 <Item>{formatBreadcrumbsItem(item)}</Item>
                                 <ArrowDown className="icon icon--caret-down" />
-                                <DropdownContainer show={dropdownIndex == index}>
-                                    {dropdownItems.map((dropdownItem, dpIndex) => {
-                                        return (
-                                            <SPAAnchor href={dropdownItem.route} key={`${dpIndex}-dd`}>
-                                                <DropdownItem>{t(dropdownItem.i18label)}</DropdownItem>
-                                            </SPAAnchor>
-                                        );
-                                    })}
-                                </DropdownContainer>
+                                <OutsideClickHandler onOutsideClick={() => setDropdownIndex(undefined)}>
+                                    <DropdownContainer show={dropdownIndex == index}>
+                                        {dropdownItems.map((dropdownItem, dpIndex) => {
+                                            return (
+                                                <SPAAnchor href={dropdownItem.route} key={`${dpIndex}-dd`}>
+                                                    <DropdownItem>{t(dropdownItem.i18label)}</DropdownItem>
+                                                </SPAAnchor>
+                                            );
+                                        })}
+                                    </DropdownContainer>
+                                </OutsideClickHandler>
                             </ItemContainer>
-                        ) : (
-                            <SPAAnchor {...(index !== splittedPath.length - 1 ? { href: `/${item}` } : {})}>
+                        ) : showDropdownItem(item) ? (
+                            <SPAAnchor
+                                {...(index !== splittedPath.length - 1
+                                    ? { href: `/${splittedPath.slice(0, index).join('/')}` }
+                                    : {})}
+                            >
                                 <Item>{formatBreadcrumbsItem(item, t)}</Item>
                             </SPAAnchor>
+                        ) : (
+                            <></>
                         )}
                     </>
                 );
@@ -171,6 +180,11 @@ const getDropdownItems = (itemName: string) => {
     if (itemName == ROUTE_NAMES.DAO) return BREADCRUMBS_DROPDOWN_ITEMS.DAO;
     if (itemName == ROUTE_NAMES.About) return BREADCRUMBS_DROPDOWN_ITEMS.About;
     return [];
+};
+
+const showDropdownItem = (item: string): boolean => {
+    if (item.toLowerCase().includes('0x')) return false;
+    return true;
 };
 
 const formatBreadcrumbsItem = (item: string, t?: TFunction) => {
