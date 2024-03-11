@@ -38,7 +38,6 @@ export const displaySelectedCard = (items: TimelineItemModel[], selectedItem: Qu
 };
 
 export const scrollSelectedCardIntoView = (items: TimelineItemModel[], selectedItem: Quarter | undefined) => {
-    console.log('scroll');
     const selectedIndex = items.findIndex((quarter) => {
         // @ts-ignore
         if (quarter?.milestones[0].descriptionKey) {

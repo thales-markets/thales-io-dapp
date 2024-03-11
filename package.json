@@ -66,6 +66,9 @@
         "eslint-config-prettier": "^8.1.0",
         "eslint-plugin-prettier": "^3.3.1"
     },
+    "overrides": {
+        "@walletconnect/core": "2.8.4"
+    },
     "scripts": {
         "start": "react-scripts --openssl-legacy-provider start",
         "build": "react-scripts build",
