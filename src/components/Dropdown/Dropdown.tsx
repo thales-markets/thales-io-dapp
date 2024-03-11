@@ -79,7 +79,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, activeOption, onSelect, tr
 const Container = styled(FlexDivColumnCentered)`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
-        min-width: 170px;
+        min-width: 120px;
         margin-bottom: 10px;
     }
 `;
@@ -111,6 +111,10 @@ const InnerButton = styled(FlexDivRowCentered)`
     color: ${(props) => props.theme.textColor.senary};
     padding-left: 20px;
     padding-right: 20px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 `;
 
 const DropdownContainer = styled.div`
