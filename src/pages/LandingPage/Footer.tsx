@@ -1,3 +1,7 @@
+// @ts-ignore
+import privacyPolicy from 'assets/docs/thales-privacy-policy.pdf';
+// @ts-ignore
+import termsOfUse from 'assets/docs/thales-terms-of-use.pdf';
 import FooterLinks from 'components/FooterLinks';
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
@@ -25,9 +29,6 @@ const Footer: React.FC = () => {
                         <FooterLogo className="icon icon--thales-logo" />
                         <FlexDivColumn>
                             <ThalesLinksTitle>THALES</ThalesLinksTitle>
-                            <SPAAnchor href={buildHref(ROUTES.Home)}>
-                                <ThalesLinksItem>{t('home.footer.thales.home')}</ThalesLinksItem>
-                            </SPAAnchor>
                             <SPAAnchor href={LINKS.ThalesMarketDocs}>
                                 <ThalesLinksItem>{t('home.footer.thales.docs')}</ThalesLinksItem>
                             </SPAAnchor>
@@ -55,12 +56,12 @@ const Footer: React.FC = () => {
                             <SPAAnchor href={LINKS.MarketingAssets}>
                                 <ThalesLinksItem>{t('home.footer.about.brand-assets')}</ThalesLinksItem>
                             </SPAAnchor>
-                            <SPAAnchor>
+                            <a target="_blank" rel="noreferrer" href={termsOfUse}>
                                 <ThalesLinksItem>{t('home.footer.about.terms-and-conditions')}</ThalesLinksItem>
-                            </SPAAnchor>
-                            <SPAAnchor>
+                            </a>
+                            <a target="_blank" rel="noreferrer" href={privacyPolicy}>
                                 <ThalesLinksItem>{t('home.footer.about.privacy-policy')}</ThalesLinksItem>
-                            </SPAAnchor>
+                            </a>
                         </FlexDivColumn>
                     </ThalesLinks>
                     <FooterLinks />
