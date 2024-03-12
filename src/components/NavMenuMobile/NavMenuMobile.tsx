@@ -76,7 +76,7 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                 title: t('header.links.amm-lp'),
                 children: [
                     {
-                        href: `${buildHref(ROUTES.AmmLP.Home)}`,
+                        href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
                         title: t('amm-lp.nav.thales'),
                         active: location.search.includes(LiquidityPool.THALES),
                     },
