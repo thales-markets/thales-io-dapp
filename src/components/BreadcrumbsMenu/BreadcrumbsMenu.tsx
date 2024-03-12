@@ -12,6 +12,7 @@ import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
+import { navigateTo } from 'utils/routes';
 
 export const BREADCRUMBS_DROPDOWN_ITEMS = {
     AmmLP: [
@@ -108,6 +109,8 @@ const BreadcrumbsMenu: React.FC = () => {
     const splittedPath = location.pathname !== '/' ? location.pathname.split('/').filter((item) => item) : [];
     const searchQuery = location?.search;
 
+    console.log('dropdownIndex ', dropdownIndex);
+
     return isMobile && splittedPath.length ? (
         <Wrapper>
             <SPAAnchor href="/">
@@ -119,25 +122,33 @@ const BreadcrumbsMenu: React.FC = () => {
                     <>
                         {showDropdownItem(item) && <Arrow className="thales-icon thales-icon--right" />}
                         {dropdownItems.length > 0 ? (
-                            <ItemContainer
-                                onClick={() => {
-                                    if (dropdownIndex == index) {
-                                        setDropdownIndex(undefined);
-                                        return;
-                                    } else {
-                                        setDropdownIndex(index);
-                                    }
-                                }}
-                            >
-                                <Item>{formatBreadcrumbsItem(item)}</Item>
-                                <ArrowDown className="icon icon--caret-down" />
+                            <ItemContainer>
+                                <Item
+                                    onClick={() => {
+                                        if (dropdownIndex == index) {
+                                            setDropdownIndex(undefined);
+                                            return;
+                                        } else {
+                                            setDropdownIndex(index);
+                                        }
+                                    }}
+                                >
+                                    {formatBreadcrumbsItem(item)}
+                                    <ArrowDown className="icon icon--caret-down" />
+                                </Item>
                                 <OutsideClickHandler onOutsideClick={() => setDropdownIndex(undefined)}>
                                     <DropdownContainer show={dropdownIndex == index}>
                                         {dropdownItems.map((dropdownItem, dpIndex) => {
                                             return (
-                                                <SPAAnchor href={dropdownItem.route} key={`${dpIndex}-dd`}>
-                                                    <DropdownItem>{t(dropdownItem.i18label)}</DropdownItem>
-                                                </SPAAnchor>
+                                                <DropdownItem
+                                                    key={`${dpIndex}-dd`}
+                                                    onClick={() => {
+                                                        setDropdownIndex(undefined);
+                                                        navigateTo(dropdownItem.route, undefined, true);
+                                                    }}
+                                                >
+                                                    {t(dropdownItem.i18label)}
+                                                </DropdownItem>
                                             );
                                         })}
                                     </DropdownContainer>
@@ -206,6 +217,9 @@ const Item = styled.span`
     font-weight: 500;
     color: ${(props) => props.theme.textColor.primary};
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Icon = styled.i`
@@ -243,6 +257,7 @@ const DropdownContainer = styled.div<{ show: boolean }>`
 
 const DropdownItem = styled.div<{ active?: boolean }>`
     text-align: left;
+    cursor: pointer;
     color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.textColor.primary)};
     padding: 8px;
     border-radius: 8px;
