@@ -202,7 +202,9 @@ const Home: React.FC = () => {
                 </Section>
                 <Section>
                     <SectionTitleLink>
-                        {t('home.integrations.title-link')} <SectionTitleLinkArrow />
+                        <SPAAnchor href={LINKS.Docs}>
+                            {t('home.integrations.title-link')} <SectionTitleLinkArrow />
+                        </SPAAnchor>
                     </SectionTitleLink>
                     <SectionSlogan>{t('home.integrations.title')}</SectionSlogan>
                     <Description marginBottom={50} marginTop={20}>
