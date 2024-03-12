@@ -133,7 +133,7 @@ export const Container = styled.div`
     }
 `;
 
-export const TooltipContainer = styled.div`
-    display: flex;
+export const TooltipContainer = styled.div<{ forceInline?: boolean }>`
+    display: ${(props) => (props.forceInline ? 'inline' : 'flex')};
     align-items: center;
 `;

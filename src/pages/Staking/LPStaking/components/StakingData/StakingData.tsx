@@ -59,7 +59,7 @@ const StakingData: React.FC = () => {
                     </Header>
                     <StakingDetails>
                         <ItemName>
-                            <TooltipContainer>
+                            <TooltipContainer forceInline={true}>
                                 {t('staking.lp-staking.staking-data-section.apr-in-total')}
                                 <Tooltip
                                     overlay={t('staking.lp-staking.staking-data-section.apr-tooltip')}
@@ -73,7 +73,7 @@ const StakingData: React.FC = () => {
                     </StakingDetails>
                     <StakingDetails>
                         <ItemName>
-                            <TooltipContainer>
+                            <TooltipContainer forceInline={true}>
                                 {t('staking.lp-staking.staking-data-section.thales-op')}
                                 <Tooltip
                                     overlay={t('staking.lp-staking.staking-data-section.apr-percentage-tooltip')}
@@ -87,7 +87,7 @@ const StakingData: React.FC = () => {
                     </StakingDetails>
                     <StakingDetails>
                         <ItemName>
-                            <TooltipContainer>
+                            <TooltipContainer forceInline={true}>
                                 {t('staking.lp-staking.staking-data-section.my-staking-share')}
                                 <Tooltip
                                     overlay={t('staking.lp-staking.staking-data-section.share-tooltip')}
@@ -101,7 +101,7 @@ const StakingData: React.FC = () => {
                     </StakingDetails>
                     <StakingDetails>
                         <ItemName>
-                            <TooltipContainer>
+                            <TooltipContainer forceInline={true}>
                                 {t('staking.lp-staking.staking-data-section.tvl')}
                                 <Tooltip
                                     overlay={t('staking.lp-staking.staking-data-section.tvl-tooltip')}

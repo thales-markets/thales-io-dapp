@@ -96,12 +96,13 @@ export const StickyRow = styled.div`
     }
 
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        height: 30px;
+        height: auto;
     }
 `;
 export const StickyRowWrapper = styled.div`
     background: ${(props) => props.theme.background.primary};
     width: 100%;
+    height: auto;
     border-radius: 8px;
     box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.46);
 `;
@@ -143,6 +144,10 @@ export const StickyExpandedRow = styled.div`
     margin: auto;
     width: calc(100% - 55px);
     border-top: 1px solid ${(props) => props.theme.background.primary};
+    position: relative;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 100%;
+    }
 `;
 const Cell = styled.div<{ hide?: boolean }>`
     display: flex;

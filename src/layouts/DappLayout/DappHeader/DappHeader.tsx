@@ -12,7 +12,15 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getIsMobile } from 'redux/modules/ui';
 import { buildHref, navigateTo } from 'utils/routes';
-import { HeaderContainer, LeftWrapper, LinksContainer, Logo, MenuIcon } from './styled-components';
+import {
+    HeaderContainer,
+    IconLink,
+    LeftWrapper,
+    LinksContainer,
+    Logo,
+    LogoMobile,
+    MenuIcon,
+} from './styled-components';
 
 const DappHeader: React.FC = () => {
     const { t } = useTranslation();
@@ -94,10 +102,16 @@ const DappHeader: React.FC = () => {
             <HeaderContainer>
                 <LeftWrapper>
                     <MenuIcon onClick={() => setNavMenuVisibility(true)} className="icon icon--menu" />
-                    <Logo
-                        onClick={() => navigateTo(ROUTES.Home, false, false, 'show')}
-                        className="icon icon--thales-logo"
-                    />
+                    {!isMobile ? (
+                        <Logo
+                            onClick={() => navigateTo(ROUTES.Home, false, false, 'show')}
+                            className="icon icon--thales-logo"
+                        />
+                    ) : (
+                        <LogoMobile className="icon icon--thales-logo">
+                            <IconLink onClick={() => navigateTo(ROUTES.Home, false, false, 'show')} />
+                        </LogoMobile>
+                    )}
                 </LeftWrapper>
                 <LinksContainer>
                     <NavLinks items={navItems} />

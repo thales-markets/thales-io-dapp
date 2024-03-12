@@ -16,6 +16,7 @@ const UserWallet: React.FC = () => {
 const Container = styled.div<{ hidden?: boolean }>`
     visibility: ${(props) => (props.hidden ? 'hidden' : 'visible')};
     display: flex;
+    z-index: 4;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
         justify-content: flex-end;

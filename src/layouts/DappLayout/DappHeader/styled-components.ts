@@ -48,6 +48,28 @@ export const MenuIcon = styled.i`
     }
 `;
 
+export const LogoMobile = styled.i`
+    display: flex;
+    position: relative;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    font-size: 9em;
+    line-height: 0.2em;
+    margin: 10px 0px 0px 2px;
+    color: ${(props) => props.theme.textColor.primary};
+`;
+
+export const IconLink = styled.div`
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+`;
+
 export const LeftWrapper = styled(FlexDiv)`
     flex-direction: row;
 `;
