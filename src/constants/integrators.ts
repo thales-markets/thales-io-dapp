@@ -14,7 +14,7 @@ export const INTEGRATORS = [
     {
         name: 'LeagueBot',
         address: '0x740e2bdE0D80DeCd72e16C5b60EaD9Cd22d9d90f',
-        url: '',
+        url: LINKS.LeagueBot,
     },
     {
         name: 'Spongly',

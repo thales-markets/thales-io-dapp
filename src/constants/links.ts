@@ -9,6 +9,7 @@ const LINKS = {
     Overtime: 'https://overtimemarkets.xyz/',
     BookieBot: 'https://bookiebot.app/',
     Spongly: 'https://spongly.eth.limo/dashboard/',
+    LeagueBot: 'https://twitter.com/TeamLeagueBot',
     TaleOfThales: 'https://thalesmarket.io/tale-of-thales',
     MarketingAssets: 'https://docs.thales.io/resources/marketing-assets',
     SpeedMarkets: 'https://speedmarkets.xyz/',
