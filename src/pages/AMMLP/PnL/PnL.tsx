@@ -81,13 +81,7 @@ const PnL: React.FC<PnlProps> = ({ lifetimePnl, type, liquidityPool }) => {
                     cx={cx}
                     cy={cy}
                     r="4"
-                    fill={
-                        value === 0
-                            ? theme.textColor.primary
-                            : value > 0
-                            ? theme.textColor.secondary
-                            : theme.textColor.tertiary
-                    }
+                    fill={value === 0 ? theme.chart.positive : value > 0 ? theme.chart.positive : theme.chart.negative}
                 />
             </svg>
         );
