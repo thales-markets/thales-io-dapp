@@ -18,7 +18,7 @@ const useWidgetBotScript = (preventWidgetLoad: boolean, theme: ThemeInterface) =
                 channel: '907009541965742080',
                 css: `
                     .button {
-                        background-color: ${theme.background.primary};
+                        background-color: #5f70be;
                         border: none;
                         box-shadow: none;
                     }
