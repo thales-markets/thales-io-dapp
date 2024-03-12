@@ -25,6 +25,7 @@ export const MobileContainer = styled(FlexDivColumnNative)`
     justify-content: start;
     gap: 10px;
     z-index: 1;
+    margin-bottom: 50px;
     > div {
         background-color: ${(props) => props.theme.background.primary};
         border-radius: 8px;
