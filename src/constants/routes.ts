@@ -3,8 +3,8 @@ const ROUTES = {
     Dashboard: '/dashboard',
     AmmLP: {
         Home: '/amm-lp',
-        SportsAMM: '/amm-lp?tab=overtime-single',
-        ParlayAMM: '/amm-lp?tab=overtime-parlay',
+        SportsAMM: '/amm-lp?tab=sports-amm',
+        ParlayAMM: '/amm-lp?tab=parlay-amm',
     },
     Token: {
         Staking: {

@@ -137,7 +137,11 @@ export const Icon = styled.i`
     margin-left: 5px;
 `;
 
-export const DelegratedAddressWrapper = styled(FlexDiv)`
+export const DelegatedAddressWrapper = styled(FlexDiv)`
     flex-direction: column;
     margin-top: 20px;
+`;
+
+export const DelegatedAddress = styled.span`
+    font-size: 12px;
 `;
