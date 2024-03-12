@@ -34,7 +34,8 @@ import {
     Bottom,
     ClaimContainer,
     Container,
-    DelegratedAddressWrapper,
+    DelegatedAddress,
+    DelegatedAddressWrapper,
     Message,
     Middle,
     StyledLink,
@@ -444,7 +445,7 @@ const AccPreferences: React.FC = () => {
                             <SectionDescription>
                                 {t('staking.acc-preferences.delegate.description-2')}
                             </SectionDescription>
-                            <DelegratedAddressWrapper>
+                            <DelegatedAddressWrapper>
                                 {!!addressesThatDelegateToYou.length && (
                                     <Subtitle>
                                         {t('staking.acc-preferences.delegate.addresses-delegating-to-you')}:
@@ -458,12 +459,12 @@ const AccPreferences: React.FC = () => {
                                             target="_blank"
                                             rel="noreferrer"
                                         >
-                                            {address}
+                                            <DelegatedAddress>{address}</DelegatedAddress>
                                             <ArrowIcon width="8" height="8" />
                                         </StyledLink>
                                     );
                                 })}
-                            </DelegratedAddressWrapper>
+                            </DelegatedAddressWrapper>
                         </FlexDivColumn>
                     </FlexDiv>
                 </Top>
