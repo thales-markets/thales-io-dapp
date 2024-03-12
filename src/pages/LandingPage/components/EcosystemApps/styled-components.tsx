@@ -5,6 +5,7 @@ import { FlexDiv } from 'styles/common';
 export const EcosystemAppsContainer = styled(FlexDiv)`
     position: relative;
     gap: 30px;
+    z-index: 1;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
     }
