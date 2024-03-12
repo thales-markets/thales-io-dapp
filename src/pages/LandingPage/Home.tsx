@@ -276,31 +276,31 @@ const Home: React.FC = () => {
                                     hideLine
                                     title={t('home.buying-selling.buying.steps-title')}
                                 >
-                                    <Description marginBottom="5">
+                                    <Description marginBottom={5}>
                                         <FlexDiv>
                                             <BulletNumberIcon className="icon icon--bullet-one" />
                                             {t('home.buying-selling.buying.step-1')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description marginBottom="5">
+                                    <Description marginBottom={5}>
                                         <FlexDiv>
                                             <BulletNumberIcon className="icon icon--bullet-two" />
                                             {t('home.buying-selling.buying.step-2')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description marginBottom="5">
+                                    <Description marginBottom={5}>
                                         <FlexDiv>
                                             <BulletNumberIcon className="icon icon--bullet-three" />
                                             {t('home.buying-selling.buying.step-3')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description marginBottom="5">
+                                    <Description marginBottom={5}>
                                         <FlexDiv>
                                             <BulletNumberIcon className="icon icon--bullet-four" />
                                             {t('home.buying-selling.buying.step-4')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description marginBottom="5">
+                                    <Description marginBottom={5}>
                                         <FlexDiv>
                                             <BulletNumberIcon className="icon icon--bullet-five" />
                                             {t('home.buying-selling.buying.step-5')}
@@ -324,13 +324,13 @@ const Home: React.FC = () => {
                                     hideLine
                                     title={t('home.buying-selling.selling.steps-title')}
                                 >
-                                    <Description marginBottom="5">
+                                    <Description marginBottom={5}>
                                         <FlexDiv>
                                             <BulletNumberIcon className="icon icon--bullet-one" />
                                             {t('home.buying-selling.selling.step-1')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description marginBottom="5">
+                                    <Description marginBottom={5}>
                                         <FlexDiv>
                                             <BulletNumberIcon className="icon icon--bullet-two" />
                                             {t('home.buying-selling.selling.step-2')}
