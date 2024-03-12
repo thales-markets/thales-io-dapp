@@ -98,7 +98,8 @@
         "@walletconnect/window-metadata": "^1.0.1",
         "@walletconnect/legacy-client": "^2.0.0",
         "@walletconnect/legacy-modal": "^2.0.0",
-        "@walletconnect/events": "^1.0.1"
+        "@walletconnect/events": "^1.0.1",
+        "@wagmi/connectors": "0.3.22"
     },
     "scripts": {
         "start": "react-scripts --openssl-legacy-provider start",
