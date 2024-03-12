@@ -331,3 +331,39 @@
 .icon--eth-logo:before {
     content: '\0079';
 }
+
+.icon--bullet-one:before {
+    content: '\00A1';
+}
+
+.icon--bullet-two:before {
+    content: '\00A2';
+}
+
+.icon--bullet-three:before {
+    content: '\00A3';
+}
+
+.icon--bullet-four:before {
+    content: '\00A4';
+}
+
+.icon--bullet-five:before {
+    content: '\00A5';
+}
+
+.icon--bullet-six:before {
+    content: '\00A6';
+}
+
+.icon--bullet-seven:before {
+    content: '\00A7';
+}
+
+.icon--bullet-eight:before {
+    content: '\00A8';
+}
+
+.icon--bullet-nine:before {
+    content: '\00A9';
+}

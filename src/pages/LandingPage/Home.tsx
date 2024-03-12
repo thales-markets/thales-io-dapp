@@ -22,7 +22,7 @@ import Timeline from './components/Timeline';
 import {
     About,
     Backers,
-    BulletNumber,
+    BulletNumberIcon,
     BuySection,
     BuySellSections,
     Description,
@@ -276,33 +276,33 @@ const Home: React.FC = () => {
                                     hideLine
                                     title={t('home.buying-selling.buying.steps-title')}
                                 >
-                                    <Description>
+                                    <Description marginBottom="5">
                                         <FlexDiv>
-                                            <BulletNumber>{'\u2776'}</BulletNumber>
+                                            <BulletNumberIcon className="icon icon--bullet-one" />
                                             {t('home.buying-selling.buying.step-1')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description>
+                                    <Description marginBottom="5">
                                         <FlexDiv>
-                                            <BulletNumber>{'\u2777'}</BulletNumber>
+                                            <BulletNumberIcon className="icon icon--bullet-two" />
                                             {t('home.buying-selling.buying.step-2')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description>
+                                    <Description marginBottom="5">
                                         <FlexDiv>
-                                            <BulletNumber>{'\u2778'}</BulletNumber>
+                                            <BulletNumberIcon className="icon icon--bullet-three" />
                                             {t('home.buying-selling.buying.step-3')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description>
+                                    <Description marginBottom="5">
                                         <FlexDiv>
-                                            <BulletNumber>{'\u2779'}</BulletNumber>
+                                            <BulletNumberIcon className="icon icon--bullet-four" />
                                             {t('home.buying-selling.buying.step-4')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description>
+                                    <Description marginBottom="5">
                                         <FlexDiv>
-                                            <BulletNumber>{'\u277A'}</BulletNumber>
+                                            <BulletNumberIcon className="icon icon--bullet-five" />
                                             {t('home.buying-selling.buying.step-5')}
                                         </FlexDiv>
                                     </Description>
@@ -324,15 +324,15 @@ const Home: React.FC = () => {
                                     hideLine
                                     title={t('home.buying-selling.selling.steps-title')}
                                 >
-                                    <Description>
+                                    <Description marginBottom="5">
                                         <FlexDiv>
-                                            <BulletNumber>{'\u2776'}</BulletNumber>
+                                            <BulletNumberIcon className="icon icon--bullet-one" />
                                             {t('home.buying-selling.selling.step-1')}
                                         </FlexDiv>
                                     </Description>
-                                    <Description>
+                                    <Description marginBottom="5">
                                         <FlexDiv>
-                                            <BulletNumber>{'\u2777'}</BulletNumber>
+                                            <BulletNumberIcon className="icon icon--bullet-two" />
                                             {t('home.buying-selling.selling.step-2')}
                                         </FlexDiv>
                                     </Description>

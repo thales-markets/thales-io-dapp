@@ -155,9 +155,9 @@ export const Description = styled(FlexDivColumn)<{ marginBottom?: number; margin
     }
 `;
 
-export const BulletNumber = styled.span`
-    font-family: monospace;
-    font-size: 22px;
+export const BulletNumberIcon = styled.i`
+    font-weight: normal;
+    font-size: 14px;
     margin-right: 5px;
 `;
 
