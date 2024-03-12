@@ -350,7 +350,7 @@ const Bridge: React.FC = () => {
                     </FlexDivSpaceBetween>
                     <InputContainer mediaMarginBottom={10}>
                         <NumericInput
-                            value={truncToDecimals(amount, 2)}
+                            value={amount}
                             onChange={(_, value) => setAmount(value)}
                             disabled={isSubmitting}
                             placeholder={t('common.enter-amount')}

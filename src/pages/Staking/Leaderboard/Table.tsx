@@ -36,7 +36,7 @@ const LeaderboardTable: FC<TransactionsTableProps> = memo(({ stakingData, isLoad
                     Header: <>{t('staking.leaderboard.table.address')}</>,
 
                     accessor: (row: any) => {
-                        return <ViewEtherscanLink showAddress hash={row.id} />;
+                        return <ViewEtherscanLink isAddress showAddress hash={row.id} />;
                     },
                 },
                 {
