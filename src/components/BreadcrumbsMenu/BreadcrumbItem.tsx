@@ -49,7 +49,11 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ item, splittedPath, ind
                                         key={`${dpIndex}-dd`}
                                         onClick={() => {
                                             setIsOpen(false);
-                                            navigateTo(dropdownItem.route, undefined, true);
+                                            if (!dropdownItem.route.includes('http')) {
+                                                navigateTo(dropdownItem.route, undefined, true);
+                                            } else {
+                                                window.open(dropdownItem.route);
+                                            }
                                         }}
                                     >
                                         {t(dropdownItem.i18label)}
