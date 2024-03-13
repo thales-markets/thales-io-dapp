@@ -1,18 +1,17 @@
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
-import ROUTES, { ROUTE_NAMES } from 'constants/routes';
+import ROUTES from 'constants/routes';
 import { SpaceKey } from 'enums/governance';
 import { TFunction } from 'i18next';
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import OutsideClickHandler from 'react-outside-click-handler';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
-import { navigateTo } from 'utils/routes';
+import BreadcrumbItem from './BreadcrumbItem';
 
 export const BREADCRUMBS_DROPDOWN_ITEMS = {
     AmmLP: [
@@ -104,12 +103,8 @@ const BreadcrumbsMenu: React.FC = () => {
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
     const location = useLocation();
 
-    const [dropdownIndex, setDropdownIndex] = useState<number | undefined>(undefined);
-
     const splittedPath = location.pathname !== '/' ? location.pathname.split('/').filter((item) => item) : [];
     const searchQuery = location?.search;
-
-    console.log('dropdownIndex ', dropdownIndex);
 
     return isMobile && splittedPath.length ? (
         <Wrapper>
@@ -117,56 +112,7 @@ const BreadcrumbsMenu: React.FC = () => {
                 <Icon className="icon icon--house" />
             </SPAAnchor>
             {splittedPath.map((item, index) => {
-                const dropdownItems = getDropdownItems(item);
-                return (
-                    <>
-                        {showDropdownItem(item) && <Arrow className="thales-icon thales-icon--right" />}
-                        {dropdownItems.length > 0 ? (
-                            <ItemContainer>
-                                <Item
-                                    onClick={() => {
-                                        if (dropdownIndex == index) {
-                                            setDropdownIndex(undefined);
-                                            return;
-                                        } else {
-                                            setDropdownIndex(index);
-                                        }
-                                    }}
-                                >
-                                    {formatBreadcrumbsItem(item)}
-                                    <ArrowDown className="icon icon--caret-down" />
-                                </Item>
-                                <OutsideClickHandler onOutsideClick={() => setDropdownIndex(undefined)}>
-                                    <DropdownContainer show={dropdownIndex == index}>
-                                        {dropdownItems.map((dropdownItem, dpIndex) => {
-                                            return (
-                                                <DropdownItem
-                                                    key={`${dpIndex}-dd`}
-                                                    onClick={() => {
-                                                        setDropdownIndex(undefined);
-                                                        navigateTo(dropdownItem.route, undefined, true);
-                                                    }}
-                                                >
-                                                    {t(dropdownItem.i18label)}
-                                                </DropdownItem>
-                                            );
-                                        })}
-                                    </DropdownContainer>
-                                </OutsideClickHandler>
-                            </ItemContainer>
-                        ) : showDropdownItem(item) ? (
-                            <SPAAnchor
-                                {...(index !== splittedPath.length - 1
-                                    ? { href: `/${splittedPath.slice(0, index).join('/')}` }
-                                    : {})}
-                            >
-                                <Item>{formatBreadcrumbsItem(item, t)}</Item>
-                            </SPAAnchor>
-                        ) : (
-                            <></>
-                        )}
-                    </>
-                );
+                return <BreadcrumbItem key={index} index={index} item={item} splittedPath={splittedPath} />;
             })}
             {searchQuery ? (
                 <>
@@ -182,20 +128,6 @@ const BreadcrumbsMenu: React.FC = () => {
     ) : (
         <></>
     );
-};
-
-const getDropdownItems = (itemName: string) => {
-    if (itemName == ROUTE_NAMES.AmmLP) return BREADCRUMBS_DROPDOWN_ITEMS.AmmLP;
-    if (itemName == ROUTE_NAMES.Staking) return BREADCRUMBS_DROPDOWN_ITEMS.Staking;
-    if (itemName == ROUTE_NAMES.Token) return BREADCRUMBS_DROPDOWN_ITEMS.Token;
-    if (itemName == ROUTE_NAMES.DAO) return BREADCRUMBS_DROPDOWN_ITEMS.DAO;
-    if (itemName == ROUTE_NAMES.About) return BREADCRUMBS_DROPDOWN_ITEMS.About;
-    return [];
-};
-
-const showDropdownItem = (item: string): boolean => {
-    if (item.toLowerCase().includes('0x')) return false;
-    return true;
 };
 
 const formatBreadcrumbsItem = (item: string, t?: TFunction) => {
@@ -230,41 +162,6 @@ const Icon = styled.i`
 
 const Arrow = styled(Icon)`
     font-size: 13px;
-`;
-
-const ArrowDown = styled(Icon)`
-    font-size: 13px;
-`;
-
-const ItemContainer = styled(FlexDiv)`
-    position: relative;
-`;
-
-const DropdownContainer = styled.div<{ show: boolean }>`
-    display: ${(props) => (props.show ? 'flex' : 'none')};
-    flex-direction: column;
-    min-width: 100px;
-    width: max-content;
-    border-radius: 8px;
-    position: absolute;
-    top: 15px;
-    z-index: 2;
-    padding: 7px;
-    background: ${(props) => props.theme.background.primary};
-    box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
-    transform: translateX(-25%);
-`;
-
-const DropdownItem = styled.div<{ active?: boolean }>`
-    text-align: left;
-    cursor: pointer;
-    color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.textColor.primary)};
-    padding: 8px;
-    border-radius: 8px;
-    font-size: 14px;
-    &:hover {
-        background: ${(props) => props.theme.background.quaternary};
-    }
 `;
 
 export default BreadcrumbsMenu;
