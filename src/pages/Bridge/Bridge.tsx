@@ -1,6 +1,5 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import ApprovalModal from 'components/ApprovalModal';
-import Button from 'components/Button';
 import InlineLoader from 'components/InlineLoader';
 import NetworkSwitch from 'components/NetworkSwitch';
 import Slippage from 'components/Slippage';
@@ -594,6 +593,24 @@ const DetailsIcon = styled.i`
     color: ${(props) => props.theme.textColor.tertiary};
     cursor: pointer;
     margin-bottom: 5px;
+`;
+
+const Button = styled.button<{ padding?: string; disabled?: boolean; width?: string }>`
+    cursor: pointer;
+    color: ${(props) => props.theme.background.primary};
+    padding: ${(props) => props.padding || '5px 15px'};
+    border-radius: 8px;
+    border: 0;
+    background: ${(props) => props.theme.textColor.secondary};
+    text-align: center;
+    font-family: NunitoExtraBold;
+    font-size: 13px;
+    text-transform: uppercase;
+    width: ${(props) => props.width || 'auto'};
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
 `;
 
 export default Bridge;
