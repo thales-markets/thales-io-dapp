@@ -402,7 +402,7 @@ const Bridge: React.FC = () => {
                                 <FlexDivRow>
                                     <span>{`1 ${THALES_CURRENCY} on `}</span>
                                     <NetworkIcon networkId={networkId} size={14} margin="1px 4px 0px 4px" />
-                                    <span>{` ≈ ${bridgeRate} ${THALES_CURRENCY} on `}</span>
+                                    <span>{` ≈ ${formatCurrencyWithKey(THALES_CURRENCY, bridgeRate)} on `}</span>
                                     <NetworkIcon networkId={destNetwork} size={14} margin="1px 0px 0px 4px" />
                                 </FlexDivRow>,
                                 bridgeRate > 0,
