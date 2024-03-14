@@ -329,7 +329,7 @@
             },
             "base-rewards": {
                 "title": "Core staking rewards",
-                "current-multiplier": "Your current multiplier : ",
+                "current-multiplier": "Your multiplier : ",
                 "your-staked": "Your THALES staked",
                 "staking-divider": "Staking divider",
                 "total-staked": "Total THALES staked",
@@ -344,7 +344,7 @@
             },
             "your-rewards": {
                 "title": "Gamified staking rewards",
-                "current-points": "Your current points : ",
+                "current-points": "Your points : ",
                 "trading-volume": "Trading volume",
                 "amm-lp-balances": "AMM LP balances",
                 "vaults-balances": "Vaults balances",

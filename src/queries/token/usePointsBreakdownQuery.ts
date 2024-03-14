@@ -72,8 +72,8 @@ const usePointsBreakdownQuery = (
                     thalesDivider,
                     totalBonus,
                 ] = await Promise.all([
-                    stakingBonusRewardsManager?.getEstimatedCurrentVaultPoints(walletAddress),
-                    stakingBonusRewardsManager?.getEstimatedCurrentLPsPoints(walletAddress),
+                    stakingBonusRewardsManager?.userVaultBasePointsPerRound(walletAddress, Number(period) - 1),
+                    stakingBonusRewardsManager?.userLPBasePointsPerRound(walletAddress, Number(period) - 1),
                     stakingBonusRewardsManager?.userTradingBasePointsPerRound(walletAddress, Number(period) - 1),
                     stakingBonusRewardsManager?.vaultsMultiplier(),
                     stakingBonusRewardsManager?.lpMultiplier(),
@@ -85,25 +85,20 @@ const usePointsBreakdownQuery = (
                 ]);
 
                 return {
-                    vaultsVolume: formatCurrencyWithKey(
-                        USD_SIGN,
-                        bigNumberFormatter(vaultsPoints) / bigNumberFormatter(vaultsMultiplier)
-                    ),
-                    lpVolume: formatCurrencyWithKey(
-                        USD_SIGN,
-                        bigNumberFormatter(lpPoints) / bigNumberFormatter(lpMultiplier)
-                    ),
-                    tradingVolume: formatCurrencyWithKey(
-                        USD_SIGN,
-                        bigNumberFormatter(tradingPoints) / bigNumberFormatter(tradingMultiplier)
-                    ),
+                    vaultsVolume: formatCurrencyWithKey(USD_SIGN, bigNumberFormatter(vaultsPoints)),
+                    lpVolume: formatCurrencyWithKey(USD_SIGN, bigNumberFormatter(lpPoints)),
+                    tradingVolume: formatCurrencyWithKey(USD_SIGN, bigNumberFormatter(tradingPoints)),
                     vaultsMultiplier: bigNumberFormatter(vaultsMultiplier),
                     lpMultiplier: bigNumberFormatter(lpMultiplier),
                     tradingMultiplier: bigNumberFormatter(tradingMultiplier),
                     stakingMultiplier: formatCurrency(bigNumberFormatter(stakingMultiplier) + 1),
-                    vaultsPoints: formatCurrency(bigNumberFormatter(vaultsPoints)),
-                    lpPoints: formatCurrency(bigNumberFormatter(lpPoints)),
-                    tradingPoints: formatCurrency(bigNumberFormatter(tradingPoints)),
+                    vaultsPoints: formatCurrency(
+                        bigNumberFormatter(vaultsPoints) * bigNumberFormatter(vaultsMultiplier)
+                    ),
+                    lpPoints: formatCurrency(bigNumberFormatter(lpPoints) * bigNumberFormatter(lpMultiplier)),
+                    tradingPoints: formatCurrency(
+                        bigNumberFormatter(tradingPoints) * bigNumberFormatter(tradingMultiplier)
+                    ),
                     thalesStaked: formatCurrencyWithKey(THALES_CURRENCY, bigNumberFormatter(stakedBalance)),
                     thalesDivider: formatCurrencyWithKey(THALES_CURRENCY, Number(thalesDivider)),
                     totalPoints: formatCurrency(
