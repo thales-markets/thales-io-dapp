@@ -29,7 +29,6 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
     selectedNetworkId,
     setSelectedNetworkId,
     supportedNetworks,
-    forceNetworkSwitch,
     xl,
     isWalletConnectorSwitch,
 }) => {
@@ -68,7 +67,6 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
     const isLedgerLive = isLedgerDappBrowserProvider();
 
     // currently not supported network synchronization between browser without integrated wallet and wallet app on mobile
-    const hideNetworkSwitcher = !isWalletConnected && !forceNetworkSwitch;
 
     return (
         <OutsideClickHandler display="contents" onOutsideClick={() => isDropdownOpen && setIsDropdownOpen(false)}>
@@ -79,6 +77,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                         xl={xl}
                         selectedItem={true}
                         noHover
+                        centered={isWalletConnectorSwitch}
                     >
                         {!isWalletConnectorSwitch && (
                             <NetworkIconWrapper
@@ -113,19 +112,15 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
                                 isWalletConnectorSwitch={true}
                             >
-                                {isWalletConnected && React.createElement(selectedNetwork.icon)}
-                                {!hideNetworkSwitcher && (
-                                    <Icon
-                                        className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`}
-                                    />
-                                )}
+                                {React.createElement(selectedNetwork.icon)}
+                                <Icon className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`} />
                             </NetworkIconWrapper>
                         )}
                         {!isWalletConnectorSwitch && (
                             <Icon className={isDropdownOpen ? `icon icon--caret-up` : `icon icon--caret-down`} />
                         )}
                     </NetworkItem>
-                    {!hideNetworkSwitcher && isDropdownOpen && (
+                    {isDropdownOpen && (
                         <NetworkDropDown xl={xl}>
                             {Object.keys(filteredSupportedNetworks)
                                 .map((key) => {
@@ -225,7 +220,7 @@ const SelectedNetworkContainer = styled.div<{ cursor: string }>`
     } */
 `;
 
-const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?: boolean }>`
+const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?: boolean; centered?: boolean }>`
     display: flex;
     align-items: center;
     width: 100%;
@@ -233,6 +228,7 @@ const NetworkItem = styled.div<{ selectedItem?: boolean; noHover?: boolean; xl?:
     font-size: 12px;
     border-radius: 8px;
     text-transform: ${(props) => (props.xl ? 'uppercase' : 'none')};
+    justify-content: ${(props) => (props.centered ? 'center' : '')};
     &:hover {
         background: ${(props) => (props.noHover ? '' : props.theme.background.quaternary)};
     }

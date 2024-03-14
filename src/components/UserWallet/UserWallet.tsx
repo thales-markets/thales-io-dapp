@@ -17,6 +17,7 @@ const Container = styled.div<{ hidden?: boolean }>`
     visibility: ${(props) => (props.hidden ? 'hidden' : 'visible')};
     display: flex;
     z-index: 4;
+    height: 30px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
         justify-content: flex-end;
@@ -35,6 +36,7 @@ const Wrapper = styled.div`
     }
     > div > div {
         width: 150px;
+        height: 30px;
     }
 `;
 

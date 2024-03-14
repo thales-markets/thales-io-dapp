@@ -381,7 +381,6 @@ const Bridge: React.FC = () => {
                                 selectedNetworkId={destNetwork}
                                 setSelectedNetworkId={setDestNetwork}
                                 supportedNetworks={destSupportedNetworks}
-                                forceNetworkSwitch={true}
                             />
                         </NetworkSwitchWrapper>
                     </NetworkSwitchContainer>
