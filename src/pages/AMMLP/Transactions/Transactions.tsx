@@ -116,7 +116,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
                         <SelectContainer>
                             <Dropdown
                                 options={rounds.map((round) => round.value)}
-                                activeOption={Number(currentRound)}
+                                activeOption={Number(round)}
                                 onSelect={setRound}
                                 translationKey="ammlp"
                             />
