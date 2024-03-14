@@ -74,7 +74,7 @@ const usePointsBreakdownQuery = (
                 ] = await Promise.all([
                     stakingBonusRewardsManager?.getEstimatedCurrentVaultPoints(walletAddress),
                     stakingBonusRewardsManager?.getEstimatedCurrentLPsPoints(walletAddress),
-                    stakingBonusRewardsManager?.userTradingBasePointsPerRound(walletAddress, period),
+                    stakingBonusRewardsManager?.userTradingBasePointsPerRound(walletAddress, Number(period) - 1),
                     stakingBonusRewardsManager?.vaultsMultiplier(),
                     stakingBonusRewardsManager?.lpMultiplier(),
                     stakingBonusRewardsManager?.tradingMultiplier(),

@@ -79,7 +79,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                     </ItemTitle>
                                     <ItemValue>
                                         {pointsData?.totalBonusRewards
-                                            ? formatCurrencyWithKey(THALES_CURRENCY, pointsData?.totalBonusRewards, 2)
+                                            ? pointsData?.totalBonusRewards + ' ' + THALES_CURRENCY
                                             : '-'}
                                     </ItemValue>
                                 </GamifiedRewardItem>
