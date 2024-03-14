@@ -277,7 +277,7 @@ const Unstake: React.FC = () => {
     }, [amountToUnstake, thalesStaked]);
 
     return (
-        <EarnSection spanOnTablet={5} orderOnMobile={5} orderOnTablet={5}>
+        <EarnSection spanOnTablet={0} orderOnMobile={0} orderOnTablet={0}>
             <SectionContentContainer>
                 <UnstakingContainer twoButtons={isUnstakingInContract && unstakingEnded}>
                     {((!unstakingEnded && isUnstakingInContract) || !isUnstakingInContract) && (
@@ -347,7 +347,7 @@ const Unstake: React.FC = () => {
                         }
                         isBalanceLoading={userStakingDataQuery.isLoading}
                         width="100%"
-                        containerWidth="70%"
+                        containerWidth={isMobile ? '100%' : '70%'}
                     />
                 </InputContainer>
                 <ButtonsContainer twoButtons={isUnstakingInContract && unstakingEnded}>
@@ -368,6 +368,7 @@ const UnstakingContainer = styled(FlexDivColumnCentered)<{ twoButtons: boolean }
     margin: 0 auto 15px auto;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
+        margin: 20px auto 50px auto;
     }
 `;
 
