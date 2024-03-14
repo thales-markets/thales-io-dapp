@@ -143,6 +143,7 @@ const Wrapper = styled(FlexDiv)`
     width: 100%;
     justify-content: flex-start;
     margin-top: 10px;
+    z-index: 100;
 `;
 
 const Item = styled.span`
