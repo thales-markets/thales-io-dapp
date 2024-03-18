@@ -206,3 +206,17 @@ a {
     width: min-content;
     text-align: center;
 }
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 rgba(25, 248, 239, 0.7);
+	}
+
+	70% {
+		box-shadow: 0 0 0 10px rgba(25, 248, 239, 0);
+	}
+
+	100% {
+		box-shadow: 0 0 0 0 rgba(25, 248, 239, 0);
+	}
+}
