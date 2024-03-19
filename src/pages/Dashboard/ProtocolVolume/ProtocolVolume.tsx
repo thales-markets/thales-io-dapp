@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
 import { FlexDiv } from 'styles/common';
-import { formatCurrencyWithSign } from 'thales-utils';
+import { formatCurrency, formatCurrencyWithSign } from 'thales-utils';
 import { UsersStats, VolumeStats } from 'types/statistics';
 import {
     InfoSection,
@@ -72,9 +72,7 @@ const ProtocolVolume: React.FC = () => {
                             : '-'}
                     </InfoStats>
                     <InfoStats>{volumeStats ? formatCurrencyWithSign('$', volumeStats.speedAmmVolume) : '-'}</InfoStats>
-                    <InfoStats>
-                        {usersStats ? formatCurrencyWithSign('$', usersStats.totalUniqueUsers, 2, true) : '-'}
-                    </InfoStats>
+                    <InfoStats>{usersStats ? formatCurrency(usersStats.totalUniqueUsers, 2, true) : '-'}</InfoStats>
                 </InfoSection>
             </WidgetWrapper>
         </LoadingContainer>

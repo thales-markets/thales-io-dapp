@@ -151,7 +151,7 @@ const IntegratorsVolume: React.FC = () => {
                                     <InfoText>
                                         {integrator.id} <LinkArrow color={Colors.GRAY} />
                                     </InfoText>
-                                    <InfoStats>$ {formatCurrencyWithSign('$', integrator.totalVolume)}</InfoStats>
+                                    <InfoStats>{formatCurrencyWithSign('$', integrator.totalVolume)}</InfoStats>
                                 </SPAAnchor>
                             </FlexDivIntegrators>
                         ))}
