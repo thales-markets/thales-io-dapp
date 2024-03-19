@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { isMobile } from 'utils/device';
 import { RootState } from '../rootReducer';
 
 const sliceName = 'ui';
@@ -8,7 +9,7 @@ type UISliceState = {
 };
 
 const initialState: UISliceState = {
-    isMobile: false,
+    isMobile: isMobile(),
 };
 
 const uiSlice = createSlice({

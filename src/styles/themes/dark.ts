@@ -1,83 +1,61 @@
 import { Colors } from '../common';
 
 const darkTheme = {
-    fontFamily: {
-        primary: "'Fira Sans' !important",
-    },
     background: {
-        primary: Colors.GRAY_DARK,
+        primary: Colors.BLUE_DARK,
         secondary: Colors.GRAY,
-        tertiary: Colors.GRAY_LIGHT,
-        quaternary: Colors.GREEN,
+        tertiary: Colors.PURPLE_NAVY,
+        quaternary: Colors.YANKEES_BLUE,
+        quinary: Colors.METALLIC_BLUE,
+        senary: Colors.LIGHT_GRAY,
     },
     textColor: {
         primary: Colors.WHITE,
-        secondary: Colors.GRAY_LIGHT,
-        tertiary: Colors.RED,
-        quaternary: Colors.GREEN,
+        secondary: Colors.CYAN,
+        tertiary: Colors.GRAY,
+        quaternary: Colors.PURPLE_NAVY,
+        quinary: Colors.YANKEES_BLUE,
+        senary: Colors.LIGHT_GRAY,
+        septenary: Colors.DARKER_GRAY,
     },
     borderColor: {
         primary: Colors.GRAY,
-        secondary: Colors.GRAY_LIGHT,
-        tertiary: Colors.ORANGE,
-        quaternary: Colors.GREEN,
-    },
-    button: {
-        background: {
-            primary: Colors.GREEN,
-            secondary: Colors.GRAY_DARK,
-            tertiary: Colors.GRAY,
-            quaternary: Colors.GRAY_LIGHT,
-        },
-        textColor: {
-            primary: Colors.GRAY_DARK,
-            secondary: Colors.WHITE,
-            tertiary: Colors.GRAY_LIGHT,
-            quaternary: Colors.ORANGE,
-        },
-        borderColor: {
-            primary: Colors.GREEN,
-            secondary: Colors.GRAY_LIGHT,
-            tertiary: Colors.GRAY,
-            quaternary: Colors.GRAY_DARK,
-        },
-    },
-    input: {
-        background: {
-            primary: Colors.GRAY_DARK,
-            selection: {
-                primary: Colors.WHITE,
-            },
-        },
-        textColor: {
-            primary: Colors.WHITE,
-            secondary: Colors.GRAY_LIGHT,
-            tertiary: Colors.GRAY,
-            quaternary: Colors.RED,
-        },
-        borderColor: {
-            primary: Colors.GRAY_LIGHT,
-            secondary: Colors.GRAY,
-            focus: {
-                primary: Colors.GREEN,
-            },
-            error: {
-                primary: Colors.RED,
-            },
-        },
+        secondary: Colors.PURPLE_NAVY,
+        tertiary: Colors.METALLIC_BLUE,
+        quaternary: Colors.LIGHT_GRAY,
+        quinary: Colors.BLUE_DARK,
+        senary: Colors.CYAN,
     },
     link: {
         textColor: {
-            primary: Colors.GREEN,
+            primary: Colors.CYAN,
             secondary: Colors.WHITE,
+            tertiary: Colors.GRAY,
+        },
+    },
+    button: {
+        background: {
+            primary: Colors.PURPLE_NAVY,
+            secondary: Colors.METALLIC_BLUE,
+            tertiary: Colors.CYAN,
+            quaternary: Colors.INDEPENDENCE,
+        },
+        textColor: {
+            primary: Colors.WHITE,
+            secondary: Colors.GRAY,
+            tertiary: Colors.YANKEES_BLUE,
+        },
+        borderColor: {
+            primary: Colors.METALLIC_BLUE,
         },
     },
     error: {
         background: {
-            primary: Colors.GRAY_DARK,
+            primary: Colors.DARK_GRAY,
         },
         textColor: {
             primary: Colors.RED,
+            secondary: Colors.CHINA_PINK,
         },
         borderColor: {
             primary: Colors.RED,
@@ -85,69 +63,29 @@ const darkTheme = {
     },
     warning: {
         background: {
-            primary: Colors.GRAY_DARK,
+            primary: Colors.DARK_GRAY,
             secondary: Colors.GRAY,
         },
         textColor: {
             primary: Colors.ORANGE,
-            secondary: Colors.ORANGE_DARK,
+            secondary: Colors.DARK_ORANGE,
+            tertiary: Colors.EGG_BLUE,
+            quaternary: Colors.VENETIAN_RED,
         },
         borderColor: {
             primary: Colors.ORANGE,
         },
     },
-    info: {
-        background: {
-            primary: Colors.GRAY_DARK,
-        },
-        textColor: {
-            primary: Colors.BLUE,
-            secondary: Colors.BLUE_DARK,
-        },
-        borderColor: {
-            primary: Colors.BLUE,
-        },
-    },
-    table: {
-        textColor: {
-            primary: Colors.WHITE,
-            secondary: Colors.GRAY_DARK,
-            tertiary: Colors.ORANGE,
-            quaternary: Colors.GREEN,
-        },
-    },
-    positionColor: {
-        up: Colors.GREEN,
-        down: Colors.RED,
-        in: Colors.GREEN_LIGHT,
-        out: Colors.PURPLE,
-    },
-    tradeTypeColor: {
-        buy: Colors.GREEN,
-        sell: Colors.RED,
-    },
-    landingPage: {
-        background: {
-            primary: Colors.BLUE_MIDNIGHT,
-            secondary: Colors.BLUE_MIDNIGHT_LIGHT,
-        },
-        textColor: {
-            primary: Colors.WHITE,
-            secondary: Colors.BLUE_SKY,
-        },
-    },
-    tokenPage: {
-        border: {
-            primary: Colors.GRAY,
-            secondary: Colors.PURPLE,
-        },
+    chart: {
+        positive: Colors.TURQUOISE,
+        negative: Colors.INDIAN_RED,
     },
     toastMessages: {
         success: {
             background: {
                 primary: Colors.GREEN,
-                secondary: Colors.GREEN_LIGHT,
-                tertiary: Colors.GREEN_DARK,
+                secondary: Colors.LIGHT_GREEN,
+                tertiary: Colors.DARK_GREEN,
             },
             textColor: {
                 primary: Colors.BLACK,
@@ -156,7 +94,7 @@ const darkTheme = {
         info: {
             background: {
                 primary: Colors.BLUE_DARK,
-                secondary: Colors.BLUE_LIGHT,
+                secondary: Colors.LIGHT_BLUE,
                 tertiary: Colors.BLUE,
             },
             textColor: {
@@ -166,8 +104,8 @@ const darkTheme = {
         warning: {
             background: {
                 primary: Colors.ORANGE,
-                secondary: Colors.ORANGE_LIGHT,
-                tertiary: Colors.ORANGE_DARK,
+                secondary: Colors.LIGHT_ORANGE,
+                tertiary: Colors.DARK_ORANGE,
             },
             textColor: {
                 primary: Colors.BLACK,
@@ -176,19 +114,13 @@ const darkTheme = {
         error: {
             background: {
                 primary: Colors.RED,
-                secondary: Colors.RED_LIGHT,
-                tertiary: Colors.RED_DARK,
+                secondary: Colors.LIGHT_RED,
+                tertiary: Colors.DARK_RED,
             },
             textColor: {
                 primary: Colors.BLACK,
             },
         },
-    },
-    flexCard: {
-        down: Colors.RED,
-        up: Colors.GREEN,
-        resolved: Colors.YELLOW_DARK,
-        text: Colors.GRAY_BLUE,
     },
 };
 

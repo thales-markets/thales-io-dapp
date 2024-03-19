@@ -1,3 +1,5 @@
+import ROUTES from 'constants/routes';
+import { SpaceKey } from 'enums/governance';
 import { createBrowserHistory, createHashHistory } from 'history';
 
 const ifIpfsDeployment = process.env.REACT_APP_IPFS_DEPLOYMENT === 'true';
@@ -11,5 +13,11 @@ export const navigateTo = (path: string, replacePath = false, scrollToTop = fals
 };
 
 export const buildHref = (route: string) => `${ifIpfsDeployment ? '#' : ''}${route}`;
+
+export const navigateToGovernance = (spaceKey?: SpaceKey, id?: string, replacePath = false) =>
+    navigateTo(`${ROUTES.DAO.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`, replacePath);
+
+export const buildGovernanceHref = (spaceKey?: SpaceKey, id?: string) =>
+    `${ifIpfsDeployment ? '#' : ''}${ROUTES.DAO.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`;
 
 export { history };

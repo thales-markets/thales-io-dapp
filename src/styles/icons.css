@@ -1,0 +1,373 @@
+.icon {
+    display: inline-block;
+    font-family: Icons !important;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.thales-icon {
+    display: inline-block;
+    font-family: ThalesIcons !important;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.icon--ecosystem-fallback:before {
+    content: '\0075';
+}
+
+.icon--thales-logo:before {
+    content: '\006A';
+}
+
+.icon--thales:before {
+    content: '\0021';
+}
+
+.icon--github:before {
+    content: '\0022';
+}
+
+.icon--medium:before {
+    content: '\0023';
+}
+
+.icon--twitter:before {
+    content: '\0024';
+}
+
+.icon--discord:before {
+    content: '\0025';
+}
+
+.icon--cross:before {
+    content: '\002F';
+}
+
+.icon--checkmark:before {
+    content: '\0030';
+}
+
+.icon--lightbulb:before {
+    content: '\0033';
+}
+
+.icon--wallet:before {
+    content: '\003A';
+}
+
+.icon--thales-round-logo:before {
+    content: '\003B';
+}
+
+.icon--daedalus:before {
+    content: '\0061';
+}
+
+.icon--zee-prime:before {
+    content: '\0062';
+}
+
+.icon--iosiro:before {
+    content: '\0063';
+}
+
+.icon--arbitrum:before {
+    content: '\0064';
+}
+
+.icon--synthetix:before {
+    content: '\0065';
+}
+
+.icon--base:before {
+    content: '\0066';
+}
+
+.icon--chainlink:before {
+    content: '\0067';
+}
+
+.icon--optimism:before {
+    content: '\0068';
+}
+
+.icon--pyth:before {
+    content: '\0069';
+}
+
+.icon--protocol-volume:before {
+    content: '\0040';
+}
+
+.icon--house:before {
+    content: '\0035';
+}
+
+.icon--pig:before {
+    content: '\0036';
+}
+
+.icon--gift:before {
+    content: '\0047';
+}
+
+.icon--download:before {
+    content: '\004B';
+}
+
+.icon--person:before {
+    content: '\0032';
+}
+
+.icon--staking:before {
+    content: '\0037';
+}
+
+.icon--burn:before {
+    content: '\003D';
+}
+
+.icon--governance:before {
+    content: '\003C';
+}
+
+.icon--integrators:before {
+    content: '\004A';
+}
+
+.icon--thales-cog:before {
+    content: '\004C';
+}
+
+.icon--tale-of-thales:before {
+    content: '\006B';
+}
+
+.icon--telegram:before {
+    content: '\006C';
+}
+
+.icon--bookie:before {
+    content: '\0073';
+}
+
+.icon--thales-markets:before {
+    content: '\006D';
+}
+
+.icon--overtime:before {
+    content: '\006E';
+}
+
+.icon--spongly:before {
+    content: '\006F';
+}
+
+.icon--framework:before {
+    content: '\0071';
+}
+
+.icon--docs:before {
+    content: '\0026';
+}
+
+.icon--framework:before {
+    content: '\0071';
+}
+
+.icon--koji:before {
+    content: '\0070';
+}
+
+.icon--lao:before {
+    content: '\0072';
+}
+
+.icon--token-widget:before {
+    content: '\0048';
+}
+
+.icon--docs:before {
+    content: '\0026';
+}
+
+.icon--lock:before {
+    content: '\004D';
+}
+
+.icon--hourglass:before {
+    content: '\0042';
+}
+
+.icon--magnifying-glass:before {
+    content: '\003E';
+}
+
+.icon--dollar-arrow-circle:before {
+    content: '\0049';
+}
+
+.icon--caret-up:before {
+    content: '\004E';
+}
+
+.icon--caret-down:before {
+    content: '\004F';
+}
+
+.icon--caret-double:before {
+    content: '\0052';
+}
+
+.icon--delegate:before {
+    content: '\0046';
+}
+
+.icon--merge:before {
+    content: '\0039';
+}
+
+.icon--claim:before {
+    content: '\0038';
+}
+
+.icon--circle-check:before {
+    content: '\0043';
+}
+
+.icon--circle-cross:before {
+    content: '\0044';
+}
+
+.icon--people:before {
+    content: '\0034';
+}
+
+.icon--proposal:before {
+    content: '\0045';
+}
+
+.icon--sleep:before {
+    content: '\0031';
+}
+
+.icon--circle-arrow-down:before {
+    content: '\0050';
+}
+
+.icon--aerodrome:before {
+    content: '\0074';
+}
+
+.icon--velodrome:before {
+    content: '\0075';
+}
+
+.icon--camelot:before {
+    content: '\0076';
+}
+
+.icon--speed-markets:before {
+    content: '\0060';
+}
+
+.icon--external-arrow:before {
+    content: '\0051';
+}
+
+.icon--transactions:before {
+    content: '\0054';
+}
+
+.icon--menu:before {
+    content: '\0057';
+}
+
+.thales-icon--left:before {
+    content: '\0074';
+}
+
+.thales-icon--right:before {
+    content: '\007A';
+}
+
+.thales-icon--close:before {
+    content: '\0042';
+}
+
+.thales-icon--gear:before {
+    content: '\0033';
+}
+
+.thales-icon--arrow-up:before {
+    content: '\0068';
+}
+
+.thales-icon--arrow-down:before {
+    content: '\006B';
+}
+
+.thales-icon--double-arrow:before {
+    content: '\006A';
+}
+
+.icon--house:before {
+    content: '\0056';
+}
+
+.icon--op-logo:before {
+    content: '\0078';
+}
+
+.icon--arb-logo:before {
+    content: '\0077';
+}
+
+.icon--base-logo:before {
+    content: '\0076';
+}
+
+.icon--eth-logo:before {
+    content: '\0079';
+}
+
+.icon--bullet-one:before {
+    content: '\00A1';
+}
+
+.icon--bullet-two:before {
+    content: '\00A2';
+}
+
+.icon--bullet-three:before {
+    content: '\00A3';
+}
+
+.icon--bullet-four:before {
+    content: '\00A4';
+}
+
+.icon--bullet-five:before {
+    content: '\00A5';
+}
+
+.icon--bullet-six:before {
+    content: '\00A6';
+}
+
+.icon--bullet-seven:before {
+    content: '\00A7';
+}
+
+.icon--bullet-eight:before {
+    content: '\00A8';
+}
+
+.icon--bullet-nine:before {
+    content: '\00A9';
+}
+
+.icon--rewards:before {
+    content: '\002E';
+}

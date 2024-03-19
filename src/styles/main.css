@@ -1,5 +1,10 @@
+@import './fonts.css';
+@import './icons.css';
+@import './logos.css';
+
 html {
     scroll-behavior: smooth;
+    background: #313652;
 }
 
 html,
@@ -110,6 +115,7 @@ body {
         env(safe-area-inset-left, 0);
     overflow-x: hidden !important;
     padding-right: 0 !important;
+    font-family: Nunito;
 }
 ol,
 ul {
@@ -135,6 +141,7 @@ table {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     scrollbar-width: thin;
+    scrollbar-color: #c6c8da transparent;
 }
 
 *::-webkit-scrollbar {
@@ -142,9 +149,11 @@ table {
     width: 10px;
 }
 *::-webkit-scrollbar-track {
+    background: #313652;
     border-radius: 8px;
 }
 *::-webkit-scrollbar-thumb {
+    background: #c6c8da;
     border-radius: 8px;
 }
 
@@ -160,16 +169,54 @@ input[type='number'] {
 
 #root {
     height: 100vh;
+    width: 100vw;
     --sat: env(safe-area-inset-top);
     --sar: env(safe-area-inset-right);
     --sab: env(safe-area-inset-bottom);
     --sal: env(safe-area-inset-left);
-
     &.collapse {
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 }
 
 a {
     text-decoration: none;
+}
+
+.MuiMenu-paper {
+    background: #313652 !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+
+.MuiMenu-paper .Mui-selected {
+    background: #1f2438 !important;
+}
+
+.MuiMenu-paper .MuiListItem-button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.chartLabel {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    fill: rgb(255, 255, 255) !important;
+    font-family: Nunito !important;
+    width: min-content;
+    text-align: center;
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 rgba(25, 248, 239, 0.7);
+	}
+
+	70% {
+		box-shadow: 0 0 0 10px rgba(25, 248, 239, 0);
+	}
+
+	100% {
+		box-shadow: 0 0 0 0 rgba(25, 248, 239, 0);
+	}
 }
