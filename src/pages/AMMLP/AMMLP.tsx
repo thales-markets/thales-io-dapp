@@ -389,7 +389,7 @@ const AMMLP: React.FC = () => {
     };
 
     const handleWithdrawalRequest = async () => {
-        const { signer } = networkConnectoror;
+        const { signer } = networkConnector;
         if (signer && activeLiquidityPoolContract) {
             const id = toast.loading(
                 getDefaultToastContent(t('markets.market.toast-messsage.transaction-pending')),
