@@ -415,7 +415,7 @@ const UnstakingTitleText = styled.span`
     font-size: 14px;
     line-height: 15px;
     margin-right: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     @media (max-width: 1192px) {
         font-size: 12px;
     }
