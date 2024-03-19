@@ -14,7 +14,7 @@ export const SUPPORTED_NETWORKS_NAMES: Record<number, string> = {
     [Network.Base]: 'BASE',
 };
 
-export const DEFAULT_NETWORK: { name: string; networkId: Exclude<Network, Network.OptimismGoerli> } = {
+export const DEFAULT_NETWORK: { name: string; networkId: Network } = {
     name: SUPPORTED_NETWORKS_NAMES[Network.OptimismMainnet],
     networkId: Network.OptimismMainnet,
 };
