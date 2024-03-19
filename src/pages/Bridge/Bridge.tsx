@@ -519,6 +519,7 @@ const NetworkSwitchContainer = styled(FlexDivColumn)`
     position: relative;
     margin-top: 10px;
     margin-bottom: 15px;
+    z-index: 2;
 `;
 
 const NetworkSwitchLabel = styled(FlexDivStart)`

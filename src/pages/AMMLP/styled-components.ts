@@ -59,7 +59,8 @@ export const InputContainer = styled.div<{ marginTop?: number; mediaMarginBottom
     display: flex;
     flex-direction: column;
     position: relative;
-    ${(props) => (props.marginTop ? 'margin-top: ' + props.marginTop + 'px;' : '')}
+    ${(props) => (props.marginTop ? 'margin-top: ' + props.marginTop + 'px;' : '')};
+    z-index: 1;
     @media (max-width: 1192px) {
         ${(props) => (props.mediaMarginBottom ? 'margin-bottom: ' + props.mediaMarginBottom + 'px;' : '')}
     }

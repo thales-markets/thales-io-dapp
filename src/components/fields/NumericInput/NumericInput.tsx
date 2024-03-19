@@ -193,7 +193,9 @@ const MaxButton = styled.button`
     }
 `;
 
-const ValidationTooltip = styled((props) => <MuiTooltip classes={{ popper: props.className }} {...props} />)`
+const ValidationTooltip = styled((props) => (
+    <MuiTooltip PopperProps={{ disablePortal: true }} classes={{ popper: props.className }} {...props} />
+))`
     & .MuiTooltip-tooltip {
         margin: -10px 0 0 0;
         padding: 2px 4px;
