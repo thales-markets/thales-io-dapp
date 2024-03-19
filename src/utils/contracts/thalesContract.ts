@@ -1,6 +1,6 @@
 import { Network } from 'enums/network';
 
-export const thalesContract = {
+const thalesContract = {
     addresses: {
         [Network.Mainnet]: '0x8947da500Eb47F82df21143D0C01A29862a8C3c5',
         [Network.OptimismMainnet]: '0x217D47011b23BB961eB6D93cA9945B7501a5BB11',
