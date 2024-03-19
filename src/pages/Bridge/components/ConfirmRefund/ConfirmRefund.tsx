@@ -6,7 +6,6 @@ import {
     getSuccessToastOptions,
 } from 'components/ToastMessage/ToastMessage';
 import { generalConfig } from 'config/general';
-import { Network } from 'enums/network';
 import { base64, getAddress, hexlify } from 'ethers/lib/utils';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +18,7 @@ import styled, { CSSProperties } from 'styled-components';
 import { FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
 import { WebClient } from 'ts-proto/gateway/GatewayServiceClientPb';
 import { GetTransferStatusRequest, GetTransferStatusResponse } from 'ts-proto/gateway/gateway_pb';
+import { SupportedNetwork } from 'types/network';
 import { SUPPORTED_NETWORK_IDS_MAP } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import { refetchCelerBridgeHistory } from 'utils/queryConnector';
@@ -105,7 +105,7 @@ const ConfirmRefund: React.FC<ConfirmRefundProps> = ({ transferId, srcChainId })
             // do not use updateNetworkSettings(networkId) as it will trigger queries before provider in App.js is initialized
             dispatch(
                 switchToNetworkId({
-                    networkId: Number(srcChainId) as Network,
+                    networkId: Number(srcChainId) as SupportedNetwork,
                 })
             );
         });
