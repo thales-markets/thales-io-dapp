@@ -1,6 +1,5 @@
 import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { DEFAULT_NETWORK } from 'constants/network';
-import { Network } from 'enums/network';
 import { RootState } from 'redux/rootReducer';
 import { getAddress } from 'thales-utils';
 import { SupportedNetwork } from 'types/network';
@@ -50,7 +49,7 @@ const walletDetailsSlice = createSlice({
         switchToNetworkId: (
             state,
             action: PayloadAction<{
-                networkId: Network;
+                networkId: SupportedNetwork;
             }>
         ) => {
             state.switchToNetworkId = action.payload.networkId;
