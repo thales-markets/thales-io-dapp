@@ -18,7 +18,7 @@ import {
 import Tooltip from 'components/Tooltip';
 import NumericInput from 'components/fields/NumericInput';
 import RadioButton from 'components/fields/RadioButton';
-import { USD_SIGN } from 'constants/currency';
+import { DEFAULT_COLLATERALS, USD_SIGN } from 'constants/currency';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
@@ -59,7 +59,6 @@ import {
     getDefaultDecimalsForNetwork,
 } from 'thales-utils';
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
-import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import { refetchLiquidityPoolData } from 'utils/queryConnector';
@@ -133,7 +132,7 @@ const AMMLP: React.FC = () => {
     const [withdrawalAmount, setWithdrawalAmount] = useState<number>(0);
     const [depositSelected, setDepositSelected] = useState(true);
 
-    const collateral = getDefaultCollateral(networkId);
+    const collateral = DEFAULT_COLLATERALS[networkId];
 
     const paymentTokenBalanceQuery = useStableBalanceQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
@@ -670,7 +669,7 @@ const AMMLP: React.FC = () => {
                                                 balance={
                                                     isWalletConnected
                                                         ? `${t('common.balance')}: ${formatCurrencyWithKey(
-                                                              getDefaultCollateral(networkId),
+                                                              DEFAULT_COLLATERALS[networkId],
                                                               paymentTokenBalance
                                                           )}`
                                                         : undefined

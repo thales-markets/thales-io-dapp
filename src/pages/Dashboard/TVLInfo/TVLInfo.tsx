@@ -1,4 +1,5 @@
 import LoadingContainer from 'components/LoadingContainer';
+import { USD_SIGN } from 'constants/currency';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -49,16 +50,23 @@ const TVLInfo: React.FC = () => {
                 </InfoSection>
                 <InfoSection side="right">
                     <InfoStats>
-                        {tvlStats ? `${formatCurrencyWithSign('$', tvlStats.stakingThalesTVL)}` : '-'}
+                        {tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.stakingThalesTVL)}` : '-'}
                     </InfoStats>
                     <InfoStats>
                         {tvlStats
-                            ? `${formatCurrencyWithSign('$', tvlStats.overtimeSingleTVL + tvlStats.overtimeParlayTVL)}`
+                            ? `${formatCurrencyWithSign(
+                                  'USD_SIGN',
+                                  tvlStats.overtimeSingleTVL + tvlStats.overtimeParlayTVL
+                              )}`
                             : '-'}
                     </InfoStats>
-                    <InfoStats>{tvlStats ? `${formatCurrencyWithSign('$', tvlStats.thalesLpTVL)}` : '-'}</InfoStats>
-                    <InfoStats>{tvlStats ? `${formatCurrencyWithSign('$', tvlStats.vaultsTVL)}` : '-'}</InfoStats>
-                    <InfoStats>{tvlStats ? `${formatCurrencyWithSign('$', tvlStats.speedMarketsTVL)}` : '-'}</InfoStats>
+                    <InfoStats>
+                        {tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.thalesLpTVL)}` : '-'}
+                    </InfoStats>
+                    <InfoStats>{tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.vaultsTVL)}` : '-'}</InfoStats>
+                    <InfoStats>
+                        {tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.speedMarketsTVL)}` : '-'}
+                    </InfoStats>
                 </InfoSection>
             </WidgetWrapper>
         </LoadingContainer>

@@ -9,21 +9,10 @@ export const LP_TOKEN = 'LP Token';
 const CRYPTO_CURRENCY = ['OP', 'DAI', 'USDCe', 'USDC', 'USDT', 'sUSD'];
 export const CRYPTO_CURRENCY_MAP = keyBy(CRYPTO_CURRENCY);
 
-export const COLLATERALS: Record<Network, Coins[]> = {
-    [Network.Mainnet]: [CRYPTO_CURRENCY_MAP.sUSD as Coins],
-    [Network.OptimismMainnet]: [
-        CRYPTO_CURRENCY_MAP.sUSD as Coins,
-        CRYPTO_CURRENCY_MAP.DAI as Coins,
-        CRYPTO_CURRENCY_MAP.USDC as Coins,
-        CRYPTO_CURRENCY_MAP.USDT as Coins,
-    ],
-    [Network.OptimismGoerli]: [
-        CRYPTO_CURRENCY_MAP.sUSD as Coins,
-        CRYPTO_CURRENCY_MAP.DAI as Coins,
-        CRYPTO_CURRENCY_MAP.USDC as Coins,
-        CRYPTO_CURRENCY_MAP.USDT as Coins,
-    ],
-    [Network.PolygonMainnet]: [CRYPTO_CURRENCY_MAP.USDC as Coins],
-    [Network.Base]: [CRYPTO_CURRENCY_MAP.USDC as Coins],
-    [Network.Arbitrum]: [CRYPTO_CURRENCY_MAP.USDCe as Coins],
+export const DEFAULT_COLLATERALS: Record<Exclude<Network, Network.OptimismGoerli>, Coins> = {
+    [Network.Mainnet]: CRYPTO_CURRENCY_MAP.sUSD as Coins,
+    [Network.OptimismMainnet]: CRYPTO_CURRENCY_MAP.sUSD as Coins,
+    [Network.PolygonMainnet]: CRYPTO_CURRENCY_MAP.USDC as Coins,
+    [Network.Base]: CRYPTO_CURRENCY_MAP.USDC as Coins,
+    [Network.Arbitrum]: CRYPTO_CURRENCY_MAP.USDCe as Coins,
 };

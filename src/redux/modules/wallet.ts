@@ -8,10 +8,9 @@ const sliceName = 'wallet';
 
 type WalletSliceState = {
     walletAddress: string | null;
-    networkId: Network;
+    networkId: Exclude<Network, Network.OptimismGoerli>;
     networkName: string;
     switchToNetworkId: Network; // used to trigger manually network switch in App.tsx
-    selectedCollateralIndex: number;
 };
 
 const initialState: WalletSliceState = {
@@ -19,7 +18,6 @@ const initialState: WalletSliceState = {
     networkId: DEFAULT_NETWORK.networkId,
     networkName: DEFAULT_NETWORK.name,
     switchToNetworkId: DEFAULT_NETWORK.networkId,
-    selectedCollateralIndex: 0,
 };
 
 const walletDetailsSlice = createSlice({
@@ -39,7 +37,7 @@ const walletDetailsSlice = createSlice({
         updateNetworkSettings: (
             state,
             action: PayloadAction<{
-                networkId: Network;
+                networkId: Exclude<Network, Network.OptimismGoerli>;
                 networkName: string;
             }>
         ) => {

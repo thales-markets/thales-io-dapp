@@ -1,4 +1,5 @@
 import LoadingContainer from 'components/LoadingContainer';
+import { USD_SIGN } from 'constants/currency';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -46,14 +47,14 @@ const ProtocolVolume: React.FC = () => {
                         <TitleLabel>{t('dashboard.protocol-volume.total-protocol-volume')}</TitleLabel>
                     </FlexDiv>
                     <NumericStats>
-                        {volumeStats ? formatCurrencyWithSign('$', volumeStats.totalProtocolVolume, 2, true) : '-'}
+                        {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats.totalProtocolVolume, 2, true) : '-'}
                     </NumericStats>
                     <FlexDiv>
                         <WidgetIcon className="icon icon--safebox" />
                         <TitleLabel>{t('dashboard.protocol-volume.safebox-fees')}</TitleLabel>
                     </FlexDiv>
                     <NumericStats>
-                        {volumeStats ? formatCurrencyWithSign('$', volumeStats.safeboxFees, 2, true) : '-'}
+                        {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats.safeboxFees, 2, true) : '-'}
                     </NumericStats>
                 </WidgetHeader>
                 <InfoSection side="left">
@@ -64,14 +65,19 @@ const ProtocolVolume: React.FC = () => {
                 </InfoSection>
                 <InfoSection side="right">
                     <InfoStats>
-                        {volumeStats ? formatCurrencyWithSign('$', volumeStats.thalesAmmVolume) : '-'}
+                        {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats.thalesAmmVolume) : '-'}
                     </InfoStats>
                     <InfoStats>
                         {volumeStats
-                            ? formatCurrencyWithSign('$', volumeStats.overtimeAmmVolume + volumeStats.parlayAmmVolume)
+                            ? formatCurrencyWithSign(
+                                  'USD_SIGN',
+                                  volumeStats.overtimeAmmVolume + volumeStats.parlayAmmVolume
+                              )
                             : '-'}
                     </InfoStats>
-                    <InfoStats>{volumeStats ? formatCurrencyWithSign('$', volumeStats.speedAmmVolume) : '-'}</InfoStats>
+                    <InfoStats>
+                        {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats.speedAmmVolume) : '-'}
+                    </InfoStats>
                     <InfoStats>{usersStats ? formatCurrency(usersStats.totalUniqueUsers, 2, true) : '-'}</InfoStats>
                 </InfoSection>
             </WidgetWrapper>

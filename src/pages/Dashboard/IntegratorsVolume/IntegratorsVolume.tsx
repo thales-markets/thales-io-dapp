@@ -1,5 +1,6 @@
 import LoadingContainer from 'components/LoadingContainer';
 import SPAAnchor from 'components/SPAAnchor';
+import { USD_SIGN } from 'constants/currency';
 import LINKS from 'constants/links';
 import useIntegratorsQuery from 'queries/dashboard/useIntegratorsQuery';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
@@ -90,7 +91,7 @@ const IntegratorsVolume: React.FC = () => {
                         </InfoSection>
                         <InfoSection side="right">
                             <InfoStats>
-                                {volumeStats ? formatCurrencyWithSign('$', volumeStats?.thalesAmmVolume) : 0}
+                                {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats?.thalesAmmVolume) : 0}
                             </InfoStats>
                             <InfoStats>
                                 {volumeStats
@@ -101,10 +102,12 @@ const IntegratorsVolume: React.FC = () => {
                                     : 0}
                             </InfoStats>
                             <InfoStats>
-                                {volumeStats ? formatCurrencyWithSign('$', volumeStats?.speedAmmVolume) : 0}
+                                {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats?.speedAmmVolume) : 0}
                             </InfoStats>
                             {integratorsData.map((integrator, index) => (
-                                <InfoStats key={index}>{formatCurrencyWithSign('$', integrator.totalVolume)}</InfoStats>
+                                <InfoStats key={index}>
+                                    {formatCurrencyWithSign(USD_SIGN, integrator.totalVolume)}
+                                </InfoStats>
                             ))}
                         </InfoSection>
                     </>
@@ -116,7 +119,7 @@ const IntegratorsVolume: React.FC = () => {
                                     {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
                                 </InfoText>
                                 <InfoStats>
-                                    {volumeStats ? formatCurrencyWithSign('$', volumeStats?.thalesAmmVolume) : 0}
+                                    {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats?.thalesAmmVolume) : 0}
                                 </InfoStats>
                             </SPAAnchor>
                         </FlexDivIntegrators>
@@ -141,7 +144,7 @@ const IntegratorsVolume: React.FC = () => {
                                     {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
                                 </InfoText>
                                 <InfoStats>
-                                    {volumeStats ? formatCurrencyWithSign('$', volumeStats?.speedAmmVolume) : 0}
+                                    {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats?.speedAmmVolume) : 0}
                                 </InfoStats>
                             </SPAAnchor>
                         </FlexDivIntegrators>
@@ -151,7 +154,7 @@ const IntegratorsVolume: React.FC = () => {
                                     <InfoText>
                                         {integrator.id} <LinkArrow color={Colors.GRAY} />
                                     </InfoText>
-                                    <InfoStats>{formatCurrencyWithSign('$', integrator.totalVolume)}</InfoStats>
+                                    <InfoStats>{formatCurrencyWithSign(USD_SIGN, integrator.totalVolume)}</InfoStats>
                                 </SPAAnchor>
                             </FlexDivIntegrators>
                         ))}

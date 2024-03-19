@@ -4,7 +4,7 @@ const CCIPCollector = {
     addresses: {
         [Network.Mainnet]: 'TBD',
         [Network.OptimismMainnet]: 'TBD',
-        [Network.OptimismGoerli]: 'TBD',
+
         [Network.PolygonMainnet]: 'TBD',
         [Network.Arbitrum]: 'TBD',
         [Network.Base]: '0x25f29136801b0Eac63C586FFD249B49F1d96DB9c',

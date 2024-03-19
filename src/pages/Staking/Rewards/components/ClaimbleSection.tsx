@@ -9,7 +9,7 @@ import {
     getSuccessToastOptions,
 } from 'components/ToastMessage/ToastMessage';
 import Tooltip from 'components/Tooltip';
-import { THALES_CURRENCY } from 'constants/currency';
+import { DEFAULT_COLLATERALS, THALES_CURRENCY } from 'constants/currency';
 import { ethers } from 'ethers';
 import Lottie from 'lottie-react';
 import { StakingButton, TooltipContainer } from 'pages/Staking/styled-components';
@@ -23,7 +23,6 @@ import styled, { useTheme } from 'styled-components';
 import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
-import { getDefaultCollateral } from 'utils/currency';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
 import { SectionTitle } from '../../styled-components';
@@ -158,7 +157,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                         </TooltipContainer>
                                         <span>
                                             {formatCurrencyWithKey(
-                                                getDefaultCollateral(networkId),
+                                                DEFAULT_COLLATERALS[networkId],
                                                 userStakingData ? userStakingData.feeRewards : 0
                                             )}
                                         </span>
@@ -262,7 +261,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                 </span>
                                 <span>
                                     {formatCurrencyWithKey(
-                                        getDefaultCollateral(networkId),
+                                        DEFAULT_COLLATERALS[networkId],
                                         userStakingData ? userStakingData.feeRewards : 0
                                     )}
                                 </span>

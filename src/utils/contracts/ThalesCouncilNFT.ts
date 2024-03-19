@@ -4,7 +4,7 @@ const thalesCouncilNFT = {
     addresses: {
         [Network.Mainnet]: '0xA71F5fACaF3e021897931BE44b10d68F89EC6a3B',
         [Network.OptimismMainnet]: 'TBD',
-        [Network.OptimismGoerli]: 'TBD',
+
         [Network.PolygonMainnet]: 'TBD',
         [Network.Arbitrum]: 'TBD',
         [Network.Base]: 'TBD',

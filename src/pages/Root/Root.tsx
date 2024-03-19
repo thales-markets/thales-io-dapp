@@ -18,7 +18,7 @@ import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import thalesDarkTheme from 'styles/themes/dark';
 import { WagmiConfig, configureChains, createClient } from 'wagmi';
-import { arbitrum, optimism, optimismGoerli } from 'wagmi/chains';
+import { arbitrum, optimism } from 'wagmi/chains';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { publicProvider } from 'wagmi/providers/public';
@@ -40,7 +40,6 @@ const CHAIN_TO_RPC_PROVIDER_NETWORK_NAME: Record<number, RpcProvider> = {
         chainnode: 'optimism-mainnet',
         blast: 'optimism-mainnet',
     },
-    [Network.OptimismGoerli]: { ankr: 'optimism_testnet', chainnode: 'optimism-goerli', blast: 'optimism-goerli' },
     [Network.Arbitrum]: { ankr: 'arbitrum', chainnode: 'arbitrum-one', blast: 'arbitrum-one' },
     [Network.Base]: { ankr: 'base', chainnode: '', blast: '' },
 };
@@ -48,12 +47,12 @@ const CHAIN_TO_RPC_PROVIDER_NETWORK_NAME: Record<number, RpcProvider> = {
 const STALL_TIMEOUT = 2000;
 
 const { chains, provider } = configureChains(
-    [optimism, optimismGoerli, arbitrum, base],
+    [optimism, arbitrum, base],
     [
         jsonRpcProvider({
             rpc: (chain) => ({
                 http:
-                    chain.id === Network.Base
+                    process.env.REACT_APP_PRIMARY_PROVIDER_ID === 'INFURA' && chain.id === Network.Base
                         ? // Use Ankr as primary RPC provider on Base as Chainnode isn't available
                           `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`
                         : !CHAIN_TO_RPC_PROVIDER_NETWORK_NAME[chain.id]?.chainnode
