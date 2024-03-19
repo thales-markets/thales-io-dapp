@@ -1,3 +1,9 @@
 {
-    "exclude": ["src/ts-proto/**/*"]
+    "exclude": [
+        "src/ts-proto/**/*",
+        "node_modules/**/*",
+        "bower_components/**/*",
+        "jspm_packages/**/*",
+        "./react-table-config.d.ts"
+    ]
 }
