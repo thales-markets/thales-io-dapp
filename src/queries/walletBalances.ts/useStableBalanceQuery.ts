@@ -1,8 +1,8 @@
+import { CRYPTO_CURRENCY_MAP } from 'constants/currency';
 import QUERY_KEYS from 'constants/queryKeys';
 import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
 import { Coins, COLLATERAL_DECIMALS } from 'thales-utils';
-import { getDefaultCollateral } from 'utils/currency';
 import networkConnector from 'utils/networkConnector';
 
 const useStableBalanceQuery = (walletAddress: string, networkId: Network, options?: UseQueryOptions<any>) => {
@@ -11,7 +11,7 @@ const useStableBalanceQuery = (walletAddress: string, networkId: Network, option
         async () => {
             try {
                 const collateral = networkConnector.collateral;
-                const collateralKey = getDefaultCollateral(networkId);
+                const collateralKey = CRYPTO_CURRENCY_MAP.sUSD;
 
                 let usdBalance = await collateral?.balanceOf(walletAddress);
                 usdBalance = usdBalance
@@ -22,11 +22,7 @@ const useStableBalanceQuery = (walletAddress: string, networkId: Network, option
                               : 18)
                     : 0;
 
-                return {
-                    [collateralKey]: {
-                        balance: usdBalance,
-                    },
-                };
+                return usdBalance;
             } catch (e) {
                 console.log('e ', e);
                 return null;

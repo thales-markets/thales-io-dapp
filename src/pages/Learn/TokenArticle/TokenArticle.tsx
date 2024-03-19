@@ -1,4 +1,5 @@
 import SPAAnchor from 'components/SPAAnchor';
+import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { Network } from 'enums/network';
 import { LinkArrow } from 'pages/Dashboard/styled-components';
@@ -73,13 +74,7 @@ const TokenArticle: React.FC = () => {
                     i18nKey="about-thales-token.paragraphs.3"
                     components={{
                         bold: <strong />,
-                        url: (
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://docs.thalesmarket.io/thales-token/thales-tokenomics"
-                            />
-                        ),
+                        url: <a target="_blank" rel="noreferrer" href={LINKS.Tokenomics} />,
                     }}
                 />
             </Paragraph>
@@ -89,10 +84,10 @@ const TokenArticle: React.FC = () => {
                     i18nKey="about-thales-token.paragraphs.4"
                     components={{
                         bold: <strong />,
-                        oneInch: <a target="_blank" rel="noreferrer" href="https://app.1inch.io/" />,
-                        llamaSwap: <a target="_blank" rel="noreferrer" href="http://swap.defillama.com" />,
-                        paraswap: <a target="_blank" rel="noreferrer" href="https://www.paraswap.io/" />,
-                        matcha: <a target="_blank" rel="noreferrer" href="https://matcha.xyz/" />,
+                        oneInch: <a target="_blank" rel="noreferrer" href={LINKS.OneInch} />,
+                        llamaSwap: <a target="_blank" rel="noreferrer" href={LINKS.DefiLlama} />,
+                        paraswap: <a target="_blank" rel="noreferrer" href={LINKS.Paraswap} />,
+                        matcha: <a target="_blank" rel="noreferrer" href={LINKS.Matcha} />,
                     }}
                 />
             </Paragraph>
@@ -136,13 +131,7 @@ const TokenArticle: React.FC = () => {
                     components={{
                         bold: <strong />,
                         urlStaking: <a target="_blank" rel="noreferrer" href={buildHref(ROUTES.Token.Staking.Home)} />,
-                        urlStakingGuide: (
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://docs.thalesmarket.io/thales-token/staking-thales-on-optimism-guide"
-                            />
-                        ),
+                        urlStakingGuide: <a target="_blank" rel="noreferrer" href={LINKS.StakingGuide} />,
                     }}
                 />
             </Paragraph>
@@ -152,7 +141,7 @@ const TokenArticle: React.FC = () => {
                     i18nKey="about-thales-token.paragraphs.6"
                     components={{
                         bold: <strong />,
-                        url: <a target="_blank" rel="noreferrer" href="https://discord.com/invite/thales" />,
+                        url: <a target="_blank" rel="noreferrer" href={LINKS.Discord} />,
                     }}
                 />
             </Paragraph>

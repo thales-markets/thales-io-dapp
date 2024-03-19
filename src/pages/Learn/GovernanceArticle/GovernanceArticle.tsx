@@ -1,6 +1,10 @@
 import { ReactComponent as ChartWhite } from 'assets/images/whitepaper/chart4b.svg';
+import LINKS from 'constants/links';
+import ROUTES from 'constants/routes';
+import { SpaceKey } from 'enums/governance';
 import { Trans, useTranslation } from 'react-i18next';
 import { FlexDivCentered } from 'styles/common';
+import { buildGovernanceHref, buildHref } from 'utils/routes';
 import { ChartContainer, Content, H1, H2, Paragraph } from '../styled-components';
 
 const GovernanceArticle: React.FC = () => {
@@ -17,18 +21,10 @@ const GovernanceArticle: React.FC = () => {
                     components={{
                         bold: <strong />,
                         urlStaking: (
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://thalesmarket.io/token?activeButtonId=staking"
-                            />
+                            <a target="_blank" rel="noreferrer" href={`${buildHref(ROUTES.Token.Staking.Home)}`} />
                         ),
                         urlVoting: (
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://thalesmarket.io/governance/thalescouncil.eth/"
-                            />
+                            <a target="_blank" rel="noreferrer" href={`${buildGovernanceHref(SpaceKey.COUNCIL)}`} />
                         ),
                     }}
                 />
@@ -41,13 +37,7 @@ const GovernanceArticle: React.FC = () => {
                     i18nKey="about-governance.paragraphs.intro2"
                     components={{
                         bold: <strong />,
-                        url: (
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://medium.com/@Thales.Academy/how-to-use-github-to-submit-a-tip-e7d0047b54fd"
-                            />
-                        ),
+                        url: <a target="_blank" rel="noreferrer" href={LINKS.Blog.HowToOpenTIP} />,
                     }}
                 />
             </Paragraph>
@@ -67,28 +57,12 @@ const GovernanceArticle: React.FC = () => {
                     i18nKey="about-governance.paragraphs.2"
                     components={{
                         bold: <strong />,
-                        url: (
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://github.com/thales-markets/thales-improvement-proposals/tree/main/TIPs"
-                            />
-                        ),
-                        urlDisc: <a target="_blank" rel="noreferrer" href="https://discord.gg/thales" />,
-                        urlGov: <a target="_blank" rel="noreferrer" href="https://thalesmarket.io/governance" />,
-                        urlDraft: (
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href=" https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-1.md"
-                            />
-                        ),
+                        url: <a target="_blank" rel="noreferrer" href={LINKS.TIPs} />,
+                        urlDisc: <a target="_blank" rel="noreferrer" href={LINKS.Discord} />,
+                        urlGov: <a target="_blank" rel="noreferrer" href={`${buildHref(ROUTES.DAO.Home)}`} />,
+                        urlDraft: <a target="_blank" rel="noreferrer" href={LINKS.TIP1} />,
                         urlStaking: (
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://thalesmarket.io/token?activeButtonId=staking"
-                            />
+                            <a target="_blank" rel="noreferrer" href={`${buildHref(ROUTES.Token.Staking.Home)}`} />
                         ),
                     }}
                 />
@@ -105,7 +79,7 @@ const GovernanceArticle: React.FC = () => {
                     i18nKey="about-governance.paragraphs.4"
                     components={{
                         bold: <strong />,
-                        url: <a target="_blank" rel="noreferrer" href="https://contracts.thalesmarket.io/" />,
+                        url: <a target="_blank" rel="noreferrer" href={LINKS.Contracts} />,
                     }}
                 />
             </Paragraph>
@@ -116,7 +90,7 @@ const GovernanceArticle: React.FC = () => {
                     i18nKey="about-governance.paragraphs.5"
                     components={{
                         bold: <strong />,
-                        url: <a target="_blank" rel="noreferrer" href="https://discord.com/invite/thales" />,
+                        url: <a target="_blank" rel="noreferrer" href={LINKS.Discord} />,
                     }}
                 />
             </Paragraph>

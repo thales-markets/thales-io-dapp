@@ -20,6 +20,15 @@ const LINKS = {
     Base: 'https://base.org/',
     Pyth: 'https://pyth.network/',
     Framework: 'https://framework.ventures/',
+    OneInch: 'https://app.1inch.io/',
+    DefiLlama: 'http://swap.defillama.com',
+    Paraswap: 'https://www.paraswap.io/',
+    Matcha: 'https://matcha.xyz/',
+    TIPs: 'https://github.com/thales-markets/thales-improvement-proposals/tree/main/TIPs',
+    TIP1: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-1.md',
+    Contracts: 'https://contracts.thalesmarket.io/',
+    Tokenomics: 'https://docs.thalesmarket.io/thales-token/thales-tokenomics',
+    StakingGuide: 'https://docs.thalesmarket.io/thales-token/staking-thales-on-optimism-guide',
     Token: {
         TIP66: '/dao/thalesgov.eth/0xa925cddfe73b58911c3a9308a0e9d70dff21e31e4d428247ac084e8cffa4eb4f',
         TIP139: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-139.md',
@@ -42,6 +51,9 @@ const LINKS = {
         Aerodrome:
             'https://aerodrome.finance/deposit?token0=0x4200000000000000000000000000000000000006&token1=0xf34e0cff046e154cafcae502c7541b9e5fd8c249&stable=false',
         Camelot: 'https://app.camelot.exchange/pools/0xB5108062de111F61E0dD585f4225ae18d1BB21D9',
+    },
+    Blog: {
+        HowToOpenTIP: 'https://medium.com/@Thales.Academy/how-to-use-github-to-submit-a-tip-e7d0047b54fd',
     },
     SPORTS_INTEGRATION: 'https://docs.thales.io/thales-sports-markets/sports-markets-integration',
     DIGITAL_OPTIONS_INTEGRAITON: 'https://docs.thales.io/thales-digital-options/digital-options-integration',

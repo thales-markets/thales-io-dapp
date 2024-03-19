@@ -59,7 +59,6 @@ import {
     getDefaultDecimalsForNetwork,
 } from 'thales-utils';
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
-import { getCurrencyKeyStableBalance } from 'utils/balances';
 import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
@@ -142,9 +141,7 @@ const AMMLP: React.FC = () => {
 
     useEffect(() => {
         if (paymentTokenBalanceQuery.isSuccess && paymentTokenBalanceQuery.data !== undefined) {
-            setPaymentTokenBalance(
-                getCurrencyKeyStableBalance(paymentTokenBalanceQuery.data, getDefaultCollateral(networkId))
-            );
+            setPaymentTokenBalance(paymentTokenBalanceQuery.data);
         }
     }, [paymentTokenBalanceQuery.isSuccess, paymentTokenBalanceQuery.data, networkId]);
 
