@@ -3,14 +3,15 @@ import { DEFAULT_NETWORK } from 'constants/network';
 import { Network } from 'enums/network';
 import { RootState } from 'redux/rootReducer';
 import { getAddress } from 'thales-utils';
+import { SupportedNetwork } from 'types/network';
 
 const sliceName = 'wallet';
 
 type WalletSliceState = {
     walletAddress: string | null;
-    networkId: Network;
+    networkId: SupportedNetwork;
     networkName: string;
-    switchToNetworkId: Network; // used to trigger manually network switch in App.tsx
+    switchToNetworkId: SupportedNetwork; // used to trigger manually network switch in App.tsx
 };
 
 const initialState: WalletSliceState = {
@@ -37,7 +38,7 @@ const walletDetailsSlice = createSlice({
         updateNetworkSettings: (
             state,
             action: PayloadAction<{
-                networkId: Network;
+                networkId: SupportedNetwork;
                 networkName: string;
             }>
         ) => {
