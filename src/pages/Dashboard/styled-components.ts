@@ -1,8 +1,8 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
-import { AreaChart, PieChart } from 'recharts';
+import { PieChart } from 'recharts';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivColumnNative, FlexDivRow, FlexDivSpaceAround, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDiv, FlexDivColumnNative, FlexDivRow, FlexDivSpaceBetween } from 'styles/common';
 
 export const Container = styled.div`
     display: grid;
@@ -58,10 +58,6 @@ export const ItemBottomRight = styled.div`
 
 export const ItemBottomCenterLeft = styled.div`
     grid-area: bottom-center-left;
-`;
-
-export const ItemBottomCenter = styled.div`
-    grid-area: bottom;
 `;
 
 export const WidgetWrapper = styled.div<{ isDoubleHeight?: boolean; isStakingWidget?: boolean }>`
@@ -212,21 +208,6 @@ export const LinkArrow = styled(ArrowHyperlinkIcon)<{ color?: string }>`
     height: 12px;
 `;
 
-export const FlexDivColumnNativeFullWidth = styled(FlexDivColumnNative)`
-    width: 100%;
-    margin-top: 50px;
-`;
-
-export const FlexDivSpaceAroundFullWidth = styled(FlexDivSpaceAround)`
-    width: 100%;
-    margin-top: -50px;
-`;
-
-export const EcosystemIcon = styled.i`
-    font-size: 200px;
-    color: ${(props) => props.theme.textColor.primary};
-`;
-
 export const DoubleSideInfoSection = styled.div`
     width: 100%;
     grid-area: 2 / 1 / 3 /3;
@@ -243,16 +224,6 @@ export const StyledPieChart = styled(PieChart)`
     .recharts-legend-item {
         padding-bottom: 5px;
     }
-`;
-
-export const ChartInnerText = styled.span`
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 20px;
-    color: rgb(255, 255, 255);
-    font-family: Nunito !important;
-    width: min-content;
-    text-align: center;
 `;
 
 export const FullWidthInfoSection = styled(FlexDiv)`
@@ -274,11 +245,6 @@ export const FlexDivIntegrators = styled(FlexDivRow)`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
     }
-`;
-
-export const StyledAreaChart = styled(AreaChart)`
-    margin-top: -65px;
-    z-index: 1;
 `;
 
 export const ChartTooltipBox = styled.div`

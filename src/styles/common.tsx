@@ -5,10 +5,6 @@ export const FlexDiv = styled.div<{ gap?: string }>`
     gap: ${(props) => props.gap || ''};
 `;
 
-export const FlexOne = styled.div`
-    flex: 1;
-`;
-
 export const FlexDivCentered = styled(FlexDiv)`
     align-items: center;
     justify-content: center;
@@ -17,10 +13,6 @@ export const FlexDivCentered = styled(FlexDiv)`
 export const FlexDivSpaceBetween = styled(FlexDiv)`
     align-items: center;
     justify-content: space-between;
-`;
-
-export const FlexDivEnd = styled(FlexDiv)`
-    justify-content: end;
 `;
 
 export const FlexDivStart = styled(FlexDiv)`
@@ -50,12 +42,6 @@ export const FlexDivColumnSpaceBetween = styled(FlexDiv)`
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-`;
-
-export const FlexDivColumnSpaceAround = styled(FlexDiv)`
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-around;
 `;
 
 export const FlexDivColumnNative = styled(FlexDiv)`

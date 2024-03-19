@@ -3,11 +3,6 @@ import QUERY_KEYS from 'constants/queryKeys';
 import { EcosystemApp } from 'pages/LandingPage/components/EcosystemApps/types';
 import { useQuery, UseQueryOptions } from 'react-query';
 
-export type Banner = {
-    url: string;
-    image: string;
-};
-
 export const useGetEcosystemAppsQuery = (options?: UseQueryOptions<EcosystemApp[]>) => {
     return useQuery<EcosystemApp[]>(
         QUERY_KEYS.Landing.EcosystemApps(),

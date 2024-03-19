@@ -42,53 +42,10 @@ export const RewardsDetailsContainer = styled(FlexDiv)`
         width: 100%;
     }
 `;
-export const ClaimContainer = styled(FlexDiv)``;
 
 export const ItemsWrapper = styled(FlexDiv)`
     flex-direction: column;
     margin-top: 7px;
-`;
-
-export const UpperLeft = styled.div`
-    grid-area: upper-left;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-export const BottomLeft = styled.div`
-    grid-area: bottom-left;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-export const Right = styled.div`
-    grid-area: right;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-export const UpperRight = styled.div`
-    grid-area: upper-right;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-export const MiddleRight = styled.div`
-    grid-area: middle-right;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-export const BottomRight = styled.div`
-    grid-area: bottom-right;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 `;
 
 export const StakingDetailsSection = styled.div`
@@ -142,7 +99,7 @@ export const SubTitle = styled(InfoDiv)`
     }
 `;
 
-export const ClaimableLabel = styled.span`
+const ClaimableLabel = styled.span`
     font-size: 18px;
     color: ${(props) => props.theme.textColor.primary};
     font-weight: 700;
@@ -196,12 +153,6 @@ export const FinalPoints = styled.div`
     line-height: normal;
 `;
 
-export const ButtonContainer = styled.div`
-    position: relative;
-    display: flex;
-    justify-content: center;
-`;
-
 export const LeaderboardLink = styled(FlexDiv)`
     cursor: pointer;
     font-size: 13px;
@@ -212,13 +163,6 @@ export const LeaderboardLink = styled(FlexDiv)`
         font-weight: 200;
         margin: 0 5px;
     }
-`;
-
-export const ClaimButtonDisclaimer = styled.div`
-    color: ${(props) => props.theme.textColor.tertiary};
-    font-family: Nunito;
-    text-align: center;
-    margin-top: 5px;
 `;
 
 export const GamingRewardsContainer = styled.div`

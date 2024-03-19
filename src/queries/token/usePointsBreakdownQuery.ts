@@ -24,7 +24,7 @@ export type PointsData = {
     totalBonusRewards: string | number;
 };
 
-export const DEFAULT_POINTS_BREAKDOWN_DATA = {
+const DEFAULT_POINTS_BREAKDOWN_DATA = {
     vaultsVolume: '-',
     lpVolume: '-',
     tradingVolume: '-',

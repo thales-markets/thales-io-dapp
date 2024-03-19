@@ -54,10 +54,10 @@ const SYNTHS = [
     'sSHORT',
     'sSOL',
 ];
-export const SYNTHS_MAP = keyBy(SYNTHS);
+const SYNTHS_MAP = keyBy(SYNTHS);
 
 // Order is important, used for sorting
-export const CRYPTO_CURRENCY = [
+const CRYPTO_CURRENCY = [
     'BTC',
     'ETH',
     'SNX',

@@ -2,7 +2,7 @@ import SPAAnchor from 'components/SPAAnchor';
 import React, { useEffect, useState } from 'react';
 import { Container, Icon, Item, ItemContainer, LabelContainer } from './styled-components';
 
-export type NavItemType = {
+type NavItemType = {
     href?: string;
     title: string;
     active?: boolean;

@@ -50,11 +50,6 @@ export const Bottom = styled.div`
     justify-content: space-between;
 `;
 
-export const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
 export const InputContainer = styled.div`
     display: flex;
     justify-content: center;

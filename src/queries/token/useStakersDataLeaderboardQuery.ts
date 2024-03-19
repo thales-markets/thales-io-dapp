@@ -21,7 +21,7 @@ type StakerContractLeaderboardData = {
 
 export type StakerWithLeaderboardData = Staker & StakerContractLeaderboardData;
 
-export type StakingData = {
+type StakingData = {
     estimationForOneThales: number;
     globalVaults: number;
     globalLp: number;

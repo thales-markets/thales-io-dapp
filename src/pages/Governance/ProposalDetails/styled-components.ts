@@ -1,15 +1,7 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import {
-    FlexDiv,
-    FlexDivCentered,
-    FlexDivColumn,
-    FlexDivColumnCentered,
-    FlexDivRow,
-    FlexDivRowCentered,
-} from 'styles/common';
-import { getStatusColor } from 'utils/governance';
+import { FlexDiv, FlexDivColumn, FlexDivColumnCentered, FlexDivRow, FlexDivRowCentered } from 'styles/common';
 
 export const Container = styled(FlexDivColumnCentered)<{ topMargin?: number }>`
     padding: 10px 20px;
@@ -19,79 +11,6 @@ export const Container = styled(FlexDivColumnCentered)<{ topMargin?: number }>`
     background: ${(props) => props.theme.background.primary};
     margin-top: ${(props) => (props.topMargin ? `${props.topMargin}px` : '')};
     border-radius: 8px;
-`;
-
-export const StatusContainer = styled(FlexDivColumnCentered)`
-    margin-bottom: 30px;
-    align-items: center;
-`;
-
-export const Title = styled(FlexDivColumnCentered)`
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
-    text-align: center;
-    color: ${(props) => props.theme.textColor.primary};
-    margin-bottom: 40px;
-`;
-
-export const DetailsWrapper = styled(FlexDivRow)`
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        flex-direction: column;
-    }
-`;
-
-export const DetailsContainer = styled(FlexDivColumnCentered)`
-    padding: 15px;
-    border-radius: 5px;
-    border: 2px solid ${(props) => props.theme.borderColor.primary};
-    color: ${(props) => props.theme.textColor.primary};
-    &:first-child {
-        margin-right: 40px;
-        @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-            flex-direction: column;
-            margin-right: 0px;
-            margin-bottom: 10px;
-        }
-    }
-`;
-
-export const Label = styled.span`
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
-    text-align: center;
-    color: ${(props) => props.theme.textColor.secondary};
-    margin-bottom: 5px;
-`;
-
-export const Text = styled.span`
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-    letter-spacing: 0.25px;
-`;
-
-export const StatusWrapper = styled(FlexDivCentered)<{ status: string }>`
-    padding: 1px;
-    border-radius: 8px;
-    width: 200px;
-    background: ${(props) => getStatusColor(props.status)};
-`;
-
-export const Status = styled(FlexDivColumnCentered)<{ status: string }>`
-    height: 48px;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 22px;
-    text-align: center;
-    letter-spacing: 2px;
-    color: ${(props) => getStatusColor(props.status)};
-    background: ${(props) => props.theme.background.primary};
-    border-radius: 8px;
-    text-transform: uppercase;
-    width: 198px;
 `;
 
 export const Body = styled(FlexDivColumn)`

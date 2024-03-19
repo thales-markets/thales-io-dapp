@@ -113,17 +113,6 @@ export const TipTable = styled(FlexDivColumn)`
     }
 `;
 
-export const Body = styled(FlexDivRow)`
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 24px;
-    color: ${(props) => props.theme.textColor.tertiary};
-    overflow-wrap: anywhere;
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 13px;
-    }
-`;
-
 export const ResultContainer = styled.div`
     color: ${(props) => props.theme.textColor.primary};
     text-align: right;

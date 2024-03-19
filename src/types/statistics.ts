@@ -1,4 +1,4 @@
-export type MarketsStats = {
+type MarketsStats = {
     totalUniqueMarkets: number;
 };
 

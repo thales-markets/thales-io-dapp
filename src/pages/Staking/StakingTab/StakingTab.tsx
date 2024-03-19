@@ -18,7 +18,7 @@ import { formatCurrencyWithKey, formatCurrencyWithPrecision } from 'thales-utils
 import { GlobalStakingData, ThalesStakingData, UserStakingData } from 'types/token';
 import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
 import Stake from './Stake';
-import YourTransactions from './Transactions/YourTransactions';
+import YourTransactions from './Transactions';
 import Unstake from './Unstake';
 import { AboutToken, Bottom, Container, UpperLeft, UpperRight, WarningMessage } from './styled-components';
 

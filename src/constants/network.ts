@@ -8,23 +8,12 @@ export const OP_SAFE_BOX_ADDRESS = '0x679C0174f6c288C4bcd5C95C9Ec99D50357C59E7';
 export const ARB_SAFE_BOX_ADDRESS = '0xE9F5E7579931a46e4beaC08Ca9ab52961AD66203';
 export const BASE_SAFE_BOX_ADDRESS = '0x860C4DD827DdDd98755e0843b89d909f5A0347Ff';
 
-export const SUPPORTED_NETWORKS: Record<number, string> = {
-    [Network.OptimismMainnet]: 'OPTIMISTIC',
-    [Network.OptimismGoerli]: 'GOERLI-OPTIMISM',
-    [Network.Arbitrum]: 'ARBITRUM-ONE',
-    [Network.Base]: 'BASE',
-};
-
 export const SUPPORTED_NETWORKS_NAMES: Record<number, string> = {
     [Network.OptimismMainnet]: 'OPTIMISM MAINNET',
     [Network.OptimismGoerli]: 'OPTIMISM GOERLI',
     [Network.Arbitrum]: 'ARBITRUM ONE',
     [Network.Base]: 'BASE',
 };
-
-export const SWAP_SUPPORTED_NETWORKS: Network[] = [];
-
-export const TEST_NETWORKS = [Network.OptimismGoerli];
 
 export const DEFAULT_NETWORK: { name: string; networkId: Network } = {
     name: SUPPORTED_NETWORKS_NAMES[Network.OptimismMainnet],

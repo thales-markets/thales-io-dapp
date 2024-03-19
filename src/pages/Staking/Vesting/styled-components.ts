@@ -51,17 +51,6 @@ export const HighlightedDescText = styled.span`
     color: ${(props) => props.theme.textColor.primary};
 `;
 
-export const VestingDescription = styled.div`
-    line-height: 120%;
-`;
-
-export const VestingValid = styled.div`
-    color: ${(props) => props.theme.textColor.primary};
-    text-align: justify;
-    font-family: NunitoBold;
-    font-size: 18px;
-`;
-
 export const ScheduleWrapper = styled(FlexDiv)`
     overflow: auto;
     width: 70%;

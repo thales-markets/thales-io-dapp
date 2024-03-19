@@ -16,24 +16,6 @@ export const formatNumberShort = (value: number, trim = true, negativeFactors = 
         : formatCurrencyWithPrecision(value, trim);
 };
 
-export const formatPricePercentageGrowth = (priceChange: number) => {
-    return priceChange > 0 ? `+ ${Math.abs(priceChange).toFixed(2)}%` : `- ${Math.abs(priceChange).toFixed(2)}%`;
-};
-
-export const calculatePercentageChange = (lastPrice: number, firstPrice: number) => {
-    return ((lastPrice - firstPrice) / lastPrice) * 100;
-};
-
-export const formatPricePercentageDifference = (targetPrice: number, currentPrice: number) => {
-    return ((currentPrice - targetPrice) / currentPrice) * 100;
-};
-
-export const calculateAndFormatPercentage = (first: number, second: number) => {
-    const greater = first > second ? first : second;
-    const smaller = first > second ? second : first;
-    return (greater - smaller) / smaller;
-};
-
 export const bigNumberParser = (value: number, decimals?: number) =>
     ethers.utils.parseUnits(
         floorNumberToDecimals(Number(value), decimals ? decimals : 18).toString(),

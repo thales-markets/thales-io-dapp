@@ -1,5 +1,6 @@
 import { EcosystemApp } from './types';
 
+// don't remove, used through thales-api
 export const ECOSYSTEM_APPS: EcosystemApp[] = [
     {
         icon: 'overtime',

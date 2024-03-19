@@ -125,17 +125,7 @@ export const Icon = styled.i<{ dark?: boolean }>`
 export const FlexWrapper = styled(FlexDivCentered)`
     flex-direction: column;
 `;
-export const Label = styled.span<{ dark?: boolean }>`
-    color: ${(props) => (props.dark ? props.theme.background.primary : props.theme.textColor.secondary)};
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: 0.455px;
-    text-transform: capitalize;
-    margin-top: 10px;
-    margin-bottom: 5px;
-`;
+
 export const StickyExpandedRow = styled.div`
     display: flex;
     justify-content: space-around;

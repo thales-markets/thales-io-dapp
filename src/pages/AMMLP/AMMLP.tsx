@@ -1136,23 +1136,6 @@ const LiquidityPoolInfoTitle = styled.div`
     margin-bottom: 10px;
 `;
 
-export const ExternalButton = styled.a`
-    background: ${(props) => props.theme.button.background.primary};
-    margin-top: 5px;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 20px;
-    color: ${(props) => props.theme.button.textColor.primary};
-    width: 100%;
-    border: none;
-    padding: 3px;
-    cursor: pointer;
-    text-align: center;
-    text-transform: uppercase;
-    height: 26px;
-`;
-
 const ButtonContainer = styled(FlexDivCentered)`
     width: 100%;
 `;
@@ -1263,14 +1246,14 @@ const RadioButtonContainer = styled(FlexDivSpaceAround)`
     }
 `;
 
-export const SliderContainer = styled.div`
+const SliderContainer = styled.div`
     position: relative;
     width: 100%;
     padding: 0 5px;
     margin-bottom: 10px;
 `;
 
-export const StyledSlider = styled((props) => (
+const StyledSlider = styled((props) => (
     <Slider
         classes={{ root: props.className, thumb: props.className, track: props.className, rail: props.className }}
         {...props}

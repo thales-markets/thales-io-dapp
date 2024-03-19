@@ -1,6 +1,6 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivColumn, FlexDivColumnCentered } from 'styles/common';
+import { FlexDiv, FlexDivColumn } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
@@ -37,16 +37,6 @@ export const Top = styled.div`
     }
 `;
 
-export const Middle = styled.div`
-    grid-area: bottom;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    > div {
-        height: 100%;
-    }
-`;
-
 export const Bottom = styled.div`
     grid-area: bottom;
     display: flex;
@@ -72,23 +62,6 @@ export const InputContainer = styled.div<{ marginTop?: number; mediaMarginBottom
     ${(props) => (props.marginTop ? 'margin-top: ' + props.marginTop + 'px;' : '')}
     @media (max-width: 1192px) {
         ${(props) => (props.mediaMarginBottom ? 'margin-bottom: ' + props.mediaMarginBottom + 'px;' : '')}
-    }
-`;
-
-export const ButtonContainer = styled(FlexDivColumnCentered)`
-    align-items: center;
-`;
-
-export const ClaimMessage = styled.div<{ invisible?: boolean; color?: string; above?: boolean }>`
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.25px;
-    color: ${(props) => (props.color ? props.color : props.theme.warning.textColor.primary)};
-    ${(props) => (props.above ? 'margin-bottom: 10px;' : 'margin-top: 10px;')}
-    visibility: ${(props) => (props.invisible ? 'hidden' : 'visible')};
-    min-height: 16px;
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 12px;
     }
 `;
 

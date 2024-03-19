@@ -1,7 +1,7 @@
 import BreadcrumbsMenu from 'components/BreadcrumbsMenu';
 import { NavItemType } from 'components/NavLinks/NavItem';
 import NavLinks from 'components/NavLinks/NavLinks';
-import NavMenuMobile from 'components/NavMenuMobile/NavMenuMobile';
+import NavMenuMobile from 'components/NavMenuMobile';
 import UserWallet from 'components/UserWallet';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';

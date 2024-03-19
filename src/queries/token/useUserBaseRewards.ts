@@ -1,19 +1,19 @@
-import { useQuery, UseQueryOptions } from 'react-query';
-import QUERY_KEYS from '../../constants/queryKeys';
-import snxJSConnector from 'utils/snxJSConnector';
-import { bigNumberFormatter, formatCurrencyWithKey, formatPercentage } from 'thales-utils';
-import { BALANCE_THRESHOLD } from 'constants/token';
 import { THALES_CURRENCY } from 'constants/currency';
+import { BALANCE_THRESHOLD } from 'constants/token';
 import { Network } from 'enums/network';
+import { useQuery, UseQueryOptions } from 'react-query';
+import { bigNumberFormatter, formatCurrencyWithKey, formatPercentage } from 'thales-utils';
+import snxJSConnector from 'utils/snxJSConnector';
+import QUERY_KEYS from '../../constants/queryKeys';
 
-export type UserStakingData = {
+type UserStakingData = {
     thalesStaked: string;
     totalStaked: string;
     share: string;
     baseRewards: string;
 };
 
-export const DEFAULT_USER_STAKING_DATA = {
+const DEFAULT_USER_STAKING_DATA = {
     thalesStaked: '-',
     totalStaked: '-',
     share: '-',

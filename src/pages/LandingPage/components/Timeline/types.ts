@@ -1,4 +1,4 @@
-export type Milestone = {
+type Milestone = {
     year?: string;
     month?: string;
     description?: string;

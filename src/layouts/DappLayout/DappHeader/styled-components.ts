@@ -16,18 +16,6 @@ export const LinksContainer = styled.div`
     }
 `;
 
-export const PositionedContainer = styled.div`
-    position: relative;
-    display: block;
-    top: 50px;
-    padding-bottom: 100px;
-    &:hover {
-        div {
-            display: flex;
-        }
-    }
-`;
-
 export const Logo = styled.i`
     width: 120px;
     color: ${(props) => props.theme.textColor.primary};

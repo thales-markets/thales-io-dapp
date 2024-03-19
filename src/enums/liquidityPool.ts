@@ -1,8 +1,3 @@
-export enum LiquidityPoolTab {
-    DEPOSIT = 'deposit',
-    WITHDRAW = 'withdraw',
-}
-
 export enum LiquidityPoolTransaction {
     USER_TRANSACTIONS = 'user-transactions',
     YOUR_TRANSACTIONS = 'your-transactions',

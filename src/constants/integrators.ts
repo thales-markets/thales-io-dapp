@@ -1,6 +1,6 @@
 import LINKS from './links';
 
-export const INTEGRATORS = [
+const INTEGRATORS = [
     {
         name: 'BookieBot',
         address: '0xacaad22871bcaf73d355db291bf848f2c23dedd8',

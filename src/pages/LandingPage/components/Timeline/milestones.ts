@@ -1,5 +1,6 @@
 import { Quarter } from './types';
 
+// don't remove, used through thales-api
 const MILESTONES_BY_QUARTER: Quarter[] = [
     {
         quarter: 'Q2 2021',

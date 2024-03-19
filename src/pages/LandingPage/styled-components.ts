@@ -1,4 +1,3 @@
-import { CircularProgress } from '@material-ui/core';
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
@@ -206,78 +205,6 @@ export const StepsSection = styled(FlexDivColumn)`
     margin-top: -60px;
 `;
 
-export const MilestonesContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 60px;
-    column-gap: 20px;
-    padding: 20px 0;
-`;
-
-export const Milestone = styled.div<{ index: number; isLast: boolean; isLastRow: boolean }>`
-    height: 100px;
-    border-radius: 8px;
-    background: #313652;
-    box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
-    padding: 15px 20px;
-    transform-style: preserve-3d;
-    &:before {
-        content: '';
-        height: 70px;
-        position: absolute;
-        border-radius: 10px 0 0 0;
-        border-top: ${(props) =>
-            props.index > 4 && props.index % 4 === 1 ? '#03DAC6 solid 1px' : 'transparent solid 1px'};
-        border-left: ${(props) => (props.index > 4 && props.index % 4 === 1 ? '#03DAC6 solid 1px' : '0')};
-        z-index: -1;
-        width: calc(100% + 20px);
-        transform: translateZ(-1px);
-        top: calc(-50% + 11px);
-        left: 50%;
-    }
-    &:after {
-        content: '';
-        height: 70px;
-        position: absolute;
-        border-radius: ${(props) => ((props.index + 1) % 4 === 0 ? '0 0 10px 0' : '0')};
-        border-top: ${(props) =>
-            props.isLast || props.index % 4 === 0 ? 'transparent solid 1px' : '#03DAC6 solid 1px'};
-        border-right: ${(props) =>
-            !props.isLast && !props.isLastRow && (props.index + 1) % 4 === 0 ? '#03DAC6 solid 1px' : '0'};
-        border-bottom: ${(props) =>
-            props.isLastRow || props.isLast || (props.index + 3) % 4 === 0 || props.index % 4 === 0
-                ? 'transparent solid 1px'
-                : '#03DAC6 solid 1px'};
-        z-index: -1;
-        width: calc(100% + 20px);
-        transform: translateZ(-1px);
-        top: 50%;
-        left: 50%;
-    }
-`;
-
-export const MilestoneDate = styled.div`
-    color: white;
-    font-family: MontserratBold;
-    font-size: 13px;
-    font-style: normal;
-    line-height: normal;
-    text-transform: uppercase;
-`;
-
-export const MilestoneDescription = styled.div`
-    padding-top: 8px;
-    color: #c6c8da;
-    font-family: MontserratLight;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 155%;
-    span {
-        font-family: MontserratBold;
-    }
-`;
-
 export const IconLink = styled.div`
     position: absolute;
     cursor: pointer;
@@ -427,12 +354,6 @@ export const SellSection = styled.div`
     }
 `;
 
-export const ThemedCircularProgress = styled(CircularProgress)`
-    &.MuiCircularProgress-colorPrimary {
-        color: ${(props) => props.theme.background.secondary};
-    }
-`;
-
 export const Partners = styled(FlexDivSpaceBetween)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
@@ -442,13 +363,5 @@ export const Partners = styled(FlexDivSpaceBetween)`
 export const Backers = styled(FlexDivSpaceAround)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
-    }
-`;
-
-export const PartnersAndBackers = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    a:first-child {
-        grid-column: 1 / 3;
     }
 `;

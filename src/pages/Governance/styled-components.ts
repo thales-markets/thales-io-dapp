@@ -75,27 +75,6 @@ export const OptionsTabWrapper = styled(FlexDivRow)`
     }
 `;
 
-export const OptionsTab = styled(FlexDivCentered)<{ isActive: boolean; index: number }>`
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
-    color: ${(props) => props.theme.textColor.primary};
-    user-select: none;
-    border-bottom: 5px solid ${(props) => props.theme.background.primary};
-    margin-left: 25px;
-    margin-right: 25px;
-    &.selected {
-        transition: 0.2s;
-        color: ${(props) => props.theme.textColor.primary};
-        border-bottom: 5px solid ${(props) => props.theme.borderColor.secondary};
-    }
-    &:hover:not(.selected) {
-        cursor: pointer;
-        color: ${(props) => props.theme.textColor.secondary};
-    }
-`;
-
 export const BackLinkWrapper = styled(FlexDiv)<{ isOverviewPage: boolean }>`
     font-family: Nunito !important;
     height: 20px;
@@ -252,12 +231,6 @@ export const StyledPieChart = styled(PieChart)`
     display: flex;
     justify-self: center;
     align-self: flex-end;
-`;
-
-export const Line = styled.div`
-    height: 1px;
-    background: ${(props) => props.theme.background.secondary};
-    width: 100%;
 `;
 
 export const InfoText = styled.label<{ color?: string }>`

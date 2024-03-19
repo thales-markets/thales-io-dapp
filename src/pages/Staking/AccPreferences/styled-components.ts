@@ -124,19 +124,6 @@ export const ClaimContainer = styled.div`
     }
 `;
 
-export const DelegationAddress = styled.span`
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.25px;
-    color: ${(props) => props.theme.textColor.primary};
-`;
-
-export const Icon = styled.i`
-    font-size: 16px;
-    color: ${(props) => props.theme.textColor.primary};
-    margin-left: 5px;
-`;
-
 export const DelegatedAddressWrapper = styled(FlexDiv)`
     flex-direction: column;
     margin-top: 20px;

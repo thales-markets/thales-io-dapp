@@ -60,7 +60,7 @@ const CloseIcon = styled.i`
     color: ${(props) => props.theme.toastMessages.error.textColor.primary};
 `;
 
-export const toastBasicProperties = {
+const toastBasicProperties = {
     position: 'top-right' as ToastPosition,
     autoClose: 7000, // 7s
     hideProgressBar: false,
@@ -78,26 +78,6 @@ export const getSuccessToastOptions = (message: string, id: ReactText) => {
         className: 'success',
         progressClassName: 'success',
         render: <ToastMessage id={id} type={'success'} message={message} />, // not relevant on ToastOptions, only on UpdateOptions
-    };
-};
-
-export const getInfoToastOptions = (message: string, id: ReactText) => {
-    return {
-        ...toastBasicProperties,
-        toastId: id,
-        className: 'info',
-        progressClassName: 'info',
-        render: <ToastMessage id={id} type={'info'} message={message} />, // not relevant on ToastOptions, only on UpdateOptions
-    };
-};
-
-export const getWarningToastOptions = (message: string, id: ReactText) => {
-    return {
-        ...toastBasicProperties,
-        toastId: id,
-        className: 'warning',
-        progressClassName: 'warning',
-        render: <ToastMessage id={id} type={'warning'} message={message} />, // not relevant on ToastOptions, only on UpdateOptions
     };
 };
 
@@ -122,5 +102,3 @@ export const getLoadingToastOptions = () => {
 export const getDefaultToastContent = (message: string) => {
     return <ToastMessage type="default" message={message} />;
 };
-
-export default ToastMessage;
