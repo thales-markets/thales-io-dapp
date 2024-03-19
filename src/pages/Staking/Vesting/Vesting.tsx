@@ -18,8 +18,8 @@ import { RootState } from 'redux/rootReducer';
 import { FlexDivCentered, FlexDivColumn } from 'styles/common';
 import { formatCurrency, formatCurrencyWithKey, formatShortDate } from 'thales-utils';
 import { UserVestingData } from 'types/token';
+import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
-import snxJSConnector from 'utils/snxJSConnector';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
 import YourTransactions from './Transactions';
 import {
@@ -48,7 +48,7 @@ const Vesting: React.FC = () => {
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
 
-    const { escrowThalesContract } = snxJSConnector as any;
+    const { escrowThalesContract } = networkConnector as any;
 
     const userVestingDataQuery = useUserVestingDataQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
@@ -75,7 +75,7 @@ const Vesting: React.FC = () => {
         const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
         try {
             setIsClaiming(true);
-            const escrowThalesContractWithSigner = escrowThalesContract.connect((snxJSConnector as any).signer);
+            const escrowThalesContractWithSigner = escrowThalesContract.connect((networkConnector as any).signer);
 
             const tx = (await escrowThalesContractWithSigner.vest(rawClaimable)) as ethers.ContractTransaction;
             const txResult = await tx.wait();

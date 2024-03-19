@@ -16,7 +16,7 @@ import { RootState } from 'redux/rootReducer';
 import { useTheme } from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumnBottom, FlexDivColumnSpaceBetween } from 'styles/common';
 import { formatCurrencyWithKey, truncateAddress } from 'thales-utils';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 import { InfoDiv, SectionDescription, SectionTitle } from '../styled-components';
 import Table from './Table';
 import {
@@ -59,7 +59,7 @@ const Leaderboard: React.FC = () => {
 
     useEffect(() => {
         try {
-            const { stakingThalesContract } = snxJSConnector;
+            const { stakingThalesContract } = networkConnector;
 
             if (!roundFromQuery) {
                 stakingThalesContract?.periodsOfStaking().then((period: number) => {

@@ -2,7 +2,7 @@ import { THALES_CURRENCY, USD_SIGN } from 'constants/currency';
 import { Network } from 'enums/network';
 import { UseQueryOptions, useQuery } from 'react-query';
 import { bigNumberFormatter, formatCurrency, formatCurrencyWithKey } from 'thales-utils';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 import QUERY_KEYS from '../../constants/queryKeys';
 
 export type PointsData = {
@@ -51,8 +51,8 @@ const usePointsBreakdownQuery = (
     return useQuery<PointsData | undefined>(
         QUERY_KEYS.Token.PointsBreakdown(walletAddress, networkId),
         async () => {
-            const { stakingThalesContract } = snxJSConnector;
-            const { stakingBonusRewardsManager } = snxJSConnector;
+            const { stakingThalesContract } = networkConnector;
+            const { stakingBonusRewardsManager } = networkConnector;
 
             if (!walletAddress) {
                 return DEFAULT_POINTS_BREAKDOWN_DATA;

@@ -10,29 +10,9 @@ const QUERY_KEYS = {
             walletAddress,
             networkId,
         ],
-        Eth: (walletAddress: string) => ['walletBalances', 'eth', walletAddress],
         Thales: (walletAddress: string, networkId: Network) => ['walletBalances', 'thales', walletAddress, networkId],
-        OpThales: (walletAddress: string, networkId: Network) => [
-            'walletBalances',
-            'opThales',
-            walletAddress,
-            networkId,
-        ],
-        MultipleCollateral: (walletAddress: string, networkId: Network) => [
-            'multipleCollateral',
-            'balance',
-            walletAddress,
-            networkId,
-        ],
     },
     Token: {
-        StakingOverview: (walletAddress: string, networkId: Network) => [
-            'token',
-            'staking',
-            'overview',
-            walletAddress,
-            networkId,
-        ],
         PointsBreakdown: (walletAddress: string, networkId: Network) => [
             'token',
             'staking',
@@ -78,18 +58,6 @@ const QUERY_KEYS = {
             networkId,
             type_in,
         ],
-        MigratedInvestorsRetroRewards: (walletAddress: string, networkId: Network) => [
-            'token',
-            'migratedInvestorsRetroRewards',
-            walletAddress,
-            networkId,
-        ],
-        VestingEscrow: (walletAddress: string, networkId: Network) => [
-            'token',
-            'vestingEscrow',
-            walletAddress,
-            networkId,
-        ],
         LPStaking: (walletAddress: string, networkId: Network) => ['token', 'lpStaking', walletAddress, networkId],
         GelatoBalance: (walletAddress: string, networkId: Network) => [
             'token',
@@ -99,7 +67,6 @@ const QUERY_KEYS = {
         ],
         Gelato: () => ['token', 'gelato'],
         Info: () => ['token', 'info'],
-        StakersInfo: () => ['token', 'stakers'],
         StakersLeaderboardData: (walletAddress: string, networkId: Network, period: number) => [
             'token',
             'stakersLeaderboard',
@@ -136,8 +103,6 @@ const QUERY_KEYS = {
         CouncilNftOwners: () => ['governance', 'council'],
     },
     Integrators: () => ['integrators'],
-    VolumeStats: () => ['volume', 'stats'],
-    UsersStats: () => ['users', 'stats'],
     AllStats: () => ['all', 'stats'],
     WeeklyStats: () => ['weekly', 'stats'],
     LiquidityPoolPnL: (networkId: Network, liquidityPool: LiquidityPool) => [

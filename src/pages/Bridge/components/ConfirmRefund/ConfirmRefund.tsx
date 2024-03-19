@@ -20,8 +20,8 @@ import { FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
 import { WebClient } from 'ts-proto/gateway/GatewayServiceClientPb';
 import { GetTransferStatusRequest, GetTransferStatusResponse } from 'ts-proto/gateway/gateway_pb';
 import { SUPPORTED_NETWORK_IDS_MAP } from 'utils/network';
+import networkConnector from 'utils/networkConnector';
 import { refetchCelerBridgeHistory } from 'utils/queryConnector';
-import snxJSConnector from 'utils/snxJSConnector';
 import { useSwitchNetwork } from 'wagmi';
 
 type ConfirmRefundProps = {
@@ -52,14 +52,14 @@ const ConfirmRefund: React.FC<ConfirmRefundProps> = ({ transferId, srcChainId })
             return;
         }
 
-        const { thalesTokenContract, celerBridgeContract } = snxJSConnector as any;
+        const { thalesTokenContract, celerBridgeContract } = networkConnector as any;
 
         if (thalesTokenContract && celerBridgeContract) {
             setIsSubmitting(true);
             const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
 
             try {
-                const celerBridgeContractWithSigner = celerBridgeContract.connect((snxJSConnector as any).signer);
+                const celerBridgeContractWithSigner = celerBridgeContract.connect((networkConnector as any).signer);
                 const transferStatus = await fetchTransferStatus();
 
                 const wdmsg = base64.decode(transferStatus.wdOnchain.toString());

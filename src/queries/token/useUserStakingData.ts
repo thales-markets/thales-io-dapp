@@ -5,7 +5,7 @@ import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
 import { UserStakingData } from 'types/token';
 import QUERY_KEYS from '../../constants/queryKeys';
-import snxJSConnector from '../../utils/snxJSConnector';
+import networkConnector from '../../utils/networkConnector';
 
 const useUserStakingDataQuery = (
     walletAddress: string,
@@ -35,7 +35,7 @@ const useUserStakingDataQuery = (
                 mergeAccountEnabled: true,
             };
             try {
-                const { stakingDataContract, stakingThalesContract } = snxJSConnector;
+                const { stakingDataContract, stakingThalesContract } = networkConnector;
                 if (stakingDataContract && stakingThalesContract) {
                     const [
                         contractStakingData,

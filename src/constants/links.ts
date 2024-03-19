@@ -10,10 +10,16 @@ const LINKS = {
     BookieBot: 'https://bookiebot.app/',
     Spongly: 'https://spongly.eth.limo/dashboard/',
     LeagueBot: 'https://twitter.com/TeamLeagueBot',
-    TaleOfThales: 'https://thalesmarket.io/tale-of-thales',
     MarketingAssets: 'https://docs.thales.io/resources/marketing-assets',
     SpeedMarkets: 'https://speedmarkets.xyz/',
     Audits: 'https://github.com/thales-markets/contracts?tab=readme-ov-file#audits',
+    Synthetix: 'https://synthetix.io/',
+    Chainlink: 'https://chain.link/',
+    Optimism: 'https://www.optimism.io/',
+    Arbitrum: 'https://arbitrum.io/',
+    Base: 'https://base.org/',
+    Pyth: 'https://pyth.network/',
+    Framework: 'https://framework.ventures/',
     Token: {
         TIP66: '/dao/thalesgov.eth/0xa925cddfe73b58911c3a9308a0e9d70dff21e31e4d428247ac084e8cffa4eb4f',
         TIP139: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-139.md',
@@ -25,9 +31,6 @@ const LINKS = {
             'https://app.uniswap.org/#/swap?outputCurrency=0xE85B662Fe97e8562f4099d8A1d5A92D4B453bF30&chain=arbitrum',
         UniswapBuyThalesBase:
             'https://app.uniswap.org/#/swap?outputCurrency=0xf34e0cff046e154cafcae502c7541b9e5fd8c249&chain=base',
-        UniswapBuyThalesOp:
-            'https://app.uniswap.org/#/swap?outputCurrency=0x217d47011b23bb961eb6d93ca9945b7501a5bb11&chain=optimism',
-        ThalesStaking: 'https://thales.io/staking',
     },
     LPStaking: {
         ArrakisLink:

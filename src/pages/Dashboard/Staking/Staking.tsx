@@ -15,7 +15,7 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import { Colors, FlexDiv, FlexDivStart } from 'styles/common';
-import { formatCurrency } from 'thales-utils';
+import { formatCurrency, roundNumberToDecimals } from 'thales-utils';
 import { Staker } from 'types/governance';
 import { Fee, WeeklyStats } from 'types/statistics';
 import { GlobalStakingData, TokenInfo } from 'types/token';
@@ -157,7 +157,10 @@ const Staking: React.FC = () => {
                             <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
                             <TitleLabel isHighlighted={true}>
                                 {globalStakingData
-                                    ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)} %`
+                                    ? `${roundNumberToDecimals(
+                                          globalStakingData.thalesApy + globalStakingData.feeApy,
+                                          2
+                                      )} %`
                                     : '-'}
                             </TitleLabel>
                         </FlexDivStart>
@@ -179,7 +182,7 @@ const Staking: React.FC = () => {
                             <InfoStats>
                                 {globalStakingData ? formatCurrency(globalStakingData.totalStakedAmount) : '-'}
                             </InfoStats>
-                            <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
+                            <InfoStats>{roundNumberToDecimals(stakedOfCirculatingSupplyPercentage, 2)}%</InfoStats>
                         </InfoSection>
                     </StakingInfo>
                     <ChartWrapper>
@@ -223,7 +226,10 @@ const Staking: React.FC = () => {
                                 <TitleLabel>{t('dashboard.staking.total-apy')}</TitleLabel>
                                 <TitleLabel isHighlighted={true}>
                                     {globalStakingData
-                                        ? `${(globalStakingData.thalesApy + globalStakingData.feeApy).toFixed(2)}%`
+                                        ? `${roundNumberToDecimals(
+                                              globalStakingData.thalesApy + globalStakingData.feeApy,
+                                              2
+                                          )}%`
                                         : '-'}
                                 </TitleLabel>
                             </FlexDivAlignStartSpaceBetween>
@@ -256,7 +262,9 @@ const Staking: React.FC = () => {
                                 </FlexDivFullWidthSpaceBetween>
                                 <FlexDivFullWidthSpaceBetween>
                                     <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
-                                    <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
+                                    <InfoStats>
+                                        {roundNumberToDecimals(stakedOfCirculatingSupplyPercentage, 2)}%
+                                    </InfoStats>
                                 </FlexDivFullWidthSpaceBetween>
                             </InfoSection>
                         </StakingInfo>

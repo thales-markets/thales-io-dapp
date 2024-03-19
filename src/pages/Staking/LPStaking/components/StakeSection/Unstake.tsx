@@ -20,8 +20,8 @@ import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDivCentered, FlexDivColumn, FlexDivColumnCentered } from 'styles/common';
 import { formatCurrency, formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
+import networkConnector from 'utils/networkConnector';
 import { refetchLPStakingQueries, refetchTokenQueries } from 'utils/queryConnector';
-import snxJSConnector from 'utils/snxJSConnector';
 
 type Properties = {
     staked: number;
@@ -38,7 +38,7 @@ const Unstake: React.FC<Properties> = ({ staked }) => {
     const [isUnstaking, setIsUnstaking] = useState<boolean>(false);
     const [amountToUnstake, setAmountToUnstake] = useState<number | string>('');
     const [isAmountValid, setIsAmountValid] = useState<boolean>(true);
-    const { lpStakingRewardsContract } = snxJSConnector as any;
+    const { lpStakingRewardsContract } = networkConnector as any;
 
     const isAmountEntered = Number(amountToUnstake) > 0;
     const insufficientBalance = Number(amountToUnstake) > staked || !staked;
@@ -46,11 +46,13 @@ const Unstake: React.FC<Properties> = ({ staked }) => {
     const isUnstakeButtonDisabled = isUnstaking || !lpStakingRewardsContract || !isWalletConnected;
 
     const handleUnstakeThales = async () => {
-        const { lpStakingRewardsContract } = snxJSConnector as any;
+        const { lpStakingRewardsContract } = networkConnector as any;
         const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
         try {
             setIsUnstaking(true);
-            const lpStakingRewardsContractWithSigner = lpStakingRewardsContract.connect((snxJSConnector as any).signer);
+            const lpStakingRewardsContractWithSigner = lpStakingRewardsContract.connect(
+                (networkConnector as any).signer
+            );
             const amount = ethers.utils.parseEther(amountToUnstake.toString());
             const tx = await lpStakingRewardsContractWithSigner.withdraw(amount);
             const txResult = await tx.wait();

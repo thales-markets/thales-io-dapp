@@ -62,9 +62,9 @@ import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
 import { getCurrencyKeyStableBalance } from 'utils/balances';
 import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance } from 'utils/network';
+import networkConnector from 'utils/networkConnector';
 import { refetchLiquidityPoolData } from 'utils/queryConnector';
 import { buildHref } from 'utils/routes';
-import snxJSConnector from 'utils/snxJSConnector';
 import { delay } from 'utils/timer';
 import PnL from './PnL';
 import YourTransactions from './Transactions';
@@ -290,7 +290,6 @@ const AMMLP: React.FC = () => {
     const isLiquidityPoolCapReached = liquidityPoolData && liquidityPoolData.allocationNextRoundPercentage >= 100;
 
     const isWithdrawalRequested = userLiquidityPoolData && userLiquidityPoolData.isWithdrawalRequested;
-    // const nothingToWithdraw = userLiquidityPoolData && userLiquidityPoolData.balanceCurrentRound === 0;
 
     const isDepositButtonDisabled =
         !isWalletConnected ||
@@ -311,12 +310,6 @@ const AMMLP: React.FC = () => {
         liquidityPoolPaused ||
         isLiquidityPoolCapReached;
 
-    // const infoGraphicPercentages = getInfoGraphicPercentages(
-    //     userLiquidityPoolData ? userLiquidityPoolData.balanceCurrentRound : 0,
-    //     userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0,
-    //     userLiquidityPoolData ? userLiquidityPoolData.maxDeposit : 0
-    // );
-
     const nothingToWithdraw = userLiquidityPoolData && userLiquidityPoolData.balanceCurrentRound === 0;
 
     const isRequestWithdrawalButtonDisabled =
@@ -330,18 +323,18 @@ const AMMLP: React.FC = () => {
 
     const activeLiquidityPoolContract = useMemo(() => {
         if (paramTab === LiquidityPool.THALES) {
-            return snxJSConnector.thalesLiquidityPoolContract;
+            return networkConnector.thalesLiquidityPoolContract;
         }
         if (paramTab === LiquidityPool.OVERTIME_SINGLE) {
-            return snxJSConnector.sportLiquidityPoolContract;
+            return networkConnector.sportLiquidityPoolContract;
         }
         if (paramTab === LiquidityPool.OVERTIME_PARLAY) {
-            return snxJSConnector.parlayAMMLiquidityPoolContract;
+            return networkConnector.parlayAMMLiquidityPoolContract;
         }
     }, [paramTab]);
 
     useEffect(() => {
-        const { signer, collateral } = snxJSConnector;
+        const { signer, collateral } = networkConnector;
         if (signer && collateral && activeLiquidityPoolContract) {
             const collateralWithSigner = collateral.connect(signer);
             const getAllowance = async () => {
@@ -368,7 +361,7 @@ const AMMLP: React.FC = () => {
     }, [walletAddress, isWalletConnected, hasAllowance, amount, isAllowing, networkId, activeLiquidityPoolContract]);
 
     const handleAllowance = async (approveAmount: BigNumber) => {
-        const { signer, collateral } = snxJSConnector;
+        const { signer, collateral } = networkConnector;
         if (signer && collateral && activeLiquidityPoolContract) {
             const id = toast.loading(getDefaultToastContent(t('common.transaction-pending')), getLoadingToastOptions());
             setIsAllowing(true);
@@ -396,7 +389,7 @@ const AMMLP: React.FC = () => {
     };
 
     const handleWithdrawalRequest = async () => {
-        const { signer } = snxJSConnector;
+        const { signer } = networkConnectoror;
         if (signer && activeLiquidityPoolContract) {
             const id = toast.loading(
                 getDefaultToastContent(t('markets.market.toast-messsage.transaction-pending')),
@@ -430,7 +423,7 @@ const AMMLP: React.FC = () => {
     };
 
     const handleDeposit = async () => {
-        const { signer } = snxJSConnector;
+        const { signer } = networkConnector;
         if (signer && activeLiquidityPoolContract) {
             const id = toast.loading(getDefaultToastContent(t('common.transaction-pending')), getLoadingToastOptions());
             setIsSubmitting(true);
@@ -513,7 +506,7 @@ const AMMLP: React.FC = () => {
         const id = toast.loading(getDefaultToastContent(t('staking.amm-lp.closing-round')), getLoadingToastOptions());
         setIsSubmitting(true);
         try {
-            const { signer } = snxJSConnector;
+            const { signer } = networkConnector;
 
             if (signer && activeLiquidityPoolContract) {
                 const lpContractWithSigner = activeLiquidityPoolContract.connect(signer);
@@ -1186,33 +1179,6 @@ const LiquidityPoolFilledText = styled(FlexDivColumn)`
     }
 `;
 
-// const getInfoGraphicPercentages = (currentBalance: number, nextRoundBalance: number, maxAllowance: number) => {
-//     let currentBalancePercenatage = 1;
-//     let nextRoundBalancePercenatage = 1;
-//     let maxAllowancePercenatage = 1;
-
-//     if (maxAllowance > currentBalance && maxAllowance > nextRoundBalance) {
-//         currentBalancePercenatage = currentBalance / maxAllowance;
-//         nextRoundBalancePercenatage = nextRoundBalance / maxAllowance;
-//     } else if (currentBalance > nextRoundBalance) {
-//         maxAllowancePercenatage = maxAllowance / currentBalance;
-//         nextRoundBalancePercenatage = nextRoundBalance / currentBalance;
-//     } else if (nextRoundBalance === 0) {
-//         currentBalancePercenatage = 0;
-//         nextRoundBalancePercenatage = 0;
-//         maxAllowancePercenatage = 0;
-//     } else {
-//         maxAllowancePercenatage = maxAllowance / nextRoundBalance;
-//         currentBalancePercenatage = currentBalance / nextRoundBalance;
-//     }
-
-//     return {
-//         currentBalancePercenatage,
-//         nextRoundBalancePercenatage,
-//         maxAllowancePercenatage,
-//     };
-// };
-
 const LPInfo = styled.div`
     display: flex;
     flex-direction: column;
@@ -1222,12 +1188,6 @@ const LPInfo = styled.div`
     flex: 1;
     justify-content: space-evenly;
 `;
-
-// const getUniswapLink = (networkId: Network) => {
-//     if (networkId === Network.Arbitrum) return LINKS.Token.UniswapBuyThalesArbitrum;
-//     if (networkId === Network.Base) return LINKS.Token.UniswapBuyThalesBase;
-//     return LINKS.Token.UniswapBuyThalesOp;
-// };
 
 const TIPLinks = {
     [LiquidityPool.THALES]: LINKS.Token.TIP139,

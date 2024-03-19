@@ -20,8 +20,8 @@ import styled, { useTheme } from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { ThemeInterface } from 'types/ui';
+import networkConnector from 'utils/networkConnector';
 import { refetchLPStakingQueries, refetchTokenQueries } from 'utils/queryConnector';
-import snxJSConnector from 'utils/snxJSConnector';
 
 const ClaimSection: React.FC = () => {
     const { t } = useTranslation();
@@ -44,7 +44,7 @@ const ClaimSection: React.FC = () => {
     const secondRewards =
         lpStakingQuery.isSuccess && lpStakingQuery.data ? Number(lpStakingQuery.data.secondRewards) : 0;
 
-    const { lpStakingRewardsContract } = snxJSConnector as any;
+    const { lpStakingRewardsContract } = networkConnector as any;
 
     const handleClaimStakingRewards = async () => {
         if (rewards || secondRewards) {
@@ -52,7 +52,7 @@ const ClaimSection: React.FC = () => {
             try {
                 setIsClaiming(true);
                 const lpStakingRewardsContractWithSigner = lpStakingRewardsContract.connect(
-                    (snxJSConnector as any).signer
+                    (networkConnector as any).signer
                 );
                 const tx = (await lpStakingRewardsContractWithSigner.getReward()) as ethers.ContractTransaction;
                 const txResult = await tx.wait();

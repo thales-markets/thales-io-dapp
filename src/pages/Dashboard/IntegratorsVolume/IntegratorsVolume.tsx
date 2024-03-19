@@ -10,7 +10,7 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
-import { formatCurrency } from 'thales-utils';
+import { formatCurrencyWithSign } from 'thales-utils';
 import { Integrator } from 'types/integrator';
 import { VolumeStats } from 'types/statistics';
 import {
@@ -89,16 +89,22 @@ const IntegratorsVolume: React.FC = () => {
                             ))}
                         </InfoSection>
                         <InfoSection side="right">
-                            <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}</InfoStats>
                             <InfoStats>
-                                ${' '}
+                                {volumeStats ? formatCurrencyWithSign('$', volumeStats?.thalesAmmVolume) : 0}
+                            </InfoStats>
+                            <InfoStats>
                                 {volumeStats
-                                    ? formatCurrency(volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume)
+                                    ? formatCurrencyWithSign(
+                                          '$',
+                                          volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume
+                                      )
                                     : 0}
                             </InfoStats>
-                            <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.speedAmmVolume) : 0}</InfoStats>
+                            <InfoStats>
+                                {volumeStats ? formatCurrencyWithSign('$', volumeStats?.speedAmmVolume) : 0}
+                            </InfoStats>
                             {integratorsData.map((integrator, index) => (
-                                <InfoStats key={index}>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
+                                <InfoStats key={index}>{formatCurrencyWithSign('$', integrator.totalVolume)}</InfoStats>
                             ))}
                         </InfoSection>
                     </>
@@ -110,7 +116,7 @@ const IntegratorsVolume: React.FC = () => {
                                     {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
                                 </InfoText>
                                 <InfoStats>
-                                    $ {volumeStats ? formatCurrency(volumeStats?.thalesAmmVolume) : 0}
+                                    {volumeStats ? formatCurrencyWithSign('$', volumeStats?.thalesAmmVolume) : 0}
                                 </InfoStats>
                             </SPAAnchor>
                         </FlexDivIntegrators>
@@ -120,9 +126,11 @@ const IntegratorsVolume: React.FC = () => {
                                     {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.GRAY} />
                                 </InfoText>
                                 <InfoStats>
-                                    ${' '}
                                     {volumeStats
-                                        ? formatCurrency(volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume)
+                                        ? formatCurrencyWithSign(
+                                              '$',
+                                              volumeStats?.overtimeAmmVolume + volumeStats.parlayAmmVolume
+                                          )
                                         : 0}
                                 </InfoStats>
                             </SPAAnchor>
@@ -132,7 +140,9 @@ const IntegratorsVolume: React.FC = () => {
                                 <InfoText>
                                     {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
                                 </InfoText>
-                                <InfoStats>$ {volumeStats ? formatCurrency(volumeStats?.speedAmmVolume) : 0}</InfoStats>
+                                <InfoStats>
+                                    {volumeStats ? formatCurrencyWithSign('$', volumeStats?.speedAmmVolume) : 0}
+                                </InfoStats>
                             </SPAAnchor>
                         </FlexDivIntegrators>
                         {integratorsData.map((integrator, index) => (
@@ -141,7 +151,7 @@ const IntegratorsVolume: React.FC = () => {
                                     <InfoText>
                                         {integrator.id} <LinkArrow color={Colors.GRAY} />
                                     </InfoText>
-                                    <InfoStats>$ {formatCurrency(integrator.totalVolume)}</InfoStats>
+                                    <InfoStats>$ {formatCurrencyWithSign('$', integrator.totalVolume)}</InfoStats>
                                 </SPAAnchor>
                             </FlexDivIntegrators>
                         ))}

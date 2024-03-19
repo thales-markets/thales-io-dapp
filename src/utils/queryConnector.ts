@@ -32,27 +32,6 @@ export const refetchLPStakingQueries = (walletAddress: string, networkId: Networ
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.Gelato());
 };
 
-// export const refetchUserTokenTransactions = (walletAddress: string, networkId: Network) => {
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.Transactions(walletAddress, networkId, undefined));
-// };
-
-// export const refetchMigratedInvestorsRetroRewards = (walletAddress: string, networkId: Network) => {
-//     queryConnector.queryClient.invalidateQueries(
-//         QUERY_KEYS.Token.MigratedInvestorsRetroRewards(walletAddress, networkId)
-//     );
-// };
-
-// export const refetchVestingEscrow = (walletAddress: string, networkId: Network) => {
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.VestingEscrow(walletAddress, networkId));
-// };
-
-// export const refetchBalances = (walletAddress: string, networkId: Network) => {
-//     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.WalletBalances.StableCoinBalance(walletAddress, networkId));
-//     queryConnector.queryClient.invalidateQueries(
-//         QUERY_KEYS.WalletBalances.MultipleCollateral(walletAddress, networkId)
-//     );
-// };
-
 export const refetchProposal = (spaceKey: SpaceKey, hash: string, walletAddress: string) => {
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Governance.Proposal(spaceKey, hash, walletAddress));
 };
@@ -67,11 +46,5 @@ export const refetchLiquidityPoolData = (walletAddress: string, networkId: Netwo
 export const refetchCelerBridgeHistory = (walletAddress: string) => {
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.CelerBridgeHistory(walletAddress));
 };
-
-// export const refetchStakingLeaderboardData = (walletAddress: string, networkId: Network, period: number) => {
-//     queryConnector.queryClient.invalidateQueries(
-//         QUERY_KEYS.Token.StakersLeaderboardData(walletAddress, networkId, period)
-//     );
-// };
 
 export default queryConnector;

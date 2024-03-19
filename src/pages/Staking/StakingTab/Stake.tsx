@@ -25,8 +25,8 @@ import { FlexDivCentered } from 'styles/common';
 import { formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
 import { checkAllowance } from 'utils/network';
+import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
-import snxJSConnector from 'utils/snxJSConnector';
 import { StakingButton } from '../styled-components';
 import { ClaimMessage, SectionContentContainer, StakeButtonDiv, StakeInputContainer } from './styled-components';
 
@@ -45,7 +45,7 @@ const Stake: React.FC = () => {
     const [isStaking, setIsStaking] = useState<boolean>(false);
     const [hasStakeAllowance, setStakeAllowance] = useState<boolean>(false);
     const [openApprovalModal, setOpenApprovalModal] = useState<boolean>(false);
-    const { stakingThalesContract } = snxJSConnector as any;
+    const { stakingThalesContract } = networkConnector as any;
     const [lastValidUserStakingData, setLastValidUserStakingData] = useState<UserStakingData | undefined>(undefined);
     const [lastValidStakingData, setLastValidStakingData] = useState<ThalesStakingData | undefined>(undefined);
 
@@ -106,8 +106,8 @@ const Stake: React.FC = () => {
 
     useEffect(() => {
         if (!!stakingThalesContract) {
-            const { thalesTokenContract } = snxJSConnector as any;
-            const thalesTokenContractWithSigner = thalesTokenContract.connect((snxJSConnector as any).signer);
+            const { thalesTokenContract } = networkConnector as any;
+            const thalesTokenContractWithSigner = thalesTokenContract.connect((networkConnector as any).signer);
             const addressToApprove = stakingThalesContract.address;
             const getAllowance = async () => {
                 try {
@@ -134,7 +134,7 @@ const Stake: React.FC = () => {
 
         try {
             setIsStaking(true);
-            const stakingThalesContractWithSigner = stakingThalesContract.connect((snxJSConnector as any).signer);
+            const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
             const amount = ethers.utils.parseEther(amountToStake.toString());
             const tx = await stakingThalesContractWithSigner.stake(amount);
             const txResult = await tx.wait();
@@ -153,7 +153,7 @@ const Stake: React.FC = () => {
 
     const handleAllowance = async (approveAmount: BigNumber) => {
         const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
-        const { thalesTokenContract, signer } = snxJSConnector as any;
+        const { thalesTokenContract, signer } = networkConnector as any;
         const thalesTokenContractWithSigner = thalesTokenContract.connect(signer);
 
         const addressToApprove = stakingThalesContract.address;

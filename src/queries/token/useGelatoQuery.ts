@@ -1,7 +1,7 @@
 import QUERY_KEYS from 'constants/queryKeys';
 import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter, formatCurrency } from 'thales-utils';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 
 const LP_STAKING_WEEKLY_REWARDS = 18500;
 const LP_STAKING_WEEKLY_SECOND_REWARDS = 1000;
@@ -35,9 +35,9 @@ const useGelatoQuery = (options?: UseQueryOptions<Balance>) => {
         async () => {
             try {
                 const [balance, totalSupply, totalGelatoLocked, ratesResults] = await Promise.all([
-                    snxJSConnector?.gelatoContract?.getUnderlyingBalances(),
-                    snxJSConnector?.gelatoContract?.totalSupply(),
-                    snxJSConnector?.lpStakingRewardsContract?.totalSupply(),
+                    networkConnector?.gelatoContract?.getUnderlyingBalances(),
+                    networkConnector?.gelatoContract?.totalSupply(),
+                    networkConnector?.lpStakingRewardsContract?.totalSupply(),
                     getRates(),
                 ]);
 

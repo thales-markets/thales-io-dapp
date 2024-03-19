@@ -22,8 +22,8 @@ import { RootState } from 'redux/rootReducer';
 import { FlexDivCentered } from 'styles/common';
 import { formatCurrency, formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
 import { checkAllowance } from 'utils/network';
+import networkConnector from 'utils/networkConnector';
 import { refetchLPStakingQueries, refetchTokenQueries } from 'utils/queryConnector';
-import snxJSConnector from 'utils/snxJSConnector';
 import { ClaimMessage, SectionContentContainer, StakeButtonDiv, StakeInputContainer, StakingButton } from './Unstake';
 
 type Properties = {
@@ -45,7 +45,7 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
     const [isStaking, setIsStaking] = useState<boolean>(false);
     const [hasStakeAllowance, setStakeAllowance] = useState<boolean>(false);
     const [openApprovalModal, setOpenApprovalModal] = useState<boolean>(false);
-    const { lpStakingRewardsContract } = snxJSConnector as any;
+    const { lpStakingRewardsContract } = networkConnector as any;
 
     const lpTokensBalanceQuery = useGelatoUserBalanceQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
@@ -66,8 +66,8 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
 
     useEffect(() => {
         if (!!lpStakingRewardsContract) {
-            const { gelatoContract } = snxJSConnector as any;
-            const gelatoContractWithSigner = gelatoContract.connect((snxJSConnector as any).signer);
+            const { gelatoContract } = networkConnector as any;
+            const gelatoContractWithSigner = gelatoContract.connect((networkConnector as any).signer);
             const addressToApprove = lpStakingRewardsContract.address;
             const getAllowance = async () => {
                 try {
@@ -93,7 +93,9 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
         const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
         try {
             setIsStaking(true);
-            const lpStakingRewardsContractWithSigner = lpStakingRewardsContract.connect((snxJSConnector as any).signer);
+            const lpStakingRewardsContractWithSigner = lpStakingRewardsContract.connect(
+                (networkConnector as any).signer
+            );
             const amount = ethers.utils.parseEther(amountToStake.toString());
             const tx = await lpStakingRewardsContractWithSigner.stake(amount);
             const txResult = await tx.wait();
@@ -116,7 +118,7 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
 
     const handleAllowance = async (approveAmount: BigNumber) => {
         const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
-        const { gelatoContract, signer } = snxJSConnector as any;
+        const { gelatoContract, signer } = networkConnector as any;
         const gelatoContractWithSigner = gelatoContract.connect(signer);
 
         const addressToApprove = lpStakingRewardsContract.address;

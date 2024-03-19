@@ -1,8 +1,8 @@
-import { useQuery, UseQueryOptions } from 'react-query';
-import QUERY_KEYS from '../../constants/queryKeys';
-import snxJSConnector from '../../utils/snxJSConnector';
-import { bigNumberFormatter } from 'thales-utils';
 import { Network } from 'enums/network';
+import { useQuery, UseQueryOptions } from 'react-query';
+import { bigNumberFormatter } from 'thales-utils';
+import QUERY_KEYS from '../../constants/queryKeys';
+import networkConnector from '../../utils/networkConnector';
 
 type LPStakingThalesQueryResponse = {
     staked: number;
@@ -27,12 +27,12 @@ const useLPStakingThalesQuery = (
             };
 
             try {
-                staking.paused = await (snxJSConnector as any).lpStakingRewardsContract.paused();
+                staking.paused = await (networkConnector as any).lpStakingRewardsContract.paused();
 
                 if (walletAddress !== '') {
                     const [staked, rewards] = await Promise.all([
-                        (snxJSConnector as any).lpStakingRewardsContract.balanceOf(walletAddress),
-                        (snxJSConnector as any).lpStakingRewardsContract.earned(walletAddress),
+                        (networkConnector as any).lpStakingRewardsContract.balanceOf(walletAddress),
+                        (networkConnector as any).lpStakingRewardsContract.earned(walletAddress),
                     ]);
                     staking.staked = bigNumberFormatter(staked);
                     staking.rewards = bigNumberFormatter(rewards[0]);

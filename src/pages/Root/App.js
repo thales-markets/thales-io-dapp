@@ -1,4 +1,3 @@
-import { IFrameEthereumProvider } from '@ledgerhq/iframe-provider';
 import Loader from 'components/Loader';
 import { SUPPORTED_NETWORKS_NAMES } from 'constants/network';
 import ROUTES from 'constants/routes';
@@ -13,10 +12,9 @@ import { setAppReady } from 'redux/modules/app';
 import { setIsMobile } from 'redux/modules/ui';
 import { getSwitchToNetworkId, updateNetworkSettings, updateWallet } from 'redux/modules/wallet';
 import { isMobile } from 'utils/device';
-import { isLedgerDappBrowserProvider } from 'utils/ledger';
+import networkConnector from 'utils/networkConnector';
 import queryConnector from 'utils/queryConnector';
 import { history } from 'utils/routes';
-import snxJSConnector from 'utils/snxJSConnector';
 import { useAccount, useProvider, useSigner } from 'wagmi';
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '../LandingPage'));
@@ -37,38 +35,19 @@ const App = () => {
     const provider = useProvider(!address ? { chainId: switchedToNetworkId } : undefined); // when wallet not connected force chain
     const { data: signer } = useSigner();
 
-    const isLedgerLive = isLedgerDappBrowserProvider();
-
     queryConnector.setQueryClient();
 
     useEffect(() => {
         const init = async () => {
-            let ledgerProvider = null;
-            if (isLedgerLive) {
-                ledgerProvider = new IFrameEthereumProvider();
-                const accounts = await ledgerProvider.enable();
-                const account = accounts[0];
-                dispatch(updateWallet({ walletAddress: account }));
-                ledgerProvider.on('accountsChanged', (accounts) => {
-                    if (accounts.length > 0) {
-                        dispatch(updateWallet({ walletAddress: accounts[0] }));
-                    }
-                });
-            }
-
             try {
                 const chainIdFromProvider = (await provider.getNetwork()).chainId;
-                const providerNetworkId = isLedgerLive
-                    ? ledgerProvider
-                    : !!address
-                    ? chainIdFromProvider
-                    : switchedToNetworkId;
+                const providerNetworkId = !!address ? chainIdFromProvider : switchedToNetworkId;
 
-                snxJSConnector.setContractSettings({
+                networkConnector.setContractSettings({
                     networkId: providerNetworkId,
                     provider,
                     // @ts-ignore
-                    signer: isLedgerLive ? ledgerProvider?.getSigner() : signer,
+                    signer,
                 });
 
                 dispatch(
@@ -88,7 +67,7 @@ const App = () => {
             }
         };
         init();
-    }, [dispatch, provider, signer, switchedToNetworkId, address, isLedgerLive]);
+    }, [dispatch, provider, signer, switchedToNetworkId, address]);
 
     useEffect(() => {
         dispatch(updateWallet({ walletAddress: address }));

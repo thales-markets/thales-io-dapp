@@ -55,7 +55,7 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
 
     const calculatedVotesSectionsWidth = useMemo(() => {
         if (proposalResults && proposal && numberOfCouncilMembers) {
-            return CalculateWidth(proposalResults?.votes, proposal, numberOfCouncilMembers);
+            return calculateWidth(proposalResults?.votes, proposal, numberOfCouncilMembers);
         }
     }, [proposalResults, proposal, numberOfCouncilMembers]);
 
@@ -250,7 +250,7 @@ const Voter: React.FC<StakerCellProps> = ({ address, walletAddress }) => {
     );
 };
 
-const CalculateWidth = (votes: any[], proposal: Proposal, numberOfCouncilMembers: number) => {
+const calculateWidth = (votes: any[], proposal: Proposal, numberOfCouncilMembers: number) => {
     const voteChoices = votes.map((vote: any) => {
         return proposal.choices[vote.choice - 1];
     });

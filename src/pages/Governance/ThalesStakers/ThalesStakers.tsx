@@ -25,7 +25,7 @@ import { formatCurrency, formatCurrencyWithKey, getEtherscanAddressLink, truncat
 import { DEFAULT_SEARCH_DEBOUNCE_MS } from 'thales-utils/src/constants/defaults';
 import { EnsNames, Staker, Stakers } from 'types/governance';
 import { StakingData, TokenInfo } from 'types/token';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 import Dropdown from '../../../components/Dropdown/Dropdown';
 import { Blockie, InfoStats, InfoText, LoaderContainer, StyledLink, StyledPieChart } from '../styled-components';
 import {
@@ -164,7 +164,7 @@ const ThalesStakers: React.FC = () => {
         const getEnsNames = async (stakers: Stakers) => {
             const records: EnsNames = {};
             const names = await Promise.all(
-                stakers.map((staker: Staker) => (snxJSConnector as any).provider.lookupAddress(staker.id))
+                stakers.map((staker: Staker) => (networkConnector as any).provider.lookupAddress(staker.id))
             );
             for (let index = 0; index < stakers.length; index++) {
                 records[stakers[index].id] = names[index];

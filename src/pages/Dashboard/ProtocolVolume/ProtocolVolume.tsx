@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
 import { FlexDiv } from 'styles/common';
-import { formatCurrency } from 'thales-utils';
+import { formatCurrencyWithSign } from 'thales-utils';
 import { UsersStats, VolumeStats } from 'types/statistics';
 import {
     InfoSection,
@@ -46,14 +46,14 @@ const ProtocolVolume: React.FC = () => {
                         <TitleLabel>{t('dashboard.protocol-volume.total-protocol-volume')}</TitleLabel>
                     </FlexDiv>
                     <NumericStats>
-                        $ {volumeStats ? formatCurrency(volumeStats.totalProtocolVolume, 2, true) : '-'}
+                        {volumeStats ? formatCurrencyWithSign('$', volumeStats.totalProtocolVolume, 2, true) : '-'}
                     </NumericStats>
                     <FlexDiv>
                         <WidgetIcon className="icon icon--safebox" />
                         <TitleLabel>{t('dashboard.protocol-volume.safebox-fees')}</TitleLabel>
                     </FlexDiv>
                     <NumericStats>
-                        $ {volumeStats ? formatCurrency(volumeStats.safeboxFees, 2, true) : '-'}
+                        {volumeStats ? formatCurrencyWithSign('$', volumeStats.safeboxFees, 2, true) : '-'}
                     </NumericStats>
                 </WidgetHeader>
                 <InfoSection side="left">
@@ -63,15 +63,18 @@ const ProtocolVolume: React.FC = () => {
                     <InfoText>{t('dashboard.protocol-volume.total-unique-users')}</InfoText>
                 </InfoSection>
                 <InfoSection side="right">
-                    <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.thalesAmmVolume) : '-'}</InfoStats>
                     <InfoStats>
-                        ${' '}
+                        {volumeStats ? formatCurrencyWithSign('$', volumeStats.thalesAmmVolume) : '-'}
+                    </InfoStats>
+                    <InfoStats>
                         {volumeStats
-                            ? formatCurrency(volumeStats.overtimeAmmVolume + volumeStats.parlayAmmVolume)
+                            ? formatCurrencyWithSign('$', volumeStats.overtimeAmmVolume + volumeStats.parlayAmmVolume)
                             : '-'}
                     </InfoStats>
-                    <InfoStats>$ {volumeStats ? formatCurrency(volumeStats.speedAmmVolume) : '-'}</InfoStats>
-                    <InfoStats>{usersStats ? formatCurrency(usersStats.totalUniqueUsers, 2, true) : '-'}</InfoStats>
+                    <InfoStats>{volumeStats ? formatCurrencyWithSign('$', volumeStats.speedAmmVolume) : '-'}</InfoStats>
+                    <InfoStats>
+                        {usersStats ? formatCurrencyWithSign('$', usersStats.totalUniqueUsers, 2, true) : '-'}
+                    </InfoStats>
                 </InfoSection>
             </WidgetWrapper>
         </LoadingContainer>

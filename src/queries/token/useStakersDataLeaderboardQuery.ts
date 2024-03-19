@@ -6,7 +6,7 @@ import { UseQueryOptions, useQuery } from 'react-query';
 import thalesData from 'thales-data';
 import { bigNumberFormatter, formatCurrencyWithKey } from 'thales-utils';
 import { Staker, Stakers } from 'types/governance';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 
 type StakerContractLeaderboardData = {
     rank?: number;
@@ -66,8 +66,8 @@ const useStakersDataLeaderboardQuery = (
                 const stakersOnlyWithSomeStakingAmount =
                     stakers && stakers.filter((staker) => staker.stakedAmount > MIN_STAKING_AMOUNT);
 
-                const { stakingBonusRewardsManager } = snxJSConnector as any;
-                const { stakingThalesContract } = snxJSConnector;
+                const { stakingBonusRewardsManager } = networkConnector as any;
+                const { stakingThalesContract } = networkConnector;
 
                 const calls = [];
 

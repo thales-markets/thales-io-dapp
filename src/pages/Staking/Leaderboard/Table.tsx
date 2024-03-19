@@ -76,69 +76,7 @@ const LeaderboardTable: FC<TransactionsTableProps> = memo(({ stakingData, isLoad
     return (
         <>
             <SectionContainer width={isMobile ? '100%' : '60%'} rowCount={stakingData.length}>
-                <Table
-                    columns={columns}
-                    data={stakingData}
-                    stickyRow={stickyRow}
-                    // expandedRow={(row) => {
-                    //     return (
-                    //         <ExpandedRow>
-                    //             <FlexWrapper>
-                    //                 <FlexDivCentered>
-                    //                     <Icon className="sidebar-icon icon--markets" />
-                    //                     <TableText>
-                    //                         {t('staking.leaderboard.table.expanded-row.trading')}
-                    //                     </TableText>
-                    //                 </FlexDivCentered>
-                    //                 <FlexWrapper>
-                    //                     <Label>
-                    //                         {t('staking.leaderboard.table.expanded-row.points')}
-                    //                     </Label>
-                    //                     <TableText>
-                    //                         {formatCurrencyWithKey('', row.original.userTradingBasePointsPerRound, 2)}
-                    //                     </TableText>
-                    //                 </FlexWrapper>
-                    //             </FlexWrapper>
-
-                    //             <FlexWrapper>
-                    //                 <FlexDivCentered>
-                    //                     <Icon className="sidebar-icon icon--liquidity-pool" />
-                    //                     <TableText>
-                    //                         {t('staking.leaderboard.table.expanded-row.lp')}
-                    //                     </TableText>
-                    //                 </FlexDivCentered>
-                    //                 <FlexWrapper>
-                    //                     <Label>
-                    //                         {t('staking.leaderboard.table.expanded-row.points')}
-                    //                     </Label>
-                    //                     <TableText>
-                    //                         {formatCurrencyWithKey('', row.original.userLPBasePointsPerRound, 2)}
-                    //                     </TableText>
-                    //                 </FlexWrapper>
-                    //             </FlexWrapper>
-
-                    //             <FlexWrapper>
-                    //                 <FlexDivCentered>
-                    //                     <Icon className="sidebar-icon icon--vaults" />
-                    //                     <TableText>
-                    //                         {t('staking.leaderboard.table.expanded-row.vaults')}
-                    //                     </TableText>
-                    //                 </FlexDivCentered>
-                    //                 <FlexWrapper>
-                    //                     <Label>
-                    //                         {t('staking.leaderboard.table.expanded-row.points')}
-                    //                     </Label>
-                    //                     <TableText>
-                    //                         {formatCurrencyWithKey('', row.original.userVaultBasePointsPerRound, 2)}
-                    //                     </TableText>
-                    //                 </FlexWrapper>
-                    //             </FlexWrapper>
-                    //         </ExpandedRow>
-                    //     );
-                    // }}
-                    isLoading={isLoading}
-                    // stickyRow={stickyRowInfo.length > 0 ? <StickyRowComponent stickyRowInfo={stickyRowInfo} /> : <></>}
-                />
+                <Table columns={columns} data={stakingData} stickyRow={stickyRow} isLoading={isLoading} />
             </SectionContainer>
         </>
     );

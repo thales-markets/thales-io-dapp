@@ -45,8 +45,8 @@ import { bigNumberFormatter, formatCurrencyWithKey, truncToDecimals } from 'thal
 import { WebClient } from 'ts-proto/gateway/GatewayServiceClientPb';
 import { EstimateAmtRequest, EstimateAmtResponse } from 'ts-proto/gateway/gateway_pb';
 import { SUPPORTED_NETWORK_IDS_MAP, checkAllowance } from 'utils/network';
+import networkConnector from 'utils/networkConnector';
 import { refetchCelerBridgeHistory } from 'utils/queryConnector';
-import snxJSConnector from 'utils/snxJSConnector';
 import History from './History';
 import FeeTooltip from './components/FeeTooltip';
 import NetworkIcon from './components/NetworkIcon';
@@ -117,10 +117,10 @@ const Bridge: React.FC = () => {
         celerBridgeDataQuery.isSuccess && celerBridgeDataQuery.data ? celerBridgeDataQuery.data : undefined;
 
     useEffect(() => {
-        const { thalesTokenContract, celerBridgeContract } = snxJSConnector as any;
+        const { thalesTokenContract, celerBridgeContract } = networkConnector as any;
 
         if (thalesTokenContract && celerBridgeContract) {
-            const thalesTokenContractWithSigner = thalesTokenContract.connect((snxJSConnector as any).signer);
+            const thalesTokenContractWithSigner = thalesTokenContract.connect((networkConnector as any).signer);
             const addressToApprove = celerBridgeContract.address;
 
             const getAllowance = async () => {
@@ -144,11 +144,11 @@ const Bridge: React.FC = () => {
     }, [walletAddress, isWalletConnected, hasAllowance, networkId, amount, isAllowing]);
 
     const handleAllowance = async (approveAmount: BigNumber) => {
-        const { thalesTokenContract, celerBridgeContract } = snxJSConnector as any;
+        const { thalesTokenContract, celerBridgeContract } = networkConnector as any;
 
         if (thalesTokenContract && celerBridgeContract) {
             const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
-            const thalesTokenContractWithSigner = thalesTokenContract.connect((snxJSConnector as any).signer);
+            const thalesTokenContractWithSigner = thalesTokenContract.connect((networkConnector as any).signer);
             const addressToApprove = celerBridgeContract.address;
 
             try {
@@ -211,7 +211,7 @@ const Bridge: React.FC = () => {
     }, [amount, slippage, networkId, destNetwork, walletAddress]);
 
     const handleSubmit = async () => {
-        const { thalesTokenContract, celerBridgeContract } = snxJSConnector as any;
+        const { thalesTokenContract, celerBridgeContract } = networkConnector as any;
 
         const estimation = await fetchEstimation();
         if (thalesTokenContract && celerBridgeContract && estimation) {
@@ -219,7 +219,7 @@ const Bridge: React.FC = () => {
             const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
 
             try {
-                const celerBridgeContractWithSigner = celerBridgeContract.connect((snxJSConnector as any).signer);
+                const celerBridgeContractWithSigner = celerBridgeContract.connect((networkConnector as any).signer);
 
                 const parsedAmount = ethers.utils.parseEther(amount.toString()).toString();
                 const tx = await celerBridgeContractWithSigner.send(

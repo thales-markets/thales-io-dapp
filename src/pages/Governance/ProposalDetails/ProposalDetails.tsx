@@ -14,7 +14,7 @@ import { FlexDivRow } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { Proposal } from 'types/governance';
 import { getProposalApprovalData } from 'utils/governance';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 import ProposalHeader from './ProposalHeader';
 import SingleChoiceVoting from './Voting/SingleChoiceVoting';
 import WeightedVoting from './Voting/WeightedVoting';
@@ -53,7 +53,7 @@ const ProposalDetails: React.FC<ProposalDetailsProps> = ({ proposal }) => {
 
     useEffect(() => {
         const fetchAuthorEns = async () => {
-            const authorEns = await (snxJSConnector as any).provider.lookupAddress(proposal.author);
+            const authorEns = await (networkConnector as any).provider.lookupAddress(proposal.author);
             setAuthorEns(authorEns);
         };
         if (networkId === Network.Mainnet) {

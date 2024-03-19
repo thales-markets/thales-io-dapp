@@ -26,8 +26,8 @@ import { FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
 import { formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
 import { UserStakingData } from 'types/token';
 import { formattedDuration } from 'utils/formatters/date';
+import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
-import snxJSConnector from 'utils/snxJSConnector';
 import { StakingButton } from '../styled-components';
 import { ClaimMessage, EarnSection, InputContainer, SectionContentContainer } from './styled-components';
 
@@ -54,7 +54,7 @@ const Unstake: React.FC = () => {
     const [unstakingEnded, setUnstakingEnded] = useState<boolean>(false);
     const [amountToUnstake, setAmountToUnstake] = useState<number | string>('');
     const [isAmountValid, setIsAmountValid] = useState<boolean>(true);
-    const { stakingThalesContract } = snxJSConnector as any;
+    const { stakingThalesContract } = networkConnector as any;
     const [lastValidUserStakingData, setLastValidUserStakingData] = useState<UserStakingData | undefined>(undefined);
 
     const userStakingDataQuery = useUserStakingDataQuery(walletAddress, networkId, {
@@ -106,11 +106,11 @@ const Unstake: React.FC = () => {
     }, [userStakingDataQuery.isSuccess, userStakingDataQuery.data]);
 
     const handleStartUnstakingThales = async () => {
-        const { stakingThalesContract } = snxJSConnector as any;
+        const { stakingThalesContract } = networkConnector as any;
         const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
         try {
             setIsUnstaking(true);
-            const stakingThalesContractWithSigner = stakingThalesContract.connect((snxJSConnector as any).signer);
+            const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
             const amount = ethers.utils.parseEther(amountToUnstake.toString());
             const tx = await stakingThalesContractWithSigner.startUnstake(amount);
             const txResult = await tx.wait();
@@ -135,10 +135,10 @@ const Unstake: React.FC = () => {
 
     const handleUnstakeThales = async () => {
         const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
-        const { stakingThalesContract } = snxJSConnector as any;
+        const { stakingThalesContract } = networkConnector as any;
         try {
             setIsUnstaking(true);
-            const stakingThalesContractWithSigner = stakingThalesContract.connect((snxJSConnector as any).signer);
+            const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
             const tx = await stakingThalesContractWithSigner.unstake();
             const txResult = await tx.wait();
 
@@ -160,10 +160,10 @@ const Unstake: React.FC = () => {
 
     const handleCancelUnstakingThales = async () => {
         const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
-        const { stakingThalesContract } = snxJSConnector as any;
+        const { stakingThalesContract } = networkConnector as any;
         try {
             setIsCanceling(true);
-            const stakingThalesContractWithSigner = stakingThalesContract.connect((snxJSConnector as any).signer);
+            const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
             const tx = await stakingThalesContractWithSigner.cancelUnstake();
             const txResult = await tx.wait();
 

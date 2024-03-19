@@ -2,7 +2,7 @@ import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
 import { UserLiquidityPoolData } from 'types/liquidityPool';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 import QUERY_KEYS from '../../constants/queryKeys';
 
 const useParlayLiquidityPoolUserDataQuery = (
@@ -30,7 +30,7 @@ const useParlayLiquidityPoolUserDataQuery = (
 
             const decimals = getDefaultDecimalsForNetwork(networkId);
             try {
-                const { parlayAMMLiquidityPoolContract, parlayAMMLiquidityPoolDataContract } = snxJSConnector;
+                const { parlayAMMLiquidityPoolContract, parlayAMMLiquidityPoolDataContract } = networkConnector;
                 if (parlayAMMLiquidityPoolContract && parlayAMMLiquidityPoolDataContract) {
                     const contractUserLiquidityPoolData = await parlayAMMLiquidityPoolDataContract.getUserLiquidityPoolData(
                         parlayAMMLiquidityPoolContract.address,

@@ -3,7 +3,7 @@ import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter } from 'thales-utils';
 import { ThalesStakingData } from 'types/token';
 import QUERY_KEYS from '../../constants/queryKeys';
-import snxJSConnector from '../../utils/snxJSConnector';
+import networkConnector from '../../utils/networkConnector';
 
 const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<ThalesStakingData | undefined>) => {
     return useQuery<ThalesStakingData | undefined>(
@@ -25,7 +25,7 @@ const useStakingDataQuery = (networkId: Network, options?: UseQueryOptions<Thale
                 durationPeriod: 0,
             };
             try {
-                const { stakingDataContract, stakingThalesContract } = snxJSConnector;
+                const { stakingDataContract, stakingThalesContract } = networkConnector;
                 if (stakingDataContract && stakingThalesContract) {
                     const [contractStakingData, closingPeriodInProgress] = await Promise.all([
                         stakingDataContract.getStakingData(),

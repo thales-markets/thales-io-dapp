@@ -3,14 +3,14 @@ import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
 import { Coins, COLLATERAL_DECIMALS } from 'thales-utils';
 import { getDefaultCollateral } from 'utils/currency';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 
 const useStableBalanceQuery = (walletAddress: string, networkId: Network, options?: UseQueryOptions<any>) => {
     return useQuery<any>(
         QUERY_KEYS.WalletBalances.StableCoinBalance(walletAddress ?? '', networkId),
         async () => {
             try {
-                const collateral = snxJSConnector.collateral;
+                const collateral = networkConnector.collateral;
                 const collateralKey = getDefaultCollateral(networkId);
 
                 let usdBalance = await collateral?.balanceOf(walletAddress);

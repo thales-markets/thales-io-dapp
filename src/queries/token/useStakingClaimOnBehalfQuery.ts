@@ -1,8 +1,8 @@
-import { useQuery, UseQueryOptions } from 'react-query';
-import QUERY_KEYS from '../../constants/queryKeys';
-import snxJSConnector from '../../utils/snxJSConnector';
-import thalesData from 'thales-data';
 import { Network } from 'enums/network';
+import { useQuery, UseQueryOptions } from 'react-query';
+import thalesData from 'thales-data';
+import QUERY_KEYS from '../../constants/queryKeys';
+import networkConnector from '../../utils/networkConnector';
 
 type StakingClaimOnBehalfResponse = {
     enabledAddresses: string[];
@@ -20,7 +20,7 @@ const useStakingClaimOnBehalfQuery = (
                 enabledAddresses: [],
             };
             try {
-                const { stakingThalesContract } = snxJSConnector as any;
+                const { stakingThalesContract } = networkConnector as any;
                 if (stakingThalesContract) {
                     const canClaimOnBehalfItems = await thalesData.binaryOptions.canClaimOnBehalfItems({
                         sender: walletAddress,

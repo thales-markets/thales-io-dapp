@@ -3,7 +3,7 @@ import { BALANCE_THRESHOLD } from 'constants/token';
 import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter, formatCurrencyWithKey, formatPercentage } from 'thales-utils';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 import QUERY_KEYS from '../../constants/queryKeys';
 
 type UserStakingData = {
@@ -29,7 +29,7 @@ const useUserBaseRewardsQuery = (
         QUERY_KEYS.Token.UserBaseRewards(walletAddress, networkId),
         async () => {
             try {
-                const { stakingDataContract } = snxJSConnector;
+                const { stakingDataContract } = networkConnector;
 
                 if (!walletAddress) {
                     return DEFAULT_USER_STAKING_DATA;

@@ -3,7 +3,7 @@ import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter } from 'thales-utils';
 import QUERY_KEYS from '../../constants/queryKeys';
-import snxJSConnector from '../../utils/snxJSConnector';
+import networkConnector from '../../utils/networkConnector';
 
 const useThalesBalanceQuery = (
     walletAddress: string,
@@ -13,9 +13,9 @@ const useThalesBalanceQuery = (
     return useQuery<{ balance: number }>(
         QUERY_KEYS.WalletBalances.Thales(walletAddress, networkId),
         async () => {
-            if ((snxJSConnector as any).thalesTokenContract) {
+            if ((networkConnector as any).thalesTokenContract) {
                 const balance = bigNumberFormatter(
-                    await (snxJSConnector as any).thalesTokenContract.balanceOf(walletAddress)
+                    await (networkConnector as any).thalesTokenContract.balanceOf(walletAddress)
                 );
                 return { balance: balance < BALANCE_THRESHOLD ? 0 : balance };
             }

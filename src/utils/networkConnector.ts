@@ -17,9 +17,8 @@ import stakingBonusRewardsManager from './contracts/thalesAMMStakingThalesBonusR
 import thalesContract from './contracts/thalesContract';
 import thalesLiquidityPoolContract from './contracts/thalesLiquidityPoolContract';
 import thalesLiquidityPoolDataContract from './contracts/thalesLiquidityPoolDataContract';
-import thalesVaultDataContract from './contracts/thalesVaultDataContract';
 
-type SnxJSConnector = {
+type networkConnector = {
     initialized: boolean;
     provider: Provider | undefined;
     signer: Signer | undefined;
@@ -32,7 +31,6 @@ type SnxJSConnector = {
     thalesLiquidityPoolContract?: ethers.Contract;
     thalesLiquidityPoolDataContract?: ethers.Contract;
     sportVaultDataContract?: ethers.Contract;
-    thalesVaultDataContract?: ethers.Contract;
     stakingThalesContract?: ethers.Contract;
     stakingBonusRewardsManager?: ethers.Contract;
     thalesTokenContract?: ethers.Contract;
@@ -45,7 +43,7 @@ type SnxJSConnector = {
 };
 
 // @ts-ignore
-const snxJSConnector: SnxJSConnector = {
+const networkConnector: networkConnector = {
     initialized: false,
 
     setContractSettings: function (contractSettings: any) {
@@ -74,7 +72,6 @@ const snxJSConnector: SnxJSConnector = {
             contractSettings
         );
         this.sportVaultDataContract = conditionalInitializeContract(sportVaultDataContract, contractSettings);
-        this.thalesVaultDataContract = conditionalInitializeContract(thalesVaultDataContract, contractSettings);
         this.stakingThalesContract = conditionalInitializeContract(stakingThalesContract, contractSettings);
         this.stakingBonusRewardsManager = conditionalInitializeContract(stakingBonusRewardsManager, contractSettings);
         this.thalesTokenContract = conditionalInitializeContract(thalesContract, contractSettings);
@@ -91,8 +88,8 @@ const conditionalInitializeContract = (contract: any, contractSettings: any) =>
         ? new ethers.Contract(
               contract.addresses[contractSettings.networkId || 1],
               contract.abi,
-              snxJSConnector.provider
+              networkConnector.provider
           )
         : undefined;
 
-export default snxJSConnector;
+export default networkConnector;

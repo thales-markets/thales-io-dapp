@@ -26,7 +26,7 @@ import { RootState } from 'redux/rootReducer';
 import { useTheme } from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnSpaceBetween, Icon } from 'styles/common';
 import { getAddress, getEtherscanAddressLink } from 'thales-utils';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
 import YourTransactions from './Transactions';
 import {
@@ -59,7 +59,7 @@ const AccPreferences: React.FC = () => {
     const [isDelegating, setIsDelegating] = useState<boolean>(false);
     const [claimAccount, setClaimAccount] = useState<string>('');
     const [isSubmittingClaim, setIsSubmittingClaim] = useState<boolean>(false);
-    const { stakingThalesContract } = snxJSConnector as any;
+    const { stakingThalesContract } = networkConnector as any;
 
     const isMobile = useSelector(getIsMobile);
 
@@ -194,7 +194,7 @@ const AccPreferences: React.FC = () => {
         try {
             setIsMerging(true);
 
-            const stakingThalesContractWithSigner = stakingThalesContract.connect((snxJSConnector as any).signer);
+            const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
 
             const tx = await stakingThalesContractWithSigner.mergeAccount(getAddress(destAddress));
             const txResult = await tx.wait();
@@ -215,7 +215,7 @@ const AccPreferences: React.FC = () => {
         try {
             setIsDelegating(true);
 
-            const stakingThalesContractWithSigner = stakingThalesContract.connect((snxJSConnector as any).signer);
+            const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
 
             const tx = await stakingThalesContractWithSigner.delegateVolume(
                 getAddress(delegatedVolumeAddress !== ZERO_ADDRESS ? ZERO_ADDRESS : delegateDestAddress)
@@ -344,7 +344,7 @@ const AccPreferences: React.FC = () => {
         try {
             setIsSubmittingClaim(true);
 
-            const stakingThalesContractWithSigner = stakingThalesContract.connect((snxJSConnector as any).signer);
+            const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
 
             const tx = await stakingThalesContractWithSigner.setCanClaimOnBehalf(
                 getAddress(claimAccount),

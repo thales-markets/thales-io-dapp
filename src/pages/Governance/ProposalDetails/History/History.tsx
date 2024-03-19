@@ -22,7 +22,7 @@ import { FlexDivCentered, FlexDivColumn } from 'styles/common';
 import { getEtherscanAddressLink, truncateAddress, truncateText } from 'thales-utils';
 import { Proposal, ProposalResults } from 'types/governance';
 import { formatNumberShort } from 'utils/formatters/number';
-import snxJSConnector from 'utils/snxJSConnector';
+import networkConnector from 'utils/networkConnector';
 import voting from 'utils/voting';
 import { NoVotes, VoteLabel, VoteRow } from './styled-components';
 
@@ -110,7 +110,7 @@ const Voter: React.FC<StakerCellProps> = ({ address, walletAddress }) => {
 
     useEffect(() => {
         const fetchVoterEns = async () => {
-            const stakerEns = await (snxJSConnector as any).provider.lookupAddress(address);
+            const stakerEns = await (networkConnector as any).provider.lookupAddress(address);
             setVoterEns(stakerEns);
         };
         if (networkId === Network.Mainnet) {

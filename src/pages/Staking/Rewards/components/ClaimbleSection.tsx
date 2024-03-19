@@ -24,8 +24,8 @@ import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
 import { getDefaultCollateral } from 'utils/currency';
+import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
-import snxJSConnector from 'utils/snxJSConnector';
 import { SectionTitle } from '../../styled-components';
 import {
     ClaimSection,
@@ -52,7 +52,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const networkId = useSelector((state: RootState) => getNetworkId(state));
 
-    const { stakingThalesContract } = snxJSConnector as any;
+    const { stakingThalesContract } = networkConnector as any;
 
     const [isClaiming, setIsClaiming] = useState(false);
 
@@ -73,7 +73,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
             const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
             try {
                 setIsClaiming(true);
-                const stakingThalesContractWithSigner = stakingThalesContract.connect((snxJSConnector as any).signer);
+                const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
                 const tx = (await stakingThalesContractWithSigner.claimReward()) as ethers.ContractTransaction;
                 const txResult = await tx.wait();
 

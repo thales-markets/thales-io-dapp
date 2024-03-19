@@ -10,7 +10,6 @@ import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import { truncateAddress } from 'thales-utils';
-import { isLedgerDappBrowserProvider } from 'utils/ledger';
 import { SUPPORTED_NETWORK_IDS_MAP } from 'utils/network';
 import { useSwitchNetwork } from 'wagmi';
 
@@ -64,14 +63,13 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
         [networkId, selectedNetworkId, filteredSupportedNetworks]
     );
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const isLedgerLive = isLedgerDappBrowserProvider();
 
     // currently not supported network synchronization between browser without integrated wallet and wallet app on mobile
 
     return (
         <OutsideClickHandler display="contents" onOutsideClick={() => isDropdownOpen && setIsDropdownOpen(false)}>
             <NetworkInfoContainer>
-                <SelectedNetworkContainer cursor={isLedgerLive ? 'initial' : 'pointer'}>
+                <SelectedNetworkContainer cursor={'pointer'}>
                     <NetworkItem
                         onClick={() => !isWalletConnectorSwitch && setIsDropdownOpen(!isDropdownOpen)}
                         xl={xl}
@@ -81,7 +79,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                     >
                         {!isWalletConnectorSwitch && (
                             <NetworkIconWrapper
-                                onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
+                                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                 isWalletConnectorSwitch={false}
                             >
                                 {React.createElement(selectedNetwork.icon, {})}
@@ -109,7 +107,7 @@ const NetworkSwitch: React.FC<NetworkSwitchProps> = ({
                         </WalletAddress>
                         {isWalletConnectorSwitch && (
                             <NetworkIconWrapper
-                                onClick={() => setIsDropdownOpen(!isDropdownOpen && !isLedgerLive)}
+                                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                 isWalletConnectorSwitch={true}
                             >
                                 {React.createElement(selectedNetwork.icon)}

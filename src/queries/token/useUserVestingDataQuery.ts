@@ -7,7 +7,7 @@ import { orderBy } from 'lodash';
 import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter } from 'thales-utils';
 import { UserVestingData, VestingSchedule } from 'types/token';
-import snxJSConnector from '../../utils/snxJSConnector';
+import networkConnector from '../../utils/networkConnector';
 
 const useUserVestingDataQuery = (
     walletAddress: string,
@@ -24,7 +24,7 @@ const useUserVestingDataQuery = (
             };
 
             try {
-                const { stakingDataContract } = snxJSConnector;
+                const { stakingDataContract } = networkConnector;
                 if (stakingDataContract) {
                     const contractUserVestingData = await stakingDataContract.getUserVestingData(walletAddress);
 

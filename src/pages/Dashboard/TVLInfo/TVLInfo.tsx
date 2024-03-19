@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
-import { formatCurrency } from 'thales-utils';
+import { formatCurrencyWithSign } from 'thales-utils';
 import { TVLStats } from 'types/statistics';
 import {
     InfoSection,
@@ -48,15 +48,17 @@ const TVLInfo: React.FC = () => {
                     <InfoText>{t('dashboard.tvl.speed-tvl')}</InfoText>
                 </InfoSection>
                 <InfoSection side="right">
-                    <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.stakingThalesTVL)}` : '-'}</InfoStats>
+                    <InfoStats>
+                        {tvlStats ? `${formatCurrencyWithSign('$', tvlStats.stakingThalesTVL)}` : '-'}
+                    </InfoStats>
                     <InfoStats>
                         {tvlStats
-                            ? `$ ${formatCurrency(tvlStats.overtimeSingleTVL + tvlStats.overtimeParlayTVL)}`
+                            ? `${formatCurrencyWithSign('$', tvlStats.overtimeSingleTVL + tvlStats.overtimeParlayTVL)}`
                             : '-'}
                     </InfoStats>
-                    <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.thalesLpTVL)}` : '-'}</InfoStats>
-                    <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.vaultsTVL)}` : '-'}</InfoStats>
-                    <InfoStats>{tvlStats ? `$ ${formatCurrency(tvlStats.speedMarketsTVL)}` : '-'}</InfoStats>
+                    <InfoStats>{tvlStats ? `${formatCurrencyWithSign('$', tvlStats.thalesLpTVL)}` : '-'}</InfoStats>
+                    <InfoStats>{tvlStats ? `${formatCurrencyWithSign('$', tvlStats.vaultsTVL)}` : '-'}</InfoStats>
+                    <InfoStats>{tvlStats ? `${formatCurrencyWithSign('$', tvlStats.speedMarketsTVL)}` : '-'}</InfoStats>
                 </InfoSection>
             </WidgetWrapper>
         </LoadingContainer>
