@@ -124,6 +124,10 @@
     content: '\0037';
 }
 
+.icon--double-staking:before {
+    content: '\0053';
+}
+
 .icon--burn:before {
     content: '\003D';
 }

@@ -5,9 +5,13 @@ import { Network } from 'enums/network';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getNetworkId } from 'redux/modules/wallet';
+import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import YourTransactions from '../LPStaking/components/Transactions';
+import AvailableOnlyOnNetwork from './components/AvailableOnlyOnNetwork';
 import StakeSection from './components/StakeSection';
 import StakingData from './components/StakingData';
 import Steps from './components/Steps';
@@ -15,15 +19,21 @@ import { Header, Icon } from './styled-components';
 
 const LPStaking: React.FC = () => {
     const { t } = useTranslation();
+    const networkId = useSelector((state: RootState) => getNetworkId(state));
 
     return (
         <Container>
-            <RowsContainer>
-                <StakingData />
-            </RowsContainer>
-            <Wrapper>
-                <StakeSection />
-            </Wrapper>
+            {networkId == Network.OptimismMainnet && (
+                <RowsContainer>
+                    <StakingData />
+                </RowsContainer>
+            )}
+            {networkId == Network.OptimismMainnet && (
+                <Wrapper>
+                    <StakeSection />
+                </Wrapper>
+            )}
+            {networkId !== Network.OptimismMainnet && <AvailableOnlyOnNetwork />}
             <Steps />
             <Wrapper>
                 <Header>

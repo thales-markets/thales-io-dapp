@@ -42,6 +42,8 @@ const useLPStakingThalesQuery = (
                 console.log(e);
             }
 
+            console.log('staking ', staking);
+
             return staking;
         },
         {
