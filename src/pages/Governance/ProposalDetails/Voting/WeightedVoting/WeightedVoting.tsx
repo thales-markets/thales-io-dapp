@@ -21,7 +21,6 @@ import { getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import {
-    Colors,
     FlexDiv,
     FlexDivCentered,
     FlexDivColumnCentered,
@@ -214,7 +213,6 @@ const WeightedVoting: React.FC<WeightedVotingProps> = ({ proposal, hasVotingRigh
                     disabled={!isOptionSelected || isVoting || !hasVotingRights}
                     onClick={handleVote}
                     margin="20px 0"
-                    textColor={Colors.WHITE}
                 >
                     {!isVoting
                         ? t(`governance.proposal.submit-vote-label`)
