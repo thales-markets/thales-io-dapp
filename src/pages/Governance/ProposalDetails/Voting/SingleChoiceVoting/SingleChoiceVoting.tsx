@@ -1,7 +1,6 @@
 import { Web3Provider } from '@ethersproject/providers';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { ProposalType } from '@snapshot-labs/snapshot.js/dist/sign/types';
-import Button from 'components/Button/Button';
 import {
     getDefaultToastContent,
     getErrorToastOptions,
@@ -18,7 +17,7 @@ import { toast } from 'react-toastify';
 import { getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
-import { Colors, FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
+import { FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
 import { Proposal } from 'types/governance';
 import { refetchProposal } from 'utils/queryConnector';
 import voting from 'utils/voting';
@@ -98,7 +97,6 @@ const SingleChoiceVoting: React.FC<SingleChoiceVotingProps> = ({ proposal, hasVo
                     disabled={!selectedChoices || isVoting || !hasVotingRights}
                     onClick={handleVote}
                     margin="20px 0"
-                    textColor={Colors.WHITE}
                 >
                     {!isVoting
                         ? t(`governance.proposal.submit-vote-label`)
@@ -124,18 +122,37 @@ const SingleChoice = styled(FlexDivColumnCentered)<{ isDisabled?: boolean }>`
     &.selected {
         margin: -1px;
         margin-bottom: 19px;
-        border: 2px solid ${(props) => props.theme.borderColor.secondary};
+        border: 2px solid ${(props) => props.theme.borderColor.senary};
     }
     &:hover {
         ${(props) => (props.isDisabled ? '' : 'margin: -1px;')}
         ${(props) => (props.isDisabled ? '' : 'margin-bottom: 19px;')}
-        ${(props) => (props.isDisabled ? '' : `border: 2px solid ${props.theme.borderColor.secondary};`)}        
+        ${(props) => (props.isDisabled ? '' : `border: 2px solid ${props.theme.borderColor.senary};`)}        
         ${(props) => (props.isDisabled ? '' : 'cursor: pointer;')}
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         height: 46px;
         font-size: 16px;
         line-height: 46px;
+    }
+`;
+
+const Button = styled.button<{ margin?: string; padding?: string; disabled?: boolean; width?: string }>`
+    cursor: pointer;
+    color: ${(props) => props.theme.background.primary};
+    padding: ${(props) => props.padding || '5px 15px'};
+    margin: ${(props) => props.margin || '0'};
+    border-radius: 8px;
+    border: 0;
+    background: ${(props) => props.theme.textColor.secondary};
+    text-align: center;
+    font-family: NunitoExtraBold;
+    font-size: 13px;
+    text-transform: uppercase;
+    width: ${(props) => props.width || 'auto'};
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
     }
 `;
 
