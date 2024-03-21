@@ -2,6 +2,7 @@ import NetworkSwitch from 'components/NetworkSwitch';
 import Tooltip from 'components/Tooltip';
 import ROUTES from 'constants/routes';
 import { ScreenSizeBreakpoint } from 'enums/ui';
+import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
 import useUserStakingDataQuery from 'queries/token/useUserStakingData';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -24,16 +25,22 @@ const UserWallet: React.FC = () => {
         enabled: isAppReady && isWalletConnected,
     });
 
+    const stakingDataQuery = useThalesStakingDataQuery(networkId, {
+        enabled: isAppReady,
+    });
+
     return (
         <Container>
             <Wrapper>
-                {!!userStakingDataQuery?.data?.baseRewards && !userStakingDataQuery?.data?.claimed && (
-                    <Tooltip overlay={t('common.wallet.rewards')}>
-                        <Rewards onClick={() => navigateTo(ROUTES.Token.Staking.Rewards)}>
-                            <RewardsIcon className="icon icon--rewards" />
-                        </Rewards>
-                    </Tooltip>
-                )}
+                {!stakingDataQuery?.data?.closingPeriodInProgress &&
+                    !!userStakingDataQuery?.data?.baseRewards &&
+                    !userStakingDataQuery?.data?.claimed && (
+                        <Tooltip overlay={t('common.wallet.rewards')}>
+                            <Rewards onClick={() => navigateTo(ROUTES.Token.Staking.Rewards)}>
+                                <RewardsIcon className="icon icon--rewards" />
+                            </Rewards>
+                        </Tooltip>
+                    )}
                 <NetworkSwitch isWalletConnectorSwitch={true} />
             </Wrapper>
         </Container>
