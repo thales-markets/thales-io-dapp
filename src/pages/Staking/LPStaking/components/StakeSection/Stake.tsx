@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 // import { getIsMobile } from 'redux/modules/ui';
+import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
 import useGelatoUserBalanceQuery from 'queries/token/useGelatoUserBalanceQuery';
 import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
@@ -106,6 +107,7 @@ const Stake: React.FC<Properties> = ({ isStakingPaused }) => {
                     getSuccessToastOptions(t('thales-token.gamified-staking.staking.stake.confirmation-message'), id)
                 );
                 refetchTokenQueries(walletAddress, networkId);
+                PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.lpStake);
                 refetchLPStakingQueries(walletAddress, networkId);
                 setAmountToStake('');
                 setIsStaking(false);

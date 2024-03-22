@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getIsAppReady } from 'redux/modules/app';
 // import { getIsMobile } from 'redux/modules/ui';
+import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
 import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
 import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
@@ -142,6 +143,7 @@ const Stake: React.FC = () => {
             if (txResult && txResult.transactionHash) {
                 toast.update(id, getSuccessToastOptions(t('staking.staking.stake-unstake.stake-success'), id));
                 refetchTokenQueries(walletAddress, networkId);
+                PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.stake);
                 setAmountToStake('');
                 setIsStaking(false);
             }

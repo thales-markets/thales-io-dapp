@@ -8,6 +8,7 @@ import {
 } from 'components/ToastMessage/ToastMessage';
 import Tooltip from 'components/Tooltip/Tooltip';
 import NumericInput from 'components/fields/NumericInput';
+import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
 import { THALES_CURRENCY } from 'constants/currency';
 import intervalToDuration from 'date-fns/intervalToDuration';
 import { ScreenSizeBreakpoint } from 'enums/ui';
@@ -123,6 +124,7 @@ const Unstake: React.FC = () => {
                 refetchTokenQueries(walletAddress, networkId);
                 setAmountToUnstake('');
                 setIsUnstakingInContract(true);
+                PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.unstake);
                 setUnstakeEndTime(addDurationPeriod(new Date(), unstakeDurationPeriod));
                 setUnstakingEnded(false);
                 setIsUnstaking(false);
