@@ -105,6 +105,13 @@ const customTheme = {
     ...{ colors: { ...rainbowDarkTheme.colors, modalBackground: thalesDarkTheme.background.primary } },
 };
 
+if (typeof window !== 'undefined') {
+    // @ts-ignore
+    window.Browser = {
+        T: () => {},
+    };
+}
+
 const Root: React.FC<RootProps> = ({ store }) => {
     return (
         <Provider store={store}>

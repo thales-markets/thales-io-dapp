@@ -326,7 +326,9 @@
                 "claiming": "Claiming",
                 "claim-success": "Tokens successfully claimed",
                 "ccip-msg": "CCIP synchronization in progress",
-                "calculating-rewards": "Claiming is paused. <br />Calculating rewards in progress."
+                "calculating-rewards": "Claiming is paused. <br />Calculating rewards in progress.",
+                "compound-and-stake": "Compound and stake",
+                "compound-tooltip": "Convert your {{collateral}} rewards to THALES and stake them"
             },
             "base-rewards": {
                 "title": "Core staking rewards",

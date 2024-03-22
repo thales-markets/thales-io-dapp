@@ -1,4 +1,7 @@
+import { BaseProvider } from '@ethersproject/providers';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
+import { CurrencyAmount, Percent, Token, TradeType } from '@uniswap/sdk-core';
+import { AlphaRouter, SwapOptionsSwapRouter02, SwapType } from '@uniswap/smart-order-router';
 import coinsAnimation from 'assets/lotties/rewards-coins.json';
 import LoadingContainer from 'components/LoadingContainer';
 import TimeRemaining from 'components/TimeRemaining';
@@ -9,8 +12,11 @@ import {
     getSuccessToastOptions,
 } from 'components/ToastMessage/ToastMessage';
 import Tooltip from 'components/Tooltip';
+import Checkbox from 'components/fields/Checkbox';
 import { DEFAULT_COLLATERALS, THALES_CURRENCY } from 'constants/currency';
+import { UNISWAP_V3_SWAP_ROUTER_ADDRESS } from 'constants/uniswap';
 import { ethers } from 'ethers';
+import JSBI from 'jsbi';
 import Lottie from 'lottie-react';
 import { StakingButton, TooltipContainer } from 'pages/Staking/styled-components';
 import React, { useState } from 'react';
@@ -20,15 +26,20 @@ import { toast } from 'react-toastify';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled, { useTheme } from 'styled-components';
-import { FlexDiv, FlexDivColumn } from 'styles/common';
-import { formatCurrencyWithKey } from 'thales-utils';
+import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
+import { COLLATERAL_DECIMALS, formatCurrencyWithKey } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
+import collateralContractRaw from 'utils/contracts/collateralContract';
+import thalesTokenContractRaw from 'utils/contracts/thalesContract';
+import { checkAllowance } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
+import { fromReadableAmount, getChainId } from 'utils/uniswap';
 import { SectionTitle } from '../../styled-components';
 import {
     ClaimSection,
     ClaimableRewardsContainer,
+    CompoundContainer,
     ItemsWrapper,
     RewardsDetailsContainer,
     RewardsInfo,
@@ -54,6 +65,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     const { stakingThalesContract } = networkConnector as any;
 
     const [isClaiming, setIsClaiming] = useState(false);
+    const [compoundRewards, setCompoundRewards] = useState<boolean>(false);
 
     const isClaimed = stakingData && userStakingData && !stakingData.isPaused && userStakingData.claimed;
     const isPaused = stakingData && stakingData.isPaused;
@@ -67,7 +79,63 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
         stakingThalesContract &&
         !isClaiming;
 
+    const swapStableForThales = async () => {
+        const { provider } = networkConnector;
+        const chainId = getChainId(networkId);
+        // const collateral = DEFAULT_COLLATERALS[networkId];
+        const collateralDecimals = COLLATERAL_DECIMALS[DEFAULT_COLLATERALS[networkId]];
+        const amountToSwawp = 2;
+
+        const { thalesTokenContract } = networkConnector as any;
+        const thalesTokenContractWithSigner = thalesTokenContract.connect((networkConnector as any).signer);
+
+        const router = new AlphaRouter({
+            chainId,
+            provider: provider as BaseProvider,
+        });
+        const options: SwapOptionsSwapRouter02 = {
+            recipient: walletAddress,
+            slippageTolerance: new Percent(5),
+            deadline: Math.floor(Date.now() / 1000 + 3800),
+            type: SwapType.SWAP_ROUTER_02,
+        };
+        const rawTokenAmountIn: JSBI = fromReadableAmount(amountToSwawp, collateralDecimals);
+        console.log(chainId);
+        try {
+            console.log(
+                CurrencyAmount.fromRawAmount(
+                    new Token(chainId, collateralContractRaw.addresses[networkId], collateralDecimals),
+                    rawTokenAmountIn.toString()
+                ),
+                new Token(chainId, thalesTokenContractRaw.addresses[networkId], 18),
+                TradeType.EXACT_INPUT,
+                options
+            );
+            await router.route(
+                CurrencyAmount.fromRawAmount(
+                    new Token(chainId, collateralContractRaw.addresses[networkId], collateralDecimals),
+                    rawTokenAmountIn.toString()
+                ),
+                new Token(chainId, thalesTokenContractRaw.addresses[networkId], 18),
+                TradeType.EXACT_INPUT,
+                options
+            );
+            const allowance = await checkAllowance(
+                ethers.utils.parseEther(Number(amountToSwawp).toString()),
+                thalesTokenContractWithSigner,
+                walletAddress,
+                UNISWAP_V3_SWAP_ROUTER_ADDRESS
+            );
+            console.log(allowance);
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
     const handleClaimStakingRewards = async () => {
+        swapStableForThales();
+
+        return;
         if (isClaimAvailable) {
             const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
             try {
@@ -266,7 +334,35 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                     )}
                                 </span>
                             </RewardsInfo>
-                            <div>{getClaimButton()}</div>
+                            <CompoundContainer>
+                                <FlexDivCentered>
+                                    <Checkbox
+                                        label={
+                                            <>
+                                                {t('staking.rewards.claim.compound-and-stake')}
+                                                <Tooltip
+                                                    overlay={
+                                                        <Trans
+                                                            i18nKey="staking.rewards.claim.compound-tooltip"
+                                                            values={{
+                                                                collateral: DEFAULT_COLLATERALS[networkId],
+                                                            }}
+                                                        />
+                                                    }
+                                                    marginRight={5}
+                                                    marginBottom={6}
+                                                    mobileIconFontSize={11}
+                                                    iconFontSize={13}
+                                                />
+                                            </>
+                                        }
+                                        checked={compoundRewards}
+                                        value={0}
+                                        onChange={() => setCompoundRewards(!compoundRewards)}
+                                    />
+                                </FlexDivCentered>
+                                {getClaimButton()}
+                            </CompoundContainer>
                         </ClaimSection>
                     )}
                     {isClaimed && (
