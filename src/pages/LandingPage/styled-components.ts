@@ -318,6 +318,8 @@ export const FooterContainer = styled.div`
 export const SocialIcon = styled(Icon)`
     padding-top: 10px;
     padding-right: 20px;
+    position: relative;
+    z-index: 2;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 25px;
     }

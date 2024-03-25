@@ -19,6 +19,7 @@
         "i18next-browser-languagedetector": "^7.1.0",
         "lodash": "^4.17.21",
         "lottie-react": "^2.3.1",
+        "plausible-tracker": "^0.3.8",
         "query-string": "^7.0.1",
         "rc-tooltip": "^5.1.1",
         "react": "^17.0.1",

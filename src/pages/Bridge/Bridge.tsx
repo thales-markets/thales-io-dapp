@@ -482,9 +482,8 @@ const Wrapper = styled(FlexDivColumnCentered)`
     margin: 100px 10px 40px 10px;
     width: 60%;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin: 10px 0px;
+        margin: 0;
         width: 100%;
-        /* min-width: 200px; */
     }
 `;
 

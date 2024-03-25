@@ -12,7 +12,7 @@ const collapseAdditionalStyling = {
     titleFontFamily: 'Nunito',
     titleFontSize: '13px',
     containerMarginBottom: '10px',
-    titleMarginBottom: '10px',
+    titleMarginBottom: '7px',
 };
 
 const Steps: React.FC = () => {
@@ -81,6 +81,7 @@ const HeaderContainer = styled(FlexDiv)`
 
 const StepDescription = styled(SectionDescription)`
     font-size: 13px;
+    padding-bottom: 10px;
 `;
 
 const StepsContainer = styled(FlexDiv)`

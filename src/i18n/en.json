@@ -631,6 +631,8 @@
             "other-lp": "Other LP Staking providers",
             "my-lp-staking": "My LP Staking Balance",
             "your-unclaimed": "Your unclaimed Rewards",
+            "switch-to-op": "Switch to Optimism",
+            "label-supported-network": "Staking and claiming is available only on optimism!",
             "staking-data-section": {
                 "apr-in-total": "APR in total",
                 "thales-op": "Thales APR + OP APR",

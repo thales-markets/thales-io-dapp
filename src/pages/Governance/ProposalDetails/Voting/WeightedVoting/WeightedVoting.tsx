@@ -3,7 +3,6 @@ import { Dialog } from '@material-ui/core';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { ProposalType } from '@snapshot-labs/snapshot.js/dist/sign/types';
 import { ReactComponent as CloseIcon } from 'assets/images/close.svg';
-import Button from 'components/Button/Button';
 import {
     getDefaultToastContent,
     getErrorToastOptions,
@@ -22,7 +21,6 @@ import { getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import {
-    Colors,
     FlexDiv,
     FlexDivCentered,
     FlexDivColumnCentered,
@@ -215,7 +213,6 @@ const WeightedVoting: React.FC<WeightedVotingProps> = ({ proposal, hasVotingRigh
                     disabled={!isOptionSelected || isVoting || !hasVotingRights}
                     onClick={handleVote}
                     margin="20px 0"
-                    textColor={Colors.WHITE}
                 >
                     {!isVoting
                         ? t(`governance.proposal.submit-vote-label`)
@@ -261,12 +258,12 @@ const Weighted = styled(FlexDivSpaceBetween)<{ isDisabled?: boolean }>`
     &.selected {
         margin: -1px;
         margin-bottom: 19px;
-        border: 2px solid ${(props) => props.theme.borderColor.primary};
+        border: 2px solid ${(props) => props.theme.borderColor.senary};
     }
     &:hover {
         ${(props) => (props.isDisabled ? '' : 'margin: -1px;')}
         ${(props) => (props.isDisabled ? '' : 'margin-bottom: 19px;')}
-        ${(props) => (props.isDisabled ? '' : `border: 2px solid ${props.theme.borderColor.secondary};`)}
+        ${(props) => (props.isDisabled ? '' : `border: 2px solid ${props.theme.borderColor.senary};`)}
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         height: 46px;
@@ -299,8 +296,8 @@ const PlusMinus = styled(FlexDivColumnCentered)<{ isDisabled?: boolean }>`
     border-left: 2px solid ${(props) => props.theme.borderColor.primary};
     border-right: 2px solid ${(props) => props.theme.borderColor.primary};
     &:hover {
-        ${(props) => (props.isDisabled ? '' : `border-left: 2px solid ${props.theme.borderColor.secondary};`)}
-        ${(props) => (props.isDisabled ? '' : `border-right: 2px solid ${props.theme.borderColor.secondary};`)}
+        ${(props) => (props.isDisabled ? '' : `border-left: 2px solid ${props.theme.borderColor.senary};`)}
+        ${(props) => (props.isDisabled ? '' : `border-right: 2px solid ${props.theme.borderColor.senary};`)}
         ${(props) => (props.isDisabled ? '' : 'cursor: pointer;')}
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -364,7 +361,7 @@ const SeePitchButton = styled.button`
         cursor: default;
     }
     &:hover:not(:disabled) {
-        border: 2px solid ${(props) => props.theme.borderColor.secondary};
+        border: 2px solid ${(props) => props.theme.borderColor.senary};
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-left: 0;
@@ -427,6 +424,25 @@ const CloseDialog = styled(CloseIconContainer)`
 const VotingWrapper = styled(FlexDiv)`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
+    }
+`;
+
+const Button = styled.button<{ margin?: string; padding?: string; disabled?: boolean; width?: string }>`
+    cursor: pointer;
+    color: ${(props) => props.theme.background.primary};
+    padding: ${(props) => props.padding || '5px 15px'};
+    margin: ${(props) => props.margin || '0'};
+    border-radius: 8px;
+    border: 0;
+    background: ${(props) => props.theme.textColor.secondary};
+    text-align: center;
+    font-family: NunitoExtraBold;
+    font-size: 13px;
+    text-transform: uppercase;
+    width: ${(props) => props.width || 'auto'};
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
     }
 `;
 

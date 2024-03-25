@@ -67,7 +67,7 @@ export const VoteNote = styled(FlexDivRow)`
     text-align: center;
     color: ${(props) => props.theme.textColor.primary};
     text-transform: uppercase;
-    margin-top: 42px;
+    margin-top: 12px;
     margin-left: 5px;
 `;
 

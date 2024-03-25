@@ -55,7 +55,7 @@ const TVLInfo: React.FC = () => {
                     <InfoStats>
                         {tvlStats
                             ? `${formatCurrencyWithSign(
-                                  'USD_SIGN',
+                                  USD_SIGN,
                                   tvlStats.overtimeSingleTVL + tvlStats.overtimeParlayTVL
                               )}`
                             : '-'}

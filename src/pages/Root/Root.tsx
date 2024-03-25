@@ -12,6 +12,7 @@ import {
     trustWallet,
     walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
+import { PLAUSIBLE } from 'constants/analytics';
 import { base } from 'constants/network';
 import { Network } from 'enums/network';
 import { Provider } from 'react-redux';
@@ -106,6 +107,7 @@ const customTheme = {
 };
 
 const Root: React.FC<RootProps> = ({ store }) => {
+    PLAUSIBLE.trackPageview();
     return (
         <Provider store={store}>
             <WagmiConfig client={wagmiClient}>
