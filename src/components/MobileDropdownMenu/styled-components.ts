@@ -39,19 +39,18 @@ export const Wrapper = styled.div<{ visible?: boolean }>`
     display: ${(props) => (props.visible ? 'flex' : 'none')};
     flex-direction: column;
     background: ${(props) => props.theme.background.primary};
-    border: 1px solid ${(props) => props.theme.borderColor.primary};
     box-sizing: border-box;
     border-radius: 12px;
-    padding: 15px 20px;
-    max-width: 240px;
+    padding: 10px 20px;
+    width: 200px;
     position: absolute;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
     text-align: center;
-    top: -44px;
     z-index: 2;
+    box-shadow: 0px 4px 31px 3px rgba(0, 0, 0, 0.45);
 `;
 
 export const Item = styled.div<{ active: boolean }>`
@@ -65,6 +64,7 @@ export const Item = styled.div<{ active: boolean }>`
     font-weight: bold;
     font-size: 12px;
     line-height: 18px;
+    padding: 3px 0;
 `;
 
 export const Title = styled.p`

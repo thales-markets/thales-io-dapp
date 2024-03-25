@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
-import { Arrow, FiltersButton, Item, PositionWrapper, Title, Wrapper } from './styled-components';
+import { Arrow, FiltersButton, Item, PositionWrapper, Wrapper } from './styled-components';
 
 type ItemProps = {
     active: boolean;
@@ -39,19 +39,18 @@ const processSort = (item: ItemProps) => {
     }
 };
 
-const MobileDropdownMenu: React.FC<DropdownMenuProps> = ({ buttonTitle, dropdownTitle, items, forceOpenDropdown }) => {
+const MobileDropdownMenu: React.FC<DropdownMenuProps> = ({ buttonTitle, items, forceOpenDropdown }) => {
     const [showDropdown, setDropdownVisibility] = useState<boolean>(false);
 
     return (
         <>
-            <FiltersButton visible={!showDropdown} onClick={() => setDropdownVisibility(!showDropdown)}>
+            <FiltersButton visible={true} onClick={() => setDropdownVisibility(!showDropdown)}>
                 {buttonTitle}
             </FiltersButton>
             {(showDropdown || forceOpenDropdown) && (
                 <PositionWrapper>
                     <Wrapper visible={showDropdown}>
                         <OutsideClickHandler onOutsideClick={() => setDropdownVisibility(false)}>
-                            <Title>{dropdownTitle ? dropdownTitle : buttonTitle}</Title>
                             {items &&
                                 items.map((item: any, index: number) => {
                                     return item.title ? (

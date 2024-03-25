@@ -11,7 +11,7 @@ import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
-import { FlexDivColumn } from 'styles/common';
+import { FlexDivCentered, FlexDivColumn } from 'styles/common';
 import { TokenTransaction } from 'types/token';
 import { SectionHeader } from '../../styled-components';
 import TransactionsTable from '../TransactionsTable';
@@ -71,10 +71,10 @@ const TransactionsWithFilters: React.FC<TransactionsWithFiltersProps> = ({
         <SectionContainer width={width} height={height} txCount={filteredTransactions.length}>
             <SectionHeader>
                 {!hideTitle && (
-                    <div>
+                    <FlexDivCentered gap="5px">
                         <i className="icon icon--lightbulb" />
                         {t('staking.table.title')}
-                    </div>
+                    </FlexDivCentered>
                 )}
                 {!hideFilters && (
                     <Dropdown
