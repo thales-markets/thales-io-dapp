@@ -55,7 +55,6 @@ export const ScheduleWrapper = styled(FlexDiv)`
     overflow: auto;
     width: 70%;
     align-items: center;
-    justify-content: center;
     padding: 90px 0px 90px 0px;
     margin: 30px 0px;
     ::-webkit-scrollbar {
@@ -66,7 +65,13 @@ export const ScheduleWrapper = styled(FlexDiv)`
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
+        > div:first-child {
+            padding-left: 40px;
+        }
         /* margin: 30px 0px; */
+    }
+    @media (min-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        justify-content: center;
     }
 `;
 

@@ -25,6 +25,6 @@ export const ChildWrapper = styled(FlexDivColumn)`
     width: 100%;
     align-items: center;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-top: 50px;
+        margin-top: 25px;
     }
 `;
