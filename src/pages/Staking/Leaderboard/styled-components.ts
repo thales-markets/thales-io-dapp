@@ -165,4 +165,5 @@ export const DropdownWrapper = styled(FlexDiv)`
     flex: 1;
     flex-direction: column;
     justify-content: center;
+    width: 100;
 `;

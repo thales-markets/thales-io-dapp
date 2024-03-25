@@ -29,7 +29,7 @@ export const MainContentContainer = styled.div<{ isOverviewPage: boolean; isThal
 
 export const MainContentWrapper = styled.div<{ isOverviewPage: boolean }>`
     border-radius: 8px;
-    padding: ${(props) => (props.isOverviewPage ? '0px' : '25px 0px 30px 0px')};
+    padding: ${(props) => (props.isOverviewPage ? '0px' : '12px 0px 30px 0px')};
     background: transparent;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         background: ${(props) => (props.isOverviewPage ? 'transparent' : props.theme.background.primary)};
@@ -41,7 +41,7 @@ export const MainContentWrapper = styled.div<{ isOverviewPage: boolean }>`
 export const SidebarContainer = styled(FlexDivColumn)<{ tipsOverview: boolean }>`
     width: 33%;
     margin-left: 10px;
-    margin-top: ${(props) => (props.tipsOverview ? '56px' : '25px')};
+    margin-top: ${(props) => (props.tipsOverview ? '48px' : '12px')};
     @media (max-width: 1200px) {
         width: 100%;
         margin-left: 0;

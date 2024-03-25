@@ -1126,9 +1126,9 @@ const AMMLP: React.FC = () => {
 };
 
 const LiquidityPoolInfoTitle = styled.div`
+    font-family: NunitoBold;
     color: ${(props) => props.theme.textColor.primary};
     white-space: nowrap;
-    font-weight: 400;
     font-size: 18px;
     line-height: 100%;
     margin-top: 10px;
@@ -1152,6 +1152,7 @@ const LiquidityPoolInfoLabel = styled.span`
 `;
 
 const LiquidityPoolInfo = styled.span`
+    font-family: NunitoBold;
     color: white;
     white-space: nowrap;
 `;
@@ -1182,6 +1183,7 @@ const LiquidityPoolFilledText = styled(FlexDivColumn)`
     }
     span {
         color: white;
+        font-family: NunitoBold;
     }
 `;
 

@@ -272,11 +272,11 @@ const ThalesStakers: React.FC = () => {
                 ) : (
                     <>
                         <ChartInnerText>
-                            <ChartLabel direction={isMobile ? 'column' : 'row'}>
+                            <ChartLabel direction={'column'}>
                                 <InfoText>{t('dashboard.staking.total-thales-staked')}</InfoText>
                                 <InfoStats>{formatCurrency(totalStakedAmount)}</InfoStats>
                             </ChartLabel>
-                            <ChartLabel direction={isMobile ? 'column' : 'row'}>
+                            <ChartLabel direction={'column'}>
                                 <InfoText>{t('dashboard.staking.of-circulating-supply')}</InfoText>
                                 <InfoStats>{stakedOfCirculatingSupplyPercentage.toFixed(2)}%</InfoStats>
                             </ChartLabel>
