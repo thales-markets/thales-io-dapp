@@ -137,7 +137,7 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                         active: location.pathname === ROUTES.About.Whitepaper,
                     },
                     {
-                        href: 'https://docs.thalesmarket.io/',
+                        href: LINKS.Docs,
                         title: t('header.links.docs'),
                     },
                 ],

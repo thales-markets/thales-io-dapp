@@ -25,7 +25,7 @@ const FooterLinks: React.FC<FooterLinksProps> = ({ iconSize }) => {
                     <Name>{t('footer.twitter')}</Name>
                 </IconContainer>
             </SPAAnchor>
-            <SPAAnchor href={LINKS.ThalesMarketDocs}>
+            <SPAAnchor href={LINKS.Docs}>
                 <IconContainer>
                     <Icon iconSize={iconSize} className="icon icon--docs" />
                     <Name>{t('footer.docs')}</Name>
