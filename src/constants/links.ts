@@ -26,7 +26,7 @@ const LINKS = {
     Matcha: 'https://matcha.xyz/',
     TIPs: 'https://github.com/thales-markets/thales-improvement-proposals/tree/main/TIPs',
     TIP1: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-1.md',
-    Contracts: 'https://contracts.thalesmarket.io/',
+    Contracts: 'https://contracts.thales.io/',
     Tokenomics: 'https://docs.thalesmarket.io/thales-token/thales-tokenomics',
     StakingGuide: 'https://docs.thalesmarket.io/thales-token/staking-thales-on-optimism-guide',
     Token: {
