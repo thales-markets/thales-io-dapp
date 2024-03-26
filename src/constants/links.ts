@@ -27,8 +27,8 @@ const LINKS = {
     TIPs: 'https://github.com/thales-markets/thales-improvement-proposals/tree/main/TIPs',
     TIP1: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-1.md',
     Contracts: 'https://contracts.thales.io/',
-    Tokenomics: 'https://docs.thalesmarket.io/thales-token/thales-tokenomics',
-    StakingGuide: 'https://docs.thalesmarket.io/thales-token/staking-thales-on-optimism-guide',
+    Tokenomics: 'https://docs.thales.io/thales-token/thales-token-distribution',
+    StakingGuide: 'https://docs.thales.io/thales-token/staking-guide',
     Token: {
         TIP66: '/dao/thalesgov.eth/0xa925cddfe73b58911c3a9308a0e9d70dff21e31e4d428247ac084e8cffa4eb4f',
         TIP139: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-139.md',
