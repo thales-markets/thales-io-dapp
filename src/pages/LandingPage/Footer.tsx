@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
                         <FooterLogo className="icon icon--thales-logo" />
                         <FlexDivColumn>
                             <ThalesLinksTitle>THALES</ThalesLinksTitle>
-                            <SPAAnchor href={LINKS.ThalesMarketDocs}>
+                            <SPAAnchor href={LINKS.Docs}>
                                 <ThalesLinksItem>{t('home.footer.thales.docs')}</ThalesLinksItem>
                             </SPAAnchor>
                             <SPAAnchor href={LINKS.Medium}>

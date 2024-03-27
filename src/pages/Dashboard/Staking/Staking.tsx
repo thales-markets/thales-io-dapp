@@ -287,6 +287,7 @@ const Staking: React.FC = () => {
                                         position="insideBottom"
                                         dy={-175}
                                         fill={Colors.WHITE}
+                                        fontSize={18}
                                     />
                                 </XAxis>
                                 <ChartTooltip content={<CustomTooltip />} cursor={false} />

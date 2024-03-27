@@ -141,6 +141,7 @@ export const FinalPointsTitle = styled.div`
     font-size: 13px;
     font-style: normal;
     line-height: normal;
+    margin-bottom: 5px;
 `;
 
 export const FinalPoints = styled.div`
@@ -161,6 +162,9 @@ export const LeaderboardLink = styled(FlexDiv)`
         font-size: 20px;
         font-weight: 200;
         margin: 0 5px;
+    }
+    > i:nth-child(2) {
+        font-size: 15px;
     }
 `;
 

@@ -16,6 +16,7 @@ import {
     GovernanceInfoSection,
     InfoStats,
     InfoText,
+    LatestTip,
     TitleLabel,
     WidgetHeader,
     WidgetIcon,
@@ -53,7 +54,7 @@ const Governance: React.FC = () => {
                         <DoubleSideSectionSpan>
                             <InfoText>{t('dashboard.governance.latest-proposal')}</InfoText>
                             <br />
-                            <InfoStats>{latestProposal ? latestProposal.title : '-'}</InfoStats>
+                            <LatestTip>{latestProposal ? latestProposal.title : '-'}</LatestTip>
                         </DoubleSideSectionSpan>
                     </GovernanceInfoSection>
                 </WidgetWrapper>

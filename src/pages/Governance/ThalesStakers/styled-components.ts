@@ -105,18 +105,13 @@ export const ChartWrapper = styled(FlexDiv)`
 
 export const ChartInnerText = styled(FlexDivColumnCentered)`
     position: absolute;
-    top: 206px;
+    top: 190px;
     width: 245px;
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        top: 190px;
-    }
 `;
 
 export const ChartLabel = styled(FlexDivSpaceBetween)<{
     direction?: string;
 }>`
     width: 100%;
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        flex-direction: ${(props) => (props.direction ? `${props.direction}` : '')};
-    }
+    flex-direction: ${(props) => (props.direction ? `${props.direction}` : '')};
 `;

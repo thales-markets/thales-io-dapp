@@ -102,3 +102,7 @@ export const getLoadingToastOptions = () => {
 export const getDefaultToastContent = (message: string) => {
     return <ToastMessage type="default" message={message} />;
 };
+
+export const getErrorToastContent = (message: string) => {
+    return <ToastMessage type="error" message={message} />;
+};

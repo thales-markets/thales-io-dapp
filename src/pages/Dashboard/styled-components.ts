@@ -118,6 +118,13 @@ export const InfoStats = styled.span<{ color?: string }>`
     }
 `;
 
+export const LatestTip = styled(InfoStats)`
+    width: 290px;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+`;
+
 export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolean }>`
     font-family: Nunito !important;
     font-weight: 700;
@@ -251,7 +258,6 @@ export const ChartTooltipBox = styled.div`
     background: ${(props) => props.theme.background.quinary};
     border-radius: 8px;
     z-index: 2;
-    width: 150px;
     padding: 10px;
     height: 70px;
     display: flex;

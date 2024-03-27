@@ -66,7 +66,7 @@ const Rewards = styled.div`
     width: 22px;
     left: -33px;
     cursor: pointer;
-    z-index: 2;
+    z-index: 1;
     box-shadow: 0 0 0 0 rgba(25, 248, 239, 1);
     animation: pulse 2s infinite;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -84,6 +84,7 @@ const Container = styled.div<{ hidden?: boolean }>`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
         justify-content: flex-end;
+        z-index: 1000;
     }
 `;
 

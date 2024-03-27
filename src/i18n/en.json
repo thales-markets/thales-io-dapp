@@ -323,6 +323,7 @@
                 "total-thales-points": "Total Thales Rewards + Protocol Rewards",
                 "disclaimer": "Unclaimed weekly rewards are forfeited!",
                 "claim-rewards": "Claim Rewards",
+                "claim-and-stake": "Claim and stake",
                 "claiming": "Claiming",
                 "claim-success": "Tokens successfully claimed",
                 "ccip-msg": "CCIP synchronization in progress",

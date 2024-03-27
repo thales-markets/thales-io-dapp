@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 // import { getIsMobile } from 'redux/modules/ui';
+import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { getIsMobile } from 'redux/modules/ui';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
@@ -67,6 +68,7 @@ const Unstake: React.FC<Properties> = ({ staked }) => {
                 );
                 refetchTokenQueries(walletAddress, networkId);
                 refetchLPStakingQueries(walletAddress, networkId);
+                PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.lpUnstake);
                 setIsUnstaking(false);
                 setAmountToUnstake('');
             }

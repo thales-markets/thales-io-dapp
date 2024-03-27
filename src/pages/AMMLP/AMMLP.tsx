@@ -18,6 +18,7 @@ import {
 import Tooltip from 'components/Tooltip';
 import NumericInput from 'components/fields/NumericInput';
 import RadioButton from 'components/fields/RadioButton';
+import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
 import { DEFAULT_COLLATERALS, USD_SIGN } from 'constants/currency';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
@@ -438,6 +439,15 @@ const AMMLP: React.FC = () => {
                         id,
                         getSuccessToastOptions(t('staking.amm-lp.deposit-withdraw.deposit-confirmation-message'), id)
                     );
+                    if (paramTab === LiquidityPool.THALES) {
+                        PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.depositDigitalOptionsLp);
+                    }
+                    if (paramTab === LiquidityPool.OVERTIME_SINGLE) {
+                        PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.depositOvertimeSingleLp);
+                    }
+                    if (paramTab === LiquidityPool.OVERTIME_PARLAY) {
+                        PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.depositOvertimeParlayLp);
+                    }
                     setAmount('');
                     setIsSubmitting(false);
                     refetchLiquidityPoolData(walletAddress, networkId, paramTab);
@@ -1116,9 +1126,9 @@ const AMMLP: React.FC = () => {
 };
 
 const LiquidityPoolInfoTitle = styled.div`
+    font-family: NunitoBold;
     color: ${(props) => props.theme.textColor.primary};
     white-space: nowrap;
-    font-weight: 400;
     font-size: 18px;
     line-height: 100%;
     margin-top: 10px;
@@ -1142,6 +1152,7 @@ const LiquidityPoolInfoLabel = styled.span`
 `;
 
 const LiquidityPoolInfo = styled.span`
+    font-family: NunitoBold;
     color: white;
     white-space: nowrap;
 `;
@@ -1172,6 +1183,7 @@ const LiquidityPoolFilledText = styled(FlexDivColumn)`
     }
     span {
         color: white;
+        font-family: NunitoBold;
     }
 `;
 

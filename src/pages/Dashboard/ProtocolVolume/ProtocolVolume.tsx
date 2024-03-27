@@ -70,7 +70,7 @@ const ProtocolVolume: React.FC = () => {
                     <InfoStats>
                         {volumeStats
                             ? formatCurrencyWithSign(
-                                  'USD_SIGN',
+                                  USD_SIGN,
                                   volumeStats.overtimeAmmVolume + volumeStats.parlayAmmVolume
                               )
                             : '-'}

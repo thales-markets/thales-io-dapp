@@ -1,6 +1,7 @@
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
+import { STAKING_TABS } from 'constants/token';
 import { SpaceKey } from 'enums/governance';
 import { TFunction } from 'i18next';
 import React from 'react';
@@ -134,6 +135,7 @@ const formatBreadcrumbsItem = (item: string, t?: TFunction) => {
     const final = item.replace('-', ' ').replace('?tab=', '');
     if (final.includes(SpaceKey.TIPS) && t) return t('governance.nav.tips');
     if (final.includes(SpaceKey.COUNCIL) && t) return t('governance.nav.elections');
+    if (item.includes(STAKING_TABS.ACC_PREFERENCES) && t) return t('staking.nav.acc-preferences');
     return final;
 };
 
