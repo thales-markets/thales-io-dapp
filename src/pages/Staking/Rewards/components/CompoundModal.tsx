@@ -155,7 +155,6 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                 if (amountToStake) {
                     await stakeThales(Number(amountToStake));
                 }
-                setIsOpen(false);
                 refetchTokenQueries(walletAddress, networkId);
             }
         };
