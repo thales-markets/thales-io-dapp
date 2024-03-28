@@ -3,11 +3,17 @@ import { CircularProgress } from '@material-ui/core';
 import { CurrencyAmount, Percent, Token, TradeType } from '@uniswap/sdk-core';
 import { AlphaRouter, SwapOptionsSwapRouter02, SwapType } from '@uniswap/smart-order-router';
 import Modal from 'components/Modal';
-import { getErrorToastContent } from 'components/ToastMessage/ToastMessage';
+import {
+    getDefaultToastContent,
+    getErrorToastContent,
+    getErrorToastOptions,
+    getLoadingToastOptions,
+    getSuccessToastOptions,
+} from 'components/ToastMessage/ToastMessage';
 import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
 import { DEFAULT_COLLATERALS } from 'constants/currency';
 import { UNISWAP_V3_SWAP_ROUTER_ADDRESS } from 'constants/uniswap';
-import { ethers } from 'ethers';
+import { BigNumberish, ethers } from 'ethers';
 import { t } from 'i18next';
 import JSBI from 'jsbi';
 import { useCallback, useEffect, useState } from 'react';
@@ -16,7 +22,7 @@ import { toast } from 'react-toastify';
 import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
-import { FlexDiv } from 'styles/common';
+import { FlexDiv, FlexDivCentered } from 'styles/common';
 import { COLLATERAL_DECIMALS } from 'thales-utils';
 import collateralContractRaw from 'utils/contracts/collateralContract';
 import thalesTokenContractRaw from 'utils/contracts/thalesContract';
@@ -35,6 +41,9 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const networkId = useSelector((state: RootState) => getNetworkId(state));
     const [step, setStep] = useState<number>(0);
+    const [flowStarted, setFlowStarted] = useState<boolean>(false);
+    const [thalesToStake, setThalesToStake] = useState<number>(0);
+    const [tryAgainVisible, setTryAgainVisible] = useState<boolean>(false);
 
     const claimRewards = useCallback(async () => {
         const { stakingThalesContract } = networkConnector as any;
@@ -46,13 +55,36 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                 setStep(1);
                 return true;
             } else {
+                setTryAgainVisible(true);
                 toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
             }
         } catch (e) {
+            setTryAgainVisible(true);
             console.log(e);
             toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
         }
         return false;
+    }, []);
+
+    const approveUniswap = useCallback(async (amountToApprove: JSBI) => {
+        try {
+            const { collateral: collateralContract } = networkConnector as any;
+            const collateralContractWithSigner = collateralContract.connect((networkConnector as any).signer);
+            const tx = await collateralContractWithSigner.approve(
+                UNISWAP_V3_SWAP_ROUTER_ADDRESS,
+                ethers.BigNumber.from(amountToApprove.toString())
+            );
+            const txResult = await tx.wait();
+            if (txResult && txResult.transactionHash) {
+            } else {
+                setTryAgainVisible(true);
+                toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            }
+        } catch (e) {
+            setTryAgainVisible(true);
+            console.error(e);
+            toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+        }
     }, []);
 
     const swapStableForThales = useCallback(async () => {
@@ -94,28 +126,56 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                 UNISWAP_V3_SWAP_ROUTER_ADDRESS
             );
             if (!allowance) {
-                await collateralContractWithSigner.approve(
-                    UNISWAP_V3_SWAP_ROUTER_ADDRESS,
-                    ethers.BigNumber.from(rawTokenAmountIn.toString())
-                );
+                await approveUniswap(rawTokenAmountIn);
             }
             setStep(3);
 
             if (route?.methodParameters) {
+                const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
                 const tx = await (networkConnector as any).signer.sendTransaction({
                     data: route.methodParameters.calldata,
                     to: UNISWAP_V3_SWAP_ROUTER_ADDRESS,
                     value: route.methodParameters.value,
                     from: walletAddress,
                 });
-                await tx.wait();
+                const txResult = await tx.wait();
+
+                if (txResult && txResult.transactionHash) {
+                    toast.update(id, getSuccessToastOptions(t(`common.transaction.successful`), id));
+                } else {
+                    setTryAgainVisible(true);
+                    toast.update(id, getErrorToastOptions(t('common.errors.unknown-error-try-again'), id));
+                }
             }
             setStep(4);
-            return route?.trade.swaps[0].outputAmount.toFixed(2);
+            const thalesIn = Number(route?.trade.swaps[0].outputAmount.toExact());
+            setThalesToStake(thalesIn);
+            return thalesIn;
         } catch (e) {
+            setTryAgainVisible(true);
             console.error(e);
+            toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
         }
-    }, [networkId, rewards, walletAddress]);
+    }, [approveUniswap, networkId, rewards, walletAddress]);
+
+    const approveThales = useCallback(async (amountToApprove: BigNumberish) => {
+        try {
+            const { thalesTokenContract, stakingThalesContract } = networkConnector as any;
+            const addressToApprove = stakingThalesContract.address;
+            const thalesTokenContractWithSigner = thalesTokenContract.connect((networkConnector as any).signer);
+            const tx = await thalesTokenContractWithSigner.approve(addressToApprove, amountToApprove);
+            const txResult = await tx.wait();
+            if (txResult && txResult.transactionHash) {
+            } else {
+                setTryAgainVisible(true);
+                toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            }
+        } catch (e) {
+            setTryAgainVisible(true);
+            console.error(e);
+            toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+        }
+    }, []);
 
     const stakeThales = useCallback(
         async (amountToStake: number) => {
@@ -123,50 +183,72 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
             const thalesTokenContractWithSigner = thalesTokenContract.connect((networkConnector as any).signer);
             const addressToApprove = stakingThalesContract.address;
             const parsedStakeAmount = ethers.utils.parseEther(Number(amountToStake).toString());
-            const allowance = await checkAllowance(
-                parsedStakeAmount,
-                thalesTokenContractWithSigner,
-                walletAddress,
-                addressToApprove
-            );
-            if (!allowance) {
-                await thalesTokenContractWithSigner.approve(addressToApprove, parsedStakeAmount);
-            }
-            setStep(5);
+            try {
+                const allowance = await checkAllowance(
+                    parsedStakeAmount,
+                    thalesTokenContractWithSigner,
+                    walletAddress,
+                    addressToApprove
+                );
 
-            const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
-            const tx = await stakingThalesContractWithSigner.stake(parsedStakeAmount);
-            const txResult = await tx.wait();
+                if (!allowance) {
+                    await approveThales(parsedStakeAmount);
+                }
 
-            if (txResult && txResult.transactionHash) {
-                refetchTokenQueries(walletAddress, networkId);
-                PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.stake);
-                setStep(6);
+                setStep(5);
+
+                const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
+                const tx = await stakingThalesContractWithSigner.stake(parsedStakeAmount);
+                const txResult = await tx.wait();
+
+                if (txResult && txResult.transactionHash) {
+                    refetchTokenQueries(walletAddress, networkId);
+                    PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.stake);
+                    setStep(6);
+                } else {
+                    setTryAgainVisible(true);
+                    toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+                }
+            } catch (e) {
+                setTryAgainVisible(true);
+                toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
             }
         },
-        [networkId, walletAddress]
+        [approveThales, networkId, walletAddress]
     );
 
-    useEffect(() => {
-        const flow = async () => {
-            const claimed = await claimRewards();
+    const flow = useCallback(
+        async (currentStep: number) => {
+            const claimed = currentStep > 0 || (await claimRewards());
             if (claimed) {
-                const amountToStake = await swapStableForThales();
+                const amountToStake = thalesToStake || (await swapStableForThales());
                 if (amountToStake) {
-                    await stakeThales(Number(amountToStake));
+                    await stakeThales(amountToStake);
                 }
                 refetchTokenQueries(walletAddress, networkId);
             }
-        };
-        if (isOpen) {
-            flow();
+        },
+        [claimRewards, networkId, stakeThales, swapStableForThales, thalesToStake, walletAddress]
+    );
+
+    useEffect(() => {
+        if (isOpen && !flowStarted) {
+            setFlowStarted(true);
+            flow(0);
         }
-    }, [claimRewards, isOpen, networkId, setIsOpen, stakeThales, swapStableForThales, walletAddress]);
+    }, [flow, flowStarted, isOpen]);
 
     return (
         <>
             {isOpen && (
-                <Modal customStyle={{ content: { width: '300px' } }} title="" onClose={() => setIsOpen(false)}>
+                <Modal
+                    customStyle={{ content: { width: '300px' } }}
+                    title=""
+                    onClose={() => {
+                        setIsOpen(false);
+                        setStep(0);
+                    }}
+                >
                     <StepRow>
                         <span>Claim rewards</span>
                         <span>
@@ -213,6 +295,17 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                             </span>
                         )}
                     </StepRow>
+                    <FlexDivCentered>
+                        {tryAgainVisible && (
+                            <Button
+                                onClick={() => {
+                                    flow(step);
+                                }}
+                            >
+                                Try Again
+                            </Button>
+                        )}
+                    </FlexDivCentered>
                 </Modal>
             )}
         </>
@@ -234,6 +327,24 @@ const CustomCircularProgress = styled(CircularProgress)`
     }
     &.MuiCircularProgress-colorPrimary {
         color: ${(props) => props.theme.textColor.secondary};
+    }
+`;
+
+const Button = styled.button<{ padding?: string; disabled?: boolean; width?: string }>`
+    cursor: pointer;
+    color: ${(props) => props.theme.background.primary};
+    padding: ${(props) => props.padding || '5px 15px'};
+    border-radius: 8px;
+    border: 0;
+    background: ${(props) => props.theme.textColor.secondary};
+    text-align: center;
+    font-family: NunitoExtraBold;
+    font-size: 13px;
+    text-transform: uppercase;
+    width: ${(props) => props.width || 'auto'};
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
     }
 `;
 
