@@ -121,7 +121,6 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     return (
         <>
             <LoadingContainer isLoading={isLoading}>
-                <button onClick={() => setCompoundModalOpen(true)}>aaa</button>
                 <ClaimableRewardsContainer>
                     <RewardsDetailsContainer>
                         <SectionTitle>
