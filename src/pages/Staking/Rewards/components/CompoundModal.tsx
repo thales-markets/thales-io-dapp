@@ -67,23 +67,18 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
     }, []);
 
     const approveUniswap = useCallback(async (amountToApprove: JSBI) => {
-        try {
-            const { collateral: collateralContract } = networkConnector as any;
-            const collateralContractWithSigner = collateralContract.connect((networkConnector as any).signer);
-            const tx = await collateralContractWithSigner.approve(
-                UNISWAP_V3_SWAP_ROUTER_ADDRESS,
-                ethers.BigNumber.from(amountToApprove.toString())
-            );
-            const txResult = await tx.wait();
-            if (txResult && txResult.transactionHash) {
-            } else {
-                setTryAgainVisible(true);
-                toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
-            }
-        } catch (e) {
+        const { collateral: collateralContract } = networkConnector as any;
+        const collateralContractWithSigner = collateralContract.connect((networkConnector as any).signer);
+        const tx = await collateralContractWithSigner.approve(
+            UNISWAP_V3_SWAP_ROUTER_ADDRESS,
+            ethers.BigNumber.from(amountToApprove.toString())
+        );
+        const txResult = await tx.wait();
+        if (txResult && txResult.transactionHash) {
+        } else {
             setTryAgainVisible(true);
-            console.error(e);
             toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            throw new Error(t('common.errors.unknown-error-try-again'));
         }
     }, []);
 
@@ -159,21 +154,16 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
     }, [approveUniswap, networkId, rewards, walletAddress]);
 
     const approveThales = useCallback(async (amountToApprove: BigNumberish) => {
-        try {
-            const { thalesTokenContract, stakingThalesContract } = networkConnector as any;
-            const addressToApprove = stakingThalesContract.address;
-            const thalesTokenContractWithSigner = thalesTokenContract.connect((networkConnector as any).signer);
-            const tx = await thalesTokenContractWithSigner.approve(addressToApprove, amountToApprove);
-            const txResult = await tx.wait();
-            if (txResult && txResult.transactionHash) {
-            } else {
-                setTryAgainVisible(true);
-                toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
-            }
-        } catch (e) {
+        const { thalesTokenContract, stakingThalesContract } = networkConnector as any;
+        const addressToApprove = stakingThalesContract.address;
+        const thalesTokenContractWithSigner = thalesTokenContract.connect((networkConnector as any).signer);
+        const tx = await thalesTokenContractWithSigner.approve(addressToApprove, amountToApprove);
+        const txResult = await tx.wait();
+        if (txResult && txResult.transactionHash) {
+        } else {
             setTryAgainVisible(true);
-            console.error(e);
             toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            throw new Error(t('common.errors.unknown-error-try-again'));
         }
     }, []);
 
@@ -245,8 +235,9 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                     customStyle={{ content: { width: '300px' } }}
                     title=""
                     onClose={() => {
-                        setIsOpen(false);
                         setStep(0);
+                        setFlowStarted(false);
+                        setIsOpen(false);
                     }}
                 >
                     <StepRow>
@@ -300,6 +291,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                             <Button
                                 onClick={() => {
                                     flow(step);
+                                    setTryAgainVisible(false);
                                 }}
                             >
                                 Try Again
