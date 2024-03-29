@@ -44,6 +44,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
     const [flowStarted, setFlowStarted] = useState<boolean>(false);
     const [thalesToStake, setThalesToStake] = useState<number>(0);
     const [tryAgainVisible, setTryAgainVisible] = useState<boolean>(false);
+    const [rewardsToSwap] = useState<number>(rewards);
 
     const claimRewards = useCallback(async () => {
         const { stakingThalesContract } = networkConnector as any;
@@ -86,7 +87,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
         const { provider } = networkConnector;
         const chainId = getChainId(networkId);
         const collateralDecimals = COLLATERAL_DECIMALS[DEFAULT_COLLATERALS[networkId]];
-        const amountToSwap = rewards;
+        const amountToSwap = rewardsToSwap;
 
         const { collateral: collateralContract } = networkConnector as any;
         const collateralContractWithSigner = collateralContract.connect((networkConnector as any).signer);
@@ -101,7 +102,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
             deadline: Math.floor(Date.now() / 1000 + 3800),
             type: SwapType.SWAP_ROUTER_02,
         };
-        const rawTokenAmountIn: JSBI = fromReadableAmount(rewards, collateralDecimals);
+        const rawTokenAmountIn: JSBI = fromReadableAmount(rewardsToSwap, collateralDecimals);
 
         try {
             const route = await router.route(
@@ -151,7 +152,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
             console.error(e);
             toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
         }
-    }, [approveUniswap, networkId, rewards, walletAddress]);
+    }, [approveUniswap, networkId, rewardsToSwap, walletAddress]);
 
     const approveThales = useCallback(async (amountToApprove: BigNumberish) => {
         const { thalesTokenContract, stakingThalesContract } = networkConnector as any;
