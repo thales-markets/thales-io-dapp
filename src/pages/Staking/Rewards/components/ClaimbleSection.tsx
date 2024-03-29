@@ -105,7 +105,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
 
         if (compoundRewards) {
             return (
-                <StakingButton onClick={() => setCompoundModalOpen(true)}>
+                <StakingButton disabled={!isClaimAvailable} onClick={() => setCompoundModalOpen(true)}>
                     {t('staking.rewards.claim.claim-and-stake')}
                 </StakingButton>
             );
