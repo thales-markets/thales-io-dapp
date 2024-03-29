@@ -215,10 +215,9 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                 if (amountToStake) {
                     await stakeThales(amountToStake);
                 }
-                refetchTokenQueries(walletAddress, networkId);
             }
         },
-        [claimRewards, networkId, stakeThales, swapStableForThales, thalesToStake, walletAddress]
+        [claimRewards, stakeThales, swapStableForThales, thalesToStake]
     );
 
     useEffect(() => {
@@ -235,6 +234,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                     customStyle={{ content: { width: '300px' } }}
                     title=""
                     onClose={() => {
+                        refetchTokenQueries(walletAddress, networkId);
                         setStep(0);
                         setFlowStarted(false);
                         setIsOpen(false);
