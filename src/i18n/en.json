@@ -324,6 +324,11 @@
                 "disclaimer": "Unclaimed weekly rewards are forfeited!",
                 "claim-rewards": "Claim Rewards",
                 "claiming": "Claiming",
+                "close-period": {
+                    "label": "Close period",
+                    "progress-label": "Closing period...",
+                    "confirmation-message": "Period successfully closed"
+                },
                 "claim-success": "Tokens successfully claimed",
                 "ccip-msg": "CCIP synchronization in progress",
                 "calculating-rewards": "Claiming is paused. <br />Calculating rewards in progress."
