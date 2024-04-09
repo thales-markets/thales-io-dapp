@@ -2,17 +2,17 @@ import { BaseProvider } from '@ethersproject/providers';
 import { CircularProgress } from '@material-ui/core';
 import { CurrencyAmount, Percent, Token, TradeType } from '@uniswap/sdk-core';
 import { AlphaRouter, SwapOptionsSwapRouter02, SwapType } from '@uniswap/smart-order-router';
+import { Pool, Route, SwapOptions, SwapRouter, Trade } from '@uniswap/v3-sdk';
 import Modal from 'components/Modal';
-import {
-    getDefaultToastContent,
-    getErrorToastContent,
-    getErrorToastOptions,
-    getLoadingToastOptions,
-    getSuccessToastOptions,
-} from 'components/ToastMessage/ToastMessage';
+import { getErrorToastContent, getSuccessToastContent } from 'components/ToastMessage/ToastMessage';
 import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
 import { DEFAULT_COLLATERALS } from 'constants/currency';
-import { UNISWAP_V3_SWAP_ROUTER_ADDRESS } from 'constants/uniswap';
+import {
+    UNISWAP_SWAP_ROUTER_ADDRESS,
+    UNISWAP_V3_SWAP_ROUTER_ADDRESS,
+    UNISWAP_V3_SWAP_ROUTER_ADDRESS_BASE,
+} from 'constants/uniswap';
+import { Network } from 'enums/network';
 import { BigNumberish, ethers } from 'ethers';
 import { t } from 'i18next';
 import JSBI from 'jsbi';
@@ -29,7 +29,7 @@ import thalesTokenContractRaw from 'utils/contracts/thalesContract';
 import { checkAllowance } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
-import { fromReadableAmount, getChainId } from 'utils/uniswap';
+import { fromReadableAmount, getChainId, getFeeAmount, getOutputQuote, getPoolInfo } from 'utils/uniswap';
 
 type CompoundModalProps = {
     isOpen: boolean;
@@ -67,11 +67,11 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
         return false;
     }, []);
 
-    const approveUniswap = useCallback(async (amountToApprove: JSBI) => {
+    const approveUniswap = useCallback(async (amountToApprove: JSBI, address: string) => {
         const { collateral: collateralContract } = networkConnector as any;
         const collateralContractWithSigner = collateralContract.connect((networkConnector as any).signer);
         const tx = await collateralContractWithSigner.approve(
-            UNISWAP_V3_SWAP_ROUTER_ADDRESS,
+            address,
             ethers.BigNumber.from(amountToApprove.toString())
         );
         const txResult = await tx.wait();
@@ -91,6 +91,8 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
 
         const { collateral: collateralContract } = networkConnector as any;
         const collateralContractWithSigner = collateralContract.connect((networkConnector as any).signer);
+        const uniswapRouterAddress =
+            networkId === Network.Base ? UNISWAP_V3_SWAP_ROUTER_ADDRESS_BASE : UNISWAP_V3_SWAP_ROUTER_ADDRESS;
 
         const router = new AlphaRouter({
             chainId,
@@ -102,7 +104,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
             deadline: Math.floor(Date.now() / 1000 + 3800),
             type: SwapType.SWAP_ROUTER_02,
         };
-        const rawTokenAmountIn: JSBI = fromReadableAmount(rewardsToSwap, collateralDecimals);
+        const rawTokenAmountIn: JSBI = fromReadableAmount(amountToSwap, collateralDecimals);
 
         try {
             const route = await router.route(
@@ -116,35 +118,33 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
             );
             setStep(2);
             const allowance = await checkAllowance(
-                ethers.utils.parseEther(Number(amountToSwap).toString()),
+                ethers.utils.parseUnits(Number(amountToSwap).toString(), collateralDecimals),
                 collateralContractWithSigner,
                 walletAddress,
-                UNISWAP_V3_SWAP_ROUTER_ADDRESS
+                uniswapRouterAddress
             );
             if (!allowance) {
-                await approveUniswap(rawTokenAmountIn);
+                await approveUniswap(rawTokenAmountIn, uniswapRouterAddress);
             }
             setStep(3);
 
             if (route?.methodParameters) {
-                const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
                 const tx = await (networkConnector as any).signer.sendTransaction({
                     data: route.methodParameters.calldata,
-                    to: UNISWAP_V3_SWAP_ROUTER_ADDRESS,
+                    to: uniswapRouterAddress,
                     value: route.methodParameters.value,
                     from: walletAddress,
                 });
                 const txResult = await tx.wait();
 
                 if (txResult && txResult.transactionHash) {
-                    toast.update(id, getSuccessToastOptions(t(`common.transaction.successful`), id));
                 } else {
                     setTryAgainVisible(true);
-                    toast.update(id, getErrorToastOptions(t('common.errors.unknown-error-try-again'), id));
+                    toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
                 }
             }
             setStep(4);
-            const thalesIn = Number(route?.trade.swaps[0].outputAmount.toExact());
+            const thalesIn = Number(route?.trade.swaps[0].outputAmount.toFixed());
             setThalesToStake(thalesIn);
             return thalesIn;
         } catch (e) {
@@ -153,6 +153,92 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
             toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
         }
     }, [approveUniswap, networkId, rewardsToSwap, walletAddress]);
+
+    const swapStableForThalesArbitrum = useCallback(async () => {
+        const chainId = getChainId(networkId);
+        const collateralDecimals = COLLATERAL_DECIMALS[DEFAULT_COLLATERALS[networkId]];
+        const amountToSwap = rewardsToSwap;
+
+        const { collateral: collateralContract } = networkConnector as any;
+        const collateralContractWithSigner = collateralContract.connect((networkConnector as any).signer);
+
+        const tokenIn = new Token(chainId, collateralContractRaw.addresses[networkId], collateralDecimals);
+        const tokenOut = new Token(chainId, thalesTokenContractRaw.addresses[networkId], 18);
+
+        try {
+            const poolInfo = await getPoolInfo(networkId, tokenIn, tokenOut);
+
+            if (!poolInfo) {
+                throw new Error('Could not fetch pool info');
+            }
+
+            const pool = new Pool(
+                tokenIn,
+                tokenOut,
+                getFeeAmount(networkId),
+                poolInfo.sqrtPriceX96.toString(),
+                poolInfo.liquidity.toString(),
+                poolInfo.tick
+            );
+
+            const swapRoute = new Route([pool], tokenIn, tokenOut);
+            const amountOut = await getOutputQuote(swapRoute, tokenIn, amountToSwap);
+            const rawTokenAmountIn: JSBI = fromReadableAmount(amountToSwap, collateralDecimals);
+
+            const uncheckedTrade = Trade.createUncheckedTrade({
+                route: swapRoute,
+                inputAmount: CurrencyAmount.fromRawAmount(
+                    tokenIn,
+                    fromReadableAmount(amountToSwap, tokenIn.decimals).toString()
+                ),
+                outputAmount: CurrencyAmount.fromRawAmount(tokenOut, JSBI.BigInt(amountOut)),
+                tradeType: TradeType.EXACT_INPUT,
+            });
+
+            setStep(2);
+
+            const allowance = await checkAllowance(
+                ethers.utils.parseUnits(Number(amountToSwap).toString(), collateralDecimals),
+                collateralContractWithSigner,
+                walletAddress,
+                UNISWAP_SWAP_ROUTER_ADDRESS
+            );
+
+            if (!allowance) {
+                await approveUniswap(rawTokenAmountIn, UNISWAP_SWAP_ROUTER_ADDRESS);
+            }
+
+            setStep(3);
+
+            const options: SwapOptions = {
+                recipient: walletAddress,
+                slippageTolerance: new Percent(20, 1000),
+                deadline: Math.floor(Date.now() / 1000 + 3800),
+            };
+            const methodParameters = SwapRouter.swapCallParameters([uncheckedTrade], options);
+            const tx = await (networkConnector as any).signer.sendTransaction({
+                data: methodParameters.calldata,
+                to: UNISWAP_SWAP_ROUTER_ADDRESS,
+                value: methodParameters.value,
+                from: walletAddress,
+            });
+            const txResult = await tx.wait();
+
+            if (txResult && txResult.transactionHash) {
+            } else {
+                setTryAgainVisible(true);
+                toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            }
+            setStep(4);
+            const thalesIn = Number(uncheckedTrade.swaps[0].outputAmount.toFixed());
+            setThalesToStake(thalesIn);
+            return thalesIn;
+        } catch (e) {
+            setTryAgainVisible(true);
+            console.error(e);
+            toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+        }
+    }, [approveUniswap, networkId, walletAddress, rewardsToSwap]);
 
     const approveThales = useCallback(async (amountToApprove: BigNumberish) => {
         const { thalesTokenContract, stakingThalesContract } = networkConnector as any;
@@ -174,6 +260,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
             const thalesTokenContractWithSigner = thalesTokenContract.connect((networkConnector as any).signer);
             const addressToApprove = stakingThalesContract.address;
             const parsedStakeAmount = ethers.utils.parseEther(Number(amountToStake).toString());
+
             try {
                 const allowance = await checkAllowance(
                     parsedStakeAmount,
@@ -196,11 +283,13 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                     refetchTokenQueries(walletAddress, networkId);
                     PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.stake);
                     setStep(6);
+                    toast.success(getSuccessToastContent(t('staking.rewards.claim.compound-success')));
                 } else {
                     setTryAgainVisible(true);
                     toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
                 }
             } catch (e) {
+                console.error(e);
                 setTryAgainVisible(true);
                 toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
             }
@@ -212,13 +301,17 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
         async (currentStep: number) => {
             const claimed = currentStep > 0 || (await claimRewards());
             if (claimed) {
-                const amountToStake = thalesToStake || (await swapStableForThales());
+                const amountToStake =
+                    thalesToStake ||
+                    (networkId === Network.Arbitrum
+                        ? await swapStableForThalesArbitrum()
+                        : await swapStableForThales());
                 if (amountToStake) {
                     await stakeThales(amountToStake);
                 }
             }
         },
-        [claimRewards, stakeThales, swapStableForThales, thalesToStake]
+        [claimRewards, networkId, stakeThales, swapStableForThales, swapStableForThalesArbitrum, thalesToStake]
     );
 
     useEffect(() => {

@@ -1,6 +1,5 @@
 import { Provider } from '@wagmi/core';
-import { Signer, ethers } from 'ethers';
-import thalesCouncilNFT from './contracts/ThalesCouncilNFT';
+import { ethers, Signer } from 'ethers';
 import celerBridgeContract from './contracts/celerBridgeContract';
 import collateralContract from './contracts/collateralContract';
 import escrowThales from './contracts/escrowThales';
@@ -15,8 +14,10 @@ import stakingDataContract from './contracts/stakingDataContract';
 import stakingThalesContract from './contracts/stakingThales';
 import stakingBonusRewardsManager from './contracts/thalesAMMStakingThalesBonusRewardsManager';
 import thalesContract from './contracts/thalesContract';
+import thalesCouncilNFT from './contracts/ThalesCouncilNFT';
 import thalesLiquidityPoolContract from './contracts/thalesLiquidityPoolContract';
 import thalesLiquidityPoolDataContract from './contracts/thalesLiquidityPoolDataContract';
+import uniswapFactoryContract from './contracts/uniswapV3Factory';
 
 type networkConnector = {
     initialized: boolean;
@@ -39,6 +40,7 @@ type networkConnector = {
     lpStakingRewardsContract?: ethers.Contract;
     gelatoContract?: ethers.Contract;
     celerBridgeContract?: ethers.Contract;
+    uniswapFactoryContract?: ethers.Contract;
     setContractSettings: (contractSettings: any) => void;
 };
 
@@ -80,6 +82,7 @@ const networkConnector: networkConnector = {
         this.lpStakingRewardsContract = conditionalInitializeContract(lpStakingRewardsContract, contractSettings);
         this.gelatoContract = conditionalInitializeContract(gelatoContract, contractSettings);
         this.celerBridgeContract = conditionalInitializeContract(celerBridgeContract, contractSettings);
+        this.uniswapFactoryContract = conditionalInitializeContract(uniswapFactoryContract, contractSettings);
     },
 };
 

@@ -1,5 +1,6 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import coinsAnimation from 'assets/lotties/rewards-coins.json';
+import Checkbox from 'components/fields/Checkbox';
 import LoadingContainer from 'components/LoadingContainer';
 import TimeRemaining from 'components/TimeRemaining';
 import {
@@ -9,7 +10,6 @@ import {
     getSuccessToastOptions,
 } from 'components/ToastMessage/ToastMessage';
 import Tooltip from 'components/Tooltip';
-import Checkbox from 'components/fields/Checkbox';
 import { DEFAULT_COLLATERALS, THALES_CURRENCY } from 'constants/currency';
 import { ethers } from 'ethers';
 import Lottie from 'lottie-react';
@@ -28,8 +28,8 @@ import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
 import { SectionTitle } from '../../styled-components';
 import {
-    ClaimSection,
     ClaimableRewardsContainer,
+    ClaimSection,
     CompoundContainer,
     ItemsWrapper,
     RewardsDetailsContainer,

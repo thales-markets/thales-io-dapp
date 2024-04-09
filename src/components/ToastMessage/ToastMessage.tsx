@@ -1,6 +1,6 @@
 import React, { ReactText } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ToastPosition, TypeOptions, toast } from 'react-toastify';
+import { toast, ToastPosition, TypeOptions } from 'react-toastify';
 import styled from 'styled-components';
 import { FlexDivColumn, FlexDivRowCentered } from 'styles/common';
 
@@ -101,6 +101,10 @@ export const getLoadingToastOptions = () => {
 
 export const getDefaultToastContent = (message: string) => {
     return <ToastMessage type="default" message={message} />;
+};
+
+export const getSuccessToastContent = (message: string) => {
+    return <ToastMessage type="success" message={message} />;
 };
 
 export const getErrorToastContent = (message: string) => {

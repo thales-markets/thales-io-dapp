@@ -329,7 +329,8 @@
                 "ccip-msg": "CCIP synchronization in progress",
                 "calculating-rewards": "Claiming is paused. <br />Calculating rewards in progress.",
                 "compound-and-stake": "Compound and stake",
-                "compound-tooltip": "Convert your {{collateral}} rewards to THALES and stake them"
+                "compound-tooltip": "Convert your {{collateral}} rewards to THALES and stake them",
+                "compound-success": "Rewards successfully compounded and staked, you can now close the modal"
             },
             "base-rewards": {
                 "title": "Core staking rewards",
