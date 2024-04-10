@@ -11,7 +11,7 @@ import { SpaceKey, StatusEnum } from 'enums/governance';
 import { ethers } from 'ethers';
 import request, { gql } from 'graphql-request';
 import { uniqBy } from 'lodash';
-import { useQuery, UseQueryOptions } from 'react-query';
+import { UseQueryOptions, useQuery } from 'react-query';
 import { MappedVotes, Proposal, ProposalResults, SpaceData, SpaceStrategy, Vote } from 'types/governance';
 import voting from 'utils/voting';
 
@@ -29,7 +29,7 @@ const useProposalQuery = (
             const { proposal }: { proposal: Proposal } = await request(
                 SNAPSHOT_GRAPHQL_URL,
                 gql`
-                    query Proposal($id: String) {
+                    query Proposal($id: String!) {
                         proposal(id: $id) {
                             id
                             title
@@ -61,7 +61,7 @@ const useProposalQuery = (
             const { space }: { space: SpaceData } = await request(
                 SNAPSHOT_GRAPHQL_URL,
                 gql`
-                    query Space($spaceKey: String) {
+                    query Space($spaceKey: String!) {
                         space(id: $spaceKey) {
                             domain
                             about
@@ -87,7 +87,7 @@ const useProposalQuery = (
             const { votes }: { votes: Vote[] } = await request(
                 SNAPSHOT_GRAPHQL_URL,
                 gql`
-                    query Votes($proposal: String) {
+                    query Votes($proposal: String!) {
                         votes(first: 1000, where: { proposal: $proposal }) {
                             id
                             voter
