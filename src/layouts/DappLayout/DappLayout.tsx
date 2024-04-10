@@ -3,7 +3,7 @@ import useWidgetBotScript from 'hooks/useWidgetBotScript';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css'; TODO
+import 'react-toastify/dist/ReactToastify.css';
 import { getIsMobile } from 'redux/modules/ui';
 import { useTheme } from 'styled-components';
 import { Background } from 'styles/common';

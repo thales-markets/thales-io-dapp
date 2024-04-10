@@ -1,12 +1,12 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import ApprovalModal from 'components/ApprovalModal';
+import NumericInput from 'components/fields/NumericInput';
 import {
     getDefaultToastContent,
     getErrorToastOptions,
     getLoadingToastOptions,
     getSuccessToastOptions,
 } from 'components/ToastMessage/ToastMessage';
-import NumericInput from 'components/fields/NumericInput';
 import { THALES_CURRENCY } from 'constants/currency';
 import { BigNumber, ethers } from 'ethers';
 import useThalesBalanceQuery from 'queries/token/useThalesBalanceQuery';

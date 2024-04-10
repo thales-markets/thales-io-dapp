@@ -71,23 +71,21 @@ const toastBasicProperties = {
     closeButton: false,
 };
 
-export const getSuccessToastOptions = (message: string, id: ReactText) => {
+export const getSuccessToastOptions = (message: string, id?: ReactText) => {
     return {
         ...toastBasicProperties,
         toastId: id,
-        className: 'success',
-        progressClassName: 'success',
-        render: <ToastMessage id={id} type={'success'} message={message} />, // not relevant on ToastOptions, only on UpdateOptions
+        type: 'success' as TypeOptions,
+        render: message, // not relevant on ToastOptions, only on UpdateOptions
     };
 };
 
-export const getErrorToastOptions = (message: string, id: ReactText) => {
+export const getErrorToastOptions = (message: string, id?: ReactText) => {
     return {
         ...toastBasicProperties,
         toastId: id,
-        className: 'error',
-        progressClassName: 'error',
-        render: <ToastMessage id={id} type={'error'} message={message} />, // not relevant on ToastOptions, only on UpdateOptions
+        type: 'error' as TypeOptions,
+        render: message, // not relevant on ToastOptions, only on UpdateOptions
     };
 };
 

@@ -4,7 +4,7 @@ import { CurrencyAmount, Percent, Token, TradeType } from '@uniswap/sdk-core';
 import { AlphaRouter, SwapOptionsSwapRouter02, SwapType } from '@uniswap/smart-order-router';
 import { Pool, Route, SwapOptions, SwapRouter, Trade } from '@uniswap/v3-sdk';
 import Modal from 'components/Modal';
-import { getErrorToastContent, getSuccessToastContent } from 'components/ToastMessage/ToastMessage';
+import { getErrorToastOptions, getSuccessToastOptions } from 'components/ToastMessage/ToastMessage';
 import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
 import { DEFAULT_COLLATERALS } from 'constants/currency';
 import {
@@ -57,12 +57,18 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                 return true;
             } else {
                 setTryAgainVisible(true);
-                toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+                toast.error(
+                    t('common.errors.unknown-error-try-again'),
+                    getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+                );
             }
         } catch (e) {
             setTryAgainVisible(true);
             console.log(e);
-            toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            toast.error(
+                t('common.errors.unknown-error-try-again'),
+                getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+            );
         }
         return false;
     }, []);
@@ -78,7 +84,10 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
         if (txResult && txResult.transactionHash) {
         } else {
             setTryAgainVisible(true);
-            toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            toast.error(
+                t('common.errors.unknown-error-try-again'),
+                getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+            );
             throw new Error(t('common.errors.unknown-error-try-again'));
         }
     }, []);
@@ -140,7 +149,10 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                 if (txResult && txResult.transactionHash) {
                 } else {
                     setTryAgainVisible(true);
-                    toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+                    toast.error(
+                        t('common.errors.unknown-error-try-again'),
+                        getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+                    );
                 }
             }
             setStep(4);
@@ -150,7 +162,10 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
         } catch (e) {
             setTryAgainVisible(true);
             console.error(e);
-            toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            toast.error(
+                t('common.errors.unknown-error-try-again'),
+                getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+            );
         }
     }, [approveUniswap, networkId, rewardsToSwap, walletAddress]);
 
@@ -227,7 +242,10 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
             if (txResult && txResult.transactionHash) {
             } else {
                 setTryAgainVisible(true);
-                toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+                toast.error(
+                    t('common.errors.unknown-error-try-again'),
+                    getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+                );
             }
             setStep(4);
             const thalesIn = Number(uncheckedTrade.swaps[0].outputAmount.toFixed());
@@ -236,7 +254,10 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
         } catch (e) {
             setTryAgainVisible(true);
             console.error(e);
-            toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            toast.error(
+                t('common.errors.unknown-error-try-again'),
+                getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+            );
         }
     }, [approveUniswap, networkId, walletAddress, rewardsToSwap]);
 
@@ -249,7 +270,10 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
         if (txResult && txResult.transactionHash) {
         } else {
             setTryAgainVisible(true);
-            toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+            toast.error(
+                t('common.errors.unknown-error-try-again'),
+                getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+            );
             throw new Error(t('common.errors.unknown-error-try-again'));
         }
     }, []);
@@ -283,15 +307,24 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
                     refetchTokenQueries(walletAddress, networkId);
                     PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.stake);
                     setStep(6);
-                    toast.success(getSuccessToastContent(t('staking.rewards.claim.compound-success')));
+                    toast.success(
+                        t('staking.rewards.claim.compound-success'),
+                        getSuccessToastOptions(t('staking.rewards.claim.compound-success'))
+                    );
                 } else {
                     setTryAgainVisible(true);
-                    toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+                    toast.error(
+                        t('common.errors.unknown-error-try-again'),
+                        getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+                    );
                 }
             } catch (e) {
                 console.error(e);
                 setTryAgainVisible(true);
-                toast.error(getErrorToastContent(t('common.errors.unknown-error-try-again')));
+                toast.error(
+                    t('common.errors.unknown-error-try-again'),
+                    getErrorToastOptions(t('common.errors.unknown-error-try-again'))
+                );
             }
         },
         [approveThales, networkId, walletAddress]
