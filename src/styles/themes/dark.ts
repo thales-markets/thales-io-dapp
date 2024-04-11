@@ -119,6 +119,7 @@ const darkTheme = {
             },
             textColor: {
                 primary: Colors.BLACK,
+                secondary: Colors.WHITE,
             },
         },
     },

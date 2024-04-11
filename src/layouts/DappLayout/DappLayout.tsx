@@ -2,6 +2,8 @@ import WavesBackground from 'components/WavesBackground';
 import useWidgetBotScript from 'hooks/useWidgetBotScript';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getIsMobile } from 'redux/modules/ui';
 import { useTheme } from 'styled-components';
 import { Background } from 'styles/common';
@@ -36,6 +38,7 @@ const DappLayout: React.FC = ({ children }) => {
                 <ChildWrapper>{children}</ChildWrapper>
                 <DappFooter />
             </Wrapper>
+            <ToastContainer theme={'colored'} />
         </>
     );
 };

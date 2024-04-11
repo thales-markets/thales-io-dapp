@@ -1,6 +1,6 @@
 import React, { ReactText } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ToastPosition, TypeOptions, toast } from 'react-toastify';
+import { toast, ToastPosition, TypeOptions } from 'react-toastify';
 import styled from 'styled-components';
 import { FlexDivColumn, FlexDivRowCentered } from 'styles/common';
 
@@ -71,23 +71,21 @@ const toastBasicProperties = {
     closeButton: false,
 };
 
-export const getSuccessToastOptions = (message: string, id: ReactText) => {
+export const getSuccessToastOptions = (message: string, id?: ReactText) => {
     return {
         ...toastBasicProperties,
         toastId: id,
-        className: 'success',
-        progressClassName: 'success',
-        render: <ToastMessage id={id} type={'success'} message={message} />, // not relevant on ToastOptions, only on UpdateOptions
+        type: 'success' as TypeOptions,
+        render: message, // not relevant on ToastOptions, only on UpdateOptions
     };
 };
 
-export const getErrorToastOptions = (message: string, id: ReactText) => {
+export const getErrorToastOptions = (message: string, id?: ReactText) => {
     return {
         ...toastBasicProperties,
         toastId: id,
-        className: 'error',
-        progressClassName: 'error',
-        render: <ToastMessage id={id} type={'error'} message={message} />, // not relevant on ToastOptions, only on UpdateOptions
+        type: 'error' as TypeOptions,
+        render: message, // not relevant on ToastOptions, only on UpdateOptions
     };
 };
 
@@ -101,4 +99,12 @@ export const getLoadingToastOptions = () => {
 
 export const getDefaultToastContent = (message: string) => {
     return <ToastMessage type="default" message={message} />;
+};
+
+export const getSuccessToastContent = (message: string) => {
+    return <ToastMessage type="success" message={message} />;
+};
+
+export const getErrorToastContent = (message: string) => {
+    return <ToastMessage type="error" message={message} />;
 };
