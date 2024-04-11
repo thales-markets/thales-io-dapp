@@ -6,7 +6,7 @@ type CheckboxProps = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;
     checked: boolean;
-    label?: string;
+    label?: JSX.Element | string;
 };
 
 const Checkbox: React.FC<CheckboxProps> = ({ value, onChange, disabled, checked, label, ...rest }) => {

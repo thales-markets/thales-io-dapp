@@ -1,5 +1,6 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import coinsAnimation from 'assets/lotties/rewards-coins.json';
+import Checkbox from 'components/fields/Checkbox';
 import LoadingContainer from 'components/LoadingContainer';
 import TimeRemaining from 'components/TimeRemaining';
 import {
@@ -20,20 +21,22 @@ import { toast } from 'react-toastify';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled, { useTheme } from 'styled-components';
-import { FlexDiv, FlexDivColumn } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
 import { SectionTitle } from '../../styled-components';
 import {
-    ClaimSection,
     ClaimableRewardsContainer,
+    ClaimSection,
+    CompoundContainer,
     ItemsWrapper,
     RewardsDetailsContainer,
     RewardsInfo,
     StakingDetailsSection,
 } from '../styled-components';
+import CompoundModal from './CompoundModal';
 
 type ClaimableSectionProps = {
     userStakingData: UserStakingData | undefined;
@@ -54,6 +57,8 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     const { stakingThalesContract } = networkConnector as any;
 
     const [isClaiming, setIsClaiming] = useState(false);
+    const [compoundRewards, setCompoundRewards] = useState<boolean>(false);
+    const [compoundModalOpen, setCompoundModalOpen] = useState<boolean>(false);
     const [isClosingPeriod, setIsClosingPeriod] = useState(false);
 
     const isClaimed = stakingData && userStakingData && !stakingData.isPaused && userStakingData.claimed;
@@ -134,6 +139,14 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
 
         if (isPaused || isClaimed) {
             return <StakingButton disabled={true}>{t('staking.rewards.claim.claim-rewards')}</StakingButton>;
+        }
+
+        if (compoundRewards) {
+            return (
+                <StakingButton disabled={!isClaimAvailable} onClick={() => setCompoundModalOpen(true)}>
+                    {t('staking.rewards.claim.claim-and-stake')}
+                </StakingButton>
+            );
         }
 
         return (
@@ -304,7 +317,35 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                     )}
                                 </span>
                             </RewardsInfo>
-                            <div>{getClaimButton()}</div>
+                            <CompoundContainer>
+                                <FlexDivCentered>
+                                    <Checkbox
+                                        label={
+                                            <>
+                                                {t('staking.rewards.claim.compound-and-stake')}
+                                                <Tooltip
+                                                    overlay={
+                                                        <Trans
+                                                            i18nKey="staking.rewards.claim.compound-tooltip"
+                                                            values={{
+                                                                collateral: DEFAULT_COLLATERALS[networkId],
+                                                            }}
+                                                        />
+                                                    }
+                                                    marginRight={5}
+                                                    marginBottom={6}
+                                                    mobileIconFontSize={11}
+                                                    iconFontSize={13}
+                                                />
+                                            </>
+                                        }
+                                        checked={compoundRewards}
+                                        value={0}
+                                        onChange={() => setCompoundRewards(!compoundRewards)}
+                                    />
+                                </FlexDivCentered>
+                                {getClaimButton()}
+                            </CompoundContainer>
                         </ClaimSection>
                     )}
                     {isClaimed && (
@@ -312,6 +353,11 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                             <Lottie animationData={coinsAnimation} style={{ height: '150px' }} />
                         </IconContainer>
                     )}
+                    <CompoundModal
+                        rewards={userStakingData?.feeRewards || 0}
+                        setIsOpen={setCompoundModalOpen}
+                        isOpen={compoundModalOpen}
+                    />
                 </ClaimableRewardsContainer>
             </LoadingContainer>
         </>

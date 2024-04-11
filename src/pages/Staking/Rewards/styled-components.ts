@@ -1,6 +1,6 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDiv } from 'styles/common';
+import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { InfoDiv } from '../styled-components';
 
 export const Container = styled.div`
@@ -78,7 +78,6 @@ export const RewardsInfo = styled(FlexDiv)`
     > span {
         font-size: 18px;
         font-weight: 700;
-        text-transform: uppercase;
         text-align: right;
         @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
             text-align: center;
@@ -178,6 +177,26 @@ export const GamingRewardsContainer = styled.div`
         }
         > div:nth-child(6) {
             margin-top: 15px;
+        }
+    }
+`;
+
+export const CompoundContainer = styled(FlexDivColumn)`
+    justify-content: end;
+    label {
+        width: 165px;
+        margin-bottom: 5px;
+        font-size: 11px;
+        span {
+            height: 16px;
+            width: 16px;
+            margin-top: 1px;
+        }
+        span::after {
+            left: 4px;
+            top: 0px;
+            width: 2px;
+            height: 8px;
         }
     }
 `;
