@@ -59,6 +59,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     const [isClaiming, setIsClaiming] = useState(false);
     const [compoundRewards, setCompoundRewards] = useState<boolean>(false);
     const [compoundModalOpen, setCompoundModalOpen] = useState<boolean>(false);
+    const [isClosingPeriod, setIsClosingPeriod] = useState(false);
 
     const isClaimed = stakingData && userStakingData && !stakingData.isPaused && userStakingData.claimed;
     const isPaused = stakingData && stakingData.isPaused;
@@ -71,6 +72,34 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
         isWalletConnected &&
         stakingThalesContract &&
         !isClaiming;
+
+    const canClosePeriod = stakingData && stakingData.canClosePeriod;
+    const isClosingPeriodAvailable = isWalletConnected && !!stakingThalesContract && !isClaiming && !isClosingPeriod;
+
+    const handleClosePeriod = async () => {
+        if (canClosePeriod) {
+            const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
+            try {
+                setIsClosingPeriod(true);
+                const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
+                const tx = (await stakingThalesContractWithSigner.closePeriod()) as ethers.ContractTransaction;
+                const txResult = await tx.wait();
+
+                if (txResult && txResult.transactionHash) {
+                    toast.update(
+                        id,
+                        getSuccessToastOptions(t('staking.rewards.claim.close-period.confirmation-message'), id)
+                    );
+                    refetchTokenQueries(walletAddress, networkId);
+                    setIsClosingPeriod(false);
+                }
+            } catch (e) {
+                console.log(e);
+                toast.update(id, getErrorToastOptions(t('common.errors.unknown-error-try-again'), id));
+                setIsClosingPeriod(false);
+            }
+        }
+    };
 
     const handleClaimStakingRewards = async () => {
         if (isClaimAvailable) {
@@ -95,6 +124,15 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     };
 
     const getClaimButton = () => {
+        if (canClosePeriod) {
+            return (
+                <StakingButton onClick={handleClosePeriod} disabled={isClosingPeriodAvailable}>
+                    {isClosingPeriod
+                        ? t('staking.rewards.claim.close-period.progress-label')
+                        : t('staking.rewards.claim.close-period.label')}
+                </StakingButton>
+            );
+        }
         if (!isWalletConnected) {
             return <StakingButton onClick={openConnectModal}>{t('common.wallet.connect-your-wallet')}</StakingButton>;
         }
