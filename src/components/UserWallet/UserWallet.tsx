@@ -4,13 +4,15 @@ import ROUTES from 'constants/routes';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import useThalesStakingDataQuery from 'queries/token/useThalesStakingDataQuery';
 import useUserStakingDataQuery from 'queries/token/useUserStakingData';
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
+import { ThalesStakingData, UserStakingData } from 'types/token';
+import networkConnector from 'utils/networkConnector';
 import { navigateTo } from 'utils/routes';
 
 const UserWallet: React.FC = () => {
@@ -21,6 +23,11 @@ const UserWallet: React.FC = () => {
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '';
     const networkId = useSelector((state: RootState) => getNetworkId(state));
 
+    const [lastValidStakingData, setLastValidStakingData] = useState<ThalesStakingData | undefined>(undefined);
+    const [lastValidUserStakingData, setLastValidUserStakingData] = useState<UserStakingData | undefined>(undefined);
+
+    const { stakingThalesContract } = networkConnector as any;
+
     const userStakingDataQuery = useUserStakingDataQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
     });
@@ -29,18 +36,51 @@ const UserWallet: React.FC = () => {
         enabled: isAppReady,
     });
 
+    useEffect(() => {
+        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
+            setLastValidStakingData(stakingDataQuery.data);
+        }
+    }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
+
+    const stakingData: ThalesStakingData | undefined = useMemo(() => {
+        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
+            return stakingDataQuery.data;
+        }
+        return lastValidStakingData;
+    }, [stakingDataQuery.isSuccess, stakingDataQuery.data, lastValidStakingData]);
+
+    const userStakingData: UserStakingData | undefined = useMemo(() => {
+        if (userStakingDataQuery.isSuccess && userStakingDataQuery.data) {
+            return userStakingDataQuery.data;
+        }
+        return lastValidUserStakingData;
+    }, [userStakingDataQuery.isSuccess, userStakingDataQuery.data, lastValidUserStakingData]);
+
+    useEffect(() => {
+        if (userStakingDataQuery.isSuccess && userStakingDataQuery.data) {
+            setLastValidUserStakingData(userStakingDataQuery.data);
+        }
+    }, [userStakingDataQuery.isSuccess, userStakingDataQuery.data]);
+
+    const isClaimAvailable =
+        stakingData &&
+        userStakingData &&
+        userStakingData.hasClaimRights &&
+        !userStakingData.claimed &&
+        !stakingData.isPaused &&
+        isWalletConnected &&
+        stakingThalesContract;
+
     return (
         <Container>
             <Wrapper>
-                {!stakingDataQuery?.data?.closingPeriodInProgress &&
-                    !!userStakingDataQuery?.data?.baseRewards &&
-                    !userStakingDataQuery?.data?.claimed && (
-                        <Tooltip overlay={t('common.wallet.rewards')}>
-                            <Rewards onClick={() => navigateTo(ROUTES.Token.Staking.Rewards)}>
-                                <RewardsIcon className="icon icon--rewards" />
-                            </Rewards>
-                        </Tooltip>
-                    )}
+                {!stakingDataQuery?.data?.closingPeriodInProgress && isClaimAvailable && (
+                    <Tooltip overlay={t('common.wallet.rewards')}>
+                        <Rewards onClick={() => navigateTo(ROUTES.Token.Staking.Rewards)}>
+                            <RewardsIcon className="icon icon--rewards" />
+                        </Rewards>
+                    </Tooltip>
+                )}
                 <NetworkSwitch isWalletConnectorSwitch={true} />
             </Wrapper>
         </Container>
