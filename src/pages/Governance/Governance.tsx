@@ -84,9 +84,6 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                 { id: params.id }
             );
             setSelectedProposal(proposal);
-            if (!proposal) {
-                setSelectedTab(params.space as SpaceKey);
-            }
         };
         fetch();
     }, [props.match]);
@@ -104,9 +101,9 @@ const Governance: React.FC<GovernanceProps> = (props) => {
             if (params.id) {
                 fetchPreloadedProposal();
             } else {
-                setSelectedTab(params.space as SpaceKey);
                 setSelectedProposal(undefined);
             }
+            setSelectedTab(params.space as SpaceKey);
         } else {
             setSelectedTab(SpaceKey.TIPS);
             setSelectedProposal(undefined);
