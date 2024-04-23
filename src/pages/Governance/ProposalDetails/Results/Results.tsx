@@ -120,7 +120,7 @@ const Results: React.FC<ResultsProps> = ({
                                     </FlexDiv>
                                     <Percentage>{formatPercentage(percentage)}</Percentage>
                                 </SidebarRowData>
-                                {!(proposalId == COUNCIL_PROPOSAL_ID && ViewMore) ? (
+                                {!(proposalId == COUNCIL_PROPOSAL_ID && hideViewMore) ? (
                                     <RowPercentageContainer>
                                         <RowPercentage />
                                         <RowPercentageIndicator width={percentage * 100}></RowPercentageIndicator>
