@@ -6,6 +6,7 @@ import DappLayout from 'layouts/DappLayout';
 import ThemeProvider from 'layouts/Theme';
 import { Suspense, lazy, useEffect } from 'react';
 import { QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import { setAppReady } from 'redux/modules/app';
@@ -176,6 +177,7 @@ const App = () => {
                         </Route>
                     </Switch>
                 </Router>
+                <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </ThemeProvider>
     );
