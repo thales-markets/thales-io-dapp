@@ -55,7 +55,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
             const { proposal }: { proposal: Proposal } = await request(
                 SNAPSHOT_GRAPHQL_URL,
                 gql`
-                    query Proposals($id: String) {
+                    query Proposals($id: String!) {
                         proposal(id: $id) {
                             id
                             title
