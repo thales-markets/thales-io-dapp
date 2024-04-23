@@ -12,7 +12,7 @@ const useProposalsQuery = (spaceKey: SpaceKey, limit: number, options?: UseQuery
             const { proposals }: { proposals: Proposal[] } = await request(
                 SNAPSHOT_GRAPHQL_URL,
                 gql`
-                    query ProposalsForSpace($spaceKey: String, $limit: Int) {
+                    query ProposalsForSpace($spaceKey: String!, $limit: Int) {
                         proposals(
                             first: $limit
                             where: { space: $spaceKey }
