@@ -49,7 +49,7 @@ const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) 
                             <Icon className="icon icon--proposal" />
                             <TitleLabel>{t(`governance.proposal.details`)}</TitleLabel>
                         </FlexDiv>
-                        {!closed && (
+                        {!closed && !isMobile && (
                             <TimeLeftContainer>
                                 <TimeLeftLabel>
                                     {t(`governance.proposal.${pending ? 'starts-in-label' : 'ends-in-label'}`)}:{' '}
@@ -64,7 +64,12 @@ const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) 
                         )}
                     </WidgetHeader>
 
-                    <InfoSection side="left">
+                    <InfoSection side="left" isMobile={isMobile}>
+                        {isMobile && !closed && (
+                            <InfoText>
+                                {t(`governance.proposal.${pending ? 'starts-in-label' : 'ends-in-label'}`)}
+                            </InfoText>
+                        )}
                         <InfoText>{t(`governance.proposal.author-label`)}</InfoText>
                         <InfoText>{t(`governance.proposal.proposal-label`)}</InfoText>
                         <InfoText>{t(`governance.proposal.voting-system-label`)}</InfoText>
@@ -72,7 +77,20 @@ const ProposalHeader: React.FC<ProposalHeaderProps> = ({ proposal, authorEns }) 
                         <InfoText>{t(`governance.proposal.end-date-label`)}</InfoText>
                         <InfoText>{t(`governance.proposal.snapshot-label`)}</InfoText>
                     </InfoSection>
-                    <InfoSection side="right">
+                    <InfoSection side="right" isMobile={isMobile}>
+                        {isMobile && !closed && (
+                            <InfoStats>
+                                <TimeLeftContainer>
+                                    <TimeRemaining
+                                        end={proposal.end * 1000}
+                                        fontSize={12}
+                                        fontWeight={700}
+                                        textColor={Colors.CYAN}
+                                    />
+                                </TimeLeftContainer>
+                            </InfoStats>
+                        )}
+
                         <InfoStats>
                             <StyledLink
                                 href={getEtherscanAddressLink(Network.Mainnet, proposal.author)}

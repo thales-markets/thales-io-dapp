@@ -60,11 +60,13 @@ export const InfoSection = styled.div<{
     side: string;
     direction?: string;
     justifyContent?: string;
+    isMobile?: boolean;
 }>`
     grid-area: ${(props) => (props.side === 'left' ? 'bottom-left' : 'bottom-right')};
     height: 100%;
     width: 100%;
-    padding: ${(props) => (props.side === 'left' ? '20px 20px 5px 0px' : '20px 0px 5px 20px')};
+    padding: ${(props) => (props.side === 'left' ? '30px 20px 5px 0px' : '30px 0px 5px 20px')};
+    padding-top: ${(props) => props.isMobile && '90px !important'};
     display: flex;
     flex-direction: ${(props) => (props.direction ? props.direction : 'column')};
     justify-content: ${(props) => (props.justifyContent ? props.justifyContent : 'end')};
