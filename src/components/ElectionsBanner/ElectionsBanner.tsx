@@ -1,4 +1,5 @@
 import ROUTES from 'constants/routes';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
 import { Trans } from 'react-i18next';
 import styled from 'styled-components';
@@ -39,6 +40,10 @@ const Label = styled.span`
     padding: 9px 0px;
     font-weight: 500;
     text-transform: uppercase;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 13px;
+        padding: 5px 7px;
+    }
 `;
 
 const Bold = styled.span`
