@@ -65,6 +65,9 @@
             "seconds-short": "s",
             "months-short": "mo"
         },
+        "banner": {
+            "elections-banner-message": "Elections for Thales Council are now live, exercise your voting power <bold>here</bold>"
+        },
         "transaction": {
             "view": "View",
             "successful": "Transaction successful"
