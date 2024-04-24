@@ -65,6 +65,9 @@
             "seconds-short": "s",
             "months-short": "mo"
         },
+        "banner": {
+            "elections-banner-message": "Elections are now live, exercise your voting power as a THALES staker <bold>here</bold>"
+        },
         "transaction": {
             "view": "View",
             "successful": "Transaction successful"
