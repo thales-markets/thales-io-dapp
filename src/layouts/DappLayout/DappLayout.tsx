@@ -1,4 +1,3 @@
-import ElectionsBanner from 'components/ElectionsBanner';
 import WavesBackground from 'components/WavesBackground';
 import useWidgetBotScript from 'hooks/useWidgetBotScript';
 import { useEffect, useState } from 'react';
@@ -34,7 +33,6 @@ const DappLayout: React.FC = ({ children }) => {
         <>
             <Background id="radial-background" />
             {!isMobile && <WavesBackground />}
-            <ElectionsBanner />
             <Wrapper>
                 <DappHeader />
                 <ChildWrapper>{children}</ChildWrapper>
