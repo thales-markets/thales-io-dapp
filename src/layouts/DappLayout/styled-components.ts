@@ -12,12 +12,12 @@ export const Wrapper = styled(FlexDivColumn)`
     padding: 20px 0px;
     min-height: 100vh;
     justify-content: flex-start;
-    padding-top: 30px !important;
+    padding-top: 10px !important;
     @media (max-width: 1260px) {
         padding: 0px 20px;
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        padding-top: 50px !important;
+        padding-top: 20px !important;
     }
     @media (min-width: ${ScreenSizeBreakpoint.SMALL}px) {
         max-width: 1355px;
