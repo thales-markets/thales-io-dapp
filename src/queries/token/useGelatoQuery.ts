@@ -3,8 +3,8 @@ import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter, formatCurrency } from 'thales-utils';
 import networkConnector from 'utils/networkConnector';
 
-const LP_STAKING_WEEKLY_REWARDS = 15000;
-const LP_STAKING_WEEKLY_SECOND_REWARDS = 500;
+const LP_STAKING_WEEKLY_REWARDS = 10000;
+const LP_STAKING_WEEKLY_SECOND_REWARDS = 0;
 
 interface Balance {
     priceInUSD: number;

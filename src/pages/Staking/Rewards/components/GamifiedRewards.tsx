@@ -55,6 +55,11 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
         }
     }, [globalStakingDataQuery.isSuccess, globalStakingDataQuery.data]);
 
+    const periodReward = formatCurrency(
+        (globalStakingData?.baseRewards ? globalStakingData?.baseRewards : 0) +
+            (globalStakingData?.extraRewards ? globalStakingData?.extraRewards : 0)
+    );
+
     return (
         <>
             <LoadingContainer isLoading={isLoading}>
@@ -185,7 +190,7 @@ const GamifiedRewards: React.FC<GamifiedRewardsProps> = ({ stakingData, pointsDa
                                     li: <li />,
                                 }}
                                 values={{
-                                    periodReward: formatCurrency(globalStakingData?.baseRewards ?? 0),
+                                    periodReward: periodReward,
                                 }}
                             />
                         </SectionText>
