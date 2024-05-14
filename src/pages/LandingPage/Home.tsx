@@ -16,9 +16,9 @@ import { getIsMobile } from 'redux/modules/ui';
 import { FlexDiv, FlexDivCentered, FlexDivSpaceAround } from 'styles/common';
 import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
-import Footer from './Footer';
 import EcosystemApps from './components/EcosystemApps';
 import Timeline from './components/Timeline';
+import Footer from './Footer';
 import {
     About,
     Backers,

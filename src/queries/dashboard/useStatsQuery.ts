@@ -1,6 +1,6 @@
 import { generalConfig } from 'config/general';
 import QUERY_KEYS from 'constants/queryKeys';
-import { UseQueryOptions, useQuery } from 'react-query';
+import { useQuery, UseQueryOptions } from 'react-query';
 import { AllStats } from 'types/statistics';
 
 const useStatsQuery = (options?: UseQueryOptions<AllStats>) => {
@@ -30,7 +30,7 @@ const useStatsQuery = (options?: UseQueryOptions<AllStats>) => {
                     TVLStats: {
                         speedMarketsTVL: stats.speed_markets_tvl,
                         vaultsTVL: stats.vault_tvl,
-                        thalesLpTVL: stats.thales_lp_tvl,
+                        thalesLpTVL: stats.digital_options_lp_tvl,
                         overtimeSingleTVL: stats.overtime_single_lp_tvl,
                         overtimeParlayTVL: stats.overtime_parlay_lp_tvl,
                         stakingThalesTVL: stats.staking_thales_tvl,
