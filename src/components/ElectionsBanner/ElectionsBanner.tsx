@@ -1,4 +1,3 @@
-import ROUTES from 'constants/routes';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
 import { Trans } from 'react-i18next';
@@ -8,12 +7,10 @@ import SPAAnchor from '../SPAAnchor';
 
 const ElectionsBanner: React.FC = () => {
     return (
-        <SPAAnchor
-            href={`${ROUTES.DAO.Home}/thalescouncil.eth/0x6c34802e090ccf84e06e9c6616402b9add95aa4475e1fa0dd90a831bcf77bc47`}
-        >
+        <SPAAnchor href={`https://dune.com/leifu/op-incentive-program`}>
             <Container>
                 <Label>
-                    {<Trans i18nKey={'common.banner.elections-banner-message'} components={{ bold: <Bold /> }} />}
+                    {<Trans i18nKey={'common.banner.rewards-banner-message'} components={{ bold: <Bold /> }} />}
                 </Label>
             </Container>
         </SPAAnchor>
@@ -21,7 +18,7 @@ const ElectionsBanner: React.FC = () => {
 };
 
 const Container = styled(FlexDiv)`
-    position: absolute;
+    position: relative;
     top: 0;
     width: 100%;
     align-items: center;
@@ -39,7 +36,6 @@ const Label = styled.span`
     font-size: 18px;
     padding: 9px 0px;
     font-weight: 500;
-    text-transform: uppercase;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 13px;
         padding: 5px 7px;
