@@ -9,7 +9,7 @@ export const Container = styled.div`
     display: grid;
     width: 60%;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 180px min-content;
+    grid-template-rows: 170px 160px min-content;
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'top top' 'upper-left upper-right' 'bottom bottom';
