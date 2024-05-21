@@ -109,6 +109,11 @@ const StakingTab: React.FC = () => {
 
     const notEligibleForStakingRewards = thalesStaked === 0 && escrowedBalance > 0;
 
+    const sumOfAPY =
+        globalStakingData?.feeApy && globalStakingData?.thalesApy
+            ? globalStakingData.feeApy + globalStakingData.thalesApy
+            : 0;
+
     return (
         <>
             <Container>
@@ -146,7 +151,9 @@ const StakingTab: React.FC = () => {
                                 </TooltipContainer>
                                 <span>
                                     <FlexDiv gap="5px">
+                                        {sumOfAPY && `${formatCurrencyWithKey('%', sumOfAPY)}`}
                                         <TooltipContainer>
+                                            {'('}
                                             {globalStakingData?.thalesApy}%{' '}
                                             <Tooltip
                                                 overlay={t(
@@ -164,6 +171,7 @@ const StakingTab: React.FC = () => {
                                                 mobileIconFontSize={11}
                                                 iconFontSize={11}
                                             />
+                                            {')'}
                                         </TooltipContainer>
                                     </FlexDiv>
                                 </span>
