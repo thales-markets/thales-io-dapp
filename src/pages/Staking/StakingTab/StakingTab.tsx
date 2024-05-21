@@ -17,10 +17,11 @@ import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey, formatCurrencyWithPrecision } from 'thales-utils';
 import { GlobalStakingData, ThalesStakingData, UserStakingData } from 'types/token';
 import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
+import ClaimableSection from './ClaimableSection/ClaimbleSection';
 import Stake from './Stake';
 import YourTransactions from './Transactions';
 import Unstake from './Unstake';
-import { AboutToken, Bottom, Container, UpperLeft, UpperRight, WarningMessage } from './styled-components';
+import { AboutToken, Bottom, Container, Top, UpperLeft, UpperRight, WarningMessage } from './styled-components';
 
 const StakingTab: React.FC = () => {
     const { t } = useTranslation();
@@ -111,6 +112,13 @@ const StakingTab: React.FC = () => {
     return (
         <>
             <Container>
+                <Top>
+                    <ClaimableSection
+                        userStakingData={userStakingData}
+                        stakingData={stakingData}
+                        isLoading={userStakingDataQuery.isLoading || stakingDataQuery.isLoading}
+                    />
+                </Top>
                 <UpperLeft>
                     <LoadingContainer
                         isLoading={

@@ -34,19 +34,9 @@ const Staking: React.FC = () => {
                 active: paramTab === STAKING_TABS.STAKING,
             },
             {
-                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.REWARDS}`,
-                title: t('staking.nav.rewards'),
-                active: paramTab === STAKING_TABS.REWARDS,
-            },
-            {
                 href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.VESTING}`,
                 title: t('staking.nav.vesting'),
                 active: paramTab === STAKING_TABS.VESTING,
-            },
-            {
-                href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.LEADERBOARD}`,
-                title: t('staking.nav.leaderboard'),
-                active: paramTab === STAKING_TABS.LEADERBOARD,
             },
             {
                 href: `${buildHref(ROUTES.Token.Staking.Home)}?tab=${STAKING_TABS.ACC_PREFERENCES}`,

@@ -26,8 +26,6 @@ import { formatCurrencyWithKey } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
-import CompoundModal from '../../StakingTab/CompoundModal/CompoundModal';
-import { SectionTitle } from '../../styled-components';
 import {
     ClaimSection,
     ClaimableRewardsContainer,
@@ -36,7 +34,9 @@ import {
     RewardsDetailsContainer,
     RewardsInfo,
     StakingDetailsSection,
-} from '../styled-components';
+} from '../../Rewards/styled-components';
+import { SectionTitle } from '../../styled-components';
+import CompoundModal from '../CompoundModal/CompoundModal';
 
 type ClaimableSectionProps = {
     userStakingData: UserStakingData | undefined;
@@ -232,30 +232,6 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                             {formatCurrencyWithKey(
                                                 THALES_CURRENCY,
                                                 userStakingData?.baseRewards ?? 0,
-                                                2
-                                            )}
-                                        </span>
-                                    </StakingDetailsSection>
-                                    <StakingDetailsSection>
-                                        <TooltipContainer>
-                                            <Trans
-                                                i18nKey="staking.rewards.claim.gamified-staking-rewards"
-                                                components={{
-                                                    span: <span />,
-                                                }}
-                                            />
-                                            <Tooltip
-                                                overlay={t('staking.rewards.claim.gamified-staking-rewards-tooltip')}
-                                                marginTop={2}
-                                                mobileIconFontSize={11}
-                                                iconFontSize={13}
-                                            />
-                                        </TooltipContainer>
-
-                                        <span>
-                                            {formatCurrencyWithKey(
-                                                THALES_CURRENCY,
-                                                userStakingData?.totalBonus ?? 0,
                                                 2
                                             )}
                                         </span>
