@@ -17,10 +17,11 @@ import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey, formatCurrencyWithPrecision } from 'thales-utils';
 import { GlobalStakingData, ThalesStakingData, UserStakingData } from 'types/token';
 import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
+import ClaimableSection from './ClaimableSection/ClaimbleSection';
 import Stake from './Stake';
 import YourTransactions from './Transactions';
 import Unstake from './Unstake';
-import { AboutToken, Bottom, Container, UpperLeft, UpperRight, WarningMessage } from './styled-components';
+import { AboutToken, Bottom, Container, Top, UpperLeft, UpperRight, WarningMessage } from './styled-components';
 
 const StakingTab: React.FC = () => {
     const { t } = useTranslation();
@@ -108,9 +109,21 @@ const StakingTab: React.FC = () => {
 
     const notEligibleForStakingRewards = thalesStaked === 0 && escrowedBalance > 0;
 
+    const sumOfAPY =
+        globalStakingData?.feeApy && globalStakingData?.thalesApy
+            ? globalStakingData.feeApy + globalStakingData.thalesApy
+            : 0;
+
     return (
         <>
             <Container>
+                <Top>
+                    <ClaimableSection
+                        userStakingData={userStakingData}
+                        stakingData={stakingData}
+                        isLoading={userStakingDataQuery.isLoading || stakingDataQuery.isLoading}
+                    />
+                </Top>
                 <UpperLeft>
                     <LoadingContainer
                         isLoading={
@@ -138,7 +151,9 @@ const StakingTab: React.FC = () => {
                                 </TooltipContainer>
                                 <span>
                                     <FlexDiv gap="5px">
+                                        {sumOfAPY && `${formatCurrencyWithKey('%', sumOfAPY)}`}
                                         <TooltipContainer>
+                                            {'('}
                                             {globalStakingData?.thalesApy}%{' '}
                                             <Tooltip
                                                 overlay={t(
@@ -156,6 +171,7 @@ const StakingTab: React.FC = () => {
                                                 mobileIconFontSize={11}
                                                 iconFontSize={11}
                                             />
+                                            {')'}
                                         </TooltipContainer>
                                     </FlexDiv>
                                 </span>
@@ -252,7 +268,16 @@ const StakingTab: React.FC = () => {
                             <FlexDivColumn gap="10px">
                                 <div>{t('staking.staking.stake-unstake.about-1')}</div>
                                 <div>{t('staking.staking.stake-unstake.about-2')}</div>
-                                <div>{t('staking.staking.stake-unstake.about-3')}</div>
+                                <div>
+                                    {t('staking.staking.stake-unstake.about-3', {
+                                        rewards: formatCurrencyWithKey(
+                                            THALES_CURRENCY,
+                                            lastValidGlobalStakingData?.baseRewards
+                                                ? lastValidGlobalStakingData?.baseRewards
+                                                : 0
+                                        ),
+                                    })}
+                                </div>
                                 <div>{t('staking.staking.stake-unstake.about-4')}</div>
                             </FlexDivColumn>
                         </AboutToken>

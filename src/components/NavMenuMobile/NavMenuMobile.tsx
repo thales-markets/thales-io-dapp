@@ -39,19 +39,9 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                                 active: location.search.includes(STAKING_TABS.STAKING),
                             },
                             {
-                                href: `${buildHref(ROUTES.Token.Staking.Rewards)}`,
-                                title: t('staking.nav.rewards'),
-                                active: location.search.includes(STAKING_TABS.REWARDS),
-                            },
-                            {
                                 href: `${buildHref(ROUTES.Token.Staking.Vesting)}`,
                                 title: t('staking.nav.vesting'),
                                 active: location.search.includes(STAKING_TABS.VESTING),
-                            },
-                            {
-                                href: `${buildHref(ROUTES.Token.Staking.Leaderboard)}`,
-                                title: t('staking.nav.leaderboard'),
-                                active: location.search.includes(STAKING_TABS.LEADERBOARD),
                             },
                             {
                                 href: `${buildHref(ROUTES.Token.Staking.Preferences)}`,
