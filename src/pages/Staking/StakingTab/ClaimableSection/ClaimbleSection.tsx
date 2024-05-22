@@ -26,6 +26,8 @@ import { formatCurrencyWithKey } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
+import { SectionTitle } from '../../styled-components';
+import CompoundModal from '../CompoundModal/CompoundModal';
 import {
     ClaimSection,
     ClaimableRewardsContainer,
@@ -34,9 +36,7 @@ import {
     RewardsDetailsContainer,
     RewardsInfo,
     StakingDetailsSection,
-} from '../../Rewards/styled-components';
-import { SectionTitle } from '../../styled-components';
-import CompoundModal from '../CompoundModal/CompoundModal';
+} from './styled-components';
 
 type ClaimableSectionProps = {
     userStakingData: UserStakingData | undefined;

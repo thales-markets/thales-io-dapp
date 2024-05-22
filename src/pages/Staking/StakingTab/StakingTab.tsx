@@ -268,7 +268,16 @@ const StakingTab: React.FC = () => {
                             <FlexDivColumn gap="10px">
                                 <div>{t('staking.staking.stake-unstake.about-1')}</div>
                                 <div>{t('staking.staking.stake-unstake.about-2')}</div>
-                                <div>{t('staking.staking.stake-unstake.about-3')}</div>
+                                <div>
+                                    {t('staking.staking.stake-unstake.about-3', {
+                                        rewards: formatCurrencyWithKey(
+                                            THALES_CURRENCY,
+                                            lastValidGlobalStakingData?.baseRewards
+                                                ? lastValidGlobalStakingData?.baseRewards
+                                                : 0
+                                        ),
+                                    })}
+                                </div>
                                 <div>{t('staking.staking.stake-unstake.about-4')}</div>
                             </FlexDivColumn>
                         </AboutToken>

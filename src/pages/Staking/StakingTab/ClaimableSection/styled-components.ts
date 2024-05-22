@@ -1,7 +1,7 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivColumn } from 'styles/common';
-import { InfoDiv } from '../styled-components';
+import { InfoDiv } from '../../styled-components';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
