@@ -10,6 +10,7 @@ const ROUTES = {
         Staking: {
             Home: '/token/staking',
             Rewards: '/token/staking?tab=rewards',
+            StakeAndEarn: '/token/staking?tab=stake-thales',
             Vesting: '/token/staking?tab=vesting',
             Leaderboard: '/token/staking?tab=leaderboard',
             Preferences: '/token/staking?tab=acc-preferences',
