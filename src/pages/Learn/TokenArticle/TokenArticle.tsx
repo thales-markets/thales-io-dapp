@@ -1,17 +1,38 @@
 import SPAAnchor from 'components/SPAAnchor';
+import { THALES_CURRENCY } from 'constants/currency';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { Network } from 'enums/network';
 import { LinkArrow } from 'pages/Dashboard/styled-components';
+import useGlobalStakingDataQuery from 'queries/token/useGlobalStakingDataQuery';
+import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
+import { RootState } from 'redux/rootReducer';
 import { Colors, FlexDivCentered } from 'styles/common';
-import { getEtherscanTokenLink, truncateAddress } from 'thales-utils';
+import { formatCurrencyWithKey, getEtherscanTokenLink, truncateAddress } from 'thales-utils';
+import { GlobalStakingData } from 'types/token';
 import thalesContract from 'utils/contracts/thalesContract';
 import { buildHref } from 'utils/routes';
 import { Content, H1, H2, ListItem, Paragraph } from '../styled-components';
 
 const TokenArticle: React.FC = () => {
     const { t } = useTranslation();
+
+    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
+
+    const [lastValidGlobalStakingData, setLastValidGlobalStakingData] = useState<GlobalStakingData | undefined>(
+        undefined
+    );
+
+    const globalStakingDataQuery = useGlobalStakingDataQuery({ enabled: isAppReady });
+
+    useEffect(() => {
+        if (globalStakingDataQuery.isSuccess && globalStakingDataQuery.data) {
+            setLastValidGlobalStakingData(globalStakingDataQuery.data);
+        }
+    }, [globalStakingDataQuery.isSuccess, globalStakingDataQuery.data]);
 
     return (
         <Content>
@@ -65,6 +86,12 @@ const TokenArticle: React.FC = () => {
                     components={{
                         bold: <strong />,
                         url: <a target="_blank" rel="noreferrer" href={buildHref(ROUTES.About.Governance)} />,
+                    }}
+                    values={{
+                        rewards: formatCurrencyWithKey(
+                            THALES_CURRENCY,
+                            lastValidGlobalStakingData?.baseRewards ? lastValidGlobalStakingData?.baseRewards : 0
+                        ),
                     }}
                 />
             </Paragraph>
