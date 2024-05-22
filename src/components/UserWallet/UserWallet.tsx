@@ -36,7 +36,7 @@ const UserWallet: React.FC = () => {
                     !!userStakingDataQuery?.data?.baseRewards &&
                     !userStakingDataQuery?.data?.claimed && (
                         <Tooltip overlay={t('common.wallet.rewards')}>
-                            <Rewards onClick={() => navigateTo(ROUTES.Token.Staking.Rewards)}>
+                            <Rewards onClick={() => navigateTo(ROUTES.Token.Staking.StakeAndEarn)}>
                                 <RewardsIcon className="icon icon--rewards" />
                             </Rewards>
                         </Tooltip>
