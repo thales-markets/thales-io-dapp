@@ -49,16 +49,8 @@ export const BREADCRUMBS_DROPDOWN_ITEMS = {
             route: ROUTES.Token.Staking.Home,
         },
         {
-            i18label: 'staking.nav.rewards',
-            route: ROUTES.Token.Staking.Rewards,
-        },
-        {
             i18label: 'staking.nav.vesting',
             route: ROUTES.Token.Staking.Vesting,
-        },
-        {
-            i18label: 'staking.nav.leaderboard',
-            route: ROUTES.Token.Staking.Leaderboard,
         },
         {
             i18label: 'staking.nav.acc-preferences',

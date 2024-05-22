@@ -113,6 +113,6 @@ export const Line = styled.div`
 `;
 
 export const NavContainer = styled.div<{ width?: string }>`
-    width: ${(props) => (props.width ? props.width : '60%')};
+    width: ${(props) => (props.width ? props.width : '40%')};
     margin-bottom: 45px;
 `;

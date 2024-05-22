@@ -9,10 +9,10 @@ export const Container = styled.div`
     display: grid;
     width: 60%;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 170px min-content;
+    grid-template-rows: 170px 170px min-content;
     column-gap: 10px;
     row-gap: 10px;
-    grid-template-areas: 'upper-left upper-right' 'bottom bottom';
+    grid-template-areas: 'top top' 'upper-left upper-right' 'bottom bottom';
     margin-bottom: 30px;
     z-index: 1;
     > div {
@@ -24,9 +24,16 @@ export const Container = styled.div`
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
         grid-template-columns: 1fr;
-        grid-template-areas: 'upper-left' 'upper-right' 'bottom';
-        grid-template-rows: 140px auto auto;
+        grid-template-areas: 'top' 'upper-left' 'upper-right' 'bottom';
+        grid-template-rows: 350px auto auto auto;
     }
+`;
+
+export const Top = styled.div`
+    grid-area: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 export const UpperLeft = styled.div`

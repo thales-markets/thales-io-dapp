@@ -1,6 +1,5 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import coinsAnimation from 'assets/lotties/rewards-coins.json';
-import Checkbox from 'components/fields/Checkbox';
 import LoadingContainer from 'components/LoadingContainer';
 import TimeRemaining from 'components/TimeRemaining';
 import {
@@ -10,6 +9,7 @@ import {
     getSuccessToastOptions,
 } from 'components/ToastMessage/ToastMessage';
 import Tooltip from 'components/Tooltip';
+import Checkbox from 'components/fields/Checkbox';
 import { DEFAULT_COLLATERALS, THALES_CURRENCY } from 'constants/currency';
 import { ethers } from 'ethers';
 import Lottie from 'lottie-react';
@@ -27,16 +27,16 @@ import { ThalesStakingData, UserStakingData } from 'types/token';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
 import { SectionTitle } from '../../styled-components';
+import CompoundModal from '../CompoundModal/CompoundModal';
 import {
-    ClaimableRewardsContainer,
     ClaimSection,
+    ClaimableRewardsContainer,
     CompoundContainer,
     ItemsWrapper,
     RewardsDetailsContainer,
     RewardsInfo,
     StakingDetailsSection,
-} from '../styled-components';
-import CompoundModal from './CompoundModal';
+} from './styled-components';
 
 type ClaimableSectionProps = {
     userStakingData: UserStakingData | undefined;
@@ -232,30 +232,6 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                             {formatCurrencyWithKey(
                                                 THALES_CURRENCY,
                                                 userStakingData?.baseRewards ?? 0,
-                                                2
-                                            )}
-                                        </span>
-                                    </StakingDetailsSection>
-                                    <StakingDetailsSection>
-                                        <TooltipContainer>
-                                            <Trans
-                                                i18nKey="staking.rewards.claim.gamified-staking-rewards"
-                                                components={{
-                                                    span: <span />,
-                                                }}
-                                            />
-                                            <Tooltip
-                                                overlay={t('staking.rewards.claim.gamified-staking-rewards-tooltip')}
-                                                marginTop={2}
-                                                mobileIconFontSize={11}
-                                                iconFontSize={13}
-                                            />
-                                        </TooltipContainer>
-
-                                        <span>
-                                            {formatCurrencyWithKey(
-                                                THALES_CURRENCY,
-                                                userStakingData?.totalBonus ?? 0,
                                                 2
                                             )}
                                         </span>
