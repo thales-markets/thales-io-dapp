@@ -1130,7 +1130,8 @@
             "stake": "Stake",
             "unstake": "Unstake",
             "startunstake": "Start unstake",
-            "cancelunstake": "Cancel unstake"
+            "cancelunstake": "Cancel unstake",
+            "claimstakingrewards": "Claim rewards"
         },
         "vesting": {
             "all": "All",
