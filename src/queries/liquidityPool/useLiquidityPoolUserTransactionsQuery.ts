@@ -1,29 +1,40 @@
+import axios from 'axios';
+import { generalConfig } from 'config/general';
 import QUERY_KEYS from 'constants/queryKeys';
+import { API_ROUTES } from 'constants/routes';
 import { LiquidityPool } from 'enums/liquidityPool';
 import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
-import thalesData from 'thales-data';
 import { LiquidityPoolUserTransactions } from 'types/liquidityPool';
 
 const useLiquidityPoolUserTransactionsQuery = (
     networkId: Network,
     pool: LiquidityPool,
+    account?: string,
+    round?: number,
     options?: UseQueryOptions<LiquidityPoolUserTransactions>
 ) => {
     return useQuery<LiquidityPoolUserTransactions>(
-        QUERY_KEYS.LiquidityPoolUserTransactions(networkId, pool),
+        QUERY_KEYS.LiquidityPoolUserTransactions(networkId, pool, account, round),
         async () => {
             try {
                 let liquidityPoolUserTransactions = [];
                 if (pool === LiquidityPool.THALES) {
-                    liquidityPoolUserTransactions = await thalesData.binaryOptions.liquidityPoolUserTransactions({
-                        network: networkId,
-                    });
+                    const response = await axios.get(
+                        `${generalConfig.API_URL}/${API_ROUTES.DigitalOptions.LPTransactions}/${networkId}?${
+                            round ? `round=${round}` : ''
+                        }&${account ? `account=${account}` : ''}`
+                    );
+
+                    if (response?.data) liquidityPoolUserTransactions = response.data;
                 } else {
-                    liquidityPoolUserTransactions = await thalesData.sportMarkets.liquidityPoolUserTransactions({
-                        network: networkId,
-                        liquidityPoolType: pool === LiquidityPool.OVERTIME_SINGLE ? 'single' : 'parlay',
-                    });
+                    const response = await axios.get(
+                        `${generalConfig.API_URL}/${API_ROUTES.SportMarkets.LPTransactions}/${networkId}?type-on=${
+                            pool === LiquidityPool.OVERTIME_SINGLE ? 'single' : 'parlay'
+                        }&${round ? `round=${round}&` : ''}${account ? `account=${account}` : ''}`
+                    );
+
+                    if (response?.data) liquidityPoolUserTransactions = response.data;
                 }
                 return liquidityPoolUserTransactions;
             } catch (e) {
