@@ -25,7 +25,7 @@ const useStakingClaimOnBehalfQuery = (
                 const { stakingThalesContract } = networkConnector as any;
                 if (stakingThalesContract) {
                     const canClaimOnBehalfItemsResponse = await axios.get(
-                        `${generalConfig.API_URL}/${API_ROUTES.ClaimOnBehalf}/${networkId}?seller${walletAddress}`
+                        `${generalConfig.API_URL}/${API_ROUTES.ClaimOnBehalf}/${networkId}?seller=${walletAddress}`
                     );
 
                     const canClaimOnBehalfItems = canClaimOnBehalfItemsResponse?.data

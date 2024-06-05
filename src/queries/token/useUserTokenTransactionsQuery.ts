@@ -9,17 +9,17 @@ import { TokenTransactions } from 'types/token';
 const useUserTokenTransactionsQuery = (
     walletAddress: string | undefined,
     networkId: Network,
-    type_in?: string,
+    type_in?: string[],
     options?: UseQueryOptions<TokenTransactions>
 ) => {
     return useQuery<TokenTransactions>(
-        QUERY_KEYS.Token.Transactions(walletAddress, networkId, type_in),
+        QUERY_KEYS.Token.Transactions(walletAddress, networkId, type_in?.join(',')),
         async () => {
             try {
                 const response = await axios.get(
                     `${generalConfig.API_URL}/${API_ROUTES.TokenTransactions}/${networkId}?${
                         walletAddress ? `account=${walletAddress}` : ''
-                    }&${type_in ? `type_in=${type_in}` : ''}`
+                    }&${type_in ? `type_in=${type_in?.join(',')}` : ''}`
                 );
 
                 if (!response?.data) return [];

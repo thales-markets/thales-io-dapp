@@ -77,4 +77,12 @@ export const refetchCelerBridgeHistory = (walletAddress: string) => {
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.CelerBridgeHistory(walletAddress));
 };
 
+export const refetchClaimOnBehalf = async (walletAddress: string, networkId: Network) => {
+    await invalidateCache([getCacheKey(CACHE_PREFIX_KEYS.ClaimOnBehalfItems, [networkId, walletAddress])]);
+
+    await wait(WAIT_PERIOD_AFTER_CACHE_INVALIDATION_IN_SECONDS);
+
+    queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.ClaimOnBehalf(walletAddress, networkId));
+};
+
 export default queryConnector;
