@@ -1,4 +1,4 @@
-import { CACHE_PREFIX_KEYS } from 'constants/cache';
+import { CACHE_PREFIX_KEYS, WAIT_PERIOD_AFTER_CACHE_INVALIDATION_IN_SECONDS } from 'constants/cache';
 import QUERY_KEYS from 'constants/queryKeys';
 import { SpaceKey } from 'enums/governance';
 import { LiquidityPool } from 'enums/liquidityPool';
@@ -23,7 +23,7 @@ const queryConnector: QueryConnector = {
 export const refetchTokenQueries = async (walletAddress: string, networkId: Network) => {
     await invalidateCache([getCacheKey(CACHE_PREFIX_KEYS.TokenTransactions, [networkId, walletAddress])]);
 
-    await wait(2.5);
+    await wait(WAIT_PERIOD_AFTER_CACHE_INVALIDATION_IN_SECONDS);
 
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.StakingData());
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.Token.UserStakingData(walletAddress, networkId));
@@ -60,7 +60,7 @@ export const refetchLiquidityPoolData = async (
         ]);
     }
 
-    await wait(2.5);
+    await wait(WAIT_PERIOD_AFTER_CACHE_INVALIDATION_IN_SECONDS);
 
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.Data(networkId));
     queryConnector.queryClient.invalidateQueries(QUERY_KEYS.ThalesLiquidityPool.UserData(walletAddress, networkId));
