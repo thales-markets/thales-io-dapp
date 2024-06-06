@@ -55,8 +55,16 @@ export const refetchLiquidityPoolData = async (
         ]);
     } else {
         await invalidateCache([
-            getCacheKey(CACHE_PREFIX_KEYS.SportsMarkets.LiquidityPoolTransactions, [networkId, pool, walletAddress]),
-            getCacheKey(CACHE_PREFIX_KEYS.SportsMarkets.LiquidityPoolTransactions, [networkId, pool, round]),
+            getCacheKey(CACHE_PREFIX_KEYS.SportsMarkets.LiquidityPoolTransactions, [
+                networkId,
+                pool == LiquidityPool.OVERTIME_SINGLE ? 'single' : 'parlay',
+                walletAddress,
+            ]),
+            getCacheKey(CACHE_PREFIX_KEYS.SportsMarkets.LiquidityPoolTransactions, [
+                networkId,
+                pool == LiquidityPool.OVERTIME_SINGLE ? 'single' : 'parlay',
+                round,
+            ]),
         ]);
     }
 

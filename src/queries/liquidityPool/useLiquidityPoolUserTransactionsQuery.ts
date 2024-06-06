@@ -29,7 +29,7 @@ const useLiquidityPoolUserTransactionsQuery = (
                     if (response?.data) liquidityPoolUserTransactions = response.data;
                 } else {
                     const response = await axios.get(
-                        `${generalConfig.API_URL}/${API_ROUTES.SportMarkets.LPTransactions}/${networkId}?type-on=${
+                        `${generalConfig.API_URL}/${API_ROUTES.SportMarkets.LPTransactions}/${networkId}?lp-type=${
                             pool === LiquidityPool.OVERTIME_SINGLE ? 'single' : 'parlay'
                         }&${round ? `round=${round}&` : ''}${account ? `account=${account}` : ''}`
                     );

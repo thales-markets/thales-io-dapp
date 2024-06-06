@@ -25,7 +25,7 @@ const useLiquidityPoolPnlsQuery = (
                     liquidityPoolPnls = response?.data ? response.data : [];
                 } else {
                     const response = await axios.get(
-                        `${generalConfig.API_URL}/${API_ROUTES.SportMarkets.LPPnls}/${networkId}?type-on=${
+                        `${generalConfig.API_URL}/${API_ROUTES.SportMarkets.LPPnls}/${networkId}?lp-type=${
                             pool === LiquidityPool.OVERTIME_SINGLE ? 'single' : 'parlay'
                         }`
                     );
