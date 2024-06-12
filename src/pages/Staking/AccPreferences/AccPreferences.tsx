@@ -27,6 +27,7 @@ import { useTheme } from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnSpaceBetween, Icon } from 'styles/common';
 import { getAddress, getEtherscanAddressLink } from 'thales-utils';
 import networkConnector from 'utils/networkConnector';
+import { refetchClaimOnBehalf } from 'utils/queryConnector';
 import { SectionDescription, SectionTitle, StakingButton } from '../styled-components';
 import YourTransactions from './Transactions';
 import {
@@ -90,7 +91,7 @@ const AccPreferences: React.FC = () => {
     const userTokenTransactionsQuery = useUserTokenTransactionsQuery(
         undefined,
         networkId,
-        '[delegateVolume, removeDelegation]',
+        ['delegateVolume', 'removeDelegation'],
         {
             enabled: isAppReady && isWalletConnected,
         }
@@ -353,6 +354,7 @@ const AccPreferences: React.FC = () => {
             const txResult = await tx.wait();
 
             if (txResult && txResult.transactionHash) {
+                refetchClaimOnBehalf(walletAddress, networkId);
                 toast.update(
                     id,
                     getSuccessToastOptions(

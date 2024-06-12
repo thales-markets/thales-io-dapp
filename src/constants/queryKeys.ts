@@ -110,10 +110,17 @@ const QUERY_KEYS = {
         networkId,
         liquidityPool,
     ],
-    LiquidityPoolUserTransactions: (networkId: Network, liquidityPool: LiquidityPool) => [
+    LiquidityPoolUserTransactions: (
+        networkId: Network,
+        liquidityPool: LiquidityPool,
+        account?: string,
+        round?: number
+    ) => [
         'liquidityPoolUserTransactions',
         networkId,
         liquidityPool,
+        account ? account : undefined,
+        round ? round : undefined,
     ],
     ThalesLiquidityPool: {
         Data: (networkId: Network) => ['thalesLiquidityPool', 'data', networkId],

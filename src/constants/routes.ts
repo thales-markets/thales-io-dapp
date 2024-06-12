@@ -39,4 +39,31 @@ export const ROUTE_NAMES = {
     DAO: 'dao',
 };
 
+export const API_ROUTES = {
+    DigitalOptions: {
+        LP: 'v1/digital-options/liquidity-providing',
+        LPPnls: 'v1/digital-options/liquidity-providing/pnl',
+        LPTransactions: 'v1/digital-options/liquidity-providing/transactions',
+        Referral: 'v1/digital-options/referral',
+        ReferralTransactions: 'v1/digital-options/referral/transactions',
+        ReferralTraders: 'v1/digital-options/referral/traders',
+        Referrers: 'v1/digital-options/referral/referrers',
+        VaultsUserTransactions: 'v1/vaults/user-transactions',
+        VaultsPnl: 'v1/vaults/pnl',
+    },
+    SportMarkets: {
+        LP: 'v1/sport-markets/liquidity-providing',
+        LPPnls: 'v1/sport-markets/liquidity-providing/pnl',
+        LPTransactions: 'v1/sport-markets/liquidity-providing/transactions',
+        Referral: 'v1/sport-markets/referral',
+        ReferralTransactions: 'v1/sport-markets/referral/transactions',
+        ReferralTraders: 'v1/sport-markets/referral/traders',
+        Referrers: 'v1/sport-markets/referral/referrers',
+    },
+    Stakers: 'v1/stakers',
+    TokenTransactions: 'v1/stakers/token-transactions',
+    ClaimOnBehalf: 'v1/stakers/claim-on-behalf',
+    CacheControl: 'v1/cache-control',
+};
+
 export default ROUTES;
