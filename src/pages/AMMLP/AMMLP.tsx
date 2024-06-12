@@ -388,10 +388,7 @@ const AMMLP: React.FC = () => {
     const handleWithdrawalRequest = async () => {
         const { signer } = networkConnector;
         if (signer && activeLiquidityPoolContract) {
-            const id = toast.loading(
-                getDefaultToastContent(t('markets.market.toast-messsage.transaction-pending')),
-                getLoadingToastOptions()
-            );
+            const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
             setIsSubmitting(true);
             try {
                 const liquidityPoolContractWithSigner = activeLiquidityPoolContract.connect(signer);
@@ -403,13 +400,10 @@ const AMMLP: React.FC = () => {
                 const txResult = await tx.wait();
 
                 if (txResult && txResult.events) {
-                    toast.update(
-                        id,
-                        getSuccessToastOptions(t('staking.amm-lp.button.request-withdrawal-confirmation-message'), id)
-                    );
+                    toast.update(id, getSuccessToastOptions(t('common.transaction.successful'), id));
                     setAmount('');
                     setIsSubmitting(false);
-                    refetchLiquidityPoolData(walletAddress, networkId, paramTab);
+                    refetchLiquidityPoolData(walletAddress, networkId, paramTab, liquidityPoolData?.round);
                 }
             } catch (e) {
                 console.log(e);
@@ -435,10 +429,7 @@ const AMMLP: React.FC = () => {
                 const txResult = await tx.wait();
 
                 if (txResult && txResult.events) {
-                    toast.update(
-                        id,
-                        getSuccessToastOptions(t('staking.amm-lp.deposit-withdraw.deposit-confirmation-message'), id)
-                    );
+                    toast.update(id, getSuccessToastOptions(t('common.transaction.successful'), id));
                     if (paramTab === LiquidityPool.THALES) {
                         PLAUSIBLE.trackEvent(PLAUSIBLE_KEYS.depositDigitalOptionsLp);
                     }
@@ -450,7 +441,7 @@ const AMMLP: React.FC = () => {
                     }
                     setAmount('');
                     setIsSubmitting(false);
-                    refetchLiquidityPoolData(walletAddress, networkId, paramTab);
+                    refetchLiquidityPoolData(walletAddress, networkId, paramTab, liquidityPoolData?.round);
                 }
             } catch (e) {
                 console.log(e);

@@ -1,9 +1,11 @@
+import axios from 'axios';
+import { generalConfig } from 'config/general';
 import INTEGRATORS from 'constants/integrators';
 import QUERY_KEYS from 'constants/queryKeys';
+import { API_ROUTES } from 'constants/routes';
 import { Network } from 'enums/network';
 import { orderBy } from 'lodash';
 import { useQuery, UseQueryOptions } from 'react-query';
-import thalesData from 'thales-data';
 import { Integrator } from 'types/integrator';
 
 const useIntegratorsQuery = (options?: UseQueryOptions<Integrator[] | null>) => {
@@ -11,17 +13,21 @@ const useIntegratorsQuery = (options?: UseQueryOptions<Integrator[] | null>) => 
         QUERY_KEYS.Integrators(),
         async () => {
             try {
-                const [referrersOptimism, referrersArbitrum, referrersBase] = await Promise.all([
-                    thalesData.sportMarkets.referrers({
-                        network: Network.OptimismMainnet,
-                    }),
-                    thalesData.sportMarkets.referrers({
-                        network: Network.Arbitrum,
-                    }),
-                    thalesData.sportMarkets.referrers({
-                        network: Network.Base,
-                    }),
+                const [
+                    referrersOptimismResponse,
+                    referrersArbitrumResponse,
+                    referrersBaseResponse,
+                ] = await Promise.all([
+                    axios.get(
+                        `${generalConfig.API_URL}/${API_ROUTES.SportMarkets.Referrers}/${Network.OptimismMainnet}`
+                    ),
+                    axios.get(`${generalConfig.API_URL}/${API_ROUTES.SportMarkets.Referrers}/${Network.Arbitrum}`),
+                    axios.get(`${generalConfig.API_URL}/${API_ROUTES.SportMarkets.Referrers}/${Network.Base}`),
                 ]);
+
+                const referrersOptimism = referrersOptimismResponse?.data ? referrersOptimismResponse.data : [];
+                const referrersArbitrum = referrersArbitrumResponse?.data ? referrersArbitrumResponse.data : [];
+                const referrersBase = referrersBaseResponse?.data ? referrersBaseResponse.data : [];
 
                 const integratorsAddresses = INTEGRATORS.map((integrator) => integrator.address.toLowerCase());
 

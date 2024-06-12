@@ -1,26 +1,26 @@
-import { useQuery, UseQueryOptions } from 'react-query';
-import thalesData from 'thales-data';
+import axios from 'axios';
+import { generalConfig } from 'config/general';
 import QUERY_KEYS from 'constants/queryKeys';
-import { Staker, Stakers } from 'types/governance';
+import { API_ROUTES } from 'constants/routes';
+import { StakersFilterEnum } from 'enums/governance';
 import { Network } from 'enums/network';
 import { orderBy } from 'lodash';
-import { StakersFilterEnum } from 'enums/governance';
+import { useQuery, UseQueryOptions } from 'react-query';
+import { Staker, Stakers } from 'types/governance';
 
 const useThalesStakersQuery = (filter: StakersFilterEnum, options?: UseQueryOptions<Stakers>) => {
     return useQuery<Stakers>(
         QUERY_KEYS.Governance.ThalesStakers(filter),
         async () => {
-            const [stakers, stakersArb, stakersBase] = await Promise.all([
-                thalesData.binaryOptions.stakers({
-                    network: Network.OptimismMainnet,
-                }),
-                thalesData.binaryOptions.stakers({
-                    network: Network.Arbitrum,
-                }),
-                thalesData.binaryOptions.stakers({
-                    network: Network.Base,
-                }),
+            const [stakersResponse, stakersArbResponse, stakersBaseResponse] = await Promise.all([
+                axios.get(`${generalConfig.API_URL}/${API_ROUTES.Stakers}/${Network.OptimismMainnet}`),
+                axios.get(`${generalConfig.API_URL}/${API_ROUTES.Stakers}/${Network.Arbitrum}`),
+                axios.get(`${generalConfig.API_URL}/${API_ROUTES.Stakers}/${Network.Base}`),
             ]);
+
+            const stakers = stakersResponse?.data ? stakersResponse.data : [];
+            const stakersArb = stakersArbResponse?.data ? stakersArbResponse.data : [];
+            const stakersBase = stakersBaseResponse?.data ? stakersBaseResponse.data : [];
 
             let stakersFinal: Stakers = [];
             if (filter === StakersFilterEnum.Optimism) {

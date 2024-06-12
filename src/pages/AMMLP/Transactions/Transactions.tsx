@@ -11,7 +11,7 @@ import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivRow, Icon } from 'styles/common';
-import { LiquidityPoolUserTransaction, LiquidityPoolUserTransactions } from 'types/liquidityPool';
+import { LiquidityPoolUserTransactions } from 'types/liquidityPool';
 import UserTransactionsTable from '../UserTransactionsTable';
 
 type TransactionsProps = {
@@ -58,36 +58,47 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
         });
     }
 
-    const liquidityPoolUserTransactionsQuery = useLiquidityPoolUserTransactionsQuery(networkId, liquidityPool, {
-        enabled: isAppReady,
-    });
+    const liquidityPoolUserTransactionsQuery = useLiquidityPoolUserTransactionsQuery(
+        networkId,
+        liquidityPool,
+        walletAddress,
+        undefined,
+        {
+            enabled: isAppReady && !!walletAddress,
+        }
+    );
+
+    const liquidityPoolRoundTransactionsQuery = useLiquidityPoolUserTransactionsQuery(
+        networkId,
+        liquidityPool,
+        undefined,
+        round,
+        {
+            enabled: isAppReady,
+        }
+    );
 
     useEffect(() => setRound(currentRound), [currentRound]);
 
     useEffect(() => {
         if (liquidityPoolUserTransactionsQuery.isSuccess && liquidityPoolUserTransactionsQuery.data) {
-            setLiquidityPoolUserTransactions(
-                orderBy(
-                    liquidityPoolUserTransactionsQuery.data.filter(
-                        (trade: LiquidityPoolUserTransaction) => trade.round === round
-                    ),
-                    ['timestamp', 'blockNumber'],
-                    ['desc', 'desc']
-                )
-            );
             setLiquidityPoolMyTransactions(
-                orderBy(
-                    liquidityPoolUserTransactionsQuery.data.filter(
-                        (trade: LiquidityPoolUserTransaction) => trade.account === walletAddress.toLowerCase()
-                    ),
-                    ['timestamp', 'blockNumber'],
-                    ['desc', 'desc']
-                )
+                orderBy(liquidityPoolUserTransactionsQuery.data, ['timestamp', 'blockNumber'], ['desc', 'desc'])
+            );
+        } else {
+            setLiquidityPoolMyTransactions([]);
+        }
+    }, [liquidityPoolUserTransactionsQuery.isSuccess, liquidityPoolUserTransactionsQuery.data, round]);
+
+    useEffect(() => {
+        if (liquidityPoolRoundTransactionsQuery.isSuccess && liquidityPoolRoundTransactionsQuery.data) {
+            setLiquidityPoolUserTransactions(
+                orderBy(liquidityPoolRoundTransactionsQuery.data, ['timestamp', 'blockNumber'], ['desc', 'desc'])
             );
         } else {
             setLiquidityPoolUserTransactions([]);
         }
-    }, [liquidityPoolUserTransactionsQuery.isSuccess, liquidityPoolUserTransactionsQuery.data, round, walletAddress]);
+    }, [liquidityPoolRoundTransactionsQuery.isSuccess, liquidityPoolRoundTransactionsQuery.data, walletAddress]);
 
     const noLiquidityPoolUserTransactions = liquidityPoolUserTransactions.length === 0;
     const noLiquidityPoolMyTransactions = liquidityPoolMyTransactions.length === 0;
