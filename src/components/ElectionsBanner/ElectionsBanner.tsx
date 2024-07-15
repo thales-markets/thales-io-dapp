@@ -5,7 +5,13 @@ import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import SPAAnchor from '../SPAAnchor';
 
+const IS_VISIBLE = false;
+
 const ElectionsBanner: React.FC = () => {
+    if (!IS_VISIBLE) {
+        return <></>;
+    }
+
     return (
         <SPAAnchor href={`https://dune.com/leifu/op-incentive-program`}>
             <Container>
