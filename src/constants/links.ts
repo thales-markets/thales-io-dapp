@@ -11,7 +11,7 @@ const LINKS = {
     Spongly: 'https://spongly.eth.limo/dashboard/',
     LeagueBot: 'https://twitter.com/TeamLeagueBot',
     MarketingAssets: 'https://docs.thales.io/resources/marketing-assets',
-    SpeedMarkets: 'https://thalesmarket.io/speed-markets',
+    SpeedMarkets: 'https://speedmarkets.xyz',
     Audits: 'https://github.com/thales-markets/contracts?tab=readme-ov-file#audits',
     Synthetix: 'https://synthetix.io/',
     Chainlink: 'https://chain.link/',
