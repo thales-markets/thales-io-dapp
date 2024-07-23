@@ -216,7 +216,7 @@ const Home: React.FC = () => {
                     >
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-sports-markets-api-description')}</span>
-                            <SPAAnchor href={LINKS.SPORTS_INTEGRATION}>
+                            <SPAAnchor href={LINKS.SportsIntegration}>
                                 <HomeButton>{t('home.integrations.integrate-with-thales-sports-button')}</HomeButton>
                             </SPAAnchor>
                         </Description>
@@ -227,7 +227,7 @@ const Home: React.FC = () => {
                     >
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-digital-options-api-description')}</span>
-                            <SPAAnchor href={LINKS.DIGITAL_OPTIONS_INTEGRAITON}>
+                            <SPAAnchor href={LINKS.DigitalOptionsIntegration}>
                                 <HomeButton>{t('home.integrations.integrate-with-thales-markets-button')}</HomeButton>
                             </SPAAnchor>
                         </Description>
@@ -238,7 +238,7 @@ const Home: React.FC = () => {
                     >
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-speed-markets-api-description')}</span>
-                            <SPAAnchor href={LINKS.SPEED_MARKETS_INTEGRATION}>
+                            <SPAAnchor href={LINKS.SpeedMarketsIntegration}>
                                 <HomeButton>{t('home.integrations.integrate-with-thales-speed-button')}</HomeButton>
                             </SPAAnchor>
                         </Description>

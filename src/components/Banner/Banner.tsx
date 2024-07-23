@@ -4,19 +4,20 @@ import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 import SPAAnchor from '../SPAAnchor';
+import LINKS from 'constants/links';
 
-const IS_VISIBLE = false;
+const IS_VISIBLE = true;
 
-const ElectionsBanner: React.FC = () => {
+const Banner: React.FC = () => {
     if (!IS_VISIBLE) {
         return <></>;
     }
 
     return (
-        <SPAAnchor href={`https://dune.com/leifu/op-incentive-program`}>
+        <SPAAnchor href={LINKS.SpeedMarkets}>
             <Container>
                 <Label>
-                    {<Trans i18nKey={'common.banner.rewards-banner-message'} components={{ bold: <Bold /> }} />}
+                    {<Trans i18nKey={'common.banner.speed-banner-message'} components={{ bold: <Bold /> }} />}
                 </Label>
             </Container>
         </SPAAnchor>
@@ -52,4 +53,4 @@ const Bold = styled.span`
     font-weight: bold;
 `;
 
-export default ElectionsBanner;
+export default Banner;
