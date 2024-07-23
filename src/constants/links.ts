@@ -55,9 +55,9 @@ const LINKS = {
     Blog: {
         HowToOpenTIP: 'https://medium.com/@Thales.Academy/how-to-use-github-to-submit-a-tip-e7d0047b54fd',
     },
-    SPORTS_INTEGRATION: 'https://docs.thales.io/thales-sports-markets/sports-markets-integration',
-    DIGITAL_OPTIONS_INTEGRAITON: 'https://docs.thales.io/thales-digital-options/digital-options-integration',
-    SPEED_MARKETS_INTEGRATION: 'https://docs.thales.io/thales-speed-markets/speed-markets-integration',
+    SportsIntegration: 'https://docs.thales.io/thales-sports-markets/sports-markets-integration',
+    DigitalOptionsIntegration: 'https://docs.thales.io/thales-digital-options/digital-options-integration',
+    SpeedMarketsIntegration: 'https://docs.thales.io/thales-speed-markets/speed-markets-integration',
 };
 
 export default LINKS;
