@@ -11,7 +11,7 @@ import { isAndroid, isMetamask } from 'thales-utils';
 import DappFooter from './DappFooter';
 import DappHeader from './DappHeader';
 import { ChildWrapper, Wrapper } from './styled-components';
-import ElectionsBanner from 'components/ElectionsBanner';
+import Banner from 'components/Banner';
 
 const DappLayout: React.FC = ({ children }) => {
     const theme = useTheme();
@@ -34,7 +34,7 @@ const DappLayout: React.FC = ({ children }) => {
         <>
             <Background id="radial-background" />
             {!isMobile && <WavesBackground />}
-            <ElectionsBanner />
+            <Banner />
             <Wrapper>
                 <DappHeader />
                 <ChildWrapper>{children}</ChildWrapper>
