@@ -39,7 +39,7 @@ const PnL: React.FC<PnlProps> = ({ lifetimePnl, type, liquidityPool }) => {
     const [liquidityPoolPnls, setLiquidityPoolPnls] = useState<LiquidityPoolPnls>([]);
 
     const liquidityPoolPnlsQuery = useLiquidityPoolPnlsQuery(networkId, liquidityPool, {
-        enabled: isAppReady,
+        enabled: isAppReady && liquidityPool !== LiquidityPool.OVERTIME_THALES,
     });
 
     useEffect(() => {

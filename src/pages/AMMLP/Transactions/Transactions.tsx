@@ -11,15 +11,17 @@ import { getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivRow, Icon } from 'styles/common';
-import { LiquidityPoolUserTransactions } from 'types/liquidityPool';
+import { Coins } from 'thales-utils';
+import { LiquidityPoolUserTransaction, LiquidityPoolUserTransactions } from 'types/liquidityPool';
 import UserTransactionsTable from '../UserTransactionsTable';
 
 type TransactionsProps = {
     currentRound: number;
     liquidityPool: LiquidityPool;
+    collateral: Coins;
 };
 
-const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool }) => {
+const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool, collateral }) => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -61,6 +63,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
     const liquidityPoolUserTransactionsQuery = useLiquidityPoolUserTransactionsQuery(
         networkId,
         liquidityPool,
+        collateral,
         walletAddress,
         undefined,
         {
@@ -71,6 +74,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
     const liquidityPoolRoundTransactionsQuery = useLiquidityPoolUserTransactionsQuery(
         networkId,
         liquidityPool,
+        collateral,
         undefined,
         round,
         {
@@ -81,24 +85,36 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
     useEffect(() => setRound(currentRound), [currentRound]);
 
     useEffect(() => {
-        if (liquidityPoolUserTransactionsQuery.isSuccess && liquidityPoolUserTransactionsQuery.data) {
-            setLiquidityPoolMyTransactions(
-                orderBy(liquidityPoolUserTransactionsQuery.data, ['timestamp', 'blockNumber'], ['desc', 'desc'])
-            );
-        } else {
-            setLiquidityPoolMyTransactions([]);
-        }
-    }, [liquidityPoolUserTransactionsQuery.isSuccess, liquidityPoolUserTransactionsQuery.data, round]);
-
-    useEffect(() => {
         if (liquidityPoolRoundTransactionsQuery.isSuccess && liquidityPoolRoundTransactionsQuery.data) {
             setLiquidityPoolUserTransactions(
-                orderBy(liquidityPoolRoundTransactionsQuery.data, ['timestamp', 'blockNumber'], ['desc', 'desc'])
+                orderBy(
+                    liquidityPoolRoundTransactionsQuery.data.filter(
+                        (trade: LiquidityPoolUserTransaction) => trade.round === round
+                    ),
+                    ['timestamp', 'blockNumber'],
+                    ['desc', 'desc']
+                )
             );
         } else {
             setLiquidityPoolUserTransactions([]);
         }
-    }, [liquidityPoolRoundTransactionsQuery.isSuccess, liquidityPoolRoundTransactionsQuery.data, walletAddress]);
+    }, [liquidityPoolRoundTransactionsQuery.isSuccess, liquidityPoolRoundTransactionsQuery.data, round]);
+
+    useEffect(() => {
+        if (liquidityPoolUserTransactionsQuery.isSuccess && liquidityPoolUserTransactionsQuery.data) {
+            setLiquidityPoolMyTransactions(
+                orderBy(
+                    liquidityPoolUserTransactionsQuery.data.filter(
+                        (trade: LiquidityPoolUserTransaction) => trade.account === walletAddress.toLowerCase()
+                    ),
+                    ['timestamp', 'blockNumber'],
+                    ['desc', 'desc']
+                )
+            );
+        } else {
+            setLiquidityPoolMyTransactions([]);
+        }
+    }, [liquidityPoolUserTransactionsQuery.isSuccess, liquidityPoolUserTransactionsQuery.data, walletAddress]);
 
     const noLiquidityPoolUserTransactions = liquidityPoolUserTransactions.length === 0;
     const noLiquidityPoolMyTransactions = liquidityPoolMyTransactions.length === 0;
@@ -138,6 +154,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
             <TableContainer>
                 {selectedTab === LiquidityPoolTransaction.USER_TRANSACTIONS && (
                     <UserTransactionsTable
+                        collateral={collateral}
                         transactions={liquidityPoolUserTransactions}
                         isLoading={liquidityPoolUserTransactionsQuery.isLoading}
                         noResultsMessage={
@@ -149,6 +166,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
                 )}
                 {selectedTab === LiquidityPoolTransaction.YOUR_TRANSACTIONS && (
                     <UserTransactionsTable
+                        collateral={collateral}
                         transactions={liquidityPoolMyTransactions}
                         isLoading={liquidityPoolUserTransactionsQuery.isLoading}
                         noResultsMessage={

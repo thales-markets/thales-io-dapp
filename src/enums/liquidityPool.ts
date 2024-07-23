@@ -12,4 +12,7 @@ export enum LiquidityPool {
     THALES = 'thales-amm',
     OVERTIME_SINGLE = 'sports-amm',
     OVERTIME_PARLAY = 'parlay-amm',
+    OVERTIME_USDC = 'overtime-usdc',
+    OVERTIME_WETH = 'overtime-weth',
+    OVERTIME_THALES = 'overtime-thales',
 }

@@ -2,6 +2,8 @@ import { Slider } from '@material-ui/core';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import ApprovalModal from 'components/ApprovalModal';
 import Collapse from 'components/Collapse';
+import NumericInput from 'components/fields/NumericInput';
+import RadioButton from 'components/fields/RadioButton';
 import Loader from 'components/Loader';
 import LoadingContainer from 'components/LoadingContainer';
 import { NavItemType } from 'components/NavLinks/NavItem';
@@ -16,21 +18,22 @@ import {
     getSuccessToastOptions,
 } from 'components/ToastMessage/ToastMessage';
 import Tooltip from 'components/Tooltip';
-import NumericInput from 'components/fields/NumericInput';
-import RadioButton from 'components/fields/RadioButton';
 import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
 import { DEFAULT_COLLATERALS, USD_SIGN } from 'constants/currency';
 import LINKS from 'constants/links';
+import { LiquidityPoolMap } from 'constants/liquidityPoolV2';
 import ROUTES from 'constants/routes';
 import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
-import { BigNumber, ethers } from 'ethers';
+import { BigNumber, Contract, ethers } from 'ethers';
+import useLiquidityPoolV2DataQuery from 'queries/liquidityPool/useLiquidityPoolV2DataQuery';
+import useLiquidityPoolV2UserDataQuery from 'queries/liquidityPool/useLiquidityPoolV2UserDataQuery';
 import useParlayLiquidityPoolDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolDataQuery';
 import useParlayLiquidityPoolUserDataQuery from 'queries/liquidityPool/useParlayAmmLiquidityPoolUserDataQuery';
 import useSportsAmmLiquidityPoolDataQuery from 'queries/liquidityPool/useSportsAmmLiquidityPoolDataQuery';
 import useSportsAmmLiquidityPoolUserDataQuery from 'queries/liquidityPool/useSportsAmmLiquidityPoolUserDataQuery';
 import useThalesLiquidityPoolDataQuery from 'queries/liquidityPool/useThalesLiquidityPoolDataQuery';
 import useThalesLiquidityPoolUserDataQuery from 'queries/liquidityPool/useThalesLiquidityPoolUserDataQuery';
-import useStableBalanceQuery from 'queries/walletBalances.ts/useStableBalanceQuery';
+import useMultipleCollateralBalanceQuery from 'queries/walletBalances.ts/useMultipleCollateralBalanceQuery';
 import queryString from 'query-string';
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -54,19 +57,22 @@ import {
     NavContainer,
 } from 'styles/common';
 import {
+    coinParser,
+    Coins as UtilsCoins,
     formatCurrencyWithKey,
     formatCurrencyWithSign,
     formatPercentage,
-    getDefaultDecimalsForNetwork,
+    NetworkId,
 } from 'thales-utils';
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
+import { Coins } from 'types/tokens';
+import liquidityPoolV2Contract from 'utils/contracts/liquidityPoolContractV2';
 import { checkAllowance } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import { refetchLiquidityPoolData } from 'utils/queryConnector';
 import { buildHref } from 'utils/routes';
 import { delay } from 'utils/timer';
 import PnL from './PnL';
-import YourTransactions from './Transactions';
 import {
     Bottom,
     ChartsContainer,
@@ -86,32 +92,13 @@ import {
     SwitchContainer,
     Top,
 } from './styled-components';
+import YourTransactions from './Transactions';
 
 const AMMLP: React.FC = () => {
     const { t } = useTranslation();
     const location = useLocation();
     const paramTab: LiquidityPool = (queryString.parse(location.search).tab as LiquidityPool) || LiquidityPool.THALES;
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
-
-    const navItems: NavItemType[] = useMemo(() => {
-        return [
-            {
-                href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
-                title: t('amm-lp.nav.thales'),
-                active: paramTab === LiquidityPool.THALES,
-            },
-            {
-                href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
-                title: t('amm-lp.nav.overtime-single'),
-                active: paramTab === LiquidityPool.OVERTIME_SINGLE,
-            },
-            {
-                href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
-                title: t('amm-lp.nav.overtime-parlay'),
-                active: paramTab === LiquidityPool.OVERTIME_PARLAY,
-            },
-        ];
-    }, [paramTab, t]);
 
     const theme = useTheme();
     const { openConnectModal } = useConnectModal();
@@ -133,17 +120,86 @@ const AMMLP: React.FC = () => {
     const [withdrawalAmount, setWithdrawalAmount] = useState<number>(0);
     const [depositSelected, setDepositSelected] = useState(true);
 
-    const collateral = DEFAULT_COLLATERALS[networkId];
+    const navItems: NavItemType[] = useMemo(() => {
+        if (networkId === NetworkId.OptimismMainnet) {
+            return [
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
+                    title: t('amm-lp.nav.thales'),
+                    active: paramTab === LiquidityPool.THALES,
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
+                    title: t('amm-lp.nav.overtime-single'),
+                    active: paramTab === LiquidityPool.OVERTIME_SINGLE,
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
+                    title: t('amm-lp.nav.overtime-parlay'),
+                    active: paramTab === LiquidityPool.OVERTIME_PARLAY,
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_USDC}`,
+                    title: t('amm-lp.nav.overtime-usdc'),
+                    active: paramTab === LiquidityPool.OVERTIME_USDC,
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_WETH}`,
+                    title: t('amm-lp.nav.overtime-weth'),
+                    active: paramTab === LiquidityPool.OVERTIME_WETH,
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_THALES}`,
+                    title: t('amm-lp.nav.overtime-thales'),
+                    active: paramTab === LiquidityPool.OVERTIME_THALES,
+                },
+            ];
+        }
+        return [
+            {
+                href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
+                title: t('amm-lp.nav.thales'),
+                active: paramTab === LiquidityPool.THALES,
+            },
+            {
+                href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
+                title: t('amm-lp.nav.overtime-single'),
+                active: paramTab === LiquidityPool.OVERTIME_SINGLE,
+            },
+            {
+                href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
+                title: t('amm-lp.nav.overtime-parlay'),
+                active: paramTab === LiquidityPool.OVERTIME_PARLAY,
+            },
+        ];
+    }, [networkId, paramTab, t]);
 
-    const paymentTokenBalanceQuery = useStableBalanceQuery(walletAddress, networkId, {
+    const isV2Pool = useMemo(() => {
+        return (
+            paramTab === LiquidityPool.OVERTIME_USDC ||
+            paramTab === LiquidityPool.OVERTIME_WETH ||
+            paramTab === LiquidityPool.OVERTIME_THALES
+        );
+    }, [paramTab]);
+    const V2Pool =
+        isV2Pool && networkId === NetworkId.OptimismMainnet
+            ? LiquidityPoolMap[networkId][paramTab]
+            : LiquidityPoolMap[NetworkId.OptimismMainnet][LiquidityPool.OVERTIME_USDC];
+
+    const collateral =
+        isV2Pool && networkId === NetworkId.OptimismMainnet
+            ? V2Pool?.collateral || DEFAULT_COLLATERALS[networkId]
+            : DEFAULT_COLLATERALS[networkId];
+
+    const multipleCollateralBalanceQuery = useMultipleCollateralBalanceQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
     });
 
     useEffect(() => {
-        if (paymentTokenBalanceQuery.isSuccess && paymentTokenBalanceQuery.data !== undefined) {
-            setPaymentTokenBalance(paymentTokenBalanceQuery.data);
+        if (multipleCollateralBalanceQuery.isSuccess && multipleCollateralBalanceQuery.data !== undefined) {
+            setPaymentTokenBalance(Number(multipleCollateralBalanceQuery.data[collateral]));
         }
-    }, [paymentTokenBalanceQuery.isSuccess, paymentTokenBalanceQuery.data, networkId]);
+    }, [multipleCollateralBalanceQuery.isSuccess, multipleCollateralBalanceQuery.data, collateral]);
 
     const thalesLiquidityPoolDataQuery = useThalesLiquidityPoolDataQuery(networkId, {
         enabled: isAppReady && paramTab === LiquidityPool.THALES,
@@ -169,6 +225,25 @@ const AMMLP: React.FC = () => {
         enabled: isAppReady && isWalletConnected && paramTab === LiquidityPool.OVERTIME_PARLAY,
     });
 
+    const liquidityPoolV2DataQuery = useLiquidityPoolV2DataQuery(
+        V2Pool?.address || '',
+        collateral as UtilsCoins,
+        networkId,
+        {
+            enabled: isAppReady && isV2Pool,
+        }
+    );
+
+    const liquidityPoolV2UserDataQuery = useLiquidityPoolV2UserDataQuery(
+        V2Pool?.address || '',
+        collateral as UtilsCoins,
+        walletAddress,
+        networkId,
+        {
+            enabled: isAppReady && isV2Pool,
+        }
+    );
+
     const activePoolDataQuery = useMemo(() => {
         if (paramTab === LiquidityPool.THALES) {
             return thalesLiquidityPoolDataQuery;
@@ -179,7 +254,14 @@ const AMMLP: React.FC = () => {
         if (paramTab === LiquidityPool.OVERTIME_PARLAY) {
             return parlayLiquidityPoolDataQuery;
         }
-    }, [paramTab, parlayLiquidityPoolDataQuery, sportsAmmLiquidityPoolDataQuery, thalesLiquidityPoolDataQuery]);
+        return liquidityPoolV2DataQuery;
+    }, [
+        paramTab,
+        parlayLiquidityPoolDataQuery,
+        sportsAmmLiquidityPoolDataQuery,
+        thalesLiquidityPoolDataQuery,
+        liquidityPoolV2DataQuery,
+    ]);
 
     const activeUserPoolDataQuery = useMemo(() => {
         if (paramTab === LiquidityPool.THALES) {
@@ -191,7 +273,9 @@ const AMMLP: React.FC = () => {
         if (paramTab === LiquidityPool.OVERTIME_PARLAY) {
             return parlayUserLiquidityPoolDataQuery;
         }
+        return liquidityPoolV2UserDataQuery;
     }, [
+        liquidityPoolV2UserDataQuery,
         paramTab,
         parlayUserLiquidityPoolDataQuery,
         sportsAmmUserLiquidityPoolDataQuery,
@@ -199,68 +283,16 @@ const AMMLP: React.FC = () => {
     ]);
 
     useEffect(() => {
-        if (
-            thalesLiquidityPoolDataQuery.isSuccess &&
-            thalesLiquidityPoolDataQuery.data &&
-            paramTab === LiquidityPool.THALES
-        ) {
-            setLiquidityPoolData(thalesLiquidityPoolDataQuery.data);
+        if (activePoolDataQuery.isSuccess && activePoolDataQuery.data) {
+            setLiquidityPoolData(activePoolDataQuery.data);
         }
-        if (
-            sportsAmmLiquidityPoolDataQuery.isSuccess &&
-            sportsAmmLiquidityPoolDataQuery.data &&
-            paramTab === LiquidityPool.OVERTIME_SINGLE
-        ) {
-            setLiquidityPoolData(sportsAmmLiquidityPoolDataQuery.data);
-        }
-        if (
-            parlayLiquidityPoolDataQuery.isSuccess &&
-            parlayLiquidityPoolDataQuery.data &&
-            paramTab === LiquidityPool.OVERTIME_PARLAY
-        ) {
-            setLiquidityPoolData(parlayLiquidityPoolDataQuery.data);
-        }
-    }, [
-        thalesLiquidityPoolDataQuery.isSuccess,
-        thalesLiquidityPoolDataQuery.data,
-        sportsAmmLiquidityPoolDataQuery.isSuccess,
-        sportsAmmLiquidityPoolDataQuery.data,
-        parlayLiquidityPoolDataQuery.isSuccess,
-        parlayLiquidityPoolDataQuery.data,
-        paramTab,
-    ]);
+    }, [activePoolDataQuery.isSuccess, activePoolDataQuery.data]);
 
     useEffect(() => {
-        if (
-            thalesUserLiquidityPoolDataQuery.isSuccess &&
-            thalesUserLiquidityPoolDataQuery.data &&
-            paramTab === LiquidityPool.THALES
-        ) {
-            setUserLiquidityPoolData(thalesUserLiquidityPoolDataQuery.data);
+        if (activeUserPoolDataQuery.isSuccess && activeUserPoolDataQuery.data) {
+            setUserLiquidityPoolData(activeUserPoolDataQuery.data);
         }
-        if (
-            sportsAmmUserLiquidityPoolDataQuery.isSuccess &&
-            sportsAmmUserLiquidityPoolDataQuery.data &&
-            paramTab === LiquidityPool.OVERTIME_SINGLE
-        ) {
-            setUserLiquidityPoolData(sportsAmmUserLiquidityPoolDataQuery.data);
-        }
-        if (
-            parlayUserLiquidityPoolDataQuery.isSuccess &&
-            parlayUserLiquidityPoolDataQuery.data &&
-            paramTab === LiquidityPool.OVERTIME_PARLAY
-        ) {
-            setUserLiquidityPoolData(parlayUserLiquidityPoolDataQuery.data);
-        }
-    }, [
-        thalesUserLiquidityPoolDataQuery.isSuccess,
-        thalesUserLiquidityPoolDataQuery.data,
-        paramTab,
-        sportsAmmUserLiquidityPoolDataQuery.isSuccess,
-        sportsAmmUserLiquidityPoolDataQuery.data,
-        parlayUserLiquidityPoolDataQuery.isSuccess,
-        parlayUserLiquidityPoolDataQuery.data,
-    ]);
+    }, [activeUserPoolDataQuery.isSuccess, activeUserPoolDataQuery.data]);
 
     const isAmountEntered = Number(amount) > 0;
     const invalidAmount =
@@ -328,18 +360,27 @@ const AMMLP: React.FC = () => {
         if (paramTab === LiquidityPool.OVERTIME_PARLAY) {
             return networkConnector.parlayAMMLiquidityPoolContract;
         }
-    }, [paramTab]);
+        if (
+            paramTab === LiquidityPool.OVERTIME_USDC ||
+            paramTab === LiquidityPool.OVERTIME_WETH ||
+            paramTab === LiquidityPool.OVERTIME_THALES
+        ) {
+            return new Contract(
+                // @ts-ignore
+                LiquidityPoolMap[networkId][paramTab].address,
+                liquidityPoolV2Contract,
+                networkConnector.signer
+            );
+        }
+    }, [networkId, paramTab]);
 
     useEffect(() => {
-        const { signer, collateral } = networkConnector;
-        if (signer && collateral && activeLiquidityPoolContract) {
-            const collateralWithSigner = collateral.connect(signer);
+        const { signer, multipleCollateral } = networkConnector;
+        if (signer && multipleCollateral && activeLiquidityPoolContract) {
+            const collateralWithSigner = multipleCollateral[collateral as Coins]?.connect(signer);
             const getAllowance = async () => {
                 try {
-                    const parsedAmount = ethers.utils.parseUnits(
-                        Number(amount).toString(),
-                        getDefaultDecimalsForNetwork(networkId)
-                    );
+                    const parsedAmount = coinParser(Number(amount).toString(), networkId, collateral as UtilsCoins);
                     const allowance = await checkAllowance(
                         parsedAmount,
                         collateralWithSigner,
@@ -355,18 +396,27 @@ const AMMLP: React.FC = () => {
                 getAllowance();
             }
         }
-    }, [walletAddress, isWalletConnected, hasAllowance, amount, isAllowing, networkId, activeLiquidityPoolContract]);
+    }, [
+        walletAddress,
+        isWalletConnected,
+        hasAllowance,
+        amount,
+        isAllowing,
+        networkId,
+        activeLiquidityPoolContract,
+        collateral,
+    ]);
 
     const handleAllowance = async (approveAmount: BigNumber) => {
-        const { signer, collateral } = networkConnector;
-        if (signer && collateral && activeLiquidityPoolContract) {
+        const { signer, multipleCollateral } = networkConnector;
+        if (signer && multipleCollateral && activeLiquidityPoolContract) {
             const id = toast.loading(getDefaultToastContent(t('common.transaction-pending')), getLoadingToastOptions());
             setIsAllowing(true);
 
             try {
-                const collateralWithSigner = collateral.connect(signer);
+                const collateralWithSigner = multipleCollateral[collateral as Coins]?.connect(signer);
 
-                const tx = (await collateralWithSigner.approve(
+                const tx = (await collateralWithSigner?.approve(
                     activeLiquidityPoolContract.address,
                     approveAmount
                 )) as ethers.ContractTransaction;
@@ -420,10 +470,7 @@ const AMMLP: React.FC = () => {
             setIsSubmitting(true);
             try {
                 const liquidityPoolContractWithSigner = activeLiquidityPoolContract.connect(signer);
-                const parsedAmount = ethers.utils.parseUnits(
-                    Number(amount).toString(),
-                    getDefaultDecimalsForNetwork(networkId)
-                );
+                const parsedAmount = coinParser(Number(amount).toString(), networkId, collateral as UtilsCoins);
 
                 const tx = await liquidityPoolContractWithSigner.deposit(parsedAmount);
                 const txResult = await tx.wait();
@@ -582,7 +629,7 @@ const AMMLP: React.FC = () => {
         <Suspense fallback={<Loader />}>
             {!isMobile && <Line />}
             {!isMobile && (
-                <NavContainer width="40%">
+                <NavContainer width="80%">
                     <NavLinks items={navItems} />
                 </NavContainer>
             )}
@@ -622,7 +669,7 @@ const AMMLP: React.FC = () => {
             )}
             <Container>
                 <Top>
-                    <LoadingContainer isLoading={paymentTokenBalanceQuery.isLoading}>
+                    <LoadingContainer isLoading={multipleCollateralBalanceQuery.isLoading}>
                         <SwitchContainer>
                             <SwitchInput
                                 label={{
@@ -670,7 +717,7 @@ const AMMLP: React.FC = () => {
                                                 balance={
                                                     isWalletConnected
                                                         ? `${t('common.balance')}: ${formatCurrencyWithKey(
-                                                              DEFAULT_COLLATERALS[networkId],
+                                                              collateral,
                                                               paymentTokenBalance
                                                           )}`
                                                         : undefined
@@ -733,7 +780,7 @@ const AMMLP: React.FC = () => {
                                                                             }}
                                                                             values={{
                                                                                 amount: formatCurrencyWithSign(
-                                                                                    USD_SIGN,
+                                                                                    isV2Pool ? collateral : USD_SIGN,
                                                                                     userLiquidityPoolData.balanceCurrentRound
                                                                                 ),
                                                                             }}
@@ -829,7 +876,7 @@ const AMMLP: React.FC = () => {
                                                                             }}
                                                                             values={{
                                                                                 amount: formatCurrencyWithSign(
-                                                                                    USD_SIGN,
+                                                                                    isV2Pool ? collateral : USD_SIGN,
                                                                                     withdrawalAmount
                                                                                 ),
                                                                             }}
@@ -919,7 +966,7 @@ const AMMLP: React.FC = () => {
                                             <div>{t('staking.amm-lp.pool-size')}</div>
                                             <span>
                                                 {formatCurrencyWithSign(
-                                                    USD_SIGN,
+                                                    isV2Pool ? collateral : USD_SIGN,
                                                     liquidityPoolData.allocationNextRound
                                                 )}
                                             </span>
@@ -941,7 +988,7 @@ const AMMLP: React.FC = () => {
                                             </LiquidityPoolInfoLabel>
                                             <LiquidityPoolInfo>
                                                 {formatCurrencyWithSign(
-                                                    USD_SIGN,
+                                                    isV2Pool ? collateral : USD_SIGN,
                                                     userLiquidityPoolData
                                                         ? userLiquidityPoolData.balanceCurrentRound
                                                         : 0
@@ -954,7 +1001,7 @@ const AMMLP: React.FC = () => {
                                             </LiquidityPoolInfoLabel>
                                             <LiquidityPoolInfo>
                                                 {formatCurrencyWithSign(
-                                                    USD_SIGN,
+                                                    isV2Pool ? collateral : USD_SIGN,
                                                     userLiquidityPoolData ? userLiquidityPoolData.balanceTotal : 0
                                                 )}
                                             </LiquidityPoolInfo>
@@ -1058,7 +1105,7 @@ const AMMLP: React.FC = () => {
                                         <span>{t('staking.amm-lp.how-it-works.max-total-deposit')}:</span>
                                         <span>
                                             {formatCurrencyWithSign(
-                                                USD_SIGN,
+                                                isV2Pool ? collateral : USD_SIGN,
                                                 liquidityPoolData?.maxAllowedDeposit || 0,
                                                 0
                                             )}
@@ -1072,7 +1119,7 @@ const AMMLP: React.FC = () => {
                                         <span>{t('staking.amm-lp.how-it-works.minimum-deposit')}:</span>
                                         <span>
                                             {formatCurrencyWithSign(
-                                                USD_SIGN,
+                                                isV2Pool ? collateral : USD_SIGN,
                                                 liquidityPoolData?.minDepositAmount || 0,
                                                 0
                                             )}
@@ -1102,7 +1149,11 @@ const AMMLP: React.FC = () => {
                     </FlexDivColumnSpaceBetween>
                 </Bottom>
             </Container>
-            <YourTransactions liquidityPool={paramTab} currentRound={liquidityPoolData?.round || 0} />
+            <YourTransactions
+                collateral={collateral as UtilsCoins}
+                liquidityPool={paramTab}
+                currentRound={liquidityPoolData?.round || 0}
+            />
             {openApprovalModal && (
                 <ApprovalModal
                     defaultAmount={amount}
@@ -1192,6 +1243,9 @@ const TIPLinks = {
     [LiquidityPool.THALES]: LINKS.Token.TIP139,
     [LiquidityPool.OVERTIME_SINGLE]: LINKS.Token.TIP99,
     [LiquidityPool.OVERTIME_PARLAY]: LINKS.Token.TIP142,
+    [LiquidityPool.OVERTIME_USDC]: LINKS.Token.TIP142,
+    [LiquidityPool.OVERTIME_WETH]: LINKS.Token.TIP142,
+    [LiquidityPool.OVERTIME_THALES]: LINKS.Token.TIP142,
 };
 
 const BoldContent = styled.span`

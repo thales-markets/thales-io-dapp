@@ -11,6 +11,11 @@ const QUERY_KEYS = {
             networkId,
         ],
         Thales: (walletAddress: string, networkId: Network) => ['walletBalances', 'thales', walletAddress, networkId],
+        MultipleCollateral: (walletAddress: string, networkId: Network) => [
+            'multipleCollateral',
+            walletAddress,
+            networkId,
+        ],
     },
     Token: {
         PointsBreakdown: (walletAddress: string, networkId: Network) => [
@@ -146,6 +151,41 @@ const QUERY_KEYS = {
             'sportsLiquidityPool',
             'data',
             walletAddress,
+            networkId,
+        ],
+    },
+    LiquidityPoolV2: {
+        Data: (address: string, networkId: Network) => ['liquidityPool', 'data', address, networkId],
+        ParlayData: (networkId: Network) => ['liquidityPool', 'parlayData', networkId],
+        UserData: (address: string, walletAddress: string, networkId: Network) => [
+            'liquidityPool',
+            'data',
+            address,
+            walletAddress,
+            networkId,
+        ],
+        ParlayUserData: (walletAddress: string, networkId: Network) => [
+            'liquidityPool',
+            'parlayLPData',
+            walletAddress,
+            networkId,
+        ],
+        PnL: (networkId: Network, liquidityPoolAddress: string) => [
+            'liquidityPool',
+            'pnl',
+            liquidityPoolAddress,
+            networkId,
+        ],
+        Return: (networkId: Network, liquidityPoolAddress: string) => [
+            'liquidityPool',
+            'return',
+            liquidityPoolAddress,
+            networkId,
+        ],
+        UserTransactions: (networkId: Network, liquidityPoolAddress: string) => [
+            'liquidityPool',
+            'userTransactions',
+            liquidityPoolAddress,
             networkId,
         ],
     },
