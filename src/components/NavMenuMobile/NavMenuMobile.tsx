@@ -80,6 +80,21 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                         title: t('amm-lp.nav.overtime-parlay'),
                         active: location.search.includes(LiquidityPool.OVERTIME_PARLAY),
                     },
+                    {
+                        href: `${buildHref(ROUTES.AmmLP.OvertimeUSDC)}`,
+                        title: t('amm-lp.nav.overtime-usdc'),
+                        active: location.search.includes(LiquidityPool.OVERTIME_USDC),
+                    },
+                    {
+                        href: `${buildHref(ROUTES.AmmLP.OvertimeWETH)}`,
+                        title: t('amm-lp.nav.overtime-weth'),
+                        active: location.search.includes(LiquidityPool.OVERTIME_WETH),
+                    },
+                    {
+                        href: `${buildHref(ROUTES.AmmLP.OvertimeTHALES)}`,
+                        title: t('amm-lp.nav.overtime-thales'),
+                        active: location.search.includes(LiquidityPool.OVERTIME_THALES),
+                    },
                 ],
                 active: location.pathname === ROUTES.AmmLP.Home,
             },

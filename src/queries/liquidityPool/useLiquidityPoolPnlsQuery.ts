@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { generalConfig } from 'config/general';
+import { LiquidityPoolMap } from 'constants/liquidityPoolV2';
 import QUERY_KEYS from 'constants/queryKeys';
 import { API_ROUTES } from 'constants/routes';
 import { LiquidityPool } from 'enums/liquidityPool';
 import { Network } from 'enums/network';
 import { orderBy } from 'lodash';
 import { useQuery, UseQueryOptions } from 'react-query';
+import thalesData from 'thales-data';
 import { LiquidityPoolPnls } from 'types/liquidityPool';
 
 const useLiquidityPoolPnlsQuery = (
@@ -18,7 +20,17 @@ const useLiquidityPoolPnlsQuery = (
         async () => {
             try {
                 let liquidityPoolPnls = [];
-                if (pool === LiquidityPool.THALES) {
+                if (
+                    (pool === LiquidityPool.OVERTIME_USDC ||
+                        pool === LiquidityPool.OVERTIME_WETH ||
+                        pool === LiquidityPool.OVERTIME_THALES) &&
+                    networkId === Network.OptimismMainnet
+                ) {
+                    liquidityPoolPnls = await thalesData.sportMarketsV2.liquidityPoolPnls({
+                        network: networkId,
+                        liquidityPool: LiquidityPoolMap?.[networkId]?.[pool]?.address,
+                    });
+                } else if (pool === LiquidityPool.THALES) {
                     const response = await axios.get(
                         `${generalConfig.API_URL}/${API_ROUTES.DigitalOptions.LPPnls}/${networkId}`
                     );
