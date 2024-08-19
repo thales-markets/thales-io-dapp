@@ -6,7 +6,7 @@ import { FlexDiv } from 'styles/common';
 import SPAAnchor from '../SPAAnchor';
 import LINKS from 'constants/links';
 
-const IS_VISIBLE = true;
+const IS_VISIBLE = false;
 
 const Banner: React.FC = () => {
     if (!IS_VISIBLE) {
