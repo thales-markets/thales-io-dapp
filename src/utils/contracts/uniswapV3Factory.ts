@@ -4,7 +4,7 @@ const uniswapFactoryContract = {
     addresses: {
         [Network.Mainnet]: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
         [Network.OptimismMainnet]: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
-        [Network.PolygonMainnet]: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
+        [Network.OptimismSepolia]: 'TBD',
         [Network.Arbitrum]: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
         [Network.Base]: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
     },

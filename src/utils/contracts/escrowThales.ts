@@ -4,8 +4,7 @@ const escrowThales = {
     addresses: {
         [Network.Mainnet]: 'TBD',
         [Network.OptimismMainnet]: '0xa25816b9605009aa446d4d597F0AA46FD828f056',
-
-        [Network.PolygonMainnet]: 'TBD',
+        [Network.OptimismSepolia]: '0x1D825d2d976Ac113782496ab862d9dBFA78BA8E3',
         [Network.Arbitrum]: '0x391a45F31c1837E3d837c23e05F42A098329D50d',
         [Network.Base]: '0x29dfc5fee05578CD913c75fF1C7A0d315595939A',
     },
