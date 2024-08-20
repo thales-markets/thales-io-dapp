@@ -4,8 +4,8 @@ const erc20Contract = {
     addresses: {
         [Network.Mainnet]: 'TBD',
         [Network.OptimismMainnet]: '0x8c6f28f2F1A3C87F0f938b96d27520d9751ec8d9', // sUSD
-        [Network.PolygonMainnet]: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174', //USDC
-        [Network.Arbitrum]: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8', //USDCe
+        [Network.OptimismSepolia]: '0xff6535c1F971245435429A915aB9eB1713beC1C1', // exoticUSDC
+        [Network.Arbitrum]: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8', // USDCe
         [Network.Base]: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA', // USDbC
     },
     abi: [

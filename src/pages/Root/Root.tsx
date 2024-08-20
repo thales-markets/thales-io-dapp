@@ -13,7 +13,7 @@ import {
     walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 import { PLAUSIBLE } from 'constants/analytics';
-import { base } from 'constants/network';
+import { base, optimismSepolia } from 'constants/network';
 import { Network } from 'enums/network';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
@@ -32,7 +32,7 @@ interface RootProps {
 const STALL_TIMEOUT = 2000;
 
 const { chains, provider } = configureChains(
-    [optimism, arbitrum, base],
+    [optimism, arbitrum, base, optimismSepolia],
     [
         jsonRpcProvider({
             rpc: (chain) => {

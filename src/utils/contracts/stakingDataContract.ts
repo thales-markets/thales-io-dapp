@@ -4,7 +4,7 @@ const stakingDataContract = {
     addresses: {
         [Network.Mainnet]: 'TBD',
         [Network.OptimismMainnet]: '0xCc134245424fe9E10A011961451D5AD6Cd0C087C',
-        [Network.PolygonMainnet]: 'TBD',
+        [Network.OptimismSepolia]: '0x0FecC86FE9A5e88eA8220e981b45f0645e2F6973',
         [Network.Arbitrum]: '0x0D72F9DB9efD3cbd91Ec4C296A01e3Cd5155Cc31',
         [Network.Base]: '0xEB4fBF2C6939787e2b9e00C45115eF90631F637c',
     },
