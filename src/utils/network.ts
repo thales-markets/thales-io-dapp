@@ -2,7 +2,6 @@ import { ReactComponent as ArbitrumLogo } from 'assets/images/arbitrum-circle-lo
 import { ReactComponent as BaseLogo } from 'assets/images/base-circle-logo.svg';
 import { ReactComponent as EthereumLogo } from 'assets/images/ethereum-circle-logo.svg';
 import { ReactComponent as OpLogo } from 'assets/images/optimism-circle-logo.svg';
-import { ReactComponent as PolygonLogo } from 'assets/images/polygon-circle-logo.svg';
 import { L1_TO_L2_NETWORK_MAPPER, SUPPORTED_NETWORKS_PARAMS } from 'constants/network';
 import { Network } from 'enums/network';
 import { BigNumber } from 'ethers';
@@ -30,15 +29,6 @@ export const NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
             await changeNetwork(optimismNetworkParms, callback);
         },
         order: 1,
-    },
-    [Network.PolygonMainnet]: {
-        name: 'Polygon',
-        icon: PolygonLogo,
-        logoClassName: 'icon icon--polygon-logo',
-        changeNetwork: async (_networkId: number, callback?: VoidFunction) => {
-            await changeNetwork(undefined, callback);
-        },
-        order: 4,
     },
     [Network.Mainnet]: {
         name: 'Mainnet',

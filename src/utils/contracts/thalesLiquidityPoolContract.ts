@@ -4,7 +4,7 @@ const liquidityPoolContract = {
     addresses: {
         [Network.Mainnet]: 'TBD',
         [Network.OptimismMainnet]: '0xC10a0A6fF6496E0BD896F9f6da5a7B640b85ea40',
-        [Network.PolygonMainnet]: 'TBD',
+        [Network.OptimismSepolia]: 'TBD',
         [Network.Arbitrum]: '0xea4c2343Fd3C239c23Dd37dd3ee51AEc84544735',
         [Network.Base]: '0x5713ab44042D92C642444bd2F0fee9c2336F9E3b',
     },

@@ -47,21 +47,6 @@ export const InfoDiv = styled.div<{ height?: string }>`
     }
 `;
 
-export const InfoDivRewards = styled(InfoDiv)`
-    > span:nth-child(2) {
-        align-self: flex-end;
-        margin-bottom: 5px;
-        border-bottom: 1px white dotted;
-        flex: 1;
-    }
-    > span:nth-child(3) {
-        color: ${(props) => props.theme.textColor.primary};
-        text-align: right;
-        font-family: NunitoBold;
-        line-height: 155%;
-    }
-`;
-
 export const StakingButton = styled.button<{ padding?: string; disabled?: boolean; width?: string }>`
     cursor: pointer;
     color: ${(props) => props.theme.background.primary};

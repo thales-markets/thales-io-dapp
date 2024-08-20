@@ -13,7 +13,7 @@ export const CRYPTO_CURRENCY_MAP = keyBy(CRYPTO_CURRENCY);
 export const DEFAULT_COLLATERALS: Record<SupportedNetwork, Coins> = {
     [Network.Mainnet]: CRYPTO_CURRENCY_MAP.sUSD as Coins,
     [Network.OptimismMainnet]: CRYPTO_CURRENCY_MAP.sUSD as Coins,
-    [Network.PolygonMainnet]: CRYPTO_CURRENCY_MAP.USDC as Coins,
+    [Network.OptimismSepolia]: CRYPTO_CURRENCY_MAP.USDC as Coins,
     [Network.Base]: CRYPTO_CURRENCY_MAP.USDbC as Coins,
     [Network.Arbitrum]: CRYPTO_CURRENCY_MAP.USDCe as Coins,
 };
