@@ -93,13 +93,6 @@ export type UserStakingData = {
     mergeAccountEnabled: boolean;
 };
 
-export type BaseRewardsData = {
-    thalesStaked: string;
-    totalStaked: string;
-    share: string;
-    baseRewards: string;
-};
-
 type VestingScheduleItem = {
     date: number;
     amount: number | string;

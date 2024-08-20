@@ -12,7 +12,6 @@ import sportLiquidityPoolDataContract from './contracts/sportLiquidityPoolDataCo
 import sportVaultDataContract from './contracts/sportVaultDataContract';
 import stakingDataContract from './contracts/stakingDataContract';
 import stakingThalesContract from './contracts/stakingThales';
-import stakingBonusRewardsManager from './contracts/thalesAMMStakingThalesBonusRewardsManager';
 import thalesContract from './contracts/thalesContract';
 import thalesCouncilNFT from './contracts/ThalesCouncilNFT';
 import thalesLiquidityPoolContract from './contracts/thalesLiquidityPoolContract';
@@ -33,7 +32,6 @@ type networkConnector = {
     thalesLiquidityPoolDataContract?: ethers.Contract;
     sportVaultDataContract?: ethers.Contract;
     stakingThalesContract?: ethers.Contract;
-    stakingBonusRewardsManager?: ethers.Contract;
     thalesTokenContract?: ethers.Contract;
     escrowThalesContract?: ethers.Contract;
     thalesCouncilNftContract?: ethers.Contract;
@@ -75,7 +73,6 @@ const networkConnector: networkConnector = {
         );
         this.sportVaultDataContract = conditionalInitializeContract(sportVaultDataContract, contractSettings);
         this.stakingThalesContract = conditionalInitializeContract(stakingThalesContract, contractSettings);
-        this.stakingBonusRewardsManager = conditionalInitializeContract(stakingBonusRewardsManager, contractSettings);
         this.thalesTokenContract = conditionalInitializeContract(thalesContract, contractSettings);
         this.escrowThalesContract = conditionalInitializeContract(escrowThales, contractSettings);
         this.thalesCouncilNftContract = conditionalInitializeContract(thalesCouncilNFT, contractSettings);
