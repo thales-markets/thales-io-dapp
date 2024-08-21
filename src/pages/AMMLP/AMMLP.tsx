@@ -53,14 +53,9 @@ import {
     Line,
     NavContainer,
 } from 'styles/common';
-import {
-    formatCurrencyWithKey,
-    formatCurrencyWithSign,
-    formatPercentage,
-    getDefaultDecimalsForNetwork,
-} from 'thales-utils';
+import { formatCurrencyWithKey, formatCurrencyWithSign, formatPercentage } from 'thales-utils';
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
-import { checkAllowance } from 'utils/network';
+import { checkAllowance, getDefaultDecimalsForNetwork } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import { refetchLiquidityPoolData } from 'utils/queryConnector';
 import { buildHref } from 'utils/routes';

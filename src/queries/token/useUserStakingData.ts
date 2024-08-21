@@ -2,8 +2,9 @@ import { ZERO_ADDRESS } from 'constants/network';
 import { BALANCE_THRESHOLD } from 'constants/token';
 import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
-import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
+import { bigNumberFormatter } from 'thales-utils';
 import { UserStakingData } from 'types/token';
+import { getDefaultDecimalsForNetwork } from 'utils/network';
 import QUERY_KEYS from '../../constants/queryKeys';
 import networkConnector from '../../utils/networkConnector';
 
