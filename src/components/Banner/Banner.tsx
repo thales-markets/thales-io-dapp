@@ -1,12 +1,14 @@
+import { VOTING_COUNCIL_PROPOSAL_ID } from 'constants/governance';
+import { SpaceKey } from 'enums/governance';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
 import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
+import { buildGovernanceHref } from 'utils/routes';
 import SPAAnchor from '../SPAAnchor';
-import LINKS from 'constants/links';
 
-const IS_VISIBLE = false;
+const IS_VISIBLE = true;
 
 const Banner: React.FC = () => {
     if (!IS_VISIBLE) {
@@ -14,10 +16,10 @@ const Banner: React.FC = () => {
     }
 
     return (
-        <SPAAnchor href={LINKS.SpeedMarkets}>
+        <SPAAnchor href={buildGovernanceHref(SpaceKey.COUNCIL, VOTING_COUNCIL_PROPOSAL_ID)}>
             <Container>
                 <Label>
-                    {<Trans i18nKey={'common.banner.speed-banner-message'} components={{ bold: <Bold /> }} />}
+                    {<Trans i18nKey={'common.banner.elections-banner-message'} components={{ bold: <Bold /> }} />}
                 </Label>
             </Container>
         </SPAAnchor>
