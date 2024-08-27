@@ -156,7 +156,7 @@ const Transactions: React.FC<TransactionsProps> = ({ currentRound, liquidityPool
                     <UserTransactionsTable
                         collateral={collateral}
                         transactions={liquidityPoolUserTransactions}
-                        isLoading={liquidityPoolUserTransactionsQuery.isLoading}
+                        isLoading={liquidityPoolRoundTransactionsQuery.isLoading}
                         noResultsMessage={
                             noLiquidityPoolUserTransactions ? (
                                 <span>{t(`staking.amm-lp.user-transactions.no-transactions`)}</span>
