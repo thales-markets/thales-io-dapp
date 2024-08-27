@@ -2,13 +2,12 @@ import { ReactComponent as ArbitrumLogo } from 'assets/images/arbitrum-circle-lo
 import { ReactComponent as BaseLogo } from 'assets/images/base-circle-logo.svg';
 import { ReactComponent as EthereumLogo } from 'assets/images/ethereum-circle-logo.svg';
 import { ReactComponent as OpLogo } from 'assets/images/optimism-circle-logo.svg';
-import { ReactComponent as PolygonLogo } from 'assets/images/polygon-circle-logo.svg';
 import { L1_TO_L2_NETWORK_MAPPER, SUPPORTED_NETWORKS_PARAMS } from 'constants/network';
 import { Network } from 'enums/network';
 import { BigNumber } from 'ethers';
 import { hexStripZeros } from 'ethers/lib/utils.js';
 import { FunctionComponent, SVGProps } from 'react';
-import { changeNetwork } from 'thales-utils';
+import { changeNetwork, NetworkId } from 'thales-utils';
 
 type DropdownNetwork = {
     name: string;
@@ -30,15 +29,6 @@ export const NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
             await changeNetwork(optimismNetworkParms, callback);
         },
         order: 1,
-    },
-    [Network.PolygonMainnet]: {
-        name: 'Polygon',
-        icon: PolygonLogo,
-        logoClassName: 'icon icon--polygon-logo',
-        changeNetwork: async (_networkId: number, callback?: VoidFunction) => {
-            await changeNetwork(undefined, callback);
-        },
-        order: 4,
     },
     [Network.Mainnet]: {
         name: 'Mainnet',
@@ -119,4 +109,11 @@ export const checkAllowance = async (amount: BigNumber, token: any, walletAddres
         console.log(err);
         return false;
     }
+};
+
+// TODO: replace this with the one from thales-utils when sUSD is not default collateral on OP
+export const getDefaultDecimalsForNetwork = (networkId: NetworkId) => {
+    if ([NetworkId.Arbitrum, NetworkId.PolygonMainnet, NetworkId.Base, NetworkId.OptimismSepolia].includes(networkId))
+        return 6;
+    return 18;
 };

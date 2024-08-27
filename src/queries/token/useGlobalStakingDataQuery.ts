@@ -21,7 +21,7 @@ const useGlobalStakingDataQuery = (options?: UseQueryOptions<GlobalStakingData |
             try {
                 // Thales staked - Base
                 const baseAnkrProvider = new ethers.providers.JsonRpcProvider(
-                    `https://base-mainnet.chainnodes.org/${process.env.REACT_APP_CHAINNODE_PROJECT_ID}`,
+                    `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`,
                     Network.Base
                 );
 

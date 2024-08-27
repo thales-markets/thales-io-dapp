@@ -1,6 +1,6 @@
 import { Network } from 'enums/network';
 
-export type SupportedNetwork = Exclude<Network, Network.OptimismGoerli>;
+export type SupportedNetwork = Exclude<Network, Network.PolygonMainnet>;
 
 export type NetworkParams = {
     chainId: string;

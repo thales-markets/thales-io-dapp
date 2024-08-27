@@ -126,7 +126,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     const getClaimButton = () => {
         if (canClosePeriod) {
             return (
-                <StakingButton onClick={handleClosePeriod} disabled={isClosingPeriodAvailable}>
+                <StakingButton onClick={handleClosePeriod} disabled={!isClosingPeriodAvailable}>
                     {isClosingPeriod
                         ? t('staking.rewards.claim.close-period.progress-label')
                         : t('staking.rewards.claim.close-period.label')}

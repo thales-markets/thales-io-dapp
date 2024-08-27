@@ -98,4 +98,32 @@ export const base = {
     },
 } as Chain;
 
+export const optimismSepolia = {
+    id: 11155420,
+    network: 'optimisticSepolia',
+    name: 'OP Sepolia',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.optimism.io'],
+        },
+        public: {
+            http: ['https://sepolia.optimism.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://sepolia-optimism.etherscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1620204,
+        },
+    },
+    testnet: true,
+} as Chain;
+
 export const BRIDGE_SUPPORTED_NETWORKS = [Network.OptimismMainnet, Network.Arbitrum, Network.Base];

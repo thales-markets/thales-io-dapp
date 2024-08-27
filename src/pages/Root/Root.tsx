@@ -13,7 +13,7 @@ import {
     walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 import { PLAUSIBLE } from 'constants/analytics';
-import { base } from 'constants/network';
+import { base, optimismSepolia } from 'constants/network';
 import { Network } from 'enums/network';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
@@ -29,46 +29,27 @@ interface RootProps {
     store: Store;
 }
 
-type RpcProvider = {
-    ankr: string;
-    chainnode: string;
-    blast: string;
-};
-
-const CHAIN_TO_RPC_PROVIDER_NETWORK_NAME: Record<number, RpcProvider> = {
-    [Network.OptimismMainnet]: {
-        ankr: 'optimism',
-        chainnode: 'optimism-mainnet',
-        blast: 'optimism-mainnet',
-    },
-    [Network.Arbitrum]: { ankr: 'arbitrum', chainnode: 'arbitrum-one', blast: 'arbitrum-one' },
-    [Network.Base]: { ankr: 'base', chainnode: '', blast: '' },
-};
-
 const STALL_TIMEOUT = 2000;
 
 const { chains, provider } = configureChains(
-    [optimism, arbitrum, base],
+    [optimism, arbitrum, base, optimismSepolia],
     [
         jsonRpcProvider({
-            rpc: (chain) => ({
-                http:
-                    process.env.REACT_APP_PRIMARY_PROVIDER_ID === 'INFURA' && chain.id === Network.Base
-                        ? // Use Ankr as primary RPC provider on Base as Chainnode isn't available
-                          `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`
-                        : !CHAIN_TO_RPC_PROVIDER_NETWORK_NAME[chain.id]?.chainnode
-                        ? chain.rpcUrls.default.http[0]
-                        : `https://${CHAIN_TO_RPC_PROVIDER_NETWORK_NAME[chain.id].chainnode}.chainnodes.org/${
-                              process.env.REACT_APP_CHAINNODE_PROJECT_ID
-                          }`,
-            }),
+            rpc: (chain) => {
+                return {
+                    http:
+                        chain.id === Network.Base
+                            ? `https://rpc.ankr.com/base/${process.env.REACT_APP_ANKR_PROJECT_ID}`
+                            : chain.rpcUrls.default.http[0],
+                };
+            },
             stallTimeout: STALL_TIMEOUT,
             priority: 1,
         }),
         infuraProvider({
             apiKey: process.env.REACT_APP_INFURA_PROJECT_ID || '',
             stallTimeout: STALL_TIMEOUT,
-            priority: process.env.REACT_APP_PRIMARY_PROVIDER_ID === 'INFURA' ? 0 : 2,
+            priority: 0,
         }),
         publicProvider({ stallTimeout: STALL_TIMEOUT, priority: 5 }),
     ]

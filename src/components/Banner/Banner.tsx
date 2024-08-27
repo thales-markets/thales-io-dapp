@@ -1,22 +1,25 @@
+import { VOTING_COUNCIL_PROPOSAL_ID } from 'constants/governance';
+import { SpaceKey } from 'enums/governance';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
 import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
+import { buildGovernanceHref } from 'utils/routes';
 import SPAAnchor from '../SPAAnchor';
 
-const IS_VISIBLE = false;
+const IS_VISIBLE = true;
 
-const ElectionsBanner: React.FC = () => {
+const Banner: React.FC = () => {
     if (!IS_VISIBLE) {
         return <></>;
     }
 
     return (
-        <SPAAnchor href={`https://dune.com/leifu/op-incentive-program`}>
+        <SPAAnchor href={buildGovernanceHref(SpaceKey.COUNCIL, VOTING_COUNCIL_PROPOSAL_ID)}>
             <Container>
                 <Label>
-                    {<Trans i18nKey={'common.banner.rewards-banner-message'} components={{ bold: <Bold /> }} />}
+                    {<Trans i18nKey={'common.banner.elections-banner-message'} components={{ bold: <Bold /> }} />}
                 </Label>
             </Container>
         </SPAAnchor>
@@ -52,4 +55,4 @@ const Bold = styled.span`
     font-weight: bold;
 `;
 
-export default ElectionsBanner;
+export default Banner;

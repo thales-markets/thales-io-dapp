@@ -66,12 +66,3 @@ export const Item = styled.div<{ active: boolean }>`
     line-height: 18px;
     padding: 3px 0;
 `;
-
-export const Title = styled.p`
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 100%;
-    text-transform: uppercase;
-    color: ${(props) => props.theme.textColor.secondary};
-    margin-bottom: 10px;
-`;
