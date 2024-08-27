@@ -121,7 +121,7 @@ const AMMLP: React.FC = () => {
     const [depositSelected, setDepositSelected] = useState(true);
 
     const navItems: NavItemType[] = useMemo(() => {
-        if (networkId === NetworkId.OptimismMainnet) {
+        if (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum) {
             return [
                 {
                     href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
@@ -182,12 +182,13 @@ const AMMLP: React.FC = () => {
         );
     }, [paramTab]);
     const V2Pool =
-        isV2Pool && networkId === NetworkId.OptimismMainnet
+        isV2Pool && (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum)
             ? LiquidityPoolMap[networkId][paramTab]
-            : LiquidityPoolMap[NetworkId.OptimismMainnet][LiquidityPool.OVERTIME_USDC];
+            : // @ts-ignore
+              LiquidityPoolMap[networkId][LiquidityPool.OVERTIME_USDC];
 
     const collateral =
-        isV2Pool && networkId === NetworkId.OptimismMainnet
+        isV2Pool && (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum)
             ? V2Pool?.collateral || DEFAULT_COLLATERALS[networkId]
             : DEFAULT_COLLATERALS[networkId];
 
