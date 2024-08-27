@@ -925,7 +925,7 @@ const AMMLP: React.FC = () => {
                                                         }}
                                                         values={{
                                                             amount: formatCurrencyWithSign(
-                                                                USD_SIGN,
+                                                                isV2Pool ? collateral : USD_SIGN,
                                                                 userLiquidityPoolData.withdrawalAmount
                                                             ),
                                                             percentage: formatPercentage(
@@ -1039,7 +1039,7 @@ const AMMLP: React.FC = () => {
                                         }}
                                         values={{
                                             amount: formatCurrencyWithSign(
-                                                USD_SIGN,
+                                                isV2Pool ? collateral : USD_SIGN,
                                                 userLiquidityPoolData ? userLiquidityPoolData.withdrawalAmount : 0
                                             ),
                                             percentage: formatPercentage(
