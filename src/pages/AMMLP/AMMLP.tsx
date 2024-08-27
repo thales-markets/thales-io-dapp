@@ -24,6 +24,7 @@ import LINKS from 'constants/links';
 import { LiquidityPoolMap } from 'constants/liquidityPoolV2';
 import ROUTES from 'constants/routes';
 import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
+import { Network } from 'enums/network';
 import { BigNumber, Contract, ethers } from 'ethers';
 import useLiquidityPoolV2DataQuery from 'queries/liquidityPool/useLiquidityPoolV2DataQuery';
 import useLiquidityPoolV2UserDataQuery from 'queries/liquidityPool/useLiquidityPoolV2UserDataQuery';
@@ -97,7 +98,6 @@ import YourTransactions from './Transactions';
 const AMMLP: React.FC = () => {
     const { t } = useTranslation();
     const location = useLocation();
-    const paramTab: LiquidityPool = (queryString.parse(location.search).tab as LiquidityPool) || LiquidityPool.THALES;
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
 
     const theme = useTheme();
@@ -119,6 +119,16 @@ const AMMLP: React.FC = () => {
     const [isWithdrawalPercentageValid, setIsWithdrawalPercentageValid] = useState<boolean>(true);
     const [withdrawalAmount, setWithdrawalAmount] = useState<number>(0);
     const [depositSelected, setDepositSelected] = useState(true);
+
+    const locationTab = queryString.parse(location.search).tab as LiquidityPool;
+    const paramTab: LiquidityPool =
+        locationTab === LiquidityPool.OVERTIME_USDC ||
+        locationTab === LiquidityPool.OVERTIME_WETH ||
+        locationTab === LiquidityPool.OVERTIME_THALES
+            ? networkId === Network.Base
+                ? LiquidityPool.THALES
+                : locationTab || LiquidityPool.THALES
+            : locationTab;
 
     const navItems: NavItemType[] = useMemo(() => {
         if (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum) {
@@ -184,8 +194,7 @@ const AMMLP: React.FC = () => {
     const V2Pool =
         isV2Pool && (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum)
             ? LiquidityPoolMap[networkId][paramTab]
-            : // @ts-ignore
-              LiquidityPoolMap[networkId][LiquidityPool.OVERTIME_USDC];
+            : LiquidityPoolMap[NetworkId.OptimismMainnet][LiquidityPool.OVERTIME_USDC];
 
     const collateral =
         isV2Pool && (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum)
