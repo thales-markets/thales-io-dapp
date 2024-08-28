@@ -643,7 +643,7 @@ const AMMLP: React.FC = () => {
         <Suspense fallback={<Loader />}>
             {!isMobile && <Line />}
             {!isMobile && (
-                <NavContainer width="80%">
+                <NavContainer width={networkId === Network.Base ? '40%' : '80%'}>
                     <NavLinks items={navItems} />
                 </NavContainer>
             )}
