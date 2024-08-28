@@ -721,7 +721,8 @@
             "overtime-parlay": "Parlay AMM",
             "overtime-usdc": "Overtime V2 USDC",
             "overtime-weth": "Overtime V2 WETH",
-            "overtime-thales": "Overtime V2 THALES"
+            "overtime-thales": "Overtime V2 THALES",
+            "deprecated": "Deprecated, please withdraw your funds!"
         }
     },
     "header": {

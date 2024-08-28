@@ -9,7 +9,7 @@ export const Links = styled.div`
     z-index: 10;
 `;
 
-export const Item = styled.label<{ active?: boolean }>`
+export const Item = styled.label<{ active?: boolean; deprecated?: boolean }>`
     position: relative;
     font-family: Nunito !important;
     font-style: normal;
@@ -21,6 +21,8 @@ export const Item = styled.label<{ active?: boolean }>`
     text-transform: uppercase;
     cursor: pointer;
     color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.textColor.primary)};
+    text-decoration: ${(props) => (props.deprecated ? 'line-through' : 'initial')};
+    opacity: ${(props) => (props.deprecated ? '0.6' : '1')};
     @media (max-width: 1024px) {
         margin-bottom: 60px;
     }

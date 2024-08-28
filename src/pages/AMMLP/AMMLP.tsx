@@ -128,7 +128,7 @@ const AMMLP: React.FC = () => {
             ? networkId === Network.Base
                 ? LiquidityPool.THALES
                 : locationTab || LiquidityPool.THALES
-            : locationTab;
+            : locationTab || LiquidityPool.THALES;
 
     const navItems: NavItemType[] = useMemo(() => {
         if (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum) {
@@ -137,16 +137,6 @@ const AMMLP: React.FC = () => {
                     href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
                     title: t('amm-lp.nav.thales'),
                     active: paramTab === LiquidityPool.THALES,
-                },
-                {
-                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
-                    title: t('amm-lp.nav.overtime-single'),
-                    active: paramTab === LiquidityPool.OVERTIME_SINGLE,
-                },
-                {
-                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
-                    title: t('amm-lp.nav.overtime-parlay'),
-                    active: paramTab === LiquidityPool.OVERTIME_PARLAY,
                 },
                 {
                     href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_USDC}`,
@@ -163,6 +153,18 @@ const AMMLP: React.FC = () => {
                     title: t('amm-lp.nav.overtime-thales'),
                     active: paramTab === LiquidityPool.OVERTIME_THALES,
                 },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
+                    title: t('amm-lp.nav.overtime-single'),
+                    active: paramTab === LiquidityPool.OVERTIME_SINGLE,
+                    deprecated: t('amm-lp.nav.deprecated'),
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
+                    title: t('amm-lp.nav.overtime-parlay'),
+                    active: paramTab === LiquidityPool.OVERTIME_PARLAY,
+                    deprecated: t('amm-lp.nav.deprecated'),
+                },
             ];
         }
         return [
@@ -175,11 +177,13 @@ const AMMLP: React.FC = () => {
                 href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
                 title: t('amm-lp.nav.overtime-single'),
                 active: paramTab === LiquidityPool.OVERTIME_SINGLE,
+                deprecated: t('amm-lp.nav.deprecated'),
             },
             {
                 href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
                 title: t('amm-lp.nav.overtime-parlay'),
                 active: paramTab === LiquidityPool.OVERTIME_PARLAY,
+                deprecated: t('amm-lp.nav.deprecated'),
             },
         ];
     }, [networkId, paramTab, t]);
@@ -1131,7 +1135,7 @@ const AMMLP: React.FC = () => {
                                             {formatCurrencyWithSign(
                                                 isV2Pool ? collateral : USD_SIGN,
                                                 liquidityPoolData?.minDepositAmount || 0,
-                                                0
+                                                1
                                             )}
                                         </span>
                                     </InfoDiv>
