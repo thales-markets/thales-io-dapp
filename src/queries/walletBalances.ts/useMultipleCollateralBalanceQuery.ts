@@ -36,7 +36,6 @@ const useMultipleCollateralBalanceQuery = (
                     multipleCollateral
                         ? multipleCollateral[CRYPTO_CURRENCY_MAP.WETH as Coins]?.balanceOf(walletAddress)
                         : undefined,
-                    networkConnector.provider ? networkConnector.provider.getBalance(walletAddress) : undefined,
                     multipleCollateral
                         ? multipleCollateral[CRYPTO_CURRENCY_MAP.THALES as Coins]?.balanceOf(walletAddress)
                         : undefined,
