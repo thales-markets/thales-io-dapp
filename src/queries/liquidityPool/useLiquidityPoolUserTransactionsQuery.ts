@@ -27,7 +27,7 @@ const useLiquidityPoolUserTransactionsQuery = (
                     (pool === LiquidityPool.OVERTIME_USDC ||
                         pool === LiquidityPool.OVERTIME_WETH ||
                         pool === LiquidityPool.OVERTIME_THALES) &&
-                    networkId === Network.OptimismMainnet
+                    (networkId === Network.OptimismMainnet || networkId === Network.Arbitrum)
                 ) {
                     liquidityPoolUserTransactions = (
                         await thalesData.sportMarketsV2.liquidityPoolUserTransactions({
