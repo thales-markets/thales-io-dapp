@@ -58,6 +58,7 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
     font-family: NunitoExtraBold;
     font-size: 13px;
     text-transform: uppercase;
+    margin-top: 5px;
     width: ${(props) => props.width || 'auto'};
     &:disabled {
         opacity: 0.5;
