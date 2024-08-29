@@ -206,7 +206,7 @@ const AccPreferences: React.FC = () => {
                 setIsMerging(false);
             }
         } catch (e) {
-            toast.update(id, getErrorToastOptions(t('acc-preferences.delegate.confirmation-message'), id));
+            toast.update(id, getErrorToastOptions(t('common.errors.unknown-error-try-again'), id));
             setIsMerging(false);
         }
     };
@@ -224,13 +224,7 @@ const AccPreferences: React.FC = () => {
             const txResult = await tx.wait();
 
             if (txResult && txResult.transactionHash) {
-                toast.update(
-                    id,
-                    getSuccessToastOptions(
-                        t('thales-token.gamified-staking.merge-account.delegation-confirmation-message'),
-                        id
-                    )
-                );
+                toast.update(id, getSuccessToastOptions(t('acc-preferences.merge.confirmation-message'), id));
                 setDelegateDestAddress('');
                 setIsDelegating(false);
             }
@@ -264,7 +258,7 @@ const AccPreferences: React.FC = () => {
         }
         return (
             <StakingButton padding="5px 30px" disabled={isMergingButtonDisabled} onClick={handleMerge}>
-                {!isMerging ? t('staking.acc-preferences.merge.merging') : t('staking.acc-preferences.merge.merge')}
+                {isMerging ? t('staking.acc-preferences.merge.merging') : t('staking.acc-preferences.merge.merge')}
             </StakingButton>
         );
     };
@@ -303,7 +297,7 @@ const AccPreferences: React.FC = () => {
 
         return (
             <StakingButton padding="5px 30px" disabled={isDelegateButtonDisabled} onClick={handleDelegate}>
-                {!isDelegating
+                {isDelegating
                     ? t('staking.acc-preferences.delegate.delegating')
                     : t('staking.acc-preferences.delegate.delegate')}
             </StakingButton>
