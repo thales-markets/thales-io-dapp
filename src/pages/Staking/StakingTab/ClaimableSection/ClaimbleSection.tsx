@@ -124,15 +124,6 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     };
 
     const getClaimButton = () => {
-        if (canClosePeriod) {
-            return (
-                <StakingButton onClick={handleClosePeriod} disabled={!isClosingPeriodAvailable}>
-                    {isClosingPeriod
-                        ? t('staking.rewards.claim.close-period.progress-label')
-                        : t('staking.rewards.claim.close-period.label')}
-                </StakingButton>
-            );
-        }
         if (!isWalletConnected) {
             return <StakingButton onClick={openConnectModal}>{t('common.wallet.connect-your-wallet')}</StakingButton>;
         }
@@ -154,6 +145,25 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                 {isClaiming ? t('staking.rewards.claim.claiming') : t('staking.rewards.claim.claim-rewards')}
             </StakingButton>
         );
+    };
+
+    const getClosePeriodButton = () => {
+        if (canClosePeriod) {
+            return (
+                <StakingButton
+                    onClick={handleClosePeriod}
+                    disabled={!isClosingPeriodAvailable}
+                    style={{
+                        alignSelf: 'end',
+                        width: isClaimed ? 'auto' : '165px',
+                    }}
+                >
+                    {isClosingPeriod
+                        ? t('staking.rewards.claim.close-period.progress-label')
+                        : t('staking.rewards.claim.close-period.label')}
+                </StakingButton>
+            );
+        }
     };
 
     return (
@@ -321,13 +331,20 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                     />
                                 </FlexDivCentered>
                                 {getClaimButton()}
+                                {getClosePeriodButton()}
                             </CompoundContainer>
                         </ClaimSection>
                     )}
                     {isClaimed && (
-                        <IconContainer>
-                            <Lottie animationData={coinsAnimation} style={{ height: '150px' }} />
-                        </IconContainer>
+                        <CompoundContainer>
+                            <IconContainer>
+                                <Lottie
+                                    animationData={coinsAnimation}
+                                    style={{ height: canClosePeriod ? '100px' : '150px' }}
+                                />
+                            </IconContainer>
+                            {getClosePeriodButton()}
+                        </CompoundContainer>
                     )}
                     <CompoundModal
                         rewards={userStakingData?.feeRewards || 0}
