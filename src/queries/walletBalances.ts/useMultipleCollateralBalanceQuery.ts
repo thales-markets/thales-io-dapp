@@ -27,8 +27,8 @@ const useMultipleCollateralBalanceQuery = (
                 }
 
                 const [sUSDBalance, USDCBalance, WETHBalance, THALESBalance] = await Promise.all([
-                    multipleCollateral
-                        ? multipleCollateral[CRYPTO_CURRENCY_MAP.sUSD as Coins]?.balanceOf(walletAddress)
+                    multipleCollateral?.[CRYPTO_CURRENCY_MAP.sUSD as Coins]?.address
+                        ? multipleCollateral?.[CRYPTO_CURRENCY_MAP.sUSD as Coins]?.balanceOf(walletAddress)
                         : undefined,
                     multipleCollateral
                         ? multipleCollateral[CRYPTO_CURRENCY_MAP.USDC as Coins]?.balanceOf(walletAddress)
