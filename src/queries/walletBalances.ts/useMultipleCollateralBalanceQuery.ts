@@ -23,21 +23,36 @@ const useMultipleCollateralBalanceQuery = (
                         WETH: 0,
                         USDC: 0,
                         THALES: 0,
+                        USDCe: 0,
+                        USDbC: 0,
                     };
                 }
 
-                const [sUSDBalance, USDCBalance, WETHBalance, THALESBalance] = await Promise.all([
+                const [
+                    sUSDBalance,
+                    USDCBalance,
+                    WETHBalance,
+                    THALESBalance,
+                    USDCeBalance,
+                    USDbCBalance,
+                ] = await Promise.all([
                     multipleCollateral?.[CRYPTO_CURRENCY_MAP.sUSD as Coins]?.address
                         ? multipleCollateral?.[CRYPTO_CURRENCY_MAP.sUSD as Coins]?.balanceOf(walletAddress)
                         : undefined,
-                    multipleCollateral
+                    multipleCollateral?.[CRYPTO_CURRENCY_MAP.USDC as Coins]?.address
                         ? multipleCollateral[CRYPTO_CURRENCY_MAP.USDC as Coins]?.balanceOf(walletAddress)
                         : undefined,
-                    multipleCollateral
+                    multipleCollateral?.[CRYPTO_CURRENCY_MAP.WETH as Coins]?.address
                         ? multipleCollateral[CRYPTO_CURRENCY_MAP.WETH as Coins]?.balanceOf(walletAddress)
                         : undefined,
-                    multipleCollateral
+                    multipleCollateral?.[CRYPTO_CURRENCY_MAP.THALES as Coins]?.address
                         ? multipleCollateral[CRYPTO_CURRENCY_MAP.THALES as Coins]?.balanceOf(walletAddress)
+                        : undefined,
+                    multipleCollateral?.[CRYPTO_CURRENCY_MAP.USDCe as Coins]?.address
+                        ? multipleCollateral[CRYPTO_CURRENCY_MAP.USDCe as Coins]?.balanceOf(walletAddress)
+                        : undefined,
+                    multipleCollateral?.[CRYPTO_CURRENCY_MAP.USDbC as Coins]?.address
+                        ? multipleCollateral[CRYPTO_CURRENCY_MAP.USDbC as Coins]?.balanceOf(walletAddress)
                         : undefined,
                 ]);
 
@@ -46,6 +61,8 @@ const useMultipleCollateralBalanceQuery = (
                     USDC: USDCBalance ? bigNumberFormatter(USDCBalance, COLLATERAL_DECIMALS.USDC) : 0,
                     WETH: WETHBalance ? bigNumberFormatter(WETHBalance, COLLATERAL_DECIMALS.WETH) : 0,
                     THALES: THALESBalance ? bigNumberFormatter(THALESBalance, COLLATERAL_DECIMALS.THALES) : 0,
+                    USDCe: USDCeBalance ? bigNumberFormatter(USDCeBalance, COLLATERAL_DECIMALS.USDCe) : 0,
+                    USDbC: USDbCBalance ? bigNumberFormatter(USDbCBalance, COLLATERAL_DECIMALS.USDbC) : 0,
                 };
             } catch (e) {
                 console.log('e ', e);
