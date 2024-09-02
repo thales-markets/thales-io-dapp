@@ -1,10 +1,13 @@
 import { Provider } from '@wagmi/core';
 import { ethers, Signer } from 'ethers';
+import { Coins } from 'types/tokens';
 import celerBridgeContract from './contracts/celerBridgeContract';
 import collateralContract from './contracts/collateralContract';
 import escrowThales from './contracts/escrowThales';
 import { gelatoContract } from './contracts/gelatoContract';
+import liquidityPoolDataV2Contract from './contracts/liquidityPoolDataContractV2';
 import lpStakingRewardsContract from './contracts/lpStakingRewardsContract';
+import multipleCollateral from './contracts/multipleCollateralContract';
 import parlayAMMLiquidityPoolContract from './contracts/parlayAMMLiquidityPoolContract';
 import parlayAMMLiquidityPoolDataContract from './contracts/parlayAMMLiquidityPoolDataContract';
 import sportLiquidityPoolContract from './contracts/sportLiquidityPoolContract';
@@ -30,6 +33,7 @@ type networkConnector = {
     parlayAMMLiquidityPoolDataContract?: ethers.Contract;
     thalesLiquidityPoolContract?: ethers.Contract;
     thalesLiquidityPoolDataContract?: ethers.Contract;
+    liquidityPoolDataV2Contract?: ethers.Contract;
     sportVaultDataContract?: ethers.Contract;
     stakingThalesContract?: ethers.Contract;
     thalesTokenContract?: ethers.Contract;
@@ -39,6 +43,7 @@ type networkConnector = {
     gelatoContract?: ethers.Contract;
     celerBridgeContract?: ethers.Contract;
     uniswapFactoryContract?: ethers.Contract;
+    multipleCollateral?: Record<Coins, ethers.Contract | undefined>;
     setContractSettings: (contractSettings: any) => void;
 };
 
@@ -71,6 +76,7 @@ const networkConnector: networkConnector = {
             thalesLiquidityPoolDataContract,
             contractSettings
         );
+        this.liquidityPoolDataV2Contract = conditionalInitializeContract(liquidityPoolDataV2Contract, contractSettings);
         this.sportVaultDataContract = conditionalInitializeContract(sportVaultDataContract, contractSettings);
         this.stakingThalesContract = conditionalInitializeContract(stakingThalesContract, contractSettings);
         this.thalesTokenContract = conditionalInitializeContract(thalesContract, contractSettings);
@@ -80,6 +86,19 @@ const networkConnector: networkConnector = {
         this.gelatoContract = conditionalInitializeContract(gelatoContract, contractSettings);
         this.celerBridgeContract = conditionalInitializeContract(celerBridgeContract, contractSettings);
         this.uniswapFactoryContract = conditionalInitializeContract(uniswapFactoryContract, contractSettings);
+        this.multipleCollateral = {
+            sUSD: conditionalInitializeContract(multipleCollateral.sUSD, contractSettings),
+            DAI: conditionalInitializeContract(multipleCollateral.DAI, contractSettings),
+            USDC: conditionalInitializeContract(multipleCollateral.USDC, contractSettings),
+            USDCe: conditionalInitializeContract(multipleCollateral.USDCe, contractSettings),
+            USDT: conditionalInitializeContract(multipleCollateral.USDT, contractSettings),
+            OP: conditionalInitializeContract(multipleCollateral.OP, contractSettings),
+            WETH: conditionalInitializeContract(multipleCollateral.WETH, contractSettings),
+            ETH: conditionalInitializeContract(multipleCollateral.ETH, contractSettings),
+            ARB: conditionalInitializeContract(multipleCollateral.ARB, contractSettings),
+            USDbC: conditionalInitializeContract(multipleCollateral.USDbC, contractSettings),
+            THALES: conditionalInitializeContract(multipleCollateral.THALES, contractSettings),
+        };
     },
 };
 

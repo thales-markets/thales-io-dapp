@@ -28,6 +28,18 @@ export const BREADCRUMBS_DROPDOWN_ITEMS = {
             i18label: 'amm-lp.nav.overtime-parlay',
             route: ROUTES.AmmLP.ParlayAMM,
         },
+        {
+            i18label: 'amm-lp.nav.overtime-usdc',
+            route: ROUTES.AmmLP.OvertimeUSDC,
+        },
+        {
+            i18label: 'amm-lp.nav.overtime-weth',
+            route: ROUTES.AmmLP.OvertimeWETH,
+        },
+        {
+            i18label: 'amm-lp.nav.overtime-thales',
+            route: ROUTES.AmmLP.OvertimeTHALES,
+        },
     ],
     Token: [
         {

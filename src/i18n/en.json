@@ -608,6 +608,21 @@
                     "subtitle": "How Parlay AMM LP works",
                     "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Parlay Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Parlay AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
                 },
+                "overtime-usdc": {
+                    "title": "PROVIDE LIQUIDITY FOR SPORTS OVERTIME USDC AMM",
+                    "subtitle": "How Overtime USDC AMM LP works",
+                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Overtime Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Overtime AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
+                },
+                "overtime-weth": {
+                    "title": "PROVIDE LIQUIDITY FOR OVERTIME WETH AMM",
+                    "subtitle": "How Overtime WETH AMM LP works",
+                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Overtime Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Overtime AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
+                },
+                "overtime-thales": {
+                    "title": "PROVIDE LIQUIDITY FOR OVERTIME THALES AMM",
+                    "subtitle": "How Overtime THALES AMM LP works",
+                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Overtime Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Overtime AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
+                },
                 "variables": "Variables",
                 "limits": "Limits and specifications",
                 "max-total-deposit": "Max total deposit",
@@ -703,7 +718,11 @@
         "nav": {
             "thales": "Thales AMM",
             "overtime-single": "Sports AMM",
-            "overtime-parlay": "Parlay AMM"
+            "overtime-parlay": "Parlay AMM",
+            "overtime-usdc": "Overtime V2 USDC",
+            "overtime-weth": "Overtime V2 WETH",
+            "overtime-thales": "Overtime V2 THALES",
+            "deprecated": "Deprecated, please withdraw your funds!"
         }
     },
     "header": {
