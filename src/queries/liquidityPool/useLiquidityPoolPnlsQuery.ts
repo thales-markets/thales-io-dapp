@@ -9,6 +9,7 @@ import { orderBy } from 'lodash';
 import { useQuery, UseQueryOptions } from 'react-query';
 import thalesData from 'thales-data';
 import { LiquidityPoolPnls } from 'types/liquidityPool';
+import { hasV2Pools } from 'utils/network';
 
 const useLiquidityPoolPnlsQuery = (
     networkId: Network,
@@ -24,11 +25,13 @@ const useLiquidityPoolPnlsQuery = (
                     (pool === LiquidityPool.OVERTIME_USDC ||
                         pool === LiquidityPool.OVERTIME_WETH ||
                         pool === LiquidityPool.OVERTIME_THALES) &&
-                    networkId === Network.OptimismMainnet
+                    hasV2Pools(networkId)
                 ) {
                     liquidityPoolPnls = await thalesData.sportMarketsV2.liquidityPoolPnls({
                         network: networkId,
-                        liquidityPool: LiquidityPoolMap?.[networkId]?.[pool]?.address,
+                        liquidityPool:
+                            LiquidityPoolMap?.[networkId as Network.Arbitrum | Network.OptimismMainnet]?.[pool]
+                                ?.address,
                     });
                 } else if (pool === LiquidityPool.THALES) {
                     const response = await axios.get(

@@ -9,6 +9,7 @@ import { useQuery, UseQueryOptions } from 'react-query';
 import thalesData from 'thales-data';
 import { coinFormatter, Coins } from 'thales-utils';
 import { LiquidityPoolUserTransaction, LiquidityPoolUserTransactions } from 'types/liquidityPool';
+import { hasV2Pools } from 'utils/network';
 
 const useLiquidityPoolUserTransactionsQuery = (
     networkId: Network,
@@ -27,12 +28,14 @@ const useLiquidityPoolUserTransactionsQuery = (
                     (pool === LiquidityPool.OVERTIME_USDC ||
                         pool === LiquidityPool.OVERTIME_WETH ||
                         pool === LiquidityPool.OVERTIME_THALES) &&
-                    (networkId === Network.OptimismMainnet || networkId === Network.Arbitrum)
+                    hasV2Pools(networkId)
                 ) {
                     liquidityPoolUserTransactions = (
                         await thalesData.sportMarketsV2.liquidityPoolUserTransactions({
                             network: networkId,
-                            liquidityPool: LiquidityPoolMap?.[networkId]?.[pool]?.address,
+                            liquidityPool:
+                                LiquidityPoolMap?.[networkId as Network.Arbitrum | Network.OptimismMainnet]?.[pool]
+                                    ?.address,
                         })
                     ).map((tx: LiquidityPoolUserTransaction) => ({
                         ...tx,

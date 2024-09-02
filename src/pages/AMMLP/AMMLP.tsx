@@ -68,7 +68,7 @@ import {
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
 import { Coins } from 'types/tokens';
 import liquidityPoolV2Contract from 'utils/contracts/liquidityPoolContractV2';
-import { checkAllowance } from 'utils/network';
+import { checkAllowance, hasV2Pools } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import { refetchLiquidityPoolData } from 'utils/queryConnector';
 import { buildHref } from 'utils/routes';
@@ -196,8 +196,8 @@ const AMMLP: React.FC = () => {
         );
     }, [paramTab]);
     const V2Pool =
-        isV2Pool && (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum)
-            ? LiquidityPoolMap[networkId][paramTab]
+        isV2Pool && hasV2Pools(networkId)
+            ? LiquidityPoolMap[networkId as Network.Arbitrum | Network.OptimismMainnet][paramTab]
             : LiquidityPoolMap[NetworkId.OptimismMainnet][LiquidityPool.OVERTIME_USDC];
 
     const collateral =

@@ -117,3 +117,5 @@ export const getDefaultDecimalsForNetwork = (networkId: NetworkId) => {
         return 6;
     return 18;
 };
+
+export const hasV2Pools = (network: Network) => network === Network.Arbitrum || network === Network.OptimismMainnet;
