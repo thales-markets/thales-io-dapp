@@ -1,6 +1,5 @@
 import { LiquidityPool } from 'enums/liquidityPool';
-import { NetworkId } from 'thales-utils';
-import { Coins } from 'types/tokens';
+import { Coins, NetworkId } from 'thales-utils';
 import { CRYPTO_CURRENCY_MAP } from './currency';
 
 export const LiquidityPoolMap: Record<

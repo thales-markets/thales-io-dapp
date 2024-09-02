@@ -1,6 +1,6 @@
 import { Provider } from '@wagmi/core';
 import { ethers, Signer } from 'ethers';
-import { Coins } from 'types/tokens';
+import { Coins } from 'thales-utils';
 import celerBridgeContract from './contracts/celerBridgeContract';
 import collateralContract from './contracts/collateralContract';
 import escrowThales from './contracts/escrowThales';
@@ -98,6 +98,7 @@ const networkConnector: networkConnector = {
             ARB: conditionalInitializeContract(multipleCollateral.ARB, contractSettings),
             USDbC: conditionalInitializeContract(multipleCollateral.USDbC, contractSettings),
             THALES: conditionalInitializeContract(multipleCollateral.THALES, contractSettings),
+            sTHALES: conditionalInitializeContract(multipleCollateral.sTHALES, contractSettings),
         };
     },
 };

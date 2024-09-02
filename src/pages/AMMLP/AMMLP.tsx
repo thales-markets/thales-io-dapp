@@ -59,14 +59,14 @@ import {
 } from 'styles/common';
 import {
     coinParser,
-    Coins as UtilsCoins,
+    Coins,
     formatCurrencyWithKey,
     formatCurrencyWithSign,
     formatPercentage,
     NetworkId,
+    Coins as UtilsCoins,
 } from 'thales-utils';
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
-import { Coins } from 'types/tokens';
 import liquidityPoolV2Contract from 'utils/contracts/liquidityPoolContractV2';
 import { checkAllowance, hasV2Pools } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
