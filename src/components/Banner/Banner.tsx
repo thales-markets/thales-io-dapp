@@ -8,7 +8,7 @@ import { FlexDiv } from 'styles/common';
 import { buildGovernanceHref } from 'utils/routes';
 import SPAAnchor from '../SPAAnchor';
 
-const IS_VISIBLE = true;
+const IS_VISIBLE = false;
 
 const Banner: React.FC = () => {
     if (!IS_VISIBLE) {

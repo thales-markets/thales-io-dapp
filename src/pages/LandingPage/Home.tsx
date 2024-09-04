@@ -64,6 +64,7 @@ const Home: React.FC = () => {
         return (
             duneStats.TVLStats.overtimeParlayTVL +
             duneStats.TVLStats.overtimeSingleTVL +
+            duneStats.TVLStats.overtimeV2TVL +
             duneStats.TVLStats.speedMarketsTVL +
             duneStats.TVLStats.thalesLpTVL +
             duneStats.TVLStats.vaultsTVL +
