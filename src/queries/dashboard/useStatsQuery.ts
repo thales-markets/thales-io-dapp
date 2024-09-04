@@ -34,6 +34,7 @@ const useStatsQuery = (options?: UseQueryOptions<AllStats>) => {
                         overtimeSingleTVL: stats.overtime_single_lp_tvl,
                         overtimeParlayTVL: stats.overtime_parlay_lp_tvl,
                         stakingThalesTVL: stats.staking_thales_tvl,
+                        overtimeV2TVL: stats.overtime_v2_tvl,
                     },
                 };
             } catch (e) {
@@ -62,6 +63,7 @@ const useStatsQuery = (options?: UseQueryOptions<AllStats>) => {
                     overtimeSingleTVL: 0,
                     overtimeParlayTVL: 0,
                     stakingThalesTVL: 0,
+                    overtimeV2TVL: 0,
                 },
             };
         },
