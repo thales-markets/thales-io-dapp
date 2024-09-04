@@ -5,6 +5,9 @@ const ROUTES = {
         Home: '/amm-lp',
         SportsAMM: '/amm-lp?tab=sports-amm',
         ParlayAMM: '/amm-lp?tab=parlay-amm',
+        OvertimeUSDC: '/amm-lp?tab=overtime-usdc',
+        OvertimeWETH: '/amm-lp?tab=overtime-weth',
+        OvertimeTHALES: '/amm-lp?tab=overtime-thales',
     },
     Token: {
         Staking: {

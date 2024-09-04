@@ -22,6 +22,7 @@ export type TVLStats = {
     overtimeSingleTVL: number;
     overtimeParlayTVL: number;
     stakingThalesTVL: number;
+    overtimeV2TVL: number;
 };
 
 export type AllStats = {

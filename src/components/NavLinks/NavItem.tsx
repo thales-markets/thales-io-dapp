@@ -7,6 +7,7 @@ export type NavItemType = {
     href?: string;
     title: string;
     active?: boolean;
+    deprecated?: string;
     children?: NavItemType[];
 };
 
@@ -24,6 +25,8 @@ const NavItem: React.FC<NavItemProps> = ({ item }) => {
                     onMouseEnter={() => setDropdownVisible(true)}
                     onMouseLeave={() => setDropdownVisible(false)}
                     active={active}
+                    deprecated={!!item.deprecated}
+                    title={item.deprecated}
                 >
                     <span>{item.title}</span>
                     {item.children && <Icon active={active} className={`icon icon--caret-down`} />}

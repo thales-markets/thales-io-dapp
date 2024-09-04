@@ -1,13 +1,13 @@
 import { Network } from 'enums/network';
 import keyBy from 'lodash/keyBy';
-import { Coins } from 'thales-utils/src/types/tokens';
+import { Coins } from 'thales-utils';
 import { SupportedNetwork } from 'types/network';
 
 export const THALES_CURRENCY = 'THALES';
 export const USD_SIGN = '$';
 export const LP_TOKEN = 'LP Token';
 
-const CRYPTO_CURRENCY = ['OP', 'DAI', 'USDCe', 'USDC', 'USDbC', 'USDT', 'sUSD'];
+const CRYPTO_CURRENCY = ['OP', 'DAI', 'USDCe', 'USDC', 'USDbC', 'USDT', 'sUSD', 'WETH', 'THALES'];
 export const CRYPTO_CURRENCY_MAP = keyBy(CRYPTO_CURRENCY);
 
 export const DEFAULT_COLLATERALS: Record<SupportedNetwork, Coins> = {

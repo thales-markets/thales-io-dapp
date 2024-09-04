@@ -1,15 +1,20 @@
 import axios from 'axios';
 import { generalConfig } from 'config/general';
+import { LiquidityPoolMap } from 'constants/liquidityPoolV2';
 import QUERY_KEYS from 'constants/queryKeys';
 import { API_ROUTES } from 'constants/routes';
 import { LiquidityPool } from 'enums/liquidityPool';
 import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
-import { LiquidityPoolUserTransactions } from 'types/liquidityPool';
+import thalesData from 'thales-data';
+import { coinFormatter, Coins } from 'thales-utils';
+import { LiquidityPoolUserTransaction, LiquidityPoolUserTransactions } from 'types/liquidityPool';
+import { hasV2Pools } from 'utils/network';
 
 const useLiquidityPoolUserTransactionsQuery = (
     networkId: Network,
     pool: LiquidityPool,
+    collateral: Coins,
     account?: string,
     round?: number,
     options?: UseQueryOptions<LiquidityPoolUserTransactions>
@@ -19,7 +24,24 @@ const useLiquidityPoolUserTransactionsQuery = (
         async () => {
             try {
                 let liquidityPoolUserTransactions = [];
-                if (pool === LiquidityPool.THALES) {
+                if (
+                    (pool === LiquidityPool.OVERTIME_USDC ||
+                        pool === LiquidityPool.OVERTIME_WETH ||
+                        pool === LiquidityPool.OVERTIME_THALES) &&
+                    hasV2Pools(networkId)
+                ) {
+                    liquidityPoolUserTransactions = (
+                        await thalesData.sportMarketsV2.liquidityPoolUserTransactions({
+                            network: networkId,
+                            liquidityPool:
+                                LiquidityPoolMap?.[networkId as Network.Arbitrum | Network.OptimismMainnet]?.[pool]
+                                    ?.address,
+                        })
+                    ).map((tx: LiquidityPoolUserTransaction) => ({
+                        ...tx,
+                        amount: coinFormatter(tx.amount || 0, networkId, collateral),
+                    }));
+                } else if (pool === LiquidityPool.THALES) {
                     const response = await axios.get(
                         `${generalConfig.API_URL}/${API_ROUTES.DigitalOptions.LPTransactions}/${networkId}?${
                             round ? `round=${round}` : ''

@@ -1,4 +1,5 @@
 export type LiquidityPoolData = {
+    collateral?: string;
     round: number;
     roundEndTime: number;
     liquidityPoolStarted: boolean;
@@ -15,7 +16,7 @@ export type LiquidityPoolData = {
     paused: boolean;
     lifetimePnl: number;
     roundLength: number;
-    stakedThalesMultiplier: number;
+    stakedThalesMultiplier?: number;
 };
 
 export type UserLiquidityPoolData = {
