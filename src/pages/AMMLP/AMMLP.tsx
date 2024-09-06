@@ -364,6 +364,14 @@ const AMMLP: React.FC = () => {
 
     const isPartialWithdrawalDisabled = isRequestWithdrawalButtonDisabled || withdrawAll;
 
+    const isDeprecatedLP =
+        (networkId == Network.Arbitrum || networkId == Network.OptimismMainnet) &&
+        (paramTab == LiquidityPool.OVERTIME_PARLAY || paramTab == LiquidityPool.OVERTIME_SINGLE);
+
+    useEffect(() => {
+        if (isDeprecatedLP) setDepositSelected(false);
+    }, [isDeprecatedLP]);
+
     const activeLiquidityPoolContract = useMemo(() => {
         if (paramTab === LiquidityPool.THALES) {
             return networkConnector.thalesLiquidityPoolContract;
@@ -647,6 +655,7 @@ const AMMLP: React.FC = () => {
                     <NavLinks items={navItems} />
                 </NavContainer>
             )}
+
             {liquidityPoolPaused ? (
                 <RoundInfoContainer>
                     <RoundInfo>{t('staking.amm-lp.liquidity-pool-paused-message')}</RoundInfo>
@@ -683,6 +692,7 @@ const AMMLP: React.FC = () => {
             )}
             <Container>
                 <Top>
+                    {isDeprecatedLP && <DeprecatedWarning>{t('amm-lp.nav.deprecated')}</DeprecatedWarning>}
                     <LoadingContainer isLoading={multipleCollateralBalanceQuery.isLoading}>
                         <SwitchContainer>
                             <SwitchInput
@@ -694,6 +704,7 @@ const AMMLP: React.FC = () => {
                                 borderColor={theme.borderColor.secondary}
                                 dotBackground={theme.textColor.secondary}
                                 dotSize="20px"
+                                disabled={isDeprecatedLP}
                                 active={!depositSelected}
                                 handleClick={() => setDepositSelected(!depositSelected)}
                             />
@@ -1346,4 +1357,8 @@ const WithdrawalContainer = styled.div`
     align-self: center;
 `;
 
+const DeprecatedWarning = styled(FlexDivCentered)`
+    margin: 10px 0px;
+    width: 100%;
+`;
 export default AMMLP;
