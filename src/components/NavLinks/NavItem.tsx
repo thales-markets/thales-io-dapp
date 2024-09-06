@@ -1,4 +1,5 @@
 import SPAAnchor from 'components/SPAAnchor';
+import Tooltip from 'components/Tooltip';
 import React, { useState } from 'react';
 import { FlexDivCentered } from 'styles/common';
 import { DropdownContainer, DropdownItem, Icon, Item } from './styled-components';
@@ -29,6 +30,9 @@ const NavItem: React.FC<NavItemProps> = ({ item }) => {
                     title={item.deprecated}
                 >
                     <span>{item.title}</span>
+                    {item?.deprecated && (
+                        <Tooltip overlay={<span>{item?.deprecated}</span>} iconFontSize={14} marginLeft={3} top={2} />
+                    )}
                     {item.children && <Icon active={active} className={`icon icon--caret-down`} />}
                     {item.children && dropdownVisible && (
                         <DropdownContainer>

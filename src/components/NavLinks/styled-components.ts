@@ -10,6 +10,9 @@ export const Links = styled.div`
 `;
 
 export const Item = styled.label<{ active?: boolean; deprecated?: boolean }>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     font-family: Nunito !important;
     font-style: normal;
