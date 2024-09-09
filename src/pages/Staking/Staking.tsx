@@ -1,6 +1,6 @@
 import Loader from 'components/Loader';
-import NavLinks from 'components/NavLinks';
 import { NavItemType } from 'components/NavLinks/NavItem';
+import TabLinks from 'components/TabLinks';
 import ROUTES from 'constants/routes';
 import { STAKING_TABS } from 'constants/token';
 import queryString from 'query-string';
@@ -49,7 +49,7 @@ const Staking: React.FC = () => {
             {!isMobile && <Line />}
             {!isMobile && (
                 <NavContainer>
-                    <NavLinks items={navItems} />
+                    <TabLinks items={navItems} />
                 </NavContainer>
             )}
             <CCIPAnimation />
