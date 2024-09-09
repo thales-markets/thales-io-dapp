@@ -7,9 +7,9 @@ import RadioButton from 'components/fields/RadioButton';
 import Loader from 'components/Loader';
 import LoadingContainer from 'components/LoadingContainer';
 import { NavItemType } from 'components/NavLinks/NavItem';
-import NavLinks from 'components/NavLinks/NavLinks';
 import SPAAnchor from 'components/SPAAnchor';
 import SwitchInput from 'components/SwitchInput';
+import TabLinks from 'components/TabLinks';
 import TimeRemaining from 'components/TimeRemaining';
 import {
     getDefaultToastContent,
@@ -364,6 +364,12 @@ const AMMLP: React.FC = () => {
 
     const isPartialWithdrawalDisabled = isRequestWithdrawalButtonDisabled || withdrawAll;
 
+    const isDeprecatedLP = paramTab == LiquidityPool.OVERTIME_PARLAY || paramTab == LiquidityPool.OVERTIME_SINGLE;
+
+    useEffect(() => {
+        setDepositSelected(!isDeprecatedLP);
+    }, [isDeprecatedLP]);
+
     const activeLiquidityPoolContract = useMemo(() => {
         if (paramTab === LiquidityPool.THALES) {
             return networkConnector.thalesLiquidityPoolContract;
@@ -644,9 +650,10 @@ const AMMLP: React.FC = () => {
             {!isMobile && <Line />}
             {!isMobile && (
                 <NavContainer width={networkId === Network.Base ? '40%' : '80%'}>
-                    <NavLinks items={navItems} />
+                    <TabLinks items={navItems} />
                 </NavContainer>
             )}
+
             {liquidityPoolPaused ? (
                 <RoundInfoContainer>
                     <RoundInfo>{t('staking.amm-lp.liquidity-pool-paused-message')}</RoundInfo>
@@ -683,6 +690,7 @@ const AMMLP: React.FC = () => {
             )}
             <Container>
                 <Top>
+                    {isDeprecatedLP && <DeprecatedWarning>{t('amm-lp.nav.deprecated')}</DeprecatedWarning>}
                     <LoadingContainer isLoading={multipleCollateralBalanceQuery.isLoading}>
                         <SwitchContainer>
                             <SwitchInput
@@ -694,6 +702,7 @@ const AMMLP: React.FC = () => {
                                 borderColor={theme.borderColor.secondary}
                                 dotBackground={theme.textColor.secondary}
                                 dotSize="20px"
+                                disabled={isDeprecatedLP}
                                 active={!depositSelected}
                                 handleClick={() => setDepositSelected(!depositSelected)}
                             />
@@ -1346,4 +1355,7 @@ const WithdrawalContainer = styled.div`
     align-self: center;
 `;
 
+const DeprecatedWarning = styled(FlexDivCentered)`
+    width: 100%;
+`;
 export default AMMLP;

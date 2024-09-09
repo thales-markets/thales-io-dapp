@@ -22,11 +22,11 @@ const NavItem: React.FC<NavItemProps> = ({ item }) => {
         <SPAAnchor href={item.href}>
             <FlexDivCentered>
                 <Item
-                    onMouseEnter={() => setDropdownVisible(true)}
-                    onMouseLeave={() => setDropdownVisible(false)}
                     active={active}
                     deprecated={!!item.deprecated}
                     title={item.deprecated}
+                    onMouseEnter={() => setDropdownVisible(true)}
+                    onMouseLeave={() => setDropdownVisible(false)}
                 >
                     <span>{item.title}</span>
                     {item.children && <Icon active={active} className={`icon icon--caret-down`} />}
