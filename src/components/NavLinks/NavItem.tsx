@@ -1,8 +1,7 @@
 import SPAAnchor from 'components/SPAAnchor';
-import Tooltip from 'components/Tooltip';
 import React, { useState } from 'react';
 import { FlexDivCentered } from 'styles/common';
-import { DropdownContainer, DropdownItem, Icon, Item, ItemTitle } from './styled-components';
+import { DropdownContainer, DropdownItem, Icon, Item } from './styled-components';
 
 export type NavItemType = {
     href?: string;
@@ -23,28 +22,16 @@ const NavItem: React.FC<NavItemProps> = ({ item }) => {
         <SPAAnchor href={item.href}>
             <FlexDivCentered>
                 <Item
-                    onMouseEnter={() => setDropdownVisible(true)}
                     active={active}
                     deprecated={!!item.deprecated}
                     title={item.deprecated}
+                    onMouseEnter={() => setDropdownVisible(true)}
+                    onMouseLeave={() => setDropdownVisible(false)}
                 >
-                    <ItemTitle>
-                        <span>{item.title}</span>
-                        {item?.deprecated && (
-                            <Tooltip
-                                overlay={<span>{item?.deprecated}</span>}
-                                iconFontSize={14}
-                                marginLeft={3}
-                                top={2}
-                            />
-                        )}
-                    </ItemTitle>
+                    <span>{item.title}</span>
                     {item.children && <Icon active={active} className={`icon icon--caret-down`} />}
                     {item.children && dropdownVisible && (
-                        <DropdownContainer
-                            onMouseEnter={() => setDropdownVisible(true)}
-                            onMouseLeave={() => setDropdownVisible(false)}
-                        >
+                        <DropdownContainer>
                             {item.children.map((child, index) => {
                                 return (
                                     <SPAAnchor key={index} href={child.href}>

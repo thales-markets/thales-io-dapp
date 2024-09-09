@@ -7,9 +7,9 @@ import RadioButton from 'components/fields/RadioButton';
 import Loader from 'components/Loader';
 import LoadingContainer from 'components/LoadingContainer';
 import { NavItemType } from 'components/NavLinks/NavItem';
-import NavLinks from 'components/NavLinks/NavLinks';
 import SPAAnchor from 'components/SPAAnchor';
 import SwitchInput from 'components/SwitchInput';
+import TabLinks from 'components/TabLinks';
 import TimeRemaining from 'components/TimeRemaining';
 import {
     getDefaultToastContent,
@@ -367,7 +367,7 @@ const AMMLP: React.FC = () => {
     const isDeprecatedLP = paramTab == LiquidityPool.OVERTIME_PARLAY || paramTab == LiquidityPool.OVERTIME_SINGLE;
 
     useEffect(() => {
-        isDeprecatedLP ? setDepositSelected(false) : setDepositSelected(true);
+        setDepositSelected(!isDeprecatedLP);
     }, [isDeprecatedLP]);
 
     const activeLiquidityPoolContract = useMemo(() => {
@@ -650,7 +650,7 @@ const AMMLP: React.FC = () => {
             {!isMobile && <Line />}
             {!isMobile && (
                 <NavContainer width={networkId === Network.Base ? '40%' : '80%'}>
-                    <NavLinks items={navItems} />
+                    <TabLinks items={navItems} />
                 </NavContainer>
             )}
 
