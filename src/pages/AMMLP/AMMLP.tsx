@@ -367,7 +367,7 @@ const AMMLP: React.FC = () => {
     const isDeprecatedLP = paramTab == LiquidityPool.OVERTIME_PARLAY || paramTab == LiquidityPool.OVERTIME_SINGLE;
 
     useEffect(() => {
-        if (isDeprecatedLP) setDepositSelected(false);
+        isDeprecatedLP ? setDepositSelected(false) : setDepositSelected(true);
     }, [isDeprecatedLP]);
 
     const activeLiquidityPoolContract = useMemo(() => {
