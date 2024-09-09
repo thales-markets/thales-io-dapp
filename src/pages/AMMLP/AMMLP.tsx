@@ -364,9 +364,7 @@ const AMMLP: React.FC = () => {
 
     const isPartialWithdrawalDisabled = isRequestWithdrawalButtonDisabled || withdrawAll;
 
-    const isDeprecatedLP =
-        (networkId == Network.Arbitrum || networkId == Network.OptimismMainnet) &&
-        (paramTab == LiquidityPool.OVERTIME_PARLAY || paramTab == LiquidityPool.OVERTIME_SINGLE);
+    const isDeprecatedLP = paramTab == LiquidityPool.OVERTIME_PARLAY || paramTab == LiquidityPool.OVERTIME_SINGLE;
 
     useEffect(() => {
         if (isDeprecatedLP) setDepositSelected(false);
