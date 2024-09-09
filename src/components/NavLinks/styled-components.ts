@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FlexDiv } from 'styles/common';
 
 export const Links = styled.div`
     display: flex;
@@ -9,7 +10,8 @@ export const Links = styled.div`
     z-index: 10;
 `;
 
-export const Item = styled.label<{ active?: boolean; deprecated?: boolean }>`
+export const Item = styled.div<{ active?: boolean; deprecated?: boolean }>`
+    display: flex;
     position: relative;
     font-family: Nunito !important;
     font-style: normal;
@@ -40,10 +42,12 @@ export const DropdownContainer = styled.div`
     width: max-content;
     border-radius: 8px;
     position: absolute;
+    top: 30px;
     padding: 7px;
     background: ${(props) => props.theme.background.primary};
     box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
     transform: translateX(-25%);
+    z-index: 3;
 `;
 
 export const DropdownItem = styled.div<{ active?: boolean }>`
@@ -54,4 +58,9 @@ export const DropdownItem = styled.div<{ active?: boolean }>`
     &:hover {
         background: ${(props) => props.theme.background.quaternary};
     }
+`;
+
+export const ItemTitle = styled(FlexDiv)`
+    align-items: center;
+    justify-content: center;
 `;
