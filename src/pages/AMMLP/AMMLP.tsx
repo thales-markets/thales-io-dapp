@@ -1356,7 +1356,6 @@ const WithdrawalContainer = styled.div`
 `;
 
 const DeprecatedWarning = styled(FlexDivCentered)`
-    margin: 10px 0px;
     width: 100%;
 `;
 export default AMMLP;
