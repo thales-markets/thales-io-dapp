@@ -1,3 +1,4 @@
+import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { SpaceKey } from 'enums/governance';
 import { createBrowserHistory, createHashHistory } from 'history';
@@ -19,5 +20,8 @@ export const navigateToGovernance = (spaceKey?: SpaceKey, id?: string, replacePa
 
 export const buildGovernanceHref = (spaceKey?: SpaceKey, id?: string) =>
     `${ifIpfsDeployment ? '#' : ''}${ROUTES.DAO.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`;
+
+export const buildSpeedMarketsBannerHref = () =>
+    `${LINKS.SpeedMarkets}/speed-markets?utm_source=internal&utm_medium=thales_banner&utm_campaign=speed_markets_sep_2024`;
 
 export { history };
