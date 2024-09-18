@@ -10,6 +10,8 @@ const filters = [
     TransactionFilterEnum.CLAIM_STAKING_REWARDS,
     TransactionFilterEnum.START_UNSTAKE,
     TransactionFilterEnum.CANCEL_UNSTAKE,
+    TransactionFilterEnum.OVERTIME_TRADE,
+    TransactionFilterEnum.OVERTIME_CLAIM,
 ];
 
 const YourTransactions: React.FC<{ width?: string; height?: string }> = ({ width, height }) => {

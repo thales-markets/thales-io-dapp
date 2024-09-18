@@ -277,7 +277,9 @@
                 "lpClaimStakingRewards": "Claim LP staking rewards",
                 "mergeAccount": "Merge account",
                 "delegateVolume": "Delegate Volume",
-                "removeDelegation": "Remove Delegation"
+                "removeDelegation": "Remove Delegation",
+                "overtimeTrade": "Overtime Trade",
+                "overtimeClaim": "Overtime Claim"
             },
             "filter": {
                 "button": "Filter",
