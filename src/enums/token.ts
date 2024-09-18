@@ -18,4 +18,6 @@ export enum TransactionFilterEnum {
     MERGE_ACCOUNT = 'mergeAccount',
     DELEGATE_VOLUME = 'delegateVolume',
     REMOVE_DELEGATION = 'removeDelegation',
+    OVERTIME_TRADE = 'overtimeTrade',
+    OVERTIME_CLAIM = 'overtimeClaim',
 }
