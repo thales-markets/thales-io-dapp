@@ -1153,7 +1153,9 @@
             "unstake": "Unstake",
             "startunstake": "Start unstake",
             "cancelunstake": "Cancel unstake",
-            "claimstakingrewards": "Claim rewards"
+            "claimstakingrewards": "Claim rewards",
+            "overtimetrade": "Overtime Trade",
+            "overtimeclaim": "Overtime Claim"
         },
         "vesting": {
             "all": "All",
