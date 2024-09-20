@@ -62,9 +62,9 @@ const CloseIcon = styled.i`
 
 const toastBasicProperties = {
     position: 'top-right' as ToastPosition,
-    autoClose: 7000, // 7s
+    autoClose: 4000, // 4s
     hideProgressBar: false,
-    closeOnClick: false,
+    closeOnClick: true,
     pauseOnHover: true,
     progress: undefined,
     isLoading: false,
