@@ -1,7 +1,7 @@
 {
     "short_name": "Thales Protocol",
     "name": "Thales Protocol",
-    "description": "A description of what your app does",
+    "description": "Thales Protocol provides decentralized, on-chain market making and liquidity for probability-based markets like Digital Options and Sports, using oracle data for secure and efficient trading. Trade and provide liquidity with ease on a globally accessible AMM platform.",
     "iconPath": "logo.svg",
     "icons": [
         {
