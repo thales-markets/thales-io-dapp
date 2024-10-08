@@ -758,6 +758,7 @@ const multipleCollateral = {
     sUSD: {
         addresses: {
             [Network.OptimismMainnet]: '0x8c6f28f2F1A3C87F0f938b96d27520d9751ec8d9', // sUSD
+            [Network.OptimismSepolia]: '',
             [Network.Arbitrum]: '',
             [Network.Base]: '',
         },
@@ -766,6 +767,7 @@ const multipleCollateral = {
     DAI: {
         addresses: {
             [Network.OptimismMainnet]: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1',
+            [Network.OptimismSepolia]: '',
             [Network.Arbitrum]: '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1',
             [Network.Base]: '',
         },
@@ -774,6 +776,7 @@ const multipleCollateral = {
     USDCe: {
         addresses: {
             [Network.OptimismMainnet]: '0x7F5c764cBc14f9669B88837ca1490cCa17c31607',
+            [Network.OptimismSepolia]: '',
             [Network.Arbitrum]: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8',
             [Network.Base]: '',
         },
@@ -782,6 +785,7 @@ const multipleCollateral = {
     USDC: {
         addresses: {
             [Network.OptimismMainnet]: '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85',
+            [Network.OptimismSepolia]: '',
             [Network.Arbitrum]: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
             [Network.Base]: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
         },
@@ -790,6 +794,7 @@ const multipleCollateral = {
     USDT: {
         addresses: {
             [Network.OptimismMainnet]: '0x94b008aA00579c1307B0EF2c499aD98a8ce58e58',
+            [Network.OptimismSepolia]: '',
             [Network.Arbitrum]: '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9',
             [Network.Base]: '',
         },
@@ -798,6 +803,7 @@ const multipleCollateral = {
     OP: {
         addresses: {
             [Network.OptimismMainnet]: '0x4200000000000000000000000000000000000042',
+            [Network.OptimismSepolia]: '',
             [Network.Arbitrum]: '',
             [Network.Base]: '',
         },
@@ -807,6 +813,7 @@ const multipleCollateral = {
         addresses: {
             [Network.OptimismMainnet]: '',
             [Network.Arbitrum]: '0x912CE59144191C1204E64559FE8253a0e49E6548',
+            [Network.OptimismSepolia]: '',
             [Network.Base]: '',
         },
         abi,
@@ -814,6 +821,7 @@ const multipleCollateral = {
     WETH: {
         addresses: {
             [Network.OptimismMainnet]: '0x4200000000000000000000000000000000000006',
+            [Network.OptimismSepolia]: '',
             [Network.Arbitrum]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
             [Network.Base]: '0x4200000000000000000000000000000000000006',
         },
@@ -822,6 +830,7 @@ const multipleCollateral = {
     ETH: {
         addresses: {
             [Network.OptimismMainnet]: ZERO_ADDRESS,
+            [Network.OptimismSepolia]: ZERO_ADDRESS,
             [Network.Arbitrum]: ZERO_ADDRESS,
             [Network.Base]: ZERO_ADDRESS,
         },
@@ -830,6 +839,7 @@ const multipleCollateral = {
     USDbC: {
         addresses: {
             [Network.OptimismMainnet]: '',
+            [Network.OptimismSepolia]: '',
             [Network.Arbitrum]: '',
             [Network.Base]: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
         },
@@ -838,6 +848,7 @@ const multipleCollateral = {
     THALES: {
         addresses: {
             [Network.OptimismMainnet]: '0x217d47011b23bb961eb6d93ca9945b7501a5bb11',
+            [Network.OptimismSepolia]: '0xeC60249ee888FFdE5Ee09920C9644A904D4f49de',
             [Network.Arbitrum]: '0xe85b662fe97e8562f4099d8a1d5a92d4b453bf30',
             [Network.Base]: '0xf34e0cff046e154cafcae502c7541b9e5fd8c249',
         },
@@ -846,9 +857,9 @@ const multipleCollateral = {
     sTHALES: {
         addresses: {
             [Network.OptimismMainnet]: '0x217d47011b23bb961eb6d93ca9945b7501a5bb11',
+            [Network.OptimismSepolia]: '0xeC60249ee888FFdE5Ee09920C9644A904D4f49de',
             [Network.Arbitrum]: '0xe85b662fe97e8562f4099d8a1d5a92d4b453bf30',
             [Network.Base]: '0xf34e0cff046e154cafcae502c7541b9e5fd8c249',
-            [Network.OptimismSepolia]: '0xeC60249ee888FFdE5Ee09920C9644A904D4f49de',
         },
         abi,
     },
