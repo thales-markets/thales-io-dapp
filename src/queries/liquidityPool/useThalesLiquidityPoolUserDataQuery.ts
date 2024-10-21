@@ -1,18 +1,19 @@
 import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
-import { bigNumberFormatter } from 'thales-utils';
+import { bigNumberFormatter, coinFormatter, Coins } from 'thales-utils';
 import { UserLiquidityPoolData } from 'types/liquidityPool';
-import { getDefaultDecimalsForNetwork } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import QUERY_KEYS from '../../constants/queryKeys';
 
 const useThalesLiquidityPoolUserDataQuery = (
+    address: string,
+    collateral: Coins,
     walletAddress: string,
     networkId: Network,
     options?: UseQueryOptions<UserLiquidityPoolData | undefined>
 ) => {
     return useQuery<UserLiquidityPoolData | undefined>(
-        QUERY_KEYS.ThalesLiquidityPool.UserData(walletAddress, networkId),
+        QUERY_KEYS.ThalesLiquidityPool.UserData(address, walletAddress, networkId),
         async () => {
             const userLiquidityPoolData: UserLiquidityPoolData = {
                 balanceCurrentRound: 0,
@@ -29,12 +30,11 @@ const useThalesLiquidityPoolUserDataQuery = (
                 withdrawalAmount: 0,
             };
 
-            const decimals = getDefaultDecimalsForNetwork(networkId);
             try {
-                const { thalesLiquidityPoolContract, thalesLiquidityPoolDataContract } = networkConnector;
-                if (thalesLiquidityPoolContract && thalesLiquidityPoolDataContract) {
+                const { thalesLiquidityPoolDataContract } = networkConnector;
+                if (thalesLiquidityPoolDataContract) {
                     const contractUserLiquidityPoolData = await thalesLiquidityPoolDataContract.getUserLiquidityPoolData(
-                        thalesLiquidityPoolContract.address,
+                        address,
                         walletAddress
                     );
 
@@ -44,13 +44,15 @@ const useThalesLiquidityPoolUserDataQuery = (
                     );
                     userLiquidityPoolData.isPartialWithdrawalRequested = userLiquidityPoolData.withdrawalShare > 0;
 
-                    userLiquidityPoolData.balanceCurrentRound = bigNumberFormatter(
+                    userLiquidityPoolData.balanceCurrentRound = coinFormatter(
                         contractUserLiquidityPoolData.balanceCurrentRound,
-                        decimals
+                        networkId,
+                        collateral
                     );
-                    userLiquidityPoolData.balanceNextRound = bigNumberFormatter(
+                    userLiquidityPoolData.balanceNextRound = coinFormatter(
                         contractUserLiquidityPoolData.balanceNextRound,
-                        decimals
+                        networkId,
+                        collateral
                     );
                     userLiquidityPoolData.withdrawalAmount = userLiquidityPoolData.isWithdrawalRequested
                         ? userLiquidityPoolData.isPartialWithdrawalRequested
@@ -65,14 +67,16 @@ const useThalesLiquidityPoolUserDataQuery = (
 
                     userLiquidityPoolData.hasDepositForCurrentRound = userLiquidityPoolData.balanceCurrentRound > 0;
                     userLiquidityPoolData.hasDepositForNextRound = userLiquidityPoolData.balanceNextRound > 0;
-                    userLiquidityPoolData.maxDeposit = bigNumberFormatter(
+                    userLiquidityPoolData.maxDeposit = coinFormatter(
                         contractUserLiquidityPoolData.maxDeposit,
-                        decimals
+                        networkId,
+                        collateral
                     );
                     userLiquidityPoolData.stakedThales = bigNumberFormatter(contractUserLiquidityPoolData.stakedThales);
-                    userLiquidityPoolData.availableToDeposit = bigNumberFormatter(
+                    userLiquidityPoolData.availableToDeposit = coinFormatter(
                         contractUserLiquidityPoolData.availableToDeposit,
-                        decimals
+                        networkId,
+                        collateral
                     );
 
                     return userLiquidityPoolData;

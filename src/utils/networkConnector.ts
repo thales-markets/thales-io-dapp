@@ -19,6 +19,7 @@ import thalesContract from './contracts/thalesContract';
 import thalesCouncilNFT from './contracts/ThalesCouncilNFT';
 import thalesLiquidityPoolContract from './contracts/thalesLiquidityPoolContract';
 import thalesLiquidityPoolDataContract from './contracts/thalesLiquidityPoolDataContract';
+import thalesLiquidityPoolDeprecatedContract from './contracts/thalesLiquidityPoolDeprecatedContract';
 import uniswapFactoryContract from './contracts/uniswapV3Factory';
 
 type networkConnector = {
@@ -32,6 +33,7 @@ type networkConnector = {
     parlayAMMLiquidityPoolContract?: ethers.Contract;
     parlayAMMLiquidityPoolDataContract?: ethers.Contract;
     thalesLiquidityPoolContract?: ethers.Contract;
+    thalesLiquidityPoolDeprecatedContract?: ethers.Contract;
     thalesLiquidityPoolDataContract?: ethers.Contract;
     liquidityPoolDataV2Contract?: ethers.Contract;
     sportVaultDataContract?: ethers.Contract;
@@ -72,6 +74,10 @@ const networkConnector: networkConnector = {
             contractSettings
         );
         this.thalesLiquidityPoolContract = conditionalInitializeContract(thalesLiquidityPoolContract, contractSettings);
+        this.thalesLiquidityPoolDeprecatedContract = conditionalInitializeContract(
+            thalesLiquidityPoolDeprecatedContract,
+            contractSettings
+        );
         this.thalesLiquidityPoolDataContract = conditionalInitializeContract(
             thalesLiquidityPoolDataContract,
             contractSettings

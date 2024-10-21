@@ -10,6 +10,7 @@ export enum LiquidityPoolPnlType {
 
 export enum LiquidityPool {
     THALES = 'thales-amm',
+    THALES_DEPRECATED = 'thales-amm-susd',
     OVERTIME_SINGLE = 'sports-amm',
     OVERTIME_PARLAY = 'parlay-amm',
     OVERTIME_USDC = 'overtime-usdc',

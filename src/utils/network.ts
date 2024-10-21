@@ -7,7 +7,7 @@ import { Network } from 'enums/network';
 import { BigNumber } from 'ethers';
 import { hexStripZeros } from 'ethers/lib/utils.js';
 import { FunctionComponent, SVGProps } from 'react';
-import { changeNetwork, NetworkId } from 'thales-utils';
+import { changeNetwork } from 'thales-utils';
 
 type DropdownNetwork = {
     name: string;
@@ -109,13 +109,6 @@ export const checkAllowance = async (amount: BigNumber, token: any, walletAddres
         console.log(err);
         return false;
     }
-};
-
-// TODO: replace this with the one from thales-utils when sUSD is not default collateral on OP
-export const getDefaultDecimalsForNetwork = (networkId: NetworkId) => {
-    if ([NetworkId.Arbitrum, NetworkId.PolygonMainnet, NetworkId.Base, NetworkId.OptimismSepolia].includes(networkId))
-        return 6;
-    return 18;
 };
 
 export const hasV2Pools = (network: Network) => network === Network.Arbitrum || network === Network.OptimismMainnet;

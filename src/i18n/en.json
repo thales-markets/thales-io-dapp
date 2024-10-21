@@ -600,6 +600,11 @@
                     "subtitle": "How Thales AMM LP works",
                     "description": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Digital Options Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Thales AMM Liquidity Pool. <tip>TIP-139</tip> document provides detailed technical information on this process."
                 },
+                "thales-amm-susd": {
+                    "title": "PROVIDE LIQUIDITY FOR DIGITAL OPTIONS AMM",
+                    "subtitle": "How Thales AMM LP works",
+                    "description": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Digital Options Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Thales AMM Liquidity Pool. <tip>TIP-139</tip> document provides detailed technical information on this process."
+                },
                 "sports-amm": {
                     "title": "PROVIDE LIQUIDITY FOR SPORTS SINGLES AMM",
                     "subtitle": "How Sports AMM LP works",
@@ -719,6 +724,7 @@
     "amm-lp": {
         "nav": {
             "thales": "Thales AMM",
+            "thales-susd": "Thales AMM sUSD",
             "overtime-single": "Sports AMM",
             "overtime-parlay": "Parlay AMM",
             "overtime-usdc": "Overtime V2 USDC",
