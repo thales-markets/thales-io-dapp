@@ -19,9 +19,9 @@ import {
 } from 'components/ToastMessage/ToastMessage';
 import Tooltip from 'components/Tooltip';
 import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
-import { DEFAULT_COLLATERALS, USD_SIGN } from 'constants/currency';
+import { USD_SIGN } from 'constants/currency';
 import LINKS from 'constants/links';
-import { LiquidityPoolMap } from 'constants/liquidityPoolV2';
+import { LiquidityPoolMap, ThalesLiquidityPoolMap } from 'constants/liquidityPoolV2';
 import ROUTES from 'constants/routes';
 import { LiquidityPool, LiquidityPoolPnlType } from 'enums/liquidityPool';
 import { Network } from 'enums/network';
@@ -68,6 +68,7 @@ import {
 } from 'thales-utils';
 import { LiquidityPoolData, UserLiquidityPoolData } from 'types/liquidityPool';
 import liquidityPoolV2Contract from 'utils/contracts/liquidityPoolContractV2';
+import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance, hasV2Pools } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import { refetchLiquidityPoolData } from 'utils/queryConnector';
@@ -131,7 +132,49 @@ const AMMLP: React.FC = () => {
             : locationTab || LiquidityPool.THALES;
 
     const navItems: NavItemType[] = useMemo(() => {
-        if (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum) {
+        if (networkId === NetworkId.OptimismMainnet) {
+            return [
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
+                    title: t('amm-lp.nav.thales'),
+                    active: paramTab === LiquidityPool.THALES,
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES_DEPRECATED}`,
+                    title: t('amm-lp.nav.thales-susd'),
+                    active: paramTab === LiquidityPool.THALES_DEPRECATED,
+                    deprecated: t('amm-lp.nav.deprecated'),
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_USDC}`,
+                    title: t('amm-lp.nav.overtime-usdc'),
+                    active: paramTab === LiquidityPool.OVERTIME_USDC,
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_WETH}`,
+                    title: t('amm-lp.nav.overtime-weth'),
+                    active: paramTab === LiquidityPool.OVERTIME_WETH,
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_THALES}`,
+                    title: t('amm-lp.nav.overtime-thales'),
+                    active: paramTab === LiquidityPool.OVERTIME_THALES,
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_SINGLE}`,
+                    title: t('amm-lp.nav.overtime-single'),
+                    active: paramTab === LiquidityPool.OVERTIME_SINGLE,
+                    deprecated: t('amm-lp.nav.deprecated'),
+                },
+                {
+                    href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.OVERTIME_PARLAY}`,
+                    title: t('amm-lp.nav.overtime-parlay'),
+                    active: paramTab === LiquidityPool.OVERTIME_PARLAY,
+                    deprecated: t('amm-lp.nav.deprecated'),
+                },
+            ];
+        }
+        if (networkId === NetworkId.Arbitrum) {
             return [
                 {
                     href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
@@ -195,15 +238,26 @@ const AMMLP: React.FC = () => {
             paramTab === LiquidityPool.OVERTIME_THALES
         );
     }, [paramTab]);
+
+    const isThalesPool = useMemo(() => {
+        return paramTab === LiquidityPool.THALES || paramTab === LiquidityPool.THALES_DEPRECATED;
+    }, [paramTab]);
+
+    const defaultCollateral = getDefaultCollateral(networkId, paramTab === LiquidityPool.THALES_DEPRECATED);
+
     const V2Pool =
         isV2Pool && hasV2Pools(networkId)
             ? LiquidityPoolMap[networkId as Network.Arbitrum | Network.OptimismMainnet][paramTab]
             : LiquidityPoolMap[NetworkId.OptimismMainnet][LiquidityPool.OVERTIME_USDC];
 
+    const thalesPool = isThalesPool
+        ? ThalesLiquidityPoolMap[networkId as Network.Arbitrum | Network.OptimismMainnet | Network.Base][paramTab]
+        : ThalesLiquidityPoolMap[NetworkId.OptimismMainnet][LiquidityPool.THALES];
+
     const collateral =
         isV2Pool && (networkId === NetworkId.OptimismMainnet || networkId === NetworkId.Arbitrum)
-            ? V2Pool?.collateral || DEFAULT_COLLATERALS[networkId]
-            : DEFAULT_COLLATERALS[networkId];
+            ? V2Pool?.collateral || defaultCollateral
+            : defaultCollateral;
 
     const multipleCollateralBalanceQuery = useMultipleCollateralBalanceQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
@@ -215,13 +269,24 @@ const AMMLP: React.FC = () => {
         }
     }, [multipleCollateralBalanceQuery.isSuccess, multipleCollateralBalanceQuery.data, collateral]);
 
-    const thalesLiquidityPoolDataQuery = useThalesLiquidityPoolDataQuery(networkId, {
-        enabled: isAppReady && paramTab === LiquidityPool.THALES,
-    });
+    const thalesLiquidityPoolDataQuery = useThalesLiquidityPoolDataQuery(
+        thalesPool?.address || '',
+        collateral as UtilsCoins,
+        networkId,
+        {
+            enabled: isAppReady && isThalesPool,
+        }
+    );
 
-    const thalesUserLiquidityPoolDataQuery = useThalesLiquidityPoolUserDataQuery(walletAddress, networkId, {
-        enabled: isAppReady && isWalletConnected && paramTab === LiquidityPool.THALES,
-    });
+    const thalesUserLiquidityPoolDataQuery = useThalesLiquidityPoolUserDataQuery(
+        thalesPool?.address || '',
+        collateral as UtilsCoins,
+        walletAddress,
+        networkId,
+        {
+            enabled: isAppReady && isWalletConnected && isThalesPool,
+        }
+    );
 
     const sportsAmmLiquidityPoolDataQuery = useSportsAmmLiquidityPoolDataQuery(networkId, {
         enabled: isAppReady && paramTab === LiquidityPool.OVERTIME_SINGLE,
@@ -259,7 +324,7 @@ const AMMLP: React.FC = () => {
     );
 
     const activePoolDataQuery = useMemo(() => {
-        if (paramTab === LiquidityPool.THALES) {
+        if (isThalesPool) {
             return thalesLiquidityPoolDataQuery;
         }
         if (paramTab === LiquidityPool.OVERTIME_SINGLE) {
@@ -270,15 +335,16 @@ const AMMLP: React.FC = () => {
         }
         return liquidityPoolV2DataQuery;
     }, [
+        isThalesPool,
         paramTab,
-        parlayLiquidityPoolDataQuery,
-        sportsAmmLiquidityPoolDataQuery,
-        thalesLiquidityPoolDataQuery,
         liquidityPoolV2DataQuery,
+        thalesLiquidityPoolDataQuery,
+        sportsAmmLiquidityPoolDataQuery,
+        parlayLiquidityPoolDataQuery,
     ]);
 
     const activeUserPoolDataQuery = useMemo(() => {
-        if (paramTab === LiquidityPool.THALES) {
+        if (isThalesPool) {
             return thalesUserLiquidityPoolDataQuery;
         }
         if (paramTab === LiquidityPool.OVERTIME_SINGLE) {
@@ -289,6 +355,7 @@ const AMMLP: React.FC = () => {
         }
         return liquidityPoolV2UserDataQuery;
     }, [
+        isThalesPool,
         liquidityPoolV2UserDataQuery,
         paramTab,
         parlayUserLiquidityPoolDataQuery,
@@ -364,7 +431,10 @@ const AMMLP: React.FC = () => {
 
     const isPartialWithdrawalDisabled = isRequestWithdrawalButtonDisabled || withdrawAll;
 
-    const isDeprecatedLP = paramTab == LiquidityPool.OVERTIME_PARLAY || paramTab == LiquidityPool.OVERTIME_SINGLE;
+    const isDeprecatedLP =
+        paramTab == LiquidityPool.THALES_DEPRECATED ||
+        paramTab == LiquidityPool.OVERTIME_PARLAY ||
+        paramTab == LiquidityPool.OVERTIME_SINGLE;
 
     useEffect(() => {
         setDepositSelected(!isDeprecatedLP);
@@ -373,6 +443,9 @@ const AMMLP: React.FC = () => {
     const activeLiquidityPoolContract = useMemo(() => {
         if (paramTab === LiquidityPool.THALES) {
             return networkConnector.thalesLiquidityPoolContract;
+        }
+        if (paramTab === LiquidityPool.THALES_DEPRECATED) {
+            return networkConnector.thalesLiquidityPoolDeprecatedContract;
         }
         if (paramTab === LiquidityPool.OVERTIME_SINGLE) {
             return networkConnector.sportLiquidityPoolContract;
@@ -649,7 +722,7 @@ const AMMLP: React.FC = () => {
         <Suspense fallback={<Loader />}>
             {!isMobile && <Line />}
             {!isMobile && (
-                <NavContainer width={networkId === Network.Base ? '40%' : '80%'}>
+                <NavContainer width={networkId === Network.Base ? '40%' : '100%'}>
                     <TabLinks items={navItems} />
                 </NavContainer>
             )}
@@ -1264,6 +1337,7 @@ const LPInfo = styled.div`
 
 const TIPLinks = {
     [LiquidityPool.THALES]: LINKS.Token.TIP139,
+    [LiquidityPool.THALES_DEPRECATED]: LINKS.Token.TIP139,
     [LiquidityPool.OVERTIME_SINGLE]: LINKS.Token.TIP99,
     [LiquidityPool.OVERTIME_PARLAY]: LINKS.Token.TIP142,
     [LiquidityPool.OVERTIME_USDC]: LINKS.Token.TIP142,

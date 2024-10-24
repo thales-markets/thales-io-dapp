@@ -46,7 +46,7 @@
         "remarkable": "^2.0.1",
         "styled-components": "^5.2.3",
         "thales-data": "^3.0.10",
-        "thales-utils": "^0.7.0",
+        "thales-utils": "^0.7.1",
         "three": "^0.158.0",
         "typescript": "^4.5.5",
         "wagmi": "^0.12.18",

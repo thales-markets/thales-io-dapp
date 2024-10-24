@@ -1,8 +1,7 @@
 import { Network } from 'enums/network';
 import { useQuery, UseQueryOptions } from 'react-query';
-import { bigNumberFormatter } from 'thales-utils';
+import { bigNumberFormatter, getDefaultDecimalsForNetwork } from 'thales-utils';
 import { UserLiquidityPoolData } from 'types/liquidityPool';
-import { getDefaultDecimalsForNetwork } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import QUERY_KEYS from '../../constants/queryKeys';
 
@@ -29,7 +28,7 @@ const useParlayLiquidityPoolUserDataQuery = (
                 withdrawalAmount: 0,
             };
 
-            const decimals = getDefaultDecimalsForNetwork(networkId);
+            const decimals = getDefaultDecimalsForNetwork(networkId, true);
             try {
                 const { parlayAMMLiquidityPoolContract, parlayAMMLiquidityPoolDataContract } = networkConnector;
                 if (parlayAMMLiquidityPoolContract && parlayAMMLiquidityPoolDataContract) {

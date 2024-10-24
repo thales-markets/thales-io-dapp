@@ -128,10 +128,11 @@ const QUERY_KEYS = {
         round ? round : undefined,
     ],
     ThalesLiquidityPool: {
-        Data: (networkId: Network) => ['thalesLiquidityPool', 'data', networkId],
-        UserData: (walletAddress: string, networkId: Network) => [
+        Data: (address: string, networkId: Network) => ['thalesLiquidityPool', 'data', address, networkId],
+        UserData: (address: string, walletAddress: string, networkId: Network) => [
             'thalesLiquidityPool',
             'data',
+            address,
             walletAddress,
             networkId,
         ],
