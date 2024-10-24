@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { generalConfig } from 'config/general';
-import { LiquidityPoolMap } from 'constants/liquidityPoolV2';
+import { LiquidityPoolMap, ThalesLiquidityPoolMap } from 'constants/liquidityPoolV2';
 import QUERY_KEYS from 'constants/queryKeys';
 import { API_ROUTES } from 'constants/routes';
 import { LiquidityPool } from 'enums/liquidityPool';
@@ -43,9 +43,13 @@ const useLiquidityPoolUserTransactionsQuery = (
                     }));
                 } else if (pool === LiquidityPool.THALES) {
                     const response = await axios.get(
-                        `${generalConfig.API_URL}/${API_ROUTES.DigitalOptions.LPTransactions}/${networkId}?${
-                            round ? `round=${round}` : ''
-                        }&${account ? `account=${account}` : ''}`
+                        `${generalConfig.API_URL}/${
+                            API_ROUTES.DigitalOptions.LPTransactions
+                        }/${networkId}?liquidityPool=${
+                            ThalesLiquidityPoolMap?.[
+                                networkId as Network.Arbitrum | Network.OptimismMainnet | Network.Base
+                            ]?.[pool]?.address
+                        }&${round ? `round=${round}` : ''}&${account ? `account=${account}` : ''}`
                     );
 
                     if (response?.data) liquidityPoolUserTransactions = response.data;

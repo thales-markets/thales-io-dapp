@@ -6,7 +6,6 @@ import { Pool, Route, SwapOptions, SwapRouter, Trade } from '@uniswap/v3-sdk';
 import Modal from 'components/Modal';
 import { getErrorToastOptions, getSuccessToastOptions } from 'components/ToastMessage/ToastMessage';
 import { PLAUSIBLE, PLAUSIBLE_KEYS } from 'constants/analytics';
-import { DEFAULT_COLLATERALS } from 'constants/currency';
 import {
     UNISWAP_SWAP_ROUTER_ADDRESS,
     UNISWAP_V3_SWAP_ROUTER_ADDRESS,
@@ -26,6 +25,7 @@ import { FlexDiv, FlexDivCentered } from 'styles/common';
 import { COLLATERAL_DECIMALS } from 'thales-utils';
 import collateralContractRaw from 'utils/contracts/collateralContract';
 import thalesTokenContractRaw from 'utils/contracts/thalesContract';
+import { getDefaultCollateral } from 'utils/currency';
 import { checkAllowance } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
@@ -95,7 +95,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
     const swapStableForThales = useCallback(async () => {
         const { provider } = networkConnector;
         const chainId = getChainId(networkId);
-        const collateralDecimals = COLLATERAL_DECIMALS[DEFAULT_COLLATERALS[networkId]];
+        const collateralDecimals = COLLATERAL_DECIMALS[getDefaultCollateral(networkId, true)];
         const amountToSwap = rewardsToSwap;
 
         const { collateral: collateralContract } = networkConnector as any;
@@ -171,7 +171,7 @@ const CompoundModal: React.FC<CompoundModalProps> = ({ isOpen, setIsOpen, reward
 
     const swapStableForThalesArbitrum = useCallback(async () => {
         const chainId = getChainId(networkId);
-        const collateralDecimals = COLLATERAL_DECIMALS[DEFAULT_COLLATERALS[networkId]];
+        const collateralDecimals = COLLATERAL_DECIMALS[getDefaultCollateral(networkId, true)];
         const amountToSwap = rewardsToSwap;
 
         const { collateral: collateralContract } = networkConnector as any;

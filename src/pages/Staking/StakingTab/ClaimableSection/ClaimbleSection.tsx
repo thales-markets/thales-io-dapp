@@ -10,7 +10,7 @@ import {
 } from 'components/ToastMessage/ToastMessage';
 import Tooltip from 'components/Tooltip';
 import Checkbox from 'components/fields/Checkbox';
-import { DEFAULT_COLLATERALS, THALES_CURRENCY } from 'constants/currency';
+import { THALES_CURRENCY } from 'constants/currency';
 import { ethers } from 'ethers';
 import Lottie from 'lottie-react';
 import { StakingButton, TooltipContainer } from 'pages/Staking/styled-components';
@@ -24,6 +24,7 @@ import styled, { useTheme } from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
+import { getDefaultCollateral } from 'utils/currency';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
 import { SectionTitle } from '../../styled-components';
@@ -218,7 +219,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                         </TooltipContainer>
                                         <span>
                                             {formatCurrencyWithKey(
-                                                DEFAULT_COLLATERALS[networkId],
+                                                getDefaultCollateral(networkId, true),
                                                 userStakingData ? userStakingData.feeRewards : 0
                                             )}
                                         </span>
@@ -298,7 +299,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                 </span>
                                 <span>
                                     {formatCurrencyWithKey(
-                                        DEFAULT_COLLATERALS[networkId],
+                                        getDefaultCollateral(networkId, true),
                                         userStakingData ? userStakingData.feeRewards : 0
                                     )}
                                 </span>
@@ -314,7 +315,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                                         <Trans
                                                             i18nKey="staking.rewards.claim.compound-tooltip"
                                                             values={{
-                                                                collateral: DEFAULT_COLLATERALS[networkId],
+                                                                collateral: getDefaultCollateral(networkId, true),
                                                             }}
                                                         />
                                                     }
