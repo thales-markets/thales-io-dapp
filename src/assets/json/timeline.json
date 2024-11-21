@@ -191,7 +191,6 @@
         ]
     },
     {
-        "selected": true,
         "quarter": "Q1 2024",
         "milestones": [
             {
@@ -212,10 +211,6 @@
                 "month": "January",
                 "description": "Thales Protocol expands to zkSync Era",
                 "link": "https://thalesmarket.medium.com/thales-january-digest-da27a3861b0e"
-            },
-            {
-                "year": "SOON",
-                "description": "Full Account Abstraction implementation"
             }
         ]
     },
@@ -223,17 +218,51 @@
         "quarter": "Q2 2024",
         "milestones": [
             {
-                "year": "Q2 2024",
-                "description": "Sports Markets V2 architecture deployment"
+                "year": "2024",
+                "month": "June",
+                "description": "Sports Markets V2 architecture deployment",
+                "link": "https://medium.com/@OvertimeMarkets.xyz/overtime-v2-public-beta-is-live-e2109ee4d348"
             }
         ]
     },
     {
+        "selected": true,
         "quarter": "Q3 2024",
         "milestones": [
+            
             {
-                "year": "Q3 2024",
-                "description": "Thales Markets V2 architecture deployment"
+                "year": "2024",
+                "month": "July",
+                "description": "Speed Markets dApp with Account Abstraction launch",
+                "link": "https://thalesmarket.medium.com/speed-markets-evolve-into-a-full-account-abstraction-dapp-6d500f9cc3d7"
+            },
+            {
+                "year": "2024",
+                "month": "August",
+                "description": "Overtime fully migrates from V1 to V2",
+                "link": "https://x.com/OvertimeMarkets/status/1823009702038671689"
+            },
+            {
+                "year": "2024",
+                "month": "August",
+                "description": "The new Overtime launches Arbitrum support",
+                "link": "https://medium.com/@OvertimeMarkets.xyz/overtime-is-live-on-arbitrum-23e5aab2a027"
+            },
+            {
+                "year": "2024",
+                "month": "August",
+                "description": "The Overdrop League XP system launches on Overtime",
+                "link": "https://medium.com/@OvertimeMarkets.xyz/the-overdrop-league-cbff6c4b63b5"
+            }
+        ]
+    },
+    {
+        "quarter": "Q1 2025",
+        "milestones": [
+            
+            {
+                "year": "Q1 2025",
+                "description": "Overtime full Account Abstraction UX"
             }
         ]
     }
