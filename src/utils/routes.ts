@@ -22,6 +22,6 @@ export const buildGovernanceHref = (spaceKey?: SpaceKey, id?: string) =>
     `${ifIpfsDeployment ? '#' : ''}${ROUTES.DAO.Home}/${spaceKey ? spaceKey : ''}/${id ? id : ''}`;
 
 export const buildSpeedMarketsBannerHref = () =>
-    `${LINKS.SpeedMarkets}/speed-markets?utm_source=internal&utm_medium=thales_banner&utm_campaign=speed_markets_nov_2024`;
+    `${LINKS.SpeedMarkets}/speed-markets?utm_source=internal&utm_medium=thales_banner&utm_campaign=speed_markets_dec_2024`;
 
 export { history };
