@@ -25,4 +25,3 @@ export const buildSpeedMarketsBannerHref = () =>
     `${LINKS.SpeedMarkets}/speed-markets?utm_source=internal&utm_medium=thales_banner&utm_campaign=speed_markets_jan_2025`;
 
 export { history };
-

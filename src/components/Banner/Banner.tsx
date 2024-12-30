@@ -6,7 +6,7 @@ import { FlexDiv } from 'styles/common';
 import { buildSpeedMarketsBannerHref } from 'utils/routes';
 import SPAAnchor from '../SPAAnchor';
 
-const IS_VISIBLE = false;
+const IS_VISIBLE = true;
 
 const Banner: React.FC = () => {
     if (!IS_VISIBLE) {
