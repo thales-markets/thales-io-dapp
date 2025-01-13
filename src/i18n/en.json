@@ -880,7 +880,9 @@
             "pitch-by": "Pitch by",
             "final-result": {
                 "yes": "Passed",
-                "no": "Declined"
+                "no": "Declined",
+                "for": "Passed",
+                "against": "Declined"
             },
             "type": {
                 "single-choice": "Single choice voting",
@@ -890,8 +892,12 @@
             "not-voted-in-label": "Not voted in",
             "voting-label": "Voting",
             "votes": "{{votes}} Votes",
+            "for": "FOR",
+            "against": "AGAINST",
             "yes-votes": "{{votes}} YES votes",
             "no-votes": "{{votes}} NO votes",
+            "for-votes": "{{votes}} FOR votes",
+            "against-votes": "{{votes}} AGAINST votes",
             "not-voted": "{{votes}} not voted",
             "voting-approval-status": {
                 "passed": "Passed",

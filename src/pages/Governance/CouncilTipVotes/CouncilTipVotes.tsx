@@ -96,10 +96,8 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                                             </Tooltip>
                                         </FlexDivFullWidthSpaceBetween>
                                         <Icon
-                                            color={voteChoice.toLowerCase() == 'yes' ? Colors.CYAN : Colors.RED}
-                                            className={`icon icon--${
-                                                voteChoice.toLowerCase() == 'yes' ? 'checkmark' : 'cross'
-                                            }`}
+                                            color={isForVote(voteChoice) ? Colors.CYAN : Colors.RED}
+                                            className={`icon icon--${isForVote(voteChoice) ? 'checkmark' : 'cross'}`}
                                         />
                                     </CouncilVoteRowData>
                                     {index < 6 && <Divider />}
@@ -149,7 +147,7 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                         <>
                             <VotesChart>
                                 <Tooltip
-                                    overlay={t('governance.proposal.yes-votes', {
+                                    overlay={t('governance.proposal.for-votes', {
                                         votes: calculatedVotesSectionsWidth[0].votesNumber,
                                     })}
                                     overlayInnerStyle={{ fontFamily: 'Nunito !important', textAlign: 'center' }}
@@ -158,11 +156,11 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                                         width={calculatedVotesSectionsWidth[0].width}
                                         color={calculatedVotesSectionsWidth[0].color}
                                     >
-                                        YES
+                                        {t('governance.proposal.for')}
                                     </ColoredVotesSection>
                                 </Tooltip>
                                 <Tooltip
-                                    overlay={t('governance.proposal.no-votes', {
+                                    overlay={t('governance.proposal.against-votes', {
                                         votes: calculatedVotesSectionsWidth[1].votesNumber,
                                     })}
                                     overlayInnerStyle={{ fontFamily: 'Nunito !important', textAlign: 'center' }}
@@ -174,7 +172,7 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                                         }
                                         color={calculatedVotesSectionsWidth[1].color}
                                     >
-                                        NO
+                                        {t('governance.proposal.against')}
                                     </ColoredVotesSection>
                                 </Tooltip>
                                 <Tooltip
@@ -250,12 +248,20 @@ const Voter: React.FC<StakerCellProps> = ({ address, walletAddress }) => {
     );
 };
 
+const isForVote = (voteChoice: string) => {
+    return voteChoice.toLowerCase() == 'yes' || voteChoice.toLowerCase() == 'for';
+};
+
+const isAgainstVote = (voteChoice: string) => {
+    return voteChoice.toLowerCase() == 'no' || voteChoice.toLowerCase() == 'against';
+};
+
 const calculateWidth = (votes: any[], proposal: Proposal, numberOfCouncilMembers: number) => {
     const voteChoices = votes.map((vote: any) => {
         return proposal.choices[vote.choice - 1];
     });
-    const numberOfYesVotes = voteChoices.filter((voteChoice: any) => voteChoice.toLowerCase() == 'yes').length;
-    const numberOfNoVotes = voteChoices.filter((voteChoice: any) => voteChoice.toLowerCase() == 'no').length;
+    const numberOfYesVotes = voteChoices.filter((voteChoice: string) => isForVote(voteChoice)).length;
+    const numberOfNoVotes = voteChoices.filter((voteChoice: string) => isAgainstVote(voteChoice)).length;
     const numberNotVoted = numberOfCouncilMembers - voteChoices.length;
     const yesVotes = {
         color: Colors.CYAN,
