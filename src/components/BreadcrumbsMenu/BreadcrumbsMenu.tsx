@@ -15,32 +15,6 @@ import { FlexDiv } from 'styles/common';
 import BreadcrumbItem from './BreadcrumbItem';
 
 export const BREADCRUMBS_DROPDOWN_ITEMS = {
-    AmmLP: [
-        {
-            i18label: 'amm-lp.nav.thales',
-            route: ROUTES.AmmLP.Home,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-single',
-            route: ROUTES.AmmLP.SportsAMM,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-parlay',
-            route: ROUTES.AmmLP.ParlayAMM,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-usdc',
-            route: ROUTES.AmmLP.OvertimeUSDC,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-weth',
-            route: ROUTES.AmmLP.OvertimeWETH,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-thales',
-            route: ROUTES.AmmLP.OvertimeTHALES,
-        },
-    ],
     Token: [
         {
             i18label: 'header.links.staking',

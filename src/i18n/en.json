@@ -423,7 +423,6 @@
                 "cooldown-label": "Cooldown",
                 "start-unstaking": "Start unstaking",
                 "amount-to-unstake": "Amount to unstake",
-                "user-lping-message": "You cannot unstake while providing liquidity for Thales or Overtime.",
                 "about-title": "How THALES staking works",
                 "about-1": "By staking THALES on Optimism, Arbitrum or Base, every week you earn two types of rewards: Staking rewards in THALES tokens and Protocol Rewards in stablecoins. These rewards are synchronised and equal across all supported networks.",
                 "about-2": "Staking Rewards are the main inflationary rewards distributed to all stakers once a week proportional to their Staked Share percentage value.",
@@ -493,7 +492,6 @@
                 "merge-blocked-message": {
                     "title": "In order to merge account, you need to",
                     "src-claim": "Claim the staking rewards from the source account.",
-                    "user-lping": "You can't merge account while providing liquidity for Thales or Overtime.",
                     "src-unstaking": "Cancel unstaking from the source account.",
                     "dest-claim": "Claim the staking rewards from the destination account.",
                     "dest-unstaking": "Cancel unstaking from the destination account."
@@ -517,154 +515,6 @@
             },
             "source": "Source",
             "destination": "Destination"
-        },
-        "amm-lp": {
-            "title": "Provide Liquidity",
-            "description": "<h1>Description</h1><p>Liquidity providing involves users depositing stablecoin collateral into a smart contract-based liquidity pool for Thales markets trading. The collateral deposited is used to facilitate trading on Thales' AMM.</p><p>To be able to provide liquidity you'll need to be staking THALES. There's no maximum cap per wallet and you may deposit a maximum of 1 {{currency}} per {{thalesStakedAmount}} THALES staked until the liquidity pool is filled.</p><p>At the end of each round, the proportional share of that round's PnL will be added to your deposited balance.</p><p>If you wish to withdraw, you can signal that at any time during the ongoing round, and at the end of the round the amount you signaled for withdrawal (inclusive of that round's PnL) is sent to you. The minimum amount to be withdrawn is set to 10%.</p><p>If you decide to unstake THALES while providing liquidity, please be aware that you'll need to signal a withdrawal from the liquidity pool first.</p><p>Providing liquidity exposes you to various risks including potential losses due to users winning in trading as well as smart contract security risks. Please make sure you understand these risks before depositing.</p><p><tipLink>TIP-139</tipLink> has more details on the technical implementation of Thales AMM liquidity providing.</p>",
-            "variables": "<h1>Variables</h1><ul><li>Max total deposit: {{maxAllowedDeposit}}</li><li>Max users in the pool: {{maxAllowedUsers}}</li><li>Minimum deposit: {{minDepositAmount}}</li><li>Round duration: {{roundLength}} days</li></ul>",
-            "liquidity-pool-not-started-message": "The liquidity pool has not started",
-            "liquidity-pool-paused-message": "The liquidity pool is paused",
-            "round-end-label": "The round ends in",
-            "round-ended-label": "Round ended",
-            "total-info-label": "Global LP info",
-            "users-in-liquidity-pool-label": "Users in the liquidity pool: {{number}} / {{max}}",
-            "your-share-label": "Share of pool:",
-            "pool-size": "Pool size:",
-            "users-in-pool": "Users in pool:",
-            "total-deposits": "Users in pool:",
-            "your-info-label": "Your LP info",
-            "current-balance-label": "Current balance",
-            "total-deposited": "Total deposited",
-            "your-pnl": "Your current PnL",
-            "your-apr": "Your average APR",
-            "next-round-balance-label": "Next round balance estimation",
-            "max-allowance-label": "Max allowance",
-            "your-thales-staked-label": "Your THALES staked",
-            "allowance-multiplier-label": "Allowance multiplier",
-            "full-withdrawal-request-label": "Withdrawal request: {{amount}}<tooltip />",
-            "partial-withdrawal-request-label": "Withdrawal request: {{percentage}} of the balance ({{amount}}<tooltip />)",
-            "estimated-amount-tooltip": "This is an estimated amount. The actual amount will be calculated upon closing the current round based on the round PnL.",
-            "available-to-withdraw-label": "Available to withdraw: <bold>{{amount}}</bold>",
-            "nothing-to-withdraw-label": "Nothing to withdraw.",
-            "withdrawal-message": "You can request a full/partial withdrawal and your funds will be sent to you automatically at the end of the round when the round closes.",
-            "full-withdrawal-requested-message": "You requested to withdraw a full balance of <bold>{{amount}}</bold><tooltip />.",
-            "partial-withdrawal-requested-message": "You requested to withdraw {{percentage}} of the balance (<bold>{{amount}}</bold><tooltip />).",
-            "withdrawal-requested-message": "Your funds will be sent to you automatically at the end of the round when the round closes.",
-            "first-deposit-withdrawal-message": "You deposited for the next round and you can withdraw these funds at the end of the next round.",
-            "deposit-withdrawal-warning": "Withdrawal is requested, you cannot deposit.",
-            "deposit-max-amount-of-users-warning": "Maximum number of users in the liquidity pool is reached, you cannot deposit.",
-            "deposit-liquidity-pool-cap-reached-warning": "The liquidity pool cap is reached, you cannot deposit.",
-            "deposit-liquidity-pool-cap-error": "Deposit amount exceeds liquidity pool cap",
-            "deposit-staked-thales-error": "Deposit amount exceeds max allowance, stake more THALES to deposit",
-            "deposit-min-amount-error": "The minimum amount for the deposit is {{amount}}",
-            "withdrawal-deposit-warning": "You cannot withdraw as you already deposited for the next round.",
-            "full-withdrawal-label": "Full withdrawal",
-            "partial-withdrawal-label": "Partial withdrawal",
-            "withdrawal-amount-label": "Withdrawal amount: <bold>{{amount}}</bold>",
-            "closing-round": "Closing round...",
-            "round-successfully-closed": "Round successfully closed",
-            "tabs": {
-                "deposit": "Deposit",
-                "withdraw": "Withdraw"
-            },
-            "button": {
-                "deposit-label": "Deposit",
-                "deposit-progress-label": "Deposit in progress...",
-                "deposit-confirmation-message": "Deposit successfully placed",
-                "request-withdrawal-label": "Request withdrawal",
-                "request-withdrawal-confirmation-message": "Withdrawal request successfully sent",
-                "get-thales-label": "Get THALES",
-                "stake-thales-label": "Stake THALES",
-                "close-round": "Close round"
-            },
-            "pnl": {
-                "pnl-per-round": {
-                    "title": "PnL per round"
-                },
-                "cumulative-pnl": {
-                    "title": "PnL over time"
-                },
-                "no-data": "No PnL data for previous rounds.",
-                "lifetime-pnl": "Lifetime PnL",
-                "previous-pnl": "Previous round PnL"
-            },
-            "user-transactions": {
-                "title": "USER TXs",
-                "your-transactions-title": "YOUR TXs",
-                "no-transactions": "No user transactions associated with this liquidity pool in the selected round.",
-                "round-label": "Round",
-                "type": {
-                    "deposit": "Deposit",
-                    "withdrawalRequest": "Withdrawal Request",
-                    "claim": "Withdrawal Claim"
-                }
-            },
-            "how-it-works": {
-                "thales-amm": {
-                    "title": "PROVIDE LIQUIDITY FOR DIGITAL OPTIONS AMM",
-                    "subtitle": "How Thales AMM LP works",
-                    "description": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Digital Options Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Thales AMM Liquidity Pool. <tip>TIP-139</tip> document provides detailed technical information on this process."
-                },
-                "thales-amm-susd": {
-                    "title": "PROVIDE LIQUIDITY FOR DIGITAL OPTIONS AMM",
-                    "subtitle": "How Thales AMM LP works",
-                    "description": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Digital Options Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Thales AMM Liquidity Pool. <tip>TIP-139</tip> document provides detailed technical information on this process."
-                },
-                "sports-amm": {
-                    "title": "PROVIDE LIQUIDITY FOR SPORTS SINGLES AMM",
-                    "subtitle": "How Sports AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Sports Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Sports AMM Liquidity Pool. <tip>TIP-99</tip> document provides detailed technical information on this process."
-                },
-                "parlay-amm": {
-                    "title": "PROVIDE LIQUIDITY FOR SPORTS PARLAY AMM",
-                    "subtitle": "How Parlay AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Parlay Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Parlay AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
-                },
-                "overtime-usdc": {
-                    "title": "PROVIDE LIQUIDITY FOR SPORTS OVERTIME USDC AMM",
-                    "subtitle": "How Overtime USDC AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Overtime Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Overtime AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
-                },
-                "overtime-weth": {
-                    "title": "PROVIDE LIQUIDITY FOR OVERTIME WETH AMM",
-                    "subtitle": "How Overtime WETH AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Overtime Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Overtime AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
-                },
-                "overtime-thales": {
-                    "title": "PROVIDE LIQUIDITY FOR OVERTIME THALES AMM",
-                    "subtitle": "How Overtime THALES AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Overtime Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Overtime AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
-                },
-                "variables": "Variables",
-                "limits": "Limits and specifications",
-                "max-total-deposit": "Max total deposit",
-                "max-users": "Max users in the pool",
-                "minimum-deposit": "Minimum deposit",
-                "round-duration": "Round duration",
-                "round-ends-in": "Round ends in",
-                "days": "days",
-                "get-thales": "Get THALES",
-                "stake-thales": "Stake THALES"
-            },
-            "deposit-withdraw": {
-                "deposit": "Deposit",
-                "depositing": "Depositing...",
-                "withdraw": "Withdraw",
-                "withdrawing": "Withdrawing...",
-                "deposit-confirmation-message": "Deposit successfully placed"
-            },
-            "table": {
-                "date-time-col": "Date | Time",
-                "wallet-address": "Wallet address",
-                "type-col": "Type",
-                "amount-col": "Amount",
-                "asset": "Asset",
-                "maturity-date-col": "Maturity",
-                "strike-price-col": "Strike Price",
-                "usd-value-col": "Usd Value",
-                "result-col": "Result",
-                "tx-status-col": "TX Status"
-            }
         },
         "lp-staking": {
             "header": "How LP Staking works?",

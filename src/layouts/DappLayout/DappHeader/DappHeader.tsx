@@ -56,11 +56,6 @@ const DappHeader: React.FC = () => {
                 ],
             },
             {
-                href: buildHref(ROUTES.AmmLP.Home),
-                title: t('header.links.amm-lp'),
-                active: location.pathname === ROUTES.AmmLP.Home,
-            },
-            {
                 href: buildHref(ROUTES.DAO.Home),
                 title: t('header.links.dao'),
                 active: location.pathname.includes(ROUTES.DAO.Home),

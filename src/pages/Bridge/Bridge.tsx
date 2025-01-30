@@ -20,7 +20,6 @@ import { Network } from 'enums/network';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { BigNumber, ethers } from 'ethers';
 import useDebouncedEffect from 'hooks/useDebouncedEffect';
-import { InputContainer } from 'pages/AMMLP/styled-components';
 import useCelerBridgeDataQuery from 'queries/token/useCelerBridgeDataQuery';
 import useThalesBalanceQuery from 'queries/token/useThalesBalanceQuery';
 import React, { useEffect, useState } from 'react';
@@ -609,6 +608,17 @@ const Button = styled.button<{ padding?: string; disabled?: boolean; width?: str
     &:disabled {
         opacity: 0.5;
         cursor: default;
+    }
+`;
+
+export const InputContainer = styled.div<{ marginTop?: number; mediaMarginBottom?: number }>`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    ${(props) => (props.marginTop ? 'margin-top: ' + props.marginTop + 'px;' : '')};
+    z-index: 1;
+    @media (max-width: 1192px) {
+        ${(props) => (props.mediaMarginBottom ? 'margin-bottom: ' + props.mediaMarginBottom + 'px;' : '')}
     }
 `;
 

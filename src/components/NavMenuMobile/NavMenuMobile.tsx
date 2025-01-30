@@ -3,7 +3,6 @@ import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { STAKING_TABS } from 'constants/token';
 import { SpaceKey } from 'enums/governance';
-import { LiquidityPool } from 'enums/liquidityPool';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -61,42 +60,6 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                         active: location.pathname === ROUTES.Token.LPStaking,
                     },
                 ],
-            },
-            {
-                title: t('header.links.amm-lp'),
-                children: [
-                    {
-                        href: `${buildHref(ROUTES.AmmLP.Home)}?tab=${LiquidityPool.THALES}`,
-                        title: t('amm-lp.nav.thales'),
-                        active: location.search.includes(LiquidityPool.THALES),
-                    },
-                    {
-                        href: `${buildHref(ROUTES.AmmLP.SportsAMM)}`,
-                        title: t('amm-lp.nav.overtime-single'),
-                        active: location.search.includes(LiquidityPool.OVERTIME_SINGLE),
-                    },
-                    {
-                        href: `${buildHref(ROUTES.AmmLP.ParlayAMM)}`,
-                        title: t('amm-lp.nav.overtime-parlay'),
-                        active: location.search.includes(LiquidityPool.OVERTIME_PARLAY),
-                    },
-                    {
-                        href: `${buildHref(ROUTES.AmmLP.OvertimeUSDC)}`,
-                        title: t('amm-lp.nav.overtime-usdc'),
-                        active: location.search.includes(LiquidityPool.OVERTIME_USDC),
-                    },
-                    {
-                        href: `${buildHref(ROUTES.AmmLP.OvertimeWETH)}`,
-                        title: t('amm-lp.nav.overtime-weth'),
-                        active: location.search.includes(LiquidityPool.OVERTIME_WETH),
-                    },
-                    {
-                        href: `${buildHref(ROUTES.AmmLP.OvertimeTHALES)}`,
-                        title: t('amm-lp.nav.overtime-thales'),
-                        active: location.search.includes(LiquidityPool.OVERTIME_THALES),
-                    },
-                ],
-                active: location.pathname === ROUTES.AmmLP.Home,
             },
             {
                 title: t('header.links.dao'),
