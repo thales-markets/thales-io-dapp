@@ -1,7 +1,15 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween, Icon } from 'styles/common';
+import {
+    FlexDiv,
+    FlexDivCentered,
+    FlexDivColumn,
+    FlexDivColumnCentered,
+    FlexDivSpaceAround,
+    FlexDivSpaceBetween,
+    Icon,
+} from 'styles/common';
 
 export const About = styled.div`
     margin-top: 120px;
@@ -191,7 +199,6 @@ export const SectionSlogan = styled.div<{ align?: string }>`
 
 export const SectionSloganHighlight = styled.span`
     color: ${(props) => props.theme.textColor.secondary};
-    margin-left: 12px;
 `;
 
 export const SectionTitleLink = styled.div`
@@ -247,6 +254,7 @@ export const HomeIcon = styled.i<{
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: ${(props) => props.mobileFontSize ?? props.fontSize ?? '20em'};
     }
+    width: 100%;
 `;
 export const FooterLogo = styled.i`
     position: absolute;
@@ -368,13 +376,15 @@ export const SellSection = styled.div`
     }
 `;
 
+export const PartnersColumn = styled(FlexDivColumnCentered)``;
+
 export const Partners = styled(FlexDivSpaceBetween)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
     }
 `;
 
-export const Backers = styled(FlexDivSpaceAround)`
+export const Backers = styled(FlexDivSpaceBetween)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
     }

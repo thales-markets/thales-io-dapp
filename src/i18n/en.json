@@ -162,13 +162,14 @@
         },
         "integrations": {
             "title-link": "Tailored for Developers",
-            "title": "Seamless Integration and Boundless Possibilities",
-            "description": "To the developers poised to shape the future of simple derivatives trading: Thales is your canvas. Our protocol is meticulously designed to ensure that you have a frictionless experience in developing your applications with Thales infrastructure guaranteeing collateral liquidity, market making and security in the background. With comprehensive resources, including in-depth developer documentation, responsive tech support and a vibrant Discord community, Thales empowers you to realize your vision with precision and ease.",
-            "thales-sports-markets-api-title": "Build your own Web3 Sports Markets application",
+            "title": "and Boundless Possibilities",
+            "titleHighlight": "Seamless Integration",
+            "description": "To the developers poised to shape the future of the sports betting industry: Overtime smart contracts are your canvas. Overtime codebase and smart contracts are meticulously designed to ensure that you have a frictionless experience in developing your own applications with Overtime infrastructure guaranteeing out-of-the-box collateral liquidity, automated market making and security in the background. With comprehensive resources, including in-depth developer documentation, responsive tech support and a vibrant Discord community, Overtime empowers you to realize your vision with precision and ease.",
+            "thales-sports-markets-api-title": "Build your own Onchain Sports Betting application",
             "thales-sports-markets-api-description": "Leverage the decentralization of the Ethereum network and it’s Smart Contracts for full collateralization and decentralization of a wide offering of global Sports Games Markets. By using Thales’ Sports API for SportsAMM and ParlayAMM integration, any developer can permissionlessly have access to a worlds most transparent and fair Sports Markets data with included cutting edge liquidity and trading infrastructure.",
             "thales-digital-options-api-title": "Build your own Web3 Digital Options trading platform",
             "thales-digital-options-api-description": "Thales Digital Options contracts provide integrators access to Automated Market Maker, on-demand liquidity and collateralization architecture for onchain Digital Options. With various supported assets ranging from crypto assets to commodities, anyone can integrate with ThalesAMM and RangedAMM contracts and provide it’s users simple-to-use and permissionless derivatives trading platform. Users can instantly place a position on whether the selected Asset Price will be UP or DOWN from selected Strike Price on selected Strike Date. Similarly, users can place IN or OUT positions on Price Ranges of the same Assets.",
-            "thales-speed-markets-api-title": "Build your own Speed Markets",
+            "thales-speed-markets-api-title": "Build your own Speed Markets application",
             "thales-speed-markets-api-description": "Thales Speed Markets contracts is the newest Thales Protocol product that leverages Pyth Benchmark oracles to facilitate a front-running-free backend for fast intra-day digital options. Users of Thales Speed Markets contracts are able to speculate on the direction of a Crypto Asset price with custom market expiry that can go as short as 15 minutes. With a fixed potential return of +100% (minus the fees) for any type of open market and thus not needing a pricing algorithm, Thales SpeedMarketsAMM contract is super-lightweight and easy to integrate.",
             "integrate-with-thales-button": "Integrate with Thales",
             "integrate-with-thales-sports-button": "Integrate with Thales Sports Markets API",
@@ -206,7 +207,8 @@
             "title": "Timeline and Roadmap"
         },
         "infrastructure": {
-            "title": "Infrastructure Partners and Backers"
+            "title": "Infrastructure",
+            "titleHighlight": "Partners and Backers"
         },
         "footer": {
             "thales": {

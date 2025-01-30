@@ -120,66 +120,74 @@ const Home: React.FC = () => {
                     {t('home.see-all-stats-button')} <ArrowHyperlinkIcon />
                 </HomeButton>
                 <Section>
-                    <SectionSlogan align="center">{t('home.infrastructure.title')}</SectionSlogan>
+                    <SectionSlogan align="center">
+                        {t('home.infrastructure.title')}{' '}
+                        <SectionSloganHighlight>{t('home.infrastructure.titleHighlight')}</SectionSloganHighlight>
+                    </SectionSlogan>
                     {!isMobile && (
                         <>
                             <Partners>
-                                <SPAAnchor href={LINKS.Synthetix}>
-                                    <HomeIcon mobileFontSize="20em" fontSize="17em" className="icon icon--synthetix" />
-                                </SPAAnchor>
-
                                 <SPAAnchor href={LINKS.Chainlink}>
-                                    <HomeIcon mobileFontSize="8em" fontSize="10em" className="icon icon--chainlink" />
+                                    <HomeIcon fontSize="10em" className="overtime-icon overtime-icon--chainlink" />
                                 </SPAAnchor>
                                 <SPAAnchor href={LINKS.Optimism}>
-                                    <HomeIcon mobileFontSize="8em" fontSize="11em" className="icon icon--optimism" />
+                                    <HomeIcon fontSize="11em" className="overtime-icon overtime-icon--optimism" />
                                 </SPAAnchor>
                                 <SPAAnchor href={LINKS.Arbitrum}>
-                                    <HomeIcon fontSize="11em" className="icon icon--arbitrum" />
+                                    <HomeIcon fontSize="11em" className="overtime-icon overtime-icon--arbitrum" />
+                                </SPAAnchor>
+                                <SPAAnchor href={LINKS.Base}>
+                                    <HomeIcon fontSize="9em" className="overtime-icon overtime-icon--base" />
                                 </SPAAnchor>
                             </Partners>
                             <Backers>
-                                <SPAAnchor href={LINKS.Base}>
-                                    <HomeIcon fontSize="9em" className="icon icon--base" />
-                                </SPAAnchor>
                                 <SPAAnchor href={LINKS.Pyth}>
-                                    <HomeIcon fontSize="9em" className="icon icon--pyth" />
+                                    <HomeIcon fontSize="9em" className="overtime-icon overtime-icon--pyth" />
                                 </SPAAnchor>
                                 <SPAAnchor href={LINKS.Framework}>
-                                    <HomeIcon fontSize="11em" className="icon icon--framework" />
+                                    <HomeIcon fontSize="11em" className="overtime-icon overtime-icon--framework" />
+                                </SPAAnchor>
+                                <SPAAnchor href={LINKS.Particle}>
+                                    <HomeIcon fontSize="13em" className="overtime-icon overtime-icon--particle" />
+                                </SPAAnchor>
+                                <SPAAnchor href={LINKS.Biconomy}>
+                                    <HomeIcon fontSize="11em" className="overtime-icon overtime-icon--biconomy" />
                                 </SPAAnchor>
                             </Backers>
                         </>
                     )}
                     {isMobile && (
                         <>
-                            <FlexDivCentered>
-                                <HomeIcon height="90px" fontSize="20em" className="icon icon--synthetix">
-                                    <IconLink onClick={() => window.open(LINKS.Synthetix)} />
-                                </HomeIcon>
-                            </FlexDivCentered>
                             <FlexDivSpaceAround>
-                                <HomeIcon fontSize="9em" className="icon icon--chainlink">
+                                <HomeIcon fontSize="9em" className="overtime-icon overtime-icon--chainlink">
                                     <IconLink onClick={() => window.open(LINKS.Chainlink)} />
                                 </HomeIcon>
-                                <HomeIcon fontSize="9em" className="icon icon--optimism">
+                                <HomeIcon fontSize="9em" className="overtime-icon overtime-icon--optimism">
                                     <IconLink onClick={() => window.open(LINKS.Optimism)} />
                                 </HomeIcon>
                             </FlexDivSpaceAround>
                             <FlexDivSpaceAround>
-                                <HomeIcon fontSize="11em" className="icon icon--arbitrum">
+                                <HomeIcon fontSize="10em" className="overtime-icon overtime-icon--arbitrum">
                                     <IconLink onClick={() => window.open(LINKS.Arbitrum)} />
                                 </HomeIcon>
-                                <HomeIcon fontSize="7em" className="icon icon--base">
+                                <HomeIcon fontSize="7em" className="overtime-icon overtime-icon--base">
                                     <IconLink onClick={() => window.open(LINKS.Base)} />
                                 </HomeIcon>
                             </FlexDivSpaceAround>
                             <FlexDivSpaceAround>
-                                <HomeIcon fontSize="9em" className="icon icon--pyth">
+                                <HomeIcon fontSize="7em" className="overtime-icon overtime-icon--pyth">
                                     <IconLink onClick={() => window.open(LINKS.Pyth)} />
                                 </HomeIcon>
-                                <HomeIcon fontSize="9em" className="icon icon--framework">
+                                <HomeIcon fontSize="9em" className="overtime-icon overtime-icon--framework">
                                     <IconLink onClick={() => window.open(LINKS.Framework)} />
+                                </HomeIcon>
+                            </FlexDivSpaceAround>
+                            <FlexDivSpaceAround>
+                                <HomeIcon fontSize="10em" className="overtime-icon overtime-icon--particle">
+                                    <IconLink onClick={() => window.open(LINKS.Particle)} />
+                                </HomeIcon>
+                                <HomeIcon fontSize="9em" className="overtime-icon overtime-icon--biconomy">
+                                    <IconLink onClick={() => window.open(LINKS.Biconomy)} />
                                 </HomeIcon>
                             </FlexDivSpaceAround>
                         </>
@@ -191,7 +199,10 @@ const Home: React.FC = () => {
                             {t('home.integrations.title-link')} <SectionTitleLinkArrow />
                         </SPAAnchor>
                     </SectionTitleLink>
-                    <SectionSlogan>{t('home.integrations.title')}</SectionSlogan>
+                    <SectionSlogan>
+                        <SectionSloganHighlight>{t('home.integrations.titleHighlight')}</SectionSloganHighlight>{' '}
+                        {t('home.integrations.title')}
+                    </SectionSlogan>
                     <Description marginBottom={50} marginTop={20}>
                         {t('home.integrations.description')}
                     </Description>
@@ -335,7 +346,7 @@ const Home: React.FC = () => {
                         </SPAAnchor>
                     </SectionTitleLink>
                     <SectionSlogan>
-                        {t('home.governance.title')}
+                        {t('home.governance.title')}{' '}
                         <SectionSloganHighlight>{t('home.governance.titleHighlight')}</SectionSloganHighlight>
                     </SectionSlogan>
                     <Description marginBottom={20}>{t('home.governance.description')}</Description>

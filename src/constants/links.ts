@@ -20,6 +20,8 @@ const LINKS = {
     Base: 'https://base.org/',
     Pyth: 'https://pyth.network/',
     Framework: 'https://framework.ventures/',
+    Particle: 'https://particle.network/',
+    Biconomy: 'https://biconomy.io/',
     OneInch: 'https://app.1inch.io/',
     DefiLlama: 'http://swap.defillama.com',
     Paraswap: 'https://www.paraswap.io/',
