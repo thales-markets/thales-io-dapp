@@ -1,6 +1,7 @@
 @import './fonts.css';
 @import './icons.css';
 @import './logos.css';
+@import './overtime-icons.css';
 
 html {
     scroll-behavior: smooth;
@@ -208,15 +209,15 @@ a {
 }
 
 @keyframes pulse {
-	0% {
-		box-shadow: 0 0 0 0 rgba(25, 248, 239, 0.7);
-	}
+    0% {
+        box-shadow: 0 0 0 0 rgba(25, 248, 239, 0.7);
+    }
 
-	70% {
-		box-shadow: 0 0 0 10px rgba(25, 248, 239, 0);
-	}
+    70% {
+        box-shadow: 0 0 0 10px rgba(25, 248, 239, 0);
+    }
 
-	100% {
-		box-shadow: 0 0 0 0 rgba(25, 248, 239, 0);
-	}
+    100% {
+        box-shadow: 0 0 0 0 rgba(25, 248, 239, 0);
+    }
 }

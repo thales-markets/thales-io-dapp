@@ -4,3 +4,12 @@ export type EcosystemApp = {
     link: string;
     size: string;
 };
+
+export type EcosystemDapp = {
+    icon: string;
+    title: string;
+    description: string;
+    actionText: string;
+    link: string;
+    iconSize: string;
+};

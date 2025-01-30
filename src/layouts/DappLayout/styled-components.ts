@@ -20,7 +20,7 @@ export const Wrapper = styled(FlexDivColumn)`
         padding-top: 20px !important;
     }
     @media (min-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        max-width: 1355px;
+        max-width: 1426px;
         padding: 20px;
     }
 `;

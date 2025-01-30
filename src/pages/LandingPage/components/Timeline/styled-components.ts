@@ -120,13 +120,13 @@ export const MilestoneContainer = styled(FlexDiv)`
 export const Milestone = styled.div<{ hideBorder?: boolean }>`
     position: relative;
     width: 320px;
-    border-right: ${(props) => (props.hideBorder ? '' : '2px solid #405682')};
-    background: #313652;
+    border-right: ${(props) => (props.hideBorder ? '' : `2px solid ${props.theme.borderColor.secondary}`)};
+    background: ${(props) => props.theme.background.primary};
     padding: 15px 25px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
         border-right: none;
-        border-bottom: ${(props) => (props.hideBorder ? '' : '2px solid #405682')};
+        border-bottom: ${(props) => (props.hideBorder ? '' : `2px solid ${props.theme.borderColor.secondary}`)};
     }
 `;
 
@@ -134,7 +134,7 @@ export const MilestoneDate = styled.div<{ visible?: boolean }>`
     display: ${(props) => (props.visible ? 'block' : 'none')};
     color: white;
     font-family: MontserratBold;
-    font-size: 13px;
+    font-size: 18px;
     font-style: normal;
     line-height: normal;
     text-transform: uppercase;
@@ -142,7 +142,7 @@ export const MilestoneDate = styled.div<{ visible?: boolean }>`
 
 export const MilestoneDescription = styled.div`
     padding-top: 8px;
-    color: #c6c8da;
+    color: ${(props) => props.theme.textColor.senary};
     font-family: MontserratLight;
     font-size: 13px;
     font-style: normal;

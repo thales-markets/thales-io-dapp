@@ -57,14 +57,12 @@ export const Icon = styled.i<{ color?: string; iconSize?: number }>`
 `;
 
 export const Colors = {
-    GRAY: '#C6C8DA',
-    LIGHT_GRAY: '#C6C8DA',
+    GRAY: '#424451',
+    LIGHT_GRAY: '#A9ABBB',
     DARK_GRAY: '#181A20',
     DARKER_GRAY: '#8c8f90',
     WHITE: '#FFFFFF',
-    CYAN: '#19F8EF',
     BLUE_DARK: '#313652',
-    PURPLE_NAVY: '#405682',
     CHINA_PINK: '#E06AA2',
     VIOLET: '#7E19FE',
     BLUEBERRY: '#4B79EE',
@@ -87,6 +85,11 @@ export const Colors = {
     INDIAN_RED: '#DD5667',
     VENETIAN_RED: '#E06AA2',
     EGG_BLUE: '#03DAC6',
+
+    CYAN: '#19F8EF',
+    CETACEAN_BLUE: '#0F1231',
+    RICH_BLACK: '#07091C',
+    PURPLE_NAVY: '#405682',
 };
 
 export const Background = styled.div`
@@ -94,7 +97,7 @@ export const Background = styled.div`
     width: 100%;
     height: 100vh;
     font-size: 16px;
-    background: radial-gradient(circle at center, #262847, #0d111e);
+    background: ${(props) => props.theme.background.tertiary};
     min-height: -webkit-fill-available;
 `;
 

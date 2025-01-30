@@ -27,25 +27,25 @@ import {
     BuySellSections,
     Description,
     EcosystemSection,
-    EcosystemTitle,
     FooterLine,
     Highlight,
+    HighlightTitle,
     HomeButton,
     HomeIcon,
     IconLink,
+    Logo,
     LottieContainer,
     Partners,
     Section,
     SectionSlogan,
+    SectionSloganHighlight,
     SectionTitle,
     SectionTitleLink,
     SectionTitleLinkArrow,
     SellSection,
-    SocialIcon,
     Stat,
     StatsSection,
     StepsSection,
-    Subtitle,
     Title,
     Wrapper,
 } from './styled-components';
@@ -82,28 +82,16 @@ const Home: React.FC = () => {
         <Suspense fallback={<Loader />}>
             <Wrapper>
                 <About>
-                    <Title gap="10px">
-                        {t('home.thales')}
-                        <span>{t('home.protocol')}</span>
+                    <Logo className="overtime-icon overtime-icon--overtime" />
+                    <Title>
+                        <HighlightTitle>{t('home.fully-onchain')}</HighlightTitle>{' '}
+                        <span>{t('home.sportsbook-ecosystem')}</span>
                     </Title>
-                    <EcosystemTitle>
-                        <HomeIcon fontSize="10em" className="icon icon--synthetix">
-                            <IconLink onClick={() => window.open(LINKS.Synthetix)} />
-                        </HomeIcon>
-                        Ecosystem
-                    </EcosystemTitle>
-                    <Subtitle>{t('home.protocol-description-1')}.</Subtitle>
-                    <Subtitle>{t('home.protocol-description-2')}</Subtitle>
-                    <SPAAnchor href={LINKS.Github}>
-                        <SocialIcon className="icon icon--github" />
-                    </SPAAnchor>
-                    <SPAAnchor href={LINKS.Discord}>
-                        <SocialIcon className="icon icon--discord" />
-                    </SPAAnchor>
-                    <SPAAnchor href={LINKS.Twitter}>
-                        <SocialIcon className="icon icon--twitter" />
-                    </SPAAnchor>
                 </About>
+                <EcosystemSection>
+                    <SectionTitle>{t('home.ecosystem-apps.title')}</SectionTitle>
+                    <EcosystemApps />
+                </EcosystemSection>
                 <StatsSection>
                     <SectionTitle>{t('home.total-protocol-volume')}</SectionTitle>
                     <Stat>
@@ -131,10 +119,6 @@ const Home: React.FC = () => {
                 <HomeButton onClick={() => navigateTo(ROUTES.Dashboard)}>
                     {t('home.see-all-stats-button')} <ArrowHyperlinkIcon />
                 </HomeButton>
-                <EcosystemSection>
-                    <SectionTitle>{t('home.ecosystem-apps.title')}</SectionTitle>
-                    <EcosystemApps />
-                </EcosystemSection>
                 <Section>
                     <SectionSlogan align="center">{t('home.infrastructure.title')}</SectionSlogan>
                     {!isMobile && (
@@ -350,10 +334,13 @@ const Home: React.FC = () => {
                             {t('home.governance.title-link')} <SectionTitleLinkArrow />
                         </SPAAnchor>
                     </SectionTitleLink>
-                    <SectionSlogan>{t('home.governance.title')}</SectionSlogan>
+                    <SectionSlogan>
+                        {t('home.governance.title')}
+                        <SectionSloganHighlight>{t('home.governance.titleHighlight')}</SectionSloganHighlight>
+                    </SectionSlogan>
                     <Description marginBottom={20}>{t('home.governance.description')}</Description>
                     <SPAAnchor href={buildHref(ROUTES.About.Governance)} scrollTop={true}>
-                        <HomeButton>{t('home.governance.explore-thales-dao-button')}</HomeButton>
+                        <HomeButton>{t('home.governance.explore-overtime-dao-button')}</HomeButton>
                     </SPAAnchor>
                 </Section>
                 <Section marginBottom={80}>

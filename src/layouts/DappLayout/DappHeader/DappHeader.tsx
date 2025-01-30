@@ -105,10 +105,10 @@ const DappHeader: React.FC = () => {
                     {!isMobile ? (
                         <Logo
                             onClick={() => navigateTo(ROUTES.Home, false, false, 'show')}
-                            className="icon icon--thales-logo"
+                            className="overtime-icon overtime-icon--overtime"
                         />
                     ) : (
-                        <LogoMobile className="icon icon--thales-logo">
+                        <LogoMobile className="overtime-icon overtime-icon--overtime">
                             <IconLink onClick={() => navigateTo(ROUTES.Home, false, false, 'show')} />
                         </LogoMobile>
                     )}

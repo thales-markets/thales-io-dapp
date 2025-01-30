@@ -1,47 +1,71 @@
-import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivColumn, FlexDivRow } from 'styles/common';
+import { FlexDivCentered, FlexDivColumn, FlexDivRow } from 'styles/common';
 
-export const EcosystemAppsContainer = styled(FlexDiv)`
-    position: relative;
+export const Container = styled(FlexDivRow)`
+    font-family: MontserratLight;
     gap: 30px;
-    z-index: 1;
+    width: 100%;
+    margin-top: 20px;
 `;
 
-export const CarouselContainer = styled(FlexDivRow)`
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        width: 100%;
-        height: 270px;
-        color: ${(props) => props.theme.textColor.primary};
-    }
-    & > div {
-        width: 100%;
-        height: 100%;
-        & > div {
-            height: 100%;
-        }
-    }
-    & ul {
-        &.control-dots {
-            @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-                bottom: 0px;
-                width: 100%;
-            }
-        }
-        & > li {
-            &.dot {
-                height: 20px !important;
-                margin: 0px 10px !important;
-                width: 20px !important;
-                @media (max-width: 600px) {
-                    height: 16px !important;
-                    width: 16px !important;
-                }
-            }
-        }
-    }
+export const LeftContainer = styled(FlexDivRow)`
+    gap: 30px;
+    flex: 1 1 0;
 `;
 
-export const CarouselAppContainer = styled(FlexDivColumn)`
-    margin: 0px 5px;
+export const RightContainer = styled(FlexDivColumn)`
+    gap: 30px;
+    flex: 1 1 0;
+`;
+
+export const CardContainer = styled(FlexDivRow)`
+    padding: 50px;
+    width: 100%;
+    border-radius: 15px;
+    background-color: ${(props) => props.theme.background.primary};
+    border: 1px solid ${(props) => props.theme.borderColor.tertiary};
+    color: ${(props) => props.theme.textColor.primary};
+    flex: 1 1 0;
+`;
+
+export const CardContent = styled(FlexDivColumn)`
+    justify-content: space-between;
+`;
+
+export const ActionContainer = styled(FlexDivColumn)`
+    justify-content: end;
+`;
+
+export const Title = styled.span`
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21.6px;
+    text-transform: uppercase;
+`;
+
+export const Description = styled.span`
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16.8px;
+    text-align: justify;
+    margin-top: 25px;
+`;
+
+export const Action = styled(FlexDivCentered)`
+    font-family: MontserratBold;
+    height: 50px;
+    background-color: ${(props) => props.theme.button.background.tertiary};
+    color: ${(props) => props.theme.button.textColor.tertiary};
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 19.36px;
+    text-transform: uppercase;
+    margin-left: 40px;
+`;
+
+export const Icon = styled.i<{ fontSize: string }>`
+    display: flex;
+    font-size: ${(props) => props.fontSize};
+    height: 100px;
+    align-items: center;
 `;

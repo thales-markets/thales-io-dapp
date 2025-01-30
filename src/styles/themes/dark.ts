@@ -2,9 +2,10 @@ import { Colors } from '../common';
 
 const darkTheme = {
     background: {
-        primary: Colors.BLUE_DARK,
+        primary: Colors.CETACEAN_BLUE,
         secondary: Colors.GRAY,
-        tertiary: Colors.PURPLE_NAVY,
+        tertiary: Colors.RICH_BLACK,
+
         quaternary: Colors.YANKEES_BLUE,
         quinary: Colors.METALLIC_BLUE,
         senary: Colors.LIGHT_GRAY,
@@ -13,7 +14,7 @@ const darkTheme = {
         primary: Colors.WHITE,
         secondary: Colors.CYAN,
         tertiary: Colors.GRAY,
-        quaternary: Colors.PURPLE_NAVY,
+        quaternary: Colors.RICH_BLACK,
         quinary: Colors.YANKEES_BLUE,
         senary: Colors.LIGHT_GRAY,
         septenary: Colors.DARKER_GRAY,
@@ -23,7 +24,7 @@ const darkTheme = {
         secondary: Colors.PURPLE_NAVY,
         tertiary: Colors.METALLIC_BLUE,
         quaternary: Colors.LIGHT_GRAY,
-        quinary: Colors.BLUE_DARK,
+        quinary: Colors.CETACEAN_BLUE,
         senary: Colors.CYAN,
     },
     link: {
@@ -35,7 +36,7 @@ const darkTheme = {
     },
     button: {
         background: {
-            primary: Colors.PURPLE_NAVY,
+            primary: Colors.RICH_BLACK,
             secondary: Colors.METALLIC_BLUE,
             tertiary: Colors.CYAN,
             quaternary: Colors.INDEPENDENCE,
@@ -44,6 +45,7 @@ const darkTheme = {
             primary: Colors.WHITE,
             secondary: Colors.GRAY,
             tertiary: Colors.YANKEES_BLUE,
+            quaternary: Colors.CYAN,
         },
         borderColor: {
             primary: Colors.METALLIC_BLUE,

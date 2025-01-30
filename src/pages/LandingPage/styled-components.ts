@@ -5,7 +5,6 @@ import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpa
 
 export const About = styled.div`
     margin-top: 120px;
-    margin-bottom: 50px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 50px;
     }
@@ -22,23 +21,31 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled(FlexDiv)`
-    color: white;
-    font-family: 'NunitoBold';
-    font-weight: bold;
-    font-size: 50px;
-    font-style: normal;
-    line-height: 91.4%;
-    letter-spacing: 3.25px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    & > span {
-        font-family: 'NunitoExtraLight';
-        font-weight: normal;
-    }
+    font-family: MontserratBold;
+    color: ${(props) => props.theme.textColor.primary};
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 41.2px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 28px;
         letter-spacing: 2px;
     }
+`;
+
+export const HighlightTitle = styled.span`
+    color: ${(props) => props.theme.textColor.secondary};
+    margin-right: 12px;
+`;
+
+export const Logo = styled.i`
+    height: 40px;
+    color: ${(props) => props.theme.textColor.primary};
+    font-size: 500px;
+    cursor: pointer;
+    line-height: 50px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
 `;
 
 export const EcosystemTitle = styled(FlexDiv)`
@@ -129,7 +136,7 @@ export const HomeButton = styled.button`
 `;
 
 export const EcosystemSection = styled.div`
-    margin-top: 150px;
+    margin-top: 100px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 50px;
     }
@@ -180,6 +187,11 @@ export const SectionSlogan = styled.div<{ align?: string }>`
         font-size: 18px;
         text-align: ${(props) => (props.align ? props.align : 'left')};
     }
+`;
+
+export const SectionSloganHighlight = styled.span`
+    color: ${(props) => props.theme.textColor.secondary};
+    margin-left: 12px;
 `;
 
 export const SectionTitleLink = styled.div`

@@ -16,12 +16,12 @@ let mouseY = -5;
 let windowHalfX = window.innerWidth / 2;
 let windowHalfY = window.innerHeight / 2;
 
-let lastMouseXPosition = 0;
-let lastMouseYPosition = 0;
+// let lastMouseXPosition = 0;
+// let lastMouseYPosition = 0;
 
 export const startAnimation = () => {
     const container = document.getElementById('waves-background');
-    const radialBackgroundElement = document.getElementById('radial-background');
+    // const radialBackgroundElement = document.getElementById('radial-background');
     if (container?.childElementCount) {
         return;
     }
@@ -77,10 +77,10 @@ export const startAnimation = () => {
         document.addEventListener('pointermove', onPointerMove);
     }
 
-    if (radialBackgroundElement) {
-        document.addEventListener('pointermove', onRadialBackgroundPointerMove);
-        document.addEventListener('scroll', onRadialBackgroundScroll);
-    }
+    // if (radialBackgroundElement) {
+    //     document.addEventListener('pointermove', onRadialBackgroundPointerMove);
+    //     document.addEventListener('scroll', onRadialBackgroundScroll);
+    // }
 
     window.addEventListener('resize', onWindowResize);
 
@@ -104,39 +104,39 @@ const onPointerMove = (event: PointerEvent) => {
     mouseY = event.clientY - windowHalfY;
 };
 
-const onRadialBackgroundScroll = () => {
-    const backgroundElement = document.getElementById('radial-background');
+// const onRadialBackgroundScroll = () => {
+//     const backgroundElement = document.getElementById('radial-background');
 
-    if (backgroundElement) {
-        const elementRect = backgroundElement.getBoundingClientRect();
-        const windowWidth = elementRect.width;
-        const windowHeight = elementRect.height;
+//     if (backgroundElement) {
+//         const elementRect = backgroundElement.getBoundingClientRect();
+//         const windowWidth = elementRect.width;
+//         const windowHeight = elementRect.height;
 
-        const mouseXpercentage = Math.round((lastMouseXPosition / windowWidth) * 100);
-        const mouseYpercentage = Math.round((lastMouseYPosition / windowHeight) * 100);
+//         const mouseXpercentage = Math.round((lastMouseXPosition / windowWidth) * 100);
+//         const mouseYpercentage = Math.round((lastMouseYPosition / windowHeight) * 100);
 
-        backgroundElement.style.background =
-            'radial-gradient(circle at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #262847, #0d111e)';
-    }
-};
+//         backgroundElement.style.background =
+//             'radial-gradient(circle at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #262847, #0d111e)';
+//     }
+// };
 
-const onRadialBackgroundPointerMove = (event: PointerEvent) => {
-    const backgroundElement = document.getElementById('radial-background');
+// const onRadialBackgroundPointerMove = (event: PointerEvent) => {
+//     const backgroundElement = document.getElementById('radial-background');
 
-    if (backgroundElement) {
-        const elementRect = backgroundElement.getBoundingClientRect();
-        const windowWidth = elementRect.width;
-        const windowHeight = elementRect.height;
+//     if (backgroundElement) {
+//         const elementRect = backgroundElement.getBoundingClientRect();
+//         const windowWidth = elementRect.width;
+//         const windowHeight = elementRect.height;
 
-        lastMouseXPosition = event.clientX;
-        lastMouseYPosition = event.clientY;
-        const mouseXpercentage = Math.round((lastMouseXPosition / windowWidth) * 100);
-        const mouseYpercentage = Math.round((lastMouseYPosition / windowHeight) * 100);
+//         lastMouseXPosition = event.clientX;
+//         lastMouseYPosition = event.clientY;
+//         const mouseXpercentage = Math.round((lastMouseXPosition / windowWidth) * 100);
+//         const mouseYpercentage = Math.round((lastMouseYPosition / windowHeight) * 100);
 
-        backgroundElement.style.background =
-            'radial-gradient(circle at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #262847, #0d111e)';
-    }
-};
+//         backgroundElement.style.background =
+//             'radial-gradient(circle at ' + mouseXpercentage + '% ' + mouseYpercentage + '%,  #262847, #0d111e)';
+//     }
+// };
 
 const animate = () => {
     requestAnimationFrame(animate);

@@ -135,6 +135,8 @@
         }
     },
     "home": {
+        "fully-onchain": "Fully onchain",
+        "sportsbook-ecosystem": "sportsbook ecosystem",
         "thales": "Thales",
         "protocol": "Protocol",
         "protocol-description-1": "A permissionless ecosystem where every derivative market is a unique smart contract",
@@ -195,9 +197,10 @@
         },
         "governance": {
             "title-link": "Community-Centric Governance",
-            "title": "Steering the Future, Together",
-            "description": "At Thales, we believe in the collective wisdom of our community. Our governance structure, underpinned by ThalesDAO and the Thales Council, is a testament to our commitment to decentralized decision-making. Every strategic move, every initiative, is guided by the voice of our community. Through a transparent and robust DAO voting mechanism, we ensure that Thales remains of the community, by the community, and for the community.",
-            "explore-thales-dao-button": "Explore Thales DAO"
+            "title": "Steering the Future,",
+            "titleHighlight": "Together",
+            "description": "At Overtime, we believe in the collective wisdom of our community. Our governance structure, underpinned by OvertimeDAO and the Overtime Council, is a testament to our commitment to decentralized decision-making. Every strategic move, every initiative, is guided by the voice of our community. Through a transparent and robust DAO voting mechanism, we ensure that Overtime remains of the community, by the community, and for the community.",
+            "explore-overtime-dao-button": "Explore Overtime DAO"
         },
         "timeline": {
             "title": "Timeline and Roadmap"
