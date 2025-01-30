@@ -17,12 +17,11 @@ export const LinksContainer = styled.div`
 `;
 
 export const Logo = styled.i`
-    width: 120px;
     color: ${(props) => props.theme.textColor.primary};
-    font-size: 120px;
+    font-size: 150px;
     cursor: pointer;
-    line-height: 50px;
-    margin-top: 5px;
+    line-height: 20px;
+    margin-top: 15px;
 `;
 
 export const MenuIcon = styled.i`

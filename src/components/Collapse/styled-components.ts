@@ -23,7 +23,6 @@ export const Highlight = styled.div<{
 }>`
     cursor: ${(props) => (props.cursor ? props.cursor : 'default')};
     color: white;
-    font-family: ${(props) => (props.fontFamily ? props.fontFamily : 'MontserratBold')};
     font-size: ${(props) => (props.fontSize ? props.fontSize : '17px')};
     font-style: normal;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0px')};

@@ -33,46 +33,30 @@ export const Title = styled(FlexDiv)`
     font-size: 40px;
     font-weight: 600;
     line-height: 41.2px;
+    white-space: nowrap;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 28px;
-        letter-spacing: 2px;
+        font-size: 18px;
+        line-height: 18px;
     }
 `;
 
 export const HighlightTitle = styled.span`
     color: ${(props) => props.theme.textColor.secondary};
     margin-right: 12px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-right: 8px;
+    }
 `;
 
 export const Logo = styled.i`
-    height: 40px;
     color: ${(props) => props.theme.textColor.primary};
     font-size: 500px;
     cursor: pointer;
-    line-height: 50px;
-    margin-top: 5px;
+    line-height: 40px;
     display: flex;
     align-items: center;
-`;
-
-export const EcosystemTitle = styled(FlexDiv)`
-    color: white;
-    font-size: 25px;
-    font-style: normal;
-    line-height: 91.4%;
-    height: 35px;
-    i {
-        margin: 0px 10px 13px 0px;
-    }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        display: flex;
-        gap: 5px;
-        align-items: center;
-        font-size: 17px;
-        margin-top: -10px;
-        i {
-            margin: 0;
-        }
+        font-size: 200px;
     }
 `;
 
@@ -101,8 +85,8 @@ export const StatsSection = styled.div`
 `;
 
 export const SectionTitle = styled.div`
-    color: #c6c8da;
-    font-size: 17px;
+    color: ${(props) => props.theme.textColor.senary};
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -138,7 +122,7 @@ export const HomeButton = styled.button`
 `;
 
 export const EcosystemSection = styled.div`
-    margin-top: 100px;
+    margin-top: 80px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 50px;
     }
@@ -180,7 +164,7 @@ export const SectionSlogan = styled.div<{ align?: string }>`
     color: white;
     text-align: justify;
     font-size: 40px;
-    font-style: normal;
+    font-weight: 700;
     line-height: 140%;
     margin: 15px 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {

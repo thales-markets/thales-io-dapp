@@ -84,8 +84,8 @@ const Home: React.FC = () => {
                 <About>
                     <Logo className="overtime-icon overtime-icon--overtime" />
                     <Title>
-                        <HighlightTitle>{t('home.fully-onchain')}</HighlightTitle>{' '}
-                        <span>{t('home.sportsbook-ecosystem')}</span>
+                        <HighlightTitle>{t('home.fully-onchain')} </HighlightTitle>
+                        {t('home.sportsbook-ecosystem')}
                     </Title>
                 </About>
                 <EcosystemSection>

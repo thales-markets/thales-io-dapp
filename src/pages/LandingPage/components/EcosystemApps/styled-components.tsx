@@ -1,3 +1,4 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDivCentered, FlexDivColumn, FlexDivRow } from 'styles/common';
 
@@ -5,6 +6,9 @@ export const Container = styled(FlexDivRow)`
     gap: 30px;
     width: 100%;
     margin-top: 20px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+    }
 `;
 
 export const LeftContainer = styled(FlexDivRow)`
@@ -25,6 +29,10 @@ export const CardContainer = styled(FlexDivRow)`
     border: 1px solid ${(props) => props.theme.borderColor.tertiary};
     color: ${(props) => props.theme.textColor.primary};
     flex: 1 1 0;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+        padding: 30px;
+    }
 `;
 
 export const CardContent = styled(FlexDivColumn)`
@@ -56,9 +64,15 @@ export const Action = styled(FlexDivCentered)`
     color: ${(props) => props.theme.button.textColor.tertiary};
     border-radius: 8px;
     font-size: 16px;
+    font-weight: 800;
     line-height: 19.36px;
     text-transform: uppercase;
     margin-left: 40px;
+    padding: 0 10px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 20px;
+        margin-left: 0px;
+    }
 `;
 
 export const Icon = styled.i<{ fontSize: string }>`
@@ -66,4 +80,7 @@ export const Icon = styled.i<{ fontSize: string }>`
     font-size: ${(props) => props.fontSize};
     height: 100px;
     align-items: center;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 200px;
+    }
 `;

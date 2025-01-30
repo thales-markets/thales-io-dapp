@@ -9,7 +9,6 @@ import { FlexDiv } from 'styles/common';
 import { ContentContainer, Header, Icon } from '../../styled-components';
 
 const collapseAdditionalStyling = {
-    titleFontFamily: 'Nunito',
     titleFontSize: '13px',
     containerMarginBottom: '10px',
     titleMarginBottom: '7px',
