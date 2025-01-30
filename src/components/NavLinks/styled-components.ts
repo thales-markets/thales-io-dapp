@@ -11,7 +11,6 @@ export const Links = styled.div`
 
 export const Item = styled.div<{ active?: boolean; deprecated?: boolean }>`
     position: relative;
-    font-family: Nunito !important;
     font-style: normal;
     font-weight: 300;
     font-size: 18px;

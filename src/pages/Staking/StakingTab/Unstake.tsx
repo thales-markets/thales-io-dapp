@@ -412,7 +412,6 @@ const CooldownCounter = styled.div`
 `;
 
 const UnstakingTitleText = styled.span`
-    font-family: Nunito;
     font-weight: normal;
     font-size: 14px;
     line-height: 15px;

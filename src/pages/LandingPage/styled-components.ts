@@ -29,7 +29,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled(FlexDiv)`
-    font-family: MontserratBold;
     color: ${(props) => props.theme.textColor.primary};
     font-size: 40px;
     font-weight: 600;
@@ -79,7 +78,6 @@ export const EcosystemTitle = styled(FlexDiv)`
 
 export const Subtitle = styled.div`
     color: #c6c8da;
-    font-family: 'NunitoExtraLight';
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -92,7 +90,6 @@ export const Subtitle = styled.div`
 export const Highlight = styled.div<{ marginBottom?: number; cursor?: string }>`
     cursor: ${(props) => (props.cursor ? props.cursor : 'default')};
     color: white;
-    font-family: MontserratBold;
     font-size: 17px;
     font-style: normal;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
@@ -105,7 +102,6 @@ export const StatsSection = styled.div`
 
 export const SectionTitle = styled.div`
     color: #c6c8da;
-    font-family: 'NunitoExtraLight';
     font-size: 17px;
     font-style: normal;
     font-weight: 500;
@@ -118,7 +114,6 @@ export const SectionTitle = styled.div`
 
 export const Stat = styled.div`
     color: #fff;
-    font-family: MontserratBold;
     font-size: 50px;
     font-style: normal;
     line-height: normal;
@@ -136,7 +131,6 @@ export const HomeButton = styled.button`
     background: transparent;
     width: fit-content;
     text-align: center;
-    font-family: NunitoBold;
     font-size: 13px;
     line-height: 80%;
     text-transform: capitalize;
@@ -153,7 +147,6 @@ export const EcosystemSection = styled.div`
 export const Description = styled(FlexDivColumn)<{ marginBottom?: number; marginTop?: number }>`
     color: ${(props) => props.theme.borderColor.quaternary};
     text-align: justify;
-    font-family: MontserratLight;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -186,7 +179,6 @@ export const Section = styled.div<{ marginBottom?: number }>`
 export const SectionSlogan = styled.div<{ align?: string }>`
     color: white;
     text-align: justify;
-    font-family: MontserratBold;
     font-size: 40px;
     font-style: normal;
     line-height: 140%;
@@ -203,7 +195,6 @@ export const SectionSloganHighlight = styled.span`
 
 export const SectionTitleLink = styled.div`
     color: #c6c8da;
-    font-family: NunitoExtraLight;
     font-size: 13px;
     font-style: normal;
     line-height: 140%;
@@ -296,7 +287,6 @@ export const ThalesLinks = styled(FlexDiv)`
 
 export const ThalesLinksTitle = styled.div`
     color: #fff;
-    font-family: MontserratBold;
     font-size: 13px;
     font-style: normal;
     font-weight: 800;
@@ -305,7 +295,6 @@ export const ThalesLinksTitle = styled.div`
 `;
 export const ThalesLinksItem = styled.div`
     color: #c6c8da;
-    font-family: MontserratLight;
     font-size: 13px;
     font-style: normal;
     font-weight: 600;

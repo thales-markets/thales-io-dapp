@@ -43,7 +43,6 @@ export const VotesChart = styled(FlexDivRow)`
     margin: 20px;
     height: 20px;
     border-radius: 8px;
-    font-family: Nunito;
     font-size: 13px;
     font-weight: 800;
     line-height: 20px;

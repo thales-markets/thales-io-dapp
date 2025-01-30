@@ -457,7 +457,6 @@ const Button = styled.button<{ padding?: string; disabled?: boolean; width?: str
     border: 0;
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
-    font-family: NunitoExtraBold;
     font-size: 13px;
     text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};

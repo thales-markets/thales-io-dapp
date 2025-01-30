@@ -89,7 +89,6 @@ export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean
 `;
 
 export const NumericStats = styled.span`
-    font-family: Nunito !important;
     font-weight: 700;
     font-size: 34px;
     line-height: 55px;
@@ -97,7 +96,6 @@ export const NumericStats = styled.span`
 `;
 
 export const InfoText = styled.span<{ color?: string }>`
-    font-family: Nunito !important;
     font-weight: 400;
     font-size: 13px;
     line-height: 20px;
@@ -108,7 +106,6 @@ export const InfoText = styled.span<{ color?: string }>`
 `;
 
 export const InfoStats = styled.span<{ color?: string }>`
-    font-family: Nunito !important;
     font-weight: 800;
     font-size: 13px;
     line-height: 20px;
@@ -126,7 +123,6 @@ export const LatestTip = styled(InfoStats)`
 `;
 
 export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolean }>`
-    font-family: Nunito !important;
     font-weight: 700;
     font-size: 18px;
     line-height: 25px;
@@ -183,7 +179,6 @@ export const InfoSection = styled.div<{
 `;
 
 export const DoubleSideSectionSpan = styled.span`
-    font-family: Nunito !important;
     font-weight: 400;
     font-size: 13px;
     line-height: 20px;

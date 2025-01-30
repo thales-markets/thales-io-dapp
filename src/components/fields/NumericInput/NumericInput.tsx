@@ -179,7 +179,6 @@ const MaxButton = styled.button`
     background: transparent;
     border: none;
     border-radius: 3px;
-    font-family: NunitoExtraBold;
     font-size: 13px;
     line-height: 20px;
     background: ${(props) => props.theme.button.background.tertiary};

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { FlexDivCentered, FlexDivColumn, FlexDivRow } from 'styles/common';
 
 export const Container = styled(FlexDivRow)`
-    font-family: MontserratLight;
     gap: 30px;
     width: 100%;
     margin-top: 20px;
@@ -52,7 +51,6 @@ export const Description = styled.span`
 `;
 
 export const Action = styled(FlexDivCentered)`
-    font-family: MontserratBold;
     height: 50px;
     background-color: ${(props) => props.theme.button.background.tertiary};
     color: ${(props) => props.theme.button.textColor.tertiary};

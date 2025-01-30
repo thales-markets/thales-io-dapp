@@ -9,7 +9,6 @@ export const FieldContainer = styled(FlexDivColumn)<{ margin?: string; width?: s
 `;
 
 export const FieldLabel = styled.label`
-    font-family: NunitoBold;
     font-weight: normal;
     font-size: 13px;
     line-height: 15px;

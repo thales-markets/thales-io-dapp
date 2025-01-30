@@ -149,7 +149,6 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
     border: 0;
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
-    font-family: NunitoExtraBold;
     font-size: 13px;
     text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};

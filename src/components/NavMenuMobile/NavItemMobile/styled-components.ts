@@ -21,7 +21,6 @@ export const LabelContainer = styled(FlexDivSpaceBetween)<{ indentation?: number
 `;
 
 export const Item = styled.label<{ active?: boolean }>`
-    font-family: Nunito !important;
     font-style: normal;
     font-weight: 300;
     font-size: 18px;

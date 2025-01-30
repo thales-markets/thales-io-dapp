@@ -7,7 +7,6 @@ export const SectionTitle = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     color: ${(props) => props.theme.textColor.primary};
-    font-family: NunitoBold;
     font-size: 18px;
     font-style: normal;
     line-height: 24px;
@@ -21,7 +20,6 @@ export const SectionTitle = styled.div`
     }
     > span > div {
         color: #fff;
-        font-family: NunitoBold;
         font-size: 14px;
         font-style: normal;
         text-transform: none;
@@ -42,7 +40,6 @@ export const InfoDiv = styled.div<{ height?: string }>`
     > span:nth-child(2) {
         color: ${(props) => props.theme.textColor.primary};
         text-align: right;
-        font-family: NunitoBold;
         line-height: 155%;
     }
 `;
@@ -55,7 +52,6 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
     border: 0;
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
-    font-family: NunitoExtraBold;
     font-size: 13px;
     text-transform: uppercase;
     margin-top: 5px;
@@ -67,7 +63,6 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
 `;
 
 export const SectionHeader = styled(FlexDiv)`
-    font-family: NunitoBold;
     font-size: 18px;
     line-height: 20px;
     letter-spacing: 0.035em;

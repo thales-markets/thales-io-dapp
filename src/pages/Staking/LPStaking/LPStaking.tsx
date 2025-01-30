@@ -102,7 +102,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     color: ${(props) => props.theme.textColor.tertiary};
-    font-family: Nunito;
     font-size: 13px;
     width: 60%;
     gap: 10px;

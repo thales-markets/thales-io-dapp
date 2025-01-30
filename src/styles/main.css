@@ -116,7 +116,7 @@ body {
         env(safe-area-inset-left, 0);
     overflow-x: hidden !important;
     padding-right: 0 !important;
-    font-family: Nunito;
+    font-family: Montserrat;
 }
 ol,
 ul {
@@ -203,7 +203,7 @@ a {
     font-size: 12px;
     line-height: 20px;
     fill: rgb(255, 255, 255) !important;
-    font-family: Nunito !important;
+    font-family: Montserrat;
     width: min-content;
     text-align: center;
 }

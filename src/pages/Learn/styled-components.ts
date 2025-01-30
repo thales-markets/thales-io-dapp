@@ -18,7 +18,6 @@ export const Content = styled.div`
 `;
 
 export const H1 = styled.h1`
-    font-family: Nunito !important;
     font-weight: 700;
     font-size: 40px;
     line-height: 110%;
@@ -33,7 +32,6 @@ export const H1 = styled.h1`
 `;
 
 export const H2 = styled.h2`
-    font-family: Nunito !important;
     font-size: 20px;
     font-weight: 600;
     line-height: 18px;
@@ -45,7 +43,6 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3`
-    font-family: Nunito !important;
     font-size: 18px;
     font-weight: 600;
     line-height: 16px;
@@ -63,14 +60,12 @@ export const Paragraph = styled.p`
     &,
     & * {
         color: ${(props) => props.theme.textColor.senary};
-        font-family: Nunito !important;
         font-style: normal;
         font-weight: 300;
         text-align: justify;
         white-space: pre-line;
     }
     strong {
-        font-family: Nunito !important;
         font-weight: 600;
     }
     a {
@@ -82,7 +77,6 @@ export const Paragraph = styled.p`
 `;
 
 export const Date = styled.h1`
-    font-family: Nunito !important;
     color: ${(props) => props.theme.textColor.primary};
     font-size: 16px;
 `;
@@ -98,7 +92,6 @@ export const ListItem = styled.li<{ bold?: boolean }>`
     margin-bottom: 10px;
     color: ${(props) => props.theme.textColor.primary};
     font-size: 15px;
-    font-family: Nunito !important;
 `;
 
 export const ChartContainer = styled(FlexDivCentered)`
@@ -107,7 +100,6 @@ export const ChartContainer = styled(FlexDivCentered)`
 `;
 
 export const ChartLabel = styled.span`
-    font-family: Nunito !important;
     position: absolute;
     bottom: 10px;
     left: 0;

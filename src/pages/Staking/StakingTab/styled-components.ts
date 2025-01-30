@@ -4,7 +4,6 @@ import { FlexDivColumn, FlexDivColumnCentered } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
-    font-family: Nunito;
     font-size: 13px;
     display: grid;
     width: 60%;
@@ -66,9 +65,6 @@ export const InputContainer = styled.div`
     > div > span {
         font-size: 13px;
         text-transform: none;
-    }
-    > div > span:nth-child(2) {
-        font-family: Nunito;
     }
 `;
 

@@ -378,7 +378,6 @@ const PitchModal = styled((props) => <Dialog classes={{ paper: props.className }
         overflow: auto;
         border: 2px solid ${(props) => props.theme.borderColor.primary};
         color: ${(props) => props.theme.textColor.primary};
-        font-family: Nunito !important;
         font-size: 13px;
         font-weight: 500;
         line-height: 15px;
@@ -436,7 +435,6 @@ const Button = styled.button<{ margin?: string; padding?: string; disabled?: boo
     border: 0;
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
-    font-family: NunitoExtraBold;
     font-size: 13px;
     text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};

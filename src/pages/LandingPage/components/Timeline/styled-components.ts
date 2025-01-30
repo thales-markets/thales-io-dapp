@@ -133,7 +133,6 @@ export const Milestone = styled.div<{ hideBorder?: boolean }>`
 export const MilestoneDate = styled.div<{ visible?: boolean }>`
     display: ${(props) => (props.visible ? 'block' : 'none')};
     color: white;
-    font-family: MontserratBold;
     font-size: 18px;
     font-style: normal;
     line-height: normal;
@@ -143,14 +142,10 @@ export const MilestoneDate = styled.div<{ visible?: boolean }>`
 export const MilestoneDescription = styled.div`
     padding-top: 8px;
     color: ${(props) => props.theme.textColor.senary};
-    font-family: MontserratLight;
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
     line-height: 155%;
-    span {
-        font-family: MontserratBold;
-    }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 11px;
     }

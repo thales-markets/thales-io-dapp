@@ -59,7 +59,6 @@ const Wrapper = styled.button<{
     borderColor?: string;
     fontSize?: string;
 }>`
-    font-family: Nunito;
     display: flex;
     align-items: center;
     justify-content: center;

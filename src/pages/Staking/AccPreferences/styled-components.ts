@@ -5,7 +5,6 @@ import { FlexDiv } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
-    font-family: Nunito;
     font-size: 13px;
     display: grid;
     width: 60%;
@@ -68,7 +67,6 @@ export const Bottom = styled.div`
 
 export const Subtitle = styled.span`
     color: ${(props) => props.theme.textColor.primary};
-    font-family: NunitoBold;
     font-size: 13px;
     margin-bottom: 10px;
 `;
