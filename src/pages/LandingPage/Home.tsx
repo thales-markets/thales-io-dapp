@@ -1,19 +1,16 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
-import buyingAnimation from 'assets/lotties/homepage-buying.json';
-import sellingAnimation from 'assets/lotties/homepage-selling.json';
 import Collapse from 'components/Collapse';
 import Loader from 'components/Loader';
 import NumberCountdown from 'components/NumberCountdown';
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
-import Lottie from 'lottie-react';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
-import React, { CSSProperties, Suspense, useEffect, useMemo, useState } from 'react';
+import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsMobile } from 'redux/modules/ui';
-import { FlexDiv, FlexDivCentered, FlexDivSpaceAround } from 'styles/common';
+import { FlexDivSpaceAround } from 'styles/common';
 import { AllStats } from 'types/statistics';
 import { buildHref, navigateTo } from 'utils/routes';
 import EcosystemApps from './components/EcosystemApps';
@@ -22,19 +19,14 @@ import Footer from './Footer';
 import {
     About,
     Backers,
-    BulletNumberIcon,
-    BuySection,
-    BuySellSections,
     Description,
     EcosystemSection,
     FooterLine,
-    Highlight,
     HighlightTitle,
     HomeButton,
     HomeIcon,
     IconLink,
     Logo,
-    LottieContainer,
     Partners,
     Section,
     SectionSlogan,
@@ -42,10 +34,8 @@ import {
     SectionTitle,
     SectionTitleLink,
     SectionTitleLinkArrow,
-    SellSection,
     Stat,
     StatsSection,
-    StepsSection,
     Title,
     Wrapper,
 } from './styled-components';
@@ -240,105 +230,6 @@ const Home: React.FC = () => {
                         </Description>
                     </Collapse>
                 </Section>
-                {isMobile && (
-                    <Section>
-                        <Collapse
-                            title={t('home.buying-selling.title')}
-                            hideLine={true}
-                            additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
-                        >
-                            <Description>{t('home.buying-selling.description-1')}</Description>
-                            <Description>{t('home.buying-selling.description-2')}</Description>
-                        </Collapse>
-                    </Section>
-                )}
-                {!isMobile && (
-                    <Section>
-                        <SectionSlogan>{t('home.buying-selling.title')}</SectionSlogan>
-                        <Description>{t('home.buying-selling.description-1')}</Description>
-                        <Description>{t('home.buying-selling.description-2')}</Description>
-                    </Section>
-                )}
-                <BuySellSections>
-                    <BuySection>
-                        <FlexDivCentered>
-                            <Highlight>{t('home.buying-selling.buying.title')}</Highlight>
-                        </FlexDivCentered>
-                        <LottieContainer>
-                            <Lottie animationData={buyingAnimation} style={buyingAnimationStyle} />
-                        </LottieContainer>
-                        <FlexDivCentered>
-                            <StepsSection>
-                                <Collapse
-                                    headerTextAlign="center"
-                                    hideLine
-                                    title={t('home.buying-selling.buying.steps-title')}
-                                >
-                                    <Description marginBottom={5}>
-                                        <FlexDiv>
-                                            <BulletNumberIcon className="icon icon--bullet-one" />
-                                            {t('home.buying-selling.buying.step-1')}
-                                        </FlexDiv>
-                                    </Description>
-                                    <Description marginBottom={5}>
-                                        <FlexDiv>
-                                            <BulletNumberIcon className="icon icon--bullet-two" />
-                                            {t('home.buying-selling.buying.step-2')}
-                                        </FlexDiv>
-                                    </Description>
-                                    <Description marginBottom={5}>
-                                        <FlexDiv>
-                                            <BulletNumberIcon className="icon icon--bullet-three" />
-                                            {t('home.buying-selling.buying.step-3')}
-                                        </FlexDiv>
-                                    </Description>
-                                    <Description marginBottom={5}>
-                                        <FlexDiv>
-                                            <BulletNumberIcon className="icon icon--bullet-four" />
-                                            {t('home.buying-selling.buying.step-4')}
-                                        </FlexDiv>
-                                    </Description>
-                                    <Description marginBottom={5}>
-                                        <FlexDiv>
-                                            <BulletNumberIcon className="icon icon--bullet-five" />
-                                            {t('home.buying-selling.buying.step-5')}
-                                        </FlexDiv>
-                                    </Description>
-                                </Collapse>
-                            </StepsSection>
-                        </FlexDivCentered>
-                    </BuySection>
-                    <SellSection>
-                        <FlexDivCentered>
-                            <Highlight>{t('home.buying-selling.selling.title')}</Highlight>
-                        </FlexDivCentered>
-                        <LottieContainer>
-                            <Lottie animationData={sellingAnimation} style={sellingAnimationStyle} />
-                        </LottieContainer>
-                        <FlexDivCentered>
-                            <StepsSection>
-                                <Collapse
-                                    headerTextAlign="center"
-                                    hideLine
-                                    title={t('home.buying-selling.selling.steps-title')}
-                                >
-                                    <Description marginBottom={5}>
-                                        <FlexDiv>
-                                            <BulletNumberIcon className="icon icon--bullet-one" />
-                                            {t('home.buying-selling.selling.step-1')}
-                                        </FlexDiv>
-                                    </Description>
-                                    <Description marginBottom={5}>
-                                        <FlexDiv>
-                                            <BulletNumberIcon className="icon icon--bullet-two" />
-                                            {t('home.buying-selling.selling.step-2')}
-                                        </FlexDiv>
-                                    </Description>
-                                </Collapse>
-                            </StepsSection>
-                        </FlexDivCentered>
-                    </SellSection>
-                </BuySellSections>
                 <Section>
                     <SectionTitleLink>
                         <SPAAnchor href={buildHref(ROUTES.About.Governance)} scrollTop={true}>
@@ -368,11 +259,3 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-
-const buyingAnimationStyle: CSSProperties = {
-    zIndex: '-1',
-};
-
-const sellingAnimationStyle: CSSProperties = {
-    zIndex: '-1',
-};

@@ -6,7 +6,6 @@ import {
     FlexDivCentered,
     FlexDivColumn,
     FlexDivColumnCentered,
-    FlexDivSpaceAround,
     FlexDivSpaceBetween,
     Icon,
 } from 'styles/common';
@@ -315,37 +314,6 @@ export const SocialIcon = styled(Icon)`
     z-index: 2;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 25px;
-    }
-`;
-
-export const BuySellSections = styled(FlexDivSpaceAround)`
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        flex-direction: column;
-    }
-`;
-
-export const BuySection = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-self: baseline;
-    margin-top: 50px;
-    flex: 0.5;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        gap: 30px;
-    }
-`;
-
-export const SellSection = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-self: baseline;
-    margin-top: 50px;
-    flex: 0.3;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        gap: 30px;
-        & > div:nth-child(2) > div {
-            flex: 0.62;
-        }
     }
 `;
 
