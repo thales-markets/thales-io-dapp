@@ -79,10 +79,6 @@ export const Highlight = styled.div<{ marginBottom?: number; cursor?: string }>`
     line-height: 140%;
 `;
 
-export const StatsSection = styled.div`
-    margin-bottom: 10px;
-`;
-
 export const SectionTitle = styled.div`
     color: ${(props) => props.theme.textColor.senary};
     font-size: 18px;
@@ -92,16 +88,6 @@ export const SectionTitle = styled.div`
     text-transform: uppercase;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 15px;
-    }
-`;
-
-export const Stat = styled.div`
-    color: #fff;
-    font-size: 50px;
-    font-style: normal;
-    line-height: normal;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 25px;
     }
 `;
 

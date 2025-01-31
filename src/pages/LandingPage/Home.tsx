@@ -1,7 +1,5 @@
-import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import Collapse from 'components/Collapse';
 import Loader from 'components/Loader';
-import NumberCountdown from 'components/NumberCountdown';
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
@@ -12,8 +10,10 @@ import { useSelector } from 'react-redux';
 import { getIsMobile } from 'redux/modules/ui';
 import { FlexDivSpaceAround } from 'styles/common';
 import { AllStats } from 'types/statistics';
-import { buildHref, navigateTo } from 'utils/routes';
+import { buildHref } from 'utils/routes';
 import EcosystemApps from './components/EcosystemApps';
+import OverToken from './components/OverToken';
+import Stats from './components/Stats';
 import Timeline from './components/Timeline';
 import Footer from './Footer';
 import {
@@ -34,8 +34,6 @@ import {
     SectionTitle,
     SectionTitleLink,
     SectionTitleLinkArrow,
-    Stat,
-    StatsSection,
     Title,
     Wrapper,
 } from './styled-components';
@@ -82,33 +80,15 @@ const Home: React.FC = () => {
                     <SectionTitle>{t('home.ecosystem-apps.title')}</SectionTitle>
                     <EcosystemApps />
                 </EcosystemSection>
-                <StatsSection>
-                    <SectionTitle>{t('home.total-protocol-volume')}</SectionTitle>
-                    <Stat>
-                        $ <NumberCountdown number={duneStats?.volumeStats?.totalProtocolVolume || 0} />
-                    </Stat>
-                </StatsSection>
-                <StatsSection>
-                    <SectionTitle>{t('home.total-value-locked')}</SectionTitle>
-                    <Stat>
-                        $ <NumberCountdown number={TVL || 0} />
-                    </Stat>
-                </StatsSection>
-                <StatsSection>
-                    <SectionTitle>{t('home.total-unique-users')}</SectionTitle>
-                    <Stat>
-                        <NumberCountdown number={duneStats?.usersStats?.totalUniqueUsers || 0} />
-                    </Stat>
-                </StatsSection>
-                <StatsSection>
-                    <SectionTitle>{t('home.markets-created')}</SectionTitle>
-                    <Stat>
-                        <NumberCountdown number={duneStats?.marketsStats?.totalUniqueMarkets || 0} />
-                    </Stat>
-                </StatsSection>
-                <HomeButton onClick={() => navigateTo(ROUTES.Dashboard)}>
-                    {t('home.see-all-stats-button')} <ArrowHyperlinkIcon />
-                </HomeButton>
+                <Stats duneStats={duneStats} tvl={TVL} />
+                <OverToken />
+                <Section>
+                    <SectionSlogan>
+                        <SectionSloganHighlight>{t('home.over-deflationary.titleHighlight')}</SectionSloganHighlight>{' '}
+                        {t('home.over-deflationary.title')}
+                    </SectionSlogan>
+                    <Description>{t('home.over-deflationary.description')}</Description>
+                </Section>
                 <Section>
                     <SectionSlogan align="center">
                         {t('home.infrastructure.title')}{' '}
