@@ -104,6 +104,7 @@ export const LinkButton = styled.button`
     line-height: 80%;
     text-transform: capitalize;
     padding: 7px 20px;
+    z-index: 1000;
 `;
 
 export const Description = styled(FlexDivColumn)<{ marginBottom?: number; marginTop?: number }>`
