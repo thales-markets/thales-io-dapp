@@ -3,7 +3,7 @@ import { ReactComponent as BeTheHouse } from 'assets/images/be-the-house.svg';
 import NumberCountdown from 'components/NumberCountdown';
 import ROUTES from 'constants/routes';
 import { t } from 'i18next';
-import { HomeButton } from 'pages/LandingPage/styled-components';
+import { LinkButton } from 'pages/LandingPage/styled-components';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { AllStats } from 'types/statistics';
 import { navigateTo } from 'utils/routes';
@@ -45,9 +45,9 @@ const Stats: React.FC<StatsProps> = ({ duneStats, tvl }) => {
                         <NumberCountdown number={duneStats?.marketsStats?.totalUniqueMarkets || 0} />
                     </Value>
                 </SectionContainer>
-                <HomeButton onClick={() => navigateTo(ROUTES.Dashboard)}>
+                <LinkButton onClick={() => navigateTo(ROUTES.Dashboard)}>
                     {t('home.see-all-stats-button')} <ArrowHyperlinkIcon />
-                </HomeButton>
+                </LinkButton>
             </RightContainer>
         </Container>
     );

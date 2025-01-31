@@ -10,8 +10,8 @@ import {
     Icon,
 } from 'styles/common';
 
-export const About = styled.div`
-    margin-top: 120px;
+export const Header = styled.div`
+    margin-top: 140px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 50px;
     }
@@ -91,7 +91,7 @@ export const SectionTitle = styled.div`
     }
 `;
 
-export const HomeButton = styled.button`
+export const LinkButton = styled.button`
     cursor: pointer;
     color: white;
     border-radius: 8px;
@@ -103,14 +103,7 @@ export const HomeButton = styled.button`
     font-size: 13px;
     line-height: 80%;
     text-transform: capitalize;
-    padding: 7px 12px;
-`;
-
-export const EcosystemSection = styled.div`
-    margin-top: 80px;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-top: 50px;
-    }
+    padding: 7px 20px;
 `;
 
 export const Description = styled(FlexDivColumn)<{ marginBottom?: number; marginTop?: number }>`
@@ -138,7 +131,7 @@ export const BulletNumberIcon = styled.i`
 `;
 
 export const Section = styled.div<{ marginBottom?: number }>`
-    margin-top: 100px;
+    margin-top: 80px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 50px;
@@ -150,7 +143,7 @@ export const SectionSlogan = styled.div<{ align?: string }>`
     text-align: justify;
     font-size: 40px;
     font-weight: 700;
-    line-height: 140%;
+    line-height: 48px;
     margin: 15px 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 18px;

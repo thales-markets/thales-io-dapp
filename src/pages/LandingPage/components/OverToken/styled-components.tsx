@@ -3,16 +3,16 @@ import styled from 'styled-components';
 import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Container = styled(FlexDivRow)`
-    gap: 30px;
     width: 100%;
-    margin-top: 20px;
+    margin-top: -150px;
+    margin-bottom: -100px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
     }
 `;
 
 export const LeftContainer = styled(FlexDivColumnCentered)`
-    padding: 0 10px 0 100px;
+    padding: 0 0 0 120px;
 `;
 
 export const RightContainer = styled(FlexDivColumnCentered)`
@@ -23,7 +23,7 @@ export const SectionContainer = styled.div`
     margin-bottom: 40px;
 `;
 
-export const Label = styled.div`
+export const Title = styled.div`
     color: ${(props) => props.theme.textColor.senary};
     font-size: 18px;
     font-weight: 500;
@@ -33,7 +33,7 @@ export const Label = styled.div`
     }
 `;
 
-export const Value = styled.div`
+export const Description = styled.div`
     color: ${(props) => props.theme.textColor.primary};
     margin-top: 10px;
     font-size: 24px;
@@ -41,7 +41,7 @@ export const Value = styled.div`
     line-height: 25px;
 `;
 
-export const OverValue = styled(Value)`
+export const OverDescription = styled(Description)`
     color: ${(props) => props.theme.textColor.secondary};
     font-size: 64px;
     font-weight: 700;

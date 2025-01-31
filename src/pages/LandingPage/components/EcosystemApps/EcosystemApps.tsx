@@ -17,7 +17,7 @@ const EcosystemApps: React.FC = () => {
     return (
         <Container>
             <LeftContainer>
-                <CardContainer>
+                <CardContainer image={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].image}>
                     <CardContent>
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].icon}
@@ -32,7 +32,7 @@ const EcosystemApps: React.FC = () => {
                 </CardContainer>
             </LeftContainer>
             <RightContainer>
-                <CardContainer>
+                <CardContainer image={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].image}>
                     <CardContent>
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].icon}
@@ -44,7 +44,7 @@ const EcosystemApps: React.FC = () => {
                         <Action>{ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].actionText}</Action>
                     </ActionContainer>
                 </CardContainer>
-                <CardContainer>
+                <CardContainer image={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].image}>
                     <CardContent>
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].icon}

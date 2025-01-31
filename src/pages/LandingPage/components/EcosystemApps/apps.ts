@@ -1,3 +1,6 @@
+import OvertimeCard from 'assets/images/overtime-card.svg';
+import SpeedMarketsCard from 'assets/images/speed-markets-card.svg';
+import ThalesMarketsCard from 'assets/images/thales-markets-card.svg';
 import { EcosystemApp, EcosystemDapp } from './types';
 
 // don't remove, used through thales-api
@@ -47,6 +50,7 @@ export const ECOSYSTEM_DAPP: Record<EcosystemDappType, EcosystemDapp> = {
         actionText: 'Use Overtime',
         link: 'https://overtimemarkets.xyz/',
         iconSize: '300px',
+        image: OvertimeCard,
     },
     [EcosystemDappType.SPEED_MARKETS]: {
         icon: 'overtime-icon overtime-icon--speed-markets',
@@ -55,6 +59,7 @@ export const ECOSYSTEM_DAPP: Record<EcosystemDappType, EcosystemDapp> = {
         actionText: 'Use Speed Markets',
         link: 'https://speedmarkets.xyz/',
         iconSize: '200px',
+        image: SpeedMarketsCard,
     },
     [EcosystemDappType.THALES_MARKETS]: {
         icon: 'overtime-icon overtime-icon--thales-markets',
@@ -63,5 +68,6 @@ export const ECOSYSTEM_DAPP: Record<EcosystemDappType, EcosystemDapp> = {
         actionText: 'Use Thales Markets',
         link: 'https://thalesmarket.io/',
         iconSize: '180px',
+        image: ThalesMarketsCard,
     },
 };

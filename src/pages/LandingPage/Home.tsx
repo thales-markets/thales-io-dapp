@@ -17,15 +17,14 @@ import Stats from './components/Stats';
 import Timeline from './components/Timeline';
 import Footer from './Footer';
 import {
-    About,
     Backers,
     Description,
-    EcosystemSection,
     FooterLine,
+    Header,
     HighlightTitle,
-    HomeButton,
     HomeIcon,
     IconLink,
+    LinkButton,
     Logo,
     Partners,
     Section,
@@ -69,17 +68,17 @@ const Home: React.FC = () => {
     return (
         <Suspense fallback={<Loader />}>
             <Wrapper>
-                <About>
+                <Header>
                     <Logo className="overtime-icon overtime-icon--overtime" />
                     <Title>
                         <HighlightTitle>{t('home.fully-onchain')} </HighlightTitle>
                         {t('home.sportsbook-ecosystem')}
                     </Title>
-                </About>
-                <EcosystemSection>
+                </Header>
+                <Section>
                     <SectionTitle>{t('home.ecosystem-apps.title')}</SectionTitle>
                     <EcosystemApps />
-                </EcosystemSection>
+                </Section>
                 <Stats duneStats={duneStats} tvl={TVL} />
                 <OverToken />
                 <Section>
@@ -183,7 +182,7 @@ const Home: React.FC = () => {
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-sports-markets-api-description')}</span>
                             <SPAAnchor href={LINKS.SportsIntegration}>
-                                <HomeButton>{t('home.integrations.integrate-with-thales-sports-button')}</HomeButton>
+                                <LinkButton>{t('home.integrations.integrate-with-thales-sports-button')}</LinkButton>
                             </SPAAnchor>
                         </Description>
                     </Collapse>
@@ -194,7 +193,7 @@ const Home: React.FC = () => {
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-digital-options-api-description')}</span>
                             <SPAAnchor href={LINKS.DigitalOptionsIntegration}>
-                                <HomeButton>{t('home.integrations.integrate-with-thales-markets-button')}</HomeButton>
+                                <LinkButton>{t('home.integrations.integrate-with-thales-markets-button')}</LinkButton>
                             </SPAAnchor>
                         </Description>
                     </Collapse>
@@ -205,7 +204,7 @@ const Home: React.FC = () => {
                         <Description marginBottom={20}>
                             <span>{t('home.integrations.thales-speed-markets-api-description')}</span>
                             <SPAAnchor href={LINKS.SpeedMarketsIntegration}>
-                                <HomeButton>{t('home.integrations.integrate-with-thales-speed-button')}</HomeButton>
+                                <LinkButton>{t('home.integrations.integrate-with-thales-speed-button')}</LinkButton>
                             </SPAAnchor>
                         </Description>
                     </Collapse>
@@ -222,7 +221,7 @@ const Home: React.FC = () => {
                     </SectionSlogan>
                     <Description marginBottom={20}>{t('home.governance.description')}</Description>
                     <SPAAnchor href={buildHref(ROUTES.About.Governance)} scrollTop={true}>
-                        <HomeButton>{t('home.governance.explore-overtime-dao-button')}</HomeButton>
+                        <LinkButton>{t('home.governance.explore-overtime-dao-button')}</LinkButton>
                     </SPAAnchor>
                 </Section>
                 <Section marginBottom={80}>

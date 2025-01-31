@@ -2,17 +2,17 @@ import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperl
 import { ReactComponent as Overdrop } from 'assets/images/overdrop.svg';
 import ROUTES from 'constants/routes';
 import { t } from 'i18next';
-import { HomeButton } from 'pages/LandingPage/styled-components';
+import { LinkButton } from 'pages/LandingPage/styled-components';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { navigateTo } from 'utils/routes';
 import {
     Container,
-    Label,
+    Description,
     LeftContainer,
-    OverValue,
+    OverDescription,
     RightContainer,
     SectionContainer,
-    Value,
+    Title,
 } from './styled-components';
 
 const OverToken: React.FC = () => {
@@ -20,24 +20,24 @@ const OverToken: React.FC = () => {
         <Container>
             <LeftContainer>
                 <SectionContainer>
-                    <Label>The heart of Overtime</Label>
-                    <OverValue>$OVER token</OverValue>
+                    <Title>{t('home.over-token.title')}</Title>
+                    <OverDescription>{t('home.over-token.description')}</OverDescription>
                 </SectionContainer>
                 <SectionContainer>
-                    <Label>{t('home.total-unique-users')}</Label>
-                    <Value>$OVER is the core betting collateral, providing the best odds and user experience.</Value>
+                    <Title>{t('home.over-token.title-1')}</Title>
+                    <Description>{t('home.over-token.description-1')}</Description>
                 </SectionContainer>
                 <SectionContainer>
-                    <Label>{t('home.markets-created')}</Label>
-                    <Value>All Overtime fees and revenue fuel a Buyback & Burn program for $OVER.</Value>
+                    <Title>{t('home.over-token.title-2')}</Title>
+                    <Description>{t('home.over-token.description-2')}</Description>
                 </SectionContainer>
                 <SectionContainer>
-                    <Label>{t('home.total-value-locked')}</Label>
-                    <Value>$OVER is the core betting collateral, providing the best odds and user experience.</Value>
+                    <Title>{t('home.over-token.title-3')}</Title>
+                    <Description>{t('home.over-token.description-3')}</Description>
                 </SectionContainer>
-                <HomeButton onClick={() => navigateTo(ROUTES.Dashboard)}>
-                    {t('home.see-all-Values-button')} <ArrowHyperlinkIcon />
-                </HomeButton>
+                <LinkButton onClick={() => navigateTo(ROUTES.About.Whitepaper)}>
+                    {t('home.whitepaper-button')} <ArrowHyperlinkIcon />
+                </LinkButton>
             </LeftContainer>
             <RightContainer>
                 <Overdrop />

@@ -148,6 +148,7 @@
         "total-unique-users": "Total unique users",
         "markets-created": "Markets created",
         "see-all-stats-button": "See All Stats",
+        "whitepaper-button": "Whitepaper",
         "ecosystem-apps": {
             "title": "Ecosystem apps",
             "thales-markets": "Digital Options marketplace built using Thales architecture. Simplest form of option trading where users can receive a fixed payout on UP, DOWN, IN or OUT positions around various supported asset prices.",
@@ -156,6 +157,16 @@
             "bookie": "Telegram-based Sports Markets application with easy onboarding that utilizes Thales Protocol Sports Markets infrastructure as its market making and liquidity backend.",
             "telegram": "By connecting Thales smart contracts to Telegram Bot trading interfaces, several new projects were born. These projects utilize simple trading experience within the easily accessible Telegram app to grow their userbase while leveraging the Thales collateral and onchain market making architecture to provide the backend.",
             "tale-of-thales": "Tale of Thales is a Metaverse minigame that takes you through retro pixel experience of an ancient Greek town of Miletus while teaching you how Thales Markets trading works. You can play the single-player or you can join the multiplayer metaverse, explore the infinity hotel, chat with other players or mint NFTs."
+        },
+        "over-token": {
+            "title": "The Heart of Overtime",
+            "description": "$OVER token",
+            "title-1": "Best odds",
+            "description-1": "$OVER is the core betting collateral, providing the best odds and user experience.",
+            "title-2": "Value capture",
+            "description-2": "All Overtime fees and revenue fuel a Buyback & Burn program for $OVER.",
+            "title-3": "Utility & rewards",
+            "description-3": "Benefit from house performance by simply holding $OVER."
         },
         "investors": {
             "title": "Investors"

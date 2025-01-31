@@ -3,18 +3,18 @@ import styled from 'styled-components';
 import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Container = styled(FlexDivRow)`
-    gap: 30px;
     width: 100%;
     margin-top: 20px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
     }
+    padding: 0 80px;
 `;
 
-export const LeftContainer = styled(FlexDivRow)``;
+export const LeftContainer = styled(FlexDivColumnCentered)``;
 
 export const RightContainer = styled(FlexDivColumnCentered)`
-    padding: 0 40px;
+    padding: 0 0 20px 60px;
 `;
 
 export const SectionContainer = styled.div`

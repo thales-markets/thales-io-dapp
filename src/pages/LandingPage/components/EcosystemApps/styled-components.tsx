@@ -21,7 +21,8 @@ export const RightContainer = styled(FlexDivColumn)`
     flex: 1 1 0;
 `;
 
-export const CardContainer = styled(FlexDivRow)`
+export const CardContainer = styled(FlexDivRow)<{ image: string }>`
+    background-image: url(${(props) => props.image});
     padding: 50px;
     width: 100%;
     border-radius: 15px;
