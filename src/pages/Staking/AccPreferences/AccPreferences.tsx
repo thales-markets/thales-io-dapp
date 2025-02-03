@@ -9,13 +9,9 @@ import {
 } from 'components/ToastMessage/ToastMessage';
 import TextInput from 'components/fields/TextInput';
 import LINKS from 'constants/links';
-import { ZERO_ADDRESS } from 'constants/network';
-import { TransactionFilterEnum } from 'enums/token';
-import { orderBy } from 'lodash';
 import useStakingClaimOnBehalfQuery from 'queries/token/useStakingClaimOnBehalfQuery';
 import useUserStakingDataQuery from 'queries/token/useUserStakingData';
-import useUserTokenTransactionsQuery from 'queries/token/useUserTokenTransactionsQuery';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -35,13 +31,10 @@ import {
     Bottom,
     ClaimContainer,
     Container,
-    DelegatedAddress,
-    DelegatedAddressWrapper,
     Message,
     Middle,
     StyledLink,
     Subtitle,
-    Top,
     ValidationMessage,
 } from './styled-components';
 
@@ -55,9 +48,7 @@ const AccPreferences: React.FC = () => {
     const walletAddress = useSelector((state: RootState) => getWalletAddress(state)) || '-';
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
     const [destAddress, setDestAddress] = useState<string>('');
-    const [delegateDestAddress, setDelegateDestAddress] = useState<string>('');
     const [isMerging, setIsMerging] = useState<boolean>(false);
-    const [isDelegating, setIsDelegating] = useState<boolean>(false);
     const [claimAccount, setClaimAccount] = useState<string>('');
     const [isSubmittingClaim, setIsSubmittingClaim] = useState<boolean>(false);
     const { stakingThalesContract } = networkConnector as any;
@@ -71,15 +62,6 @@ const AccPreferences: React.FC = () => {
         destAddress.trim() === '' ||
         (isAddress(walletAddress) && isAddress(destAddress) && getAddress(walletAddress) !== getAddress(destAddress));
 
-    const isDelegateDestAddressEntered = delegateDestAddress !== undefined && delegateDestAddress.trim() !== '';
-    const isDelegateDestAddressValid =
-        !isWalletConnected ||
-        delegateDestAddress === undefined ||
-        delegateDestAddress.trim() === '' ||
-        (isAddress(walletAddress) &&
-            isAddress(delegateDestAddress) &&
-            getAddress(walletAddress) !== getAddress(delegateDestAddress));
-
     const srcStakingThalesQuery = useUserStakingDataQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
     });
@@ -87,37 +69,6 @@ const AccPreferences: React.FC = () => {
     const destStakingThalesQuery = useUserStakingDataQuery(destAddress, networkId, {
         enabled: isAppReady && isDestAddressValid && !!destAddress,
     });
-
-    const userTokenTransactionsQuery = useUserTokenTransactionsQuery(
-        undefined,
-        networkId,
-        ['delegateVolume', 'removeDelegation'],
-        {
-            enabled: isAppReady && isWalletConnected,
-        }
-    );
-
-    const userTokenTransactions = useMemo(
-        () =>
-            userTokenTransactionsQuery.isSuccess && userTokenTransactionsQuery.data
-                ? orderBy(userTokenTransactionsQuery.data, ['timestamp', 'blockNumber'], ['asc', 'asc'])
-                : [],
-        [userTokenTransactionsQuery.isSuccess, userTokenTransactionsQuery.data]
-    );
-
-    const addressesThatDelegateToYou = useMemo(() => {
-        const map = {} as Record<string, boolean>;
-        userTokenTransactions.forEach((tx) => {
-            if (tx.destAccount?.toUpperCase() === walletAddress.toUpperCase()) {
-                map[tx.account] = true;
-            }
-
-            if (tx.type === TransactionFilterEnum.REMOVE_DELEGATION) {
-                delete map[tx.account];
-            }
-        });
-        return Object.keys(map);
-    }, [userTokenTransactions, walletAddress]);
 
     const isAccountMergingEnabled =
         srcStakingThalesQuery.isSuccess && srcStakingThalesQuery.data
@@ -139,11 +90,6 @@ const AccPreferences: React.FC = () => {
             ? destStakingThalesQuery.data.unstakingAmount > 0
             : false;
 
-    const delegatedVolumeAddress =
-        srcStakingThalesQuery.isSuccess && srcStakingThalesQuery.data
-            ? srcStakingThalesQuery.data.delegatedVolume
-            : ZERO_ADDRESS;
-
     const isMergeBlocked =
         isAccountMergingEnabled &&
         (hasSrcAccountSomethingToClaim ||
@@ -158,9 +104,6 @@ const AccPreferences: React.FC = () => {
         !isWalletConnected ||
         !isAccountMergingEnabled ||
         isMergeBlocked;
-
-    const isDelegateButtonDisabled =
-        isDelegating || !isDelegateDestAddressEntered || !isDelegateDestAddressValid || !isWalletConnected;
 
     const stakingClaimOnBehalfQuery = useStakingClaimOnBehalfQuery(walletAddress, networkId, {
         enabled: isAppReady && isWalletConnected,
@@ -211,29 +154,6 @@ const AccPreferences: React.FC = () => {
         }
     };
 
-    const handleDelegate = async () => {
-        const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
-        try {
-            setIsDelegating(true);
-
-            const stakingThalesContractWithSigner = stakingThalesContract.connect((networkConnector as any).signer);
-
-            const tx = await stakingThalesContractWithSigner.delegateVolume(
-                getAddress(delegatedVolumeAddress !== ZERO_ADDRESS ? ZERO_ADDRESS : delegateDestAddress)
-            );
-            const txResult = await tx.wait();
-
-            if (txResult && txResult.transactionHash) {
-                toast.update(id, getSuccessToastOptions(t('acc-preferences.merge.confirmation-message'), id));
-                setDelegateDestAddress('');
-                setIsDelegating(false);
-            }
-        } catch (e) {
-            toast.update(id, getErrorToastOptions(t('common.errors.unknown-error-try-again'), id));
-            setIsDelegating(false);
-        }
-    };
-
     const getMergeButton = () => {
         if (!isWalletConnected) {
             return (
@@ -259,47 +179,6 @@ const AccPreferences: React.FC = () => {
         return (
             <StakingButton padding="5px 30px" disabled={isMergingButtonDisabled} onClick={handleMerge}>
                 {isMerging ? t('staking.acc-preferences.merge.merging') : t('staking.acc-preferences.merge.merge')}
-            </StakingButton>
-        );
-    };
-
-    const getDelegateButton = () => {
-        if (!isWalletConnected) {
-            return (
-                <StakingButton padding="5px 30px" onClick={openConnectModal}>
-                    {t('common.wallet.connect-your-wallet')}
-                </StakingButton>
-            );
-        }
-
-        if (delegatedVolumeAddress !== ZERO_ADDRESS) {
-            return (
-                <StakingButton padding="5px 30px" onClick={handleDelegate}>
-                    {t(`staking.acc-preferences.delegate.remove-delegation`)}
-                </StakingButton>
-            );
-        }
-
-        if (!isDelegateDestAddressValid) {
-            return (
-                <StakingButton padding="5px 30px" disabled={true}>
-                    {t(`common.errors.invalid-address`)}
-                </StakingButton>
-            );
-        }
-        if (!isDelegateDestAddressEntered) {
-            return (
-                <StakingButton padding="5px 30px" disabled={true}>
-                    {t(`common.errors.enter-address`)}
-                </StakingButton>
-            );
-        }
-
-        return (
-            <StakingButton padding="5px 30px" disabled={isDelegateButtonDisabled} onClick={handleDelegate}>
-                {isDelegating
-                    ? t('staking.acc-preferences.delegate.delegating')
-                    : t('staking.acc-preferences.delegate.delegate')}
             </StakingButton>
         );
     };
@@ -393,77 +272,6 @@ const AccPreferences: React.FC = () => {
     return (
         <>
             <Container>
-                <Top>
-                    <FlexDiv gap="20px">
-                        <FlexDivColumnSpaceBetween gap={isMobile ? '10px' : '20px'}>
-                            <SectionTitle>
-                                <span>
-                                    <i className="icon icon--delegate" />
-                                    {t('staking.acc-preferences.delegate.title')}
-                                </span>
-                            </SectionTitle>
-                            <FlexDivColumn>
-                                <Subtitle>{t('staking.acc-preferences.source')}:</Subtitle>
-                                <TextInput inputFontSize="14px" value={walletAddress} disabled={true} />
-                            </FlexDivColumn>
-                            <FlexDivCentered>
-                                <Icon
-                                    color={theme.textColor.tertiary}
-                                    iconSize={24}
-                                    className="icon icon--circle-arrow-down"
-                                />
-                            </FlexDivCentered>
-                            <FlexDivColumn>
-                                <Subtitle>{t('staking.acc-preferences.destination')}:</Subtitle>
-                                <TextInput
-                                    inputFontSize="14px"
-                                    value={
-                                        delegatedVolumeAddress !== ZERO_ADDRESS
-                                            ? delegatedVolumeAddress
-                                            : delegateDestAddress
-                                    }
-                                    onChange={(e: any) => setDelegateDestAddress(e.target.value)}
-                                    disabled={
-                                        delegatedVolumeAddress !== ZERO_ADDRESS || isDelegating || !isWalletConnected
-                                    }
-                                    placeholder={t('common.enter-address')}
-                                    showValidation={!isDelegateDestAddressValid}
-                                    validationMessage={t(`common.errors.invalid-address`)}
-                                />
-                            </FlexDivColumn>
-                            <FlexDivCentered>{getDelegateButton()}</FlexDivCentered>
-                        </FlexDivColumnSpaceBetween>
-                        <FlexDivColumn>
-                            <Subtitle>{t('staking.acc-preferences.delegate.subtitle')}</Subtitle>
-                            <SectionDescription>
-                                {t('staking.acc-preferences.delegate.description-1')}
-                            </SectionDescription>
-                            <SectionDescription>
-                                {t('staking.acc-preferences.delegate.description-2')}
-                            </SectionDescription>
-                            <DelegatedAddressWrapper>
-                                {!!addressesThatDelegateToYou.length && (
-                                    <Subtitle>
-                                        {t('staking.acc-preferences.delegate.addresses-delegating-to-you')}:
-                                    </Subtitle>
-                                )}
-                                {addressesThatDelegateToYou.map((address, index) => {
-                                    return (
-                                        <StyledLink
-                                            key={index}
-                                            href={getEtherscanAddressLink(networkId, address)}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            <DelegatedAddress>{address}</DelegatedAddress>
-                                            <ArrowIcon width="8" height="8" />
-                                        </StyledLink>
-                                    );
-                                })}
-                            </DelegatedAddressWrapper>
-                        </FlexDivColumn>
-                    </FlexDiv>
-                </Top>
                 <Middle>
                     <FlexDiv gap="20px">
                         <FlexDivColumnSpaceBetween gap={isMobile ? '10px' : '20px'}>
