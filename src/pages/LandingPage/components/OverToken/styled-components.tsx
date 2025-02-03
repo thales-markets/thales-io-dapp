@@ -8,15 +8,29 @@ export const Container = styled(FlexDivRow)`
     margin-bottom: -100px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
+        margin-top: 0px;
+        margin-bottom: -10px;
     }
 `;
 
 export const LeftContainer = styled(FlexDivColumnCentered)`
     padding: 0 0 0 120px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        align-items: center;
+    }
 `;
 
 export const RightContainer = styled(FlexDivColumnCentered)`
     padding: 0 40px 0 0;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        align-items: center;
+        svg {
+            height: 350px;
+            width: 350px;
+        }
+    }
 `;
 
 export const SectionContainer = styled.div`

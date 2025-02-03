@@ -5,16 +5,29 @@ import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 export const Container = styled(FlexDivRow)`
     width: 100%;
     margin-top: 20px;
+    padding: 0 80px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
+        padding: 0;
     }
-    padding: 0 80px;
 `;
 
-export const LeftContainer = styled(FlexDivColumnCentered)``;
+export const LeftContainer = styled(FlexDivColumnCentered)`
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        svg {
+            align-items: center;
+            height: 350px;
+            width: 350px;
+        }
+    }
+`;
 
 export const RightContainer = styled(FlexDivColumnCentered)`
     padding: 0 0 20px 60px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        align-items: center;
+        padding: 10px;
+    }
 `;
 
 export const SectionContainer = styled.div`
