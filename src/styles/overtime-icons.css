@@ -56,3 +56,19 @@
 .overtime-icon--overtime:before {
     content: '\0042';
 }
+
+.overtime-icon--industry:before {
+    content: '\0061';
+}
+
+.overtime-icon--trust:before {
+    content: '\0062';
+}
+
+.overtime-icon--users:before {
+    content: '\0063';
+}
+
+.overtime-icon--chain:before {
+    content: '\0064';
+}

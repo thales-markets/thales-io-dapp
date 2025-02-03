@@ -1,3 +1,4 @@
+import { ReactComponent as OverFlow } from 'assets/images/over-flow.svg';
 import Collapse from 'components/Collapse';
 import Loader from 'components/Loader';
 import SPAAnchor from 'components/SPAAnchor';
@@ -13,6 +14,7 @@ import { AllStats } from 'types/statistics';
 import { buildHref } from 'utils/routes';
 import EcosystemApps from './components/EcosystemApps';
 import OverToken from './components/OverToken';
+import SportBetting from './components/SportBetting';
 import Stats from './components/Stats';
 import Timeline from './components/Timeline';
 import Footer from './Footer';
@@ -24,6 +26,7 @@ import {
     HighlightTitle,
     HomeIcon,
     IconLink,
+    ImageContainer,
     LinkButton,
     Logo,
     Partners,
@@ -79,6 +82,13 @@ const Home: React.FC = () => {
                     <SectionTitle>{t('home.ecosystem-apps.title')}</SectionTitle>
                     <EcosystemApps />
                 </Section>
+                <Section>
+                    <SectionSlogan>
+                        <SectionSloganHighlight>{t('home.sport-betting.titleHighlight')}</SectionSloganHighlight>{' '}
+                        {t('home.sport-betting.title')}
+                    </SectionSlogan>
+                    <SportBetting />
+                </Section>
                 <Stats duneStats={duneStats} tvl={TVL} />
                 <OverToken />
                 <Section>
@@ -87,6 +97,9 @@ const Home: React.FC = () => {
                         {t('home.over-deflationary.title')}
                     </SectionSlogan>
                     <Description>{t('home.over-deflationary.description')}</Description>
+                    <ImageContainer>
+                        <OverFlow />
+                    </ImageContainer>
                 </Section>
                 <Section>
                     <SectionSlogan align="center">

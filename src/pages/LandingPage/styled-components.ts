@@ -125,6 +125,15 @@ export const Description = styled(FlexDivColumn)<{ marginBottom?: number; margin
     }
 `;
 
+export const ImageContainer = styled(FlexDivColumnCentered)`
+    align-items: center;
+    margin-top: 40px;
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+`;
+
 export const BulletNumberIcon = styled.i`
     font-weight: normal;
     font-size: 14px;
