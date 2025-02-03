@@ -13,7 +13,6 @@ export const Container = styled(FlexDivSpaceBetween)`
 export const Name = styled.div`
     color: #c6c8da;
     font-size: 11px;
-    font-style: normal;
     text-transform: capitalize;
     margin-top: 3px;
 `;

@@ -102,7 +102,6 @@ const Value = styled(FlexDivColumnCentered)<{ isSelected: boolean }>`
 
 const Text = styled.span<{ isSelected?: boolean }>`
     display: flex;
-    font-style: normal;
     font-weight: ${(props) => (props.isSelected ? 'bold' : 'normal')};
     font-size: 13px;
     line-height: 15px;

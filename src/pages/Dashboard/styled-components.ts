@@ -250,7 +250,7 @@ export const FlexDivIntegrators = styled(FlexDivRow)`
 `;
 
 export const ChartTooltipBox = styled.div`
-    background: ${(props) => props.theme.background.quinary};
+    background: ${(props) => props.theme.background.quaternary};
     border-radius: 8px;
     z-index: 2;
     padding: 10px;

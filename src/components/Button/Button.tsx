@@ -64,13 +64,13 @@ const Wrapper = styled.button<{
     justify-content: center;
     width: ${(props) => props.width || 'auto'};
     min-height: ${(props) => props.height || '34px'};
-    border: 1px solid ${(props) => props.borderColor || props.theme.button.background.secondary};
+    border: 1px solid ${(props) => props.borderColor || props.theme.button.borderColor.primary};
     border-radius: 8px;
-    font-weight: normal;
+    font-weight: 600;
     font-size: ${(props) => props.fontSize || '18px'};
     line-height: 100%;
     cursor: pointer;
-    color: ${(props) => props.textColor || props.theme.button.textColor.secondary};
+    color: ${(props) => props.textColor || props.theme.button.textColor.primary};
     background-color: ${(props) => props.backgroundColor || props.theme.button.background.primary};
     margin: ${(props) => props.margin || ''};
     padding: ${(props) => props.padding || '0 30px'};

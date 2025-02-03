@@ -37,7 +37,6 @@ export const SectionContainer = styled.div`
 export const Label = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
     font-size: 18px;
-    font-style: normal;
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;

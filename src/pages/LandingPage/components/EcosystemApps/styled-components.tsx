@@ -61,8 +61,8 @@ export const Description = styled.span`
 
 export const Action = styled(FlexDivCentered)`
     height: 50px;
-    background-color: ${(props) => props.theme.button.background.tertiary};
-    color: ${(props) => props.theme.button.textColor.tertiary};
+    background-color: ${(props) => props.theme.button.background.secondary};
+    color: ${(props) => props.theme.button.textColor.secondary};
     border-radius: 8px;
     font-size: 16px;
     font-weight: 800;

@@ -217,7 +217,7 @@ export const VotesCount = styled(FlexDivColumnCentered)`
     color: ${(props) => props.theme.button.textColor.primary};
     margin-bottom: 12px;
     text-align: center;
-    background: ${(props) => props.theme.button.background.primary};
+    background: ${(props) => props.theme.background.secondary};
     border-radius: 9999px;
     height: 30px;
     min-width: 30px;

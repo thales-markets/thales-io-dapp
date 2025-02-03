@@ -57,22 +57,23 @@ export const Icon = styled.i<{ color?: string; iconSize?: number }>`
 `;
 
 export const Colors = {
+    CYAN: '#19F8EF',
+    CETACEAN_BLUE: '#0F1231',
+    RICH_BLACK: '#07091C',
+    PURPLE_NAVY: '#405682',
+    YANKEES_BLUE: '#1F2438',
+
     GRAY: '#424451',
     LIGHT_GRAY: '#A9ABBB',
     DARK_GRAY: '#181A20',
-    DARKER_GRAY: '#8c8f90',
+
     WHITE: '#FFFFFF',
+    BLACK: '#000000',
+
     CHINA_PINK: '#E06AA2',
     VIOLET: '#7E19FE',
     BLUEBERRY: '#4B79EE',
-    YANKEES_BLUE: '#1F2438',
-    METALLIC_BLUE: '#3F5580',
-    INDEPENDENCE: '#43496D',
-    BLACK: '#000000',
-    TURQUOISE: '#36E5D0',
     INDIAN_RED: '#DD5667',
-    VENETIAN_RED: '#E06AA2',
-    EGG_BLUE: '#03DAC6',
 
     GREEN: '#03DAC5',
     LIGHT_GREEN: '#B0FFE7',
@@ -89,11 +90,6 @@ export const Colors = {
     RED: '#DE496D',
     LIGHT_RED: '#E29587',
     DARK_RED: '#D66D75',
-
-    CYAN: '#19F8EF',
-    CETACEAN_BLUE: '#0F1231',
-    RICH_BLACK: '#07091C',
-    PURPLE_NAVY: '#405682',
 };
 
 export const Background = styled.div`

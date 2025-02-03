@@ -26,7 +26,6 @@ export const Input = styled.input<{ fontSize?: string; width?: string; height?: 
     width: ${(props) => props.width || '100%'};
     padding: 5px 10px;
     outline: 0;
-    font-style: normal;
     font-weight: normal;
     font-size: ${(props) => props.fontSize || '15px'};
     line-height: 18px;

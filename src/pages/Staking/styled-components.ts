@@ -8,8 +8,8 @@ export const SectionTitle = styled.div`
     justify-content: space-between;
     color: ${(props) => props.theme.textColor.primary};
     font-size: 18px;
-    font-style: normal;
     line-height: 24px;
+    font-weight: 600;
     text-transform: uppercase;
     > span:first-child {
         display: flex;
@@ -21,7 +21,6 @@ export const SectionTitle = styled.div`
     > span > div {
         color: #fff;
         font-size: 14px;
-        font-style: normal;
         text-transform: none;
     }
     > span:nth-child(2) {
@@ -53,6 +52,7 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
     font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     margin-top: 5px;
     width: ${(props) => props.width || 'auto'};

@@ -11,8 +11,7 @@ export const Links = styled.div`
 
 export const Item = styled.div<{ active?: boolean; deprecated?: boolean }>`
     position: relative;
-    font-style: normal;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 18px;
     line-height: 25.5px;
     z-index: 2;

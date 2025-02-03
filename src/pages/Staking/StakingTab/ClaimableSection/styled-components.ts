@@ -67,7 +67,7 @@ export const RewardsInfo = styled(FlexDiv)`
 export const CompoundContainer = styled(FlexDivColumn)`
     justify-content: end;
     label {
-        width: 165px;
+        width: 180px;
         margin-bottom: 5px;
         font-size: 11px;
         span {

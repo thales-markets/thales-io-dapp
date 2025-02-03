@@ -60,7 +60,6 @@ export const Paragraph = styled.p`
     &,
     & * {
         color: ${(props) => props.theme.textColor.tertiary};
-        font-style: normal;
         font-weight: 300;
         text-align: justify;
         white-space: pre-line;

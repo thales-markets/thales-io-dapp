@@ -458,6 +458,7 @@ const Button = styled.button<{ padding?: string; disabled?: boolean; width?: str
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
     font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};
     &:disabled {

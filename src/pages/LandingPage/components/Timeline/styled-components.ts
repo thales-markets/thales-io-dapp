@@ -135,7 +135,6 @@ export const MilestoneDate = styled.div<{ visible?: boolean }>`
     display: ${(props) => (props.visible ? 'block' : 'none')};
     color: white;
     font-size: 18px;
-    font-style: normal;
     line-height: normal;
     text-transform: uppercase;
 `;
@@ -144,7 +143,6 @@ export const MilestoneDescription = styled.div`
     padding-top: 8px;
     color: ${(props) => props.theme.textColor.tertiary};
     font-size: 13px;
-    font-style: normal;
     font-weight: 400;
     line-height: 155%;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {

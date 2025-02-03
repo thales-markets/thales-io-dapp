@@ -276,7 +276,7 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                         )}
                         {stakingData?.closingPeriodInProgress && (
                             <StakingStateWrapper>
-                                <StateLabel closingRoundInProgress={true}>
+                                <StateLabel>
                                     <Trans
                                         i18nKey="staking.rewards.claim.calculating-rewards"
                                         components={{
@@ -366,7 +366,7 @@ const HighlightedValue = styled.span`
 
 const Notice = styled.span`
     margin-top: 25px;
-    color: ${(props) => props.theme.error.textColor.secondary};
+    color: ${(props) => props.theme.error.textColor.primary};
 `;
 
 const StakingStateWrapper = styled(FlexDivColumn)`
@@ -377,13 +377,10 @@ const StakingStateWrapper = styled(FlexDivColumn)`
     }
 `;
 
-const StateLabel = styled.span<{ closingRoundInProgress?: boolean }>`
+const StateLabel = styled.span`
     font-size: 18px;
     font-weight: 600;
-    color: ${(props) =>
-        props.closingRoundInProgress
-            ? props.theme.warning.textColor.quaternary
-            : props.theme.warning.textColor.tertiary};
+    color: ${(props) => props.theme.error.textColor.primary};
     margin: 30px 0;
 `;
 

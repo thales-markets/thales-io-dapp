@@ -73,7 +73,6 @@ export const LogoBackgroundContainer = styled.div`
 export const Subtitle = styled.div`
     color: #c6c8da;
     font-size: 20px;
-    font-style: normal;
     font-weight: 400;
     line-height: 125%;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -85,7 +84,6 @@ export const Highlight = styled.div<{ marginBottom?: number; cursor?: string }>`
     cursor: ${(props) => (props.cursor ? props.cursor : 'default')};
     color: white;
     font-size: 17px;
-    font-style: normal;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
     line-height: 140%;
 `;
@@ -93,7 +91,6 @@ export const Highlight = styled.div<{ marginBottom?: number; cursor?: string }>`
 export const SectionTitle = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
     font-size: 18px;
-    font-style: normal;
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
@@ -106,7 +103,7 @@ export const LinkButton = styled.button`
     cursor: pointer;
     color: white;
     border-radius: 8px;
-    border: 1px solid ${(props) => props.theme.borderColor.senary};
+    border: 1px solid ${(props) => props.theme.borderColor.quaternary};
     text-transform: capitalize;
     background: transparent;
     width: fit-content;
@@ -121,7 +118,6 @@ export const Description = styled(FlexDivColumn)<{ marginBottom?: number; margin
     color: ${(props) => props.theme.textColor.tertiary};
     text-align: justify;
     font-size: 14px;
-    font-style: normal;
     font-weight: 600;
     line-height: 140%;
     margin-top: ${(props) => (props.marginTop ? props.marginTop : '20')}px;
@@ -177,7 +173,6 @@ export const SectionSloganHighlight = styled.span`
 export const SectionTitleLink = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
     font-size: 13px;
-    font-style: normal;
     line-height: 140%;
     text-transform: uppercase;
     margin-bottom: 15px;
@@ -270,7 +265,6 @@ export const ThalesLinks = styled(FlexDiv)`
 export const ThalesLinksTitle = styled.div`
     color: #fff;
     font-size: 13px;
-    font-style: normal;
     font-weight: 800;
     line-height: 186.5%;
     text-transform: capitalize;
@@ -278,7 +272,6 @@ export const ThalesLinksTitle = styled.div`
 export const ThalesLinksItem = styled.div`
     color: #c6c8da;
     font-size: 13px;
-    font-style: normal;
     font-weight: 600;
     line-height: 186.5%;
     text-transform: capitalize;

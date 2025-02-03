@@ -60,7 +60,7 @@ export const ScheduleWrapper = styled(FlexDiv)`
         height: 5px;
     }
     ::-webkit-scrollbar-thumb {
-        background: ${(props) => props.theme.textColor.quaternary};
+        background: ${(props) => props.theme.textColor.tertiary};
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
@@ -104,7 +104,7 @@ export const ScheduleAmount = styled.div`
 `;
 
 export const ScheduleDate = styled.div`
-    color: ${(props) => props.theme.textColor.quaternary};
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 13px;
     transform: translate(calc(-50% + 10px), 60px);
     position: absolute;

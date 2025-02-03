@@ -14,14 +14,13 @@ export const FiltersButton = styled.div<{ visible?: boolean }>`
     // border: 1px solid ${(props) => props.theme.borderColor.primary};
     box-sizing: border-box;
     border-radius: 30px;
-    background: ${(props) => props.theme.button.background.secondary};
+    background: ${(props) => props.theme.button.background.primary};
     cursor: pointer;
-    font-style: normal;
     font-weight: bold;
     font-size: 12px;
     line-height: 10px;
     text-transform: uppercase;
-    color: ${(props) => props.theme.button.textColor.secondary};
+    color: ${(props) => props.theme.button.textColor.primary};
     align-self: center;
     margin: 10px;
 `;
@@ -56,7 +55,7 @@ export const Wrapper = styled.div<{ visible?: boolean }>`
 export const Item = styled.div<{ active: boolean }>`
     text-transform: uppercase;
     cursor: pointer;
-    color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.button.textColor.secondary)};
+    color: ${(props) => (props.active ? props.theme.textColor.primary : props.theme.textColor.tertiary)};
     display: flex;
     flex-direction: row;
     justify-content: center;

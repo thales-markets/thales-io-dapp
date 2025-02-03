@@ -529,7 +529,7 @@ const NetworkSwitchLabel = styled(FlexDivStart)`
 
 const NetworkSwitchWrapper = styled(FlexDivCentered)`
     margin-top: 5px;
-    background: ${(props) => props.theme.button.background.secondary};
+    background: ${(props) => props.theme.background.quaternary};
     border-radius: 8px;
 `;
 
@@ -602,6 +602,7 @@ const Button = styled.button<{ padding?: string; disabled?: boolean; width?: str
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
     font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};
     &:disabled {

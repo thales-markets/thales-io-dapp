@@ -58,7 +58,7 @@ const Label = styled.span`
     font-weight: 600;
     font-size: 18px;
     line-height: 26px;
-    color: ${(props) => props.theme.warning.textColor.quaternary};
+    color: ${(props) => props.theme.error.textColor.primary};
     text-transform: uppercase;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 15px;
@@ -83,6 +83,7 @@ const Button = styled.button<{ padding?: string; disabled?: boolean }>`
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
     font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     width: 190px;
     &:disabled {
