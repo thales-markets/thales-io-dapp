@@ -104,3 +104,27 @@ export const TooltipContainer = styled.div<{ forceInline?: boolean }>`
     display: ${(props) => (props.forceInline ? 'inline' : 'flex')};
     align-items: center;
 `;
+
+export const MigrationContainer = styled(FlexDiv)`
+    padding: 10px 10px;
+    border-radius: 5px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: ${(props) => props.theme.warning.textColor.primary};
+    background-color: ${(props) => props.theme.background.tertiary};
+    text-align: center;
+    margin: 20px 0;
+    a {
+        color: ${(props) => props.theme.textColor.secondary};
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 13px;
+        padding: 10px;
+        margin: 0 0 20px 0;
+    }
+`;
+
+export const Bold = styled.span`
+    font-weight: bold;
+`;
