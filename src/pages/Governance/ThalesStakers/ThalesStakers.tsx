@@ -49,7 +49,7 @@ const ChartColors = [
     Colors.VIOLET,
     Colors.ORANGE,
     Colors.CYAN,
-    Colors.BLUE_DARK,
+    Colors.DARK_BLUE,
     Colors.BLUE,
     Colors.RED,
     Colors.BLUEBERRY,

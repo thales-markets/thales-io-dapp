@@ -62,29 +62,33 @@ export const Colors = {
     DARK_GRAY: '#181A20',
     DARKER_GRAY: '#8c8f90',
     WHITE: '#FFFFFF',
-    BLUE_DARK: '#313652',
     CHINA_PINK: '#E06AA2',
     VIOLET: '#7E19FE',
     BLUEBERRY: '#4B79EE',
     YANKEES_BLUE: '#1F2438',
     METALLIC_BLUE: '#3F5580',
     INDEPENDENCE: '#43496D',
-    RED: '#DE496D',
-    ORANGE: '#F7B91A',
-    DARK_ORANGE: '#FF8800',
-    GREEN: '#03DAC5',
-    LIGHT_GREEN: '#B0FFE7',
-    DARK_GREEN: '#1D976C',
     BLACK: '#000000',
-    BLUE: '#5B86E5',
-    LIGHT_BLUE: '#36D1DC',
-    LIGHT_RED: '#E29587',
-    DARK_RED: '#D66D75',
-    LIGHT_ORANGE: '#FFB866',
     TURQUOISE: '#36E5D0',
     INDIAN_RED: '#DD5667',
     VENETIAN_RED: '#E06AA2',
     EGG_BLUE: '#03DAC6',
+
+    GREEN: '#03DAC5',
+    LIGHT_GREEN: '#B0FFE7',
+    DARK_GREEN: '#1D976C',
+
+    BLUE: '#5B86E5',
+    LIGHT_BLUE: '#36D1DC',
+    DARK_BLUE: '#313652',
+
+    ORANGE: '#F7B91A',
+    LIGHT_ORANGE: '#FFB866',
+    DARK_ORANGE: '#FF8800',
+
+    RED: '#DE496D',
+    LIGHT_RED: '#E29587',
+    DARK_RED: '#D66D75',
 
     CYAN: '#19F8EF',
     CETACEAN_BLUE: '#0F1231',
@@ -106,7 +110,7 @@ export const Line = styled.div`
     width: 50%;
     height: 4px;
     border-radius: 10px;
-    background: ${(props) => props.theme.background.tertiary};
+    background: ${(props) => props.theme.borderColor.secondary};
 `;
 
 export const NavContainer = styled.div<{ width?: string }>`

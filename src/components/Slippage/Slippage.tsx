@@ -92,7 +92,7 @@ const Row = styled(FlexDivRowCentered)`
 const Value = styled(FlexDivColumnCentered)<{ isSelected: boolean }>`
     width: 45px;
     height: ${HEIGHT};
-    background: ${(props) => (props.isSelected ? props.theme.textColor.secondary : props.theme.background.tertiary)};
+    background: ${(props) => (props.isSelected ? props.theme.textColor.secondary : props.theme.borderColor.secondary)};
     border-radius: 8px;
     align-items: center;
     margin-right: 10px;

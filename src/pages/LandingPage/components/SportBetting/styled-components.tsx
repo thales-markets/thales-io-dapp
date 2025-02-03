@@ -18,7 +18,7 @@ export const CardContainer = styled(FlexDivColumnCentered)<{ image: string }>`
     width: 100%;
     border-radius: 15px;
     background-color: ${(props) => props.theme.background.primary};
-    border: 1px solid ${(props) => props.theme.borderColor.tertiary};
+    border: 1px solid ${(props) => props.theme.borderColor.secondary};
     color: ${(props) => props.theme.textColor.primary};
     flex: 1 1 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {

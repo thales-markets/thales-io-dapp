@@ -118,7 +118,7 @@ export const LinkButton = styled.button`
 `;
 
 export const Description = styled(FlexDivColumn)<{ marginBottom?: number; marginTop?: number }>`
-    color: ${(props) => props.theme.borderColor.quaternary};
+    color: ${(props) => props.theme.textColor.tertiary};
     text-align: justify;
     font-size: 14px;
     font-style: normal;

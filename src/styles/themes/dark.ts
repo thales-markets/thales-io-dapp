@@ -19,7 +19,6 @@ const darkTheme = {
     borderColor: {
         primary: Colors.GRAY,
         secondary: Colors.PURPLE_NAVY,
-        tertiary: Colors.METALLIC_BLUE,
         quaternary: Colors.LIGHT_GRAY,
         quinary: Colors.CETACEAN_BLUE,
         senary: Colors.CYAN,
@@ -92,7 +91,7 @@ const darkTheme = {
         },
         info: {
             background: {
-                primary: Colors.BLUE_DARK,
+                primary: Colors.DARK_BLUE,
                 secondary: Colors.LIGHT_BLUE,
                 tertiary: Colors.BLUE,
             },
