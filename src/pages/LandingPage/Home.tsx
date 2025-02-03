@@ -1,3 +1,4 @@
+import { ReactComponent as LogoTransparent } from 'assets/images/logo-transparent.svg';
 import { ReactComponent as OverFlow } from 'assets/images/over-flow.svg';
 import Collapse from 'components/Collapse';
 import Loader from 'components/Loader';
@@ -29,7 +30,9 @@ import {
     ImageContainer,
     LinkButton,
     Logo,
+    LogoBackgroundContainer,
     Partners,
+    PartnersContainer,
     Section,
     SectionSlogan,
     SectionSloganHighlight,
@@ -72,6 +75,9 @@ const Home: React.FC = () => {
         <Suspense fallback={<Loader />}>
             <Wrapper>
                 <Header>
+                    <LogoBackgroundContainer>
+                        <LogoTransparent />
+                    </LogoBackgroundContainer>
                     <Logo className="overtime-icon overtime-icon--overtime" />
                     <Title>
                         <HighlightTitle>{t('home.fully-onchain')} </HighlightTitle>
@@ -107,7 +113,7 @@ const Home: React.FC = () => {
                         <SectionSloganHighlight>{t('home.infrastructure.titleHighlight')}</SectionSloganHighlight>
                     </SectionSlogan>
                     {!isMobile && (
-                        <>
+                        <PartnersContainer>
                             <Partners>
                                 <SPAAnchor href={LINKS.Chainlink}>
                                     <HomeIcon fontSize="10em" className="overtime-icon overtime-icon--chainlink" />
@@ -136,7 +142,7 @@ const Home: React.FC = () => {
                                     <HomeIcon fontSize="11em" className="overtime-icon overtime-icon--biconomy" />
                                 </SPAAnchor>
                             </Backers>
-                        </>
+                        </PartnersContainer>
                     )}
                     {isMobile && (
                         <>
@@ -185,9 +191,7 @@ const Home: React.FC = () => {
                         <SectionSloganHighlight>{t('home.integrations.titleHighlight')}</SectionSloganHighlight>{' '}
                         {t('home.integrations.title')}
                     </SectionSlogan>
-                    <Description marginBottom={50} marginTop={20}>
-                        {t('home.integrations.description')}
-                    </Description>
+                    <Description marginBottom={50}>{t('home.integrations.description')}</Description>
                     <Collapse
                         title={t('home.integrations.thales-sports-markets-api-title')}
                         additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
@@ -239,9 +243,7 @@ const Home: React.FC = () => {
                 </Section>
                 <Section marginBottom={80}>
                     <SectionSlogan>{t('home.timeline.title')}</SectionSlogan>
-                    <div>
-                        <Timeline />
-                    </div>
+                    <Timeline />
                 </Section>
                 <FooterLine />
             </Wrapper>

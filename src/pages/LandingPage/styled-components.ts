@@ -11,6 +11,7 @@ import {
 } from 'styles/common';
 
 export const Header = styled.div`
+    position: relative;
     margin-top: 140px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 50px;
@@ -59,6 +60,16 @@ export const Logo = styled.i`
     }
 `;
 
+export const LogoBackgroundContainer = styled.div`
+    position: absolute;
+    top: -100px;
+    left: 100px;
+    svg {
+        height: 90%;
+        width: 90%;
+    }
+`;
+
 export const Subtitle = styled.div`
     color: #c6c8da;
     font-size: 20px;
@@ -95,14 +106,13 @@ export const LinkButton = styled.button`
     cursor: pointer;
     color: white;
     border-radius: 8px;
-    border: 1px solid #19f8ef;
+    border: 1px solid ${(props) => props.theme.borderColor.senary};
     text-transform: capitalize;
     background: transparent;
     width: fit-content;
-    text-align: center;
     font-size: 13px;
-    line-height: 80%;
-    text-transform: capitalize;
+    font-weight: 600;
+    line-height: 10.4px;
     padding: 7px 20px;
     z-index: 1000;
 `;
@@ -114,7 +124,7 @@ export const Description = styled(FlexDivColumn)<{ marginBottom?: number; margin
     font-style: normal;
     font-weight: 600;
     line-height: 140%;
-    margin-top: ${(props) => (props.marginTop ? props.marginTop : '0')}px;
+    margin-top: ${(props) => (props.marginTop ? props.marginTop : '20')}px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
     > span {
         margin-bottom: 15px;
@@ -129,8 +139,8 @@ export const ImageContainer = styled(FlexDivColumnCentered)`
     align-items: center;
     margin-top: 40px;
     svg {
-        height: 100%;
-        width: 100%;
+        height: 70%;
+        width: 70%;
     }
 `;
 
@@ -154,7 +164,6 @@ export const SectionSlogan = styled.div<{ align?: string }>`
     font-size: 40px;
     font-weight: 700;
     line-height: 48px;
-    margin: 15px 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 18px;
         text-align: ${(props) => (props.align ? props.align : 'left')};
@@ -166,15 +175,16 @@ export const SectionSloganHighlight = styled.span`
 `;
 
 export const SectionTitleLink = styled.div`
-    color: #c6c8da;
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 13px;
     font-style: normal;
     line-height: 140%;
     text-transform: uppercase;
+    margin-bottom: 15px;
 `;
 
 export const SectionTitleLinkArrow = styled(ArrowHyperlinkIcon)`
-    color: #c6c8da;
+    color: ${(props) => props.theme.textColor.tertiary};
     width: 9px;
     height: 9px;
 `;
@@ -306,7 +316,9 @@ export const SocialIcon = styled(Icon)`
     }
 `;
 
-export const PartnersColumn = styled(FlexDivColumnCentered)``;
+export const PartnersContainer = styled(FlexDivColumnCentered)`
+    margin-top: 20px;
+`;
 
 export const Partners = styled(FlexDivSpaceBetween)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {

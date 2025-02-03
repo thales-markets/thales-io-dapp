@@ -5,6 +5,7 @@ import { FlexDiv } from 'styles/common';
 
 // override styles from react-chrono
 export const Container = styled.div`
+    margin-top: 50px;
     & > div > div:nth-child(1) {
         order: 1;
         @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
