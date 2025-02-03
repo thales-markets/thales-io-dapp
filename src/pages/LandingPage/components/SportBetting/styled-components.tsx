@@ -6,10 +6,12 @@ export const Container = styled(FlexDivRow)`
     gap: 40px;
     width: 100%;
     margin-top: 40px;
+    flex: 1 1 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
+        margin-top: 20px;
+        gap: 20px;
     }
-    flex: 1 1 0;
 `;
 
 export const CardContainer = styled(FlexDivColumnCentered)<{ image: string }>`
@@ -21,17 +23,21 @@ export const CardContainer = styled(FlexDivColumnCentered)<{ image: string }>`
     border: 1px solid ${(props) => props.theme.borderColor.secondary};
     color: ${(props) => props.theme.textColor.primary};
     flex: 1 1 0;
+    align-items: center;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         padding: 10px 20px 20px 20px;
     }
-    align-items: center;
 `;
 
 export const Title = styled.span`
     font-size: 20px;
     font-weight: 600;
     line-height: 24.2px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 18px;
+        line-height: 22px;
+    }
 `;
 
 export const Description = styled.span`
@@ -39,12 +45,18 @@ export const Description = styled.span`
     font-size: 14px;
     font-weight: 600;
     line-height: 16.94px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 20px;
+    }
 `;
 
 export const Icon = styled.i<{ fontSize: string }>`
     color: ${(props) => props.theme.textColor.secondary};
     display: flex;
     font-size: ${(props) => props.fontSize};
-    height: 100px;
     align-items: center;
+    margin: 10px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 50px;
+    }
 `;

@@ -8,17 +8,24 @@ export const Container = styled(FlexDivRow)`
     margin-top: 20px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
+        gap: 20px;
     }
 `;
 
 export const LeftContainer = styled(FlexDivRow)`
     gap: 30px;
     flex: 1 1 0;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        gap: 20px;
+    }
 `;
 
 export const RightContainer = styled(FlexDivColumn)`
     gap: 30px;
     flex: 1 1 0;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        gap: 20px;
+    }
 `;
 
 export const CardContainer = styled(FlexDivRow)<{ image: string }>`
@@ -32,7 +39,7 @@ export const CardContainer = styled(FlexDivRow)<{ image: string }>`
     flex: 1 1 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
-        padding: 30px;
+        padding: 25px;
     }
 `;
 
@@ -49,6 +56,10 @@ export const Title = styled.span`
     font-weight: 500;
     line-height: 21.6px;
     text-transform: uppercase;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 16px;
+        line-height: 18px;
+    }
 `;
 
 export const Description = styled.span`
@@ -57,6 +68,9 @@ export const Description = styled.span`
     line-height: 16.8px;
     text-align: justify;
     margin-top: 25px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        text-align: left;
+    }
 `;
 
 export const Action = styled(FlexDivCentered)`
@@ -71,17 +85,19 @@ export const Action = styled(FlexDivCentered)`
     margin-left: 40px;
     padding: 0 10px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        height: 30px;
         margin-top: 20px;
         margin-left: 0px;
+        border-radius: 5px;
     }
 `;
 
-export const Icon = styled.i<{ fontSize: string }>`
+export const Icon = styled.i<{ fontSize: string; mobileFontSize: string }>`
     display: flex;
     font-size: ${(props) => props.fontSize};
     height: 100px;
     align-items: center;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 200px;
+        font-size: ${(props) => props.mobileFontSize};
     }
 `;

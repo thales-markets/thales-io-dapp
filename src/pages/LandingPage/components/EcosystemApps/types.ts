@@ -12,5 +12,6 @@ export type EcosystemDapp = {
     actionText: string;
     link: string;
     iconSize: string;
+    mobileIconSize: string;
     image: string;
 };

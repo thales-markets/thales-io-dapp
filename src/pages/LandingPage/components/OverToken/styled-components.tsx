@@ -17,7 +17,7 @@ export const LeftContainer = styled(FlexDivColumnCentered)`
     padding: 0 0 0 120px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
-        align-items: center;
+        align-items: left;
     }
 `;
 
@@ -27,14 +27,18 @@ export const RightContainer = styled(FlexDivColumnCentered)`
         padding: 0;
         align-items: center;
         svg {
-            height: 350px;
-            width: 350px;
+            height: 300px;
+            width: 300px;
         }
     }
 `;
 
 export const SectionContainer = styled.div`
     margin-bottom: 40px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        text-align: left;
+        margin-bottom: 20px;
+    }
 `;
 
 export const Title = styled.div`
@@ -53,6 +57,10 @@ export const Description = styled.div`
     font-size: 24px;
     font-weight: 600;
     line-height: 25px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 16px;
+        line-height: 20px;
+    }
 `;
 
 export const OverDescription = styled(Description)`
@@ -60,4 +68,8 @@ export const OverDescription = styled(Description)`
     font-size: 64px;
     font-weight: 700;
     line-height: 64px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 35px;
+        line-height: 40px;
+    }
 `;

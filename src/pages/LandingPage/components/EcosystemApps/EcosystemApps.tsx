@@ -22,6 +22,7 @@ const EcosystemApps: React.FC = () => {
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].icon}
                             fontSize={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].iconSize}
+                            mobileFontSize={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].mobileIconSize}
                         ></Icon>
                         <Title>{ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].title}</Title>
                         <Description>{ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].description}</Description>
@@ -37,6 +38,7 @@ const EcosystemApps: React.FC = () => {
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].icon}
                             fontSize={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].iconSize}
+                            mobileFontSize={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].mobileIconSize}
                         ></Icon>
                         <Title>{ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].title}</Title>
                     </CardContent>
@@ -49,6 +51,7 @@ const EcosystemApps: React.FC = () => {
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].icon}
                             fontSize={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].iconSize}
+                            mobileFontSize={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].mobileIconSize}
                         ></Icon>
                         <Title>{ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].title}</Title>
                     </CardContent>

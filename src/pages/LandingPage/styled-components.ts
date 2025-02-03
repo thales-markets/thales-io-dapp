@@ -138,6 +138,13 @@ export const ImageContainer = styled(FlexDivColumnCentered)`
         height: 70%;
         width: 70%;
     }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 20px;
+        svg {
+            height: 100%;
+            width: 100%;
+        }
+    }
 `;
 
 export const BulletNumberIcon = styled.i`

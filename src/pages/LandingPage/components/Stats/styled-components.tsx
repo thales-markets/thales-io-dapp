@@ -9,15 +9,17 @@ export const Container = styled(FlexDivRow)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         padding: 0;
+        margin-top: 0;
+        margin-bottom: 40px;
     }
 `;
 
 export const LeftContainer = styled(FlexDivColumnCentered)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        align-items: center;
         svg {
-            align-items: center;
-            height: 350px;
-            width: 350px;
+            height: 300px;
+            width: 300px;
         }
     }
 `;
@@ -32,6 +34,7 @@ export const RightContainer = styled(FlexDivColumnCentered)`
 
 export const SectionContainer = styled.div`
     margin-bottom: 20px;
+    text-align: center;
 `;
 
 export const Label = styled.div`
@@ -53,5 +56,6 @@ export const Value = styled.div`
     line-height: 60.95px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 25px;
+        line-height: 35px;
     }
 `;
