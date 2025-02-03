@@ -27,14 +27,14 @@ export const LeftContainer = styled(FlexDivColumnCentered)`
 export const RightContainer = styled(FlexDivColumnCentered)`
     padding: 0 0 20px 60px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        align-items: center;
-        padding: 10px;
+        align-items: left;
+        padding: 0px;
     }
 `;
 
 export const SectionContainer = styled.div`
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
 `;
 
 export const Label = styled.div`
@@ -56,6 +56,6 @@ export const Value = styled.div`
     line-height: 60.95px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 25px;
-        line-height: 35px;
+        line-height: 25px;
     }
 `;
