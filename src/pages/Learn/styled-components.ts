@@ -59,7 +59,7 @@ export const Paragraph = styled.p`
     margin-bottom: 15px;
     &,
     & * {
-        color: ${(props) => props.theme.textColor.senary};
+        color: ${(props) => props.theme.textColor.tertiary};
         font-style: normal;
         font-weight: 300;
         text-align: justify;

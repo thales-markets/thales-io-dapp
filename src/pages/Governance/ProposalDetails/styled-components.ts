@@ -21,7 +21,7 @@ export const Body = styled(FlexDivColumn)`
     color: ${(props) => props.theme.textColor.primary};
     p {
         margin-bottom: 15px;
-        color: ${(props) => props.theme.textColor.senary};
+        color: ${(props) => props.theme.textColor.tertiary};
     }
     a {
         color: ${(props) => props.theme.link.textColor.primary};
@@ -36,7 +36,7 @@ export const Body = styled(FlexDivColumn)`
         th {
             border: 1px solid ${(props) => props.theme.borderColor.primary};
             padding: 6px 13px;
-            color: ${(props) => props.theme.textColor.senary};
+            color: ${(props) => props.theme.textColor.tertiary};
         }
         td {
             border: 1px solid ${(props) => props.theme.borderColor.primary};

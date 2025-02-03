@@ -64,7 +64,7 @@ export const TipTable = styled(FlexDivColumn)`
     color: ${(props) => props.theme.textColor.primary};
     p {
         margin-bottom: 15px;
-        color: ${(props) => props.theme.textColor.senary};
+        color: ${(props) => props.theme.textColor.tertiary};
     }
     a {
         color: ${(props) => props.theme.textColor.primary};
@@ -85,7 +85,7 @@ export const TipTable = styled(FlexDivColumn)`
                 -webkit-line-clamp: 2; /* number of lines to show */
                 line-clamp: 2;
                 -webkit-box-orient: vertical;
-                color: ${(props) => props.theme.textColor.senary};
+                color: ${(props) => props.theme.textColor.tertiary};
                 margin-bottom: 0px;
             }
         }

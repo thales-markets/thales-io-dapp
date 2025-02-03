@@ -80,7 +80,7 @@ export const Highlight = styled.div<{ marginBottom?: number; cursor?: string }>`
 `;
 
 export const SectionTitle = styled.div`
-    color: ${(props) => props.theme.textColor.senary};
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 18px;
     font-style: normal;
     font-weight: 500;

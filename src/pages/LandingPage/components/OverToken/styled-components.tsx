@@ -38,7 +38,7 @@ export const SectionContainer = styled.div`
 `;
 
 export const Title = styled.div`
-    color: ${(props) => props.theme.textColor.senary};
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 18px;
     font-weight: 500;
     text-transform: uppercase;

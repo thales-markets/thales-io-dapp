@@ -118,9 +118,9 @@ const ThalesTokenInfo: React.FC = () => {
         const percentage = entry.percentage;
 
         return (
-            <span style={{ color: Colors.GRAY, fontSize: 13, fontFamily: 'Nunito' }}>
+            <span style={{ color: Colors.LIGHT_GRAY, fontSize: 13 }}>
                 {value}{' '}
-                <span style={{ color: Colors.WHITE, fontSize: 13, fontFamily: 'Nunito' }}>
+                <span style={{ color: Colors.WHITE, fontSize: 13 }}>
                     {value.toLowerCase() == 'non-circulating' ? '' : `${percentage.toFixed(2)}%`}
                 </span>
             </span>

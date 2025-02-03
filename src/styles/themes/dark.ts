@@ -13,11 +13,8 @@ const darkTheme = {
     textColor: {
         primary: Colors.WHITE,
         secondary: Colors.CYAN,
-        tertiary: Colors.GRAY,
+        tertiary: Colors.LIGHT_GRAY,
         quaternary: Colors.RICH_BLACK,
-        quinary: Colors.YANKEES_BLUE,
-        senary: Colors.LIGHT_GRAY,
-        septenary: Colors.DARKER_GRAY,
     },
     borderColor: {
         primary: Colors.GRAY,

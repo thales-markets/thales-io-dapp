@@ -31,7 +31,7 @@ const Container = styled(FlexDiv)`
     align-items: center;
     justify-content: center;
     color: ${(props) => props.theme.button.textColor.primary};
-    background-color: ${(props) => props.theme.background.tertiary};
+    background-color: ${(props) => props.theme.background.primary};
     min-height: 35px;
     z-index: 102;
     cursor: pointer;

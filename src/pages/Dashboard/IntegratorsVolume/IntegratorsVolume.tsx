@@ -67,24 +67,24 @@ const IntegratorsVolume: React.FC = () => {
                         <InfoSection side="left">
                             <SPAAnchor href={LINKS.ThalesMarkets} style={{ cursor: 'pointer' }}>
                                 <InfoText>
-                                    {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
+                                    {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.LIGHT_GRAY} />
                                 </InfoText>
                             </SPAAnchor>
                             <SPAAnchor href={LINKS.Overtime} style={{ cursor: 'pointer' }}>
                                 <InfoText>
-                                    {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.GRAY} />
+                                    {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.LIGHT_GRAY} />
                                 </InfoText>
                             </SPAAnchor>
                             <SPAAnchor href={LINKS.SpeedMarkets} style={{ cursor: 'pointer' }}>
                                 {' '}
                                 <InfoText>
-                                    {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
+                                    {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.LIGHT_GRAY} />
                                 </InfoText>{' '}
                             </SPAAnchor>
                             {integratorsData.map((integrator, index) => (
                                 <SPAAnchor key={index} href={integrator.url} style={{ cursor: 'pointer' }}>
                                     <InfoText>
-                                        {integrator.id} <LinkArrow color={Colors.GRAY} />
+                                        {integrator.id} <LinkArrow color={Colors.LIGHT_GRAY} />
                                     </InfoText>
                                 </SPAAnchor>
                             ))}
@@ -116,7 +116,7 @@ const IntegratorsVolume: React.FC = () => {
                         <FlexDivIntegrators>
                             <SPAAnchor href={LINKS.ThalesMarkets} style={{ cursor: 'pointer' }}>
                                 <InfoText>
-                                    {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.GRAY} />
+                                    {t('dashboard.integrators.thales-volume')} <LinkArrow color={Colors.LIGHT_GRAY} />
                                 </InfoText>
                                 <InfoStats>
                                     {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats?.thalesAmmVolume) : 0}
@@ -126,7 +126,7 @@ const IntegratorsVolume: React.FC = () => {
                         <FlexDivIntegrators>
                             <SPAAnchor href={LINKS.Overtime} style={{ cursor: 'pointer' }}>
                                 <InfoText>
-                                    {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.GRAY} />
+                                    {t('dashboard.integrators.overtime-volume')} <LinkArrow color={Colors.LIGHT_GRAY} />
                                 </InfoText>
                                 <InfoStats>
                                     {volumeStats
@@ -141,7 +141,7 @@ const IntegratorsVolume: React.FC = () => {
                         <FlexDivIntegrators>
                             <SPAAnchor href={LINKS.SpeedMarkets} style={{ cursor: 'pointer' }}>
                                 <InfoText>
-                                    {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.GRAY} />
+                                    {t('dashboard.integrators.speed-volume')} <LinkArrow color={Colors.LIGHT_GRAY} />
                                 </InfoText>
                                 <InfoStats>
                                     {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats?.speedAmmVolume) : 0}
@@ -152,7 +152,7 @@ const IntegratorsVolume: React.FC = () => {
                             <FlexDivIntegrators key={index}>
                                 <SPAAnchor href={integrator.url} style={{ cursor: 'pointer' }}>
                                     <InfoText>
-                                        {integrator.id} <LinkArrow color={Colors.GRAY} />
+                                        {integrator.id} <LinkArrow color={Colors.LIGHT_GRAY} />
                                     </InfoText>
                                     <InfoStats>{formatCurrencyWithSign(USD_SIGN, integrator.totalVolume)}</InfoStats>
                                 </SPAAnchor>

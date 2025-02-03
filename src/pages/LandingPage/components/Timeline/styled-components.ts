@@ -141,7 +141,7 @@ export const MilestoneDate = styled.div<{ visible?: boolean }>`
 
 export const MilestoneDescription = styled.div`
     padding-top: 8px;
-    color: ${(props) => props.theme.textColor.senary};
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
