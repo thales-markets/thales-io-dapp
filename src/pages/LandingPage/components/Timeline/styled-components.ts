@@ -19,20 +19,20 @@ export const Container = styled.div`
         order: 2;
     }
     .timeline-horizontal-container li div.active:after {
-        background: #19f8ef !important;
+        background: ${(props) => props.theme.button.background.secondary} !important;
         width: 15px;
         height: 15px;
     }
     .timeline-vertical-circle div.active:after {
-        background: #19f8ef !important;
+        background: ${(props) => props.theme.button.background.secondary} !important;
         width: 15px;
         height: 15px;
     }
     .timeline-controls {
-        background: #313652;
+        background: ${(props) => props.theme.background.primary};
     }
     .timeline-controls > li > button {
-        background: #3f5580;
+        background: ${(props) => props.theme.background.quaternary};
     }
     #react-chrono-timeline {
         margin-left: 0;
@@ -135,6 +135,7 @@ export const MilestoneDate = styled.div<{ visible?: boolean }>`
     display: ${(props) => (props.visible ? 'block' : 'none')};
     color: white;
     font-size: 18px;
+    font-weight: 600;
     line-height: normal;
     text-transform: uppercase;
 `;

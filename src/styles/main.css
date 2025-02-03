@@ -5,7 +5,7 @@
 
 html {
     scroll-behavior: smooth;
-    background: #313652;
+    background: #07091c;
 }
 
 html,
@@ -142,7 +142,7 @@ table {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     scrollbar-width: thin;
-    scrollbar-color: #c6c8da transparent;
+    scrollbar-color: #a9abbb transparent;
 }
 
 *::-webkit-scrollbar {
@@ -154,7 +154,7 @@ table {
     border-radius: 8px;
 }
 *::-webkit-scrollbar-thumb {
-    background: #c6c8da;
+    background: #a9abbb;
     border-radius: 8px;
 }
 

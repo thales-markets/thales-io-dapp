@@ -69,7 +69,7 @@ const Timeline: React.FC = () => {
                     items={items}
                     activeItemIndex={milestonesByQuarter.findIndex((quarter) => quarter.selected)}
                     theme={{
-                        primary: '#424451',
+                        primary: theme.background.secondary,
                         secondary: 'transparent',
                         cardBgColor: theme.background.primary,
                         titleColor: 'white',

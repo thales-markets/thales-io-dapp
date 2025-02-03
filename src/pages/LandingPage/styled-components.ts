@@ -71,7 +71,7 @@ export const LogoBackgroundContainer = styled.div`
 `;
 
 export const Subtitle = styled.div`
-    color: #c6c8da;
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 20px;
     font-weight: 400;
     line-height: 125%;
@@ -263,14 +263,14 @@ export const ThalesLinks = styled(FlexDiv)`
 `;
 
 export const ThalesLinksTitle = styled.div`
-    color: #fff;
+    color: ${(props) => props.theme.textColor.primary};
     font-size: 13px;
     font-weight: 800;
     line-height: 186.5%;
     text-transform: capitalize;
 `;
 export const ThalesLinksItem = styled.div`
-    color: #c6c8da;
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 13px;
     font-weight: 600;
     line-height: 186.5%;

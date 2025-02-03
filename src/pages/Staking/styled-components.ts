@@ -19,7 +19,7 @@ export const SectionTitle = styled.div`
         margin-right: 5px;
     }
     > span > div {
-        color: #fff;
+        color: ${(props) => props.theme.textColor.primary};
         font-size: 14px;
         text-transform: none;
     }
