@@ -27,13 +27,6 @@ export const Item = styled.div<{ active?: boolean; deprecated?: boolean }>`
     }
 `;
 
-export const Icon = styled.i<{ active?: boolean }>`
-    padding-left: 3px;
-    padding-bottom: 3px;
-    color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.textColor.primary)};
-    font-size: 13px;
-`;
-
 export const ItemTitle = styled(FlexDiv)`
     align-items: center;
     justify-content: center;

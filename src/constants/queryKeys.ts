@@ -3,18 +3,7 @@ import { Network } from 'enums/network';
 
 const QUERY_KEYS = {
     WalletBalances: {
-        StableCoinBalance: (walletAddress: string, networkId: Network) => [
-            'walletBalances',
-            'stableCoin',
-            walletAddress,
-            networkId,
-        ],
         Thales: (walletAddress: string, networkId: Network) => ['walletBalances', 'thales', walletAddress, networkId],
-        MultipleCollateral: (walletAddress: string, networkId: Network) => [
-            'multipleCollateral',
-            walletAddress,
-            networkId,
-        ],
     },
     Token: {
         PointsBreakdown: (walletAddress: string, networkId: Network) => [

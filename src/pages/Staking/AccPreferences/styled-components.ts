@@ -25,21 +25,6 @@ export const Container = styled.div`
     }
 `;
 
-export const Top = styled.div`
-    grid-area: top;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    > div {
-        height: 100%;
-    }
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        > ${FlexDiv} {
-            flex-direction: column-reverse;
-        }
-    }
-`;
-
 export const Middle = styled.div`
     grid-area: middle;
     display: flex;
@@ -120,13 +105,4 @@ export const ClaimContainer = styled.div`
             width: 100%;
         }
     }
-`;
-
-export const DelegatedAddressWrapper = styled(FlexDiv)`
-    flex-direction: column;
-    margin-top: 20px;
-`;
-
-export const DelegatedAddress = styled.span`
-    font-size: 12px;
 `;

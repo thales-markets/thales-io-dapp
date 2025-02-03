@@ -110,5 +110,3 @@ export const checkAllowance = async (amount: BigNumber, token: any, walletAddres
         return false;
     }
 };
-
-export const hasV2Pools = (network: Network) => network === Network.Arbitrum || network === Network.OptimismMainnet;

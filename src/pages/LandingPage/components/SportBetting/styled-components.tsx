@@ -1,6 +1,6 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDivColumn, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
+import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Container = styled(FlexDivRow)`
     gap: 40px;
@@ -26,10 +26,6 @@ export const CardContainer = styled(FlexDivColumnCentered)<{ image: string }>`
         padding: 10px 20px 20px 20px;
     }
     align-items: center;
-`;
-
-export const ActionContainer = styled(FlexDivColumn)`
-    justify-content: end;
 `;
 
 export const Title = styled.span`
