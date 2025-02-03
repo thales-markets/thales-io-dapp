@@ -1,3 +1,4 @@
+import SPAAnchor from 'components/SPAAnchor';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { ECOSYSTEM_DAPP, EcosystemDappType } from './apps';
 import {
@@ -28,7 +29,9 @@ const EcosystemApps: React.FC = () => {
                         <Description>{ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].description}</Description>
                     </CardContent>
                     <ActionContainer>
-                        <Action>{ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].actionText}</Action>
+                        <SPAAnchor href={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].link}>
+                            <Action>{ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].actionText}</Action>
+                        </SPAAnchor>
                     </ActionContainer>
                 </CardContainer>
             </LeftContainer>
@@ -43,7 +46,9 @@ const EcosystemApps: React.FC = () => {
                         <Title>{ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].title}</Title>
                     </CardContent>
                     <ActionContainer>
-                        <Action>{ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].actionText}</Action>
+                        <SPAAnchor href={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].link}>
+                            <Action>{ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].actionText}</Action>
+                        </SPAAnchor>
                     </ActionContainer>
                 </CardContainer>
                 <CardContainer image={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].image}>
@@ -56,7 +61,9 @@ const EcosystemApps: React.FC = () => {
                         <Title>{ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].title}</Title>
                     </CardContent>
                     <ActionContainer>
-                        <Action>{ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].actionText}</Action>
+                        <SPAAnchor href={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].link}>
+                            <Action>{ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].actionText}</Action>
+                        </SPAAnchor>
                     </ActionContainer>
                 </CardContainer>
             </RightContainer>
