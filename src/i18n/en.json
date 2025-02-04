@@ -592,6 +592,7 @@
         "links": {
             "dashboard": "Dashboard",
             "token": "Token",
+            "over-token": "Over token",
             "amm-lp": "AMM LP",
             "dao": "DAO",
             "docs": "Docs",
@@ -602,7 +603,13 @@
             "about": "About",
             "about-governance": "Governance",
             "about-token": "Thales token",
-            "blog": "Blog"
+            "blog": "Blog",
+            "community": "Community",
+            "products": "Products",
+            "resources": "Resources",
+            "overtime": "Overtime",
+            "speed-markets": "Speed markets",
+            "thales-markets": "Thales markets"
         }
     },
     "footer": {

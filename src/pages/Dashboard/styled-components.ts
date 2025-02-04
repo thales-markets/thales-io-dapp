@@ -7,7 +7,7 @@ import { FlexDiv, FlexDivColumnNative, FlexDivRow, FlexDivSpaceBetween } from 's
 export const Container = styled.div`
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(4, 330px);
+    grid-template-columns: repeat(4, 350px);
     grid-template-rows: repeat(3, 170px);
     column-gap: 10px;
     row-gap: 10px;

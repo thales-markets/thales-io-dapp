@@ -21,13 +21,13 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
     const navItems: NavItemType[] = useMemo(() => {
         return [
             {
-                href: buildHref(ROUTES.Dashboard),
-                title: t('header.links.dashboard'),
-                active: location.pathname === ROUTES.Dashboard,
-            },
-            {
-                title: t('header.links.token'),
+                title: t('header.links.over-token'),
                 children: [
+                    {
+                        href: buildHref(ROUTES.About.Token),
+                        title: t('header.links.over-token'),
+                        active: location.pathname === ROUTES.About.Token,
+                    },
                     {
                         title: t('header.links.staking'),
                         active: location.pathname === ROUTES.Token.Staking.Home,
@@ -62,6 +62,46 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                 ],
             },
             {
+                href: buildHref(ROUTES.Dashboard),
+                title: t('header.links.dashboard'),
+                active: location.pathname === ROUTES.Dashboard,
+            },
+
+            {
+                title: t('header.links.products'),
+                children: [
+                    {
+                        href: LINKS.Overtime,
+                        title: t('header.links.overtime'),
+                    },
+                    {
+                        href: LINKS.SpeedMarkets,
+                        title: t('header.links.speed-markets'),
+                    },
+                    {
+                        href: LINKS.ThalesMarkets,
+                        title: t('header.links.thales-markets'),
+                    },
+                ],
+            },
+            {
+                title: t('header.links.resources'),
+                children: [
+                    {
+                        href: LINKS.Docs,
+                        title: t('header.links.docs'),
+                    },
+                    {
+                        href: LINKS.Medium,
+                        title: t('header.links.blog'),
+                    },
+                    {
+                        href: LINKS.Discord,
+                        title: t('header.links.community'),
+                    },
+                ],
+            },
+            {
                 title: t('header.links.dao'),
                 children: [
                     {
@@ -78,35 +118,6 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                         href: buildHref(`${ROUTES.DAO.Home}/${SpaceKey.THALES_STAKERS}`),
                         title: t(`governance.tabs.${SpaceKey.THALES_STAKERS}`),
                         active: location.pathname.includes(SpaceKey.THALES_STAKERS),
-                    },
-                ],
-            },
-            {
-                href: LINKS.Medium,
-                title: t('header.links.blog'),
-            },
-            {
-                title: t('header.links.about'),
-                active: location.pathname.includes(ROUTES.About.Root),
-                children: [
-                    {
-                        href: buildHref(ROUTES.About.Token),
-                        title: t('header.links.about-token'),
-                        active: location.pathname === ROUTES.About.Token,
-                    },
-                    {
-                        href: buildHref(ROUTES.About.Governance),
-                        title: t('header.links.about-governance'),
-                        active: location.pathname === ROUTES.About.Governance,
-                    },
-                    {
-                        href: buildHref(ROUTES.About.Whitepaper),
-                        title: t('header.links.whitepaper'),
-                        active: location.pathname === ROUTES.About.Whitepaper,
-                    },
-                    {
-                        href: LINKS.Docs,
-                        title: t('header.links.docs'),
                     },
                 ],
             },

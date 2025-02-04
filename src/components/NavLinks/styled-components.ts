@@ -28,7 +28,8 @@ export const Item = styled.div<{ active?: boolean; deprecated?: boolean }>`
 
 export const Icon = styled.i<{ active?: boolean }>`
     padding-left: 3px;
-    padding-bottom: 3px;
+    height: 20px;
+    margin-top: -6px;
     color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.textColor.primary)};
     font-size: 13px;
 `;
@@ -41,7 +42,7 @@ export const DropdownContainer = styled.div`
     padding: 7px;
     background: ${(props) => props.theme.background.primary};
     box-shadow: -15px 13px 31px -3px rgba(0, 0, 0, 0.46);
-    transform: translateX(-25%);
+    transform: translateX(-15px);
     z-index: 3;
 `;
 
