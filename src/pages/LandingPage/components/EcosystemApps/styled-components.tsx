@@ -14,33 +14,35 @@ export const Container = styled(FlexDivRow)`
 
 export const LeftContainer = styled(FlexDivRow)`
     gap: 30px;
-    flex: 1 1 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         gap: 20px;
     }
+    width: 57%;
+    height: 527px;
 `;
 
 export const RightContainer = styled(FlexDivColumn)`
-    gap: 30px;
-    flex: 1 1 0;
+    gap: 40px;
+    width: 50%;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         gap: 20px;
     }
+    position: absolute;
+    left: 51%;
 `;
 
-export const CardContainer = styled(FlexDivRow)<{ image: string }>`
+export const CardContainer = styled(FlexDivRow)<{ image: string; isLeftContainer?: boolean }>`
     background-image: url(${(props) => props.image});
-    padding: 50px;
+    background-size: 100% 100%;
+    padding: ${(props) => (props.isLeftContainer ? '50px 160px 50px 40px' : '50px 40px 50px 50px')};
     width: 100%;
-    border-radius: 15px;
-    background-color: ${(props) => props.theme.background.primary};
-    border: 1px solid ${(props) => props.theme.borderColor.secondary};
     color: ${(props) => props.theme.textColor.primary};
     flex: 1 1 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         padding: 25px;
     }
+    z-index: ${(props) => (props.isLeftContainer ? 10 : 5)};
 `;
 
 export const CardContent = styled(FlexDivColumn)`
@@ -74,21 +76,23 @@ export const Description = styled.span`
 `;
 
 export const Action = styled(FlexDivCentered)`
-    height: 50px;
+    height: 40px;
     background-color: ${(props) => props.theme.button.background.secondary};
     color: ${(props) => props.theme.button.textColor.secondary};
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 800;
     line-height: 19.36px;
     text-transform: uppercase;
-    margin-left: 40px;
     padding: 0 10px;
+    width: 200px;
+    align-self: end;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         height: 30px;
         margin-top: 20px;
         margin-left: 0px;
         border-radius: 5px;
+        width: 100%;
     }
 `;
 

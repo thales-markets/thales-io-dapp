@@ -1,7 +1,7 @@
-import ChainCard from 'assets/images/chain-card.svg';
-import IndustryCard from 'assets/images/industry-card.svg';
-import TrustCard from 'assets/images/trust-card.svg';
-import UsersCard from 'assets/images/users-card.svg';
+import ChainCard from 'assets/images/chain-card.png';
+import IndustryCard from 'assets/images/industry-card.png';
+import TrustCard from 'assets/images/trust-card.png';
+import UsersCard from 'assets/images/users-card.png';
 import { SportBettingCard } from './types';
 
 export enum SportBettingCardType {

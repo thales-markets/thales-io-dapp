@@ -1,6 +1,6 @@
-import OvertimeCard from 'assets/images/overtime-card.svg';
-import SpeedMarketsCard from 'assets/images/speed-markets-card.svg';
-import ThalesMarketsCard from 'assets/images/thales-markets-card.svg';
+import OvertimeCard from 'assets/images/overtime-card.png';
+import SpeedMarketsCard from 'assets/images/speed-markets-card.png';
+import ThalesMarketsCard from 'assets/images/thales-markets-card.png';
 import { EcosystemApp, EcosystemDapp } from './types';
 
 // don't remove, used through thales-api

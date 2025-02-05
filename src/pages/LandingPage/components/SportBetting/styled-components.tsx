@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Container = styled(FlexDivRow)`
-    gap: 40px;
+    gap: 45px;
     width: 100%;
     margin-top: 40px;
     flex: 1 1 0;
@@ -16,11 +16,10 @@ export const Container = styled(FlexDivRow)`
 
 export const CardContainer = styled(FlexDivColumnCentered)<{ image: string }>`
     background-image: url(${(props) => props.image});
+    background-size: 100% 100%;
     padding: 20px 20px 30px 20px;
     width: 100%;
-    border-radius: 15px;
     background-color: ${(props) => props.theme.background.primary};
-    border: 1px solid ${(props) => props.theme.borderColor.secondary};
     color: ${(props) => props.theme.textColor.primary};
     flex: 1 1 0;
     align-items: center;

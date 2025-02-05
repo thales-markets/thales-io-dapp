@@ -18,7 +18,7 @@ const EcosystemApps: React.FC = () => {
     return (
         <Container>
             <LeftContainer>
-                <CardContainer image={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].image}>
+                <CardContainer image={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].image} isLeftContainer={true}>
                     <CardContent>
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].icon}
