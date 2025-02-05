@@ -1,6 +1,5 @@
 import Collapse from 'components/Collapse';
 import LoadingContainer from 'components/LoadingContainer';
-import SwitchInput from 'components/SwitchInput';
 import Tooltip from 'components/Tooltip';
 import { THALES_CURRENCY } from 'constants/currency';
 import useGlobalStakingDataQuery from 'queries/token/useGlobalStakingDataQuery';
@@ -12,27 +11,23 @@ import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
-import { useTheme } from 'styled-components';
-import { FlexDiv, FlexDivColumn } from 'styles/common';
+import { FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey, formatCurrencyWithPrecision } from 'thales-utils';
 import { GlobalStakingData, ThalesStakingData, UserStakingData } from 'types/token';
 import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
 import ClaimableSection from './ClaimableSection/ClaimbleSection';
-import Stake from './Stake';
 import YourTransactions from './Transactions';
 import Unstake from './Unstake';
 import { AboutToken, Bottom, Container, Top, UpperLeft, UpperRight, WarningMessage } from './styled-components';
 
 const StakingTab: React.FC = () => {
     const { t } = useTranslation();
-    const theme = useTheme();
 
     const [lastValidStakingData, setLastValidStakingData] = useState<ThalesStakingData | undefined>(undefined);
     const [lastValidUserStakingData, setLastValidUserStakingData] = useState<UserStakingData | undefined>(undefined);
     const [lastValidGlobalStakingData, setLastValidGlobalStakingData] = useState<GlobalStakingData | undefined>(
         undefined
     );
-    const [stakeSelected, setStakeSelected] = useState<boolean>(true);
 
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const isWalletConnected = useSelector((state: RootState) => getIsWalletConnected(state));
@@ -50,13 +45,6 @@ const StakingTab: React.FC = () => {
             setLastValidGlobalStakingData(globalStakingDataQuery.data);
         }
     }, [globalStakingDataQuery.isSuccess, globalStakingDataQuery.data]);
-
-    const globalStakingData: GlobalStakingData | undefined = useMemo(() => {
-        if (globalStakingDataQuery.isSuccess && globalStakingDataQuery.data) {
-            return globalStakingDataQuery.data;
-        }
-        return lastValidGlobalStakingData;
-    }, [globalStakingDataQuery.isSuccess, globalStakingDataQuery.data, lastValidGlobalStakingData]);
 
     useEffect(() => {
         if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
@@ -109,11 +97,6 @@ const StakingTab: React.FC = () => {
 
     const notEligibleForStakingRewards = thalesStaked === 0 && escrowedBalance > 0;
 
-    const sumOfAPY =
-        globalStakingData?.feeApy && globalStakingData?.thalesApy
-            ? globalStakingData.feeApy + globalStakingData.thalesApy
-            : 0;
-
     return (
         <>
             <Container>
@@ -139,43 +122,6 @@ const StakingTab: React.FC = () => {
                             </span>
                         </SectionTitle>
                         <div>
-                            <InfoDiv height="20px">
-                                <TooltipContainer>
-                                    APY{' '}
-                                    <Tooltip
-                                        marginBottom={2}
-                                        overlay={t('staking.staking.staking-data.apy-tooltip')}
-                                        mobileIconFontSize={11}
-                                        iconFontSize={11}
-                                    />
-                                </TooltipContainer>
-                                <span>
-                                    <FlexDiv gap="5px">
-                                        {sumOfAPY && `${formatCurrencyWithKey('%', sumOfAPY)}`}
-                                        <TooltipContainer>
-                                            {'('}
-                                            {globalStakingData?.thalesApy}%{' '}
-                                            <Tooltip
-                                                overlay={t(
-                                                    'staking.staking.staking-data.bonus-estimated-rewards-tooltip'
-                                                )}
-                                                mobileIconFontSize={11}
-                                                iconFontSize={11}
-                                            />{' '}
-                                        </TooltipContainer>
-                                        <TooltipContainer>
-                                            {' '}
-                                            + {globalStakingData?.feeApy}%{' '}
-                                            <Tooltip
-                                                overlay={t('staking.staking.staking-data.fee-rewards-tooltip')}
-                                                mobileIconFontSize={11}
-                                                iconFontSize={11}
-                                            />
-                                            {')'}
-                                        </TooltipContainer>
-                                    </FlexDiv>
-                                </span>
-                            </InfoDiv>
                             <InfoDiv>
                                 <TooltipContainer>
                                     {t('staking.staking.staking-data.my-staking-share')}
@@ -241,20 +187,7 @@ const StakingTab: React.FC = () => {
                     </LoadingContainer>
                 </UpperRight>
                 <Bottom>
-                    <SwitchInput
-                        label={{
-                            firstLabel: t('staking.staking.stake-unstake.stake'),
-                            secondLabel: t('staking.staking.stake-unstake.unstake'),
-                            fontSize: '18px',
-                        }}
-                        borderColor={theme.borderColor.secondary}
-                        dotBackground={theme.textColor.secondary}
-                        dotSize="20px"
-                        disabled={stakingData?.closingPeriodInProgress}
-                        active={!stakeSelected}
-                        handleClick={() => setStakeSelected(!stakeSelected)}
-                    />
-                    {stakeSelected ? <Stake /> : <Unstake />}
+                    <Unstake />
                     <Collapse
                         title={t('staking.staking.stake-unstake.about-title')}
                         additionalStyling={{
