@@ -1,5 +1,5 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
-import { ReactComponent as Overdrop } from 'assets/images/overdrop.svg';
+import Coins from 'assets/images/coins.png';
 import ROUTES from 'constants/routes';
 import { t } from 'i18next';
 import { LinkButton } from 'pages/LandingPage/styled-components';
@@ -40,7 +40,7 @@ const OverToken: React.FC = () => {
                 </LinkButton>
             </LeftContainer>
             <RightContainer>
-                <Overdrop />
+                <img src={Coins} />
             </RightContainer>
         </Container>
     );

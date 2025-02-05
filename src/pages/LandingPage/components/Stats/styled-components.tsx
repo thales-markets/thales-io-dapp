@@ -15,6 +15,7 @@ export const Container = styled(FlexDivRow)`
 `;
 
 export const LeftContainer = styled(FlexDivColumnCentered)`
+    margin-top: 50px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         align-items: center;
         svg {
@@ -25,7 +26,7 @@ export const LeftContainer = styled(FlexDivColumnCentered)`
 `;
 
 export const RightContainer = styled(FlexDivColumnCentered)`
-    padding: 0 0 20px 60px;
+    padding: 0 0 60px 60px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         align-items: left;
         padding: 0px;

@@ -4,8 +4,8 @@ import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Container = styled(FlexDivRow)`
     width: 100%;
-    margin-top: -150px;
-    margin-bottom: -100px;
+    margin-top: -80px;
+    margin-bottom: -10px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         margin-top: 0px;
