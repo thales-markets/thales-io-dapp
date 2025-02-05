@@ -1,21 +1,25 @@
 import Loader from 'components/Loader';
 import { NavItemType } from 'components/NavLinks/NavItem';
+import SPAAnchor from 'components/SPAAnchor';
 import TabLinks from 'components/TabLinks';
+import { MIGRATION_PROPOSAL_ID } from 'constants/governance';
 import ROUTES from 'constants/routes';
 import { STAKING_TABS } from 'constants/token';
+import { SpaceKey } from 'enums/governance';
 import queryString from 'query-string';
 import { Suspense, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
-import { Line, NavContainer } from 'styles/common';
-import { buildHref } from 'utils/routes';
+import { NavContainer } from 'styles/common';
+import { buildGovernanceHref, buildHref } from 'utils/routes';
 import AccPreferences from './AccPreferences';
 import StakingTab from './StakingTab';
 import Vesting from './Vesting';
 import CCIPAnimation from './components/CCIPAnimation';
+import { Bold, MigrationContainer } from './styled-components';
 
 const Staking: React.FC = () => {
     const { t } = useTranslation();
@@ -46,7 +50,17 @@ const Staking: React.FC = () => {
 
     return (
         <Suspense fallback={<Loader />}>
-            {!isMobile && <Line />}
+            <MigrationContainer>
+                <span>
+                    <Trans
+                        i18nKey={t('staking.migration-banner')}
+                        components={{
+                            tip: <SPAAnchor href={buildGovernanceHref(SpaceKey.COUNCIL, MIGRATION_PROPOSAL_ID)} />,
+                            bold: <Bold />,
+                        }}
+                    />
+                </span>
+            </MigrationContainer>
             {!isMobile && (
                 <NavContainer>
                     <TabLinks items={navItems} />

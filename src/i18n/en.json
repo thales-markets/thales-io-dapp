@@ -226,6 +226,7 @@
         }
     },
     "staking": {
+        "migration-banner": "As per <tip>TIP-238</tip>, THALES staking has been deprecated and rewards have been halted. While there is no deadline, <bold>all THALES stakers are advised to unstake</bold>, to prepare for the migration to OVER token. Follow official announcement channels for new updates.",
         "nav": {
             "rewards": "Rewards",
             "staking": "Stake & Earn",

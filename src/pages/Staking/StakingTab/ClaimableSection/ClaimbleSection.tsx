@@ -9,7 +9,6 @@ import {
     getSuccessToastOptions,
 } from 'components/ToastMessage/ToastMessage';
 import Tooltip from 'components/Tooltip';
-import Checkbox from 'components/fields/Checkbox';
 import { THALES_CURRENCY } from 'constants/currency';
 import { ethers } from 'ethers';
 import Lottie from 'lottie-react';
@@ -21,7 +20,7 @@ import { toast } from 'react-toastify';
 import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import styled, { useTheme } from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumn } from 'styles/common';
+import { FlexDiv, FlexDivColumn } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { ThalesStakingData, UserStakingData } from 'types/token';
 import { getDefaultCollateral } from 'utils/currency';
@@ -58,7 +57,6 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
     const { stakingThalesContract } = networkConnector as any;
 
     const [isClaiming, setIsClaiming] = useState(false);
-    const [compoundRewards, setCompoundRewards] = useState<boolean>(false);
     const [compoundModalOpen, setCompoundModalOpen] = useState<boolean>(false);
     const [isClosingPeriod, setIsClosingPeriod] = useState(false);
 
@@ -131,14 +129,6 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
 
         if (isPaused || isClaimed) {
             return <StakingButton disabled={true}>{t('staking.rewards.claim.claim-rewards')}</StakingButton>;
-        }
-
-        if (compoundRewards) {
-            return (
-                <StakingButton disabled={!isClaimAvailable} onClick={() => setCompoundModalOpen(true)}>
-                    {t('staking.rewards.claim.claim-and-stake')}
-                </StakingButton>
-            );
         }
 
         return (
@@ -254,24 +244,6 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                         {isClaimed && (
                             <StakingStateWrapper>
                                 <StateLabel>{t('staking.rewards.your-rewards.already-claimed')}</StateLabel>
-                                <FlexDiv>
-                                    <Trans
-                                        i18nKey="staking.rewards.your-rewards.next-claim"
-                                        components={{
-                                            span: <span />,
-                                        }}
-                                    />
-                                    {stakingData ? (
-                                        <TimeRemaining
-                                            end={stakingData?.closingDate}
-                                            textColor={theme.textColor.secondary}
-                                            fontSize={13}
-                                            showFullCounter
-                                        />
-                                    ) : (
-                                        '--:--'
-                                    )}
-                                </FlexDiv>
                             </StakingStateWrapper>
                         )}
                         {stakingData?.closingPeriodInProgress && (
@@ -305,32 +277,6 @@ const ClaimableSection: React.FC<ClaimableSectionProps> = ({ userStakingData, st
                                 </span>
                             </RewardsInfo>
                             <CompoundContainer>
-                                <FlexDivCentered>
-                                    <Checkbox
-                                        label={
-                                            <>
-                                                {t('staking.rewards.claim.compound-and-stake')}
-                                                <Tooltip
-                                                    overlay={
-                                                        <Trans
-                                                            i18nKey="staking.rewards.claim.compound-tooltip"
-                                                            values={{
-                                                                collateral: getDefaultCollateral(networkId, true),
-                                                            }}
-                                                        />
-                                                    }
-                                                    marginRight={5}
-                                                    marginBottom={6}
-                                                    mobileIconFontSize={11}
-                                                    iconFontSize={13}
-                                                />
-                                            </>
-                                        }
-                                        checked={compoundRewards}
-                                        value={0}
-                                        onChange={() => setCompoundRewards(!compoundRewards)}
-                                    />
-                                </FlexDivCentered>
                                 {getClaimButton()}
                                 {getClosePeriodButton()}
                             </CompoundContainer>
