@@ -12,6 +12,7 @@ import stakingDataContract from './contracts/stakingDataContract';
 import stakingThalesContract from './contracts/stakingThales';
 import thalesContract from './contracts/thalesContract';
 import thalesCouncilNFT from './contracts/ThalesCouncilNFT';
+import thalesToOverMigrationContract from './contracts/thalesToOverMigrationContract';
 import uniswapFactoryContract from './contracts/uniswapV3Factory';
 
 type networkConnector = {
@@ -29,6 +30,7 @@ type networkConnector = {
     gelatoContract?: ethers.Contract;
     celerBridgeContract?: ethers.Contract;
     uniswapFactoryContract?: ethers.Contract;
+    thalesToOverMigrationContract?: ethers.Contract;
     multipleCollateral?: Record<Coins, ethers.Contract | undefined>;
     setContractSettings: (contractSettings: any) => void;
 };
@@ -53,6 +55,10 @@ const networkConnector: networkConnector = {
         this.gelatoContract = conditionalInitializeContract(gelatoContract, contractSettings);
         this.celerBridgeContract = conditionalInitializeContract(celerBridgeContract, contractSettings);
         this.uniswapFactoryContract = conditionalInitializeContract(uniswapFactoryContract, contractSettings);
+        this.thalesToOverMigrationContract = conditionalInitializeContract(
+            thalesToOverMigrationContract,
+            contractSettings
+        );
         this.multipleCollateral = {
             sUSD: conditionalInitializeContract(multipleCollateral.sUSD, contractSettings),
             DAI: conditionalInitializeContract(multipleCollateral.DAI, contractSettings),

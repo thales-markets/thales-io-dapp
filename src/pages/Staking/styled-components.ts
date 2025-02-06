@@ -107,7 +107,7 @@ export const MigrationContainer = styled(FlexDiv)`
     align-items: center;
     justify-content: center;
     color: ${(props) => props.theme.warning.textColor.primary};
-    background-color: ${(props) => props.theme.background.tertiary};
+    background-color: ${(props) => props.theme.background.quaternary};
     text-align: center;
     margin: 20px 0;
     a {
