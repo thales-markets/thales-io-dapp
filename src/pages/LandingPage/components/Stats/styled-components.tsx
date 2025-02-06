@@ -18,7 +18,7 @@ export const LeftContainer = styled(FlexDivColumnCentered)`
     margin-top: 50px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         align-items: center;
-        svg {
+        img {
             height: 300px;
             width: 300px;
         }

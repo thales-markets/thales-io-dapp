@@ -7,7 +7,7 @@ export const Container = styled(FlexDivRow)`
     margin-top: -80px;
     margin-bottom: -10px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        flex-direction: column;
+        flex-direction: column-reverse;
         margin-top: 0px;
         margin-bottom: -10px;
     }
@@ -26,7 +26,7 @@ export const RightContainer = styled(FlexDivColumnCentered)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
         align-items: center;
-        svg {
+        img {
             height: 300px;
             width: 300px;
         }

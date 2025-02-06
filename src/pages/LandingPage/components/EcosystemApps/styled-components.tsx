@@ -14,21 +14,26 @@ export const Container = styled(FlexDivRow)`
 
 export const LeftContainer = styled(FlexDivRow)`
     gap: 30px;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        gap: 20px;
-    }
     width: 57%;
     height: 527px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        gap: 20px;
+        height: 100%;
+        width: 100%;
+    }
 `;
 
 export const RightContainer = styled(FlexDivColumn)`
     gap: 40px;
     width: 50%;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        gap: 20px;
-    }
     position: absolute;
     left: 51%;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        gap: 20px;
+        position: relative;
+        left: 0;
+        width: 100%;
+    }
 `;
 
 export const CardContainer = styled(FlexDivRow)<{ image: string; isLeftContainer?: boolean }>`
