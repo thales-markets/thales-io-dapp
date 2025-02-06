@@ -1,3 +1,4 @@
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
 import { FlexDivCentered, FlexDivColumnCentered, FlexDivSpaceBetween } from 'styles/common';
 
@@ -8,7 +9,7 @@ export const Container = styled(FlexDivColumnCentered)`
     align-items: center;
     padding: 50px;
     width: 600px;
-    @media (max-width: 950px) {
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: auto;
         height: auto;
         padding: 30px;
@@ -22,7 +23,7 @@ export const Title = styled.span`
     line-height: 32px;
     letter-spacing: 0.025em;
     text-align: center;
-    @media (max-width: 575px) {
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 18px;
         margin-top: 0px;
     }
@@ -36,7 +37,7 @@ export const Description = styled.span`
     letter-spacing: 0.025em;
     text-align: center;
     margin-top: 20px;
-    @media (max-width: 575px) {
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 12px;
         margin-top: 10px;
     }
@@ -50,12 +51,19 @@ export const InputContainer = styled.div`
     position: relative;
     width: 350px;
     margin-top: 30px;
-    @media (max-width: 575px) {
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 20px;
+        width: 300px;
     }
 `;
 
-export const ButtonContainer = styled(FlexDivCentered)``;
+export const ButtonContainer = styled(FlexDivCentered)`
+    button {
+        @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+            width: 300px;
+        }
+    }
+`;
 
 export const defaultCustomStyles = {
     content: {
@@ -85,7 +93,7 @@ export const CloseIcon = styled.i`
     right: 0px;
     padding: 14px 15px;
     cursor: pointer;
-    @media (max-width: 950px) {
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         right: 0px;
         top: 0px;
         padding: 12px 13px;
@@ -107,6 +115,9 @@ export const TipLink = styled.a`
 export const Summary = styled(FlexDivSpaceBetween)`
     width: 350px;
     margin-bottom: 10px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 300px;
+    }
 `;
 
 export const SummaryLabel = styled.span`
@@ -118,7 +129,7 @@ export const SummaryLabel = styled.span`
     letter-spacing: 0.025em;
     text-transform: uppercase;
     color: ${(props) => props.theme.textColor.secondary};
-    @media (max-width: 950px) {
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         line-height: 24px;
     }
 `;
