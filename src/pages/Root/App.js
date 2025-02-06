@@ -23,8 +23,8 @@ const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ '../Dash
 const Staking = lazy(() => import(/* webpackChunkName: "Staking" */ '../Staking'));
 const Governance = lazy(() => import(/* webpackChunkName: "Governance" */ '../Governance'));
 const Bridge = lazy(() => import(/* webpackChunkName: "Bridge" */ '../Bridge'));
-const WhitepaperArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/WhitepaperArticle'));
-const GovernanceArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/GovernanceArticle'));
+// const WhitepaperArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/WhitepaperArticle'));
+// const GovernanceArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/GovernanceArticle'));
 const TokenArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/TokenArticle'));
 const LPStaking = lazy(() => import(/* webpackChunkName: "LPStaking" */ '../Staking/LPStaking'));
 
@@ -146,7 +146,7 @@ const App = () => {
                                 </Suspense>
                             )}
                         />
-                        <Route exact path={ROUTES.About.Whitepaper}>
+                        {/* <Route exact path={ROUTES.About.Whitepaper}>
                             <Suspense fallback={<Loader />}>
                                 <DappLayout>
                                     <WhitepaperArticle />
@@ -159,8 +159,8 @@ const App = () => {
                                     <GovernanceArticle />
                                 </DappLayout>
                             </Suspense>
-                        </Route>
-                        <Route exact path={ROUTES.About.Token}>
+                        </Route> */}
+                        <Route exact path={ROUTES.OverToken}>
                             <Suspense fallback={<Loader />}>
                                 <DappLayout>
                                     <TokenArticle />

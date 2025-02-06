@@ -68,7 +68,8 @@
         "banner": {
             "elections-banner-message": "Elections for Thales Council are now live, exercise your voting power <bold>here</bold>",
             "rewards-banner-message": "All traders on Optimism are eligible for <bold>5,000 OP</bold> weekly based on Notional Volume. <bold>More details here</bold>.",
-            "speed-banner-message": "Trade on Speed Markets, win 10,000 PYTH! <bold>Learn more.</bold>"
+            "speed-banner-message": "Trade on Speed Markets, win 10,000 PYTH! <bold>Learn more.</bold>",
+            "migration": "Migrate $THALES to $OVER <bold>here</bold>"
         },
         "transaction": {
             "view": "View",

@@ -1,5 +1,4 @@
 import SPAAnchor from 'components/SPAAnchor';
-import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { STAKING_TABS } from 'constants/token';
 import { SpaceKey } from 'enums/governance';
@@ -16,6 +15,10 @@ import BreadcrumbItem from './BreadcrumbItem';
 
 export const BREADCRUMBS_DROPDOWN_ITEMS = {
     Token: [
+        {
+            i18label: 'header.links.over-token',
+            route: ROUTES.OverToken,
+        },
         {
             i18label: 'header.links.staking',
             route: ROUTES.Token.Staking.Home,
@@ -41,24 +44,6 @@ export const BREADCRUMBS_DROPDOWN_ITEMS = {
         {
             i18label: 'staking.nav.acc-preferences',
             route: ROUTES.Token.Staking.Preferences,
-        },
-    ],
-    About: [
-        {
-            i18label: 'header.links.about-token',
-            route: ROUTES.About.Token,
-        },
-        {
-            i18label: 'header.links.about-governance',
-            route: ROUTES.About.Governance,
-        },
-        {
-            i18label: 'header.links.whitepaper',
-            route: ROUTES.About.Whitepaper,
-        },
-        {
-            i18label: 'header.links.docs',
-            route: LINKS.Docs,
         },
     ],
     DAO: [

@@ -24,9 +24,9 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                 title: t('header.links.over-token'),
                 children: [
                     {
-                        href: buildHref(ROUTES.About.Token),
+                        href: buildHref(ROUTES.OverToken),
                         title: t('header.links.over-token'),
-                        active: location.pathname === ROUTES.About.Token,
+                        active: location.pathname === ROUTES.OverToken,
                     },
                     {
                         title: t('header.links.staking'),

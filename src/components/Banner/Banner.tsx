@@ -1,26 +1,27 @@
+import ThalesToOverMigrationModal from 'components/ThalesToOverMigrationModal';
 import { ScreenSizeBreakpoint } from 'enums/ui';
-import React from 'react';
+import React, { useState } from 'react';
 import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
-import { buildSpeedMarketsBannerHref } from 'utils/routes';
-import SPAAnchor from '../SPAAnchor';
 
 const IS_VISIBLE = true;
 
 const Banner: React.FC = () => {
+    const [showThalesToOverMigrationModal, setShowThalesToOverMigrationModal] = useState<boolean>(false);
     if (!IS_VISIBLE) {
         return <></>;
     }
 
     return (
-        <SPAAnchor href={buildSpeedMarketsBannerHref()}>
-            <Container>
-                <Label>
-                    {<Trans i18nKey={'common.banner.speed-banner-message'} components={{ bold: <Bold /> }} />}
-                </Label>
+        <>
+            <Container onClick={() => setShowThalesToOverMigrationModal(true)}>
+                <Label>{<Trans i18nKey={'common.banner.migration'} components={{ bold: <Bold /> }} />}</Label>
             </Container>
-        </SPAAnchor>
+            {showThalesToOverMigrationModal && (
+                <ThalesToOverMigrationModal onClose={() => setShowThalesToOverMigrationModal(false)} />
+            )}
+        </>
     );
 };
 
@@ -31,7 +32,7 @@ const Container = styled(FlexDiv)`
     align-items: center;
     justify-content: center;
     color: ${(props) => props.theme.button.textColor.primary};
-    background-color: ${(props) => props.theme.background.primary};
+    background-color: ${(props) => props.theme.background.quaternary};
     min-height: 35px;
     z-index: 102;
     cursor: pointer;

@@ -34,9 +34,9 @@ const DappHeader: React.FC = () => {
                 title: t('header.links.over-token'),
                 children: [
                     {
-                        href: buildHref(ROUTES.About.Token),
+                        href: buildHref(ROUTES.OverToken),
                         title: t('header.links.over-token'),
-                        active: location.pathname === ROUTES.About.Token,
+                        active: location.pathname === ROUTES.OverToken,
                     },
                     {
                         href: buildHref(ROUTES.Token.Staking.Home),
