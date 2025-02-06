@@ -29,7 +29,7 @@ import { UserStakingData } from 'types/token';
 import { formattedDuration } from 'utils/formatters/date';
 import networkConnector from 'utils/networkConnector';
 import { refetchTokenQueries } from 'utils/queryConnector';
-import { StakingButton } from '../styled-components';
+import { SectionTitle, StakingButton } from '../styled-components';
 import { ClaimMessage, EarnSection, InputContainer, SectionContentContainer } from './styled-components';
 
 const DEFAULT_UNSTAKE_PERIOD = 7 * 24 * 60 * 60;
@@ -282,6 +282,7 @@ const Unstake: React.FC = () => {
         <EarnSection spanOnTablet={0} orderOnMobile={0} orderOnTablet={0}>
             <SectionContentContainer>
                 <UnstakingContainer twoButtons={isUnstakingInContract && unstakingEnded}>
+                    <SectionTitle>{t('staking.staking.stake-unstake.unstake')}</SectionTitle>
                     {((!unstakingEnded && isUnstakingInContract) || !isUnstakingInContract) && (
                         <UnstakingPeriodWrapper>
                             <UnstakingPeriodContainer>
