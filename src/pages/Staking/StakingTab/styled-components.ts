@@ -7,8 +7,8 @@ export const Container = styled.div`
     font-size: 13px;
     display: grid;
     width: 60%;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 170px 170px min-content;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 150px min-content;
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'top top' 'upper-left upper-right' 'bottom bottom';
@@ -30,20 +30,6 @@ export const Container = styled.div`
 
 export const Top = styled.div`
     grid-area: top;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-export const UpperLeft = styled.div`
-    grid-area: upper-left;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-export const UpperRight = styled.div`
-    grid-area: upper-right;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
