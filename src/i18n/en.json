@@ -212,16 +212,24 @@
             "titleHighlight": "Partners and Backers"
         },
         "footer": {
-            "thales": {
+            "overtime": {
+                "overtime": "OVERTIME",
                 "home": "Home",
                 "docs": "Docs",
                 "blog": "Blog",
-                "audits": "Audits"
+                "audits": "Audits",
+                "community": "Community"
             },
             "dao-dapp": {
                 "staking": "Staking",
                 "governance": "Governance",
                 "stats": "Stats"
+            },
+            "products": {
+                "products": "PRODUCTS",
+                "overtime": "Overtime",
+                "speed-markets": "Speed markets",
+                "thales-markets": "Thales markets"
             },
             "about": {
                 "about": "ABOUT",

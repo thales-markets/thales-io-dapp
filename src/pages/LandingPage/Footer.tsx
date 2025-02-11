@@ -5,17 +5,15 @@ import termsOfUse from 'assets/docs/thales-terms-of-use.pdf';
 import FooterLinks from 'components/FooterLinks';
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
-import ROUTES from 'constants/routes';
 import { useTranslation } from 'react-i18next';
 import { FlexDivColumn } from 'styles/common';
-import { buildHref } from 'utils/routes';
 import {
     FooterContainer,
     FooterLogo,
     LinksContainer,
+    OvertimeLinksTitle,
     ThalesLinks,
     ThalesLinksItem,
-    ThalesLinksTitle,
 } from './styled-components';
 
 const Footer: React.FC = () => {
@@ -26,33 +24,36 @@ const Footer: React.FC = () => {
             <FooterContainer>
                 <LinksContainer>
                     <ThalesLinks>
-                        <FooterLogo className="icon icon--thales-logo" />
+                        <FooterLogo className="overtime-icon overtime-icon--overtime" />
                         <FlexDivColumn>
-                            <ThalesLinksTitle>THALES</ThalesLinksTitle>
+                            <OvertimeLinksTitle>{t('home.footer.overtime.overtime')}</OvertimeLinksTitle>
                             <SPAAnchor href={LINKS.Docs}>
-                                <ThalesLinksItem>{t('home.footer.thales.docs')}</ThalesLinksItem>
+                                <ThalesLinksItem>{t('home.footer.overtime.docs')}</ThalesLinksItem>
                             </SPAAnchor>
                             <SPAAnchor href={LINKS.Medium}>
-                                <ThalesLinksItem>{t('home.footer.thales.blog')}</ThalesLinksItem>
+                                <ThalesLinksItem>{t('home.footer.overtime.blog')}</ThalesLinksItem>
+                            </SPAAnchor>
+                            <SPAAnchor href={LINKS.Discord}>
+                                <ThalesLinksItem>{t('home.footer.overtime.community')}</ThalesLinksItem>
                             </SPAAnchor>
                             <SPAAnchor href={LINKS.Audits}>
-                                <ThalesLinksItem>{t('home.footer.thales.audits')}</ThalesLinksItem>
+                                <ThalesLinksItem>{t('home.footer.overtime.audits')}</ThalesLinksItem>
                             </SPAAnchor>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <ThalesLinksTitle>DAO DAPP</ThalesLinksTitle>
-                            <SPAAnchor href={buildHref(ROUTES.Token.Staking.Home)}>
-                                <ThalesLinksItem>{t('home.footer.dao-dapp.staking')}</ThalesLinksItem>
+                            <OvertimeLinksTitle>{t('home.footer.products.products')}</OvertimeLinksTitle>
+                            <SPAAnchor href={LINKS.Overtime}>
+                                <ThalesLinksItem>{t('home.footer.products.overtime')}</ThalesLinksItem>
                             </SPAAnchor>
-                            <SPAAnchor href={buildHref(ROUTES.DAO.Home)}>
-                                <ThalesLinksItem>{t('home.footer.dao-dapp.governance')}</ThalesLinksItem>
+                            <SPAAnchor href={LINKS.SpeedMarkets}>
+                                <ThalesLinksItem>{t('home.footer.products.speed-markets')}</ThalesLinksItem>
                             </SPAAnchor>
-                            <SPAAnchor href={buildHref(ROUTES.Dashboard)}>
-                                <ThalesLinksItem>{t('home.footer.dao-dapp.stats')}</ThalesLinksItem>
+                            <SPAAnchor href={LINKS.ThalesMarkets}>
+                                <ThalesLinksItem>{t('home.footer.products.thales-markets')}</ThalesLinksItem>
                             </SPAAnchor>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <ThalesLinksTitle>{t('home.footer.about.about')}</ThalesLinksTitle>
+                            <OvertimeLinksTitle>{t('home.footer.about.about')}</OvertimeLinksTitle>
                             <SPAAnchor href={LINKS.MarketingAssets}>
                                 <ThalesLinksItem>{t('home.footer.about.brand-assets')}</ThalesLinksItem>
                             </SPAAnchor>

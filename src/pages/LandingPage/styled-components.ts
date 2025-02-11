@@ -237,7 +237,7 @@ export const FooterLogo = styled.i`
     left: 0;
     transform: translateY(-120%);
     color: ${(props) => props.theme.textColor.primary};
-    font-size: 120px;
+    font-size: 150px;
     cursor: pointer;
     line-height: 50px;
     margin-top: 5px;
@@ -269,7 +269,7 @@ export const ThalesLinks = styled(FlexDiv)`
     }
 `;
 
-export const ThalesLinksTitle = styled.div`
+export const OvertimeLinksTitle = styled.div`
     color: ${(props) => props.theme.textColor.primary};
     font-size: 13px;
     font-weight: 800;
