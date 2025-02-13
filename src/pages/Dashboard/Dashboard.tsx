@@ -2,21 +2,9 @@ import { useSelector } from 'react-redux';
 import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import Governance from './Governance';
-import IntegratorsVolume from './IntegratorsVolume';
 import ProtocolVolume from './ProtocolVolume';
-import Staking from './Staking';
-import TVLInfo from './TVLInfo';
+import { Container, ItemCenter, ItemUpperLeft, ItemUpperRight, MobileContainer } from './styled-components';
 import TokenInfo from './ThalesTokenInfo';
-import {
-    Container,
-    ItemBottomCenterLeft,
-    ItemBottomLeft,
-    ItemBottomRight,
-    ItemCenter,
-    ItemUpperLeft,
-    ItemUpperRight,
-    MobileContainer,
-} from './styled-components';
 
 const Dashboard: React.FC = () => {
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
@@ -28,30 +16,18 @@ const Dashboard: React.FC = () => {
                         <ProtocolVolume />
                     </ItemUpperLeft>
                     <ItemCenter>
-                        <Staking />
+                        <TokenInfo />
                     </ItemCenter>
                     <ItemUpperRight>
-                        <TokenInfo />
-                    </ItemUpperRight>
-                    <ItemBottomCenterLeft>
                         <Governance />
-                    </ItemBottomCenterLeft>
-                    <ItemBottomRight>
-                        <IntegratorsVolume />
-                    </ItemBottomRight>
-                    <ItemBottomLeft>
-                        <TVLInfo />
-                    </ItemBottomLeft>
+                    </ItemUpperRight>
                 </Container>
             )}
             {isMobile && (
                 <MobileContainer>
                     <ProtocolVolume />
-                    <Staking />
                     <TokenInfo />
                     <Governance />
-                    <IntegratorsVolume />
-                    <TVLInfo />
                 </MobileContainer>
             )}
         </>
