@@ -1,19 +1,42 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
-import { FlexDivCentered } from 'styles/common';
+import { FlexDivCentered, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Content = styled.div`
-    margin-top: 100px;
     display: flex;
     flex-direction: column;
-    width: 60%;
     margin-bottom: 50px;
     @media (max-width: 1024px) {
         width: 100vw;
         margin-top: 50px;
         padding: 0 40px;
         z-index: 1;
+    }
+`;
+
+export const OverContainer = styled(FlexDivRow)`
+    width: 100%;
+`;
+
+export const OverLeftContainer = styled(FlexDivColumnCentered)`
+    width: 60%;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        align-items: left;
+    }
+`;
+
+export const OverRightContainer = styled(FlexDivColumnCentered)`
+    width: 40%;
+    padding: 0 0 0 0;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        align-items: center;
+        img {
+            height: 300px;
+            width: 300px;
+        }
     }
 `;
 

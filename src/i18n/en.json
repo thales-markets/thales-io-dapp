@@ -1077,6 +1077,21 @@
             "round": "Round {{roundNumber}}"
         }
     },
+    "over-token": {
+        "title": "The heart of overtime",
+        "description-1": "The $OVER token is the driving force behind Overtime's growth and success. As the main betting collateral within Overtime’s smart contracts, $OVER provides bettors with the best odds while empowering Overtime’s user experience.",
+        "description-2": "All betting and liquidity fees flow directly into the Buyback & Burn program, giving the $OVER token a unique utility both as a betting token and exposure to house performance. $OVER is more than a token—it’s your stake in the future of sports betting.",
+        "best-odds-title": "Enjoy the",
+        "best-odds-title-highlight": "best odds!",
+        "best-odds-description-1": "Overtime sportsbook is designed to provide bettors that use $OVER token the best betting experience no Overtime! Bets paced with $OVER token enable better return, compared to using other supported forms of collateral. ",
+        "best-odds-description-2": "The benefits of using the $OVER token are available for all users seamlessly! All users of Overtime app are able to acquire $OVER tokens directly from the app by using the integrated swap function which uses popular DEX aggregators in the background.",
+        "valute-capture-title": "Value capture!",
+        "valute-capture-description-1": "Entire revenue and fee capture of Overtime fuels the Buyback & Burn system for the $OVER token. All betting action with $OVER token incurs a 20% Performance Fee that gets burned permanently. The other 80% goes back to the liquidity pool that provides liquidity to $OVER bets. Similarly, betting fees and additional 20% performance fee from LP pools from other collateral types buys back the $OVER token on the open market which then gets burned as well.",
+        "valute-capture-description-2": "Every bet made on Overtime fuels $OVER token’s deflationary nature and increases its scarcity. As Overtime organically grows, so does the $OVER token adoption and utilization, which increases the Buyback and Burn amounts exponentially.",
+        "governance-title": "Decentralised Governance",
+        "governance-title-highlight": "powered by the $OVER token!",
+        "governance-description": "All holders of $OVER token will have voting power equal to their holding amount, when it comes to elections of the Overtime Council, the main governing body of Overtime!"
+    },
     "migration-modal": {
         "title": "Migrate $THALES to $OVER",
         "description": "<p>Thales DAO has officially migrated to Overtime DAO. You can migrate your  $THALES tokens to $OVER tokens here.</p><p>1 $THALES = 1 $OVER</p><p>More details on the migration in <tipLink>TIP-238</tipLink>.</p>",
