@@ -1,25 +1,30 @@
 import Coins from 'assets/images/coins.png';
-import Button from 'components/Button';
+import { ReactComponent as OverFlow } from 'assets/images/over-flow.svg';
 import NumberCountdown from 'components/NumberCountdown';
 import SPAAnchor from 'components/SPAAnchor';
+import ROUTES from 'constants/routes';
 import { Network } from 'enums/network';
-import { LinkArrow } from 'pages/Dashboard/styled-components';
 import { OverDescription } from 'pages/LandingPage/components/OverToken/styled-components';
 import {
     Description,
+    ImageContainer,
+    LinkButton,
     Section,
     SectionSlogan,
     SectionSloganHighlight,
     SectionTitle,
 } from 'pages/LandingPage/styled-components';
 import { useTranslation } from 'react-i18next';
-import { Colors } from 'styles/common';
+import { useSelector } from 'react-redux';
+import { getIsMobile } from 'redux/modules/ui';
 import { getEtherscanTokenLink, truncateAddress } from 'thales-utils';
 import overContract from 'utils/contracts/overContract';
+import { buildHref } from 'utils/routes';
 import OverSupplyChart from './OverSupplyChart';
 import {
     Content,
     Label,
+    LinkArrow,
     List,
     ListItem,
     OverContainer,
@@ -31,24 +36,25 @@ import {
 
 const OverToken: React.FC = () => {
     const { t } = useTranslation();
+    const isMobile = useSelector(getIsMobile);
 
     return (
         <Content>
             <OverContainer>
                 <OverLeftContainer>
-                    <SectionContainer>
-                        <SectionTitle>{t('over-token.title')}</SectionTitle>
+                    <SectionTitle>{t('over-token.title')}</SectionTitle>
+                    <Section marginTop={70}>
                         <OverDescription>{t('home.over-token.description')}</OverDescription>
                         <Description>{t('over-token.description-1')}</Description>
-                        <Description>{t('over-token.description-2')}</Description>
-                        <Button>Buy $OVER</Button>
-                    </SectionContainer>
+                        <Description marginBottom={40}>{t('over-token.description-2')}</Description>
+                        <LinkButton>{t('over-token.buy-over')}</LinkButton>
+                    </Section>
                 </OverLeftContainer>
                 <OverRightContainer>
                     <img src={Coins} />
                 </OverRightContainer>
             </OverContainer>
-            <Section>
+            <Section marginTop={70}>
                 <SectionSlogan>
                     <SectionSloganHighlight>{t('over-token.over-token-info-title-highlight')}</SectionSloganHighlight>{' '}
                     {t('over-token.over-token-info-title')}
@@ -80,60 +86,64 @@ const OverToken: React.FC = () => {
                             <ListItem>
                                 {t('over-token.list.1')}
                                 <SPAAnchor
-                                    style={{ color: Colors.CYAN }}
                                     href={getEtherscanTokenLink(
-                                        Network.OptimismMainnet,
+                                        Network.Mainnet,
                                         overContract.addresses[Network.Mainnet]
                                     )}
                                 >
-                                    {truncateAddress(overContract.addresses[Network.Mainnet].toLowerCase())}{' '}
-                                    <LinkArrow color={Colors.CYAN} />
+                                    {isMobile
+                                        ? truncateAddress(overContract.addresses[Network.Mainnet].toLowerCase())
+                                        : overContract.addresses[Network.Mainnet].toLowerCase()}{' '}
+                                    <LinkArrow />
                                 </SPAAnchor>
                             </ListItem>
                             <ListItem>
                                 {t('over-token.list.2')}
                                 <SPAAnchor
-                                    style={{ color: Colors.CYAN }}
                                     href={getEtherscanTokenLink(
                                         Network.OptimismMainnet,
                                         overContract.addresses[Network.OptimismMainnet]
                                     )}
                                 >
-                                    {truncateAddress(overContract.addresses[Network.OptimismMainnet].toLowerCase())}{' '}
-                                    <LinkArrow color={Colors.CYAN} />
+                                    {isMobile
+                                        ? truncateAddress(overContract.addresses[Network.OptimismMainnet].toLowerCase())
+                                        : overContract.addresses[Network.OptimismMainnet].toLowerCase()}{' '}
+                                    <LinkArrow />
                                 </SPAAnchor>
                             </ListItem>
                             <ListItem>
                                 {t('over-token.list.3')}
                                 <SPAAnchor
-                                    style={{ color: Colors.CYAN }}
                                     href={getEtherscanTokenLink(
                                         Network.Arbitrum,
                                         overContract.addresses[Network.Arbitrum]
                                     )}
                                 >
-                                    {truncateAddress(overContract.addresses[Network.Arbitrum].toLowerCase())}{' '}
-                                    <LinkArrow color={Colors.CYAN} />
+                                    {isMobile
+                                        ? truncateAddress(overContract.addresses[Network.Arbitrum].toLowerCase())
+                                        : overContract.addresses[Network.Arbitrum].toLowerCase()}{' '}
+                                    <LinkArrow />
                                 </SPAAnchor>
                             </ListItem>
                             <ListItem>
                                 {t('over-token.list.4')}
                                 <SPAAnchor
-                                    style={{ color: Colors.CYAN }}
                                     href={getEtherscanTokenLink(Network.Base, overContract.addresses[Network.Base])}
                                 >
-                                    {truncateAddress(overContract.addresses[Network.Base].toLowerCase())}{' '}
-                                    <LinkArrow color={Colors.CYAN} />
+                                    {isMobile
+                                        ? truncateAddress(overContract.addresses[Network.Base].toLowerCase())
+                                        : overContract.addresses[Network.Base].toLowerCase()}{' '}
+                                    <LinkArrow />
                                 </SPAAnchor>
                             </ListItem>
                         </List>
                     </SectionContainer>
                 </OverLeftContainer>
-                <OverRightContainer>
+                <OverRightContainer padding="0 0 60px 0">
                     <OverSupplyChart />
                 </OverRightContainer>
             </OverContainer>
-            <Section>
+            <Section marginTop={70}>
                 <SectionSlogan>
                     {t('over-token.best-odds-title')}{' '}
                     <SectionSloganHighlight>{t('over-token.best-odds-title-highlight')}</SectionSloganHighlight>
@@ -145,13 +155,19 @@ const OverToken: React.FC = () => {
                 <SectionSlogan>{t('over-token.valute-capture-title')}</SectionSlogan>
                 <Description>{t('over-token.valute-capture-description-1')}</Description>
                 <Description>{t('over-token.valute-capture-description-2')}</Description>
+                <ImageContainer>
+                    <OverFlow />
+                </ImageContainer>
             </Section>
-            <Section>
+            <Section marginBottom={50}>
                 <SectionSlogan>
                     {t('over-token.governance-title')}{' '}
                     <SectionSloganHighlight>{t('over-token.governance-title-highlight')}</SectionSloganHighlight>
                 </SectionSlogan>
-                <Description>{t('over-token.governance-description')}</Description>
+                <Description marginBottom={20}>{t('over-token.governance-description')}</Description>
+                <SPAAnchor href={buildHref(ROUTES.DAO.Home)} scrollTop={true}>
+                    <LinkButton>{t('home.governance.explore-overtime-dao-button')}</LinkButton>
+                </SPAAnchor>
             </Section>
         </Content>
     );

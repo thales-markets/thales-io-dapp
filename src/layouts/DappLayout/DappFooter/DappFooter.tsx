@@ -22,7 +22,6 @@ export default DappFooter;
 
 const Container = styled(FlexDiv)`
     width: 40%;
-    margin-top: 50px;
     margin-bottom: 50px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 80%;

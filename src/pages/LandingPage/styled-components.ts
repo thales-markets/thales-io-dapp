@@ -135,7 +135,7 @@ export const Description = styled(FlexDivColumn)<{ marginBottom?: number; margin
 
 export const ImageContainer = styled(FlexDivColumnCentered)`
     align-items: center;
-    margin-top: 40px;
+    margin-top: 60px;
     svg {
         height: 70%;
         width: 70%;
@@ -155,8 +155,8 @@ export const BulletNumberIcon = styled.i`
     margin-right: 5px;
 `;
 
-export const Section = styled.div<{ marginBottom?: number }>`
-    margin-top: 80px;
+export const Section = styled.div<{ marginTop?: number; marginBottom?: number }>`
+    margin-top: ${(props) => (props.marginTop ? props.marginTop : '100')}px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 50px;
@@ -171,6 +171,7 @@ export const SectionSlogan = styled.div<{ align?: string }>`
     line-height: 48px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 18px;
+        line-height: 22px;
         text-align: ${(props) => (props.align ? props.align : 'left')};
     }
 `;

@@ -228,7 +228,7 @@ const Home: React.FC = () => {
                 </Section>
                 <Section>
                     <SectionTitleLink>
-                        <SPAAnchor href={buildHref(ROUTES.About.Governance)} scrollTop={true}>
+                        <SPAAnchor href={buildHref(ROUTES.DAO.Home)} scrollTop={true}>
                             {t('home.governance.title-link')} <SectionTitleLinkArrow />
                         </SPAAnchor>
                     </SectionTitleLink>

@@ -9,7 +9,7 @@ import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
 import { StakingData, TokenInfo } from 'types/token';
-import { DoubleSideInfoSection, StyledPieChart } from './styled-components';
+import { StyledPieChart } from './styled-components';
 
 const ThalesTokenInfo: React.FC = () => {
     const { t } = useTranslation();
@@ -38,9 +38,9 @@ const ThalesTokenInfo: React.FC = () => {
     const pieData = useMemo(() => {
         const data1 = [];
         if (tokenInfo) {
-            const burnedPiece = { name: 'Burned', value: tokenInfo?.thalesBurned, color: Colors.VIOLET };
             const circulatingPiece = { name: 'Circulating', value: tokenInfo?.circulatingSupply, color: Colors.CYAN };
-            data1.push(burnedPiece, circulatingPiece);
+            const burnedPiece = { name: 'Burned', value: tokenInfo?.thalesBurned, color: Colors.VIOLET };
+            data1.push(circulatingPiece, burnedPiece);
         }
 
         return data1;
@@ -49,21 +49,21 @@ const ThalesTokenInfo: React.FC = () => {
     const pieLegendData = useMemo(() => {
         const data1 = [];
         if (tokenInfo && stakingData) {
-            const burnedPiece = {
-                id: '1',
-                value: 'Burned',
-                stat: tokenInfo?.thalesBurned,
-                percentage: (tokenInfo?.thalesBurned / tokenInfo.totalSupply) * 100,
-                color: Colors.VIOLET,
-            };
             const circulatingPiece = {
-                id: '2',
+                id: '1',
                 value: 'Circulating',
                 stat: tokenInfo?.circulatingSupply,
                 percentage: (tokenInfo?.circulatingSupply / tokenInfo.totalSupply) * 100,
                 color: Colors.CYAN,
             };
-            data1.push(burnedPiece, circulatingPiece);
+            const burnedPiece = {
+                id: '2',
+                value: 'Burned',
+                stat: tokenInfo?.thalesBurned,
+                percentage: (tokenInfo?.thalesBurned / tokenInfo.totalSupply) * 100,
+                color: Colors.VIOLET,
+            };
+            data1.push(circulatingPiece, burnedPiece);
         }
 
         return data1;
@@ -74,45 +74,40 @@ const ThalesTokenInfo: React.FC = () => {
 
         return (
             <span style={{ color: Colors.LIGHT_GRAY, fontSize: 13 }}>
-                {value}{' '}
-                <span style={{ color: Colors.WHITE, fontSize: 13 }}>
-                    {value.toLowerCase() == 'non-circulating' ? '' : `${percentage.toFixed(2)}%`}
-                </span>
+                {value} <span style={{ color: Colors.WHITE, fontSize: 13 }}>{`${percentage.toFixed(2)}%`}</span>
             </span>
         );
     };
 
     return (
         <LoadingContainer isLoading={tokenInfoQuery.isLoading || stakingDataQuery.isLoading}>
-            <DoubleSideInfoSection>
-                <StyledPieChart width={500} height={500}>
-                    <Legend
-                        formatter={formatChartLegend}
-                        iconType="circle"
-                        layout="horizontal"
-                        align="center"
-                        verticalAlign="top"
-                        height={20}
-                        payload={pieLegendData}
-                        wrapperStyle={{ bottom: 0, left: 0 }}
-                    />
-                    <Pie
-                        isAnimationActive={false}
-                        blendStroke={true}
-                        data={pieData}
-                        dataKey={'value'}
-                        innerRadius={100}
-                        outerRadius={200}
-                        cx="50%"
-                        cy="50%"
-                    >
-                        {pieData.map((slice, index) => (
-                            <Cell style={{ outline: 'none' }} key={index} fill={slice.color} />
-                        ))}
-                        <Label className="chartLabel" value={t('dashboard.token-info.total-100m')} position="center" />
-                    </Pie>
-                </StyledPieChart>
-            </DoubleSideInfoSection>
+            <StyledPieChart width={520} height={520}>
+                <Legend
+                    formatter={formatChartLegend}
+                    iconType="circle"
+                    layout="horizontal"
+                    align="center"
+                    verticalAlign="top"
+                    height={20}
+                    payload={pieLegendData}
+                    wrapperStyle={{ bottom: -10, left: 0 }}
+                />
+                <Pie
+                    isAnimationActive={false}
+                    blendStroke={true}
+                    data={pieData}
+                    dataKey={'value'}
+                    innerRadius={120}
+                    outerRadius={220}
+                    cx="50%"
+                    cy="50%"
+                >
+                    {pieData.map((slice, index) => (
+                        <Cell style={{ outline: 'none' }} key={index} fill={slice.color} />
+                    ))}
+                    <Label className="chartLabel" value={t('over-token.total-supply')} position="center" />
+                </Pie>
+            </StyledPieChart>
         </LoadingContainer>
     );
 };
