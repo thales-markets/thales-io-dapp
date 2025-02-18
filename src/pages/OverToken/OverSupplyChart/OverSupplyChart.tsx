@@ -51,14 +51,14 @@ const ThalesTokenInfo: React.FC = () => {
         if (tokenInfo && stakingData) {
             const circulatingPiece = {
                 id: '1',
-                value: 'Circulating',
+                value: 'Circulating: ',
                 stat: tokenInfo?.circulatingSupply,
                 percentage: (tokenInfo?.circulatingSupply / tokenInfo.totalSupply) * 100,
                 color: Colors.CYAN,
             };
             const burnedPiece = {
                 id: '2',
-                value: 'Burned',
+                value: 'Burned: ',
                 stat: tokenInfo?.thalesBurned,
                 percentage: (tokenInfo?.thalesBurned / tokenInfo.totalSupply) * 100,
                 color: Colors.VIOLET,
@@ -90,7 +90,7 @@ const ThalesTokenInfo: React.FC = () => {
                     verticalAlign="top"
                     height={20}
                     payload={pieLegendData}
-                    wrapperStyle={{ bottom: -10, left: 0 }}
+                    wrapperStyle={{ bottom: -5, left: 0 }}
                 />
                 <Pie
                     isAnimationActive={false}

@@ -55,7 +55,7 @@ const OverToken: React.FC = () => {
                 </OverRightContainer>
             </OverContainer>
             <Section marginTop={70}>
-                <SectionSlogan>
+                <SectionSlogan mobileMarginBottom={20} mobileFontSize={20}>
                     <SectionSloganHighlight>{t('over-token.over-token-info-title-highlight')}</SectionSloganHighlight>{' '}
                     {t('over-token.over-token-info-title')}
                 </SectionSlogan>

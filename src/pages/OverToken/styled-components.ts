@@ -82,7 +82,7 @@ export const List = styled.ul<{ margin?: boolean }>`
     list-style: disc;
     color: ${(props) => props.theme.textColor.primary};
     list-style-position: inside;
-    margin: 20px 0px;
+    margin: 20px 0px 0px 0px;
 `;
 
 export const ListItem = styled.li<{ bold?: boolean }>`

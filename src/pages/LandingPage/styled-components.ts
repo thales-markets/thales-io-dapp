@@ -163,16 +163,17 @@ export const Section = styled.div<{ marginTop?: number; marginBottom?: number }>
     }
 `;
 
-export const SectionSlogan = styled.div<{ align?: string }>`
-    color: white;
+export const SectionSlogan = styled.div<{ align?: string; mobileMarginBottom?: number; mobileFontSize?: number }>`
+    color: ${(props) => props.theme.textColor.primary};
     text-align: justify;
     font-size: 40px;
     font-weight: 700;
     line-height: 48px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 18px;
+        font-size: ${(props) => (props.mobileFontSize ? props.mobileFontSize : '18')}px;
         line-height: 22px;
         text-align: ${(props) => (props.align ? props.align : 'left')};
+        margin-bottom: ${(props) => (props.mobileMarginBottom ? props.mobileMarginBottom : '0')}px;
     }
 `;
 
