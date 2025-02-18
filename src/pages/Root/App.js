@@ -25,7 +25,7 @@ const Governance = lazy(() => import(/* webpackChunkName: "Governance" */ '../Go
 const Bridge = lazy(() => import(/* webpackChunkName: "Bridge" */ '../Bridge'));
 // const WhitepaperArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/WhitepaperArticle'));
 // const GovernanceArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/GovernanceArticle'));
-const TokenArticle = lazy(() => import(/* webpackChunkName: "Learn" */ '../Learn/TokenArticle'));
+const OverToken = lazy(() => import(/* webpackChunkName: "Learn" */ '../OverToken'));
 const LPStaking = lazy(() => import(/* webpackChunkName: "LPStaking" */ '../Staking/LPStaking'));
 
 const App = () => {
@@ -163,7 +163,7 @@ const App = () => {
                         <Route exact path={ROUTES.OverToken}>
                             <Suspense fallback={<Loader />}>
                                 <DappLayout>
-                                    <TokenArticle />
+                                    <OverToken />
                                 </DappLayout>
                             </Suspense>
                         </Route>

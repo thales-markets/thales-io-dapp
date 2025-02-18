@@ -22,7 +22,6 @@ const ROUTES = {
     About: {
         Root: '/about',
         Whitepaper: '/about/whitepaper',
-        Token: '/about/thales-token',
         Governance: '/about/governance',
     },
 };

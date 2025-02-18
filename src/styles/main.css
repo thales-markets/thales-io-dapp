@@ -199,9 +199,9 @@ a {
 }
 
 .chartLabel {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 20px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
     fill: rgb(255, 255, 255) !important;
     font-family: Montserrat;
     width: min-content;

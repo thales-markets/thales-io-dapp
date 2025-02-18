@@ -1081,6 +1081,18 @@
         "title": "The heart of overtime",
         "description-1": "The $OVER token is the driving force behind Overtime's growth and success. As the main betting collateral within Overtime’s smart contracts, $OVER provides bettors with the best odds while empowering Overtime’s user experience.",
         "description-2": "All betting and liquidity fees flow directly into the Buyback & Burn program, giving the $OVER token a unique utility both as a betting token and exposure to house performance. $OVER is more than a token—it’s your stake in the future of sports betting.",
+        "over-token-info-title": "token basic information",
+        "over-token-info-title-highlight": "$OVER",
+        "over-token-total-supply": "Total supply",
+        "over-token-total-burned": "Total burned",
+        "over-token-circulating-supply": "Circulating supply",
+        "over-token-contract-addresses": "Token contract addresses",
+        "list": {
+            "1": "OVER on Mainnet: ",
+            "2": "OVER on Optimsim: ",
+            "3": "OVER on Arbitrum: ",
+            "4": "OVER on Base: "
+        },
         "best-odds-title": "Enjoy the",
         "best-odds-title-highlight": "best odds!",
         "best-odds-description-1": "Overtime sportsbook is designed to provide bettors that use $OVER token the best betting experience no Overtime! Bets paced with $OVER token enable better return, compared to using other supported forms of collateral. ",

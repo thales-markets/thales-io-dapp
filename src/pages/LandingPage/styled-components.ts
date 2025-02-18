@@ -117,15 +117,17 @@ export const LinkButton = styled.button`
 export const Description = styled(FlexDivColumn)<{ marginBottom?: number; marginTop?: number }>`
     color: ${(props) => props.theme.textColor.tertiary};
     text-align: justify;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
-    line-height: 140%;
+    line-height: 21px;
     margin-top: ${(props) => (props.marginTop ? props.marginTop : '20')}px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
     > span {
         margin-bottom: 15px;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 14px;
+        line-height: 16px;
         display: flex;
         justify-content: center;
     }

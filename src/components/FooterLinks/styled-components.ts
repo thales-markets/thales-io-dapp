@@ -12,7 +12,7 @@ export const Container = styled(FlexDivSpaceBetween)`
 
 export const Name = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
-    font-size: 11px;
+    font-size: 12px;
     text-transform: capitalize;
     margin-top: 3px;
 `;
