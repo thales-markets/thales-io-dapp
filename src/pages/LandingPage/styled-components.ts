@@ -104,7 +104,6 @@ export const LinkButton = styled.button`
     color: white;
     border-radius: 8px;
     border: 1px solid ${(props) => props.theme.borderColor.quaternary};
-    text-transform: capitalize;
     background: transparent;
     width: fit-content;
     font-size: 13px;

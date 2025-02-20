@@ -193,35 +193,35 @@ const Home: React.FC = () => {
                     </SectionSlogan>
                     <Description marginBottom={50}>{t('home.integrations.description')}</Description>
                     <Collapse
-                        title={t('home.integrations.thales-sports-markets-api-title')}
+                        title={t('home.integrations.sports-markets-api-title')}
                         additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
                     >
                         <Description marginBottom={20}>
-                            <span>{t('home.integrations.thales-sports-markets-api-description')}</span>
+                            <span>{t('home.integrations.sports-markets-api-description')}</span>
                             <SPAAnchor href={LINKS.SportsIntegration}>
-                                <LinkButton>{t('home.integrations.integrate-with-thales-sports-button')}</LinkButton>
+                                <LinkButton>{t('home.integrations.integrate-with-overtime-button')}</LinkButton>
                             </SPAAnchor>
                         </Description>
                     </Collapse>
                     <Collapse
-                        title={t('home.integrations.thales-digital-options-api-title')}
+                        title={t('home.integrations.digital-options-api-title')}
                         additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
                     >
                         <Description marginBottom={20}>
-                            <span>{t('home.integrations.thales-digital-options-api-description')}</span>
+                            <span>{t('home.integrations.digital-options-api-description')}</span>
                             <SPAAnchor href={LINKS.DigitalOptionsIntegration}>
                                 <LinkButton>{t('home.integrations.integrate-with-thales-markets-button')}</LinkButton>
                             </SPAAnchor>
                         </Description>
                     </Collapse>
                     <Collapse
-                        title={t('home.integrations.thales-speed-markets-api-title')}
+                        title={t('home.integrations.speed-markets-api-title')}
                         additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
                     >
                         <Description marginBottom={20}>
-                            <span>{t('home.integrations.thales-speed-markets-api-description')}</span>
+                            <span>{t('home.integrations.speed-markets-api-description')}</span>
                             <SPAAnchor href={LINKS.SpeedMarketsIntegration}>
-                                <LinkButton>{t('home.integrations.integrate-with-thales-speed-button')}</LinkButton>
+                                <LinkButton>{t('home.integrations.integrate-with-speed-markets-button')}</LinkButton>
                             </SPAAnchor>
                         </Description>
                     </Collapse>
@@ -237,7 +237,7 @@ const Home: React.FC = () => {
                         <SectionSloganHighlight>{t('home.governance.titleHighlight')}</SectionSloganHighlight>
                     </SectionSlogan>
                     <Description marginBottom={20}>{t('home.governance.description')}</Description>
-                    <SPAAnchor href={buildHref(ROUTES.About.Governance)} scrollTop={true}>
+                    <SPAAnchor href={buildHref(ROUTES.DAO.Home)} scrollTop={true}>
                         <LinkButton>{t('home.governance.explore-overtime-dao-button')}</LinkButton>
                     </SPAAnchor>
                 </Section>

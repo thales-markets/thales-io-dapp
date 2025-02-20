@@ -35,8 +35,8 @@ const OverToken: React.FC = () => {
                     <Title>{t('home.over-token.title-3')}</Title>
                     <Description>{t('home.over-token.description-3')}</Description>
                 </SectionContainer>
-                <LinkButton onClick={() => navigateTo(ROUTES.About.Whitepaper)}>
-                    {t('home.whitepaper-button')} <ArrowHyperlinkIcon />
+                <LinkButton onClick={() => navigateTo(ROUTES.OverToken)}>
+                    {t('home.over-token-button')} <ArrowHyperlinkIcon />
                 </LinkButton>
             </LeftContainer>
             <RightContainer>
