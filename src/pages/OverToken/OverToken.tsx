@@ -14,10 +14,14 @@ import {
     SectionSloganHighlight,
     SectionTitle,
 } from 'pages/LandingPage/styled-components';
+import useOverTokenInfoQuery from 'queries/dashboard/useOverTokenInfoQuery';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
 import { getEtherscanTokenLink, truncateAddress } from 'thales-utils';
+import { OverTokenInfo } from 'types/token';
 import overContract from 'utils/contracts/overContract';
 import { buildHref } from 'utils/routes';
 import OverSupplyChart from './OverSupplyChart';
@@ -37,6 +41,18 @@ import {
 const OverToken: React.FC = () => {
     const { t } = useTranslation();
     const isMobile = useSelector(getIsMobile);
+    const isAppReady = useSelector(getIsAppReady);
+    const [overTokenInfo, setOverTokenInfo] = useState<OverTokenInfo | undefined>(undefined);
+
+    const overTokenInfoQuery = useOverTokenInfoQuery({
+        enabled: isAppReady,
+    });
+
+    useEffect(() => {
+        if (overTokenInfoQuery.isSuccess && overTokenInfoQuery.data) {
+            setOverTokenInfo(overTokenInfoQuery.data);
+        }
+    }, [overTokenInfoQuery.isSuccess, overTokenInfoQuery.data]);
 
     return (
         <Content>
@@ -65,19 +81,19 @@ const OverToken: React.FC = () => {
                     <SectionContainer>
                         <Label>{t('over-token.over-token-total-supply')}</Label>
                         <Value>
-                            <NumberCountdown number={69420000} />
+                            <NumberCountdown number={overTokenInfo?.totalSupply || 0} />
                         </Value>
                     </SectionContainer>
                     <SectionContainer>
                         <Label>{t('over-token.over-token-total-burned')}</Label>
                         <Value>
-                            <NumberCountdown number={420000} />
+                            <NumberCountdown number={overTokenInfo?.burned || 0} />
                         </Value>
                     </SectionContainer>
                     <SectionContainer>
                         <Label>{t('over-token.over-token-circulating-supply')}</Label>
                         <Value>
-                            <NumberCountdown number={69000000} />
+                            <NumberCountdown number={overTokenInfo?.circulatingSupply || 0} />
                         </Value>
                     </SectionContainer>
                     <SectionContainer>
@@ -140,7 +156,9 @@ const OverToken: React.FC = () => {
                     </SectionContainer>
                 </OverLeftContainer>
                 <OverRightContainer padding="0 0 60px 0">
-                    <OverSupplyChart />
+                    {overTokenInfo && (
+                        <OverSupplyChart overTokenInfo={overTokenInfo} isLoading={overTokenInfoQuery.isLoading} />
+                    )}
                 </OverRightContainer>
             </OverContainer>
             <Section marginTop={70}>

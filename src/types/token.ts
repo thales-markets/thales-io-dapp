@@ -26,6 +26,14 @@ export type TokenInfo = {
     marketCap?: number;
 };
 
+export type OverTokenInfo = {
+    totalSupply: number;
+    circulatingSupply: number;
+    burned: number;
+    price: number;
+    marketCap: number;
+};
+
 export type StakingData = {
     totalStakedAmount: number;
     totalStakedAmountOptimism: number;

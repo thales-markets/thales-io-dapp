@@ -1,73 +1,48 @@
 import LoadingContainer from 'components/LoadingContainer';
-import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
-import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { Cell, Label, Legend, Pie } from 'recharts';
-import { getIsAppReady } from 'redux/modules/app';
-import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
-import { StakingData, TokenInfo } from 'types/token';
+import { OverTokenInfo } from 'types/token';
 import { StyledPieChart } from './styled-components';
 
-const ThalesTokenInfo: React.FC = () => {
+type OverSupplyChartProps = {
+    overTokenInfo: OverTokenInfo;
+    isLoading: boolean;
+};
+
+const OverSupplyChart: React.FC<OverSupplyChartProps> = ({ overTokenInfo, isLoading }) => {
     const { t } = useTranslation();
-    const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
-    const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
-    const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
-
-    const tokenInfoQuery = useTokenInfoQuery({
-        enabled: isAppReady,
-    });
-
-    const stakingDataQuery = useStakingDataQuery({ enabled: isAppReady });
-
-    useEffect(() => {
-        if (tokenInfoQuery.isSuccess && tokenInfoQuery.data) {
-            setTokenInfo(tokenInfoQuery.data);
-        }
-    }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
-
-    useEffect(() => {
-        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
-            setStakingData(stakingDataQuery.data);
-        }
-    }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
 
     const pieData = useMemo(() => {
         const data1 = [];
-        if (tokenInfo) {
-            const circulatingPiece = { name: 'Circulating', value: tokenInfo?.circulatingSupply, color: Colors.CYAN };
-            const burnedPiece = { name: 'Burned', value: tokenInfo?.thalesBurned, color: Colors.VIOLET };
-            data1.push(circulatingPiece, burnedPiece);
-        }
+        const circulatingPiece = { name: 'Circulating', value: overTokenInfo?.circulatingSupply, color: Colors.CYAN };
+        const burnedPiece = { name: 'Burned', value: overTokenInfo?.burned, color: Colors.VIOLET };
+        data1.push(circulatingPiece, burnedPiece);
 
         return data1;
-    }, [tokenInfo]);
+    }, [overTokenInfo]);
 
     const pieLegendData = useMemo(() => {
         const data1 = [];
-        if (tokenInfo && stakingData) {
-            const circulatingPiece = {
-                id: '1',
-                value: 'Circulating: ',
-                stat: tokenInfo?.circulatingSupply,
-                percentage: (tokenInfo?.circulatingSupply / tokenInfo.totalSupply) * 100,
-                color: Colors.CYAN,
-            };
-            const burnedPiece = {
-                id: '2',
-                value: 'Burned: ',
-                stat: tokenInfo?.thalesBurned,
-                percentage: (tokenInfo?.thalesBurned / tokenInfo.totalSupply) * 100,
-                color: Colors.VIOLET,
-            };
-            data1.push(circulatingPiece, burnedPiece);
-        }
+        const circulatingPiece = {
+            id: '1',
+            value: 'Circulating: ',
+            stat: overTokenInfo?.circulatingSupply,
+            percentage: (overTokenInfo?.circulatingSupply / overTokenInfo.totalSupply) * 100,
+            color: Colors.CYAN,
+        };
+        const burnedPiece = {
+            id: '2',
+            value: 'Burned: ',
+            stat: overTokenInfo?.burned,
+            percentage: (overTokenInfo?.burned / overTokenInfo.totalSupply) * 100,
+            color: Colors.VIOLET,
+        };
+        data1.push(circulatingPiece, burnedPiece);
 
         return data1;
-    }, [tokenInfo, stakingData]);
+    }, [overTokenInfo]);
 
     const formatChartLegend = (value: string, entry: any) => {
         const percentage = entry.percentage;
@@ -80,7 +55,7 @@ const ThalesTokenInfo: React.FC = () => {
     };
 
     return (
-        <LoadingContainer isLoading={tokenInfoQuery.isLoading || stakingDataQuery.isLoading}>
+        <LoadingContainer isLoading={isLoading}>
             <StyledPieChart width={520} height={520}>
                 <Legend
                     formatter={formatChartLegend}
@@ -112,4 +87,4 @@ const ThalesTokenInfo: React.FC = () => {
     );
 };
 
-export default ThalesTokenInfo;
+export default OverSupplyChart;

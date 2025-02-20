@@ -55,10 +55,10 @@ export const BREADCRUMBS_DROPDOWN_ITEMS = {
             i18label: 'governance.nav.elections',
             route: `${ROUTES.DAO.Home}/${SpaceKey.COUNCIL}`,
         },
-        {
-            i18label: 'governance.nav.thales-stakers',
-            route: `${ROUTES.DAO.Home}/${SpaceKey.THALES_STAKERS}`,
-        },
+        // {
+        //     i18label: 'governance.nav.thales-stakers',
+        //     route: `${ROUTES.DAO.Home}/${SpaceKey.THALES_STAKERS}`,
+        // },
     ],
 };
 

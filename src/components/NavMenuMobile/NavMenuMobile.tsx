@@ -114,11 +114,11 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                         title: t(`governance.tabs.${SpaceKey.COUNCIL}`),
                         active: location.pathname.includes(SpaceKey.COUNCIL),
                     },
-                    {
-                        href: buildHref(`${ROUTES.DAO.Home}/${SpaceKey.THALES_STAKERS}`),
-                        title: t(`governance.tabs.${SpaceKey.THALES_STAKERS}`),
-                        active: location.pathname.includes(SpaceKey.THALES_STAKERS),
-                    },
+                    // {
+                    //     href: buildHref(`${ROUTES.DAO.Home}/${SpaceKey.THALES_STAKERS}`),
+                    //     title: t(`governance.tabs.${SpaceKey.THALES_STAKERS}`),
+                    //     active: location.pathname.includes(SpaceKey.THALES_STAKERS),
+                    // },
                 ],
             },
         ];

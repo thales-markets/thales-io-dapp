@@ -123,10 +123,10 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                 id: SpaceKey.COUNCIL,
                 name: t(`governance.tabs.${SpaceKey.COUNCIL}`),
             },
-            {
-                id: SpaceKey.THALES_STAKERS,
-                name: t(`governance.tabs.${SpaceKey.THALES_STAKERS}`),
-            },
+            // {
+            //     id: SpaceKey.THALES_STAKERS,
+            //     name: t(`governance.tabs.${SpaceKey.THALES_STAKERS}`),
+            // },
         ],
         [t]
     );
@@ -138,7 +138,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
             {!isMobile && (
                 <>
                     <Line />
-                    <NavContainer width="40%">
+                    <NavContainer width="20%">
                         <Links>
                             {optionsTabContent.map((tab, index) => (
                                 <Item

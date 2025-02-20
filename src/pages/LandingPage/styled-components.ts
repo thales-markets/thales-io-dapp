@@ -68,6 +68,14 @@ export const LogoBackgroundContainer = styled.div`
         height: 90%;
         width: 90%;
     }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        top: -65px;
+        left: 30px;
+        svg {
+            height: 180px;
+            width: 180px;
+        }
+    }
 `;
 
 export const Subtitle = styled.div`

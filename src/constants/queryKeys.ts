@@ -5,6 +5,9 @@ const QUERY_KEYS = {
     WalletBalances: {
         Thales: (walletAddress: string, networkId: Network) => ['walletBalances', 'thales', walletAddress, networkId],
     },
+    OverToken: {
+        Info: () => ['overToken', 'info'],
+    },
     Token: {
         PointsBreakdown: (walletAddress: string, networkId: Network) => [
             'token',
