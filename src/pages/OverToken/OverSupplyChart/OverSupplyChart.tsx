@@ -17,7 +17,7 @@ const OverSupplyChart: React.FC<OverSupplyChartProps> = ({ overTokenInfo, isLoad
     const pieData = useMemo(() => {
         const data1 = [];
         const circulatingPiece = { name: 'Circulating', value: overTokenInfo?.circulatingSupply, color: Colors.CYAN };
-        const burnedPiece = { name: 'Burned', value: overTokenInfo?.burned, color: Colors.VIOLET };
+        const burnedPiece = { name: 'Burned', value: overTokenInfo?.burned, color: Colors.RED };
         data1.push(circulatingPiece, burnedPiece);
 
         return data1;
@@ -37,7 +37,7 @@ const OverSupplyChart: React.FC<OverSupplyChartProps> = ({ overTokenInfo, isLoad
             value: 'Burned: ',
             stat: overTokenInfo?.burned,
             percentage: (overTokenInfo?.burned / overTokenInfo.totalSupply) * 100,
-            color: Colors.VIOLET,
+            color: Colors.RED,
         };
         data1.push(circulatingPiece, burnedPiece);
 

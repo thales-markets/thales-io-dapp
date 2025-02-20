@@ -675,17 +675,17 @@
             "of-total-supply": "Of total supply"
         },
         "token-info": {
-            "title": "Thales token info",
+            "title": "OVER token info",
             "total-supply": "Total supply",
             "circulating-supply": "Circulating supply",
             "burned-supply": "Burned supply",
-            "total-100m": "Total 100M"
+            "total-69m": "Total 69,420,000"
         },
         "tvl": {
             "title": "TVL",
             "token-staking-tvl": "THALES token staking",
             "overtime-amm-tvl": "Sports Markets",
-            "thales-amm-tvl": "Digital options",
+            "thales-amm-tvl": "Digital Options",
             "vaults-tvl": "Vaults",
             "speed-tvl": "Speed Markets"
         }

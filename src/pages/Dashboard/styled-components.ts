@@ -2,16 +2,18 @@ import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperl
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { PieChart } from 'recharts';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivColumnNative, FlexDivRow, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDiv, FlexDivColumnCentered, FlexDivColumnNative, FlexDivRow, FlexDivSpaceBetween } from 'styles/common';
 
-export const Container = styled.div`
+export const Container = styled(FlexDivColumnCentered)``;
+
+export const GridContainer = styled.div`
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(4, 350px);
-    grid-template-rows: repeat(3, 170px);
+    grid-template-columns: repeat(2, 450px);
+    grid-template-rows: repeat(3, 160px);
     column-gap: 10px;
     row-gap: 10px;
-    grid-template-areas: 'upper-left center center upper-right' 'upper-left center center upper-right' 'bottom-left bottom-center-left bottom-right bottom-right';
+    grid-template-areas: 'upper-left upper-right' 'upper-left upper-right' 'bottom-left bottom-right';
     z-index: 1;
     margin: 100px 0px;
     > div {
@@ -214,6 +216,7 @@ export const DoubleSideInfoSection = styled.div`
     width: 100%;
     grid-area: 2 / 1 / 3 /3;
     position: relative;
+    margin-top: -25px;
 `;
 
 export const StyledPieChart = styled(PieChart)`

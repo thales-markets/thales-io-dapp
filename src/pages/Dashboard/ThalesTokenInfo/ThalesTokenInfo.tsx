@@ -1,6 +1,5 @@
 import LoadingContainer from 'components/LoadingContainer';
-import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
-import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
+import useOverTokenInfoQuery from 'queries/dashboard/useOverTokenInfoQuery';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -9,7 +8,7 @@ import { getIsAppReady } from 'redux/modules/app';
 import { RootState } from 'redux/rootReducer';
 import { Colors } from 'styles/common';
 import { formatCurrency } from 'thales-utils';
-import { StakingData, TokenInfo } from 'types/token';
+import { OverTokenInfo } from 'types/token';
 import {
     DoubleSideInfoSection,
     FlexDivFullWidthSpaceBetween,
@@ -26,93 +25,55 @@ import {
 const ThalesTokenInfo: React.FC = () => {
     const { t } = useTranslation();
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
-    const [tokenInfo, setTokenInfo] = useState<TokenInfo | undefined>(undefined);
-    const [stakingData, setStakingData] = useState<StakingData | undefined>(undefined);
+    const [overTokenInfo, setOverTokenInfo] = useState<OverTokenInfo | undefined>(undefined);
 
-    const tokenInfoQuery = useTokenInfoQuery({
+    const overTokenInfoQuery = useOverTokenInfoQuery({
         enabled: isAppReady,
     });
 
-    const stakingDataQuery = useStakingDataQuery({ enabled: isAppReady });
-
     useEffect(() => {
-        if (tokenInfoQuery.isSuccess && tokenInfoQuery.data) {
-            setTokenInfo(tokenInfoQuery.data);
+        if (overTokenInfoQuery.isSuccess && overTokenInfoQuery.data) {
+            setOverTokenInfo(overTokenInfoQuery.data);
         }
-    }, [tokenInfoQuery.isSuccess, tokenInfoQuery.data]);
-
-    useEffect(() => {
-        if (stakingDataQuery.isSuccess && stakingDataQuery.data) {
-            setStakingData(stakingDataQuery.data);
-        }
-    }, [stakingDataQuery.isSuccess, stakingDataQuery.data]);
+    }, [overTokenInfoQuery.isSuccess, overTokenInfoQuery.data]);
 
     const pieData = useMemo(() => {
         const data1 = [];
-        if (tokenInfo) {
-            const burnedPiece = { name: 'Burned', value: tokenInfo?.thalesBurned, color: Colors.CHINA_PINK };
-            const circulatingPiece = { name: 'Circulating', value: tokenInfo?.circulatingSupply, color: Colors.VIOLET };
-            const leftOverPiece = {
-                name: 'Rest',
-                value: tokenInfo.totalSupply - tokenInfo?.thalesBurned - tokenInfo?.circulatingSupply,
+        if (overTokenInfo) {
+            const circulatingPiece = {
+                name: 'Circulating',
+                value: overTokenInfo?.circulatingSupply,
                 color: Colors.CYAN,
             };
-            data1.push(burnedPiece, circulatingPiece, leftOverPiece);
+            const burnedPiece = { name: 'Burned', value: overTokenInfo?.burned, color: Colors.RED };
+            data1.push(circulatingPiece, burnedPiece);
         }
 
         return data1;
-    }, [tokenInfo]);
-
-    const pie2Data = useMemo(() => {
-        const data1 = [];
-        if (stakingData && tokenInfo) {
-            const stakingPiece = { name: 'Staked', value: stakingData?.totalStakedAmount, color: Colors.BLUEBERRY };
-            const leftOverPiece = {
-                name: 'Rest',
-                value: tokenInfo.totalSupply - stakingData.totalStakedAmount,
-                color: 'transparent',
-            };
-            data1.push(stakingPiece, leftOverPiece);
-        }
-
-        return data1;
-    }, [stakingData, tokenInfo]);
+    }, [overTokenInfo]);
 
     const pieLegendData = useMemo(() => {
         const data1 = [];
-        if (tokenInfo && stakingData) {
-            const burnedPiece = {
-                id: '1',
-                value: 'Burned',
-                stat: tokenInfo?.thalesBurned,
-                percentage: (tokenInfo?.thalesBurned / tokenInfo.totalSupply) * 100,
-                color: Colors.CHINA_PINK,
-            };
+        if (overTokenInfo) {
             const circulatingPiece = {
-                id: '2',
+                id: '1',
                 value: 'Circulating',
-                stat: tokenInfo?.circulatingSupply,
-                percentage: (tokenInfo?.circulatingSupply / tokenInfo.totalSupply) * 100,
-                color: Colors.VIOLET,
-            };
-            const leftOverPiece = {
-                id: '3',
-                value: 'Staking',
-                stat: stakingData?.totalStakedAmount,
-                percentage: (stakingData?.totalStakedAmount / tokenInfo.totalSupply) * 100,
-                color: Colors.BLUEBERRY,
-            };
-            const nonCirculating = {
-                id: '4',
-                value: 'Non-circulating',
-                stat: 0,
+                stat: overTokenInfo?.circulatingSupply,
+                percentage: (overTokenInfo?.circulatingSupply / overTokenInfo.totalSupply) * 100,
                 color: Colors.CYAN,
             };
-            data1.push(burnedPiece, circulatingPiece, leftOverPiece, nonCirculating);
+            const burnedPiece = {
+                id: '2',
+                value: 'Burned',
+                stat: overTokenInfo?.burned,
+                percentage: (overTokenInfo?.burned / overTokenInfo.totalSupply) * 100,
+                color: Colors.RED,
+            };
+            data1.push(circulatingPiece, burnedPiece);
         }
 
         return data1;
-    }, [tokenInfo, stakingData]);
+    }, [overTokenInfo]);
 
     const formatChartLegend = (value: string, entry: any) => {
         const percentage = entry.percentage;
@@ -128,38 +89,41 @@ const ThalesTokenInfo: React.FC = () => {
     };
 
     return (
-        <LoadingContainer isLoading={tokenInfoQuery.isLoading || stakingDataQuery.isLoading}>
+        <LoadingContainer isLoading={overTokenInfoQuery.isLoading || overTokenInfoQuery.isLoading}>
             <WidgetWrapper isDoubleHeight={true}>
                 <WidgetHeader>
-                    <WidgetIcon className="icon icon--thales-round-logo" />
+                    <WidgetIcon className="overtime-icon overtime-icon--overtime-logo" />
                     <TitleLabel>{t('dashboard.token-info.title')}</TitleLabel>
                 </WidgetHeader>
                 <UpperInfoSection>
                     <FlexDivFullWidthSpaceBetween>
                         <InfoText>{t('dashboard.token-info.total-supply')}</InfoText>
-                        <InfoStats> {tokenInfo ? `${formatCurrency(tokenInfo.totalSupply)} THALES` : 'N/A'}</InfoStats>
+                        <InfoStats>
+                            {' '}
+                            {overTokenInfo ? `${formatCurrency(overTokenInfo.totalSupply)} OVER` : 'N/A'}
+                        </InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                     <FlexDivFullWidthSpaceBetween>
                         <InfoText>{t('dashboard.token-info.circulating-supply')}</InfoText>
                         <InfoStats>
-                            {tokenInfo ? `${formatCurrency(tokenInfo.circulatingSupply)} THALES` : 'N/A'}
+                            {overTokenInfo ? `${formatCurrency(overTokenInfo.circulatingSupply)} OVER` : 'N/A'}
                         </InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                     <FlexDivFullWidthSpaceBetween>
                         <InfoText>{t('dashboard.token-info.burned-supply')}</InfoText>
-                        <InfoStats>{tokenInfo ? `${formatCurrency(tokenInfo.thalesBurned)} THALES` : 'N/A'}</InfoStats>
+                        <InfoStats>{overTokenInfo ? `${formatCurrency(overTokenInfo.burned)} OVER` : 'N/A'}</InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                     <FlexDivFullWidthSpaceBetween>
-                        <InfoText>{t('dashboard.token-burn.of-circulating-supply')}</InfoText>
+                        <InfoText>{t('dashboard.token-burn.of-total-supply')}</InfoText>
                         <InfoStats>
-                            {tokenInfo
-                                ? `${formatCurrency((tokenInfo.thalesBurned / tokenInfo.circulatingSupply) * 100)}%`
+                            {overTokenInfo
+                                ? `${formatCurrency((overTokenInfo.burned / overTokenInfo.circulatingSupply) * 100)}%`
                                 : 'N/A'}
                         </InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                 </UpperInfoSection>
                 <DoubleSideInfoSection>
-                    <StyledPieChart width={330} height={165}>
+                    <StyledPieChart width={380} height={185}>
                         <Legend
                             formatter={formatChartLegend}
                             iconType="circle"
@@ -168,15 +132,15 @@ const ThalesTokenInfo: React.FC = () => {
                             verticalAlign="top"
                             height={80}
                             payload={pieLegendData}
-                            wrapperStyle={{ top: 47, left: 20 }}
+                            wrapperStyle={{ top: 70, left: 20 }}
                         />
                         <Pie
                             isAnimationActive={false}
                             blendStroke={true}
                             data={pieData}
                             dataKey={'value'}
-                            innerRadius={35}
-                            outerRadius={55}
+                            innerRadius={55}
+                            outerRadius={85}
                             cx="50%"
                             cy="50%"
                         >
@@ -184,24 +148,10 @@ const ThalesTokenInfo: React.FC = () => {
                                 <Cell style={{ outline: 'none' }} key={index} fill={slice.color} />
                             ))}
                             <Label
-                                className="chartLabel"
-                                value={t('dashboard.token-info.total-100m')}
+                                className="chartLabelSmall"
+                                value={t('dashboard.token-info.total-69m')}
                                 position="center"
                             />
-                        </Pie>
-                        <Pie
-                            isAnimationActive={false}
-                            blendStroke={true}
-                            data={pie2Data}
-                            dataKey={'value'}
-                            innerRadius={65}
-                            outerRadius={75}
-                            cx="50%"
-                            cy="50%"
-                        >
-                            {pie2Data.map((slice, index) => (
-                                <Cell style={{ outline: 'none' }} key={index} fill={slice.color} />
-                            ))}
                         </Pie>
                     </StyledPieChart>
                 </DoubleSideInfoSection>
