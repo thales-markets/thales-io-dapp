@@ -118,6 +118,10 @@ export const MigrationContainer = styled(FlexDiv)`
         padding: 10px;
         margin: 0 0 20px 0;
     }
+    span:last-child {
+        cursor: pointer;
+        color: ${(props) => props.theme.textColor.secondary};
+    }
 `;
 
 export const Bold = styled.span`

@@ -9,6 +9,7 @@ const IS_VISIBLE = true;
 
 const Banner: React.FC = () => {
     const [showThalesToOverMigrationModal, setShowThalesToOverMigrationModal] = useState<boolean>(false);
+
     if (!IS_VISIBLE) {
         return <></>;
     }

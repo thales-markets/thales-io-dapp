@@ -239,7 +239,7 @@
         }
     },
     "staking": {
-        "migration-banner": "As per <tip>TIP-238</tip>, THALES staking has been deprecated and rewards have been halted. While there is no deadline, <bold>all THALES stakers are advised to unstake</bold>, to prepare for the migration to OVER token. Follow official announcement channels for new updates.",
+        "migration-banner": "As per <tip>TIP-238</tip>, THALES staking has been deprecated and rewards have been halted. While there is no deadline, <bold>all THALES stakers are advised to unstake</bold>, and migrate $THALES to $OVER token <bold><span>here</span></bold>.",
         "nav": {
             "rewards": "Rewards",
             "staking": "Stake & Earn",
@@ -405,8 +405,7 @@
                 "fee-rewards-tooltip": "Annual Percentage Yield estimation for Protocol Rewards in stablecoins",
                 "staked-share-tooltip": "Your percentage of the total amount of THALES staked on this network.",
                 "staked-balance-tooltip": "Amount of THALES tokens you are currently staking on this network.",
-                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed on this network.",
-                "not-eligible-message": "You are not eligible for staking rewards unless your directly staked balance is greater than 0"
+                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed on this network."
             },
             "my-balance": {
                 "title": "Your staking balance",
@@ -526,6 +525,7 @@
             "destination": "Destination"
         },
         "lp-staking": {
+            "migration-banner": "As per <tip>TIP-238</tip>, THALES/WETH LP staking has been deprecated and rewards have been halted. While there is no deadline, <bold>all THALES/WETH LP stakers are advised to unstake</bold>, and migrate $THALES to $OVER token <bold><span>here</span></bold>.",
             "header": "How LP Staking works?",
             "staking-data": "Staking data",
             "other-lp": "Other LP Staking providers",
