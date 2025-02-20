@@ -31,29 +31,31 @@ const DappHeader: React.FC = () => {
     const navItems: NavItemType[] = useMemo(() => {
         return [
             {
+                href: buildHref(ROUTES.OverToken),
                 title: t('header.links.over-token'),
-                children: [
-                    {
-                        href: buildHref(ROUTES.OverToken),
-                        title: t('header.links.over-token'),
-                        active: location.pathname === ROUTES.OverToken,
-                    },
-                    {
-                        href: buildHref(ROUTES.Token.Staking.Home),
-                        title: t('header.links.staking'),
-                        active: location.pathname === ROUTES.Token.Staking.Home,
-                    },
-                    {
-                        href: buildHref(ROUTES.Token.Bridge),
-                        title: t('header.links.bridge'),
-                        active: location.pathname === ROUTES.Token.Bridge,
-                    },
-                    {
-                        href: buildHref(ROUTES.Token.LPStaking),
-                        title: t('header.links.lp-staking'),
-                        active: location.pathname === ROUTES.Token.LPStaking,
-                    },
-                ],
+                active: location.pathname === ROUTES.OverToken,
+                // children: [
+                //     {
+                //         href: buildHref(ROUTES.OverToken),
+                //         title: t('header.links.over-token'),
+                //         active: location.pathname === ROUTES.OverToken,
+                //     },
+                //     {
+                //         href: buildHref(ROUTES.Token.Staking.Home),
+                //         title: t('header.links.staking'),
+                //         active: location.pathname === ROUTES.Token.Staking.Home,
+                //     },
+                //     {
+                //         href: buildHref(ROUTES.Token.Bridge),
+                //         title: t('header.links.bridge'),
+                //         active: location.pathname === ROUTES.Token.Bridge,
+                //     },
+                //     {
+                //         href: buildHref(ROUTES.Token.LPStaking),
+                //         title: t('header.links.lp-staking'),
+                //         active: location.pathname === ROUTES.Token.LPStaking,
+                //     },
+                // ],
             },
             {
                 href: buildHref(ROUTES.Dashboard),

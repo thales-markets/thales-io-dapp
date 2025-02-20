@@ -1,7 +1,6 @@
 import { NavItemType } from 'components/NavLinks/NavItem';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
-import { STAKING_TABS } from 'constants/token';
 import { SpaceKey } from 'enums/governance';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,45 +20,47 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
     const navItems: NavItemType[] = useMemo(() => {
         return [
             {
+                href: buildHref(ROUTES.OverToken),
                 title: t('header.links.over-token'),
-                children: [
-                    {
-                        href: buildHref(ROUTES.OverToken),
-                        title: t('header.links.over-token'),
-                        active: location.pathname === ROUTES.OverToken,
-                    },
-                    {
-                        title: t('header.links.staking'),
-                        active: location.pathname === ROUTES.Token.Staking.Home,
-                        children: [
-                            {
-                                href: `${buildHref(ROUTES.Token.Staking.Home)}`,
-                                title: t('staking.nav.stake-thales'),
-                                active: location.search.includes(STAKING_TABS.STAKING),
-                            },
-                            {
-                                href: `${buildHref(ROUTES.Token.Staking.Vesting)}`,
-                                title: t('staking.nav.vesting'),
-                                active: location.search.includes(STAKING_TABS.VESTING),
-                            },
-                            {
-                                href: `${buildHref(ROUTES.Token.Staking.Preferences)}`,
-                                title: t('staking.nav.acc-preferences'),
-                                active: location.search.includes(STAKING_TABS.ACC_PREFERENCES),
-                            },
-                        ],
-                    },
-                    {
-                        href: buildHref(ROUTES.Token.Bridge),
-                        title: t('header.links.bridge'),
-                        active: location.pathname === ROUTES.Token.Bridge,
-                    },
-                    {
-                        href: buildHref(ROUTES.Token.LPStaking),
-                        title: t('header.links.lp-staking'),
-                        active: location.pathname === ROUTES.Token.LPStaking,
-                    },
-                ],
+                active: location.pathname === ROUTES.OverToken,
+                // children: [
+                //     {
+                //         href: buildHref(ROUTES.OverToken),
+                //         title: t('header.links.over-token'),
+                //         active: location.pathname === ROUTES.OverToken,
+                //     },
+                //     {
+                //         title: t('header.links.staking'),
+                //         active: location.pathname === ROUTES.Token.Staking.Home,
+                //         children: [
+                //             {
+                //                 href: `${buildHref(ROUTES.Token.Staking.Home)}`,
+                //                 title: t('staking.nav.stake-thales'),
+                //                 active: location.search.includes(STAKING_TABS.STAKING),
+                //             },
+                //             {
+                //                 href: `${buildHref(ROUTES.Token.Staking.Vesting)}`,
+                //                 title: t('staking.nav.vesting'),
+                //                 active: location.search.includes(STAKING_TABS.VESTING),
+                //             },
+                //             {
+                //                 href: `${buildHref(ROUTES.Token.Staking.Preferences)}`,
+                //                 title: t('staking.nav.acc-preferences'),
+                //                 active: location.search.includes(STAKING_TABS.ACC_PREFERENCES),
+                //             },
+                //         ],
+                //     },
+                //     {
+                //         href: buildHref(ROUTES.Token.Bridge),
+                //         title: t('header.links.bridge'),
+                //         active: location.pathname === ROUTES.Token.Bridge,
+                //     },
+                //     {
+                //         href: buildHref(ROUTES.Token.LPStaking),
+                //         title: t('header.links.lp-staking'),
+                //         active: location.pathname === ROUTES.Token.LPStaking,
+                //     },
+                // ],
             },
             {
                 href: buildHref(ROUTES.Dashboard),

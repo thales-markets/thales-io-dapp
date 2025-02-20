@@ -16,10 +16,6 @@ import BreadcrumbItem from './BreadcrumbItem';
 export const BREADCRUMBS_DROPDOWN_ITEMS = {
     Token: [
         {
-            i18label: 'header.links.over-token',
-            route: ROUTES.OverToken,
-        },
-        {
             i18label: 'header.links.staking',
             route: ROUTES.Token.Staking.Home,
         },
