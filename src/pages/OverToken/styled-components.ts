@@ -10,7 +10,7 @@ export const Content = styled.div`
     margin-bottom: 50px;
     @media (max-width: 1024px) {
         width: 100vw;
-        margin-top: 50px;
+        margin-top: 20px;
         padding: 0 20px;
         z-index: 1;
     }

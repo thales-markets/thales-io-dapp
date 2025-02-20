@@ -123,7 +123,7 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                 ],
             },
         ];
-    }, [location.pathname, t, location.search]);
+    }, [location.pathname, t]);
 
     return (
         <NavMenuContainer>

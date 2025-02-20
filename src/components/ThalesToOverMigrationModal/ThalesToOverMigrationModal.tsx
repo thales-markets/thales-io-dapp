@@ -10,6 +10,7 @@ import {
 } from 'components/ToastMessage/ToastMessage';
 import { CRYPTO_CURRENCY_MAP, THALES_CURRENCY } from 'constants/currency';
 import { MIGRATION_PROPOSAL_ID } from 'constants/governance';
+import ROUTES from 'constants/routes';
 import { SpaceKey } from 'enums/governance';
 import { BigNumber, ethers } from 'ethers';
 import { parseEther } from 'ethers/lib/utils.js';
@@ -24,7 +25,7 @@ import { getIsWalletConnected, getNetworkId, getWalletAddress } from 'redux/modu
 import { formatCurrencyWithKey, truncToDecimals } from 'thales-utils';
 import { checkAllowance } from 'utils/network';
 import networkConnector from 'utils/networkConnector';
-import { buildGovernanceHref } from 'utils/routes';
+import { buildGovernanceHref, buildHref } from 'utils/routes';
 import {
     ButtonContainer,
     CloseIcon,
@@ -228,6 +229,20 @@ const ThalesToOverMigrationModal: React.FC<ThalesToOverMigrationModalProps> = ({
                         }}
                     />
                 </Description>
+                <Description>
+                    <Trans
+                        i18nKey={'migration-modal.unstake-description'}
+                        components={{
+                            p: <p />,
+                            stakingLink: (
+                                <TipLink href={buildHref(ROUTES.Token.Staking.Home)} target="_blank" rel="noreferrer" />
+                            ),
+                            lpStakingLink: (
+                                <TipLink href={buildHref(ROUTES.Token.LPStaking)} target="_blank" rel="noreferrer" />
+                            ),
+                        }}
+                    />
+                </Description>
                 <InputContainer>
                     <NumericInput
                         value={amount}
@@ -240,12 +255,9 @@ const ThalesToOverMigrationModal: React.FC<ThalesToOverMigrationModalProps> = ({
                         validationMessage={t('common.errors.insufficient-balance-wallet', {
                             currencyKey: CRYPTO_CURRENCY_MAP.THALES,
                         })}
-                        // validationPlacement="bottom"
                         balance={formatCurrencyWithKey(CRYPTO_CURRENCY_MAP.THALES, thalesBalance)}
                         onMaxButton={onMaxClick}
-                        // inputFontWeight="600"
                         inputPadding="5px 10px"
-                        // borderColor={theme.input.borderColor.tertiary}
                     />
                 </InputContainer>
                 <Summary>

@@ -35,8 +35,9 @@ export const Description = styled.span`
     font-weight: 500;
     line-height: 16px;
     letter-spacing: 0.025em;
-    text-align: center;
+    text-align: left;
     margin-top: 20px;
+    width: 100%;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 12px;
         margin-top: 10px;
