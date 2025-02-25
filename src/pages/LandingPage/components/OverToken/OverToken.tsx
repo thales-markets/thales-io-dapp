@@ -1,5 +1,5 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
-import coins from 'assets/images/coins.png';
+import coins from 'assets/images/coins.webp';
 import ROUTES from 'constants/routes';
 import { t } from 'i18next';
 import { LinkButton } from 'pages/LandingPage/styled-components';

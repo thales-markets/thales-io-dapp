@@ -1,5 +1,5 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
-import data from 'assets/images/data.png';
+import barChart from 'assets/images/bar-chart.webp';
 import NumberCountdown from 'components/NumberCountdown';
 import ROUTES from 'constants/routes';
 import { t } from 'i18next';
@@ -18,7 +18,7 @@ const Stats: React.FC<StatsProps> = ({ duneStats, tvl }) => {
     return (
         <Container>
             <LeftContainer>
-                <img src={data} />
+                <img src={barChart} />
             </LeftContainer>
             <RightContainer>
                 <SectionContainer>

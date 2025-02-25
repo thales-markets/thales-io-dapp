@@ -1,4 +1,4 @@
-import Coins from 'assets/images/coins.png';
+import coins from 'assets/images/coins.webp';
 import { ReactComponent as OverFlow } from 'assets/images/over-flow.svg';
 import NumberCountdown from 'components/NumberCountdown';
 import SPAAnchor from 'components/SPAAnchor';
@@ -67,7 +67,7 @@ const OverToken: React.FC = () => {
                     </Section>
                 </OverLeftContainer>
                 <OverRightContainer>
-                    <img src={Coins} />
+                    <img src={coins} />
                 </OverRightContainer>
             </OverContainer>
             <Section marginTop={70}>
