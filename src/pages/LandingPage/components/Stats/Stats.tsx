@@ -1,4 +1,3 @@
-import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import barChart from 'assets/images/bar-chart.webp';
 import NumberCountdown from 'components/NumberCountdown';
 import ROUTES from 'constants/routes';
@@ -45,9 +44,7 @@ const Stats: React.FC<StatsProps> = ({ duneStats, tvl }) => {
                         <NumberCountdown number={duneStats?.marketsStats?.totalUniqueMarkets || 0} />
                     </Value>
                 </SectionContainer>
-                <LinkButton onClick={() => navigateTo(ROUTES.Dashboard)}>
-                    {t('home.see-all-stats-button')} <ArrowHyperlinkIcon />
-                </LinkButton>
+                <LinkButton onClick={() => navigateTo(ROUTES.Dashboard)}>{t('home.see-all-stats-button')}</LinkButton>
             </RightContainer>
         </Container>
     );

@@ -108,16 +108,19 @@ export const SectionTitle = styled.div`
 `;
 
 export const LinkButton = styled.button`
+    height: 34px;
     cursor: pointer;
     color: white;
     border-radius: 8px;
-    border: 1px solid ${(props) => props.theme.borderColor.quaternary};
-    background: transparent;
+    background-color: ${(props) => props.theme.button.background.secondary};
+    color: ${(props) => props.theme.button.textColor.secondary};
     width: fit-content;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 10.4px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 19.36px;
     padding: 7px 20px;
+    text-transform: uppercase;
     z-index: 1000;
 `;
 

@@ -1,4 +1,3 @@
-import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import coins from 'assets/images/coins.webp';
 import ROUTES from 'constants/routes';
 import { t } from 'i18next';
@@ -35,9 +34,7 @@ const OverToken: React.FC = () => {
                     <Title>{t('home.over-token.title-3')}</Title>
                     <Description>{t('home.over-token.description-3')}</Description>
                 </SectionContainer>
-                <LinkButton onClick={() => navigateTo(ROUTES.OverToken)}>
-                    {t('home.over-token-button')} <ArrowHyperlinkIcon />
-                </LinkButton>
+                <LinkButton onClick={() => navigateTo(ROUTES.OverToken)}>{t('home.over-token-button')}</LinkButton>
             </LeftContainer>
             <RightContainer>
                 <img src={coins} />
