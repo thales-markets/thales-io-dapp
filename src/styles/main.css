@@ -168,6 +168,13 @@ input[type='number'] {
     -moz-appearance: textfield; /* Firefox */
 }
 
+button {
+    font-family: Montserrat;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
 #root {
     height: 100vh;
     width: 100vw;
