@@ -206,17 +206,6 @@ const Home: React.FC = () => {
                         </Description>
                     </Collapse>
                     <Collapse
-                        title={t('home.integrations.digital-options-api-title')}
-                        additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
-                    >
-                        <Description marginBottom={20}>
-                            <span>{t('home.integrations.digital-options-api-description')}</span>
-                            <SPAAnchor href={LINKS.DigitalOptionsIntegration}>
-                                <LinkButton>{t('home.integrations.integrate-with-thales-markets-button')}</LinkButton>
-                            </SPAAnchor>
-                        </Description>
-                    </Collapse>
-                    <Collapse
                         title={t('home.integrations.speed-markets-api-title')}
                         additionalStyling={{ downwardsArrowAlignRight: true, titleMarginRight: '5px' }}
                     >
