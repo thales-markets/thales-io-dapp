@@ -3,5 +3,6 @@ export type SportBettingCard = {
     title: string;
     description: string;
     iconSize: string;
-    image: string;
+    backgroundImage: string;
+    backgroundImageMobile: string;
 };

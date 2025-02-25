@@ -1,7 +1,12 @@
-import ChainCard from 'assets/images/chain-card.png';
-import IndustryCard from 'assets/images/industry-card.png';
-import TrustCard from 'assets/images/trust-card.png';
-import UsersCard from 'assets/images/users-card.png';
+import chainCardMobile from 'assets/images/chain-card-mobile.webp';
+import chainCard from 'assets/images/chain-card.webp';
+import industryCardMobile from 'assets/images/industry-card-mobile.webp';
+import industryCard from 'assets/images/industry-card.webp';
+import trustCardMobile from 'assets/images/trust-card-mobile.webp';
+import trustCard from 'assets/images/trust-card.webp';
+import usersCardMobile from 'assets/images/users-card-mobile.webp';
+import usersCard from 'assets/images/users-card.webp';
+
 import { SportBettingCard } from './types';
 
 export enum SportBettingCardType {
@@ -17,27 +22,31 @@ export const SPORT_BETTING_CARDS: Record<SportBettingCardType, SportBettingCard>
         title: 'Fully onchain',
         description: 'Non-custodial, transparent, and global access.',
         iconSize: '56px',
-        image: ChainCard,
+        backgroundImage: chainCard,
+        backgroundImageMobile: chainCardMobile,
     },
     [SportBettingCardType.TAILORED_FOR_USERS]: {
         icon: 'overtime-icon overtime-icon--users',
         title: 'Tailored for users',
         description: 'Join seamlessly and bet seamlessly on a wide, industry standard offering.',
         iconSize: '56px',
-        image: UsersCard,
+        backgroundImage: usersCard,
+        backgroundImageMobile: usersCardMobile,
     },
     [SportBettingCardType.TRUST_REDEFINED]: {
         icon: 'overtime-icon overtime-icon--trust',
         title: 'Trust redefined',
         description: 'Blockchain powered transparency and security built into every bet.',
         iconSize: '56px',
-        image: TrustCard,
+        backgroundImage: trustCard,
+        backgroundImageMobile: trustCardMobile,
     },
     [SportBettingCardType.ECOLVING_THE_INDUSTRY]: {
         icon: 'overtime-icon overtime-icon--industry',
         title: 'Evolving the industry',
         description: 'Experience the next generation of sports betting.',
         iconSize: '56px',
-        image: IndustryCard,
+        backgroundImage: industryCard,
+        backgroundImageMobile: industryCardMobile,
     },
 };

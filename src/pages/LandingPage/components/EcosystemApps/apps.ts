@@ -1,6 +1,12 @@
-import OvertimeCard from 'assets/images/overtime-card.png';
-import SpeedMarketsCard from 'assets/images/speed-markets-card.png';
-import ThalesMarketsCard from 'assets/images/thales-markets-card.png';
+import overtimeImage from 'assets/images/overtime-balls.webp';
+import overtimeCardMobile from 'assets/images/overtime-card-mobile.webp';
+import overtimeCard from 'assets/images/overtime-card.webp';
+import speedMarketsImage from 'assets/images/speed-markets-arrow.webp';
+import speedMarketsCardMobile from 'assets/images/speed-markets-card-mobile.webp';
+import speedMarketsCard from 'assets/images/speed-markets-card.webp';
+import thalesMarketsImage from 'assets/images/thales-markets-arrow.webp';
+import thalesMarketsCardMobile from 'assets/images/thales-markets-card-mobile.webp';
+import thalesMarketsCard from 'assets/images/thales-markets-card.webp';
 import { EcosystemApp, EcosystemDapp } from './types';
 
 // don't remove, used through thales-api
@@ -51,7 +57,9 @@ export const ECOSYSTEM_DAPP: Record<EcosystemDappType, EcosystemDapp> = {
         link: 'https://overtimemarkets.xyz/',
         iconSize: '300px',
         mobileIconSize: '200px',
-        image: OvertimeCard,
+        backgroundImage: overtimeCard,
+        backgroundImageMobile: overtimeCardMobile,
+        image: overtimeImage,
     },
     [EcosystemDappType.SPEED_MARKETS]: {
         icon: 'overtime-icon overtime-icon--speed-markets',
@@ -60,8 +68,10 @@ export const ECOSYSTEM_DAPP: Record<EcosystemDappType, EcosystemDapp> = {
         actionText: 'Use Speed Markets',
         link: 'https://speedmarkets.xyz/',
         iconSize: '200px',
-        mobileIconSize: '150px',
-        image: SpeedMarketsCard,
+        mobileIconSize: '170px',
+        backgroundImage: speedMarketsCard,
+        backgroundImageMobile: speedMarketsCardMobile,
+        image: speedMarketsImage,
     },
     [EcosystemDappType.THALES_MARKETS]: {
         icon: 'overtime-icon overtime-icon--thales-markets',
@@ -70,7 +80,9 @@ export const ECOSYSTEM_DAPP: Record<EcosystemDappType, EcosystemDapp> = {
         actionText: 'Use Thales Markets',
         link: 'https://thalesmarket.io/',
         iconSize: '180px',
-        mobileIconSize: '140px',
-        image: ThalesMarketsCard,
+        mobileIconSize: '160px',
+        backgroundImage: thalesMarketsCard,
+        backgroundImageMobile: thalesMarketsCardMobile,
+        image: thalesMarketsImage,
     },
 };

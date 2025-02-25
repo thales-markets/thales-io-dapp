@@ -5,7 +5,10 @@ import { CardContainer, Container, Description, Icon, Title } from './styled-com
 const SportBetting: React.FC = () => {
     return (
         <Container>
-            <CardContainer image={SPORT_BETTING_CARDS[SportBettingCardType.FULLY_ON_CHAIN].image}>
+            <CardContainer
+                image={SPORT_BETTING_CARDS[SportBettingCardType.FULLY_ON_CHAIN].backgroundImage}
+                mobileImage={SPORT_BETTING_CARDS[SportBettingCardType.FULLY_ON_CHAIN].backgroundImageMobile}
+            >
                 <Icon
                     className={SPORT_BETTING_CARDS[SportBettingCardType.FULLY_ON_CHAIN].icon}
                     fontSize={SPORT_BETTING_CARDS[SportBettingCardType.FULLY_ON_CHAIN].iconSize}
@@ -13,7 +16,10 @@ const SportBetting: React.FC = () => {
                 <Title>{SPORT_BETTING_CARDS[SportBettingCardType.FULLY_ON_CHAIN].title}</Title>
                 <Description>{SPORT_BETTING_CARDS[SportBettingCardType.FULLY_ON_CHAIN].description}</Description>
             </CardContainer>
-            <CardContainer image={SPORT_BETTING_CARDS[SportBettingCardType.TAILORED_FOR_USERS].image}>
+            <CardContainer
+                image={SPORT_BETTING_CARDS[SportBettingCardType.TAILORED_FOR_USERS].backgroundImage}
+                mobileImage={SPORT_BETTING_CARDS[SportBettingCardType.TAILORED_FOR_USERS].backgroundImageMobile}
+            >
                 <Icon
                     className={SPORT_BETTING_CARDS[SportBettingCardType.TAILORED_FOR_USERS].icon}
                     fontSize={SPORT_BETTING_CARDS[SportBettingCardType.TAILORED_FOR_USERS].iconSize}
@@ -21,7 +27,10 @@ const SportBetting: React.FC = () => {
                 <Title>{SPORT_BETTING_CARDS[SportBettingCardType.TAILORED_FOR_USERS].title}</Title>
                 <Description>{SPORT_BETTING_CARDS[SportBettingCardType.TAILORED_FOR_USERS].description}</Description>
             </CardContainer>
-            <CardContainer image={SPORT_BETTING_CARDS[SportBettingCardType.TRUST_REDEFINED].image}>
+            <CardContainer
+                image={SPORT_BETTING_CARDS[SportBettingCardType.TRUST_REDEFINED].backgroundImage}
+                mobileImage={SPORT_BETTING_CARDS[SportBettingCardType.TRUST_REDEFINED].backgroundImageMobile}
+            >
                 <Icon
                     className={SPORT_BETTING_CARDS[SportBettingCardType.TRUST_REDEFINED].icon}
                     fontSize={SPORT_BETTING_CARDS[SportBettingCardType.TRUST_REDEFINED].iconSize}
@@ -29,7 +38,10 @@ const SportBetting: React.FC = () => {
                 <Title>{SPORT_BETTING_CARDS[SportBettingCardType.TRUST_REDEFINED].title}</Title>
                 <Description>{SPORT_BETTING_CARDS[SportBettingCardType.TRUST_REDEFINED].description}</Description>
             </CardContainer>
-            <CardContainer image={SPORT_BETTING_CARDS[SportBettingCardType.ECOLVING_THE_INDUSTRY].image}>
+            <CardContainer
+                image={SPORT_BETTING_CARDS[SportBettingCardType.ECOLVING_THE_INDUSTRY].backgroundImage}
+                mobileImage={SPORT_BETTING_CARDS[SportBettingCardType.ECOLVING_THE_INDUSTRY].backgroundImageMobile}
+            >
                 <Icon
                     className={SPORT_BETTING_CARDS[SportBettingCardType.ECOLVING_THE_INDUSTRY].icon}
                     fontSize={SPORT_BETTING_CARDS[SportBettingCardType.ECOLVING_THE_INDUSTRY].iconSize}

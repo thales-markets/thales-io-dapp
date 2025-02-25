@@ -9,6 +9,9 @@ import {
     Container,
     Description,
     Icon,
+    Image,
+    ImageContainer,
+    ImageCut,
     LeftContainer,
     RightContainer,
     Title,
@@ -18,12 +21,20 @@ const EcosystemApps: React.FC = () => {
     return (
         <Container>
             <LeftContainer>
-                <CardContainer image={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].image} isLeftContainer={true}>
+                <CardContainer
+                    image={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].backgroundImage}
+                    mobileImage={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].backgroundImageMobile}
+                    isLeftContainer={true}
+                >
+                    <ImageContainer>
+                        <ImageCut src={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].image} />
+                    </ImageContainer>
                     <CardContent>
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].icon}
                             fontSize={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].iconSize}
                             mobileFontSize={ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].mobileIconSize}
+                            height="130px"
                         ></Icon>
                         <Title>{ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].title}</Title>
                         <Description>{ECOSYSTEM_DAPP[EcosystemDappType.OVERTIME].description}</Description>
@@ -36,12 +47,16 @@ const EcosystemApps: React.FC = () => {
                 </CardContainer>
             </LeftContainer>
             <RightContainer>
-                <CardContainer image={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].image}>
+                <CardContainer
+                    image={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].backgroundImage}
+                    mobileImage={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].backgroundImageMobile}
+                >
                     <CardContent>
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].icon}
                             fontSize={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].iconSize}
                             mobileFontSize={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].mobileIconSize}
+                            height="90px"
                         ></Icon>
                         <Title>{ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].title}</Title>
                     </CardContent>
@@ -50,8 +65,19 @@ const EcosystemApps: React.FC = () => {
                             <Action>{ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].actionText}</Action>
                         </SPAAnchor>
                     </ActionContainer>
+                    <Image
+                        src={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].image}
+                        top={60}
+                        right={60}
+                        mobileTop={35}
+                        mobileRight={25}
+                        mobileHeight={45}
+                    />
                 </CardContainer>
-                <CardContainer image={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].image}>
+                <CardContainer
+                    image={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].backgroundImage}
+                    mobileImage={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].backgroundImageMobile}
+                >
                     <CardContent>
                         <Icon
                             className={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].icon}
@@ -65,6 +91,14 @@ const EcosystemApps: React.FC = () => {
                             <Action>{ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].actionText}</Action>
                         </SPAAnchor>
                     </ActionContainer>
+                    <Image
+                        src={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].image}
+                        top={40}
+                        right={80}
+                        mobileTop={25}
+                        mobileRight={30}
+                        mobileHeight={70}
+                    />
                 </CardContainer>
             </RightContainer>
         </Container>
