@@ -1,6 +1,6 @@
 {
-    "name": "thales-io",
-    "version": "0.1.0",
+    "name": "overtime-io",
+    "version": "1.0.0",
     "private": true,
     "dependencies": {
         "@ledgerhq/iframe-provider": "^0.4.2",
