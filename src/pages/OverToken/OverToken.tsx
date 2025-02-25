@@ -1,14 +1,15 @@
 import coins from 'assets/images/coins.webp';
-import { ReactComponent as OverFlow } from 'assets/images/over-flow.svg';
+import overflow from 'assets/lotties/overflow.json';
 import NumberCountdown from 'components/NumberCountdown';
 import SPAAnchor from 'components/SPAAnchor';
 import ROUTES from 'constants/routes';
 import { Network } from 'enums/network';
+import Lottie from 'lottie-react';
 import { OverDescription } from 'pages/LandingPage/components/OverToken/styled-components';
 import {
     Description,
-    ImageContainer,
     LinkButton,
+    LottieContainer,
     Section,
     SectionSlogan,
     SectionSloganHighlight,
@@ -173,9 +174,9 @@ const OverToken: React.FC = () => {
                 <SectionSlogan>{t('over-token.valute-capture-title')}</SectionSlogan>
                 <Description>{t('over-token.valute-capture-description-1')}</Description>
                 <Description>{t('over-token.valute-capture-description-2')}</Description>
-                <ImageContainer>
-                    <OverFlow />
-                </ImageContainer>
+                <LottieContainer>
+                    <Lottie animationData={overflow} />
+                </LottieContainer>
             </Section>
             <Section marginBottom={50}>
                 <SectionSlogan>

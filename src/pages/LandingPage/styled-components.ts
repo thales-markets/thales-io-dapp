@@ -119,9 +119,17 @@ export const LinkButton = styled.button`
     font-size: 14px;
     font-weight: 800;
     line-height: 19.36px;
-    padding: 7px 20px;
+    padding: 0px 20px;
     text-transform: uppercase;
     z-index: 1000;
+    transition: 0.2s all;
+    &:hover {
+        transform: scale(1.07);
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        height: 30px;
+        border-radius: 5px;
+    }
 `;
 
 export const Description = styled(FlexDivColumn)<{ marginBottom?: number; marginTop?: number }>`
@@ -207,6 +215,9 @@ export const SectionTitleLinkArrow = styled(ArrowHyperlinkIcon)`
 
 export const LottieContainer = styled(FlexDivCentered)`
     margin-top: -50px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 0;
+    }
 `;
 
 export const StepsSection = styled(FlexDivColumn)`
@@ -244,6 +255,10 @@ export const HomeIcon = styled.i<{
         font-size: ${(props) => props.mobileFontSize ?? props.fontSize ?? '20em'};
     }
     width: 100%;
+    transition: 0.2s all;
+    &:hover {
+        transform: scale(1.1);
+    }
 `;
 export const FooterLogo = styled.i`
     position: absolute;

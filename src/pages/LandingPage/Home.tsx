@@ -104,7 +104,6 @@ const Home: React.FC = () => {
                         {t('home.over-deflationary.title')}
                     </SectionSlogan>
                     <Description>{t('home.over-deflationary.description')}</Description>
-
                     <LottieContainer>
                         <Lottie animationData={overflow} />
                     </LottieContainer>

@@ -105,6 +105,10 @@ export const Action = styled(FlexDivCentered)`
         align-self: center;
         width: 200px;
     }
+    transition: 0.2s all;
+    &:hover {
+        transform: scale(1.07);
+    }
 `;
 
 export const Icon = styled.i<{ fontSize: string; mobileFontSize: string; height?: string }>`
