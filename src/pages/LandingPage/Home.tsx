@@ -1,10 +1,11 @@
 import { ReactComponent as LogoTransparent } from 'assets/images/logo-transparent.svg';
-import { ReactComponent as OverFlow } from 'assets/images/over-flow.svg';
+import overflow from 'assets/lotties/overflow.json';
 import Collapse from 'components/Collapse';
 import Loader from 'components/Loader';
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
+import Lottie from 'lottie-react';
 import useStatsQuery from 'queries/dashboard/useStatsQuery';
 import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -27,10 +28,10 @@ import {
     HighlightTitle,
     HomeIcon,
     IconLink,
-    ImageContainer,
     LinkButton,
     Logo,
     LogoBackgroundContainer,
+    LottieContainer,
     Partners,
     PartnersContainer,
     Section,
@@ -103,9 +104,10 @@ const Home: React.FC = () => {
                         {t('home.over-deflationary.title')}
                     </SectionSlogan>
                     <Description>{t('home.over-deflationary.description')}</Description>
-                    <ImageContainer>
-                        <OverFlow />
-                    </ImageContainer>
+
+                    <LottieContainer>
+                        <Lottie animationData={overflow} />
+                    </LottieContainer>
                 </Section>
                 <Section>
                     <SectionSlogan align="center">
