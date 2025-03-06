@@ -28,9 +28,9 @@ export const MenuIcon = styled.i`
     color: ${(props) => props.theme.textColor.primary};
     font-size: 25px;
     margin-right: 5px;
-    margin-top: -5px;
+    margin-top: -3px;
     cursor: pointer;
-    line-height: 50px;
+    line-height: 25px;
     @media (min-width: 1024px) {
         display: none;
     }
@@ -43,8 +43,8 @@ export const LogoMobile = styled.i`
     align-items: center;
     justify-content: center;
     font-size: 150px;
-    line-height: 0.2em;
-    margin: 15px 5px 0px 2px;
+    line-height: 4px;
+    margin: 14px 5px 0px 2px;
     color: ${(props) => props.theme.textColor.primary};
 `;
 
