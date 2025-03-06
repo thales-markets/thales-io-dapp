@@ -1,7 +1,7 @@
 import { t } from 'i18next';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { buildHref } from 'utils/routes';
-import { ASSET_CARDS, AssetCardType } from './cards';
+import { ASSET_CARDS, AssetCardType, BRAND_ASSETS_FOLDER } from './cards';
 import {
     CardContainer,
     Container,
@@ -19,13 +19,15 @@ const AssetCards: React.FC = () => {
     const getDownloadLink = (type: AssetCardType, imageType: 'SVG' | 'PNG', isDark?: boolean) => (
         <DownloadLink
             href={buildHref(
-                ASSET_CARDS[type][
-                    `${imageType.toLowerCase()}Image${isDark ? 'Dark' : ''}` as
-                        | 'svgImage'
-                        | 'pngImage'
-                        | 'svgImageDark'
-                        | 'pngImageDark'
-                ]
+                `${BRAND_ASSETS_FOLDER}/${
+                    ASSET_CARDS[type][
+                        `${imageType.toLowerCase()}Image${isDark ? 'Dark' : ''}` as
+                            | 'svgImage'
+                            | 'pngImage'
+                            | 'svgImageDark'
+                            | 'pngImageDark'
+                    ]
+                }`
             )}
             target="_blank"
             rel="noreferrer"
