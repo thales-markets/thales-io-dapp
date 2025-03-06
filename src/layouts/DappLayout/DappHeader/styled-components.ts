@@ -44,7 +44,7 @@ export const LogoMobile = styled.i`
     justify-content: center;
     font-size: 150px;
     line-height: 4px;
-    margin: 14px 5px 0px 2px;
+    margin: 15px 5px 0px 2px;
     color: ${(props) => props.theme.textColor.primary};
 `;
 
