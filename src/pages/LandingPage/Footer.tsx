@@ -5,8 +5,10 @@ import termsOfUse from 'assets/docs/thales-terms-of-use.pdf';
 import FooterLinks from 'components/FooterLinks';
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
+import ROUTES from 'constants/routes';
 import { useTranslation } from 'react-i18next';
 import { FlexDivColumn } from 'styles/common';
+import { buildHref } from 'utils/routes';
 import {
     FooterContainer,
     FooterLogo,
@@ -54,7 +56,7 @@ const Footer: React.FC = () => {
                         </FlexDivColumn>
                         <FlexDivColumn>
                             <OvertimeLinksTitle>{t('home.footer.about.about')}</OvertimeLinksTitle>
-                            <SPAAnchor href={LINKS.MarketingAssets}>
+                            <SPAAnchor href={buildHref(ROUTES.BrandAssets)}>
                                 <ThalesLinksItem>{t('home.footer.about.brand-assets')}</ThalesLinksItem>
                             </SPAAnchor>
                             <a target="_blank" rel="noreferrer" href={termsOfUse}>

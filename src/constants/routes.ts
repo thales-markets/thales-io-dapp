@@ -19,6 +19,7 @@ const ROUTES = {
         Proposal: '/dao/:space/:id',
     },
     OverToken: '/over-token',
+    BrandAssets: '/brand-assets',
     About: {
         Root: '/about',
         Whitepaper: '/about/whitepaper',
