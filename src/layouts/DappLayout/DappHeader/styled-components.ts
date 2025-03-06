@@ -18,7 +18,7 @@ export const LinksContainer = styled.div`
 
 export const Logo = styled.i`
     color: ${(props) => props.theme.textColor.primary};
-    font-size: 150px;
+    font-size: 170px;
     cursor: pointer;
     line-height: 20px;
     margin-top: 15px;
@@ -27,7 +27,7 @@ export const Logo = styled.i`
 export const MenuIcon = styled.i`
     color: ${(props) => props.theme.textColor.primary};
     font-size: 25px;
-    margin-right: 10px;
+    margin-right: 5px;
     margin-top: -5px;
     cursor: pointer;
     line-height: 50px;
@@ -42,9 +42,9 @@ export const LogoMobile = styled.i`
     height: auto;
     align-items: center;
     justify-content: center;
-    font-size: 9em;
+    font-size: 150px;
     line-height: 0.2em;
-    margin: 15px 0px 0px 2px;
+    margin: 15px 5px 0px 2px;
     color: ${(props) => props.theme.textColor.primary};
 `;
 
