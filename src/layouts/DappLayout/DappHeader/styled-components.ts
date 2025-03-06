@@ -28,7 +28,7 @@ export const MenuIcon = styled.i`
     color: ${(props) => props.theme.textColor.primary};
     font-size: 25px;
     margin-right: 5px;
-    margin-top: -3px;
+    margin-top: -5px;
     cursor: pointer;
     line-height: 25px;
     @media (min-width: 1024px) {
