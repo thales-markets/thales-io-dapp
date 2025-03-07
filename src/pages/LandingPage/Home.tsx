@@ -19,11 +19,9 @@ import OverToken from './components/OverToken';
 import SportBetting from './components/SportBetting';
 import Stats from './components/Stats';
 import Timeline from './components/Timeline';
-import Footer from './Footer';
 import {
     Backers,
     Description,
-    FooterLine,
     Header,
     HighlightTitle,
     HomeIcon,
@@ -235,9 +233,7 @@ const Home: React.FC = () => {
                     <SectionSlogan>{t('home.timeline.title')}</SectionSlogan>
                     <Timeline />
                 </Section>
-                <FooterLine />
             </Wrapper>
-            <Footer />
         </Suspense>
     );
 };

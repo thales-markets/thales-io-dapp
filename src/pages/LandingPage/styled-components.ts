@@ -312,26 +312,12 @@ export const ThalesLinksItem = styled.div`
     line-height: 186.5%;
     text-transform: capitalize;
 `;
-export const FooterLine = styled.div`
-    position: absolute;
-    bottom: 0;
-    transform: translateX(-25%);
-    background-image: linear-gradient(to right, white 17%, rgba(255, 255, 255, 0) 0%);
-    background-position: bottom;
-    background-size: 13px 1px;
-    background-repeat: repeat-x;
-    height: 1px;
-    width: 200%;
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        width: 100%;
-        transform: none;
-    }
-`;
+
 export const FooterContainer = styled.div`
     width: 100%;
-    padding: 150px 0 75px 0;
+    padding: 50px 0 50px 0;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        padding: 100px 0 75px 0;
+        padding: 50px 0 50px 0;
     }
 `;
 
