@@ -17,10 +17,10 @@ export const BRAND_ASSETS_FOLDER = 'brand-assets';
 
 export const ASSET_CARDS: Record<AssetCardType, AssetCard> = {
     [AssetCardType.TOKEN]: {
-        icon: 'overtime-icon overtime-icon--overtime-logo',
+        icon: 'overtime-icon overtime-icon--over-token',
         title: 'Token',
-        iconSize: '120px',
-        mobileIconSize: '70px',
+        iconSize: '100px',
+        mobileIconSize: '60px',
         backgroundImage: usersCard,
         backgroundImageMobile: usersCardMobile,
         pngImage: 'token.png',

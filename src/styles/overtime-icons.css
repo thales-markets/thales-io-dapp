@@ -72,3 +72,7 @@
 .overtime-icon--chain:before {
     content: '\0064';
 }
+
+.overtime-icon--over-token:before {
+    content: '\0065';
+}
