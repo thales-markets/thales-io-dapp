@@ -315,7 +315,7 @@ export const ThalesLinksItem = styled.div`
 
 export const FooterContainer = styled.div`
     width: 100%;
-    padding: 100px 0 50px 0;
+    padding: 120px 0 50px 0;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 75px 0 50px 0;
     }

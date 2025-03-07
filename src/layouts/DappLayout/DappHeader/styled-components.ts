@@ -20,8 +20,8 @@ export const Logo = styled.i`
     color: ${(props) => props.theme.textColor.primary};
     font-size: 170px;
     cursor: pointer;
-    line-height: 20px;
-    margin-top: 15px;
+    line-height: 22px;
+    margin-top: 20px;
 `;
 
 export const MenuIcon = styled.i`

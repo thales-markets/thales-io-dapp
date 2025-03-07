@@ -229,7 +229,7 @@ const Home: React.FC = () => {
                         <LinkButton>{t('home.governance.explore-overtime-dao-button')}</LinkButton>
                     </SPAAnchor>
                 </Section>
-                <Section marginBottom={80}>
+                <Section marginBottom={20}>
                     <SectionSlogan>{t('home.timeline.title')}</SectionSlogan>
                     <Timeline />
                 </Section>
