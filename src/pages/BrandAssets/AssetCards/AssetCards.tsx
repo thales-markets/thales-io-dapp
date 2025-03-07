@@ -19,7 +19,7 @@ const AssetCards: React.FC = () => {
     const getDownloadLink = (type: AssetCardType, imageType: 'SVG' | 'PNG', isDark?: boolean) => (
         <DownloadLink
             href={buildHref(
-                `${BRAND_ASSETS_FOLDER}/${
+                `/${BRAND_ASSETS_FOLDER}/${
                     ASSET_CARDS[type][
                         `${imageType.toLowerCase()}Image${isDark ? 'Dark' : ''}` as
                             | 'svgImage'
