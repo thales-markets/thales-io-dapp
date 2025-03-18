@@ -60,6 +60,8 @@ const LINKS = {
     SportsIntegration: 'https://docs.thales.io/thales-sports-markets/sports-markets-integration',
     DigitalOptionsIntegration: 'https://docs.thales.io/thales-digital-options/digital-options-integration',
     SpeedMarketsIntegration: 'https://docs.thales.io/thales-speed-markets/speed-markets-integration',
+    OverBridge: 'https://app.transporter.io/?tab=token&token=OVER',
+    CCIP: 'https://chain.link/cross-chain',
 };
 
 export default LINKS;

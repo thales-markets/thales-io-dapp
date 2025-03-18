@@ -2,6 +2,7 @@ import coins from 'assets/images/coins.webp';
 import overflow from 'assets/lotties/overflow.json';
 import NumberCountdown from 'components/NumberCountdown';
 import SPAAnchor from 'components/SPAAnchor';
+import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { Network } from 'enums/network';
 import Lottie from 'lottie-react';
@@ -17,7 +18,7 @@ import {
 } from 'pages/LandingPage/styled-components';
 import useOverTokenInfoQuery from 'queries/dashboard/useOverTokenInfoQuery';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
@@ -27,6 +28,7 @@ import overContract from 'utils/contracts/overContract';
 import { buildHref } from 'utils/routes';
 import OverSupplyChart from './OverSupplyChart';
 import {
+    BridgeDescription,
     Content,
     Label,
     LinkArrow,
@@ -154,6 +156,18 @@ const OverToken: React.FC = () => {
                                 </SPAAnchor>
                             </ListItem>
                         </List>
+                    </SectionContainer>
+                    <SectionContainer>
+                        <Label>{t('over-token.bridge')}</Label>
+                        <BridgeDescription>
+                            <Trans
+                                i18nKey={'over-token.bridge-description'}
+                                components={{
+                                    transporterLink: <SPAAnchor href={LINKS.OverBridge} />,
+                                    ccipLink: <SPAAnchor href={LINKS.CCIP} />,
+                                }}
+                            />{' '}
+                        </BridgeDescription>
                     </SectionContainer>
                 </OverLeftContainer>
                 <OverRightContainer padding="0 0 60px 0">

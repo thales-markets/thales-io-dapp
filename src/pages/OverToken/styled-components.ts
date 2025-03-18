@@ -100,6 +100,21 @@ export const ListItem = styled.li<{ bold?: boolean }>`
     }
 `;
 
+export const BridgeDescription = styled.div`
+    margin-top: 20px;
+    color: ${(props) => props.theme.textColor.primary};
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21.6px;
+    a {
+        color: ${(props) => props.theme.link.textColor.primary};
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 15px;
+        line-height: 18px;
+    }
+`;
+
 export const LinkArrow = styled(ArrowHyperlinkIcon)<{ color?: string }>`
     color: ${(props) => props.theme.textColor.secondary};
     width: 14px;

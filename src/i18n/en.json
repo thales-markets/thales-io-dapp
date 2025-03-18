@@ -1093,6 +1093,8 @@
             "3": "$OVER on Arbitrum: ",
             "4": "$OVER on Base: "
         },
+        "bridge": "Bridge",
+        "bridge-description": "Use <transporterLink>Chainlink Transporter</transporterLink> for bridging $OVER across blockchains. Transporter is built on top of <ccipLink>Chainlink CCIP</ccipLink>, the industry-leading cross-chain protocol for defense-in-depth security.",
         "total-supply": "Total 69,420,000",
         "best-odds-title": "Enjoy the",
         "best-odds-title-highlight": "best odds!",
