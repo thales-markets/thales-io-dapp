@@ -6,8 +6,12 @@ import trustCardMobile from 'assets/images/trust-card-mobile.webp';
 import trustCard from 'assets/images/trust-card.webp';
 import usersCardMobile from 'assets/images/users-card-mobile.webp';
 import usersCard from 'assets/images/users-card.webp';
+import chain from 'assets/lotties/chain.json';
+import industry from 'assets/lotties/industry.json';
+import trust from 'assets/lotties/trust.json';
+import users from 'assets/lotties/users.json';
 
-import { SportBettingCard } from './types';
+import { SportBettingCardInfo } from './types';
 
 export enum SportBettingCardType {
     FULLY_ON_CHAIN = 'fully-on-chain',
@@ -16,7 +20,7 @@ export enum SportBettingCardType {
     ECOLVING_THE_INDUSTRY = 'evolving-the-industry',
 }
 
-export const SPORT_BETTING_CARDS: Record<SportBettingCardType, SportBettingCard> = {
+export const SPORT_BETTING_CARDS: Record<SportBettingCardType, SportBettingCardInfo> = {
     [SportBettingCardType.FULLY_ON_CHAIN]: {
         icon: 'overtime-icon overtime-icon--chain',
         title: 'Fully onchain',
@@ -24,6 +28,7 @@ export const SPORT_BETTING_CARDS: Record<SportBettingCardType, SportBettingCard>
         iconSize: '56px',
         backgroundImage: chainCard,
         backgroundImageMobile: chainCardMobile,
+        lottie: chain,
     },
     [SportBettingCardType.TAILORED_FOR_USERS]: {
         icon: 'overtime-icon overtime-icon--users',
@@ -32,6 +37,7 @@ export const SPORT_BETTING_CARDS: Record<SportBettingCardType, SportBettingCard>
         iconSize: '56px',
         backgroundImage: usersCard,
         backgroundImageMobile: usersCardMobile,
+        lottie: users,
     },
     [SportBettingCardType.TRUST_REDEFINED]: {
         icon: 'overtime-icon overtime-icon--trust',
@@ -40,6 +46,7 @@ export const SPORT_BETTING_CARDS: Record<SportBettingCardType, SportBettingCard>
         iconSize: '56px',
         backgroundImage: trustCard,
         backgroundImageMobile: trustCardMobile,
+        lottie: trust,
     },
     [SportBettingCardType.ECOLVING_THE_INDUSTRY]: {
         icon: 'overtime-icon overtime-icon--industry',
@@ -48,5 +55,6 @@ export const SPORT_BETTING_CARDS: Record<SportBettingCardType, SportBettingCard>
         iconSize: '56px',
         backgroundImage: industryCard,
         backgroundImageMobile: industryCardMobile,
+        lottie: industry,
     },
 };
