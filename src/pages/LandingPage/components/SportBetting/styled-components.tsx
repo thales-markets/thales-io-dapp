@@ -1,6 +1,6 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDivColumnCentered, FlexDivRow } from 'styles/common';
+import { FlexDivCentered, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Container = styled(FlexDivRow)`
     gap: 45px;
@@ -60,5 +60,14 @@ export const Icon = styled.i<{ fontSize: string }>`
     margin: 10px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 50px;
+    }
+`;
+
+export const LottieContainer = styled(FlexDivCentered)`
+    width: 100px;
+    height: 76px;
+    margin-top: 0px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 0;
     }
 `;
