@@ -6,6 +6,7 @@ import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { Network } from 'enums/network';
 import Lottie from 'lottie-react';
+import { Action } from 'pages/LandingPage/components/EcosystemApps/styled-components';
 import { OverDescription } from 'pages/LandingPage/components/OverToken/styled-components';
 import {
     Description,
@@ -168,6 +169,9 @@ const OverToken: React.FC = () => {
                                 }}
                             />{' '}
                         </BridgeDescription>
+                        <SPAAnchor href={LINKS.OverBridge}>
+                            <Action>{t('over-token.bridge-over')}</Action>
+                        </SPAAnchor>
                     </SectionContainer>
                 </OverLeftContainer>
                 <OverRightContainer padding="0 0 60px 0">

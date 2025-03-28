@@ -102,6 +102,7 @@ export const ListItem = styled.li<{ bold?: boolean }>`
 
 export const BridgeDescription = styled.div`
     margin-top: 20px;
+    margin-bottom: 20px;
     color: ${(props) => props.theme.textColor.primary};
     font-weight: 700;
     font-size: 18px;
