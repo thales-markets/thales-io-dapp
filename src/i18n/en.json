@@ -81,7 +81,7 @@
         "wallet": {
             "connect-your-wallet": "Connect",
             "wallet-options": "Wallet options",
-            "disclaimer-info": "By connecting a wallet you agree to Thales DAO <terms>Terms of Use</terms> and Privacy Policy and acknowledge that you have read and understand the Thales DAO protocol <disclaimer>disclaimer</disclaimer>",
+            "disclaimer": "By connecting a wallet you agree to Overtime DAO <terms>Terms of Use</terms> and <privacyPolicy>Privacy Policy</privacyPolicy> and acknowledge that you have read and understand the Overtime DAO protocol <disclaimer>disclaimer</disclaimer>",
             "balance": "Wallet balance",
             "rewards": "You have claimable rewards"
         },

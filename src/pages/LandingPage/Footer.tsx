@@ -1,5 +1,5 @@
 // @ts-ignore
-import privacyPolicy from 'assets/docs/thales-privacy-policy.pdf';
+import privacyPolicy from 'assets/docs/overtime-privacy-policy.pdf';
 // @ts-ignore
 import termsOfUse from 'assets/docs/overtime-terms-of-use.pdf';
 import FooterLinks from 'components/FooterLinks';

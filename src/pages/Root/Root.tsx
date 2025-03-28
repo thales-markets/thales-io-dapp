@@ -12,6 +12,7 @@ import {
     trustWallet,
     walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
+import WalletDisclaimer from 'components/WalletDisclaimer';
 import { PLAUSIBLE } from 'constants/analytics';
 import { base, optimismSepolia } from 'constants/network';
 import { Network } from 'enums/network';
@@ -104,7 +105,7 @@ const Root: React.FC<RootProps> = ({ store }) => {
                     theme={customTheme}
                     appInfo={{
                         appName: 'Thales Protocol',
-                        // disclaimer: WalletDisclaimer,
+                        disclaimer: WalletDisclaimer,
                     }}
                 >
                     <App />
