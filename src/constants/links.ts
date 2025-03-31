@@ -11,7 +11,6 @@ const LINKS = {
     BookieBot: 'https://bookiebot.app/',
     Spongly: 'https://spongly.eth.limo/dashboard/',
     LeagueBot: 'https://twitter.com/TeamLeagueBot',
-    MarketingAssets: 'https://docs.thales.io/resources/marketing-assets',
     Audits: 'https://github.com/thales-markets/contracts?tab=readme-ov-file#audits',
     Synthetix: 'https://synthetix.io/',
     Chainlink: 'https://chain.link/',
@@ -29,8 +28,6 @@ const LINKS = {
     TIPs: 'https://github.com/thales-markets/thales-improvement-proposals/tree/main/TIPs',
     TIP1: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-1.md',
     Contracts: 'https://contracts.thales.io/',
-    Tokenomics: 'https://docs.thales.io/thales-token/thales-token-distribution',
-    StakingGuide: 'https://docs.thales.io/thales-token/staking-guide',
     Token: {
         TIP66: '/dao/thalesgov.eth/0xa925cddfe73b58911c3a9308a0e9d70dff21e31e4d428247ac084e8cffa4eb4f',
         TIP139: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-139.md',
@@ -57,9 +54,8 @@ const LINKS = {
     Blog: {
         HowToOpenTIP: 'https://medium.com/@Thales.Academy/how-to-use-github-to-submit-a-tip-e7d0047b54fd',
     },
-    SportsIntegration: 'https://docs.thales.io/thales-sports-markets/sports-markets-integration',
-    DigitalOptionsIntegration: 'https://docs.thales.io/thales-digital-options/digital-options-integration',
-    SpeedMarketsIntegration: 'https://docs.thales.io/thales-speed-markets/speed-markets-integration',
+    SportsIntegration: 'https://docs.overtime.io/overtime-v2-integration',
+    SpeedMarketsIntegration: 'https://docs.overtime.io/build-your-own-speed-markets-app',
     OverBridge: 'https://app.transporter.io/?tab=token&token=OVER',
     CCIP: 'https://chain.link/cross-chain',
 };
