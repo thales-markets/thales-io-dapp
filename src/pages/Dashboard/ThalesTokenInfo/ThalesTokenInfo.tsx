@@ -100,18 +100,18 @@ const ThalesTokenInfo: React.FC = () => {
                         <InfoText>{t('dashboard.token-info.total-supply')}</InfoText>
                         <InfoStats>
                             {' '}
-                            {overTokenInfo ? `${formatCurrency(overTokenInfo.totalSupply)} OVER` : 'N/A'}
+                            {overTokenInfo ? `${formatCurrency(overTokenInfo.totalSupply)} $OVER` : 'N/A'}
                         </InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                     <FlexDivFullWidthSpaceBetween>
                         <InfoText>{t('dashboard.token-info.circulating-supply')}</InfoText>
                         <InfoStats>
-                            {overTokenInfo ? `${formatCurrency(overTokenInfo.circulatingSupply)} OVER` : 'N/A'}
+                            {overTokenInfo ? `${formatCurrency(overTokenInfo.circulatingSupply)} $OVER` : 'N/A'}
                         </InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                     <FlexDivFullWidthSpaceBetween>
                         <InfoText>{t('dashboard.token-info.burned-supply')}</InfoText>
-                        <InfoStats>{overTokenInfo ? `${formatCurrency(overTokenInfo.burned)} OVER` : 'N/A'}</InfoStats>
+                        <InfoStats>{overTokenInfo ? `${formatCurrency(overTokenInfo.burned)} $OVER` : 'N/A'}</InfoStats>
                     </FlexDivFullWidthSpaceBetween>
                     <FlexDivFullWidthSpaceBetween>
                         <InfoText>{t('dashboard.token-burn.of-total-supply')}</InfoText>
