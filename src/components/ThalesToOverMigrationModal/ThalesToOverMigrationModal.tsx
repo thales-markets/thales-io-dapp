@@ -101,7 +101,7 @@ const ThalesToOverMigrationModal: React.FC<ThalesToOverMigrationModalProps> = ({
                 getAllowance();
             }
         }
-    }, [walletAddress, isWalletConnected, thalesToOverMigrationContract, amount]);
+    }, [walletAddress, isWalletConnected, thalesToOverMigrationContract, amount, isAllowing, hasAllowance]);
 
     const handleAllowance = async (approveAmount: BigNumber) => {
         const id = toast.loading(getDefaultToastContent(t('common.progress')), getLoadingToastOptions());
