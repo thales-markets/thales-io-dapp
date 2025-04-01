@@ -1106,7 +1106,15 @@
         "valute-capture-description-2": "Every bet made on Overtime fuels $OVER token’s deflationary nature and increases its scarcity. As Overtime organically grows, so does the $OVER token adoption and utilization, which increases the Buyback and Burn amounts exponentially.",
         "governance-title": "Decentralised Governance",
         "governance-title-highlight": "powered by the $OVER token!",
-        "governance-description": "All holders of $OVER token will have voting power equal to their holding amount, when it comes to elections of the Overtime Council, the main governing body of Overtime!"
+        "governance-description": "All holders of $OVER token will have voting power equal to their holding amount, when it comes to elections of the Overtime Council, the main governing body of Overtime!",
+        "buy-over-modal": {
+            "title": "Buy $OVER",
+            "list": {
+                "1": "Buy $OVER on ",
+                "2": "Buy $OVER on ",
+                "3": "Buy $OVER on "
+            }
+        }
     },
     "migration-modal": {
         "title": "Migrate $THALES to $OVER",
