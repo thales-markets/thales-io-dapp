@@ -2,7 +2,7 @@ import { Network } from 'enums/network';
 
 const thalesToOverMigrationContract = {
     addresses: {
-        [Network.Mainnet]: 'TBD',
+        [Network.Mainnet]: '0x76923cDDE21928ddbeC4B8BFDC8143BB6d0841a8',
         [Network.OptimismMainnet]: '0xd71841fcF6F5862Ceb69d8432800D0A02B1d3cb6',
         [Network.Arbitrum]: '0xb308f26b7dc1eCdB52ce05dceb10818c41BA75E8',
         [Network.Base]: '0x2152A0bC2DE4a1D4FA1E81F60e094C44ec24Fe2D',

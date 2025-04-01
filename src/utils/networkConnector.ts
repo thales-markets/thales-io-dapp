@@ -7,7 +7,6 @@ import escrowThales from './contracts/escrowThales';
 import { gelatoContract } from './contracts/gelatoContract';
 import lpStakingRewardsContract from './contracts/lpStakingRewardsContract';
 import multipleCollateral from './contracts/multipleCollateralContract';
-import sportVaultDataContract from './contracts/sportVaultDataContract';
 import stakingDataContract from './contracts/stakingDataContract';
 import stakingThalesContract from './contracts/stakingThales';
 import thalesContract from './contracts/thalesContract';
@@ -21,7 +20,6 @@ type networkConnector = {
     signer: Signer | undefined;
     collateral?: ethers.Contract;
     stakingDataContract?: ethers.Contract;
-    sportVaultDataContract?: ethers.Contract;
     stakingThalesContract?: ethers.Contract;
     thalesTokenContract?: ethers.Contract;
     escrowThalesContract?: ethers.Contract;
@@ -46,7 +44,6 @@ const networkConnector: networkConnector = {
         this.collateral = conditionalInitializeContract(collateralContract, contractSettings);
 
         this.stakingDataContract = conditionalInitializeContract(stakingDataContract, contractSettings);
-        this.sportVaultDataContract = conditionalInitializeContract(sportVaultDataContract, contractSettings);
         this.stakingThalesContract = conditionalInitializeContract(stakingThalesContract, contractSettings);
         this.thalesTokenContract = conditionalInitializeContract(thalesContract, contractSettings);
         this.escrowThalesContract = conditionalInitializeContract(escrowThales, contractSettings);
