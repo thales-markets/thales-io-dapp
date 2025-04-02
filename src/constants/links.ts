@@ -1,7 +1,7 @@
 const LINKS = {
     Github: 'https://github.com/thales-markets',
     Medium: 'https://medium.com/@OvertimeMarkets.xyz',
-    Twitter: 'https://twitter.com/OvertimeMarkets',
+    Twitter: 'https://x.com/overtime_io',
     Discord: 'https://discord.gg/z5xFxMccsu',
     Docs: ' https://docs.overtime.io/',
     ThalesMarketDocs: 'https://docs.thalesmarket.io/',
