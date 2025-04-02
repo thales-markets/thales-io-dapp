@@ -1,6 +1,5 @@
-import Lottie from 'lottie-react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { CardContainer, Description, LottieContainer, Title } from '../styled-components';
+import { CardContainer, Description, Icon, Title } from '../styled-components';
 import { SportBettingCardInfo } from '../types';
 
 type SportBettingCardProps = {
@@ -10,9 +9,7 @@ type SportBettingCardProps = {
 const SportBettingCard: React.FC<SportBettingCardProps> = ({ card }) => {
     return (
         <CardContainer image={card.backgroundImage} mobileImage={card.backgroundImageMobile}>
-            <LottieContainer>
-                <Lottie animationData={card.lottie} />
-            </LottieContainer>
+            <Icon className={card.icon} fontSize={card.iconSize}></Icon>
             <Title>{card.title}</Title>
             <Description>{card.description}</Description>
         </CardContainer>
