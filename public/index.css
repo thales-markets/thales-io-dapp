@@ -12,3 +12,8 @@
     font-family: 'Logos';
     src: local('Logos'), url(/fonts/Logos/logos.ttf) format('truetype');
 }
+
+@font-face {
+    font-family: 'OvertimeIcons';
+    src: local('OvertimeIcons'), url(/fonts/OvertimeIcons/OvertimeIcons.ttf) format('truetype');
+}

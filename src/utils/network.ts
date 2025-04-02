@@ -7,7 +7,8 @@ import { Network } from 'enums/network';
 import { BigNumber } from 'ethers';
 import { hexStripZeros } from 'ethers/lib/utils.js';
 import { FunctionComponent, SVGProps } from 'react';
-import { changeNetwork } from 'thales-utils';
+import { hasEthereumInjected } from 'thales-utils';
+import { NetworkParams } from 'types/network';
 
 type DropdownNetwork = {
     name: string;
@@ -30,16 +31,6 @@ export const NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
         },
         order: 1,
     },
-    [Network.Mainnet]: {
-        name: 'Mainnet',
-        icon: EthereumLogo,
-        logoClassName: 'icon icon--mainnet-logo',
-        changeNetwork: async (networkId: number, callback?: VoidFunction) => {
-            const formattedChainId = hexStripZeros(BigNumber.from(networkId).toHexString());
-            await changeNetwork(undefined, callback, formattedChainId);
-        },
-        order: 6,
-    },
     [Network.Arbitrum]: {
         name: 'Arbitrum',
         icon: ArbitrumLogo,
@@ -61,6 +52,16 @@ export const NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
             await changeNetwork(baseNetworkParams, callback);
         },
         order: 3,
+    },
+    [Network.Mainnet]: {
+        name: 'Mainnet',
+        icon: EthereumLogo,
+        logoClassName: 'icon icon--mainnet-logo',
+        changeNetwork: async (networkId: number, callback?: VoidFunction) => {
+            const formattedChainId = hexStripZeros(BigNumber.from(networkId).toHexString());
+            await changeNetwork(undefined, callback, formattedChainId);
+        },
+        order: 4,
     },
 };
 
@@ -99,6 +100,16 @@ export const SUPPORTED_NETWORK_IDS_MAP: Record<number, DropdownNetwork> = {
         },
         order: 3,
     },
+    [Network.Mainnet]: {
+        name: 'Mainnet',
+        icon: EthereumLogo,
+        logoClassName: 'icon icon--mainnet-logo',
+        changeNetwork: async (networkId: number, callback?: VoidFunction) => {
+            const formattedChainId = hexStripZeros(BigNumber.from(networkId).toHexString());
+            await changeNetwork(undefined, callback, formattedChainId);
+        },
+        order: 4,
+    },
 };
 
 export const checkAllowance = async (amount: BigNumber, token: any, walletAddress: string, spender: string) => {
@@ -111,4 +122,34 @@ export const checkAllowance = async (amount: BigNumber, token: any, walletAddres
     }
 };
 
-export const hasV2Pools = (network: Network) => network === Network.Arbitrum || network === Network.OptimismMainnet;
+const changeNetwork = async (network?: NetworkParams, callback?: VoidFunction, chainId?: string): Promise<void> => {
+    if (hasEthereumInjected()) {
+        try {
+            await (window.ethereum as any).request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: network?.chainId || chainId }],
+            });
+            callback && callback();
+        } catch (switchError: any) {
+            if (network && switchError.code === 4902) {
+                try {
+                    await (window.ethereum as any).request({
+                        method: 'wallet_addEthereumChain',
+                        params: [network],
+                    });
+                    await (window.ethereum as any).request({
+                        method: 'wallet_switchEthereumChain',
+                        params: [{ chainId: network.chainId }],
+                    });
+                    callback && callback();
+                } catch (addError) {
+                    console.log(addError);
+                }
+            } else {
+                console.log(switchError);
+            }
+        }
+    } else {
+        callback && callback();
+    }
+};

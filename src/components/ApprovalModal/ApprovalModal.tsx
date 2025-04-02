@@ -53,7 +53,7 @@ const ApprovalModal: React.FC<ApprovalModalProps> = ({
             return (
                 <Button
                     textColor={theme.background.primary}
-                    backgroundColor={theme.button.background.tertiary}
+                    backgroundColor={theme.button.background.secondary}
                     onClick={() => openConnectModal?.()}
                 >
                     {t('common.wallet.connect-your-wallet')}
@@ -64,7 +64,7 @@ const ApprovalModal: React.FC<ApprovalModalProps> = ({
             return (
                 <Button
                     textColor={theme.background.primary}
-                    backgroundColor={theme.button.background.tertiary}
+                    backgroundColor={theme.button.background.secondary}
                     disabled={true}
                 >
                     {t(`common.errors.enter-amount`)}
@@ -73,7 +73,7 @@ const ApprovalModal: React.FC<ApprovalModalProps> = ({
         }
         return (
             <Button
-                backgroundColor={theme.button.background.tertiary}
+                backgroundColor={theme.button.background.secondary}
                 textColor={theme.background.primary}
                 disabled={isButtonDisabled}
                 onClick={() => onSubmit(approveAll ? ethers.constants.MaxUint256 : amountConverted)}
@@ -142,7 +142,6 @@ const TextContainer = styled(FlexDivCentered)`
 `;
 
 const Text = styled.span`
-    font-style: normal;
     font-size: 15px;
     line-height: 18px;
     text-transform: uppercase;

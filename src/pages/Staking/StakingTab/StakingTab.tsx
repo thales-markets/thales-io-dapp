@@ -13,7 +13,7 @@ import { UserStakingData } from 'types/token';
 import { InfoDiv, SectionTitle, TooltipContainer } from '../styled-components';
 import YourTransactions from './Transactions';
 import Unstake from './Unstake';
-import { Bottom, Container, Top, WarningMessage } from './styled-components';
+import { Bottom, Container, Top } from './styled-components';
 
 const StakingTab: React.FC = () => {
     const { t } = useTranslation();
@@ -45,8 +45,6 @@ const StakingTab: React.FC = () => {
     const thalesStaked = userStakingData ? userStakingData.thalesStaked : 0;
     const escrowedBalance = userStakingData ? userStakingData.escrowedBalance : 0;
 
-    const notEligibleForStakingRewards = thalesStaked === 0 && escrowedBalance > 0;
-
     return (
         <>
             <Container>
@@ -64,9 +62,6 @@ const StakingTab: React.FC = () => {
                             </TooltipContainer>
                             <span>{formatCurrencyWithKey(THALES_CURRENCY, escrowedBalance + thalesStaked)}</span>
                         </SectionTitle>
-                        {notEligibleForStakingRewards && (
-                            <WarningMessage>{t('staking.staking.staking-data.not-eligible-message')}</WarningMessage>
-                        )}
                         <div>
                             <InfoDiv>
                                 <span>

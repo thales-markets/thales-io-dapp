@@ -3,9 +3,6 @@ export const CACHE_PREFIX_KEYS = {
     ClaimOnBehalfItems: 'claim-on-behalf',
     TokenTransactions: 'token-transactions',
     DigitalOptions: {
-        LiquidityPoolPnl: 'digital-options-liquidity-pool-pnl-',
-        LiquidityPoolTransactions: 'digital-options-liquidity-pool-tx-',
-
         Markets: 'digital-options-markets-',
         RangedMarkets: 'digital-options-ranged-markets',
 
@@ -23,9 +20,6 @@ export const CACHE_PREFIX_KEYS = {
         VaultTransactions: 'digital-options-vault-transactions',
     },
     SportsMarkets: {
-        LiquidityPoolPnl: 'sports-markets-liquidity-pool-pnl-',
-        LiquidityPoolTransactions: 'sports-markets-liquidity-pool-tx-',
-
         ReferralTransactions: 'sports-markets-referral-transactions',
         ReferredTraders: 'sports-markets-referred-traders',
         Referrers: 'sports-markets-referrers',

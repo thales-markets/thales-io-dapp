@@ -15,7 +15,7 @@ const useWidgetBotScript = (preventWidgetLoad: boolean, theme: ThemeInterface) =
         script.onload = () => {
             new (window as any).Crate({
                 server: '906484044915687464',
-                channel: '907009541965742080',
+                channel: '983394762520412160',
                 css: `
                     .button {
                         background-color: #5f70be;

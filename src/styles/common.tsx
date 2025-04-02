@@ -57,36 +57,39 @@ export const Icon = styled.i<{ color?: string; iconSize?: number }>`
 `;
 
 export const Colors = {
-    GRAY: '#C6C8DA',
-    LIGHT_GRAY: '#C6C8DA',
-    DARK_GRAY: '#181A20',
-    DARKER_GRAY: '#8c8f90',
-    WHITE: '#FFFFFF',
     CYAN: '#19F8EF',
-    BLUE_DARK: '#313652',
+    CETACEAN_BLUE: '#0F1231',
+    RICH_BLACK: '#07091C',
     PURPLE_NAVY: '#405682',
+    YANKEES_BLUE: '#1F2438',
+
+    GRAY: '#424451',
+    LIGHT_GRAY: '#A9ABBB',
+    DARK_GRAY: '#181A20',
+
+    WHITE: '#FFFFFF',
+    BLACK: '#000000',
+
     CHINA_PINK: '#E06AA2',
     VIOLET: '#7E19FE',
     BLUEBERRY: '#4B79EE',
-    YANKEES_BLUE: '#1F2438',
-    METALLIC_BLUE: '#3F5580',
-    INDEPENDENCE: '#43496D',
-    RED: '#DE496D',
-    ORANGE: '#F7B91A',
-    DARK_ORANGE: '#FF8800',
+    INDIAN_RED: '#DD5667',
+
     GREEN: '#03DAC5',
     LIGHT_GREEN: '#B0FFE7',
     DARK_GREEN: '#1D976C',
-    BLACK: '#000000',
+
     BLUE: '#5B86E5',
     LIGHT_BLUE: '#36D1DC',
+    DARK_BLUE: '#313652',
+
+    ORANGE: '#F7B91A',
+    LIGHT_ORANGE: '#FFB866',
+    DARK_ORANGE: '#FF8800',
+
+    RED: '#DE496D',
     LIGHT_RED: '#E29587',
     DARK_RED: '#D66D75',
-    LIGHT_ORANGE: '#FFB866',
-    TURQUOISE: '#36E5D0',
-    INDIAN_RED: '#DD5667',
-    VENETIAN_RED: '#E06AA2',
-    EGG_BLUE: '#03DAC6',
 };
 
 export const Background = styled.div`
@@ -94,7 +97,7 @@ export const Background = styled.div`
     width: 100%;
     height: 100vh;
     font-size: 16px;
-    background: radial-gradient(circle at center, #262847, #0d111e);
+    background: ${(props) => props.theme.background.tertiary};
     min-height: -webkit-fill-available;
 `;
 
@@ -103,7 +106,7 @@ export const Line = styled.div`
     width: 50%;
     height: 4px;
     border-radius: 10px;
-    background: ${(props) => props.theme.background.tertiary};
+    background: ${(props) => props.theme.borderColor.secondary};
 `;
 
 export const NavContainer = styled.div<{ width?: string }>`

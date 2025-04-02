@@ -1,0 +1,78 @@
+.overtime-icon {
+    display: inline-block;
+    font-family: OvertimeIcons !important;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.overtime-icon--pyth:before {
+    content: '\0030';
+}
+
+.overtime-icon--chainlink:before {
+    content: '\0031';
+}
+
+.overtime-icon--framework:before {
+    content: '\0032';
+}
+
+.overtime-icon--biconomy:before {
+    content: '\0033';
+}
+
+.overtime-icon--particle:before {
+    content: '\0034';
+}
+
+.overtime-icon--optimism:before {
+    content: '\0035';
+}
+
+.overtime-icon--arbitrum:before {
+    content: '\0036';
+}
+
+.overtime-icon--base:before {
+    content: '\0037';
+}
+
+.overtime-icon--thales-markets:before {
+    content: '\0038';
+}
+
+.overtime-icon--speed-markets:before {
+    content: '\0039';
+}
+
+.overtime-icon--overtime-sportsbook:before {
+    content: '\003A';
+}
+
+.overtime-icon--overtime-logo:before {
+    content: '\0041';
+}
+
+.overtime-icon--overtime:before {
+    content: '\0042';
+}
+
+.overtime-icon--industry:before {
+    content: '\0061';
+}
+
+.overtime-icon--trust:before {
+    content: '\0062';
+}
+
+.overtime-icon--users:before {
+    content: '\0063';
+}
+
+.overtime-icon--chain:before {
+    content: '\0064';
+}
+
+.overtime-icon--over-token:before {
+    content: '\0065';
+}

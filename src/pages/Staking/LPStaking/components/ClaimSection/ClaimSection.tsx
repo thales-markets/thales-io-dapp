@@ -75,8 +75,8 @@ const ClaimSection: React.FC = () => {
         if (!isWalletConnected) {
             return (
                 <Button
-                    backgroundColor={theme.button.background.tertiary}
-                    textColor={theme.button.textColor.tertiary}
+                    backgroundColor={theme.button.background.secondary}
+                    textColor={theme.button.textColor.secondary}
                     fontSize={'13px'}
                     additionalStyles={{ fontWeight: '800', textTransform: 'uppercase', marginTop: '15px' }}
                     onClick={() => openConnectModal?.()}
@@ -90,8 +90,8 @@ const ClaimSection: React.FC = () => {
 
         return (
             <Button
-                backgroundColor={theme.button.background.tertiary}
-                textColor={theme.button.textColor.tertiary}
+                backgroundColor={theme.button.background.secondary}
+                textColor={theme.button.textColor.secondary}
                 fontSize={'13px'}
                 additionalStyles={{ fontWeight: '800', textTransform: 'uppercase', marginTop: '15px' }}
                 onClick={handleClaimStakingRewards}

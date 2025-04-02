@@ -9,7 +9,6 @@ export const Container = styled(FlexDivRow)`
     @media (max-width: 1200px) {
         flex-direction: column;
     }
-    font-family: Nunito !important;
     margin-bottom: 50px;
 `;
 
@@ -76,7 +75,6 @@ export const OptionsTabWrapper = styled(FlexDivRow)`
 `;
 
 export const BackLinkWrapper = styled(FlexDiv)<{ isOverviewPage: boolean }>`
-    font-family: Nunito !important;
     height: 20px;
     align-self: start;
     margin-bottom: 10px;
@@ -219,7 +217,7 @@ export const VotesCount = styled(FlexDivColumnCentered)`
     color: ${(props) => props.theme.button.textColor.primary};
     margin-bottom: 12px;
     text-align: center;
-    background: ${(props) => props.theme.button.background.primary};
+    background: ${(props) => props.theme.background.secondary};
     border-radius: 9999px;
     height: 30px;
     min-width: 30px;
@@ -234,7 +232,6 @@ export const StyledPieChart = styled(PieChart)`
 `;
 
 export const InfoText = styled.label<{ color?: string }>`
-    font-family: Nunito !important;
     font-weight: 500;
     font-size: 13px;
     line-height: 20px;
@@ -245,7 +242,6 @@ export const InfoText = styled.label<{ color?: string }>`
 `;
 
 export const InfoStats = styled.span<{ color?: string }>`
-    font-family: Nunito !important;
     font-weight: 700;
     font-size: 13px;
     line-height: 20px;

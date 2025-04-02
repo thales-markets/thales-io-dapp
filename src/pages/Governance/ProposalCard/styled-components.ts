@@ -6,11 +6,8 @@ import { getStatusColor } from 'utils/governance';
 export const Card = styled(FlexDivColumn)<{ closed: boolean }>`
     height: 222px;
     border-radius: 8px;
-    background: ${(props) => (props.closed ? 'rgba(49, 54, 82, 0.4)' : 'rgba(49, 54, 82, 1)')};
-    border: ${(props) =>
-        props.closed
-            ? `1.5px solid ${props.theme.borderColor.secondary}`
-            : `1.5px solid ${props.theme.borderColor.quinary}`};
+    background: ${(props) => (props.closed ? 'rgba(49, 54, 82, 0.4)' : 'rgba(49, 54, 82, 0.7)')};
+    border: ${(props) => `1.5px solid ${props.theme.borderColor.secondary}`};
     padding: 20px;
     font-weight: 500;
     font-size: 16px;
@@ -18,7 +15,7 @@ export const Card = styled(FlexDivColumn)<{ closed: boolean }>`
     color: ${(props) => props.theme.textColor.primary};
     cursor: pointer;
     &:hover {
-        border: ${(props) => `1.5px solid ${props.theme.background.secondary}`};
+        border: ${(props) => `1.5px solid ${props.theme.borderColor.tertiary}`};
     }
     gap: 15px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -45,7 +42,6 @@ export const Status = styled(FlexDivCentered)<{ status: string }>`
 `;
 
 export const Title = styled(FlexDivRow)<{ status: string }>`
-    font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
@@ -64,7 +60,7 @@ export const TipTable = styled(FlexDivColumn)`
     color: ${(props) => props.theme.textColor.primary};
     p {
         margin-bottom: 15px;
-        color: ${(props) => props.theme.textColor.senary};
+        color: ${(props) => props.theme.textColor.tertiary};
     }
     a {
         color: ${(props) => props.theme.textColor.primary};
@@ -85,7 +81,7 @@ export const TipTable = styled(FlexDivColumn)`
                 -webkit-line-clamp: 2; /* number of lines to show */
                 line-clamp: 2;
                 -webkit-box-orient: vertical;
-                color: ${(props) => props.theme.textColor.senary};
+                color: ${(props) => props.theme.textColor.tertiary};
                 margin-bottom: 0px;
             }
         }

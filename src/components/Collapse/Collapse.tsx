@@ -8,7 +8,6 @@ type CollapseProps = {
     hideLine?: boolean;
     additionalStyling?: {
         titleFontSize?: string;
-        titleFontFamily?: string;
         titleMarginBottom?: string;
         titleMarginRight?: string;
         titleMarginTop?: string;
@@ -27,7 +26,6 @@ const Collapse: React.FC<CollapseProps> = ({ title, hideLine, additionalStyling,
                 marginTop={additionalStyling?.titleMarginTop ? additionalStyling?.titleMarginTop : ''}
                 marginRight={additionalStyling?.titleMarginRight ? additionalStyling?.titleMarginRight : ''}
                 fontSize={additionalStyling?.titleFontSize}
-                fontFamily={additionalStyling?.titleFontFamily}
                 onClick={() => {
                     setIsOpen(!isOpen);
                 }}

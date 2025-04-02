@@ -9,7 +9,6 @@ export const FieldContainer = styled(FlexDivColumn)<{ margin?: string; width?: s
 `;
 
 export const FieldLabel = styled.label`
-    font-family: NunitoBold;
     font-weight: normal;
     font-size: 13px;
     line-height: 15px;
@@ -19,7 +18,7 @@ export const FieldLabel = styled.label`
 
 export const Input = styled.input<{ fontSize?: string; width?: string; height?: string }>`
     background: ${(props) => props.theme.background.quaternary};
-    border: 1px solid ${(props) => props.theme.borderColor.tertiary};
+    border: 1px solid ${(props) => props.theme.borderColor.secondary};
     box-sizing: border-box;
     mix-blend-mode: normal;
     border-radius: 8px;
@@ -27,7 +26,6 @@ export const Input = styled.input<{ fontSize?: string; width?: string; height?: 
     width: ${(props) => props.width || '100%'};
     padding: 5px 10px;
     outline: 0;
-    font-style: normal;
     font-weight: normal;
     font-size: ${(props) => props.fontSize || '15px'};
     line-height: 18px;

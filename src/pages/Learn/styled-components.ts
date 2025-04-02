@@ -1,13 +1,11 @@
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
-import { FlexDivCentered } from 'styles/common';
+import { FlexDivCentered, FlexDivColumnCentered, FlexDivRow } from 'styles/common';
 
 export const Content = styled.div`
-    margin-top: 100px;
     display: flex;
     flex-direction: column;
-    width: 60%;
     margin-bottom: 50px;
     @media (max-width: 1024px) {
         width: 100vw;
@@ -17,8 +15,32 @@ export const Content = styled.div`
     }
 `;
 
+export const OverContainer = styled(FlexDivRow)`
+    width: 100%;
+`;
+
+export const OverLeftContainer = styled(FlexDivColumnCentered)`
+    width: 60%;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        align-items: left;
+    }
+`;
+
+export const OverRightContainer = styled(FlexDivColumnCentered)`
+    width: 40%;
+    padding: 0 0 0 0;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        align-items: center;
+        img {
+            height: 300px;
+            width: 300px;
+        }
+    }
+`;
+
 export const H1 = styled.h1`
-    font-family: Nunito !important;
     font-weight: 700;
     font-size: 40px;
     line-height: 110%;
@@ -33,7 +55,6 @@ export const H1 = styled.h1`
 `;
 
 export const H2 = styled.h2`
-    font-family: Nunito !important;
     font-size: 20px;
     font-weight: 600;
     line-height: 18px;
@@ -45,7 +66,6 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3`
-    font-family: Nunito !important;
     font-size: 18px;
     font-weight: 600;
     line-height: 16px;
@@ -62,15 +82,12 @@ export const Paragraph = styled.p`
     margin-bottom: 15px;
     &,
     & * {
-        color: ${(props) => props.theme.textColor.senary};
-        font-family: Nunito !important;
-        font-style: normal;
+        color: ${(props) => props.theme.textColor.tertiary};
         font-weight: 300;
         text-align: justify;
         white-space: pre-line;
     }
     strong {
-        font-family: Nunito !important;
         font-weight: 600;
     }
     a {
@@ -82,7 +99,6 @@ export const Paragraph = styled.p`
 `;
 
 export const Date = styled.h1`
-    font-family: Nunito !important;
     color: ${(props) => props.theme.textColor.primary};
     font-size: 16px;
 `;
@@ -98,7 +114,6 @@ export const ListItem = styled.li<{ bold?: boolean }>`
     margin-bottom: 10px;
     color: ${(props) => props.theme.textColor.primary};
     font-size: 15px;
-    font-family: Nunito !important;
 `;
 
 export const ChartContainer = styled(FlexDivCentered)`
@@ -107,7 +122,6 @@ export const ChartContainer = styled(FlexDivCentered)`
 `;
 
 export const ChartLabel = styled.span`
-    font-family: Nunito !important;
     position: absolute;
     bottom: 10px;
     left: 0;

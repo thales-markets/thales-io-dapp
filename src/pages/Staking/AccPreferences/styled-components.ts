@@ -5,7 +5,6 @@ import { FlexDiv } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
-    font-family: Nunito;
     font-size: 13px;
     display: grid;
     width: 60%;
@@ -23,21 +22,6 @@ export const Container = styled.div`
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
-    }
-`;
-
-export const Top = styled.div`
-    grid-area: top;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    > div {
-        height: 100%;
-    }
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        > ${FlexDiv} {
-            flex-direction: column-reverse;
-        }
     }
 `;
 
@@ -68,7 +52,6 @@ export const Bottom = styled.div`
 
 export const Subtitle = styled.span`
     color: ${(props) => props.theme.textColor.primary};
-    font-family: NunitoBold;
     font-size: 13px;
     margin-bottom: 10px;
 `;
@@ -122,13 +105,4 @@ export const ClaimContainer = styled.div`
             width: 100%;
         }
     }
-`;
-
-export const DelegatedAddressWrapper = styled(FlexDiv)`
-    flex-direction: column;
-    margin-top: 20px;
-`;
-
-export const DelegatedAddress = styled.span`
-    font-size: 12px;
 `;

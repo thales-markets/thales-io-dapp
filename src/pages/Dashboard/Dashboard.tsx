@@ -2,21 +2,18 @@ import { useSelector } from 'react-redux';
 import { getIsMobile } from 'redux/modules/ui';
 import { RootState } from 'redux/rootReducer';
 import Governance from './Governance';
-import IntegratorsVolume from './IntegratorsVolume';
 import ProtocolVolume from './ProtocolVolume';
-import Staking from './Staking';
-import TVLInfo from './TVLInfo';
-import TokenInfo from './ThalesTokenInfo';
 import {
     Container,
-    ItemBottomCenterLeft,
+    GridContainer,
     ItemBottomLeft,
     ItemBottomRight,
-    ItemCenter,
     ItemUpperLeft,
     ItemUpperRight,
     MobileContainer,
 } from './styled-components';
+import TokenInfo from './ThalesTokenInfo';
+import TVLInfo from './TVLInfo';
 
 const Dashboard: React.FC = () => {
     const isMobile = useSelector((state: RootState) => getIsMobile(state));
@@ -24,34 +21,28 @@ const Dashboard: React.FC = () => {
         <>
             {!isMobile && (
                 <Container>
-                    <ItemUpperLeft>
-                        <ProtocolVolume />
-                    </ItemUpperLeft>
-                    <ItemCenter>
-                        <Staking />
-                    </ItemCenter>
-                    <ItemUpperRight>
-                        <TokenInfo />
-                    </ItemUpperRight>
-                    <ItemBottomCenterLeft>
-                        <Governance />
-                    </ItemBottomCenterLeft>
-                    <ItemBottomRight>
-                        <IntegratorsVolume />
-                    </ItemBottomRight>
-                    <ItemBottomLeft>
-                        <TVLInfo />
-                    </ItemBottomLeft>
+                    <GridContainer>
+                        <ItemUpperLeft>
+                            <ProtocolVolume />
+                        </ItemUpperLeft>
+                        <ItemUpperRight>
+                            <TokenInfo />
+                        </ItemUpperRight>
+                        <ItemBottomLeft>
+                            <TVLInfo />
+                        </ItemBottomLeft>
+                        <ItemBottomRight>
+                            <Governance />
+                        </ItemBottomRight>
+                    </GridContainer>
                 </Container>
             )}
             {isMobile && (
                 <MobileContainer>
                     <ProtocolVolume />
-                    <Staking />
                     <TokenInfo />
-                    <Governance />
-                    <IntegratorsVolume />
                     <TVLInfo />
+                    <Governance />
                 </MobileContainer>
             )}
         </>

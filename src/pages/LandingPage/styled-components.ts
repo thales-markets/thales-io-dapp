@@ -1,11 +1,18 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivSpaceAround, FlexDivSpaceBetween, Icon } from 'styles/common';
+import {
+    FlexDiv,
+    FlexDivCentered,
+    FlexDivColumn,
+    FlexDivColumnCentered,
+    FlexDivSpaceBetween,
+    Icon,
+} from 'styles/common';
 
-export const About = styled.div`
-    margin-top: 120px;
-    margin-bottom: 50px;
+export const Header = styled.div`
+    position: relative;
+    margin-top: 140px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 50px;
     }
@@ -22,51 +29,58 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled(FlexDiv)`
-    color: white;
-    font-family: 'NunitoBold';
-    font-weight: bold;
-    font-size: 50px;
-    font-style: normal;
-    line-height: 91.4%;
-    letter-spacing: 3.25px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    & > span {
-        font-family: 'NunitoExtraLight';
-        font-weight: normal;
-    }
+    color: ${(props) => props.theme.textColor.primary};
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 41.2px;
+    white-space: nowrap;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 28px;
-        letter-spacing: 2px;
+        font-size: 18px;
+        line-height: 18px;
     }
 `;
 
-export const EcosystemTitle = styled(FlexDiv)`
-    color: white;
-    font-size: 25px;
-    font-style: normal;
-    line-height: 91.4%;
-    height: 35px;
-    i {
-        margin: 0px 10px 13px 0px;
+export const HighlightTitle = styled.span`
+    color: ${(props) => props.theme.textColor.secondary};
+    margin-right: 12px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-right: 8px;
+    }
+`;
+
+export const Logo = styled.i`
+    color: ${(props) => props.theme.textColor.primary};
+    font-size: 500px;
+    cursor: pointer;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 200px;
+    }
+`;
+
+export const LogoBackgroundContainer = styled.div`
+    position: absolute;
+    top: -100px;
+    left: 100px;
+    svg {
+        height: 90%;
+        width: 90%;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        display: flex;
-        gap: 5px;
-        align-items: center;
-        font-size: 17px;
-        margin-top: -10px;
-        i {
-            margin: 0;
+        top: -65px;
+        left: 30px;
+        svg {
+            height: 180px;
+            width: 180px;
         }
     }
 `;
 
 export const Subtitle = styled.div`
-    color: #c6c8da;
-    font-family: 'NunitoExtraLight';
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 20px;
-    font-style: normal;
     font-weight: 400;
     line-height: 125%;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -77,22 +91,14 @@ export const Subtitle = styled.div`
 export const Highlight = styled.div<{ marginBottom?: number; cursor?: string }>`
     cursor: ${(props) => (props.cursor ? props.cursor : 'default')};
     color: white;
-    font-family: MontserratBold;
     font-size: 17px;
-    font-style: normal;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
     line-height: 140%;
 `;
 
-export const StatsSection = styled.div`
-    margin-bottom: 10px;
-`;
-
 export const SectionTitle = styled.div`
-    color: #c6c8da;
-    font-family: 'NunitoExtraLight';
-    font-size: 17px;
-    font-style: normal;
+    color: ${(props) => props.theme.textColor.tertiary};
+    font-size: 18px;
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
@@ -101,56 +107,63 @@ export const SectionTitle = styled.div`
     }
 `;
 
-export const Stat = styled.div`
-    color: #fff;
-    font-family: MontserratBold;
-    font-size: 50px;
-    font-style: normal;
-    line-height: normal;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 25px;
-    }
-`;
-
-export const HomeButton = styled.button`
+export const LinkButton = styled.button`
+    height: 34px;
     cursor: pointer;
     color: white;
     border-radius: 8px;
-    border: 1px solid #19f8ef;
-    text-transform: capitalize;
-    background: transparent;
+    background-color: ${(props) => props.theme.button.background.secondary};
+    color: ${(props) => props.theme.button.textColor.secondary};
     width: fit-content;
-    text-align: center;
-    font-family: NunitoBold;
-    font-size: 13px;
-    line-height: 80%;
-    text-transform: capitalize;
-    padding: 7px 12px;
-`;
-
-export const EcosystemSection = styled.div`
-    margin-top: 150px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 19.36px;
+    padding: 0px 20px;
+    text-transform: uppercase;
+    z-index: 1000;
+    transition: 0.2s all;
+    &:hover {
+        transform: scale(1.07);
+    }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-top: 50px;
+        height: 30px;
+        border-radius: 5px;
     }
 `;
 
 export const Description = styled(FlexDivColumn)<{ marginBottom?: number; marginTop?: number }>`
-    color: ${(props) => props.theme.borderColor.quaternary};
+    color: ${(props) => props.theme.textColor.tertiary};
     text-align: justify;
-    font-family: MontserratLight;
-    font-size: 14px;
-    font-style: normal;
+    font-size: 18px;
     font-weight: 600;
-    line-height: 140%;
-    margin-top: ${(props) => (props.marginTop ? props.marginTop : '0')}px;
+    line-height: 21px;
+    margin-top: ${(props) => (props.marginTop ? props.marginTop : '20')}px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
     > span {
         margin-bottom: 15px;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 14px;
+        line-height: 16px;
         display: flex;
         justify-content: center;
+    }
+`;
+
+export const ImageContainer = styled(FlexDivColumnCentered)`
+    align-items: center;
+    margin-top: 60px;
+    svg {
+        height: 70%;
+        width: 70%;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 20px;
+        svg {
+            height: 100%;
+            width: 100%;
+        }
     }
 `;
 
@@ -160,45 +173,51 @@ export const BulletNumberIcon = styled.i`
     margin-right: 5px;
 `;
 
-export const Section = styled.div<{ marginBottom?: number }>`
-    margin-top: 100px;
+export const Section = styled.div<{ marginTop?: number; marginBottom?: number }>`
+    margin-top: ${(props) => (props.marginTop ? props.marginTop : '100')}px;
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 50px;
     }
 `;
 
-export const SectionSlogan = styled.div<{ align?: string }>`
-    color: white;
+export const SectionSlogan = styled.div<{ align?: string; mobileMarginBottom?: number; mobileFontSize?: number }>`
+    color: ${(props) => props.theme.textColor.primary};
     text-align: justify;
-    font-family: MontserratBold;
     font-size: 40px;
-    font-style: normal;
-    line-height: 140%;
-    margin: 15px 0;
+    font-weight: 700;
+    line-height: 48px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        font-size: 18px;
+        font-size: ${(props) => (props.mobileFontSize ? props.mobileFontSize : '18')}px;
+        line-height: 22px;
         text-align: ${(props) => (props.align ? props.align : 'left')};
+        margin-bottom: ${(props) => (props.mobileMarginBottom ? props.mobileMarginBottom : '0')}px;
     }
 `;
 
+export const SectionSloganHighlight = styled.span`
+    color: ${(props) => props.theme.textColor.secondary};
+`;
+
 export const SectionTitleLink = styled.div`
-    color: #c6c8da;
-    font-family: NunitoExtraLight;
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 13px;
-    font-style: normal;
     line-height: 140%;
     text-transform: uppercase;
+    margin-bottom: 15px;
 `;
 
 export const SectionTitleLinkArrow = styled(ArrowHyperlinkIcon)`
-    color: #c6c8da;
+    color: ${(props) => props.theme.textColor.tertiary};
     width: 9px;
     height: 9px;
 `;
 
 export const LottieContainer = styled(FlexDivCentered)`
     margin-top: -50px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 0;
+    }
 `;
 
 export const StepsSection = styled(FlexDivColumn)`
@@ -235,6 +254,11 @@ export const HomeIcon = styled.i<{
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: ${(props) => props.mobileFontSize ?? props.fontSize ?? '20em'};
     }
+    width: 100%;
+    transition: 0.2s all;
+    &:hover {
+        transform: scale(1.1);
+    }
 `;
 export const FooterLogo = styled.i`
     position: absolute;
@@ -242,7 +266,7 @@ export const FooterLogo = styled.i`
     left: 0;
     transform: translateY(-120%);
     color: ${(props) => props.theme.textColor.primary};
-    font-size: 120px;
+    font-size: 150px;
     cursor: pointer;
     line-height: 50px;
     margin-top: 5px;
@@ -274,44 +298,26 @@ export const ThalesLinks = styled(FlexDiv)`
     }
 `;
 
-export const ThalesLinksTitle = styled.div`
-    color: #fff;
-    font-family: MontserratBold;
+export const OvertimeLinksTitle = styled.div`
+    color: ${(props) => props.theme.textColor.primary};
     font-size: 13px;
-    font-style: normal;
     font-weight: 800;
     line-height: 186.5%;
     text-transform: capitalize;
 `;
 export const ThalesLinksItem = styled.div`
-    color: #c6c8da;
-    font-family: MontserratLight;
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 13px;
-    font-style: normal;
     font-weight: 600;
     line-height: 186.5%;
     text-transform: capitalize;
 `;
-export const FooterLine = styled.div`
-    position: absolute;
-    bottom: 0;
-    transform: translateX(-25%);
-    background-image: linear-gradient(to right, white 17%, rgba(255, 255, 255, 0) 0%);
-    background-position: bottom;
-    background-size: 13px 1px;
-    background-repeat: repeat-x;
-    height: 1px;
-    width: 200%;
-    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        width: 100%;
-        transform: none;
-    }
-`;
+
 export const FooterContainer = styled.div`
     width: 100%;
-    padding: 150px 0 75px 0;
+    padding: 120px 0 50px 0;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        padding: 100px 0 75px 0;
+        padding: 75px 0 50px 0;
     }
 `;
 
@@ -325,35 +331,8 @@ export const SocialIcon = styled(Icon)`
     }
 `;
 
-export const BuySellSections = styled(FlexDivSpaceAround)`
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        flex-direction: column;
-    }
-`;
-
-export const BuySection = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-self: baseline;
-    margin-top: 50px;
-    flex: 0.5;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        gap: 30px;
-    }
-`;
-
-export const SellSection = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-self: baseline;
-    margin-top: 50px;
-    flex: 0.3;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        gap: 30px;
-        & > div:nth-child(2) > div {
-            flex: 0.62;
-        }
-    }
+export const PartnersContainer = styled(FlexDivColumnCentered)`
+    margin-top: 20px;
 `;
 
 export const Partners = styled(FlexDivSpaceBetween)`
@@ -362,7 +341,7 @@ export const Partners = styled(FlexDivSpaceBetween)`
     }
 `;
 
-export const Backers = styled(FlexDivSpaceAround)`
+export const Backers = styled(FlexDivSpaceBetween)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
     }

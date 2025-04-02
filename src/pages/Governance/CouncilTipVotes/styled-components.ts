@@ -33,7 +33,7 @@ export const CouncilVoteRowData = styled(FlexDivRow)`
 
 export const Divider = styled.div`
     height: 2px;
-    background: ${(props) => props.theme.background.tertiary};
+    background: ${(props) => props.theme.borderColor.secondary};
     width: 100%;
     border-radius: 10px;
     margin-top: 10px;
@@ -43,7 +43,6 @@ export const VotesChart = styled(FlexDivRow)`
     margin: 20px;
     height: 20px;
     border-radius: 8px;
-    font-family: Nunito;
     font-size: 13px;
     font-weight: 800;
     line-height: 20px;

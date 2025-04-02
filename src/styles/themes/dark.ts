@@ -2,29 +2,22 @@ import { Colors } from '../common';
 
 const darkTheme = {
     background: {
-        primary: Colors.BLUE_DARK,
+        primary: Colors.CETACEAN_BLUE,
         secondary: Colors.GRAY,
-        tertiary: Colors.PURPLE_NAVY,
+        tertiary: Colors.RICH_BLACK,
         quaternary: Colors.YANKEES_BLUE,
-        quinary: Colors.METALLIC_BLUE,
-        senary: Colors.LIGHT_GRAY,
     },
     textColor: {
         primary: Colors.WHITE,
         secondary: Colors.CYAN,
-        tertiary: Colors.GRAY,
+        tertiary: Colors.LIGHT_GRAY,
         quaternary: Colors.PURPLE_NAVY,
-        quinary: Colors.YANKEES_BLUE,
-        senary: Colors.LIGHT_GRAY,
-        septenary: Colors.DARKER_GRAY,
     },
     borderColor: {
         primary: Colors.GRAY,
         secondary: Colors.PURPLE_NAVY,
-        tertiary: Colors.METALLIC_BLUE,
-        quaternary: Colors.LIGHT_GRAY,
-        quinary: Colors.BLUE_DARK,
-        senary: Colors.CYAN,
+        tertiary: Colors.LIGHT_GRAY,
+        quaternary: Colors.CYAN,
     },
     link: {
         textColor: {
@@ -35,18 +28,16 @@ const darkTheme = {
     },
     button: {
         background: {
-            primary: Colors.PURPLE_NAVY,
-            secondary: Colors.METALLIC_BLUE,
-            tertiary: Colors.CYAN,
-            quaternary: Colors.INDEPENDENCE,
+            primary: Colors.GRAY,
+            secondary: Colors.CYAN,
         },
         textColor: {
             primary: Colors.WHITE,
-            secondary: Colors.GRAY,
-            tertiary: Colors.YANKEES_BLUE,
+            secondary: Colors.CETACEAN_BLUE,
         },
         borderColor: {
-            primary: Colors.METALLIC_BLUE,
+            primary: Colors.GRAY,
+            secondary: Colors.CYAN,
         },
     },
     error: {
@@ -55,7 +46,6 @@ const darkTheme = {
         },
         textColor: {
             primary: Colors.RED,
-            secondary: Colors.CHINA_PINK,
         },
         borderColor: {
             primary: Colors.RED,
@@ -64,21 +54,18 @@ const darkTheme = {
     warning: {
         background: {
             primary: Colors.DARK_GRAY,
-            secondary: Colors.GRAY,
         },
         textColor: {
             primary: Colors.ORANGE,
             secondary: Colors.DARK_ORANGE,
-            tertiary: Colors.EGG_BLUE,
-            quaternary: Colors.VENETIAN_RED,
         },
         borderColor: {
             primary: Colors.ORANGE,
         },
     },
     chart: {
-        positive: Colors.TURQUOISE,
-        negative: Colors.INDIAN_RED,
+        positive: Colors.GREEN,
+        negative: Colors.RED,
     },
     toastMessages: {
         success: {
@@ -93,7 +80,7 @@ const darkTheme = {
         },
         info: {
             background: {
-                primary: Colors.BLUE_DARK,
+                primary: Colors.DARK_BLUE,
                 secondary: Colors.LIGHT_BLUE,
                 tertiary: Colors.BLUE,
             },

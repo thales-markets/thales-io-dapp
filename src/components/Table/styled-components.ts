@@ -46,7 +46,7 @@ export const TableRow = styled(FlexDiv)<{
                 ? props.theme.borderColor.secondary
                 : 'transparent'};
     border-bottom: 1px solid ${(props) => props.theme.borderColor.secondary};
-    background: ${(props) => (props.isSticky ? props.theme.button.background.primary : 'transparent')};
+    background: ${(props) => (props.isSticky ? props.theme.background.tertiary : 'transparent')};
     border-radius: ${(props) => (props.isClaimable || props.isMobile || props.isSticky ? '15px' : '0px')};
     opacity: ${(props) => (props.isClaimed ? '0.5' : '1')};
     margin: ${(props) => (props.isMobile || props.isSticky ? '10px 0 0 0' : '0')};
@@ -79,6 +79,7 @@ export const TableRowMobile = styled.div<{ isSticky?: boolean }>`
 
 export const TableHeader = styled(FlexDiv)`
     width: 100%;
+    font-weight: 500;
     text-transform: uppercase;
     ${TableCell} {
         color: ${(props) => props.theme.textColor.tertiary};

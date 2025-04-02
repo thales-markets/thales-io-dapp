@@ -34,7 +34,7 @@ export const RowPercentage = styled.div`
 
 export const Divider = styled.div`
     height: 2px;
-    background: ${(props) => props.theme.background.tertiary};
+    background: ${(props) => props.theme.borderColor.secondary};
     width: 100%;
     border-radius: 10px;
     margin-top: 10px;

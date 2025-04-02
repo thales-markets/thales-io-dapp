@@ -1,14 +1,6 @@
 const ROUTES = {
     Home: '/',
     Dashboard: '/dashboard',
-    AmmLP: {
-        Home: '/amm-lp',
-        SportsAMM: '/amm-lp?tab=sports-amm',
-        ParlayAMM: '/amm-lp?tab=parlay-amm',
-        OvertimeUSDC: '/amm-lp?tab=overtime-usdc',
-        OvertimeWETH: '/amm-lp?tab=overtime-weth',
-        OvertimeTHALES: '/amm-lp?tab=overtime-thales',
-    },
     Token: {
         Staking: {
             Home: '/token/staking',
@@ -26,16 +18,16 @@ const ROUTES = {
         Space: '/dao/:space',
         Proposal: '/dao/:space/:id',
     },
+    OverToken: '/over-token',
+    BrandAssets: '/brand-assets',
     About: {
         Root: '/about',
         Whitepaper: '/about/whitepaper',
-        Token: '/about/thales-token',
         Governance: '/about/governance',
     },
 };
 
 export const ROUTE_NAMES = {
-    AmmLP: 'amm-lp',
     Token: 'token',
     Staking: 'staking',
     About: 'about',
@@ -44,9 +36,6 @@ export const ROUTE_NAMES = {
 
 export const API_ROUTES = {
     DigitalOptions: {
-        LP: 'v1/digital-options/liquidity-providing',
-        LPPnls: 'v1/digital-options/liquidity-providing/pnl',
-        LPTransactions: 'v1/digital-options/liquidity-providing/transactions',
         Referral: 'v1/digital-options/referral',
         ReferralTransactions: 'v1/digital-options/referral/transactions',
         ReferralTraders: 'v1/digital-options/referral/traders',
@@ -55,9 +44,6 @@ export const API_ROUTES = {
         VaultsPnl: 'v1/vaults/pnl',
     },
     SportMarkets: {
-        LP: 'v1/sport-markets/liquidity-providing',
-        LPPnls: 'v1/sport-markets/liquidity-providing/pnl',
-        LPTransactions: 'v1/sport-markets/liquidity-providing/transactions',
         Referral: 'v1/sport-markets/referral',
         ReferralTransactions: 'v1/sport-markets/referral/transactions',
         ReferralTraders: 'v1/sport-markets/referral/traders',
