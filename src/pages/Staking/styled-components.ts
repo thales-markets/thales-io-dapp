@@ -7,10 +7,9 @@ export const SectionTitle = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     color: ${(props) => props.theme.textColor.primary};
-    font-family: NunitoBold;
     font-size: 18px;
-    font-style: normal;
     line-height: 24px;
+    font-weight: 600;
     text-transform: uppercase;
     > span:first-child {
         display: flex;
@@ -20,10 +19,8 @@ export const SectionTitle = styled.div`
         margin-right: 5px;
     }
     > span > div {
-        color: #fff;
-        font-family: NunitoBold;
+        color: ${(props) => props.theme.textColor.primary};
         font-size: 14px;
-        font-style: normal;
         text-transform: none;
     }
     > span:nth-child(2) {
@@ -42,7 +39,6 @@ export const InfoDiv = styled.div<{ height?: string }>`
     > span:nth-child(2) {
         color: ${(props) => props.theme.textColor.primary};
         text-align: right;
-        font-family: NunitoBold;
         line-height: 155%;
     }
 `;
@@ -55,8 +51,8 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
     border: 0;
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
-    font-family: NunitoExtraBold;
     font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     margin-top: 5px;
     width: ${(props) => props.width || 'auto'};
@@ -67,7 +63,6 @@ export const StakingButton = styled.button<{ padding?: string; disabled?: boolea
 `;
 
 export const SectionHeader = styled(FlexDiv)`
-    font-family: NunitoBold;
     font-size: 18px;
     line-height: 20px;
     letter-spacing: 0.035em;
@@ -112,7 +107,7 @@ export const MigrationContainer = styled(FlexDiv)`
     align-items: center;
     justify-content: center;
     color: ${(props) => props.theme.warning.textColor.primary};
-    background-color: ${(props) => props.theme.background.tertiary};
+    background-color: ${(props) => props.theme.background.quaternary};
     text-align: center;
     margin: 20px 0;
     a {
@@ -122,6 +117,10 @@ export const MigrationContainer = styled(FlexDiv)`
         font-size: 13px;
         padding: 10px;
         margin: 0 0 20px 0;
+    }
+    span:last-child {
+        cursor: pointer;
+        color: ${(props) => props.theme.textColor.secondary};
     }
 `;
 

@@ -42,16 +42,11 @@ const TVLInfo: React.FC = () => {
                     <TitleLabel>{t('dashboard.tvl.title')}</TitleLabel>
                 </WidgetHeader>
                 <InfoSection side="left">
-                    <InfoText>{t('dashboard.tvl.token-staking-tvl')}</InfoText>
                     <InfoText>{t('dashboard.tvl.overtime-amm-tvl')}</InfoText>
                     <InfoText>{t('dashboard.tvl.thales-amm-tvl')}</InfoText>
-                    <InfoText>{t('dashboard.tvl.vaults-tvl')}</InfoText>
                     <InfoText>{t('dashboard.tvl.speed-tvl')}</InfoText>
                 </InfoSection>
                 <InfoSection side="right">
-                    <InfoStats>
-                        {tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.stakingThalesTVL)}` : '-'}
-                    </InfoStats>
                     <InfoStats>
                         {tvlStats
                             ? `${formatCurrencyWithSign(
@@ -63,7 +58,6 @@ const TVLInfo: React.FC = () => {
                     <InfoStats>
                         {tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.thalesLpTVL)}` : '-'}
                     </InfoStats>
-                    <InfoStats>{tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.vaultsTVL)}` : '-'}</InfoStats>
                     <InfoStats>
                         {tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.speedMarketsTVL)}` : '-'}
                     </InfoStats>

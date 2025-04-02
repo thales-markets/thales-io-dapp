@@ -1,5 +1,5 @@
-import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import React from 'react';
 import styled from 'styled-components';
 import { FlexDivCentered } from 'styles/common';
 
@@ -17,7 +17,7 @@ const InlineLoader: React.FC<InlineLoaderProps> = ({ thickness, size }) => {
 };
 
 const LoaderContainer = styled(FlexDivCentered)`
-    color: ${(props) => props.theme.background.tertiary};
+    color: ${(props) => props.theme.borderColor.secondary};
     margin-bottom: 2px;
 `;
 

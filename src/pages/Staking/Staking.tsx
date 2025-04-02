@@ -2,17 +2,17 @@ import Loader from 'components/Loader';
 import { NavItemType } from 'components/NavLinks/NavItem';
 import SPAAnchor from 'components/SPAAnchor';
 import TabLinks from 'components/TabLinks';
+import ThalesToOverMigrationModal from 'components/ThalesToOverMigrationModal';
 import { MIGRATION_PROPOSAL_ID } from 'constants/governance';
 import ROUTES from 'constants/routes';
 import { STAKING_TABS } from 'constants/token';
 import { SpaceKey } from 'enums/governance';
 import queryString from 'query-string';
-import { Suspense, useMemo } from 'react';
+import { Suspense, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { getIsMobile } from 'redux/modules/ui';
-import { RootState } from 'redux/rootReducer';
 import { NavContainer } from 'styles/common';
 import { buildGovernanceHref, buildHref } from 'utils/routes';
 import AccPreferences from './AccPreferences';
@@ -26,7 +26,8 @@ const Staking: React.FC = () => {
     const location = useLocation();
     const paramTab = queryString.parse(location.search).tab || STAKING_TABS.STAKING;
 
-    const isMobile = useSelector((state: RootState) => getIsMobile(state));
+    const isMobile = useSelector(getIsMobile);
+    const [showThalesToOverMigrationModal, setShowThalesToOverMigrationModal] = useState<boolean>(false);
 
     const navItems: NavItemType[] = useMemo(() => {
         return [
@@ -51,15 +52,16 @@ const Staking: React.FC = () => {
     return (
         <Suspense fallback={<Loader />}>
             <MigrationContainer>
-                <span>
+                <p>
                     <Trans
                         i18nKey={t('staking.migration-banner')}
                         components={{
                             tip: <SPAAnchor href={buildGovernanceHref(SpaceKey.COUNCIL, MIGRATION_PROPOSAL_ID)} />,
                             bold: <Bold />,
+                            span: <span onClick={() => setShowThalesToOverMigrationModal(true)} />,
                         }}
                     />
-                </span>
+                </p>
             </MigrationContainer>
             {!isMobile && (
                 <NavContainer>
@@ -70,6 +72,9 @@ const Staking: React.FC = () => {
             {paramTab === STAKING_TABS.STAKING && <StakingTab />}
             {paramTab === STAKING_TABS.VESTING && <Vesting />}
             {paramTab === STAKING_TABS.ACC_PREFERENCES && <AccPreferences />}
+            {showThalesToOverMigrationModal && (
+                <ThalesToOverMigrationModal onClose={() => setShowThalesToOverMigrationModal(false)} />
+            )}
         </Suspense>
     );
 };

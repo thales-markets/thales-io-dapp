@@ -33,7 +33,6 @@ export const WidgetHeader = styled.div<{ isTwoSided?: boolean; notFlex?: boolean
 `;
 
 export const TimeLeftLabel = styled.label`
-    font-family: Nunito !important;
     font-weight: 500;
     font-size: 13px;
     line-height: 20px;
@@ -43,7 +42,6 @@ export const TimeLeftLabel = styled.label`
 `;
 
 export const TitleLabel = styled.span<{ isLink?: boolean; isHighlighted?: boolean }>`
-    font-family: Nunito !important;
     font-weight: 700;
     font-size: 18px;
     line-height: 25px;

@@ -32,7 +32,6 @@ const Container = styled.label`
     position: relative;
     padding-left: 26px;
     cursor: pointer;
-    font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;

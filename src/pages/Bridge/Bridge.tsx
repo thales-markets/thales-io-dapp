@@ -20,7 +20,6 @@ import { Network } from 'enums/network';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { BigNumber, ethers } from 'ethers';
 import useDebouncedEffect from 'hooks/useDebouncedEffect';
-import { InputContainer } from 'pages/AMMLP/styled-components';
 import useCelerBridgeDataQuery from 'queries/token/useCelerBridgeDataQuery';
 import useThalesBalanceQuery from 'queries/token/useThalesBalanceQuery';
 import React, { useEffect, useState } from 'react';
@@ -530,7 +529,7 @@ const NetworkSwitchLabel = styled(FlexDivStart)`
 
 const NetworkSwitchWrapper = styled(FlexDivCentered)`
     margin-top: 5px;
-    background: ${(props) => props.theme.button.background.secondary};
+    background: ${(props) => props.theme.background.quaternary};
     border-radius: 8px;
 `;
 
@@ -602,13 +601,24 @@ const Button = styled.button<{ padding?: string; disabled?: boolean; width?: str
     border: 0;
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
-    font-family: NunitoExtraBold;
     font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};
     &:disabled {
         opacity: 0.5;
         cursor: default;
+    }
+`;
+
+export const InputContainer = styled.div<{ marginTop?: number; mediaMarginBottom?: number }>`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    ${(props) => (props.marginTop ? 'margin-top: ' + props.marginTop + 'px;' : '')};
+    z-index: 1;
+    @media (max-width: 1192px) {
+        ${(props) => (props.mediaMarginBottom ? 'margin-bottom: ' + props.mediaMarginBottom + 'px;' : '')}
     }
 `;
 

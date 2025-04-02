@@ -1,5 +1,4 @@
 import SPAAnchor from 'components/SPAAnchor';
-import LINKS from 'constants/links';
 import ROUTES from 'constants/routes';
 import { STAKING_TABS } from 'constants/token';
 import { SpaceKey } from 'enums/governance';
@@ -15,32 +14,6 @@ import { FlexDiv } from 'styles/common';
 import BreadcrumbItem from './BreadcrumbItem';
 
 export const BREADCRUMBS_DROPDOWN_ITEMS = {
-    AmmLP: [
-        {
-            i18label: 'amm-lp.nav.thales',
-            route: ROUTES.AmmLP.Home,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-single',
-            route: ROUTES.AmmLP.SportsAMM,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-parlay',
-            route: ROUTES.AmmLP.ParlayAMM,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-usdc',
-            route: ROUTES.AmmLP.OvertimeUSDC,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-weth',
-            route: ROUTES.AmmLP.OvertimeWETH,
-        },
-        {
-            i18label: 'amm-lp.nav.overtime-thales',
-            route: ROUTES.AmmLP.OvertimeTHALES,
-        },
-    ],
     Token: [
         {
             i18label: 'header.links.staking',
@@ -69,24 +42,6 @@ export const BREADCRUMBS_DROPDOWN_ITEMS = {
             route: ROUTES.Token.Staking.Preferences,
         },
     ],
-    About: [
-        {
-            i18label: 'header.links.about-token',
-            route: ROUTES.About.Token,
-        },
-        {
-            i18label: 'header.links.about-governance',
-            route: ROUTES.About.Governance,
-        },
-        {
-            i18label: 'header.links.whitepaper',
-            route: ROUTES.About.Whitepaper,
-        },
-        {
-            i18label: 'header.links.docs',
-            route: LINKS.Docs,
-        },
-    ],
     DAO: [
         {
             i18label: 'governance.nav.tips',
@@ -96,10 +51,10 @@ export const BREADCRUMBS_DROPDOWN_ITEMS = {
             i18label: 'governance.nav.elections',
             route: `${ROUTES.DAO.Home}/${SpaceKey.COUNCIL}`,
         },
-        {
-            i18label: 'governance.nav.thales-stakers',
-            route: `${ROUTES.DAO.Home}/${SpaceKey.THALES_STAKERS}`,
-        },
+        // {
+        //     i18label: 'governance.nav.thales-stakers',
+        //     route: `${ROUTES.DAO.Home}/${SpaceKey.THALES_STAKERS}`,
+        // },
     ],
 };
 

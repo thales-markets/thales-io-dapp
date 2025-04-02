@@ -3,14 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import OutsideClickHandler from 'react-outside-click-handler';
 import styled from 'styled-components';
-import {
-    Colors,
-    FlexDiv,
-    FlexDivCentered,
-    FlexDivColumn,
-    FlexDivColumnCentered,
-    FlexDivRowCentered,
-} from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRowCentered } from 'styles/common';
 
 type DropdownProps = {
     options: any;
@@ -102,13 +95,13 @@ const Button = styled.button<{ isActive: boolean; fullWidth: boolean }>`
 `;
 
 const InnerButton = styled(FlexDivRowCentered)`
-    background: ${(props) => props.theme.background.quinary};
+    background: ${(props) => props.theme.background.quaternary};
     border-radius: 8px;
     font-weight: 400;
     font-size: 13px;
     line-height: 36px;
     letter-spacing: 0.35px;
-    color: ${(props) => props.theme.textColor.senary};
+    color: ${(props) => props.theme.textColor.primary};
     padding-left: 20px;
     padding-right: 20px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -129,7 +122,7 @@ const DropDown = styled(FlexDivColumn)<{ fullWidth: boolean }>`
     margin-top: 12px;
     margin-left: 2px;
     padding: 8px;
-    width: ${(props) => (props.fullWidth ? '100%' : '170px')};
+    width: ${(props) => (props.fullWidth ? '100%' : '166px')};
     box-shadow: 0px 4px 31px 3px rgba(0, 0, 0, 0.45);
     max-height: 250px;
     overflow-y: auto;
@@ -141,11 +134,14 @@ const DropDown = styled(FlexDivColumn)<{ fullWidth: boolean }>`
 const DropDownItem = styled(FlexDiv)`
     padding: 8px 12px;
     cursor: pointer;
-    color: ${(props) => props.theme.textColor.senary};
+    color: ${(props) => props.theme.textColor.primary};
     &:hover {
-        background: ${Colors.YANKEES_BLUE};
+        background: ${(props) => props.theme.background.quaternary};
         border-radius: 12px;
         color: ${(props) => props.theme.textColor.secondary};
+        div {
+            color: ${(props) => props.theme.textColor.secondary};
+        }
     }
 `;
 
@@ -154,7 +150,7 @@ const Name = styled.div`
     font-size: 13px;
     line-height: 24px;
     letter-spacing: 0.35px;
-    color: ${(props) => props.theme.textColor.senary};
+    color: ${(props) => props.theme.textColor.primary};
     display: block;
     text-transform: capitalize;
     &:hover {

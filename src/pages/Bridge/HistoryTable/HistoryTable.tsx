@@ -136,7 +136,7 @@ const HistoryTable: FC<HistoryTableProps> = memo(({ transactions, noResultsMessa
                                           TransferHistoryStatus.TRANSFER_COMPLETED,
                                           TransferHistoryStatus.TRANSFER_REFUNDED,
                                       ].includes(cellProps.cell.value)
-                                    ? theme.textColor.quaternary
+                                    ? theme.textColor.tertiary
                                     : undefined
                             }
                         >

@@ -5,6 +5,7 @@ import { FlexDiv } from 'styles/common';
 
 // override styles from react-chrono
 export const Container = styled.div`
+    margin-top: 50px;
     & > div > div:nth-child(1) {
         order: 1;
         @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -18,20 +19,20 @@ export const Container = styled.div`
         order: 2;
     }
     .timeline-horizontal-container li div.active:after {
-        background: #19f8ef !important;
+        background: ${(props) => props.theme.button.background.secondary} !important;
         width: 15px;
         height: 15px;
     }
     .timeline-vertical-circle div.active:after {
-        background: #19f8ef !important;
+        background: ${(props) => props.theme.button.background.secondary} !important;
         width: 15px;
         height: 15px;
     }
     .timeline-controls {
-        background: #313652;
+        background: ${(props) => props.theme.background.primary};
     }
     .timeline-controls > li > button {
-        background: #3f5580;
+        background: ${(props) => props.theme.background.quaternary};
     }
     #react-chrono-timeline {
         margin-left: 0;
@@ -120,37 +121,31 @@ export const MilestoneContainer = styled(FlexDiv)`
 export const Milestone = styled.div<{ hideBorder?: boolean }>`
     position: relative;
     width: 320px;
-    border-right: ${(props) => (props.hideBorder ? '' : '2px solid #405682')};
-    background: #313652;
+    border-right: ${(props) => (props.hideBorder ? '' : `2px solid ${props.theme.borderColor.secondary}`)};
+    background: ${(props) => props.theme.background.primary};
     padding: 15px 25px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100%;
         border-right: none;
-        border-bottom: ${(props) => (props.hideBorder ? '' : '2px solid #405682')};
+        border-bottom: ${(props) => (props.hideBorder ? '' : `2px solid ${props.theme.borderColor.secondary}`)};
     }
 `;
 
 export const MilestoneDate = styled.div<{ visible?: boolean }>`
     display: ${(props) => (props.visible ? 'block' : 'none')};
     color: white;
-    font-family: MontserratBold;
-    font-size: 13px;
-    font-style: normal;
+    font-size: 18px;
+    font-weight: 600;
     line-height: normal;
     text-transform: uppercase;
 `;
 
 export const MilestoneDescription = styled.div`
     padding-top: 8px;
-    color: #c6c8da;
-    font-family: MontserratLight;
+    color: ${(props) => props.theme.textColor.tertiary};
     font-size: 13px;
-    font-style: normal;
     font-weight: 400;
     line-height: 155%;
-    span {
-        font-family: MontserratBold;
-    }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 11px;
     }

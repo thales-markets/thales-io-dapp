@@ -80,11 +80,9 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ item, splittedPath, ind
 };
 
 const getDropdownItems = (itemName: string) => {
-    if (itemName == ROUTE_NAMES.AmmLP) return BREADCRUMBS_DROPDOWN_ITEMS.AmmLP;
     if (itemName == ROUTE_NAMES.Staking) return BREADCRUMBS_DROPDOWN_ITEMS.Staking;
     if (itemName == ROUTE_NAMES.Token) return BREADCRUMBS_DROPDOWN_ITEMS.Token;
     if (itemName == ROUTE_NAMES.DAO) return BREADCRUMBS_DROPDOWN_ITEMS.DAO;
-    if (itemName == ROUTE_NAMES.About) return BREADCRUMBS_DROPDOWN_ITEMS.About;
     return [];
 };
 

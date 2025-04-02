@@ -67,10 +67,7 @@ const History: React.FC<HistoryProps> = ({ proposal, proposalResults, isLoading,
                                                 <Voter address={vote.voter} walletAddress={walletAddress} />
                                             </FlexDivCentered>
                                         </StyledLink>
-                                        <Tooltip
-                                            overlay={votes}
-                                            overlayInnerStyle={{ fontFamily: 'Nunito !important' }}
-                                        >
+                                        <Tooltip overlay={votes}>
                                             <Votes>{formattedVotes}</Votes>
                                         </Tooltip>
                                     </FlexDivCentered>

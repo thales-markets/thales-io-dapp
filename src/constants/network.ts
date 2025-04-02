@@ -9,6 +9,7 @@ export const ARB_SAFE_BOX_ADDRESS = '0xE9F5E7579931a46e4beaC08Ca9ab52961AD66203'
 export const BASE_SAFE_BOX_ADDRESS = '0x860C4DD827DdDd98755e0843b89d909f5A0347Ff';
 
 export const SUPPORTED_NETWORKS_NAMES: Record<number, string> = {
+    [Network.Mainnet]: 'MAINNET',
     [Network.OptimismMainnet]: 'OPTIMISM MAINNET',
     [Network.Arbitrum]: 'ARBITRUM ONE',
     [Network.Base]: 'BASE',

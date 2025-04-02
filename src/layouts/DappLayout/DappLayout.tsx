@@ -1,5 +1,7 @@
+import Banner from 'components/Banner';
 import WavesBackground from 'components/WavesBackground';
 import useWidgetBotScript from 'hooks/useWidgetBotScript';
+import Footer from 'pages/LandingPage/Footer';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -8,10 +10,8 @@ import { getIsMobile } from 'redux/modules/ui';
 import { useTheme } from 'styled-components';
 import { Background } from 'styles/common';
 import { isAndroid, isMetamask } from 'thales-utils';
-import DappFooter from './DappFooter';
 import DappHeader from './DappHeader';
 import { ChildWrapper, Wrapper } from './styled-components';
-import Banner from 'components/Banner';
 
 const DappLayout: React.FC = ({ children }) => {
     const theme = useTheme();
@@ -38,7 +38,7 @@ const DappLayout: React.FC = ({ children }) => {
             <Wrapper>
                 <DappHeader />
                 <ChildWrapper>{children}</ChildWrapper>
-                <DappFooter />
+                <Footer />
             </Wrapper>
             <ToastContainer theme={'colored'} />
         </>

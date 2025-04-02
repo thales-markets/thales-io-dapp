@@ -258,12 +258,12 @@ const Weighted = styled(FlexDivSpaceBetween)<{ isDisabled?: boolean }>`
     &.selected {
         margin: -1px;
         margin-bottom: 19px;
-        border: 2px solid ${(props) => props.theme.borderColor.senary};
+        border: 2px solid ${(props) => props.theme.borderColor.quaternary};
     }
     &:hover {
         ${(props) => (props.isDisabled ? '' : 'margin: -1px;')}
         ${(props) => (props.isDisabled ? '' : 'margin-bottom: 19px;')}
-        ${(props) => (props.isDisabled ? '' : `border: 2px solid ${props.theme.borderColor.senary};`)}
+        ${(props) => (props.isDisabled ? '' : `border: 2px solid ${props.theme.borderColor.quaternary};`)}
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         height: 46px;
@@ -296,8 +296,8 @@ const PlusMinus = styled(FlexDivColumnCentered)<{ isDisabled?: boolean }>`
     border-left: 2px solid ${(props) => props.theme.borderColor.primary};
     border-right: 2px solid ${(props) => props.theme.borderColor.primary};
     &:hover {
-        ${(props) => (props.isDisabled ? '' : `border-left: 2px solid ${props.theme.borderColor.senary};`)}
-        ${(props) => (props.isDisabled ? '' : `border-right: 2px solid ${props.theme.borderColor.senary};`)}
+        ${(props) => (props.isDisabled ? '' : `border-left: 2px solid ${props.theme.borderColor.quaternary};`)}
+        ${(props) => (props.isDisabled ? '' : `border-right: 2px solid ${props.theme.borderColor.quaternary};`)}
         ${(props) => (props.isDisabled ? '' : 'cursor: pointer;')}
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -346,7 +346,7 @@ const SeePitchWrapper = styled.div`
 `;
 
 const SeePitchButton = styled.button`
-    font-weight: 00;
+    font-weight: 600;
     font-size: 13px;
     line-height: 15px;
     border-radius: 23px;
@@ -361,7 +361,7 @@ const SeePitchButton = styled.button`
         cursor: default;
     }
     &:hover:not(:disabled) {
-        border: 2px solid ${(props) => props.theme.borderColor.senary};
+        border: 2px solid ${(props) => props.theme.borderColor.quaternary};
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-left: 0;
@@ -378,7 +378,6 @@ const PitchModal = styled((props) => <Dialog classes={{ paper: props.className }
         overflow: auto;
         border: 2px solid ${(props) => props.theme.borderColor.primary};
         color: ${(props) => props.theme.textColor.primary};
-        font-family: Nunito !important;
         font-size: 13px;
         font-weight: 500;
         line-height: 15px;
@@ -436,8 +435,8 @@ const Button = styled.button<{ margin?: string; padding?: string; disabled?: boo
     border: 0;
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
-    font-family: NunitoExtraBold;
     font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};
     &:disabled {

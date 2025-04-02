@@ -1,6 +1,6 @@
 import BreadcrumbsMenu from 'components/BreadcrumbsMenu';
+import NavLinks from 'components/NavLinks';
 import { NavItemType } from 'components/NavLinks/NavItem';
-import NavLinks from 'components/NavLinks/NavLinks';
 import NavMenuMobile from 'components/NavMenuMobile';
 import UserWallet from 'components/UserWallet';
 import LINKS from 'constants/links';
@@ -31,68 +31,75 @@ const DappHeader: React.FC = () => {
     const navItems: NavItemType[] = useMemo(() => {
         return [
             {
+                href: buildHref(ROUTES.OverToken),
+                title: t('header.links.over-token'),
+                active: location.pathname === ROUTES.OverToken,
+                // children: [
+                //     {
+                //         href: buildHref(ROUTES.OverToken),
+                //         title: t('header.links.over-token'),
+                //         active: location.pathname === ROUTES.OverToken,
+                //     },
+                //     {
+                //         href: buildHref(ROUTES.Token.Staking.Home),
+                //         title: t('header.links.staking'),
+                //         active: location.pathname === ROUTES.Token.Staking.Home,
+                //     },
+                //     {
+                //         href: buildHref(ROUTES.Token.Bridge),
+                //         title: t('header.links.bridge'),
+                //         active: location.pathname === ROUTES.Token.Bridge,
+                //     },
+                //     {
+                //         href: buildHref(ROUTES.Token.LPStaking),
+                //         title: t('header.links.lp-staking'),
+                //         active: location.pathname === ROUTES.Token.LPStaking,
+                //     },
+                // ],
+            },
+            {
                 href: buildHref(ROUTES.Dashboard),
                 title: t('header.links.dashboard'),
                 active: location.pathname === ROUTES.Dashboard,
             },
             {
-                title: t('header.links.token'),
+                title: t('header.links.products'),
                 children: [
                     {
-                        href: buildHref(ROUTES.Token.Staking.Home),
-                        title: t('header.links.staking'),
-                        active: location.pathname === ROUTES.Token.Staking.Home,
+                        href: LINKS.Overtime,
+                        title: t('header.links.overtime'),
                     },
                     {
-                        href: buildHref(ROUTES.Token.Bridge),
-                        title: t('header.links.bridge'),
-                        active: location.pathname === ROUTES.Token.Bridge,
+                        href: LINKS.SpeedMarkets,
+                        title: t('header.links.speed-markets'),
                     },
                     {
-                        href: buildHref(ROUTES.Token.LPStaking),
-                        title: t('header.links.lp-staking'),
-                        active: location.pathname === ROUTES.Token.LPStaking,
+                        href: LINKS.ThalesMarkets,
+                        title: t('header.links.thales-markets'),
                     },
                 ],
             },
             {
-                href: buildHref(ROUTES.AmmLP.Home),
-                title: t('header.links.amm-lp'),
-                active: location.pathname === ROUTES.AmmLP.Home,
+                title: t('header.links.resources'),
+                children: [
+                    {
+                        href: LINKS.Docs,
+                        title: t('header.links.docs'),
+                    },
+                    {
+                        href: LINKS.Medium,
+                        title: t('header.links.blog'),
+                    },
+                    {
+                        href: LINKS.Discord,
+                        title: t('header.links.community'),
+                    },
+                ],
             },
             {
                 href: buildHref(ROUTES.DAO.Home),
                 title: t('header.links.dao'),
                 active: location.pathname.includes(ROUTES.DAO.Home),
-            },
-            {
-                href: LINKS.Medium,
-                title: t('header.links.blog'),
-            },
-            {
-                title: t('header.links.about'),
-                active: location.pathname.includes(ROUTES.About.Root),
-                children: [
-                    {
-                        href: buildHref(ROUTES.About.Token),
-                        title: t('header.links.about-token'),
-                        active: location.pathname === ROUTES.About.Token,
-                    },
-                    {
-                        href: buildHref(ROUTES.About.Governance),
-                        title: t('header.links.about-governance'),
-                        active: location.pathname === ROUTES.About.Governance,
-                    },
-                    {
-                        href: buildHref(ROUTES.About.Whitepaper),
-                        title: t('header.links.whitepaper'),
-                        active: location.pathname === ROUTES.About.Whitepaper,
-                    },
-                    {
-                        href: LINKS.Docs,
-                        title: t('header.links.docs'),
-                    },
-                ],
             },
         ];
     }, [location.pathname, t]);
@@ -105,10 +112,10 @@ const DappHeader: React.FC = () => {
                     {!isMobile ? (
                         <Logo
                             onClick={() => navigateTo(ROUTES.Home, false, false, 'show')}
-                            className="icon icon--thales-logo"
+                            className="overtime-icon overtime-icon--overtime"
                         />
                     ) : (
-                        <LogoMobile className="icon icon--thales-logo">
+                        <LogoMobile className="overtime-icon overtime-icon--overtime">
                             <IconLink onClick={() => navigateTo(ROUTES.Home, false, false, 'show')} />
                         </LogoMobile>
                     )}

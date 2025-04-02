@@ -12,9 +12,7 @@ export const Links = styled.div`
 
 export const Item = styled.div<{ active?: boolean; deprecated?: boolean }>`
     position: relative;
-    font-family: Nunito !important;
-    font-style: normal;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 18px;
     line-height: 25.5px;
     z-index: 2;
@@ -27,13 +25,6 @@ export const Item = styled.div<{ active?: boolean; deprecated?: boolean }>`
     @media (max-width: 1024px) {
         margin-bottom: 60px;
     }
-`;
-
-export const Icon = styled.i<{ active?: boolean }>`
-    padding-left: 3px;
-    padding-bottom: 3px;
-    color: ${(props) => (props.active ? props.theme.textColor.secondary : props.theme.textColor.primary)};
-    font-size: 13px;
 `;
 
 export const ItemTitle = styled(FlexDiv)`

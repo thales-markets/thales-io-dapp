@@ -12,6 +12,7 @@ import {
     trustWallet,
     walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
+import WalletDisclaimer from 'components/WalletDisclaimer';
 import { PLAUSIBLE } from 'constants/analytics';
 import { base, optimismSepolia } from 'constants/network';
 import { Network } from 'enums/network';
@@ -19,7 +20,7 @@ import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import thalesDarkTheme from 'styles/themes/dark';
 import { WagmiConfig, configureChains, createClient } from 'wagmi';
-import { arbitrum, optimism } from 'wagmi/chains';
+import { arbitrum, mainnet, optimism } from 'wagmi/chains';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { publicProvider } from 'wagmi/providers/public';
@@ -32,7 +33,7 @@ interface RootProps {
 const STALL_TIMEOUT = 2000;
 
 const { chains, provider } = configureChains(
-    [optimism, arbitrum, base, optimismSepolia],
+    [optimism, arbitrum, base, optimismSepolia, mainnet],
     [
         jsonRpcProvider({
             rpc: (chain) => {
@@ -104,7 +105,7 @@ const Root: React.FC<RootProps> = ({ store }) => {
                     theme={customTheme}
                     appInfo={{
                         appName: 'Thales Protocol',
-                        // disclaimer: WalletDisclaimer,
+                        disclaimer: WalletDisclaimer,
                     }}
                 >
                     <App />

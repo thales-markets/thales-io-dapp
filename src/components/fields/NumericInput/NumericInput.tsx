@@ -179,11 +179,11 @@ const MaxButton = styled.button`
     background: transparent;
     border: none;
     border-radius: 3px;
-    font-family: NunitoExtraBold;
     font-size: 13px;
+    font-weight: 600;
     line-height: 20px;
-    background: ${(props) => props.theme.button.background.tertiary};
-    color: ${(props) => props.theme.button.textColor.tertiary};
+    background: ${(props) => props.theme.button.background.secondary};
+    color: ${(props) => props.theme.button.textColor.secondary};
     text-transform: uppercase;
     cursor: pointer;
     padding: 0 10px;

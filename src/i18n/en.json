@@ -68,7 +68,8 @@
         "banner": {
             "elections-banner-message": "Elections for Thales Council are now live, exercise your voting power <bold>here</bold>",
             "rewards-banner-message": "All traders on Optimism are eligible for <bold>5,000 OP</bold> weekly based on Notional Volume. <bold>More details here</bold>.",
-            "speed-banner-message": "Trade on Speed Markets, win 10,000 PYTH! <bold>Learn more.</bold>"
+            "speed-banner-message": "Trade on Speed Markets, win 10,000 PYTH! <bold>Learn more.</bold>",
+            "migration": "Migrate $THALES to $OVER <bold>here</bold>"
         },
         "transaction": {
             "view": "View",
@@ -80,7 +81,7 @@
         "wallet": {
             "connect-your-wallet": "Connect",
             "wallet-options": "Wallet options",
-            "disclaimer-info": "By connecting a wallet you agree to Thales DAO <terms>Terms of Use</terms> and Privacy Policy and acknowledge that you have read and understand the Thales DAO protocol <disclaimer>disclaimer</disclaimer>",
+            "disclaimer": "By connecting a wallet you agree to Overtime DAO <terms>Terms of Use</terms> and <privacyPolicy>Privacy Policy</privacyPolicy> and acknowledge that you have read and understand the Overtime DAO protocol <disclaimer>disclaimer</disclaimer>",
             "balance": "Wallet balance",
             "rewards": "You have claimable rewards"
         },
@@ -135,6 +136,8 @@
         }
     },
     "home": {
+        "fully-onchain": "Fully onchain",
+        "sportsbook-ecosystem": "sportsbook ecosystem",
         "thales": "Thales",
         "protocol": "Protocol",
         "protocol-description-1": "A permissionless ecosystem where every derivative market is a unique smart contract",
@@ -145,7 +148,8 @@
         "total-value-locked": "Total value locked",
         "total-unique-users": "Total unique users",
         "markets-created": "Markets created",
-        "see-all-stats-button": "See All Stats",
+        "see-all-stats-button": "See all stats",
+        "over-token-button": "$OVER token",
         "ecosystem-apps": {
             "title": "Ecosystem apps",
             "thales-markets": "Digital Options marketplace built using Thales architecture. Simplest form of option trading where users can receive a fixed payout on UP, DOWN, IN or OUT positions around various supported asset prices.",
@@ -155,67 +159,76 @@
             "telegram": "By connecting Thales smart contracts to Telegram Bot trading interfaces, several new projects were born. These projects utilize simple trading experience within the easily accessible Telegram app to grow their userbase while leveraging the Thales collateral and onchain market making architecture to provide the backend.",
             "tale-of-thales": "Tale of Thales is a Metaverse minigame that takes you through retro pixel experience of an ancient Greek town of Miletus while teaching you how Thales Markets trading works. You can play the single-player or you can join the multiplayer metaverse, explore the infinity hotel, chat with other players or mint NFTs."
         },
+        "over-token": {
+            "title": "The Heart of Overtime",
+            "description": "$OVER token",
+            "title-1": "Best odds",
+            "description-1": "$OVER is the core betting collateral, providing the best odds and user experience.",
+            "title-2": "Value capture",
+            "description-2": "All Overtime fees and revenue fuel a Buyback & Burn program for $OVER.",
+            "title-3": "Utility & rewards",
+            "description-3": "Benefit from house performance by simply holding $OVER."
+        },
         "investors": {
             "title": "Investors"
         },
         "integrations": {
             "title-link": "Tailored for Developers",
-            "title": "Seamless Integration and Boundless Possibilities",
-            "description": "To the developers poised to shape the future of simple derivatives trading: Thales is your canvas. Our protocol is meticulously designed to ensure that you have a frictionless experience in developing your applications with Thales infrastructure guaranteeing collateral liquidity, market making and security in the background. With comprehensive resources, including in-depth developer documentation, responsive tech support and a vibrant Discord community, Thales empowers you to realize your vision with precision and ease.",
-            "thales-sports-markets-api-title": "Build your own Web3 Sports Markets application",
-            "thales-sports-markets-api-description": "Leverage the decentralization of the Ethereum network and it’s Smart Contracts for full collateralization and decentralization of a wide offering of global Sports Games Markets. By using Thales’ Sports API for SportsAMM and ParlayAMM integration, any developer can permissionlessly have access to a worlds most transparent and fair Sports Markets data with included cutting edge liquidity and trading infrastructure.",
-            "thales-digital-options-api-title": "Build your own Web3 Digital Options trading platform",
-            "thales-digital-options-api-description": "Thales Digital Options contracts provide integrators access to Automated Market Maker, on-demand liquidity and collateralization architecture for onchain Digital Options. With various supported assets ranging from crypto assets to commodities, anyone can integrate with ThalesAMM and RangedAMM contracts and provide it’s users simple-to-use and permissionless derivatives trading platform. Users can instantly place a position on whether the selected Asset Price will be UP or DOWN from selected Strike Price on selected Strike Date. Similarly, users can place IN or OUT positions on Price Ranges of the same Assets.",
-            "thales-speed-markets-api-title": "Build your own Speed Markets",
-            "thales-speed-markets-api-description": "Thales Speed Markets contracts is the newest Thales Protocol product that leverages Pyth Benchmark oracles to facilitate a front-running-free backend for fast intra-day digital options. Users of Thales Speed Markets contracts are able to speculate on the direction of a Crypto Asset price with custom market expiry that can go as short as 15 minutes. With a fixed potential return of +100% (minus the fees) for any type of open market and thus not needing a pricing algorithm, Thales SpeedMarketsAMM contract is super-lightweight and easy to integrate.",
-            "integrate-with-thales-button": "Integrate with Thales",
-            "integrate-with-thales-sports-button": "Integrate with Thales Sports Markets API",
+            "title": "and Boundless Possibilities",
+            "titleHighlight": "Seamless Integration",
+            "description": "To the developers poised to shape the future of the sports betting industry: Overtime smart contracts are your canvas. Overtime codebase and smart contracts are meticulously designed to ensure that you have a frictionless experience in developing your own applications with Overtime infrastructure guaranteeing out-of-the-box collateral liquidity, automated market making and security in the background. With comprehensive resources, including in-depth developer documentation, responsive tech support and a vibrant Discord community, Overtime empowers you to realize your vision with precision and ease.",
+            "sports-markets-api-title": "Build your own Onchain Sports Betting application",
+            "sports-markets-api-description": "Leverage the transparency and openness of the Ethereum network and its Smart Contracts for full collateralization and automated market making for your next-gen sports betting application. By using Overtime’s API for SportsAMM integration, any developer can permissionlessly have access to a worlds most transparent and fair Sports Markets data with included cutting edge liquidity and trading infrastructure.",
+            "digital-options-api-title": "Build your own Web3 Digital Options trading platform",
+            "digital-options-api-description": "Overtime Digital Options contracts provide integrators access to Automated Market Maker, on-demand liquidity and collateralization architecture for onchain Digital Options. With various supported assets ranging from crypto assets to commodities, anyone can integrate with ThalesAMM and RangedAMM contracts and provide it’s users simple-to-use and permissionless derivatives trading platform. Users can instantly place a position on whether the selected Asset Price will be UP or DOWN from selected Strike Price on selected Strike Date. Similarly, users can place IN or OUT positions on Price Ranges of the same Assets.",
+            "speed-markets-api-title": "Build your own Speed Markets application",
+            "speed-markets-api-description": "Speed Markets contracts is the newest Overtime product that leverages Pyth Benchmark oracles to facilitate a front-running-free backend for fast intra-day digital options trading. Users of Overtime Speed Markets contracts are able to speculate on the direction of a Crypto Asset price with custom market expiry that can go as short as 5 minutes. With a fixed potential return of +100% (minus the fees) for any type of open market and thus not needing a pricing algorithm, Overtime's SpeedMarketsAMM contract is super-lightweight and easy to integrate.",
+            "integrate-with-overtime-button": "Integrate with Overtime Sports Markets API",
             "integrate-with-thales-markets-button": "Integrate with Thales Digital Options API",
-            "integrate-with-thales-speed-button": "Integrate with Thales Speed Markets"
+            "integrate-with-speed-markets-button": "Integrate with Speed Markets API"
         },
-        "buying-selling": {
-            "title": "Every Possible Outcome as an ERC20",
-            "description-1": "Thales Protocol architecture tokenizes all unique positions as ERC20 tokens. Every market has a set of unique ERC20 token types that cover all potential exclusive outcomes of that market. These tokenized positions are minted by locking USD collateral in the designated Market Smart Contract. Each locked 1 USD mints 1 of each type of ERC20 tokenized positions. Only one type of these ERC20 positions can win on market expiry and only that type can claim the locked USD, while the losing ERC20 positions expire worthless. With this permissionless and automated architecture, Thales Protocol guarantees transparent and non-custodial full collateralization for all positions at all times.",
-            "description-2": "With liquidity and collateralization solved, the next necessary step is pricing the minted positional ERC20 tokens and allowing for a good trading experience to the public. This is where the unique design of Thales Automated Market Maker comes into play. The Thales AMM contract is whitelisted to mint the ERC20 positions by locking the Liquidity Pool collateral funds in the designated market contracts. After minting, the AMM offers the ERC20 positional tokens on-demand to traders based on Algorithmic Probability Pricing that determines the fixed potential payout on market expiry.",
-            "buying": {
-                "title": "Buying a position",
-                "steps-title": "Buy flow example",
-                "step-1": "ThalesAMM algorithmic probability pricing quotes BTC UP Options at $0.5 per Option",
-                "step-2": "User wants to buy 1000 BTC UP tokens from the ThalesAMM for $500",
-                "step-3": "ThalesAMM takes $1000 from the LP pool",
-                "step-4": "ThalesAMM deposits $1000 to the Market Contract and mints 1000 BTC UP and 1000 BTC DOWN tokens from the Market Contract",
-                "step-5": "ThalesAMM receives $500 from the User and sends 1000 BTC UP tokens to the User"
-            },
-            "selling": {
-                "title": "Exercising a winning position",
-                "steps-title": "Exercise flow example",
-                "step-1": "Bitcoin price was above the Strike Price on the Maturity Date which means that User’s 1000 BTC UP positions are resolved as winning and every 1 BTC UP token is redeemable for $1 while BTC DOWN tokens are deemed worthless",
-                "step-2": "User sends his 1000 BTC UP tokens to the Market Contract and claims the $1000 from the contract"
-            }
+        "sport-betting": {
+            "title": "sports betting",
+            "titleHighlight": "Revolutionizing"
+        },
+        "over-deflationary": {
+            "title": "and scarce by design!",
+            "titleHighlight": "Deflationary",
+            "description": "By chasing the best odds, every bet placed with $OVER token fuels its deflationary nature! House revenue from OVER bets is burned forever, reducing the token’s fixed supply with each use. Additionally, bets made with other cryptocurrencies contribute to $OVER’s scarcity through a buyback and burn mechanism. With every wager on Overtime, $OVER becomes more scarce, creating a powerful positive feedback cycle!"
         },
         "governance": {
             "title-link": "Community-Centric Governance",
-            "title": "Steering the Future, Together",
-            "description": "At Thales, we believe in the collective wisdom of our community. Our governance structure, underpinned by ThalesDAO and the Thales Council, is a testament to our commitment to decentralized decision-making. Every strategic move, every initiative, is guided by the voice of our community. Through a transparent and robust DAO voting mechanism, we ensure that Thales remains of the community, by the community, and for the community.",
-            "explore-thales-dao-button": "Explore Thales DAO"
+            "title": "Steering the Future,",
+            "titleHighlight": "Together",
+            "description": "At Overtime, we believe in the collective wisdom of our community. Our governance structure, underpinned by OvertimeDAO and the Overtime Council, is a testament to our commitment to decentralized decision-making. Every strategic move, every initiative, is guided by the voice of our community. Through a transparent and robust DAO voting mechanism, we ensure that Overtime remains of the community, by the community, and for the community.",
+            "explore-overtime-dao-button": "Explore Overtime DAO"
         },
         "timeline": {
             "title": "Timeline and Roadmap"
         },
         "infrastructure": {
-            "title": "Infrastructure Partners and Backers"
+            "title": "Infrastructure",
+            "titleHighlight": "Partners and Backers"
         },
         "footer": {
-            "thales": {
+            "overtime": {
+                "overtime": "OVERTIME",
                 "home": "Home",
                 "docs": "Docs",
                 "blog": "Blog",
-                "audits": "Audits"
+                "audits": "Audits",
+                "community": "Community"
             },
             "dao-dapp": {
                 "staking": "Staking",
                 "governance": "Governance",
                 "stats": "Stats"
+            },
+            "products": {
+                "products": "PRODUCTS",
+                "overtime": "Overtime",
+                "speed-markets": "Speed markets",
+                "thales-markets": "Thales markets"
             },
             "about": {
                 "about": "ABOUT",
@@ -226,7 +239,7 @@
         }
     },
     "staking": {
-        "migration-banner": "As per <tip>TIP-238</tip>, THALES staking has been deprecated and rewards have been halted. While there is no deadline, <bold>all THALES stakers are advised to unstake</bold>, to prepare for the migration to OVER token. Follow official announcement channels for new updates.",
+        "migration-banner": "As per <tip>TIP-238</tip>, THALES staking has been deprecated and rewards have been halted. While there is no deadline, <bold>all THALES stakers are advised to unstake</bold>, and migrate $THALES to $OVER token <bold><span>here</span></bold>.",
         "nav": {
             "rewards": "Rewards",
             "staking": "Stake & Earn",
@@ -392,8 +405,7 @@
                 "fee-rewards-tooltip": "Annual Percentage Yield estimation for Protocol Rewards in stablecoins",
                 "staked-share-tooltip": "Your percentage of the total amount of THALES staked on this network.",
                 "staked-balance-tooltip": "Amount of THALES tokens you are currently staking on this network.",
-                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed on this network.",
-                "not-eligible-message": "You are not eligible for staking rewards unless your directly staked balance is greater than 0"
+                "escrowed-balance-tooltip": "Amount of THALES tokens you currently have escrowed on this network."
             },
             "my-balance": {
                 "title": "Your staking balance",
@@ -419,7 +431,6 @@
                 "cooldown-label": "Cooldown",
                 "start-unstaking": "Start unstaking",
                 "amount-to-unstake": "Amount to unstake",
-                "user-lping-message": "You cannot unstake while providing liquidity for Thales or Overtime.",
                 "about-title": "How THALES staking works",
                 "about-1": "By staking THALES on Optimism, Arbitrum or Base, every week you earn two types of rewards: Staking rewards in THALES tokens and Protocol Rewards in stablecoins. These rewards are synchronised and equal across all supported networks.",
                 "about-2": "Staking Rewards are the main inflationary rewards distributed to all stakers once a week proportional to their Staked Share percentage value.",
@@ -489,7 +500,6 @@
                 "merge-blocked-message": {
                     "title": "In order to merge account, you need to",
                     "src-claim": "Claim the staking rewards from the source account.",
-                    "user-lping": "You can't merge account while providing liquidity for Thales or Overtime.",
                     "src-unstaking": "Cancel unstaking from the source account.",
                     "dest-claim": "Claim the staking rewards from the destination account.",
                     "dest-unstaking": "Cancel unstaking from the destination account."
@@ -514,155 +524,8 @@
             "source": "Source",
             "destination": "Destination"
         },
-        "amm-lp": {
-            "title": "Provide Liquidity",
-            "description": "<h1>Description</h1><p>Liquidity providing involves users depositing stablecoin collateral into a smart contract-based liquidity pool for Thales markets trading. The collateral deposited is used to facilitate trading on Thales' AMM.</p><p>To be able to provide liquidity you'll need to be staking THALES. There's no maximum cap per wallet and you may deposit a maximum of 1 {{currency}} per {{thalesStakedAmount}} THALES staked until the liquidity pool is filled.</p><p>At the end of each round, the proportional share of that round's PnL will be added to your deposited balance.</p><p>If you wish to withdraw, you can signal that at any time during the ongoing round, and at the end of the round the amount you signaled for withdrawal (inclusive of that round's PnL) is sent to you. The minimum amount to be withdrawn is set to 10%.</p><p>If you decide to unstake THALES while providing liquidity, please be aware that you'll need to signal a withdrawal from the liquidity pool first.</p><p>Providing liquidity exposes you to various risks including potential losses due to users winning in trading as well as smart contract security risks. Please make sure you understand these risks before depositing.</p><p><tipLink>TIP-139</tipLink> has more details on the technical implementation of Thales AMM liquidity providing.</p>",
-            "variables": "<h1>Variables</h1><ul><li>Max total deposit: {{maxAllowedDeposit}}</li><li>Max users in the pool: {{maxAllowedUsers}}</li><li>Minimum deposit: {{minDepositAmount}}</li><li>Round duration: {{roundLength}} days</li></ul>",
-            "liquidity-pool-not-started-message": "The liquidity pool has not started",
-            "liquidity-pool-paused-message": "The liquidity pool is paused",
-            "round-end-label": "The round ends in",
-            "round-ended-label": "Round ended",
-            "total-info-label": "Global LP info",
-            "users-in-liquidity-pool-label": "Users in the liquidity pool: {{number}} / {{max}}",
-            "your-share-label": "Share of pool:",
-            "pool-size": "Pool size:",
-            "users-in-pool": "Users in pool:",
-            "total-deposits": "Users in pool:",
-            "your-info-label": "Your LP info",
-            "current-balance-label": "Current balance",
-            "total-deposited": "Total deposited",
-            "your-pnl": "Your current PnL",
-            "your-apr": "Your average APR",
-            "next-round-balance-label": "Next round balance estimation",
-            "max-allowance-label": "Max allowance",
-            "your-thales-staked-label": "Your THALES staked",
-            "allowance-multiplier-label": "Allowance multiplier",
-            "full-withdrawal-request-label": "Withdrawal request: {{amount}}<tooltip />",
-            "partial-withdrawal-request-label": "Withdrawal request: {{percentage}} of the balance ({{amount}}<tooltip />)",
-            "estimated-amount-tooltip": "This is an estimated amount. The actual amount will be calculated upon closing the current round based on the round PnL.",
-            "available-to-withdraw-label": "Available to withdraw: <bold>{{amount}}</bold>",
-            "nothing-to-withdraw-label": "Nothing to withdraw.",
-            "withdrawal-message": "You can request a full/partial withdrawal and your funds will be sent to you automatically at the end of the round when the round closes.",
-            "full-withdrawal-requested-message": "You requested to withdraw a full balance of <bold>{{amount}}</bold><tooltip />.",
-            "partial-withdrawal-requested-message": "You requested to withdraw {{percentage}} of the balance (<bold>{{amount}}</bold><tooltip />).",
-            "withdrawal-requested-message": "Your funds will be sent to you automatically at the end of the round when the round closes.",
-            "first-deposit-withdrawal-message": "You deposited for the next round and you can withdraw these funds at the end of the next round.",
-            "deposit-withdrawal-warning": "Withdrawal is requested, you cannot deposit.",
-            "deposit-max-amount-of-users-warning": "Maximum number of users in the liquidity pool is reached, you cannot deposit.",
-            "deposit-liquidity-pool-cap-reached-warning": "The liquidity pool cap is reached, you cannot deposit.",
-            "deposit-liquidity-pool-cap-error": "Deposit amount exceeds liquidity pool cap",
-            "deposit-staked-thales-error": "Deposit amount exceeds max allowance, stake more THALES to deposit",
-            "deposit-min-amount-error": "The minimum amount for the deposit is {{amount}}",
-            "withdrawal-deposit-warning": "You cannot withdraw as you already deposited for the next round.",
-            "full-withdrawal-label": "Full withdrawal",
-            "partial-withdrawal-label": "Partial withdrawal",
-            "withdrawal-amount-label": "Withdrawal amount: <bold>{{amount}}</bold>",
-            "closing-round": "Closing round...",
-            "round-successfully-closed": "Round successfully closed",
-            "tabs": {
-                "deposit": "Deposit",
-                "withdraw": "Withdraw"
-            },
-            "button": {
-                "deposit-label": "Deposit",
-                "deposit-progress-label": "Deposit in progress...",
-                "deposit-confirmation-message": "Deposit successfully placed",
-                "request-withdrawal-label": "Request withdrawal",
-                "request-withdrawal-confirmation-message": "Withdrawal request successfully sent",
-                "get-thales-label": "Get THALES",
-                "stake-thales-label": "Stake THALES",
-                "close-round": "Close round"
-            },
-            "pnl": {
-                "pnl-per-round": {
-                    "title": "PnL per round"
-                },
-                "cumulative-pnl": {
-                    "title": "PnL over time"
-                },
-                "no-data": "No PnL data for previous rounds.",
-                "lifetime-pnl": "Lifetime PnL",
-                "previous-pnl": "Previous round PnL"
-            },
-            "user-transactions": {
-                "title": "USER TXs",
-                "your-transactions-title": "YOUR TXs",
-                "no-transactions": "No user transactions associated with this liquidity pool in the selected round.",
-                "round-label": "Round",
-                "type": {
-                    "deposit": "Deposit",
-                    "withdrawalRequest": "Withdrawal Request",
-                    "claim": "Withdrawal Claim"
-                }
-            },
-            "how-it-works": {
-                "thales-amm": {
-                    "title": "PROVIDE LIQUIDITY FOR DIGITAL OPTIONS AMM",
-                    "subtitle": "How Thales AMM LP works",
-                    "description": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Digital Options Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Thales AMM Liquidity Pool. <tip>TIP-139</tip> document provides detailed technical information on this process."
-                },
-                "thales-amm-susd": {
-                    "title": "PROVIDE LIQUIDITY FOR DIGITAL OPTIONS AMM",
-                    "subtitle": "How Thales AMM LP works",
-                    "description": "Liquidity providing in Thales markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Digital Options Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Thales AMM Liquidity Pool. <tip>TIP-139</tip> document provides detailed technical information on this process."
-                },
-                "sports-amm": {
-                    "title": "PROVIDE LIQUIDITY FOR SPORTS SINGLES AMM",
-                    "subtitle": "How Sports AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Sports Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Sports AMM Liquidity Pool. <tip>TIP-99</tip> document provides detailed technical information on this process."
-                },
-                "parlay-amm": {
-                    "title": "PROVIDE LIQUIDITY FOR SPORTS PARLAY AMM",
-                    "subtitle": "How Parlay AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Parlay Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Parlay AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
-                },
-                "overtime-usdc": {
-                    "title": "PROVIDE LIQUIDITY FOR SPORTS OVERTIME USDC AMM",
-                    "subtitle": "How Overtime USDC AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Overtime Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Overtime AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
-                },
-                "overtime-weth": {
-                    "title": "PROVIDE LIQUIDITY FOR OVERTIME WETH AMM",
-                    "subtitle": "How Overtime WETH AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Overtime Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Overtime AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
-                },
-                "overtime-thales": {
-                    "title": "PROVIDE LIQUIDITY FOR OVERTIME THALES AMM",
-                    "subtitle": "How Overtime THALES AMM LP works",
-                    "description": "Liquidity provision in Thales Sports Markets involves depositing stablecoin as collateral into a liquidity pool, which the <bold>Thales' Overtime Automated Market Maker (AMM)</bold> uses to collateralize trades. Your share of the pool's total profit and loss (PnL) is proportional to your share of the total liquidity within the pool. PnL is added to your balance at the end of each weekly round. You can request to withdraw from the pool at any time and the withdrawal (including that ongoing round's PnL) will be processed and unlocked at the round's end. The minimum withdrawal is 10% of your total balance. Be aware of risks like potential losses and smart contract vulnerabilities before depositing in the Overtime AMM Liquidity Pool. <tip>TIP-142</tip> document provides detailed technical information on this process."
-                },
-                "variables": "Variables",
-                "limits": "Limits and specifications",
-                "max-total-deposit": "Max total deposit",
-                "max-users": "Max users in the pool",
-                "minimum-deposit": "Minimum deposit",
-                "round-duration": "Round duration",
-                "round-ends-in": "Round ends in",
-                "days": "days",
-                "get-thales": "Get THALES",
-                "stake-thales": "Stake THALES"
-            },
-            "deposit-withdraw": {
-                "deposit": "Deposit",
-                "depositing": "Depositing...",
-                "withdraw": "Withdraw",
-                "withdrawing": "Withdrawing...",
-                "deposit-confirmation-message": "Deposit successfully placed"
-            },
-            "table": {
-                "date-time-col": "Date | Time",
-                "wallet-address": "Wallet address",
-                "type-col": "Type",
-                "amount-col": "Amount",
-                "asset": "Asset",
-                "maturity-date-col": "Maturity",
-                "strike-price-col": "Strike Price",
-                "usd-value-col": "Usd Value",
-                "result-col": "Result",
-                "tx-status-col": "TX Status"
-            }
-        },
         "lp-staking": {
+            "migration-banner": "As per <tip>TIP-238</tip>, THALES/WETH LP staking has been deprecated and rewards have been halted. While there is no deadline, <bold>all THALES/WETH LP stakers are advised to unstake</bold>, and migrate $THALES to $OVER token <bold><span>here</span></bold>.",
             "header": "How LP Staking works?",
             "staking-data": "Staking data",
             "other-lp": "Other LP Staking providers",
@@ -738,6 +601,7 @@
         "links": {
             "dashboard": "Dashboard",
             "token": "Token",
+            "over-token": "Over token",
             "amm-lp": "AMM LP",
             "dao": "DAO",
             "docs": "Docs",
@@ -748,7 +612,13 @@
             "about": "About",
             "about-governance": "Governance",
             "about-token": "Thales token",
-            "blog": "Blog"
+            "blog": "Blog",
+            "community": "Community",
+            "products": "Products",
+            "resources": "Resources",
+            "overtime": "Overtime",
+            "speed-markets": "Speed markets",
+            "thales-markets": "Thales markets"
         }
     },
     "footer": {
@@ -805,17 +675,17 @@
             "of-total-supply": "Of total supply"
         },
         "token-info": {
-            "title": "Thales token info",
+            "title": "OVER token info",
             "total-supply": "Total supply",
             "circulating-supply": "Circulating supply",
             "burned-supply": "Burned supply",
-            "total-100m": "Total 100M"
+            "total-69m": "Total 69,420,000"
         },
         "tvl": {
             "title": "TVL",
             "token-staking-tvl": "THALES token staking",
             "overtime-amm-tvl": "Sports Markets",
-            "thales-amm-tvl": "Digital options",
+            "thales-amm-tvl": "Digital Options",
             "vaults-tvl": "Vaults",
             "speed-tvl": "Speed Markets"
         }
@@ -1205,5 +1075,66 @@
         "ammlp": {
             "round": "Round {{roundNumber}}"
         }
+    },
+    "over-token": {
+        "title": "The heart of overtime",
+        "description-1": "The $OVER token is the driving force behind Overtime's growth and success. As the main betting collateral within Overtime’s smart contracts, $OVER provides bettors with the best odds while empowering Overtime’s user experience.",
+        "description-2": "All betting and liquidity fees flow directly into the Buyback & Burn program, giving the $OVER token a unique utility both as a betting token and exposure to house performance. $OVER is more than a token—it’s your stake in the future of sports betting.",
+        "buy-over": "Buy $OVER",
+        "over-token-info-title": "token basic information",
+        "over-token-info-title-highlight": "$OVER",
+        "over-token-total-supply": "Total supply",
+        "over-token-total-burned": "Total burned",
+        "over-token-circulating-supply": "Circulating supply",
+        "over-token-contract-addresses": "Token contract addresses",
+        "list": {
+            "1": "$OVER on Mainnet: ",
+            "2": "$OVER on Optimism: ",
+            "3": "$OVER on Arbitrum: ",
+            "4": "$OVER on Base: "
+        },
+        "bridge": "Bridge",
+        "bridge-description": "Use <transporterLink>Chainlink Transporter</transporterLink> for bridging $OVER across blockchains. Transporter is built on top of <ccipLink>Chainlink CCIP</ccipLink>, the industry-leading cross-chain protocol for defense-in-depth security.",
+        "bridge-over": "Bridge $OVER",
+        "total-supply": "Total 69,420,000",
+        "best-odds-title": "Enjoy the",
+        "best-odds-title-highlight": "best odds!",
+        "best-odds-description-1": "Overtime sportsbook is designed to provide bettors that use $OVER token the best betting experience no Overtime! Bets paced with $OVER token enable better return, compared to using other supported forms of collateral. ",
+        "best-odds-description-2": "The benefits of using the $OVER token are available for all users seamlessly! All users of Overtime app are able to acquire $OVER tokens directly from the app by using the integrated swap function which uses popular DEX aggregators in the background.",
+        "valute-capture-title": "Value capture!",
+        "valute-capture-description-1": "Entire revenue and fee capture of Overtime fuels the Buyback & Burn system for the $OVER token. All betting action with $OVER token incurs a 20% Performance Fee that gets burned permanently. The other 80% goes back to the liquidity pool that provides liquidity to $OVER bets. Similarly, betting fees and additional 20% performance fee from LP pools from other collateral types buys back the $OVER token on the open market which then gets burned as well.",
+        "valute-capture-description-2": "Every bet made on Overtime fuels $OVER token’s deflationary nature and increases its scarcity. As Overtime organically grows, so does the $OVER token adoption and utilization, which increases the Buyback and Burn amounts exponentially.",
+        "governance-title": "Decentralised Governance",
+        "governance-title-highlight": "powered by the $OVER token!",
+        "governance-description": "All holders of $OVER token will have voting power equal to their holding amount, when it comes to elections of the Overtime Council, the main governing body of Overtime!",
+        "buy-over-modal": {
+            "title": "Buy $OVER",
+            "list": {
+                "1": "Buy $OVER on ",
+                "2": "Buy $OVER on ",
+                "3": "Buy $OVER on "
+            }
+        }
+    },
+    "migration-modal": {
+        "title": "Migrate $THALES to $OVER",
+        "description": "<p>Thales DAO has officially migrated to Overtime DAO. You can migrate your  $THALES tokens to $OVER tokens here.</p><p>1 $THALES = 1 $OVER</p><p>More details on the migration in <tipLink>TIP-238</tipLink>.</p>",
+        "unstake-description": "<p>Still staking $THALES? Unstake or vest $THALES <stakingLink>here</stakingLink>.</p><p>Staking THALES/WETH LP tokens? Unstake <lpStakingLink>here</lpStakingLink>.</p>",
+        "amount-label": "THALES to migrate",
+        "over-to-receive": "OVER to receive",
+        "migration-confirmation-message": "THALES successfully migrated to OVER",
+        "button": {
+            "migrate-label": "Migrate",
+            "migrate-progress-label": "Migrating"
+        }
+    },
+    "brand-assets": {
+        "title": "Overtime brand kit",
+        "header": "Guide & Logos for the",
+        "headerHighlight": "Overtime Brand",
+        "description": "Fully onchain sportsbook - just connect and start betting. Use various cryptocurrencies seamlessly and hassle free. Offers everything traditional sportsbooks do and more. Earn crypto airdrops, free bets and other rewards. No bans, no blacklists – win bets without limitations. Deposit funds in the liquidity pool and become the house.",
+        "download": "Download",
+        "download-light": "Download light",
+        "download-dark": "Download dark"
     }
 }

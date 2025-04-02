@@ -122,12 +122,12 @@ const SingleChoice = styled(FlexDivColumnCentered)<{ isDisabled?: boolean }>`
     &.selected {
         margin: -1px;
         margin-bottom: 19px;
-        border: 2px solid ${(props) => props.theme.borderColor.senary};
+        border: 2px solid ${(props) => props.theme.borderColor.quaternary};
     }
     &:hover {
         ${(props) => (props.isDisabled ? '' : 'margin: -1px;')}
         ${(props) => (props.isDisabled ? '' : 'margin-bottom: 19px;')}
-        ${(props) => (props.isDisabled ? '' : `border: 2px solid ${props.theme.borderColor.senary};`)}        
+        ${(props) => (props.isDisabled ? '' : `border: 2px solid ${props.theme.borderColor.quaternary};`)}        
         ${(props) => (props.isDisabled ? '' : 'cursor: pointer;')}
     }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
@@ -146,8 +146,8 @@ const Button = styled.button<{ margin?: string; padding?: string; disabled?: boo
     border: 0;
     background: ${(props) => props.theme.textColor.secondary};
     text-align: center;
-    font-family: NunitoExtraBold;
     font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};
     &:disabled {

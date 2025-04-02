@@ -83,12 +83,11 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                                             <Tooltip
                                                 overlay={voteChoice}
                                                 overlayInnerStyle={{
-                                                    fontFamily: 'Nunito !important',
                                                     textAlign: 'center',
                                                 }}
                                             >
                                                 <FlexDivCentered>
-                                                    <VoteLabel fontWeight={500} color={Colors.GRAY}>
+                                                    <VoteLabel fontWeight={500} color={Colors.LIGHT_GRAY}>
                                                         {t(`governance.voted`)}
                                                     </VoteLabel>
                                                     <VoteLabel color={Colors.WHITE}>{voteChoice}</VoteLabel>
@@ -125,12 +124,11 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                                                 <Tooltip
                                                     overlay={t(`governance.not-voted`)}
                                                     overlayInnerStyle={{
-                                                        fontFamily: 'Nunito !important',
                                                         textAlign: 'center',
                                                     }}
                                                 >
                                                     <FlexDivCentered>
-                                                        <VoteLabel fontWeight={500} color={Colors.GRAY}>
+                                                        <VoteLabel fontWeight={500} color={Colors.LIGHT_GRAY}>
                                                             {t(`governance.not-voted`)}
                                                         </VoteLabel>
                                                     </FlexDivCentered>
@@ -150,7 +148,7 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                                     overlay={t('governance.proposal.for-votes', {
                                         votes: calculatedVotesSectionsWidth[0].votesNumber,
                                     })}
-                                    overlayInnerStyle={{ fontFamily: 'Nunito !important', textAlign: 'center' }}
+                                    overlayInnerStyle={{ textAlign: 'center' }}
                                 >
                                     <ColoredVotesSection
                                         width={calculatedVotesSectionsWidth[0].width}
@@ -163,7 +161,7 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                                     overlay={t('governance.proposal.against-votes', {
                                         votes: calculatedVotesSectionsWidth[1].votesNumber,
                                     })}
-                                    overlayInnerStyle={{ fontFamily: 'Nunito !important', textAlign: 'center' }}
+                                    overlayInnerStyle={{ textAlign: 'center' }}
                                 >
                                     <ColoredVotesSection
                                         width={
@@ -179,7 +177,7 @@ const CouncilTipVotes: React.FC<CouncilTipVotesProps> = ({ proposal, proposalRes
                                     overlay={t('governance.proposal.not-voted', {
                                         votes: calculatedVotesSectionsWidth[2].votesNumber,
                                     })}
-                                    overlayInnerStyle={{ fontFamily: 'Nunito !important', textAlign: 'center' }}
+                                    overlayInnerStyle={{ textAlign: 'center' }}
                                     overlayClassName="left-margin-tooltip"
                                 >
                                     <ColoredVotesSection

@@ -92,7 +92,7 @@ const Row = styled(FlexDivRowCentered)`
 const Value = styled(FlexDivColumnCentered)<{ isSelected: boolean }>`
     width: 45px;
     height: ${HEIGHT};
-    background: ${(props) => (props.isSelected ? props.theme.textColor.secondary : props.theme.background.tertiary)};
+    background: ${(props) => (props.isSelected ? props.theme.textColor.secondary : props.theme.borderColor.secondary)};
     border-radius: 8px;
     align-items: center;
     margin-right: 10px;
@@ -102,7 +102,6 @@ const Value = styled(FlexDivColumnCentered)<{ isSelected: boolean }>`
 
 const Text = styled.span<{ isSelected?: boolean }>`
     display: flex;
-    font-style: normal;
     font-weight: ${(props) => (props.isSelected ? 'bold' : 'normal')};
     font-size: 13px;
     line-height: 15px;

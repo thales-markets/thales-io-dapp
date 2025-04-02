@@ -58,15 +58,12 @@ const ProtocolVolume: React.FC = () => {
                     </NumericStats>
                 </WidgetHeader>
                 <InfoSection side="left">
-                    <InfoText>{t('dashboard.protocol-volume.thales-amm')}</InfoText>
                     <InfoText>{t('dashboard.protocol-volume.overtime-amm')}</InfoText>
+                    <InfoText>{t('dashboard.protocol-volume.thales-amm')}</InfoText>
                     <InfoText>{t('dashboard.protocol-volume.speed-amm')}</InfoText>
                     <InfoText>{t('dashboard.protocol-volume.total-unique-users')}</InfoText>
                 </InfoSection>
                 <InfoSection side="right">
-                    <InfoStats>
-                        {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats.thalesAmmVolume) : '-'}
-                    </InfoStats>
                     <InfoStats>
                         {volumeStats
                             ? formatCurrencyWithSign(
@@ -74,6 +71,9 @@ const ProtocolVolume: React.FC = () => {
                                   volumeStats.overtimeAmmVolume + volumeStats.parlayAmmVolume
                               )
                             : '-'}
+                    </InfoStats>
+                    <InfoStats>
+                        {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats.thalesAmmVolume) : '-'}
                     </InfoStats>
                     <InfoStats>
                         {volumeStats ? formatCurrencyWithSign(USD_SIGN, volumeStats.speedAmmVolume) : '-'}

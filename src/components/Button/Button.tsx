@@ -59,22 +59,22 @@ const Wrapper = styled.button<{
     borderColor?: string;
     fontSize?: string;
 }>`
-    font-family: Nunito;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-transform: uppercase;
     width: ${(props) => props.width || 'auto'};
-    min-height: ${(props) => props.height || '34px'};
-    border: 1px solid ${(props) => props.borderColor || props.theme.button.background.secondary};
+    min-height: ${(props) => props.height || '30px'};
+    border: 1px solid ${(props) => props.borderColor || props.theme.button.borderColor.secondary};
     border-radius: 8px;
-    font-weight: normal;
-    font-size: ${(props) => props.fontSize || '18px'};
+    font-weight: 600;
+    font-size: ${(props) => props.fontSize || '15px'};
     line-height: 100%;
     cursor: pointer;
     color: ${(props) => props.textColor || props.theme.button.textColor.secondary};
-    background-color: ${(props) => props.backgroundColor || props.theme.button.background.primary};
+    background-color: ${(props) => props.backgroundColor || props.theme.button.background.secondary};
     margin: ${(props) => props.margin || ''};
-    padding: ${(props) => props.padding || '0 30px'};
+    padding: ${(props) => props.padding || '3px 30px'};
     outline: none;
     &:disabled {
         opacity: 0.5;

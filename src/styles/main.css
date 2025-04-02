@@ -1,10 +1,11 @@
 @import './fonts.css';
 @import './icons.css';
 @import './logos.css';
+@import './overtime-icons.css';
 
 html {
     scroll-behavior: smooth;
-    background: #313652;
+    background: #07091c;
 }
 
 html,
@@ -115,7 +116,7 @@ body {
         env(safe-area-inset-left, 0);
     overflow-x: hidden !important;
     padding-right: 0 !important;
-    font-family: Nunito;
+    font-family: Montserrat;
 }
 ol,
 ul {
@@ -141,7 +142,7 @@ table {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     scrollbar-width: thin;
-    scrollbar-color: #c6c8da transparent;
+    scrollbar-color: #a9abbb transparent;
 }
 
 *::-webkit-scrollbar {
@@ -153,7 +154,7 @@ table {
     border-radius: 8px;
 }
 *::-webkit-scrollbar-thumb {
-    background: #c6c8da;
+    background: #a9abbb;
     border-radius: 8px;
 }
 
@@ -165,6 +166,13 @@ input::-webkit-inner-spin-button {
 
 input[type='number'] {
     -moz-appearance: textfield; /* Firefox */
+}
+
+button {
+    font-family: Montserrat;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
 
 #root {
@@ -198,25 +206,35 @@ a {
 }
 
 .chartLabel {
-    font-weight: 400;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    fill: rgb(255, 255, 255) !important;
+    font-family: Montserrat;
+    width: min-content;
+    text-align: center;
+}
+
+.chartLabelSmall {
+    font-weight: 600;
     font-size: 12px;
     line-height: 20px;
     fill: rgb(255, 255, 255) !important;
-    font-family: Nunito !important;
+    font-family: Montserrat;
     width: min-content;
     text-align: center;
 }
 
 @keyframes pulse {
-	0% {
-		box-shadow: 0 0 0 0 rgba(25, 248, 239, 0.7);
-	}
+    0% {
+        box-shadow: 0 0 0 0 rgba(25, 248, 239, 0.7);
+    }
 
-	70% {
-		box-shadow: 0 0 0 10px rgba(25, 248, 239, 0);
-	}
+    70% {
+        box-shadow: 0 0 0 10px rgba(25, 248, 239, 0);
+    }
 
-	100% {
-		box-shadow: 0 0 0 0 rgba(25, 248, 239, 0);
-	}
+    100% {
+        box-shadow: 0 0 0 0 rgba(25, 248, 239, 0);
+    }
 }

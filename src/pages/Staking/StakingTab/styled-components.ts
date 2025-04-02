@@ -4,12 +4,11 @@ import { FlexDivColumn, FlexDivColumnCentered } from 'styles/common';
 
 export const Container = styled.div`
     color: ${(props) => props.theme.textColor.tertiary};
-    font-family: Nunito;
     font-size: 13px;
     display: grid;
     width: 60%;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 170px min-content;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 150px min-content;
     column-gap: 10px;
     row-gap: 10px;
     grid-template-areas: 'top top' 'upper-left upper-right' 'bottom bottom';
@@ -36,20 +35,6 @@ export const Top = styled.div`
     justify-content: space-between;
 `;
 
-export const UpperLeft = styled.div`
-    grid-area: upper-left;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-export const UpperRight = styled.div`
-    grid-area: upper-right;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
 export const Bottom = styled.div`
     grid-area: bottom;
     display: flex;
@@ -66,9 +51,6 @@ export const InputContainer = styled.div`
     > div > span {
         font-size: 13px;
         text-transform: none;
-    }
-    > div > span:nth-child(2) {
-        font-family: Nunito;
     }
 `;
 
