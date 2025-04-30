@@ -117,7 +117,7 @@ const ThalesTokenInfo: React.FC = () => {
                         <InfoText>{t('dashboard.token-burn.of-total-supply')}</InfoText>
                         <InfoStats>
                             {overTokenInfo
-                                ? `${formatCurrency((overTokenInfo.burned / overTokenInfo.circulatingSupply) * 100)}%`
+                                ? `${formatCurrency((overTokenInfo.burned / overTokenInfo.totalSupply) * 100)}%`
                                 : 'N/A'}
                         </InfoStats>
                     </FlexDivFullWidthSpaceBetween>
