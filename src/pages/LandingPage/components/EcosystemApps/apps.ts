@@ -63,7 +63,7 @@ export const ECOSYSTEM_DAPP: Record<EcosystemDappType, EcosystemDapp> = {
     },
     [EcosystemDappType.SPEED_MARKETS]: {
         icon: 'overtime-icon overtime-icon--speed-markets',
-        title: 'best crypto digital options in the universe',
+        title: 'Fast paced ETH and BTC Digital Options trading',
         description: '',
         actionText: 'Use Speed Markets',
         link: 'https://speedmarkets.xyz/',
@@ -75,7 +75,7 @@ export const ECOSYSTEM_DAPP: Record<EcosystemDappType, EcosystemDapp> = {
     },
     [EcosystemDappType.THALES_MARKETS]: {
         icon: 'overtime-icon overtime-icon--thales-markets',
-        title: 'Simplifying option trading on various asset',
+        title: 'Simplified and versatile options trading on various assets',
         description: '',
         actionText: 'Use Thales Markets',
         link: 'https://thalesmarket.io/',
