@@ -5,7 +5,7 @@ import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import { FlexDiv } from 'styles/common';
 
-const IS_VISIBLE = false;
+const IS_VISIBLE = true;
 
 const Banner: React.FC = () => {
     const [showThalesToOverMigrationModal, setShowThalesToOverMigrationModal] = useState<boolean>(false);
