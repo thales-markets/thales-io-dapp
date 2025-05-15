@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import styled, { useTheme } from 'styled-components';
-import { FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivRow, FlexDivSpaceBetween } from 'styles/common';
+import { FlexDivCentered, FlexDivColumn, FlexDivColumnCentered, FlexDivSpaceBetween } from 'styles/common';
 import { formatCurrencyWithKey } from 'thales-utils';
 import { BuybackByDate } from 'types/token';
 import { ThemeInterface } from 'types/ui';
@@ -18,16 +18,15 @@ const BurnChart: React.FC<BurnChartProps> = ({ buybackByDates }) => {
 
     const CustomTooltip = ({ active, payload }: any) => {
         if (active && payload && payload.length) {
-            console.log(payload, payload[0].payload, payload[0].payload.date);
             return (
                 <TooltipContainer>
                     <TooltipLabel>{payload[0].payload.date}</TooltipLabel>
                     <TooltipInfoContainer>
-                        <TooltipInfoLabel>Cumulative burn:</TooltipInfoLabel>
+                        <TooltipInfoLabel>{t('over-token.chart.cumulative-burn')}:</TooltipInfoLabel>
                         <TooltipInfoValue>{formatCurrencyWithKey(OVER_CURRENCY, payload[0].value)}</TooltipInfoValue>
                     </TooltipInfoContainer>
                     <TooltipInfoContainer>
-                        <TooltipInfoLabel>Daily burn:</TooltipInfoLabel>
+                        <TooltipInfoLabel>{t('over-token.chart.daily-burn')}:</TooltipInfoLabel>
                         <TooltipInfoValue>
                             {formatCurrencyWithKey(OVER_CURRENCY, payload[0].payload.amountOut)}
                         </TooltipInfoValue>
@@ -38,24 +37,13 @@ const BurnChart: React.FC<BurnChartProps> = ({ buybackByDates }) => {
         return null;
     };
 
-    const CustomizedDot: React.FC = (props: any) => {
-        const { cx, cy } = props;
-
-        return (
-            <svg height="8" width="8" overflow="visible">
-                <circle cx={cx} cy={cy} r="4" fill={theme.textColor.primary} />
-            </svg>
-        );
-    };
-
     const noData = buybackByDates.length === 0;
 
     return (
         <Container>
-            <Header noData={noData}></Header>
             {!noData ? (
                 <ChartContainer>
-                    <Title>$OVER TOKEN BUYBACK AND BURN </Title>
+                    <Title>{t('over-token.chart.title')}</Title>
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={buybackByDates}>
                             {/* <CartesianGrid strokeDasharray="2 2" strokeWidth={0.5} stroke={theme.textColor.primary} /> */}
@@ -108,7 +96,7 @@ const BurnChart: React.FC<BurnChartProps> = ({ buybackByDates }) => {
                     </ResponsiveContainer>
                 </ChartContainer>
             ) : (
-                <NoData>{t(`liquidity-pool.pnl.no-data`)}</NoData>
+                <NoData>{t(`over-token.chart.no-data`)}</NoData>
             )}
         </Container>
     );
@@ -119,6 +107,7 @@ const Container = styled(FlexDivColumn)`
 `;
 
 const ChartContainer = styled.div`
+    margin-top: 30px;
     position: relative;
     background: ${(props) => props.theme.background.primary};
     padding: 30px 30px;
@@ -168,10 +157,6 @@ const TooltipInfoValue = styled.span`
     font-weight: 600;
 `;
 
-const Header = styled(FlexDivRow)<{ noData?: boolean }>`
-    margin: ${(props) => (props.noData ? '20px 0px 5px 0px' : '20px 6px 5px 58px')};
-`;
-
 const Title = styled.span`
     position: absolute;
     color: ${(props) => props.theme.textColor.primary};
@@ -183,10 +168,11 @@ const Title = styled.span`
 `;
 
 const NoData = styled(FlexDivCentered)`
-    border: 2px dotted ${(props) => props.theme.textColor.secondary};
+    border: 2px dotted ${(props) => props.theme.textColor.primary};
     margin-bottom: 10px;
+    margin-top: 30px;
     height: 200px;
-    color: ${(props) => props.theme.textColor.secondary};
+    color: ${(props) => props.theme.textColor.primary};
     padding: 10px;
     text-align: center;
 `;

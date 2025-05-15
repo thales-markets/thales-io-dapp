@@ -16,9 +16,9 @@ export const Content = styled.div`
     }
 `;
 
-export const OverContainer = styled(FlexDiv)`
+export const OverContainer = styled(FlexDiv)<{ marginTop?: string }>`
     width: 100%;
-    margin-top: 40px;
+    margin-top: ${(props) => props.marginTop || '0px'};
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 0px;
         flex-direction: column;
@@ -26,6 +26,8 @@ export const OverContainer = styled(FlexDiv)`
 `;
 
 export const OverLeftContainer = styled(FlexDivColumnCentered)<{ flexBasis?: string }>`
+    position: relative;
+    justify-content: start;
     flex-basis: ${(props) => props.flexBasis || '50%'};
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
@@ -33,20 +35,39 @@ export const OverLeftContainer = styled(FlexDivColumnCentered)<{ flexBasis?: str
     }
 `;
 
+export const BurnContainer = styled(FlexDivColumnCentered)`
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    padding: 0 50px 0 0;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        align-items: center;
+    }
+`;
+
 export const OverRightContainer = styled(FlexDivColumnCentered)<{ flexBasis?: string; padding?: string }>`
+    position: relative;
     flex-basis: ${(props) => props.flexBasis || '50%'};
     padding: ${(props) => props.padding || '20px'};
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        align-items: center;
+    }
+`;
+
+export const CoinsContainer = styled(FlexDivColumnCentered)`
+    position: absolute;
+    bottom: -100px;
+    right: 0;
+    padding: 0 50px 0 0;
     img {
-        height: 500px;
-        width: 500px;
+        width: 435px;
+        height: 369px;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
         align-items: center;
-        img {
-            height: 300px;
-            width: 300px;
-        }
     }
 `;
 
@@ -85,7 +106,7 @@ export const CirculatingSupply = styled(FlexDivCentered)`
 `;
 
 export const BurnInfoContainer = styled(FlexDivRow)`
-    gap: 45px;
+    gap: 40px;
     width: 100%;
     margin-top: 30px;
     flex: 1 1 0;

@@ -1086,6 +1086,10 @@
         "over-token-total-supply": "Total supply",
         "over-token-total-burned": "Total burned",
         "over-token-circulating-supply": "Circulating supply",
+        "over-token-initial-supply": "Initial supply",
+        "over-token-burn-rate": "Burn rate",
+        "over-token-burned": "$OVER burned",
+        "over-token-burning": "Burning",
         "over-token-contract-addresses": "Token contract addresses",
         "list": {
             "1": "$OVER on Mainnet: ",
@@ -1114,6 +1118,18 @@
                 "2": "Buy $OVER on ",
                 "3": "Buy $OVER on "
             }
+        },
+        "chart": {
+            "title": "$OVER buyback and burn",
+            "no-data": "No data available",
+            "cumulative-burn": "Cumulative burn",
+            "daily-burn": "Daily burn",
+            "circulating-supply": "Circulating supply",
+            "burned-supply": "Total burned",
+            "percentage-of-total": "% of total supply",
+            "percentage-burned": "Percentage burned",
+            "circulating": "Circulating",
+            "burned": "Burned"
         }
     },
     "migration-modal": {

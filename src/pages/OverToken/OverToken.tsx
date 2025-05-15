@@ -1,5 +1,7 @@
-import coins from 'assets/images/coins.webp';
+import burn from 'assets/images/burn.webp';
+import overCoins from 'assets/images/over-coins.webp';
 import SPAAnchor from 'components/SPAAnchor';
+import { OVER_CURRENCY } from 'constants/currency';
 import LINKS from 'constants/links';
 import { Network } from 'enums/network';
 import { Action } from 'pages/LandingPage/components/EcosystemApps/styled-components';
@@ -28,12 +30,14 @@ import BuyOverModal from './BuyOverModal/BuyOverModal';
 import OverSupplyChart from './OverSupplyChart';
 import {
     BridgeDescription,
+    BurnContainer,
     BurnInfo,
     BurnInfoContainer,
     BurnInfoLabel,
     BurningLabel,
     CirculatingSupply,
     CirculatingSupplyLabel,
+    CoinsContainer,
     Content,
     ContractAddress,
     ContractAddressItem,
@@ -66,15 +70,6 @@ const OverToken: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [overTokenInfoQuery.isSuccess, overTokenInfoQuery.data]);
 
-    if (overTokenInfo) {
-        console.log(
-            'overTokenInfo',
-            overTokenInfo.burned,
-            overTokenInfo.buybackByDates[overTokenInfo.buybackByDates.length - 1].amountOut,
-            overTokenInfo.burned - overTokenInfo.buybackByDates[overTokenInfo.buybackByDates.length - 1].amountOut
-        );
-    }
-
     const getCounter = (startValue: number | undefined, endValue: number | undefined) => {
         return (
             <CountUp
@@ -92,20 +87,22 @@ const OverToken: React.FC = () => {
     return (
         <>
             <Content>
-                <OverContainer>
-                    <OverLeftContainer flexBasis="65%">
+                <OverContainer marginTop="60px">
+                    <OverLeftContainer flexBasis="60%">
                         <SectionTitle>{t('over-token.title')}</SectionTitle>
-                        <Section marginTop={30}>
+                        <Section marginTop={10} marginBottom={60} mobileMarginTop={20}>
                             <OverDescription>{t('home.over-token.description')}</OverDescription>
                             <Description>{t('over-token.description-1')}</Description>
-                            <Description marginBottom={40}>{t('over-token.description-2')}</Description>
+                            <Description marginBottom={30}>{t('over-token.description-2')}</Description>
                             <LinkButton onClick={() => setOpenBuyOverModal(true)}>
                                 {t('over-token.buy-over')}
                             </LinkButton>
                         </Section>
                     </OverLeftContainer>
-                    <OverRightContainer flexBasis="35%">
-                        <img src={coins} />
+                    <OverRightContainer flexBasis="40%" padding="0 50px 0 0">
+                        <BurnContainer>
+                            <img src={burn} />
+                        </BurnContainer>
                     </OverRightContainer>
                 </OverContainer>
                 <Section marginTop={10} marginBottom={40}>
@@ -117,23 +114,30 @@ const OverToken: React.FC = () => {
                     </SectionSlogan>
                 </Section>
                 <CirculatingSupplyLabel>
-                    Circulating Supply <BurningLabel>Burning</BurningLabel>
+                    {t('over-token.over-token-circulating-supply')}{' '}
+                    <BurningLabel>{t('over-token.over-token-burning')}</BurningLabel>
                 </CirculatingSupplyLabel>
                 <CirculatingSupply>
                     {getCounter(previousOverTokenInfo?.circulatingSupply, overTokenInfo?.circulatingSupply)}
                 </CirculatingSupply>
                 <BurnInfoContainer>
                     <BurnInfo>
-                        <BurnInfoLabel color={theme.textColor.secondary}>Initial supply</BurnInfoLabel>
+                        <BurnInfoLabel color={theme.textColor.secondary}>
+                            {t('over-token.over-token-total-supply')}
+                        </BurnInfoLabel>
                         {getCounter(previousOverTokenInfo?.totalSupply, overTokenInfo?.totalSupply)}
                     </BurnInfo>
                     <BurnInfo>
-                        <BurnInfoLabel color={theme.warning.textColor.primary}>Burn rate</BurnInfoLabel>
+                        <BurnInfoLabel color={theme.warning.textColor.primary}>
+                            {t('over-token.over-token-burn-rate')}
+                        </BurnInfoLabel>
                         {getCounter(previousOverTokenInfo?.burnRatePerSecond, overTokenInfo?.burnRatePerSecond)}{' '}
-                        $OVER/sec
+                        {`${OVER_CURRENCY}/sec`}
                     </BurnInfo>
                     <BurnInfo>
-                        <BurnInfoLabel color={theme.error.textColor.tertiary}>$OVER burned</BurnInfoLabel>
+                        <BurnInfoLabel color={theme.error.textColor.tertiary}>
+                            {t('over-token.over-token-burned')}
+                        </BurnInfoLabel>
                         {getCounter(previousOverTokenInfo?.burned, overTokenInfo?.burned)}
                     </BurnInfo>
                 </BurnInfoContainer>
@@ -143,14 +147,17 @@ const OverToken: React.FC = () => {
                         {overTokenInfo && (
                             <OverSupplyChart overTokenInfo={overTokenInfo} isLoading={overTokenInfoQuery.isLoading} />
                         )}
+                        <CoinsContainer>
+                            <img src={overCoins} />
+                        </CoinsContainer>
                     </OverLeftContainer>
                     <OverRightContainer flexBasis="65%" padding="0 0 10px 20px">
-                        <Section marginTop={40}>
+                        <Section marginTop={100}>
                             <SectionSlogan>{t('over-token.valute-capture-title')}</SectionSlogan>
                             <Description>{t('over-token.valute-capture-description-1')}</Description>
                             <Description>{t('over-token.valute-capture-description-2')}</Description>
                         </Section>
-                        <Section marginTop={40}>
+                        <Section marginTop={100}>
                             <SectionSlogan>
                                 {t('over-token.best-odds-title')}{' '}
                                 <SectionSloganHighlight>
@@ -162,7 +169,7 @@ const OverToken: React.FC = () => {
                         </Section>
                     </OverRightContainer>
                 </OverContainer>
-                <Section>
+                <Section marginTop={120}>
                     <Label>{t('over-token.over-token-contract-addresses')}</Label>
                     <ContractAddressItem>
                         <OverChainLabel>{t('over-token.list.1')}</OverChainLabel>
