@@ -120,8 +120,8 @@ const ChartContainer = styled.div`
     width: 100%;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         height: 220px;
-        padding: 15px 10px;
-        margin-top: 40px;
+        padding: 15px 5px 10px 10px;
+        margin-top: 20px;
     }
 `;
 
@@ -170,8 +170,7 @@ const Title = styled.span`
     line-height: 100%;
     text-transform: uppercase;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        top: -20px;
-        font-size: 14px;
+        font-size: 12px;
     }
 `;
 
@@ -192,8 +191,7 @@ const Icon = styled.i`
     margin-top: -2px;
     color: ${(props) => props.theme.textColor.primary};
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-top: -3px;
-        font-size: 20px;
+        font-size: 18px;
     }
 `;
 
