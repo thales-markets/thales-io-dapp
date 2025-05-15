@@ -36,6 +36,7 @@ import {
     BurnInfoLabel,
     BurningLabel,
     CirculatingSupply,
+    CirculatingSupplyContainer,
     CirculatingSupplyLabel,
     CoinsContainer,
     Content,
@@ -117,9 +118,11 @@ const OverToken: React.FC = () => {
                     {t('over-token.over-token-circulating-supply')}{' '}
                     <BurningLabel>{t('over-token.over-token-burning')}</BurningLabel>
                 </CirculatingSupplyLabel>
-                <CirculatingSupply>
-                    {getCounter(previousOverTokenInfo?.circulatingSupply, overTokenInfo?.circulatingSupply)}
-                </CirculatingSupply>
+                <CirculatingSupplyContainer>
+                    <CirculatingSupply>
+                        {getCounter(previousOverTokenInfo?.circulatingSupply, overTokenInfo?.circulatingSupply)}
+                    </CirculatingSupply>
+                </CirculatingSupplyContainer>
                 <BurnInfoContainer>
                     <BurnInfo>
                         <BurnInfoLabel color={theme.textColor.secondary}>

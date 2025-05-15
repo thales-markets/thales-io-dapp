@@ -109,7 +109,7 @@ export const BurningLabel = styled.span`
     margin-left: 20px;
 `;
 
-export const CirculatingSupply = styled(FlexDivCentered)`
+export const CirculatingSupplyContainer = styled(FlexDivCentered)`
     color: ${(props) => props.theme.textColor.primary};
     background: linear-gradient(90deg, #1f274d 0%, #111325 100%);
     font-weight: 700;
@@ -124,6 +124,13 @@ export const CirculatingSupply = styled(FlexDivCentered)`
         padding: 20px;
         border-radius: 18px;
         width: 100%;
+    }
+`;
+
+export const CirculatingSupply = styled.span`
+    width: 630px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        width: 225px;
     }
 `;
 
