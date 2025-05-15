@@ -108,7 +108,7 @@ const OverSupplyChart: React.FC<OverSupplyChartProps> = ({ overTokenInfo, isLoad
                     layout="vertical"
                     align="center"
                     verticalAlign="top"
-                    height={30}
+                    height={20}
                     payload={pieLegendData}
                     wrapperStyle={{ bottom: 0, left: 0 }}
                 />

@@ -37,12 +37,18 @@ export const OverLeftContainer = styled(FlexDivColumnCentered)<{ flexBasis?: str
 
 export const BurnContainer = styled(FlexDivColumnCentered)`
     position: absolute;
-    bottom: -30px;
+    top: -30px;
     right: 0;
     padding: 0 50px 0 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        position: relative;
+        top: -50px;
         padding: 0;
         align-items: center;
+        img {
+            width: 250px;
+            height: auto;
+        }
     }
 `;
 
@@ -68,6 +74,11 @@ export const CoinsContainer = styled(FlexDivColumnCentered)`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
         align-items: center;
+        bottom: -150px;
+        img {
+            width: 250px;
+            height: auto;
+        }
     }
 `;
 
@@ -80,6 +91,10 @@ export const CirculatingSupplyLabel = styled(FlexDiv)`
     width: 100%;
     text-transform: uppercase;
     margin-bottom: 25px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 18px;
+        line-height: 18px;
+    }
 `;
 
 export const BurningLabel = styled.span`
@@ -98,11 +113,18 @@ export const CirculatingSupply = styled(FlexDivCentered)`
     color: ${(props) => props.theme.textColor.primary};
     background: linear-gradient(90deg, #1f274d 0%, #111325 100%);
     font-weight: 700;
-    font-size: 87.25px;
-    line-height: 87.25px;
-    letter-spacing: 4.36px;
+    font-size: 87px;
+    line-height: 87px;
+    letter-spacing: 4px;
     padding: 40px 0;
     border-radius: 22px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 26px;
+        line-height: 26px;
+        padding: 20px;
+        border-radius: 18px;
+        width: 100%;
+    }
 `;
 
 export const BurnInfoContainer = styled(FlexDivRow)`
@@ -125,6 +147,13 @@ export const BurnInfo = styled(FlexDivColumnCentered)`
     line-height: 100%;
     padding: 40px 40px;
     border-radius: 22px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 26px;
+        line-height: 26px;
+        padding: 20px;
+        border-radius: 18px;
+        width: 100%;
+    }
 `;
 
 export const BurnInfoLabel = styled.div<{ color?: string }>`
@@ -134,6 +163,11 @@ export const BurnInfoLabel = styled.div<{ color?: string }>`
     line-height: 25px;
     letter-spacing: 0%;
     margin-bottom: 20px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 18px;
+        line-height: 18px;
+        margin-bottom: 15px;
+    }
 `;
 
 export const SectionContainer = styled.div`

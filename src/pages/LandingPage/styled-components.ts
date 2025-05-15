@@ -173,11 +173,17 @@ export const BulletNumberIcon = styled.i`
     margin-right: 5px;
 `;
 
-export const Section = styled.div<{ marginTop?: number; marginBottom?: number; mobileMarginTop?: number }>`
+export const Section = styled.div<{
+    marginTop?: number;
+    marginBottom?: number;
+    mobileMarginTop?: number;
+    mobileMarginBottom?: number;
+}>`
     margin-top: ${(props) => props.marginTop || '100'}px;
     margin-bottom: ${(props) => props.marginBottom || '0'}px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: ${(props) => props.mobileMarginTop || '50'}px;
+        margin-bottom: ${(props) => props.mobileMarginBottom || '0'}px;
     }
 `;
 

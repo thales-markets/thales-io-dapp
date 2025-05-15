@@ -1,4 +1,5 @@
 import { OVER_CURRENCY } from 'constants/currency';
+import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
@@ -117,6 +118,7 @@ const ChartContainer = styled.div`
     @media (max-width: 767px) {
         height: 200px;
         padding: 10px 10px;
+        margin-top: 50px;
     }
 `;
 
@@ -163,8 +165,11 @@ const Title = styled.span`
     font-weight: 600;
     font-size: 25px;
     line-height: 100%;
-    letter-spacing: 0%;
     text-transform: uppercase;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        top: -30px;
+        font-size: 18px;
+    }
 `;
 
 const NoData = styled(FlexDivCentered)`

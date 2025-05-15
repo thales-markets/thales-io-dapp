@@ -105,7 +105,7 @@ const OverToken: React.FC = () => {
                         </BurnContainer>
                     </OverRightContainer>
                 </OverContainer>
-                <Section marginTop={10} marginBottom={40}>
+                <Section marginTop={10} marginBottom={40} mobileMarginTop={20}>
                     <SectionSlogan mobileMarginBottom={20} mobileFontSize={20}>
                         <SectionSloganHighlight>
                             {t('over-token.over-token-info-title-highlight')}
@@ -152,7 +152,7 @@ const OverToken: React.FC = () => {
                         </CoinsContainer>
                     </OverLeftContainer>
                     <OverRightContainer flexBasis="65%" padding="0 0 10px 20px">
-                        <Section marginTop={100}>
+                        <Section marginTop={100} mobileMarginTop={150}>
                             <SectionSlogan>{t('over-token.valute-capture-title')}</SectionSlogan>
                             <Description>{t('over-token.valute-capture-description-1')}</Description>
                             <Description>{t('over-token.valute-capture-description-2')}</Description>
