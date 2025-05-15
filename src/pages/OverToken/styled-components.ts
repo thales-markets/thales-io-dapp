@@ -85,7 +85,7 @@ export const CoinsContainer = styled(FlexDivColumnCentered)`
 export const CirculatingSupplyLabelContainer = styled(FlexDivSpaceBetween)`
     margin-bottom: 25px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-bottom: 15px;
+        margin-bottom: 0px;
     }
 `;
 
@@ -126,9 +126,9 @@ export const BurningLabel = styled.span`
     margin-left: 20px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-left: 0px;
-        font-size: 16px;
-        line-height: 16px;
-        padding: 5px 20px;
+        font-size: 14px;
+        line-height: 14px;
+        padding: 5px 15px;
     }
 `;
 
@@ -150,11 +150,8 @@ export const CirculatingSupplyContainer = styled(FlexDivCentered)`
     }
 `;
 
-export const CirculatingSupply = styled.span`
-    width: 630px;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        width: 225px;
-    }
+export const CirculatingSupply = styled.span<{ isVisbile: boolean }>`
+    width: ${(props) => (props.isVisbile ? '660px' : 'auto')};
 `;
 
 export const BurnInfoContainer = styled(FlexDivRow)`
@@ -164,7 +161,7 @@ export const BurnInfoContainer = styled(FlexDivRow)`
     flex: 1 1 0;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
-        margin-top: 20px;
+        margin-top: 10px;
         gap: 20px;
     }
 `;
@@ -186,7 +183,7 @@ export const BurnInfo = styled(FlexDivColumnCentered)`
     }
 `;
 
-export const BurnInfoLabel = styled.div<{ color?: string }>`
+export const BurnInfoLabel = styled(FlexDivSpaceBetween)<{ color?: string }>`
     color: ${(props) => props.color || props.theme.textColor.primary};
     font-weight: 400;
     font-size: 25px;
@@ -262,7 +259,8 @@ export const ContractAddressItem = styled(FlexDivSpaceBetween)`
     border-radius: 8px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 15px;
-        line-height: 18px;
+        line-height: 15px;
+        margin-bottom: 10px;
     }
 `;
 
@@ -327,3 +325,26 @@ export const liveBlinkStyleMobile: CSSProperties = {
     width: 30,
     margin: '0px 0px -2px 0px',
 };
+
+export const OverIcon = styled.i`
+    font-weight: 400;
+    font-size: 237px;
+    margin-bottom: -12px;
+    margin-right: 40px;
+`;
+
+export const BurnIcon = styled.i`
+    font-weight: 400;
+    font-size: 64px;
+    margin-left: 50px;
+    color: ${(props) => props.theme.error.textColor.primary};
+`;
+
+export const Icon = styled.i`
+    font-weight: 400;
+    font-size: 30px;
+    margin-left: 5px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 20px;
+    }
+`;

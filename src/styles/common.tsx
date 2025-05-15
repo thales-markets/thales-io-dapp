@@ -87,7 +87,7 @@ export const Colors = {
     LIGHT_ORANGE: '#FFB866',
     DARK_ORANGE: '#FF8800',
 
-    RED: '#DE496D',
+    RED: '#CA4C53',
     LIGHT_RED: '#E29587',
     DARK_RED: '#FF3F3F',
 };

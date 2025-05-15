@@ -44,7 +44,10 @@ const BurnChart: React.FC<BurnChartProps> = ({ buybackByDates }) => {
         <Container>
             {!noData ? (
                 <ChartContainer>
-                    <Title>{t('over-token.chart.title')}</Title>
+                    <Title>
+                        <Icon className="overtime-icon overtime-icon--stack" />
+                        {t('over-token.chart.title')}
+                    </Title>
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={buybackByDates}>
                             {/* <CartesianGrid strokeDasharray="2 2" strokeWidth={0.5} stroke={theme.textColor.primary} /> */}
@@ -115,10 +118,10 @@ const ChartContainer = styled.div`
     border-radius: 22px;
     height: 400px;
     width: 100%;
-    @media (max-width: 767px) {
-        height: 200px;
-        padding: 10px 10px;
-        margin-top: 50px;
+    @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        height: 220px;
+        padding: 15px 10px;
+        margin-top: 40px;
     }
 `;
 
@@ -167,8 +170,8 @@ const Title = styled.span`
     line-height: 100%;
     text-transform: uppercase;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        top: -30px;
-        font-size: 18px;
+        top: -20px;
+        font-size: 14px;
     }
 `;
 
@@ -180,6 +183,18 @@ const NoData = styled(FlexDivCentered)`
     color: ${(props) => props.theme.textColor.primary};
     padding: 10px;
     text-align: center;
+`;
+
+const Icon = styled.i`
+    font-weight: 400;
+    font-size: 30px;
+    margin-right: 5px;
+    margin-top: -2px;
+    color: ${(props) => props.theme.textColor.primary};
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: -3px;
+        font-size: 20px;
+    }
 `;
 
 export default BurnChart;

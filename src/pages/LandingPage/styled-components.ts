@@ -12,9 +12,9 @@ import {
 
 export const Header = styled.div`
     position: relative;
-    margin-top: 140px;
+    margin-top: 126px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-top: 50px;
+        margin-top: 42px;
     }
 `;
 
@@ -55,21 +55,23 @@ export const Logo = styled.i`
     line-height: 40px;
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 200px;
+        margin-bottom: 8px;
     }
 `;
 
 export const LogoBackgroundContainer = styled.div`
     position: absolute;
-    top: -100px;
+    top: -80px;
     left: 100px;
     svg {
         height: 90%;
         width: 90%;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        top: -65px;
+        top: -57px;
         left: 30px;
         svg {
             height: 180px;

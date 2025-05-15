@@ -33,6 +33,7 @@ import OverSupplyChart from './OverSupplyChart';
 import {
     BridgeDescription,
     BurnContainer,
+    BurnIcon,
     BurnInfo,
     BurnInfoContainer,
     BurnInfoLabel,
@@ -45,6 +46,7 @@ import {
     Content,
     ContractAddress,
     ContractAddressItem,
+    Icon,
     Label,
     LinkArrow,
     liveBlinkStyle,
@@ -52,6 +54,7 @@ import {
     LiveLabel,
     OverChainLabel,
     OverContainer,
+    OverIcon,
     OverLeftContainer,
     OverRightContainer,
 } from './styled-components';
@@ -123,7 +126,10 @@ const OverToken: React.FC = () => {
                 <CirculatingSupplyLabelContainer>
                     <CirculatingSupplyLabel>
                         {isMobile ? '' : t('over-token.over-token-circulating-supply')}
-                        <BurningLabel>{t('over-token.over-token-burning')}</BurningLabel>
+                        <BurningLabel>
+                            {t('over-token.over-token-burning')}
+                            <Icon className="overtime-icon overtime-icon--arrow-down" />
+                        </BurningLabel>
                     </CirculatingSupplyLabel>
                     <LiveLabel>
                         Live
@@ -135,21 +141,36 @@ const OverToken: React.FC = () => {
                         />
                     </LiveLabel>
                 </CirculatingSupplyLabelContainer>
-                <CirculatingSupplyContainer>
-                    <CirculatingSupply>
-                        {getCounter(previousOverTokenInfo?.circulatingSupply, overTokenInfo?.circulatingSupply)}
-                    </CirculatingSupply>
-                </CirculatingSupplyContainer>
+                {!isMobile && (
+                    <CirculatingSupplyContainer>
+                        <OverIcon className="overtime-icon overtime-icon--over" />
+                        <CirculatingSupply isVisbile={!!overTokenInfo}>
+                            {getCounter(previousOverTokenInfo?.circulatingSupply, overTokenInfo?.circulatingSupply)}
+                        </CirculatingSupply>
+                        <BurnIcon className="overtime-icon overtime-icon--burn2" />
+                    </CirculatingSupplyContainer>
+                )}
                 <BurnInfoContainer>
+                    {isMobile && (
+                        <BurnInfo>
+                            <BurnInfoLabel color={theme.textColor.primary}>
+                                {t('over-token.over-token-circulating-supply')}
+                                <Icon className="overtime-icon overtime-icon--overtime-logo" />
+                            </BurnInfoLabel>
+                            {getCounter(previousOverTokenInfo?.circulatingSupply, overTokenInfo?.circulatingSupply)}
+                        </BurnInfo>
+                    )}
                     <BurnInfo>
                         <BurnInfoLabel color={theme.textColor.secondary}>
                             {t('over-token.over-token-total-supply')}
+                            <Icon className="overtime-icon overtime-icon--chart" />
                         </BurnInfoLabel>
                         {getCounter(previousOverTokenInfo?.totalSupply, overTokenInfo?.totalSupply)}
                     </BurnInfo>
                     <BurnInfo>
                         <BurnInfoLabel color={theme.warning.textColor.primary}>
                             {t('over-token.over-token-burn-rate')}
+                            <Icon className="overtime-icon overtime-icon--burn2" />
                         </BurnInfoLabel>
                         {getCounter(previousOverTokenInfo?.burnRatePerSecond, overTokenInfo?.burnRatePerSecond)}{' '}
                         {`${OVER_CURRENCY}/sec`}
@@ -157,6 +178,7 @@ const OverToken: React.FC = () => {
                     <BurnInfo>
                         <BurnInfoLabel color={theme.error.textColor.tertiary}>
                             {t('over-token.over-token-burned')}
+                            <Icon className="overtime-icon overtime-icon--burn1" />
                         </BurnInfoLabel>
                         {getCounter(previousOverTokenInfo?.burned, overTokenInfo?.burned)}
                     </BurnInfo>
@@ -172,8 +194,13 @@ const OverToken: React.FC = () => {
                         </CoinsContainer>
                     </OverLeftContainer>
                     <OverRightContainer flexBasis="65%" padding="0 0 10px 20px">
-                        <Section marginTop={100} mobileMarginTop={150}>
-                            <SectionSlogan>{t('over-token.valute-capture-title')}</SectionSlogan>
+                        <Section marginTop={100} mobileMarginTop={170}>
+                            <SectionSlogan>
+                                <SectionSloganHighlight>
+                                    {t('over-token.valute-capture-title-highlight')}
+                                </SectionSloganHighlight>{' '}
+                                {t('over-token.valute-capture-title')}
+                            </SectionSlogan>
                             <Description>{t('over-token.valute-capture-description-1')}</Description>
                             <Description>{t('over-token.valute-capture-description-2')}</Description>
                         </Section>
