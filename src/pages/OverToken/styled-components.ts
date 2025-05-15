@@ -2,7 +2,7 @@ import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperl
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
+import { FlexDiv, FlexDivCentered, FlexDivColumnCentered, FlexDivRow, FlexDivSpaceBetween } from 'styles/common';
 
 export const Content = styled.div`
     display: flex;
@@ -25,16 +25,16 @@ export const OverContainer = styled(FlexDiv)`
     }
 `;
 
-export const OverLeftContainer = styled(FlexDivColumnCentered)`
-    flex-basis: 65%;
+export const OverLeftContainer = styled(FlexDivColumnCentered)<{ flexBasis?: string }>`
+    flex-basis: ${(props) => props.flexBasis || '50%'};
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
         align-items: left;
     }
 `;
 
-export const OverRightContainer = styled(FlexDivColumnCentered)<{ padding?: string }>`
-    flex-basis: 35%;
+export const OverRightContainer = styled(FlexDivColumnCentered)<{ flexBasis?: string; padding?: string }>`
+    flex-basis: ${(props) => props.flexBasis || '50%'};
     padding: ${(props) => props.padding || '20px'};
     img {
         height: 500px;
@@ -50,6 +50,71 @@ export const OverRightContainer = styled(FlexDivColumnCentered)<{ padding?: stri
     }
 `;
 
+export const CirculatingSupplyLabel = styled(FlexDiv)`
+    color: ${(props) => props.theme.textColor.primary};
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 32px;
+    text-align: left;
+    width: 100%;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+`;
+
+export const BurningLabel = styled.span`
+    color: ${(props) => props.theme.error.textColor.tertiary};
+    height: 44;
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 100%;
+    background: rgba(207, 18, 33, 0.2);
+    padding: 5px 20px;
+    margin-left: 20px;
+`;
+
+export const CirculatingSupply = styled(FlexDivCentered)`
+    color: ${(props) => props.theme.textColor.primary};
+    background: linear-gradient(90deg, #1f274d 0%, #111325 100%);
+    font-weight: 700;
+    font-size: 87.25px;
+    line-height: 87.25px;
+    letter-spacing: 4.36px;
+    padding: 40px 0;
+    border-radius: 22px;
+`;
+
+export const BurnInfoContainer = styled(FlexDivRow)`
+    gap: 45px;
+    width: 100%;
+    margin-top: 30px;
+    flex: 1 1 0;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+        margin-top: 20px;
+        gap: 20px;
+    }
+`;
+
+export const BurnInfo = styled(FlexDivColumnCentered)`
+    color: ${(props) => props.theme.textColor.primary};
+    background: ${(props) => props.theme.background.primary};
+    font-weight: 700;
+    font-size: 43px;
+    line-height: 100%;
+    padding: 40px 40px;
+    border-radius: 22px;
+`;
+
+export const BurnInfoLabel = styled.div<{ color?: string }>`
+    color: ${(props) => props.color || props.theme.textColor.primary};
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 25px;
+    letter-spacing: 0%;
+    margin-bottom: 20px;
+`;
+
 export const SectionContainer = styled.div`
     margin-bottom: 20px;
     text-align: left;
@@ -61,6 +126,7 @@ export const Label = styled.div`
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
+    margin-bottom: 30px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 15px;
     }
@@ -78,14 +144,14 @@ export const Value = styled.div`
     }
 `;
 
-export const List = styled.ul<{ margin?: boolean }>`
+export const List = styled.ul`
     list-style: disc;
     color: ${(props) => props.theme.textColor.primary};
     list-style-position: inside;
     margin: 20px 0px 0px 0px;
 `;
 
-export const ListItem = styled.li<{ bold?: boolean }>`
+export const ListItem = styled.li`
     margin-bottom: 10px;
     color: ${(props) => props.theme.textColor.primary};
     font-weight: 700;
@@ -97,6 +163,33 @@ export const ListItem = styled.li<{ bold?: boolean }>`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 15px;
         line-height: 18px;
+    }
+`;
+
+export const ContractAddressItem = styled(FlexDivSpaceBetween)`
+    padding: 20px;
+    color: ${(props) => props.theme.textColor.primary};
+    background: ${(props) => props.theme.background.primary};
+    margin-bottom: 15px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    border-radius: 8px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 15px;
+        line-height: 18px;
+    }
+`;
+
+export const OverChainLabel = styled.label``;
+
+export const ContractAddress = styled.div`
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    a {
+        color: ${(props) => props.theme.link.textColor.primary};
     }
 `;
 

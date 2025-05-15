@@ -58,7 +58,7 @@ export const Icon = styled.i<{ color?: string; iconSize?: number }>`
 
 export const Colors = {
     CYAN: '#19F8EF',
-    CETACEAN_BLUE: '#0F1231',
+    CETACEAN_BLUE: '#151B36',
     RICH_BLACK: '#07091C',
     PURPLE_NAVY: '#405682',
     YANKEES_BLUE: '#1F2438',
@@ -89,7 +89,7 @@ export const Colors = {
 
     RED: '#DE496D',
     LIGHT_RED: '#E29587',
-    DARK_RED: '#D66D75',
+    DARK_RED: '#FF3F3F',
 };
 
 export const Background = styled.div`

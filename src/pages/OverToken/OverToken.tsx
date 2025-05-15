@@ -1,17 +1,12 @@
 import coins from 'assets/images/coins.webp';
-import overflow from 'assets/lotties/overflow.json';
-import NumberCountdown from 'components/NumberCountdown';
 import SPAAnchor from 'components/SPAAnchor';
 import LINKS from 'constants/links';
-import ROUTES from 'constants/routes';
 import { Network } from 'enums/network';
-import Lottie from 'lottie-react';
 import { Action } from 'pages/LandingPage/components/EcosystemApps/styled-components';
 import { OverDescription } from 'pages/LandingPage/components/OverToken/styled-components';
 import {
     Description,
     LinkButton,
-    LottieContainer,
     Section,
     SectionSlogan,
     SectionSloganHighlight,
@@ -23,31 +18,40 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
 import { getIsMobile } from 'redux/modules/ui';
+import { useTheme } from 'styled-components';
 import { getEtherscanTokenLink, truncateAddress } from 'thales-utils';
 import { OverTokenInfo } from 'types/token';
+import { CountUp } from 'use-count-up';
 import overContract from 'utils/contracts/overContract';
-import { buildHref } from 'utils/routes';
+import BurnChart from './BurnChart';
 import BuyOverModal from './BuyOverModal/BuyOverModal';
 import OverSupplyChart from './OverSupplyChart';
 import {
     BridgeDescription,
+    BurnInfo,
+    BurnInfoContainer,
+    BurnInfoLabel,
+    BurningLabel,
+    CirculatingSupply,
+    CirculatingSupplyLabel,
     Content,
+    ContractAddress,
+    ContractAddressItem,
     Label,
     LinkArrow,
-    List,
-    ListItem,
+    OverChainLabel,
     OverContainer,
     OverLeftContainer,
     OverRightContainer,
-    SectionContainer,
-    Value,
 } from './styled-components';
 
 const OverToken: React.FC = () => {
     const { t } = useTranslation();
+    const theme = useTheme();
     const isMobile = useSelector(getIsMobile);
     const isAppReady = useSelector(getIsAppReady);
     const [overTokenInfo, setOverTokenInfo] = useState<OverTokenInfo | undefined>(undefined);
+    const [previousOverTokenInfo, setPreviousOverTokenInfo] = useState<OverTokenInfo | undefined>(undefined);
     const [openBuyOverModal, setOpenBuyOverModal] = useState<boolean>(false);
 
     const overTokenInfoQuery = useOverTokenInfoQuery({
@@ -56,17 +60,42 @@ const OverToken: React.FC = () => {
 
     useEffect(() => {
         if (overTokenInfoQuery.isSuccess && overTokenInfoQuery.data) {
+            setPreviousOverTokenInfo(overTokenInfo);
             setOverTokenInfo(overTokenInfoQuery.data);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [overTokenInfoQuery.isSuccess, overTokenInfoQuery.data]);
+
+    if (overTokenInfo) {
+        console.log(
+            'overTokenInfo',
+            overTokenInfo.burned,
+            overTokenInfo.buybackByDates[overTokenInfo.buybackByDates.length - 1].amountOut,
+            overTokenInfo.burned - overTokenInfo.buybackByDates[overTokenInfo.buybackByDates.length - 1].amountOut
+        );
+    }
+
+    const getCounter = (startValue: number | undefined, endValue: number | undefined) => {
+        return (
+            <CountUp
+                isCounting
+                start={startValue || 0}
+                end={endValue || 0}
+                decimalPlaces={2}
+                thousandsSeparator=","
+                key={endValue || 0}
+                duration={previousOverTokenInfo ? 0.5 : 1}
+            />
+        );
+    };
 
     return (
         <>
             <Content>
                 <OverContainer>
-                    <OverLeftContainer>
+                    <OverLeftContainer flexBasis="65%">
                         <SectionTitle>{t('over-token.title')}</SectionTitle>
-                        <Section marginTop={70}>
+                        <Section marginTop={30}>
                             <OverDescription>{t('home.over-token.description')}</OverDescription>
                             <Description>{t('over-token.description-1')}</Description>
                             <Description marginBottom={40}>{t('over-token.description-2')}</Description>
@@ -75,11 +104,11 @@ const OverToken: React.FC = () => {
                             </LinkButton>
                         </Section>
                     </OverLeftContainer>
-                    <OverRightContainer>
+                    <OverRightContainer flexBasis="35%">
                         <img src={coins} />
                     </OverRightContainer>
                 </OverContainer>
-                <Section marginTop={70}>
+                <Section marginTop={10} marginBottom={40}>
                     <SectionSlogan mobileMarginBottom={20} mobileFontSize={20}>
                         <SectionSloganHighlight>
                             {t('over-token.over-token-info-title-highlight')}
@@ -87,132 +116,121 @@ const OverToken: React.FC = () => {
                         {t('over-token.over-token-info-title')}
                     </SectionSlogan>
                 </Section>
+                <CirculatingSupplyLabel>
+                    Circulating Supply <BurningLabel>Burning</BurningLabel>
+                </CirculatingSupplyLabel>
+                <CirculatingSupply>
+                    {getCounter(previousOverTokenInfo?.circulatingSupply, overTokenInfo?.circulatingSupply)}
+                </CirculatingSupply>
+                <BurnInfoContainer>
+                    <BurnInfo>
+                        <BurnInfoLabel color={theme.textColor.secondary}>Initial supply</BurnInfoLabel>
+                        {getCounter(previousOverTokenInfo?.totalSupply, overTokenInfo?.totalSupply)}
+                    </BurnInfo>
+                    <BurnInfo>
+                        <BurnInfoLabel color={theme.warning.textColor.primary}>Burn rate</BurnInfoLabel>
+                        {getCounter(previousOverTokenInfo?.burnRatePerSecond, overTokenInfo?.burnRatePerSecond)}{' '}
+                        $OVER/sec
+                    </BurnInfo>
+                    <BurnInfo>
+                        <BurnInfoLabel color={theme.error.textColor.tertiary}>$OVER burned</BurnInfoLabel>
+                        {getCounter(previousOverTokenInfo?.burned, overTokenInfo?.burned)}
+                    </BurnInfo>
+                </BurnInfoContainer>
+                {overTokenInfo && <BurnChart buybackByDates={overTokenInfo?.buybackByDates} />}
                 <OverContainer>
-                    <OverLeftContainer>
-                        <SectionContainer>
-                            <Label>{t('over-token.over-token-total-supply')}</Label>
-                            <Value>
-                                <NumberCountdown number={overTokenInfo?.totalSupply || 0} />
-                            </Value>
-                        </SectionContainer>
-                        <SectionContainer>
-                            <Label>{t('over-token.over-token-total-burned')}</Label>
-                            <Value>
-                                <NumberCountdown number={overTokenInfo?.burned || 0} />
-                            </Value>
-                        </SectionContainer>
-                        <SectionContainer>
-                            <Label>{t('over-token.over-token-circulating-supply')}</Label>
-                            <Value>
-                                <NumberCountdown number={overTokenInfo?.circulatingSupply || 0} />
-                            </Value>
-                        </SectionContainer>
-                        <SectionContainer>
-                            <Label>{t('over-token.over-token-contract-addresses')}</Label>
-                            <List>
-                                <ListItem>
-                                    {t('over-token.list.1')}
-                                    <SPAAnchor
-                                        href={getEtherscanTokenLink(
-                                            Network.Mainnet,
-                                            overContract.addresses[Network.Mainnet]
-                                        )}
-                                    >
-                                        {isMobile
-                                            ? truncateAddress(overContract.addresses[Network.Mainnet].toLowerCase())
-                                            : overContract.addresses[Network.Mainnet].toLowerCase()}{' '}
-                                        <LinkArrow />
-                                    </SPAAnchor>
-                                </ListItem>
-                                <ListItem>
-                                    {t('over-token.list.2')}
-                                    <SPAAnchor
-                                        href={getEtherscanTokenLink(
-                                            Network.OptimismMainnet,
-                                            overContract.addresses[Network.OptimismMainnet]
-                                        )}
-                                    >
-                                        {isMobile
-                                            ? truncateAddress(
-                                                  overContract.addresses[Network.OptimismMainnet].toLowerCase()
-                                              )
-                                            : overContract.addresses[Network.OptimismMainnet].toLowerCase()}{' '}
-                                        <LinkArrow />
-                                    </SPAAnchor>
-                                </ListItem>
-                                <ListItem>
-                                    {t('over-token.list.3')}
-                                    <SPAAnchor
-                                        href={getEtherscanTokenLink(
-                                            Network.Arbitrum,
-                                            overContract.addresses[Network.Arbitrum]
-                                        )}
-                                    >
-                                        {isMobile
-                                            ? truncateAddress(overContract.addresses[Network.Arbitrum].toLowerCase())
-                                            : overContract.addresses[Network.Arbitrum].toLowerCase()}{' '}
-                                        <LinkArrow />
-                                    </SPAAnchor>
-                                </ListItem>
-                                <ListItem>
-                                    {t('over-token.list.4')}
-                                    <SPAAnchor
-                                        href={getEtherscanTokenLink(Network.Base, overContract.addresses[Network.Base])}
-                                    >
-                                        {isMobile
-                                            ? truncateAddress(overContract.addresses[Network.Base].toLowerCase())
-                                            : overContract.addresses[Network.Base].toLowerCase()}{' '}
-                                        <LinkArrow />
-                                    </SPAAnchor>
-                                </ListItem>
-                            </List>
-                        </SectionContainer>
-                        <SectionContainer>
-                            <Label>{t('over-token.bridge')}</Label>
-                            <BridgeDescription>
-                                <Trans
-                                    i18nKey={'over-token.bridge-description'}
-                                    components={{
-                                        transporterLink: <SPAAnchor href={LINKS.OverBridge} />,
-                                        ccipLink: <SPAAnchor href={LINKS.CCIP} />,
-                                    }}
-                                />{' '}
-                            </BridgeDescription>
-                            <SPAAnchor href={LINKS.OverBridge}>
-                                <Action>{t('over-token.bridge-over')}</Action>
-                            </SPAAnchor>
-                        </SectionContainer>
-                    </OverLeftContainer>
-                    <OverRightContainer padding="0 0 60px 0">
+                    <OverLeftContainer flexBasis="35%">
                         {overTokenInfo && (
                             <OverSupplyChart overTokenInfo={overTokenInfo} isLoading={overTokenInfoQuery.isLoading} />
                         )}
+                    </OverLeftContainer>
+                    <OverRightContainer flexBasis="65%" padding="0 0 10px 20px">
+                        <Section marginTop={40}>
+                            <SectionSlogan>{t('over-token.valute-capture-title')}</SectionSlogan>
+                            <Description>{t('over-token.valute-capture-description-1')}</Description>
+                            <Description>{t('over-token.valute-capture-description-2')}</Description>
+                        </Section>
+                        <Section marginTop={40}>
+                            <SectionSlogan>
+                                {t('over-token.best-odds-title')}{' '}
+                                <SectionSloganHighlight>
+                                    {t('over-token.best-odds-title-highlight')}
+                                </SectionSloganHighlight>
+                            </SectionSlogan>
+                            <Description>{t('over-token.best-odds-description-1')}</Description>
+                            <Description>{t('over-token.best-odds-description-2')}</Description>
+                        </Section>
                     </OverRightContainer>
                 </OverContainer>
-                <Section marginTop={70}>
-                    <SectionSlogan>
-                        {t('over-token.best-odds-title')}{' '}
-                        <SectionSloganHighlight>{t('over-token.best-odds-title-highlight')}</SectionSloganHighlight>
-                    </SectionSlogan>
-                    <Description>{t('over-token.best-odds-description-1')}</Description>
-                    <Description>{t('over-token.best-odds-description-2')}</Description>
-                </Section>
                 <Section>
-                    <SectionSlogan>{t('over-token.valute-capture-title')}</SectionSlogan>
-                    <Description>{t('over-token.valute-capture-description-1')}</Description>
-                    <Description>{t('over-token.valute-capture-description-2')}</Description>
-                    <LottieContainer>
-                        <Lottie animationData={overflow} />
-                    </LottieContainer>
+                    <Label>{t('over-token.over-token-contract-addresses')}</Label>
+                    <ContractAddressItem>
+                        <OverChainLabel>{t('over-token.list.1')}</OverChainLabel>
+                        <ContractAddress>
+                            <SPAAnchor
+                                href={getEtherscanTokenLink(Network.Mainnet, overContract.addresses[Network.Mainnet])}
+                            >
+                                {isMobile
+                                    ? truncateAddress(overContract.addresses[Network.Mainnet].toLowerCase())
+                                    : overContract.addresses[Network.Mainnet].toLowerCase()}{' '}
+                                <LinkArrow />
+                            </SPAAnchor>
+                        </ContractAddress>
+                    </ContractAddressItem>
+                    <ContractAddressItem>
+                        <OverChainLabel>{t('over-token.list.2')}</OverChainLabel>
+                        <ContractAddress>
+                            <SPAAnchor
+                                href={getEtherscanTokenLink(
+                                    Network.OptimismMainnet,
+                                    overContract.addresses[Network.OptimismMainnet]
+                                )}
+                            >
+                                {isMobile
+                                    ? truncateAddress(overContract.addresses[Network.OptimismMainnet].toLowerCase())
+                                    : overContract.addresses[Network.OptimismMainnet].toLowerCase()}{' '}
+                                <LinkArrow />
+                            </SPAAnchor>
+                        </ContractAddress>
+                    </ContractAddressItem>
+                    <ContractAddressItem>
+                        <OverChainLabel>{t('over-token.list.3')}</OverChainLabel>
+                        <ContractAddress>
+                            <SPAAnchor
+                                href={getEtherscanTokenLink(Network.Arbitrum, overContract.addresses[Network.Arbitrum])}
+                            >
+                                {isMobile
+                                    ? truncateAddress(overContract.addresses[Network.Arbitrum].toLowerCase())
+                                    : overContract.addresses[Network.Arbitrum].toLowerCase()}{' '}
+                                <LinkArrow />
+                            </SPAAnchor>
+                        </ContractAddress>
+                    </ContractAddressItem>
+                    <ContractAddressItem>
+                        <OverChainLabel>{t('over-token.list.4')}</OverChainLabel>
+                        <ContractAddress>
+                            <SPAAnchor href={getEtherscanTokenLink(Network.Base, overContract.addresses[Network.Base])}>
+                                {isMobile
+                                    ? truncateAddress(overContract.addresses[Network.Base].toLowerCase())
+                                    : overContract.addresses[Network.Base].toLowerCase()}{' '}
+                                <LinkArrow />
+                            </SPAAnchor>
+                        </ContractAddress>
+                    </ContractAddressItem>
                 </Section>
-                <Section marginBottom={50}>
-                    <SectionSlogan>
-                        {t('over-token.governance-title')}{' '}
-                        <SectionSloganHighlight>{t('over-token.governance-title-highlight')}</SectionSloganHighlight>
-                    </SectionSlogan>
-                    <Description marginBottom={20}>{t('over-token.governance-description')}</Description>
-                    <SPAAnchor href={buildHref(ROUTES.DAO.Home)} scrollTop={true}>
-                        <LinkButton>{t('home.governance.explore-overtime-dao-button')}</LinkButton>
+                <Section marginTop={40}>
+                    <Label>{t('over-token.bridge')}</Label>
+                    <BridgeDescription>
+                        <Trans
+                            i18nKey={'over-token.bridge-description'}
+                            components={{
+                                transporterLink: <SPAAnchor href={LINKS.OverBridge} />,
+                                ccipLink: <SPAAnchor href={LINKS.CCIP} />,
+                            }}
+                        />{' '}
+                    </BridgeDescription>
+                    <SPAAnchor href={LINKS.OverBridge}>
+                        <Action>{t('over-token.bridge-over')}</Action>
                     </SPAAnchor>
                 </Section>
             </Content>

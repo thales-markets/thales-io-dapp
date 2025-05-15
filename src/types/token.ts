@@ -26,12 +26,28 @@ export type TokenInfo = {
     marketCap?: number;
 };
 
+export type BuybackByDate = {
+    date: string;
+    amountIn: number;
+    amountOut: number;
+    cumulativeAmountIn: number;
+    cumulativeAmountOut: number;
+};
+
 export type OverTokenInfo = {
     totalSupply: number;
     circulatingSupply: number;
     burned: number;
     price: number;
     marketCap: number;
+    tickLength: number;
+    tickRate: number;
+    burnRatePerSecond: number;
+    currentTickBurn: number;
+    lastBuybackTimestamp: number;
+    lastBuybackAmountIn: number;
+    lastBuybackAmountOut: number;
+    buybackByDates: BuybackByDate[];
 };
 
 export type StakingData = {

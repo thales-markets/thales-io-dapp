@@ -46,6 +46,8 @@ const darkTheme = {
         },
         textColor: {
             primary: Colors.RED,
+            secondary: Colors.LIGHT_RED,
+            tertiary: Colors.DARK_RED,
         },
         borderColor: {
             primary: Colors.RED,
