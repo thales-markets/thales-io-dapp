@@ -80,7 +80,7 @@ const OverToken: React.FC = () => {
                 decimalPlaces={2}
                 thousandsSeparator=","
                 key={endValue || 0}
-                duration={previousOverTokenInfo ? 0.5 : 1}
+                duration={1}
             />
         );
     };
