@@ -74,8 +74,6 @@ const OverSupplyChart: React.FC<OverSupplyChartProps> = ({ overTokenInfo, isLoad
         );
     };
 
-    console.log('OverSupplyChart', pieLegendData);
-
     const CustomTooltip = ({ active, payload }: any) => {
         if (active && payload && payload.length) {
             return (
