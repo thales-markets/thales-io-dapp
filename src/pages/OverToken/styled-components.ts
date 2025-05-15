@@ -1,7 +1,7 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { HashLink } from 'react-router-hash-link';
-import styled from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
 import { FlexDiv, FlexDivCentered, FlexDivColumnCentered, FlexDivRow, FlexDivSpaceBetween } from 'styles/common';
 
 export const Content = styled.div`
@@ -82,6 +82,13 @@ export const CoinsContainer = styled(FlexDivColumnCentered)`
     }
 `;
 
+export const CirculatingSupplyLabelContainer = styled(FlexDivSpaceBetween)`
+    margin-bottom: 25px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-bottom: 15px;
+    }
+`;
+
 export const CirculatingSupplyLabel = styled(FlexDiv)`
     color: ${(props) => props.theme.textColor.primary};
     font-weight: 600;
@@ -90,16 +97,26 @@ export const CirculatingSupplyLabel = styled(FlexDiv)`
     text-align: left;
     width: 100%;
     text-transform: uppercase;
-    margin-bottom: 25px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 18px;
         line-height: 18px;
     }
 `;
 
+export const LiveLabel = styled(FlexDiv)`
+    color: ${(props) => props.theme.textColor.primary};
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 22px;
+    align-items: center;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 16px;
+        line-height: 16px;
+    }
+`;
+
 export const BurningLabel = styled.span`
     color: ${(props) => props.theme.error.textColor.tertiary};
-    height: 44;
     border-radius: 20px;
     font-weight: 400;
     font-size: 21px;
@@ -107,6 +124,12 @@ export const BurningLabel = styled.span`
     background: rgba(207, 18, 33, 0.2);
     padding: 5px 20px;
     margin-left: 20px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-left: 0px;
+        font-size: 16px;
+        line-height: 16px;
+        padding: 5px 20px;
+    }
 `;
 
 export const CirculatingSupplyContainer = styled(FlexDivCentered)`
@@ -294,3 +317,13 @@ export const ChartLabel = styled.span`
 export const CustomHashLink = styled(HashLink)`
     color: ${(props) => props.theme.textColor.primary};
 `;
+
+export const liveBlinkStyle: CSSProperties = {
+    width: 32,
+    margin: '0px 0px -4px 0px',
+};
+
+export const liveBlinkStyleMobile: CSSProperties = {
+    width: 30,
+    margin: '0px 0px -2px 0px',
+};

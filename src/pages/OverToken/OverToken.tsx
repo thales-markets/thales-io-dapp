@@ -1,9 +1,11 @@
 import burn from 'assets/images/burn.webp';
 import overCoins from 'assets/images/over-coins.webp';
+import liveAnimationData from 'assets/lotties/live.json';
 import SPAAnchor from 'components/SPAAnchor';
 import { OVER_CURRENCY } from 'constants/currency';
 import LINKS from 'constants/links';
 import { Network } from 'enums/network';
+import Lottie from 'lottie-react';
 import { Action } from 'pages/LandingPage/components/EcosystemApps/styled-components';
 import { OverDescription } from 'pages/LandingPage/components/OverToken/styled-components';
 import {
@@ -38,12 +40,16 @@ import {
     CirculatingSupply,
     CirculatingSupplyContainer,
     CirculatingSupplyLabel,
+    CirculatingSupplyLabelContainer,
     CoinsContainer,
     Content,
     ContractAddress,
     ContractAddressItem,
     Label,
     LinkArrow,
+    liveBlinkStyle,
+    liveBlinkStyleMobile,
+    LiveLabel,
     OverChainLabel,
     OverContainer,
     OverLeftContainer,
@@ -114,10 +120,21 @@ const OverToken: React.FC = () => {
                         {t('over-token.over-token-info-title')}
                     </SectionSlogan>
                 </Section>
-                <CirculatingSupplyLabel>
-                    {t('over-token.over-token-circulating-supply')}{' '}
-                    <BurningLabel>{t('over-token.over-token-burning')}</BurningLabel>
-                </CirculatingSupplyLabel>
+                <CirculatingSupplyLabelContainer>
+                    <CirculatingSupplyLabel>
+                        {isMobile ? '' : t('over-token.over-token-circulating-supply')}
+                        <BurningLabel>{t('over-token.over-token-burning')}</BurningLabel>
+                    </CirculatingSupplyLabel>
+                    <LiveLabel>
+                        Live
+                        <Lottie
+                            autoplay={true}
+                            animationData={liveAnimationData}
+                            loop={true}
+                            style={isMobile ? liveBlinkStyleMobile : liveBlinkStyle}
+                        />
+                    </LiveLabel>
+                </CirculatingSupplyLabelContainer>
                 <CirculatingSupplyContainer>
                     <CirculatingSupply>
                         {getCounter(previousOverTokenInfo?.circulatingSupply, overTokenInfo?.circulatingSupply)}
