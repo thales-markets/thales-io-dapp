@@ -4,6 +4,11 @@ import styled from 'styled-components';
 import { FlexDivColumnCentered, FlexDivSpaceBetween } from 'styles/common';
 
 export const StyledPieChart = styled(PieChart)`
+    @media (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        justify-content: center;
+        width: 320px !important;
+        height: 320px !important;
+    }
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 100% !important;
         height: 100% !important;

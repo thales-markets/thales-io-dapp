@@ -40,10 +40,19 @@ export const BurnContainer = styled(FlexDivColumnCentered)`
     top: -30px;
     right: 0;
     padding: 0 50px 0 0;
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        padding: 0 20px 0 0;
+        img {
+            width: 300px;
+            height: auto;
+        }
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        padding: 0;
+    }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         position: relative;
         top: -50px;
-        padding: 0;
         align-items: center;
         img {
             width: 250px;
@@ -70,6 +79,13 @@ export const CoinsContainer = styled(FlexDivColumnCentered)`
     img {
         width: 435px;
         height: 369px;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        bottom: 0px;
+        img {
+            width: 300px;
+            height: auto;
+        }
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
@@ -137,13 +153,17 @@ export const CirculatingSupplyContainer = styled(FlexDivCentered)`
     background: linear-gradient(90deg, #1f274d 0%, #111325 100%);
     font-weight: 700;
     font-size: 87px;
-    line-height: 87px;
+    line-height: 100%;
     letter-spacing: 4px;
     padding: 40px 0;
     border-radius: 22px;
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        padding: 30px 0;
+        font-size: 56px;
+        letter-spacing: 2px;
+    }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 26px;
-        line-height: 26px;
         padding: 20px;
         border-radius: 18px;
         width: 100%;
@@ -152,6 +172,9 @@ export const CirculatingSupplyContainer = styled(FlexDivCentered)`
 
 export const CirculatingSupply = styled.span<{ isVisbile: boolean }>`
     width: ${(props) => (props.isVisbile ? '660px' : 'auto')};
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        width: ${(props) => (props.isVisbile ? '420px' : 'auto')};
+    }
 `;
 
 export const BurnInfoContainer = styled(FlexDivRow)`
@@ -159,6 +182,10 @@ export const BurnInfoContainer = styled(FlexDivRow)`
     width: 100%;
     margin-top: 30px;
     flex: 1 1 0;
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        gap: 30px;
+        font-size: 36px;
+    }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         flex-direction: column;
         margin-top: 10px;
@@ -174,10 +201,19 @@ export const BurnInfo = styled(FlexDivColumnCentered)`
     line-height: 100%;
     padding: 40px 40px;
     border-radius: 22px;
+    @media (max-width: ${ScreenSizeBreakpoint.EXTRA_LARGE}px) {
+        font-size: 36px;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        padding: 30px;
+        font-size: 32px;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        font-size: 20px;
+        padding: 20px;
+    }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 26px;
-        line-height: 26px;
-        padding: 20px;
         border-radius: 18px;
         width: 100%;
     }
@@ -187,12 +223,13 @@ export const BurnInfoLabel = styled(FlexDivSpaceBetween)<{ color?: string }>`
     color: ${(props) => props.color || props.theme.textColor.primary};
     font-weight: 400;
     font-size: 25px;
-    line-height: 25px;
+    line-height: 100%;
     letter-spacing: 0%;
     margin-bottom: 20px;
-    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+    @media (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
         font-size: 18px;
-        line-height: 18px;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-bottom: 15px;
     }
 `;
@@ -331,6 +368,11 @@ export const OverIcon = styled.i`
     font-size: 237px;
     margin-bottom: -12px;
     margin-right: 40px;
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        margin-bottom: -8px;
+        font-size: 160px;
+        margin-right: 30px;
+    }
 `;
 
 export const BurnIcon = styled.i`
@@ -338,12 +380,19 @@ export const BurnIcon = styled.i`
     font-size: 64px;
     margin-left: 50px;
     color: ${(props) => props.theme.error.textColor.primary};
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        font-size: 44px;
+        margin-left: 30px;
+    }
 `;
 
 export const Icon = styled.i`
     font-weight: 400;
     font-size: 30px;
     margin-left: 5px;
+    @media (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        font-size: 24px;
+    }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 20px;
     }
