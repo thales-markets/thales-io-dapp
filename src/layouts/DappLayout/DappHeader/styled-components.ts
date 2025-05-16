@@ -4,7 +4,9 @@ import { FlexDiv, FlexDivSpaceBetween } from 'styles/common';
 
 export const HeaderContainer = styled(FlexDivSpaceBetween)`
     width: 100%;
+    margin-top: 6px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-top: 0px;
     }
 `;
 
@@ -21,7 +23,7 @@ export const Logo = styled.i`
     font-size: 170px;
     cursor: pointer;
     line-height: 22px;
-    margin-top: 20px;
+    margin-top: 6px;
 `;
 
 export const MenuIcon = styled.i`
@@ -44,7 +46,7 @@ export const LogoMobile = styled.i`
     justify-content: center;
     font-size: 150px;
     line-height: 4px;
-    margin: 15px 5px 0px 2px;
+    margin: 4px 5px 0px 2px;
     color: ${(props) => props.theme.textColor.primary};
 `;
 

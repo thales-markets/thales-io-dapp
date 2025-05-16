@@ -4,6 +4,7 @@ import { Coins } from 'thales-utils';
 import { SupportedNetwork } from 'types/network';
 
 export const THALES_CURRENCY = 'THALES';
+export const OVER_CURRENCY = '$OVER';
 export const USD_SIGN = '$';
 export const LP_TOKEN = 'LP Token';
 

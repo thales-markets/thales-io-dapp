@@ -12,9 +12,9 @@ import {
 
 export const Header = styled.div`
     position: relative;
-    margin-top: 140px;
+    margin-top: 126px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-top: 50px;
+        margin-top: 42px;
     }
 `;
 
@@ -55,21 +55,23 @@ export const Logo = styled.i`
     line-height: 40px;
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 200px;
+        margin-bottom: 8px;
     }
 `;
 
 export const LogoBackgroundContainer = styled.div`
     position: absolute;
-    top: -100px;
+    top: -80px;
     left: 100px;
     svg {
         height: 90%;
         width: 90%;
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        top: -65px;
+        top: -57px;
         left: 30px;
         svg {
             height: 180px;
@@ -173,11 +175,17 @@ export const BulletNumberIcon = styled.i`
     margin-right: 5px;
 `;
 
-export const Section = styled.div<{ marginTop?: number; marginBottom?: number }>`
-    margin-top: ${(props) => (props.marginTop ? props.marginTop : '100')}px;
-    margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : '0')}px;
+export const Section = styled.div<{
+    marginTop?: number;
+    marginBottom?: number;
+    mobileMarginTop?: number;
+    mobileMarginBottom?: number;
+}>`
+    margin-top: ${(props) => props.marginTop || '100'}px;
+    margin-bottom: ${(props) => props.marginBottom || '0'}px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
-        margin-top: 50px;
+        margin-top: ${(props) => props.mobileMarginTop || '50'}px;
+        margin-bottom: ${(props) => props.mobileMarginBottom || '0'}px;
     }
 `;
 

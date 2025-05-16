@@ -57,6 +57,30 @@
     content: '\0042';
 }
 
+.overtime-icon--over:before {
+    content: '\0043';
+}
+
+.overtime-icon--arrow-down:before {
+    content: '\0044';
+}
+
+.overtime-icon--chart:before {
+    content: '\0045';
+}
+
+.overtime-icon--burn1:before {
+    content: '\0046';
+}
+
+.overtime-icon--stack:before {
+    content: '\0047';
+}
+
+.overtime-icon--burn2:before {
+    content: '\0048';
+}
+
 .overtime-icon--industry:before {
     content: '\0061';
 }

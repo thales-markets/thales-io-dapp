@@ -1,8 +1,8 @@
 import { ReactComponent as ArrowHyperlinkIcon } from 'assets/images/arrow-hyperlink.svg';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import { HashLink } from 'react-router-hash-link';
-import styled from 'styled-components';
-import { FlexDiv, FlexDivCentered, FlexDivColumnCentered } from 'styles/common';
+import styled, { CSSProperties } from 'styled-components';
+import { FlexDiv, FlexDivCentered, FlexDivColumnCentered, FlexDivRow, FlexDivSpaceBetween } from 'styles/common';
 
 export const Content = styled.div`
     display: flex;
@@ -16,37 +16,221 @@ export const Content = styled.div`
     }
 `;
 
-export const OverContainer = styled(FlexDiv)`
+export const OverContainer = styled(FlexDiv)<{ marginTop?: string }>`
     width: 100%;
-    margin-top: 40px;
+    margin-top: ${(props) => props.marginTop || '0px'};
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         margin-top: 0px;
         flex-direction: column;
     }
 `;
 
-export const OverLeftContainer = styled(FlexDivColumnCentered)`
-    flex-basis: 65%;
+export const OverLeftContainer = styled(FlexDivColumnCentered)<{ flexBasis?: string }>`
+    position: relative;
+    justify-content: start;
+    flex-basis: ${(props) => props.flexBasis || '50%'};
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
         align-items: left;
     }
 `;
 
-export const OverRightContainer = styled(FlexDivColumnCentered)<{ padding?: string }>`
-    flex-basis: 35%;
+export const BurnContainer = styled(FlexDivColumnCentered)`
+    position: absolute;
+    top: -30px;
+    right: 0;
+    padding: 0 50px 0 0;
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        padding: 0 20px 0 0;
+        img {
+            width: 300px;
+            height: auto;
+        }
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        padding: 0;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        position: relative;
+        top: -50px;
+        align-items: center;
+        img {
+            width: 250px;
+            height: auto;
+        }
+    }
+`;
+
+export const OverRightContainer = styled(FlexDivColumnCentered)<{ flexBasis?: string; padding?: string }>`
+    position: relative;
+    flex-basis: ${(props) => props.flexBasis || '50%'};
     padding: ${(props) => props.padding || '20px'};
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        padding: 0;
+        align-items: center;
+    }
+`;
+
+export const CoinsContainer = styled(FlexDivColumnCentered)`
+    position: absolute;
+    bottom: -100px;
+    right: 0;
+    padding: 0 50px 0 0;
     img {
-        height: 500px;
-        width: 500px;
+        width: 435px;
+        height: 369px;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        bottom: 0px;
+        img {
+            width: 300px;
+            height: auto;
+        }
     }
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         padding: 0;
         align-items: center;
+        bottom: -150px;
         img {
-            height: 300px;
-            width: 300px;
+            width: 250px;
+            height: auto;
         }
+    }
+`;
+
+export const CirculatingSupplyLabelContainer = styled(FlexDivSpaceBetween)`
+    margin-bottom: 25px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-bottom: 0px;
+    }
+`;
+
+export const CirculatingSupplyLabel = styled(FlexDiv)`
+    color: ${(props) => props.theme.textColor.primary};
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 32px;
+    text-align: left;
+    width: 100%;
+    text-transform: uppercase;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 18px;
+        line-height: 18px;
+    }
+`;
+
+export const LiveLabel = styled(FlexDiv)`
+    color: ${(props) => props.theme.textColor.primary};
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 22px;
+    align-items: center;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 16px;
+        line-height: 16px;
+    }
+`;
+
+export const BurningLabel = styled.span`
+    color: ${(props) => props.theme.error.textColor.tertiary};
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 100%;
+    background: rgba(207, 18, 33, 0.2);
+    padding: 5px 20px;
+    margin-left: 20px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-left: 0px;
+        font-size: 14px;
+        line-height: 14px;
+        padding: 5px 15px;
+    }
+`;
+
+export const CirculatingSupplyContainer = styled(FlexDivCentered)`
+    color: ${(props) => props.theme.textColor.primary};
+    background: linear-gradient(90deg, #1f274d 0%, #111325 100%);
+    font-weight: 700;
+    font-size: 87px;
+    line-height: 100%;
+    letter-spacing: 4px;
+    padding: 40px 0;
+    border-radius: 22px;
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        padding: 30px 0;
+        font-size: 56px;
+        letter-spacing: 2px;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 26px;
+        padding: 20px;
+        border-radius: 18px;
+        width: 100%;
+    }
+`;
+
+export const CirculatingSupply = styled.span<{ isVisbile: boolean }>`
+    width: ${(props) => (props.isVisbile ? '660px' : 'auto')};
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        width: ${(props) => (props.isVisbile ? '420px' : 'auto')};
+    }
+`;
+
+export const BurnInfoContainer = styled(FlexDivRow)`
+    gap: 40px;
+    width: 100%;
+    margin-top: 30px;
+    flex: 1 1 0;
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        gap: 30px;
+        font-size: 36px;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        flex-direction: column;
+        margin-top: 10px;
+        gap: 20px;
+    }
+`;
+
+export const BurnInfo = styled(FlexDivColumnCentered)`
+    color: ${(props) => props.theme.textColor.primary};
+    background: ${(props) => props.theme.background.primary};
+    font-weight: 700;
+    font-size: 43px;
+    line-height: 100%;
+    padding: 40px 40px;
+    border-radius: 22px;
+    @media (max-width: ${ScreenSizeBreakpoint.EXTRA_LARGE}px) {
+        font-size: 36px;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        padding: 30px;
+        font-size: 32px;
+    }
+    @media (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        font-size: 20px;
+        padding: 20px;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 26px;
+        border-radius: 18px;
+        width: 100%;
+    }
+`;
+
+export const BurnInfoLabel = styled(FlexDivSpaceBetween)<{ color?: string }>`
+    color: ${(props) => props.color || props.theme.textColor.primary};
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-bottom: 20px;
+    @media (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        font-size: 18px;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        margin-bottom: 15px;
     }
 `;
 
@@ -61,6 +245,7 @@ export const Label = styled.div`
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
+    margin-bottom: 30px;
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 15px;
     }
@@ -78,14 +263,14 @@ export const Value = styled.div`
     }
 `;
 
-export const List = styled.ul<{ margin?: boolean }>`
+export const List = styled.ul`
     list-style: disc;
     color: ${(props) => props.theme.textColor.primary};
     list-style-position: inside;
     margin: 20px 0px 0px 0px;
 `;
 
-export const ListItem = styled.li<{ bold?: boolean }>`
+export const ListItem = styled.li`
     margin-bottom: 10px;
     color: ${(props) => props.theme.textColor.primary};
     font-weight: 700;
@@ -97,6 +282,34 @@ export const ListItem = styled.li<{ bold?: boolean }>`
     @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         font-size: 15px;
         line-height: 18px;
+    }
+`;
+
+export const ContractAddressItem = styled(FlexDivSpaceBetween)`
+    padding: 20px;
+    color: ${(props) => props.theme.textColor.primary};
+    background: ${(props) => props.theme.background.primary};
+    margin-bottom: 15px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    border-radius: 8px;
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 15px;
+        line-height: 15px;
+        margin-bottom: 10px;
+    }
+`;
+
+export const OverChainLabel = styled.label``;
+
+export const ContractAddress = styled.div`
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    a {
+        color: ${(props) => props.theme.link.textColor.primary};
     }
 `;
 
@@ -138,4 +351,49 @@ export const ChartLabel = styled.span`
 
 export const CustomHashLink = styled(HashLink)`
     color: ${(props) => props.theme.textColor.primary};
+`;
+
+export const liveBlinkStyle: CSSProperties = {
+    width: 32,
+    margin: '0px 0px -4px 0px',
+};
+
+export const liveBlinkStyleMobile: CSSProperties = {
+    width: 30,
+    margin: '0px 0px -2px 0px',
+};
+
+export const OverIcon = styled.i`
+    font-weight: 400;
+    font-size: 237px;
+    margin-bottom: -12px;
+    margin-right: 40px;
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        margin-bottom: -8px;
+        font-size: 160px;
+        margin-right: 30px;
+    }
+`;
+
+export const BurnIcon = styled.i`
+    font-weight: 400;
+    font-size: 64px;
+    margin-left: 50px;
+    color: ${(props) => props.theme.error.textColor.primary};
+    @media (max-width: ${ScreenSizeBreakpoint.LARGE}px) {
+        font-size: 44px;
+        margin-left: 30px;
+    }
+`;
+
+export const Icon = styled.i`
+    font-weight: 400;
+    font-size: 30px;
+    margin-left: 5px;
+    @media (max-width: ${ScreenSizeBreakpoint.MEDIUM}px) {
+        font-size: 24px;
+    }
+    @media screen and (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
+        font-size: 20px;
+    }
 `;
