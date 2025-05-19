@@ -23,7 +23,7 @@ const LINKS = {
     Biconomy: 'https://biconomy.io/',
     OneInch: 'https://app.1inch.io/',
     DefiLlama: 'http://swap.defillama.com',
-    Paraswap: 'https://www.paraswap.io/',
+    Paraswap: 'https://www.velora.xyz/',
     Matcha: 'https://matcha.xyz/',
     TIPs: 'https://github.com/thales-markets/thales-improvement-proposals/tree/main/TIPs',
     TIP1: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-1.md',
