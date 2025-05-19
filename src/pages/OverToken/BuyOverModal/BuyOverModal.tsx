@@ -47,7 +47,7 @@ const BuyOverModal: React.FC<BuyOverModalProps> = ({ onClose }) => {
             <Container>
                 <CloseIcon className="thales-icon thales-icon--close" onClick={() => onClose()} />
                 <Title>{t('over-token.buy-over-modal.title')}</Title>
-                <Description>Use ParaSwap to buy $OVER on different blockchains</Description>
+                <Description>Use Velora to buy $OVER on different blockchains</Description>
                 <SectionContainer>
                     <List>
                         <ListItem>
