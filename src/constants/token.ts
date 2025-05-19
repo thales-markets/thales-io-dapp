@@ -8,3 +8,5 @@ export enum STAKING_TABS {
     LEADERBOARD = 'leaderboard',
     ACC_PREFERENCES = 'acc-preferences',
 }
+
+export const INITIAL_OVER_BURN = 6446.94304095488;

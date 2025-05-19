@@ -1086,6 +1086,11 @@
         "over-token-total-supply": "Total supply",
         "over-token-total-burned": "Total burned",
         "over-token-circulating-supply": "Circulating supply",
+        "over-token-initial-supply": "Initial supply",
+        "over-token-burn-rate": "Burn rate",
+        "over-token-burned": "$OVER burned",
+        "over-token-burning": "Burning",
+        "over-token-live": "Live",
         "over-token-contract-addresses": "Token contract addresses",
         "list": {
             "1": "$OVER on Mainnet: ",
@@ -1101,7 +1106,8 @@
         "best-odds-title-highlight": "best odds!",
         "best-odds-description-1": "Overtime sportsbook is designed to provide bettors that use $OVER token the best betting experience no Overtime! Bets paced with $OVER token enable better return, compared to using other supported forms of collateral. ",
         "best-odds-description-2": "The benefits of using the $OVER token are available for all users seamlessly! All users of Overtime app are able to acquire $OVER tokens directly from the app by using the integrated swap function which uses popular DEX aggregators in the background.",
-        "valute-capture-title": "Value capture!",
+        "valute-capture-title": "capture!",
+        "valute-capture-title-highlight": "Value",
         "valute-capture-description-1": "Entire revenue and fee capture of Overtime fuels the Buyback & Burn system for the $OVER token. All betting action with $OVER token incurs a 20% Performance Fee that gets burned permanently. The other 80% goes back to the liquidity pool that provides liquidity to $OVER bets. Similarly, betting fees and additional 20% performance fee from LP pools from other collateral types buys back the $OVER token on the open market which then gets burned as well.",
         "valute-capture-description-2": "Every bet made on Overtime fuels $OVER token’s deflationary nature and increases its scarcity. As Overtime organically grows, so does the $OVER token adoption and utilization, which increases the Buyback and Burn amounts exponentially.",
         "governance-title": "Decentralised Governance",
@@ -1114,6 +1120,18 @@
                 "2": "Buy $OVER on ",
                 "3": "Buy $OVER on "
             }
+        },
+        "chart": {
+            "title": "$OVER buyback and burn",
+            "no-data": "No data available",
+            "cumulative-burn": "Cumulative burn",
+            "daily-burn": "Daily burn",
+            "circulating-supply": "Circulating supply",
+            "burned-supply": "Total burned",
+            "percentage-of-total": "% of total supply",
+            "percentage-burned": "Percentage burned",
+            "circulating": "Circulating",
+            "burned": "Burned"
         }
     },
     "migration-modal": {
