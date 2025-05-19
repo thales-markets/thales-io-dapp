@@ -1090,6 +1090,7 @@
         "over-token-burn-rate": "Burn rate",
         "over-token-burned": "$OVER burned",
         "over-token-burning": "Burning",
+        "over-token-live": "Live",
         "over-token-contract-addresses": "Token contract addresses",
         "list": {
             "1": "$OVER on Mainnet: ",

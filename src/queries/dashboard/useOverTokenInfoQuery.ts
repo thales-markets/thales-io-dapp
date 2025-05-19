@@ -1,5 +1,6 @@
 import { generalConfig } from 'config/general';
 import QUERY_KEYS from 'constants/queryKeys';
+import { INITIAL_OVER_BURN } from 'constants/token';
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
 import { orderBy } from 'lodash';
@@ -74,7 +75,7 @@ const useOverTokenInfoQuery = (options?: UseQueryOptions<OverTokenInfo | undefin
                         const amountOut =
                             Number(item.amountOut) +
                             (index === buybackByDates.length - 1 ? currentTickBurn : 0) +
-                            (index === 0 ? 6446.94304095488 : 0);
+                            (index === 0 ? INITIAL_OVER_BURN : 0);
 
                         cumulativeAmountIn += amountIn;
                         cumulativeAmountOut += amountOut;

@@ -132,7 +132,7 @@ const OverToken: React.FC = () => {
                         </BurningLabel>
                     </CirculatingSupplyLabel>
                     <LiveLabel>
-                        Live
+                        {t('over-token.over-token-live')}
                         <Lottie
                             autoplay={true}
                             animationData={liveAnimationData}
