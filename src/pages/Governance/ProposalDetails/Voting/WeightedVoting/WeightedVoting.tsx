@@ -1,7 +1,7 @@
 import { Web3Provider } from '@ethersproject/providers';
 import { Dialog } from '@material-ui/core';
 import snapshot from '@snapshot-labs/snapshot.js';
-import { ProposalType } from '@snapshot-labs/snapshot.js/dist/sign/types';
+import { ProposalType } from '@snapshot-labs/snapshot.js/dist/src/sign/types';
 import { ReactComponent as CloseIcon } from 'assets/images/close.svg';
 import {
     getDefaultToastContent,

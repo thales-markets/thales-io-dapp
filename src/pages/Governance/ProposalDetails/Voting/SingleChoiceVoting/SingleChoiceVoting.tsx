@@ -1,6 +1,6 @@
 import { Web3Provider } from '@ethersproject/providers';
 import snapshot from '@snapshot-labs/snapshot.js';
-import { ProposalType } from '@snapshot-labs/snapshot.js/dist/sign/types';
+import { ProposalType } from '@snapshot-labs/snapshot.js/dist/src/sign/types';
 import {
     getDefaultToastContent,
     getErrorToastOptions,
