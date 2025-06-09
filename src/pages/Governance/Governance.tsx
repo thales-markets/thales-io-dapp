@@ -76,6 +76,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                             }
                             strategies {
                                 name
+                                network
                                 params
                             }
                         }
