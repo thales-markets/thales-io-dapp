@@ -44,6 +44,7 @@ const useProposalQuery = (
                             scores
                             strategies {
                                 name
+                                network
                                 params
                             }
                             space {

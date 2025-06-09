@@ -38,6 +38,7 @@ const useProposalsQuery = (spaceKey: SpaceKey, limit: number, options?: UseQuery
                             }
                             strategies {
                                 name
+                                network
                                 params
                             }
                         }
