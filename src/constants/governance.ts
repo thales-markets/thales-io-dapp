@@ -1,7 +1,7 @@
 export const SNAPSHOT_GRAPHQL_URL = `https://hub.snapshot.org/graphql?apiKey=${process.env.REACT_APP_SNAPSHOT_API_KEY}`;
 export const SNAPSHOT_SCORE_URL = `https://score.snapshot.org/?apiKey=${process.env.REACT_APP_SNAPSHOT_API_KEY}`;
 
-export const VOTING_COUNCIL_PROPOSAL_ID = '0x34ab2c92431fe877985edd3bd525d23d6927029e30f3a7b759464b12e2980ec7';
+export const VOTING_COUNCIL_PROPOSAL_ID = '0x53ff4a6fb029f820792a1d1fe4c8749e861c616e1c566d83062ad47968a0065a';
 export const COUNCIL_PROPOSAL_ID = '0x34ab2c92431fe877985edd3bd525d23d6927029e30f3a7b759464b12e2980ec7';
 export const VOTING_ORACLE_COUNCIL_PROPOSAL_ID = '0xb94b357561a620ab38777f75aba7f6d14d21e019911c2c1ff5cd88e5f1b18eeb';
 export const FIRST_COUNCIL_ELECTIONS_ID = 'QmcKWQZYyj6Z7iaWpUR3unjNU5otchQsARSVjE4utYSyv3';
@@ -12,9 +12,16 @@ export const PROPOSAL_APPROVAL_VOTES_OLD = 3;
 export const NUMBER_OF_COUNCIL_MEMBERS = 7;
 export const PROPOSAL_APPROVAL_VOTES = 5;
 
+export const NUMBER_OF_OIP_COUNCIL_MEMBERS = 5;
+export const OIP_PROPOSAL_APPROVAL_VOTES = 3;
+
 export const NUMBER_OF_ORACLE_COUNCIL_MEMBERS = 5;
 
+export const VIEW_ALL_COUNT = 1000;
+export const DEFAULT_VIEW_COUNT = 10;
+
 export const OLD_COUNCIL_END_DATE = new Date('Dec 22 2021 00:00:00 UTC');
+export const OIP_COUNCIL_START_DATE = new Date('Jun 23 2025 00:00:00 UTC');
 
 export const CURRENT_GOVERNANCE_EPOCH_START_DATE = new Date('Jan 01 2024 00:00:00 UTC');
 export const CURRENT_GOVERNANCE_EPOCH_END_DATE = new Date('Apr 30 2024 23:59:59 UTC');

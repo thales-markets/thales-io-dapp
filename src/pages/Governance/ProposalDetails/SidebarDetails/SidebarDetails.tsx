@@ -10,6 +10,7 @@ import { getWalletAddress } from 'redux/modules/wallet';
 import { RootState } from 'redux/rootReducer';
 import { FlexDivCentered, FlexDivColumnCentered, FlexDivStart } from 'styles/common';
 import { Proposal } from 'types/governance';
+import { getProposalApprovalData } from 'utils/governance';
 import Results from '../Results';
 import { CouncilVotesLabel, Icon, SidebarHeaderContainer } from '../styled-components';
 
@@ -33,6 +34,7 @@ const SidebarDetails: React.FC<SidebarDetailsProps> = ({ proposal, type }) => {
             (proposal.id === VOTING_COUNCIL_PROPOSAL_ID || proposal.id === VOTING_ORACLE_COUNCIL_PROPOSAL_ID),
         [proposal]
     );
+    const { numberOfCouncilMembers, proposalApprovalVotes } = getProposalApprovalData(proposal.start);
 
     return (
         <FlexDivColumnCentered>
@@ -45,7 +47,12 @@ const SidebarDetails: React.FC<SidebarDetailsProps> = ({ proposal, type }) => {
                                 <SidebarTitle>{t(`governance.sidebar.title.${type}`)}</SidebarTitle>
                             </FlexDivStart>
                             <FlexDivStart>
-                                <CouncilVotesLabel>{t(`governance.sidebar.tip-condition`)}</CouncilVotesLabel>
+                                <CouncilVotesLabel>
+                                    {t(`governance.sidebar.tip-condition`, {
+                                        approvalVotes: proposalApprovalVotes,
+                                        totalVotes: numberOfCouncilMembers,
+                                    })}
+                                </CouncilVotesLabel>
                             </FlexDivStart>
                         </>
                     )}
@@ -65,6 +72,7 @@ const SidebarDetails: React.FC<SidebarDetailsProps> = ({ proposal, type }) => {
                         proposalResults={proposalResults}
                         isLoading={proposalResultsQuery.isLoading}
                         proposalId={proposal.id}
+                        proposalStart={proposal.start}
                     />
                 )}
                 {type === 'history' && !isCouncilVoting && (

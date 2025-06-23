@@ -2,6 +2,9 @@ import snapshot from '@snapshot-labs/snapshot.js';
 import {
     NUMBER_OF_COUNCIL_MEMBERS,
     NUMBER_OF_COUNCIL_MEMBERS_OLD,
+    NUMBER_OF_OIP_COUNCIL_MEMBERS,
+    OIP_COUNCIL_START_DATE,
+    OIP_PROPOSAL_APPROVAL_VOTES,
     OLD_COUNCIL_END_DATE,
     PROPOSAL_APPROVAL_VOTES,
     PROPOSAL_APPROVAL_VOTES_OLD,
@@ -70,11 +73,15 @@ export const getProposalApprovalData = (proposalStartDate: number) => {
     const numberOfCouncilMembers =
         OLD_COUNCIL_END_DATE > new Date(proposalStartDate * 1000)
             ? NUMBER_OF_COUNCIL_MEMBERS_OLD
-            : NUMBER_OF_COUNCIL_MEMBERS;
+            : OIP_COUNCIL_START_DATE > new Date(proposalStartDate * 1000)
+            ? NUMBER_OF_COUNCIL_MEMBERS
+            : NUMBER_OF_OIP_COUNCIL_MEMBERS;
     const proposalApprovalVotes =
         OLD_COUNCIL_END_DATE > new Date(proposalStartDate * 1000)
             ? PROPOSAL_APPROVAL_VOTES_OLD
-            : PROPOSAL_APPROVAL_VOTES;
+            : OIP_COUNCIL_START_DATE > new Date(proposalStartDate * 1000)
+            ? PROPOSAL_APPROVAL_VOTES
+            : OIP_PROPOSAL_APPROVAL_VOTES;
     return { numberOfCouncilMembers, proposalApprovalVotes };
 };
 

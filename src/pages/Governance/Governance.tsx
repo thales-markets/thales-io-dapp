@@ -43,7 +43,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
     const dispatch = useDispatch();
     const isMobile = useSelector(getIsMobile);
     const [selectedProposal, setSelectedProposal] = useState<Proposal | undefined>(undefined);
-    const [selectedTab, setSelectedTab] = useState<SpaceKey>(SpaceKey.TIPS);
+    const [selectedTab, setSelectedTab] = useState<SpaceKey>(SpaceKey.OIPS);
     const [statusFilter, setStatusFilter] = useState<StatusEnum>(StatusEnum.All);
     const proposalSearch = useSelector((state: RootState) => getProposalSearch(state));
 
@@ -95,7 +95,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
         if (
             params &&
             params.space &&
-            (params.space === SpaceKey.TIPS ||
+            (params.space === SpaceKey.OIPS ||
                 params.space === SpaceKey.COUNCIL ||
                 params.space === SpaceKey.THALES_STAKERS)
         ) {
@@ -106,7 +106,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
             }
             setSelectedTab(params.space as SpaceKey);
         } else {
-            setSelectedTab(SpaceKey.TIPS);
+            setSelectedTab(SpaceKey.OIPS);
             setSelectedProposal(undefined);
         }
     }, [props.match, fetchPreloadedProposal]);
@@ -117,8 +117,8 @@ const Governance: React.FC<GovernanceProps> = (props) => {
     }> = useMemo(
         () => [
             {
-                id: SpaceKey.TIPS,
-                name: t(`governance.tabs.${SpaceKey.TIPS}`),
+                id: SpaceKey.OIPS,
+                name: t(`governance.tabs.${SpaceKey.OIPS}`),
             },
             {
                 id: SpaceKey.COUNCIL,
@@ -199,9 +199,9 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                                         </>
                                     )}
                                 </OptionsTabWrapper>
-                                {selectedTab === SpaceKey.TIPS && (
+                                {selectedTab === SpaceKey.OIPS && (
                                     <ProposalList
-                                        spaceKey={SpaceKey.TIPS}
+                                        spaceKey={SpaceKey.OIPS}
                                         onItemClick={setSelectedProposal}
                                         statusFilter={statusFilter}
                                         proposalSearch={proposalSearch}
@@ -244,7 +244,7 @@ const Governance: React.FC<GovernanceProps> = (props) => {
                                 </Sidebar>
                             </SidebarWrapper>
                         )}
-                        {selectedProposal.space.id === SpaceKey.TIPS && (
+                        {selectedProposal.space.id === SpaceKey.OIPS && (
                             <SidebarWrapper>
                                 <Sidebar>
                                     <SidebarDetails proposal={selectedProposal} type="history" />

@@ -106,9 +106,9 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                 title: t('header.links.dao'),
                 children: [
                     {
-                        href: buildHref(`${ROUTES.DAO.Home}/${SpaceKey.TIPS}`),
-                        title: t(`governance.tabs.${SpaceKey.TIPS}`),
-                        active: location.pathname.includes(SpaceKey.TIPS),
+                        href: buildHref(`${ROUTES.DAO.Home}/${SpaceKey.OIPS}`),
+                        title: t(`governance.tabs.${SpaceKey.OIPS}`),
+                        active: location.pathname.includes(SpaceKey.OIPS),
                     },
                     {
                         href: buildHref(`${ROUTES.DAO.Home}/${SpaceKey.COUNCIL}`),
