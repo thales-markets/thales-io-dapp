@@ -175,6 +175,7 @@ const useProposalQuery = (
                 spaceSymbol: space.symbol,
                 results,
                 votes: voteList,
+                start: proposal.start,
             };
 
             return proposalResults;

@@ -198,7 +198,6 @@ export const VoteConfirmation = styled(FlexDiv)`
 `;
 
 export const ViewMore = styled(FlexDivCentered)<{ padding?: string }>`
-    width: 100px;
     padding: ${(props) => (props.padding ? props.padding : '10px')};
     font-weight: normal;
     font-size: 16px;

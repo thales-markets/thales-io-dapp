@@ -723,7 +723,7 @@
                 "history": "Council member votes",
                 "council-members": "Current council members"
             },
-            "tip-condition": "(5 of 7 votes needed for approval)"
+            "tip-condition": "({{approvalVotes}} of {{totalVotes}} votes needed for approval)"
         },
         "proposal": {
             "status-label": "Status",

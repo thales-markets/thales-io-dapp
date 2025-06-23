@@ -66,6 +66,7 @@ export type ProposalResults = {
     spaceSymbol: any;
     votes: any;
     results: any;
+    start: number;
 };
 
 export type Staker = {
