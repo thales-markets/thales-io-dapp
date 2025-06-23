@@ -72,7 +72,7 @@ const ProposalDetails: React.FC<ProposalDetailsProps> = ({ proposal }) => {
                         <VoteHeader>
                             <FlexDivRow>
                                 <DetailsTitle>{t(`governance.proposal.vote-label`)}</DetailsTitle>
-                                {proposal.space.id === SpaceKey.TIPS && (
+                                {proposal.space.id === SpaceKey.OIPS && (
                                     <VoteNote>
                                         (
                                         {t(`governance.proposal.vote-note`, {

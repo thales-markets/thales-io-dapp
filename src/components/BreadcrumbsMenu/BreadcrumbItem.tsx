@@ -93,7 +93,7 @@ const showDropdownItem = (item: string): boolean => {
 
 const formatBreadcrumbsItem = (item: string, t?: TFunction) => {
     const final = item.replace('-', ' ').replace('?tab=', '');
-    if (final.includes(SpaceKey.TIPS) && t) return t('governance.nav.tips');
+    if (final.includes(SpaceKey.OIPS) && t) return t('governance.nav.opis');
     if (final.includes(SpaceKey.COUNCIL) && t) return t('governance.nav.elections');
     if (item.includes(STAKING_TABS.ACC_PREFERENCES) && t) return t('staking.nav.acc-preferences');
     return final;

@@ -44,8 +44,8 @@ export const BREADCRUMBS_DROPDOWN_ITEMS = {
     ],
     DAO: [
         {
-            i18label: 'governance.nav.tips',
-            route: `${ROUTES.DAO.Home}/${SpaceKey.TIPS}`,
+            i18label: 'governance.nav.oips',
+            route: `${ROUTES.DAO.Home}/${SpaceKey.OIPS}`,
         },
         {
             i18label: 'governance.nav.elections',
@@ -92,7 +92,7 @@ const BreadcrumbsMenu: React.FC = () => {
 
 const formatBreadcrumbsItem = (item: string, t?: TFunction) => {
     const final = item.replace('-', ' ').replace('?tab=', '');
-    if (final.includes(SpaceKey.TIPS) && t) return t('governance.nav.tips');
+    if (final.includes(SpaceKey.OIPS) && t) return t('governance.nav.oips');
     if (final.includes(SpaceKey.COUNCIL) && t) return t('governance.nav.elections');
     if (item.includes(STAKING_TABS.ACC_PREFERENCES) && t) return t('staking.nav.acc-preferences');
     return final;
