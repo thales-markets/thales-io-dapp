@@ -70,7 +70,6 @@ export async function getProfiles(addresses: any) {
 export const getProposalUrl = (spaceKey: SpaceKey, id: string) => `https://snapshot.org/#/${spaceKey}/proposal/${id}`;
 
 export const getProposalApprovalData = (proposalStartDate: number) => {
-    console.log('proposalStartDate', proposalStartDate);
     const numberOfCouncilMembers =
         OLD_COUNCIL_END_DATE > new Date(proposalStartDate * 1000)
             ? NUMBER_OF_COUNCIL_MEMBERS_OLD
