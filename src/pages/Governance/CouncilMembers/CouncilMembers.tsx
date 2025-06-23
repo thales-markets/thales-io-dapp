@@ -28,6 +28,7 @@ const CouncilMembers: React.FC = () => {
                     isLoading={proposalResultsQuery.isLoading}
                     showAll={false}
                     proposalId={COUNCIL_PROPOSAL_ID}
+                    proposalStart={proposalResults?.start || 0}
                     hideViewMore={true}
                 />
             </SidebarContent>

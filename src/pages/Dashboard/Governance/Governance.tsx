@@ -29,7 +29,7 @@ const Governance: React.FC = () => {
     const [latestProposal, setLatestProposal] = useState<Proposal>();
     const [totalProposals, setTotalProposals] = useState<number>(0);
 
-    const proposalsQuery = useProposalsQuery(SpaceKey.TIPS, 1000, { enabled: isAppReady });
+    const proposalsQuery = useProposalsQuery(SpaceKey.OIPS, 1000, { enabled: isAppReady });
 
     useEffect(() => {
         if (proposalsQuery.isSuccess && proposalsQuery.data) {

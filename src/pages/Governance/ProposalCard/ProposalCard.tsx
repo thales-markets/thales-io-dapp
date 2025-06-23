@@ -66,7 +66,7 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                         />
                     </RightSection>
                 )}
-                {!!closed && proposal.space.id === SpaceKey.TIPS && (
+                {!!closed && proposal.space.id === SpaceKey.OIPS && (
                     <ResultContainer>
                         <StatusIcon
                             color={finalChoice.toUpperCase() == 'NO' ? Colors.RED : Colors.CYAN}
@@ -80,7 +80,7 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onClick }) => {
                 )}
             </FlexDivRowCentered>
             <Title status={proposal.state}>{proposal.title}</Title>
-            {proposal.space.id === SpaceKey.TIPS &&
+            {proposal.space.id === SpaceKey.OIPS &&
             !PROPOSALS_DIFFERENT_FORMATTING.includes(proposal.id) &&
             !isMobile ? (
                 <TipTable dangerouslySetInnerHTML={getRawMarkup(proposal.body)} />

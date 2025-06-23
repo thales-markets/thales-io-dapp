@@ -633,8 +633,8 @@
         "networks": "Networks",
         "governance": {
             "title": "Governance",
-            "total-proposals": "Total TIPS implemented:",
-            "latest-proposal": "Latest TIP:"
+            "total-proposals": "Total OIPS implemented:",
+            "latest-proposal": "Latest OIP:"
         },
         "integrators": {
             "title": "Integrators volume",
@@ -692,7 +692,7 @@
     },
     "governance": {
         "nav": {
-            "tips": "Tips",
+            "oips": "Oips",
             "elections": "Elections",
             "thales-stakers": "Thales stakers"
         },
@@ -700,10 +700,10 @@
         "you": "You",
         "voted": "Voted",
         "not-voted": "Not voted",
-        "search": "Search TIPs",
+        "search": "Search OIPs",
         "tabs": {
             "thalesgov": {
-                "eth": "TIPS"
+                "eth": "OIPs"
             },
             "thalescouncil": {
                 "eth": "Elections"
@@ -723,7 +723,7 @@
                 "history": "Council member votes",
                 "council-members": "Current council members"
             },
-            "tip-condition": "(5 of 7 votes needed for approval)"
+            "tip-condition": "({{approvalVotes}} of {{totalVotes}} votes needed for approval)"
         },
         "proposal": {
             "status-label": "Status",
