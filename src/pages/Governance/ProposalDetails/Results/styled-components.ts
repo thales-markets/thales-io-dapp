@@ -52,7 +52,7 @@ export const RowPercentageIndicator = styled(FlexDiv)<{ width: number }>`
 `;
 
 export const ResultLabel = styled.div`
-    width: 160px;
+    width: 180px;
     @media (max-width: ${ScreenSizeBreakpoint.SMALL}px) {
         width: 140px;
     }
