@@ -273,7 +273,7 @@ const calculateWidth = (votes: any[], proposal: Proposal, numberOfCouncilMembers
     };
     const notVoted = {
         color: Colors.LIGHT_GRAY,
-        width: (numberNotVoted / 7) * 100,
+        width: (numberNotVoted / numberOfCouncilMembers) * 100,
         votesNumber: numberNotVoted,
     };
     return [yesVotes, noVotes, notVoted];
