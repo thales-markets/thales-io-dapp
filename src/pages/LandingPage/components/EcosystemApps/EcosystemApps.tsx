@@ -56,9 +56,10 @@ const EcosystemApps: React.FC = () => {
                             className={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].icon}
                             fontSize={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].iconSize}
                             mobileFontSize={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].mobileIconSize}
-                            height="90px"
+                            height="100px"
                         ></Icon>
                         <Title>{ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].title}</Title>
+                        <Description>{ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].description}</Description>
                     </CardContent>
                     <ActionContainer>
                         <SPAAnchor href={ECOSYSTEM_DAPP[EcosystemDappType.SPEED_MARKETS].link}>
@@ -72,32 +73,6 @@ const EcosystemApps: React.FC = () => {
                         mobileTop={35}
                         mobileRight={25}
                         mobileHeight={45}
-                    />
-                </CardContainer>
-                <CardContainer
-                    image={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].backgroundImage}
-                    mobileImage={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].backgroundImageMobile}
-                >
-                    <CardContent>
-                        <Icon
-                            className={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].icon}
-                            fontSize={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].iconSize}
-                            mobileFontSize={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].mobileIconSize}
-                        ></Icon>
-                        <Title>{ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].title}</Title>
-                    </CardContent>
-                    <ActionContainer>
-                        <SPAAnchor href={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].link}>
-                            <Action>{ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].actionText}</Action>
-                        </SPAAnchor>
-                    </ActionContainer>
-                    <Image
-                        src={ECOSYSTEM_DAPP[EcosystemDappType.THALES_MARKETS].image}
-                        top={40}
-                        right={80}
-                        mobileTop={25}
-                        mobileRight={30}
-                        mobileHeight={70}
                     />
                 </CardContainer>
             </RightContainer>
