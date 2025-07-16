@@ -50,9 +50,6 @@ const Footer: React.FC = () => {
                             <SPAAnchor href={LINKS.SpeedMarkets}>
                                 <ThalesLinksItem>{t('home.footer.products.speed-markets')}</ThalesLinksItem>
                             </SPAAnchor>
-                            <SPAAnchor href={LINKS.ThalesMarkets}>
-                                <ThalesLinksItem>{t('home.footer.products.thales-markets')}</ThalesLinksItem>
-                            </SPAAnchor>
                         </FlexDivColumn>
                         <FlexDivColumn>
                             <OvertimeLinksTitle>{t('home.footer.about.about')}</OvertimeLinksTitle>

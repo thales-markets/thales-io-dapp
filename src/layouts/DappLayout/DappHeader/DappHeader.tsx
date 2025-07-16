@@ -73,10 +73,6 @@ const DappHeader: React.FC = () => {
                         href: LINKS.SpeedMarkets,
                         title: t('header.links.speed-markets'),
                     },
-                    {
-                        href: LINKS.ThalesMarkets,
-                        title: t('header.links.thales-markets'),
-                    },
                 ],
             },
             {

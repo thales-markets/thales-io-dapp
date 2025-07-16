@@ -79,10 +79,6 @@ const NavMenuMobile: React.FC<NavMenuMobileProps> = ({ setNavMenuVisibility }) =
                         href: LINKS.SpeedMarkets,
                         title: t('header.links.speed-markets'),
                     },
-                    {
-                        href: LINKS.ThalesMarkets,
-                        title: t('header.links.thales-markets'),
-                    },
                 ],
             },
             {

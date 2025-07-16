@@ -97,6 +97,20 @@ const useOverTokenInfoQuery = (options?: UseQueryOptions<OverTokenInfo | undefin
                     }),
                 };
 
+                if (tokenInfo.buybackByDates.length > 0) {
+                    const burnDiff =
+                        tokenInfo.burned -
+                        tokenInfo.buybackByDates[tokenInfo.buybackByDates.length - 1].cumulativeAmountOut;
+                    const burnDiffPerDate = burnDiff / tokenInfo.buybackByDates.length;
+                    tokenInfo.buybackByDates = tokenInfo.buybackByDates.map((item, index) => {
+                        return {
+                            ...item,
+                            amountOut: item.amountOut + burnDiffPerDate,
+                            cumulativeAmountOut: item.cumulativeAmountOut + burnDiffPerDate * (index + 1),
+                        };
+                    });
+                }
+
                 return tokenInfo;
             } catch (e) {
                 console.log(e);
