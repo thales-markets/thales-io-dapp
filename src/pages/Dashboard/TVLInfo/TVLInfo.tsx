@@ -43,7 +43,6 @@ const TVLInfo: React.FC = () => {
                 </WidgetHeader>
                 <InfoSection side="left">
                     <InfoText>{t('dashboard.tvl.overtime-amm-tvl')}</InfoText>
-                    <InfoText>{t('dashboard.tvl.thales-amm-tvl')}</InfoText>
                     <InfoText>{t('dashboard.tvl.speed-tvl')}</InfoText>
                 </InfoSection>
                 <InfoSection side="right">
@@ -54,9 +53,6 @@ const TVLInfo: React.FC = () => {
                                   tvlStats.overtimeSingleTVL + tvlStats.overtimeParlayTVL + tvlStats.overtimeV2TVL
                               )}`
                             : '-'}
-                    </InfoStats>
-                    <InfoStats>
-                        {tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.thalesLpTVL)}` : '-'}
                     </InfoStats>
                     <InfoStats>
                         {tvlStats ? `${formatCurrencyWithSign(USD_SIGN, tvlStats.speedMarketsTVL)}` : '-'}
