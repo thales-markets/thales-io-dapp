@@ -1,6 +1,7 @@
 import QUERY_KEYS from 'constants/queryKeys';
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
+import { RPC_LIST } from 'pages/Root/Root';
 import { useQuery, UseQueryOptions } from 'react-query';
 import { bigNumberFormatter } from 'thales-utils';
 import { StakingData } from 'types/token';
@@ -21,9 +22,8 @@ const useStakingDataQuery = (options?: UseQueryOptions<StakingData | undefined>)
             };
             try {
                 // Thales staked - Optimism
-                const opInfuraProvider = new ethers.providers.InfuraProvider(
-                    Network.OptimismMainnet,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
+                const opInfuraProvider = new ethers.providers.JsonRpcProvider(
+                    RPC_LIST.DRPC[Network.OptimismMainnet as keyof typeof RPC_LIST.DRPC].http
                 );
 
                 const opThalesStakeContract = new ethers.Contract(
@@ -33,9 +33,8 @@ const useStakingDataQuery = (options?: UseQueryOptions<StakingData | undefined>)
                 );
 
                 // Thales staked - Arbitrum
-                const arbInfuraProvider = new ethers.providers.InfuraProvider(
-                    Network.Arbitrum,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
+                const arbInfuraProvider = new ethers.providers.JsonRpcProvider(
+                    RPC_LIST.DRPC[Network.Arbitrum as keyof typeof RPC_LIST.DRPC].http
                 );
                 const arbThalesStakeContract = new ethers.Contract(
                     stakingDataContract.addresses[Network.Arbitrum],

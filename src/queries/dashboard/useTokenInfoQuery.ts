@@ -4,6 +4,7 @@ import QUERY_KEYS from 'constants/queryKeys';
 import { TOTAL_SUPPLY } from 'constants/token';
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
+import { RPC_LIST } from 'pages/Root/Root';
 import { UseQueryOptions, useQuery } from 'react-query';
 import { TokenInfo } from 'types/token';
 import thalesContract from 'utils/contracts/thalesContract';
@@ -20,9 +21,8 @@ const useTokenInfoQuery = (options?: UseQueryOptions<TokenInfo | undefined>) => 
                 ]);
 
                 // Thales contract - Mainnet
-                const infuraProvider = new ethers.providers.InfuraProvider(
-                    Network.Mainnet,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
+                const infuraProvider = new ethers.providers.JsonRpcProvider(
+                    RPC_LIST.DRPC[Network.Mainnet as keyof typeof RPC_LIST.DRPC].http
                 );
                 const mainThalesContract = new ethers.Contract(
                     thalesContract.addresses[Network.Mainnet],
@@ -31,9 +31,8 @@ const useTokenInfoQuery = (options?: UseQueryOptions<TokenInfo | undefined>) => 
                 );
 
                 // Thales contract - Optimism
-                const opInfuraProvider = new ethers.providers.InfuraProvider(
-                    Network.OptimismMainnet,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
+                const opInfuraProvider = new ethers.providers.JsonRpcProvider(
+                    RPC_LIST.DRPC[Network.OptimismMainnet as keyof typeof RPC_LIST.DRPC].http
                 );
                 const opThalesContract = new ethers.Contract(
                     thalesContract.addresses[Network.OptimismMainnet],
@@ -42,9 +41,8 @@ const useTokenInfoQuery = (options?: UseQueryOptions<TokenInfo | undefined>) => 
                 );
 
                 // Thales contract - Arbitrum
-                const arbInfuraProvider = new ethers.providers.InfuraProvider(
-                    Network.Arbitrum,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
+                const arbInfuraProvider = new ethers.providers.JsonRpcProvider(
+                    RPC_LIST.DRPC[Network.Arbitrum as keyof typeof RPC_LIST.DRPC].http
                 );
                 const arbThalesContract = new ethers.Contract(
                     thalesContract.addresses[Network.Arbitrum],

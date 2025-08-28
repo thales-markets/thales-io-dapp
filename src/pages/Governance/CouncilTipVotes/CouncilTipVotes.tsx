@@ -4,6 +4,7 @@ import { CURRENT_GOVERNANCE_EPOCH_END_DATE, CURRENT_GOVERNANCE_EPOCH_START_DATE 
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
 import { LoaderContainer, StyledLink } from 'pages/Governance/styled-components';
+import { RPC_LIST } from 'pages/Root/Root';
 import useCouncilNftOwners from 'queries/governance/useCouncilNftOwners';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -218,9 +219,8 @@ const Voter: React.FC<StakerCellProps> = ({ address, walletAddress }) => {
 
     useEffect(() => {
         const fetchVoterEns = async () => {
-            const mainnetInfuraProvider = new ethers.providers.InfuraProvider(
-                Network.Mainnet,
-                process.env.REACT_APP_INFURA_PROJECT_ID
+            const mainnetInfuraProvider = new ethers.providers.JsonRpcProvider(
+                RPC_LIST.DRPC[Network.Mainnet as keyof typeof RPC_LIST.DRPC].http
             );
             const stakerEns = await mainnetInfuraProvider.lookupAddress(address);
             setVoterEns(stakerEns);

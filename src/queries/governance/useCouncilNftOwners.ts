@@ -1,6 +1,7 @@
 import QUERY_KEYS from 'constants/queryKeys';
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
+import { RPC_LIST } from 'pages/Root/Root';
 import { UseQueryOptions, useQuery } from 'react-query';
 import thalesCouncilNFT from 'utils/contracts/ThalesCouncilNFT';
 import { bigNumberParser } from 'utils/formatters/number';
@@ -9,9 +10,8 @@ const useCouncilNftOwners = (options?: UseQueryOptions<string[]>) => {
     return useQuery<string[]>(
         QUERY_KEYS.Governance.CouncilNftOwners(),
         async () => {
-            const mainnetInfuraProvider = new ethers.providers.InfuraProvider(
-                Network.Mainnet,
-                process.env.REACT_APP_INFURA_PROJECT_ID
+            const mainnetInfuraProvider = new ethers.providers.JsonRpcProvider(
+                RPC_LIST.DRPC[Network.Mainnet as keyof typeof RPC_LIST.DRPC].http
             );
 
             const thalesCouncilNFTContract = new ethers.Contract(
