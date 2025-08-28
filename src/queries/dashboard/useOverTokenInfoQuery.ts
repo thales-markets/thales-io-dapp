@@ -4,6 +4,7 @@ import { INITIAL_OVER_BURN } from 'constants/token';
 import { Network } from 'enums/network';
 import { ethers } from 'ethers';
 import { orderBy } from 'lodash';
+import { RPC_LIST } from 'pages/Root/Root';
 import { useQuery, UseQueryOptions } from 'react-query';
 import thalesData from 'thales-data';
 import { bigNumberFormatter, COLLATERAL_DECIMALS, formatShortDate } from 'thales-utils';
@@ -16,9 +17,8 @@ const useOverTokenInfoQuery = (options?: UseQueryOptions<OverTokenInfo | undefin
         async () => {
             try {
                 // Buyback from OP
-                const opInfuraProvider = new ethers.providers.InfuraProvider(
-                    Network.OptimismMainnet,
-                    process.env.REACT_APP_INFURA_PROJECT_ID
+                const opInfuraProvider = new ethers.providers.JsonRpcProvider(
+                    RPC_LIST.DRPC[Network.OptimismMainnet].http
                 );
 
                 const opThalesBuybackContract = new ethers.Contract(

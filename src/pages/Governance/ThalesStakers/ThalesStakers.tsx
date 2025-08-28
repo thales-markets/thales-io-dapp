@@ -8,6 +8,7 @@ import { Network } from 'enums/network';
 import makeBlockie from 'ethereum-blockies-base64';
 import { ethers } from 'ethers';
 import useDebouncedMemo from 'hooks/useDebouncedMemo';
+import { RPC_LIST } from 'pages/Root/Root';
 import useStakingDataQuery from 'queries/dashboard/useStakingDataQuery';
 import useTokenInfoQuery from 'queries/dashboard/useTokenInfoQuery';
 import useThalesStakersQuery from 'queries/useThalesStakersQuery';
@@ -479,10 +480,7 @@ const StakerCell: React.FC<StakerCellProps> = ({ staker }) => {
 
     useEffect(() => {
         const fetchVoterEns = async () => {
-            const mainnetInfuraProvider = new ethers.providers.InfuraProvider(
-                Network.Mainnet,
-                process.env.REACT_APP_INFURA_PROJECT_ID
-            );
+            const mainnetInfuraProvider = new ethers.providers.JsonRpcProvider(RPC_LIST.DRPC[Network.Mainnet].http);
             const stakerEns = await mainnetInfuraProvider.lookupAddress(staker.id);
             setStakerEns(stakerEns);
         };
