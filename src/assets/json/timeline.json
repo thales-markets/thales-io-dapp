@@ -304,18 +304,16 @@
         "quarter": "Q4 2025",
         "milestones": [
             {
-                "year": "2025",
-                "month": "Q4",
+                "year": "Q4 2025",
                 "description": "Live Betting Parlays"
             },
             {
-                "year": "2025",
-                "month": "Q4",
+                "year": "Q4 2025",
+                "month": "",
                 "description": "Live Player Props"
             },
             {
-                "year": "2025",
-                "month": "Q4",
+                "year": "Q4 2025",
                 "description": "Early Cashouts Implementation"
             }
         ]
@@ -324,13 +322,11 @@
         "quarter": "Q1 2026",
         "milestones": [
             {
-                "year": "2026",
-                "month": "Q1",
+                "year": "Q1 2026",
                 "description": "Yield-bearing collaterals (stETH, sDAI, eUSD)"
             },
             {
-                "year": "2026",
-                "month": "Q1",
+                "year": "Q1 2026",
                 "description": "Live Streams integration for improved Live Betting UX"
             }
         ]
@@ -339,13 +335,11 @@
         "quarter": "Q2 2026",
         "milestones": [
             {
-                "year": "2026",
-                "month": "Q2",
+                "year": "Q2 2026",
                 "description": "White-label Global Settlement Engine product"
             },
             {
-                "year": "2026",
-                "month": "Q2",
+                "year": "Q2 2026",
                 "description": "AI service integration / LLM with bet recommendations and bet execution capabilities"
             }
         ]
@@ -354,8 +348,7 @@
         "quarter": "Q3 2026",
         "milestones": [
             {
-                "year": "2026",
-                "month": "Q3",
+                "year": "Q3 2026",
                 "description": "Chain-abstracted liquidity layer, abstracting collateralization of bets across all supported networks"
             }
         ]
@@ -364,8 +357,7 @@
         "quarter": "Q4 2026",
         "milestones": [
             {
-                "year": "2026",
-                "month": "Q4",
+                "year": "Q4 2026",
                 "description": "Overtime Native iOS/Android application"
             }
         ]
