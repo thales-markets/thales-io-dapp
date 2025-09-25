@@ -248,12 +248,14 @@
         "quarter": "Q1 2025",
         "milestones": [
             {
-                "year": "March 2025",
+                "year": "2025",
+                "month": "March",
                 "description": "Overtime Expands on Base",
                 "link": "https://x.com/OvertimeMarkets/status/1896933066569851288"
             },
             {
-                "year": "March 2025",
+                "year": "2025",
+                "month": "March",
                 "description": "Overtime Launches Onchain SGPs"
             }
         ]
@@ -262,12 +264,14 @@
         "quarter": "Q2 2025",
         "milestones": [
             {
-                "year": "April 2025",
+                "year": "2025",
+                "month": "April",
                 "description": "The New Overtime is LIVE with full Account Abstraction!",
                 "link": "https://x.com/Overtime_io/status/1907439349769130136"
             },
             {
-                "year": "April 2025",
+                "year": "2025",
+                "month": "April",
                 "description": "$OVER Token TGE"
             }
         ]
@@ -276,17 +280,20 @@
         "quarter": "Q3 2025",
         "milestones": [
             {
-                "year": "July 2025",
+                "year": "2025",
+                "month": "July",
                 "description": "Overtime launches Esports Player Props support",
                 "link": "https://vxtwitter.com/Overtime_io/status/1944803268250493261?t=u4w95iyM78F_EhwuM8cOiA&s=19"
             },
             {
-                "year": "August 2025",
+                "year": "2025",
+                "month": "August",
                 "description": "Overdrop League Season 2 goes LIVE!",
                 "link": "https://x.com/Overtime_io/status/1953066767359549727"
             },
             {
-                "year": "September 2025",
+                "year": "2025",
+                "month": "September",
                 "description": "Global sportsbook giant Mollybet integrates Overtime",
                 "link": "https://x.com/Overtime_io/status/1967964593227211188"
             }
@@ -297,15 +304,18 @@
         "quarter": "Q4 2025",
         "milestones": [
             {
-                "year": "Q4 2025",
+                "year": "2025",
+                "month": "Q4",
                 "description": "Live Betting Parlays"
             },
             {
-                "year": "Q4 2025",
+                "year": "2025",
+                "month": "Q4",
                 "description": "Live Player Props"
             },
             {
-                "year": "Q4 2025",
+                "year": "2025",
+                "month": "Q4",
                 "description": "Early Cashouts Implementation"
             }
         ]
@@ -314,11 +324,13 @@
         "quarter": "Q1 2026",
         "milestones": [
             {
-                "year": "Q1 2026",
+                "year": "2026",
+                "month": "Q1",
                 "description": "Yield-bearing collaterals (stETH, sDAI, eUSD)"
             },
             {
-                "year": "Q1 2026",
+                "year": "2026",
+                "month": "Q1",
                 "description": "Live Streams integration for improved Live Betting UX"
             }
         ]
@@ -327,11 +339,13 @@
         "quarter": "Q2 2026",
         "milestones": [
             {
-                "year": "Q2 2026",
+                "year": "2026",
+                "month": "Q2",
                 "description": "White-label Global Settlement Engine product"
             },
             {
-                "year": "Q2 2026",
+                "year": "2026",
+                "month": "Q2",
                 "description": "AI service integration / LLM with bet recommendations and bet execution capabilities"
             }
         ]
@@ -340,7 +354,8 @@
         "quarter": "Q3 2026",
         "milestones": [
             {
-                "year": "Q3 2026",
+                "year": "2026",
+                "month": "Q3",
                 "description": "Chain-abstracted liquidity layer, abstracting collateralization of bets across all supported networks"
             }
         ]
@@ -349,7 +364,8 @@
         "quarter": "Q4 2026",
         "milestones": [
             {
-                "year": "Q4 2026",
+                "year": "2026",
+                "month": "Q4",
                 "description": "Overtime Native iOS/Android application"
             }
         ]
