@@ -16,8 +16,7 @@
             {
                 "year": "2021",
                 "month": "July",
-                "link":
-                    "https://thalesmarket.medium.com/the-day-has-come-thales-dapp-launches-on-ethereum-mainnet-366b98ed0c71",
+                "link": "https://thalesmarket.medium.com/the-day-has-come-thales-dapp-launches-on-ethereum-mainnet-366b98ed0c71",
                 "descriptionKey": "launch-protocol"
             },
             {
@@ -62,15 +61,13 @@
             {
                 "year": "2022",
                 "month": "April",
-                "link":
-                    "https://thalesmarket.medium.com/thales-goes-to-polygon-and-celebrates-with-a-trading-competition-634449d7f23d",
+                "link": "https://thalesmarket.medium.com/thales-goes-to-polygon-and-celebrates-with-a-trading-competition-634449d7f23d",
                 "descriptionKey": "thales-polygon-launch"
             },
             {
                 "year": "2022",
                 "month": "May",
-                "link":
-                    "https://thalesmarket.medium.com/a-new-defi-primitive-is-born-the-launch-of-tokenized-ranged-markets-e1d85165627a",
+                "link": "https://thalesmarket.medium.com/a-new-defi-primitive-is-born-the-launch-of-tokenized-ranged-markets-e1d85165627a",
                 "descriptionKey": "ranged-markets-launch"
             },
             {
@@ -87,8 +84,7 @@
             {
                 "year": "2022",
                 "month": "July",
-                "link":
-                    "https://medium.com/@OvertimeMarkets.xyz/sport-fans-meet-your-new-favorite-defi-platform-overtime-markets-5e18adb5b93",
+                "link": "https://medium.com/@OvertimeMarkets.xyz/sport-fans-meet-your-new-favorite-defi-platform-overtime-markets-5e18adb5b93",
                 "descriptionKey": "overtime-launch"
             },
             {
@@ -111,8 +107,7 @@
             {
                 "year": "2022",
                 "month": "November",
-                "link":
-                    "https://medium.com/@OvertimeMarkets.xyz/overtime-highlights-parlays-new-look-and-zebro-world-cup-nfts-68c318bcf2c3",
+                "link": "https://medium.com/@OvertimeMarkets.xyz/overtime-highlights-parlays-new-look-and-zebro-world-cup-nfts-68c318bcf2c3",
                 "descriptionKey": "parlay-amm-launch"
             }
         ]
@@ -135,8 +130,7 @@
             {
                 "year": "2023",
                 "month": "March",
-                "link":
-                    "https://thalesmarket.medium.com/thales-stakers-now-able-to-provide-liquidity-for-overtimes-sports-amm-dae946291b75",
+                "link": "https://thalesmarket.medium.com/thales-stakers-now-able-to-provide-liquidity-for-overtimes-sports-amm-dae946291b75",
                 "descriptionKey": "overtime-lp"
             }
         ]
@@ -147,22 +141,19 @@
             {
                 "year": "2023",
                 "month": "May",
-                "link":
-                    "https://thalesmarket.medium.com/thales-markets-2-0-full-redesign-and-greatly-reduced-fees-df1b5f880107",
+                "link": "https://thalesmarket.medium.com/thales-markets-2-0-full-redesign-and-greatly-reduced-fees-df1b5f880107",
                 "descriptionKey": "thales-lp"
             },
             {
                 "year": "2023",
                 "month": "May",
-                "link":
-                    "https://thalesmarket.medium.com/thales-markets-2-0-full-redesign-and-greatly-reduced-fees-df1b5f880107",
+                "link": "https://thalesmarket.medium.com/thales-markets-2-0-full-redesign-and-greatly-reduced-fees-df1b5f880107",
                 "descriptionKey": "thales-markets-2"
             },
             {
                 "year": "2023",
                 "month": "June",
-                "link":
-                    "https://medium.com/@OvertimeMarkets.xyz/the-parlay-amm-is-open-for-liquidity-provisioning-94febbee1f62",
+                "link": "https://medium.com/@OvertimeMarkets.xyz/the-parlay-amm-is-open-for-liquidity-provisioning-94febbee1f62",
                 "descriptionKey": "parlay-lp"
             }
         ]
@@ -202,8 +193,7 @@
             {
                 "year": "2024",
                 "month": "January",
-                "link":
-                    "https://thalesmarket.medium.com/thales-protocol-integrates-chainlink-ccip-to-unlock-cross-chain-staking-and-protocol-rewards-1b10348158d2",
+                "link": "https://thalesmarket.medium.com/thales-protocol-integrates-chainlink-ccip-to-unlock-cross-chain-staking-and-protocol-rewards-1b10348158d2",
                 "descriptionKey": "ccip"
             },
             {
@@ -226,10 +216,8 @@
         ]
     },
     {
-        "selected": true,
         "quarter": "Q3 2024",
         "milestones": [
-            
             {
                 "year": "2024",
                 "month": "July",
@@ -259,10 +247,9 @@
     {
         "quarter": "Q1 2025",
         "milestones": [
-            
             {
                 "year": "March 2025",
-                "description": "Overtime Expands on Base"
+                "description": "Overtime Expands on Base",
                 "link": "https://x.com/OvertimeMarkets/status/1896933066569851288"
             },
             {
@@ -274,10 +261,9 @@
     {
         "quarter": "Q2 2025",
         "milestones": [
-            
             {
                 "year": "April 2025",
-                "description": "The New Overtime is LIVE with full Account Abstraction!"
+                "description": "The New Overtime is LIVE with full Account Abstraction!",
                 "link": "https://x.com/Overtime_io/status/1907439349769130136"
             },
             {
@@ -289,28 +275,27 @@
     {
         "quarter": "Q3 2025",
         "milestones": [
-            
             {
                 "year": "July 2025",
-                "description": "Overtime launches Esports Player Props support"
+                "description": "Overtime launches Esports Player Props support",
                 "link": "https://vxtwitter.com/Overtime_io/status/1944803268250493261?t=u4w95iyM78F_EhwuM8cOiA&s=19"
             },
             {
                 "year": "August 2025",
-                "description": "Overdrop League Season 2 goes LIVE!"
+                "description": "Overdrop League Season 2 goes LIVE!",
                 "link": "https://x.com/Overtime_io/status/1953066767359549727"
             },
             {
                 "year": "September 2025",
-                "description": "Global sportsbook giant Mollybet integrates Overtime"
+                "description": "Global sportsbook giant Mollybet integrates Overtime",
                 "link": "https://x.com/Overtime_io/status/1967964593227211188"
             }
         ]
     },
     {
+        "selected": true,
         "quarter": "Q4 2025",
         "milestones": [
-            
             {
                 "year": "Q4 2025",
                 "description": "Live Betting Parlays"
@@ -328,7 +313,6 @@
     {
         "quarter": "Q1 2026",
         "milestones": [
-            
             {
                 "year": "Q1 2026",
                 "description": "Yield-bearing collaterals (stETH, sDAI, eUSD)"
@@ -342,7 +326,6 @@
     {
         "quarter": "Q2 2026",
         "milestones": [
-            
             {
                 "year": "Q2 2026",
                 "description": "White-label Global Settlement Engine product"
@@ -356,7 +339,6 @@
     {
         "quarter": "Q3 2026",
         "milestones": [
-            
             {
                 "year": "Q3 2026",
                 "description": "Chain-abstracted liquidity layer, abstracting collateralization of bets across all supported networks"
@@ -366,7 +348,6 @@
     {
         "quarter": "Q4 2026",
         "milestones": [
-            
             {
                 "year": "Q4 2026",
                 "description": "Overtime Native iOS/Android application"
