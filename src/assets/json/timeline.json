@@ -216,8 +216,10 @@
         ]
     },
     {
+        "selected": true,
         "quarter": "Q3 2024",
         "milestones": [
+            
             {
                 "year": "2024",
                 "month": "July",
@@ -247,6 +249,7 @@
     {
         "quarter": "Q1 2025",
         "milestones": [
+            
             {
                 "year": "2025",
                 "month": "March",
@@ -305,6 +308,7 @@
         "selected": true,
         "quarter": "Q4 2025",
         "milestones": [
+            
             {
                 "year": "Q4 2025",
                 "description": "Live Betting Parlays"
