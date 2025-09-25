@@ -216,6 +216,7 @@
         ]
     },
     {
+        "selected": true,
         "quarter": "Q3 2024",
         "milestones": [
             {
@@ -309,7 +310,6 @@
             },
             {
                 "year": "Q4 2025",
-                "month": "",
                 "description": "Live Player Props"
             },
             {
@@ -336,10 +336,6 @@
         "milestones": [
             {
                 "year": "Q2 2026",
-                "description": "White-label Global Settlement Engine product"
-            },
-            {
-                "year": "Q2 2026",
                 "description": "AI service integration / LLM with bet recommendations and bet execution capabilities"
             }
         ]
@@ -359,6 +355,33 @@
             {
                 "year": "Q4 2026",
                 "description": "Overtime Native iOS/Android application"
+            }
+        ]
+    },
+    {
+        "quarter": "Q1 2027",
+        "milestones": [
+            {
+                "year": "Q1 2027",
+                "description": "White-label Global Settlement Engine product"
+            }
+        ]
+    },
+    {
+        "quarter": "Q2 2027",
+        "milestones": [
+            {
+                "year": "Q2 2027",
+                "description": "Institutional liquidity pools, attracting hedge-fund style liquidity providers"
+            }
+        ]
+    },
+    {
+        "quarter": "Q2 2027",
+        "milestones": [
+            {
+                "year": "Q3 2027",
+                "description": "Reach the Onchain Pinnacle status: best odds and liquidity globally"
             }
         ]
     }
