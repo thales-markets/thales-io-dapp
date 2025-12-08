@@ -10,7 +10,7 @@ import { FlexDiv } from 'styles/common';
 import { buildGovernanceHref } from 'utils/routes';
 
 const IS_VISIBLE = true;
-const IS_SECOND_BANNER_VISIBLE = false;
+const IS_SECOND_BANNER_VISIBLE = true;
 
 const Banner: React.FC = () => {
     const [showThalesToOverMigrationModal, setShowThalesToOverMigrationModal] = useState<boolean>(false);
