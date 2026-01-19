@@ -32,6 +32,9 @@ interface RootProps {
 const STALL_TIMEOUT = 2000;
 export const RPC_LIST = {
     DRPC: {
+        [Network.Mainnet]: {
+            http: `https://lb.drpc.org/ethereum/${process.env.REACT_APP_DRPC_PROJECT_ID}`,
+        },
         [Network.OptimismMainnet]: {
             http: `https://lb.drpc.org/optimism/${process.env.REACT_APP_DRPC_PROJECT_ID}`,
         },
