@@ -104,6 +104,10 @@ export const MigrationContainer = styled(FlexDiv)`
     padding: 10px 10px;
     border-radius: 5px;
     width: 100%;
+    max-width: 60%;
+    flex-direction: column;
+    gap: 10px;
+    line-height: 1.6;
     align-items: center;
     justify-content: center;
     color: ${(props) => props.theme.warning.textColor.primary};
@@ -117,6 +121,7 @@ export const MigrationContainer = styled(FlexDiv)`
         font-size: 13px;
         padding: 10px;
         margin: 0 0 20px 0;
+        max-width: 100%;
     }
     span:last-child {
         cursor: pointer;
