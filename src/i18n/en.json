@@ -239,6 +239,11 @@
     },
     "staking": {
         "migration-banner": "As per <tip>TIP-238</tip>, THALES staking has been deprecated and rewards have been halted. While there is no deadline, <bold>all THALES stakers are advised to unstake</bold>, and migrate $THALES to $OVER token <bold><span>here</span></bold>.",
+        "deprecation-notice": "Per <oip>OIP-260</oip> V1 contracts have been fully deprecated and swept for safety reasons. If you had funds in them, reach out to core team via <discord>Discord</discord> to receive your funds. You can check the balances at the snapshot of the sweep here:",
+        "deprecation-lp-label": "V1 LP pools and vaults:",
+        "deprecation-lp-link": "View spreadsheet",
+        "deprecation-staked-label": "THALES staked:",
+        "deprecation-staked-link": "View spreadsheet",
         "nav": {
             "rewards": "Rewards",
             "staking": "Stake & Earn",
@@ -1136,7 +1141,7 @@
     "migration-modal": {
         "title": "Migrate $THALES to $OVER",
         "description": "<p>Thales DAO has officially migrated to Overtime DAO. You can migrate your  $THALES tokens to $OVER tokens here.</p><p>1 $THALES = 1 $OVER</p><p>More details on the migration in <tipLink>TIP-238</tipLink>.</p>",
-        "unstake-description": "<p>Still staking $THALES? Unstake or vest $THALES <stakingLink>here</stakingLink>.</p><p>Staking THALES/WETH LP tokens? Unstake <lpStakingLink>here</lpStakingLink>.</p>",
+        "unstake-description": "<p>Still staking $THALES? Check <stakingLink>here</stakingLink>.</p><p>Staking THALES/WETH LP tokens? Unstake <lpStakingLink>here</lpStakingLink>.</p>",
         "amount-label": "THALES to migrate",
         "over-to-receive": "OVER to receive",
         "migration-confirmation-message": "THALES successfully migrated to OVER",

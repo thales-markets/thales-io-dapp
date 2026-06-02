@@ -29,6 +29,11 @@ const LINKS = {
     TIP1: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-1.md',
     Contracts: 'https://contracts.thales.io/',
     Token: {
+        OIP260: '/dao/thalesgov.eth/0x1046e9a72f8b561e99c7e96cb7dbcad9b5c69d7cb11078fcdc9b4a8f8e55ad65',
+        V1LpPoolsSheet:
+            'https://docs.google.com/spreadsheets/d/1Zyed1jxNtaWDu8WIP8EsSARBu8imon-GDCGsyoF4dgs/edit?usp=sharing',
+        V1ThalesStakedSheet:
+            'https://docs.google.com/spreadsheets/d/1yMJuRB-SJcjAVPts1D9FFzvwEoNgEnKhnjeMyMeIAf4/edit?usp=sharing',
         TIP66: '/dao/thalesgov.eth/0xa925cddfe73b58911c3a9308a0e9d70dff21e31e4d428247ac084e8cffa4eb4f',
         TIP139: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-139.md',
         TIP142: 'https://github.com/thales-markets/thales-improvement-proposals/blob/main/TIPs/TIP-142.md',
