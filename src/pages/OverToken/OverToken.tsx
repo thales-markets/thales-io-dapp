@@ -16,8 +16,9 @@ import {
     SectionSloganHighlight,
     SectionTitle,
 } from 'pages/LandingPage/styled-components';
+import useOverBuybackHistoryQuery from 'queries/dashboard/useOverBuybackHistoryQuery';
 import useOverTokenInfoQuery from 'queries/dashboard/useOverTokenInfoQuery';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getIsAppReady } from 'redux/modules/app';
@@ -27,6 +28,7 @@ import { getEtherscanTokenLink, truncateAddress } from 'thales-utils';
 import { OverTokenInfo } from 'types/token';
 import { CountUp } from 'use-count-up';
 import overContract from 'utils/contracts/overContract';
+import { buildBuybackChartData } from 'utils/overTokenBuyback';
 import BurnChart from './BurnChart';
 import BuyOverModal from './BuyOverModal/BuyOverModal';
 import OverSupplyChart from './OverSupplyChart';
@@ -72,6 +74,10 @@ const OverToken: React.FC = () => {
         enabled: isAppReady,
     });
 
+    const buybackHistoryQuery = useOverBuybackHistoryQuery({
+        enabled: isAppReady,
+    });
+
     useEffect(() => {
         if (overTokenInfoQuery.isSuccess && overTokenInfoQuery.data) {
             setPreviousOverTokenInfo(overTokenInfo);
@@ -80,7 +86,24 @@ const OverToken: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [overTokenInfoQuery.isSuccess, overTokenInfoQuery.data]);
 
+    // Combine the (slow) buyback history with the live stats. Re-runs cheaply as stats tick, so the
+    // chart's latest point stays live without re-fetching the history.
+    const buybackChartData = useMemo(() => {
+        if (!buybackHistoryQuery.data || !overTokenInfo) {
+            return [];
+        }
+        return buildBuybackChartData(buybackHistoryQuery.data, overTokenInfo.burned, overTokenInfo.currentTickBurn);
+    }, [buybackHistoryQuery.data, overTokenInfo]);
+
+    // Show the chart loader until we actually have data to plot, unless the history loaded and is empty.
+    const isHistoryEmpty = buybackHistoryQuery.isSuccess && (buybackHistoryQuery.data?.length ?? 0) === 0;
+    const isChartLoading = buybackChartData.length === 0 && !isHistoryEmpty;
+
     const getCounter = (startValue: number | undefined, endValue: number | undefined) => {
+        // Stats not loaded yet - show a dash instead of counting up from a placeholder zero.
+        if (endValue === undefined) {
+            return '-';
+        }
         return (
             <CountUp
                 isCounting
@@ -183,7 +206,7 @@ const OverToken: React.FC = () => {
                         {getCounter(previousOverTokenInfo?.burned, overTokenInfo?.burned)}
                     </BurnInfo>
                 </BurnInfoContainer>
-                {overTokenInfo && <BurnChart buybackByDates={overTokenInfo?.buybackByDates} />}
+                <BurnChart buybackByDates={buybackChartData} isLoading={isChartLoading} />
                 <OverContainer>
                     <OverLeftContainer flexBasis="35%">
                         {overTokenInfo && (

@@ -17,7 +17,6 @@
 
 -   `ethers.js` v5 - Ethereum wallet implementation.
 -   `RainbowKit` and `wagmi` - for ethereum wallet connectivity.
--   [thales-data](https://github.com/thales-markets/thales-data) - for historical data (powered by [TheGraph](https://thegraph.com/))
 
 ## Development
 

@@ -7,6 +7,7 @@ const QUERY_KEYS = {
     },
     OverToken: {
         Info: () => ['overToken', 'info'],
+        BuybackHistory: () => ['overToken', 'buybackHistory'],
     },
     Token: {
         PointsBreakdown: (walletAddress: string, networkId: Network) => [
