@@ -47,7 +47,6 @@ export type OverTokenInfo = {
     lastBuybackTimestamp: number;
     lastBuybackAmountIn: number;
     lastBuybackAmountOut: number;
-    buybackByDates: BuybackByDate[];
 };
 
 export type StakingData = {

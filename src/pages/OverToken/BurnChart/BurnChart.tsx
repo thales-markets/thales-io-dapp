@@ -1,3 +1,4 @@
+import { CustomCircularProgress, LoaderContainer } from 'components/LoadingContainer/styled-components';
 import { OVER_CURRENCY } from 'constants/currency';
 import { ScreenSizeBreakpoint } from 'enums/ui';
 import React from 'react';
@@ -11,9 +12,10 @@ import { ThemeInterface } from 'types/ui';
 
 type BurnChartProps = {
     buybackByDates: BuybackByDate[];
+    isLoading: boolean;
 };
 
-const BurnChart: React.FC<BurnChartProps> = ({ buybackByDates }) => {
+const BurnChart: React.FC<BurnChartProps> = ({ buybackByDates, isLoading }) => {
     const { t } = useTranslation();
     const theme: ThemeInterface = useTheme();
 
@@ -38,16 +40,20 @@ const BurnChart: React.FC<BurnChartProps> = ({ buybackByDates }) => {
         return null;
     };
 
-    const noData = buybackByDates.length === 0;
-
     return (
         <Container>
-            {!noData ? (
-                <ChartContainer>
-                    <Title>
-                        <Icon className="overtime-icon overtime-icon--stack" />
-                        {t('over-token.chart.title')}
-                    </Title>
+            <ChartContainer>
+                <Title>
+                    <Icon className="overtime-icon overtime-icon--stack" />
+                    {t('over-token.chart.title')}
+                </Title>
+                {isLoading ? (
+                    <LoaderContainer>
+                        <CustomCircularProgress />
+                    </LoaderContainer>
+                ) : buybackByDates.length === 0 ? (
+                    <NoData>{t(`over-token.chart.no-data`)}</NoData>
+                ) : (
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={buybackByDates}>
                             {/* <CartesianGrid strokeDasharray="2 2" strokeWidth={0.5} stroke={theme.textColor.primary} /> */}
@@ -98,10 +104,8 @@ const BurnChart: React.FC<BurnChartProps> = ({ buybackByDates }) => {
                             />
                         </LineChart>
                     </ResponsiveContainer>
-                </ChartContainer>
-            ) : (
-                <NoData>{t(`over-token.chart.no-data`)}</NoData>
-            )}
+                )}
+            </ChartContainer>
         </Container>
     );
 };
