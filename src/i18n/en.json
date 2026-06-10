@@ -227,7 +227,8 @@
             "products": {
                 "products": "PRODUCTS",
                 "overtime": "Overtime",
-                "speed-markets": "Speed markets"
+                "speed-markets": "Speed markets",
+                "casino": "Casino"
             },
             "about": {
                 "about": "ABOUT",
@@ -622,6 +623,7 @@
             "resources": "Resources",
             "overtime": "Overtime",
             "speed-markets": "Speed markets",
+            "casino": "Casino",
             "thales-markets": "Thales markets"
         }
     },
